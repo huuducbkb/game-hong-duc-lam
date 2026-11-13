@@ -825,7 +825,7 @@
       "lua_chon": [
         {
           "chu": "Giấu kỹ khối ngọc, quay lại đối diện",
-          "den": "c1_p05"
+          "den": "c1_p02b"
         }
       ]
     },
@@ -844,7 +844,7 @@
       "lua_chon": [
         {
           "chu": "Nghiến răng quay về linh dược viên",
-          "den": "c1_p05"
+          "den": "c1_p03b"
         }
       ]
     },
@@ -863,14 +863,14 @@
       "lua_chon": [
         {
           "chu": "Rút lui thật êm, mang tin này về",
-          "den": "c1_p05"
+          "den": "c1_p04b"
         }
       ]
     },
     {
       "id": "c1_p05",
       "hoi": "Mở",
-      "boi_canh": "Đêm trước — ngoại môn chìm trong bất an",
+      "boi_canh": "Đêm trước — ngoại môn chìm trong im lặng nặng nề",
       "hinh_anh": {
         "tags": [
           "đêm",
@@ -878,7 +878,7 @@
           "căng thẳng"
         ]
       },
-      "ke": "Ta đứng giữa sân ngoại môn, trong lòng rối như tơ vò. Kẻ thì lo linh thạch, kẻ thì mang tin động trời mà chẳng ai tin.\n\nTa kéo một vị sư huynh trông coi cổng đông, kể chuyện Dã Lang Bang. Gã nhìn ta như nhìn kẻ điên: “Tạp dịch mà cũng dám bịa chuyện quân cơ?”\n\n*Không ai tin một kẻ hạng bét.* Ta cắn môi. Nhưng ta biết mình đúng.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng đông bùng lên tiếng hét.",
+      "ke": "Đêm buông xuống, ngoại môn chìm vào một thứ im lặng nặng nề. Những ngọn đèn dầu tắt sớm, tiếng chó sủa thưa dần rồi tắt hẳn.\n\nTa nấp ở một góc sân, nín thở, không hiểu vì sao lòng mình bất an đến vậy.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng đông bùng lên tiếng hét.",
       "lua_chon": [
         {
           "chu": "Chạy thẳng ra cổng đông, cố cảnh báo mọi người",
@@ -1184,7 +1184,7 @@
           "bất an"
         ]
       },
-      "ke": "Trời ngả vàng, ta quay về Thất Huyền trấn với sọt thuốc đầy. Nhưng không khí trong trấn đã khác lạ.\n\nNgười bán hàng dọn sạp sớm, cửa nhà đóng im ỉm. Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.\n\n*Không khí này… như trước bão.* Ta siết quai sọt, tim đập nhanh.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng trấn bùng lên tiếng hét.",
+      "ke": "Trời ngả vàng, ta quay về Thất Huyền trấn. Nhưng không khí trong trấn đã khác lạ.\n\nNgười bán hàng dọn sạp sớm, cửa nhà đóng im ỉm. Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.\n\n*Không khí này… như trước bão.* Tim ta đập nhanh.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng trấn bùng lên tiếng hét.",
       "lua_chon": [
         {
           "chu": "Chạy tới chỗ đông người bị thương, cứu chữa",
@@ -1739,11 +1739,11 @@
       "lua_chon": [
         {
           "chu": "Đứng yên trong bóng tối, chờ hắn quay đi",
-          "den": "c1_h05"
+          "den": "c1_h04b"
         },
         {
           "chu": "Ra tay trước khi bị phát hiện",
-          "den": "c1_h05",
+          "den": "c1_h04c",
           "hieu_ung": {
             "co_su_kien": [
               "da_giet_nguoi"
@@ -1952,6 +1952,114 @@
         {
           "chu": "Cười khàn, quay lưng đi ngược hướng",
           "den": "c1_d18"
+        }
+      ]
+    },
+    {
+      "id": "c1_p02b",
+      "hoi": "Mở",
+      "boi_canh": "Góc vườn dược — tiếng bước chân sau lưng",
+      "hinh_anh": {
+        "tags": [
+          "vườn dược",
+          "ngọc",
+          "căng thẳng"
+        ]
+      },
+      "ke": "Ta khựng người, tay vẫn giấu khối ngọc trong vạt áo, rồi quay lại.\n\nMột tạp dịch già đang gánh nước ngang qua, chẳng nhìn thấy gì. Hắn liếc ta một cái rồi lặng lẽ đi tiếp.\n\n*May quá.* Ta thở phào. Khối ngọc cốt vẫn nằm trong vạt áo, lạnh buốt như có mạch đập riêng.\n\nTrong đầu ta lóe lên một ý nghĩ: thứ này có thể đổi được linh thạch — hoặc là thứ còn quý hơn cả mạng sống.",
+      "lua_chon": [
+        {
+          "chu": "Giấu kỹ khối ngọc, coi như chưa từng thấy",
+          "den": "c1_p05"
+        },
+        {
+          "chu": "Siết chặt vạt áo, quyết giữ nó cho riêng mình",
+          "den": "c1_p05",
+          "hieu_ung": {
+            "them_vat": [
+              {
+                "ten": "Ngọc cốt bí ẩn",
+                "so": 1,
+                "mo_ta": "Khối ngọc đào được trong vườn dược, lạnh buốt như có mạch đập."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c1_p03b",
+      "hoi": "Mở",
+      "boi_canh": "Linh dược viên — chiều muộn",
+      "hinh_anh": {
+        "tags": [
+          "chiều",
+          "vườn dược",
+          "nặng nề"
+        ]
+      },
+      "ke": "Ta lê bước về linh dược viên, hai bàn tay trống rỗng. Ba viên linh thạch vay được — vẫn còn thiếu quá xa.\n\nTa ngồi bệt xuống luống dược, nhìn trời chiều ngả màu. *Kiếp này, kẻ yếu chỉ có thể chờ đợi.*\n\nTa không biết rằng, đêm nay sẽ không còn là chuyện linh thạch nữa.",
+      "lua_chon": [
+        {
+          "chu": "Ngồi lặng, chờ đêm xuống",
+          "den": "c1_p05"
+        }
+      ]
+    },
+    {
+      "id": "c1_p04b",
+      "hoi": "Mở",
+      "boi_canh": "Rìa kho lương — thoát ra trong đêm",
+      "hinh_anh": {
+        "tags": [
+          "đêm",
+          "kho",
+          "cảnh báo"
+        ]
+      },
+      "ke": "Ta rút lui thật êm, tim đập như trống trận. Mang tin động trời này, ta chạy đi tìm người.\n\nNhưng khi kéo một vị sư huynh trông coi cổng đông, ta chỉ nhận được cái nhìn như nhìn kẻ điên: “Tạp dịch mà cũng dám bịa chuyện quân cơ?”\n\n*Không ai tin một kẻ hạng bét.* Ta cắn môi. Nhưng ta biết mình đúng.",
+      "lua_chon": [
+        {
+          "chu": "Nghiến răng, tự lo cho mình",
+          "den": "c1_p05"
+        }
+      ]
+    },
+    {
+      "id": "c1_h04b",
+      "hoi": "Mở",
+      "boi_canh": "Rìa doanh trại — thoát đi trong im lặng",
+      "hinh_anh": {
+        "tags": [
+          "bóng tối",
+          "trinh sát",
+          "may mắn"
+        ]
+      },
+      "ke": "Ta lùi khỏi bờ rào, từng bước một, không rời mắt khỏi tên lính.\n\nHắn ngó quanh một lúc, rồi quay lại đống lửa, tiếp tục uống rượu cùng đồng bọn.\n\nTa tan vào màn đêm, mang theo tin mình vừa nghe được.",
+      "lua_chon": [
+        {
+          "chu": "Rút về chỗ trú",
+          "den": "c1_h05"
+        }
+      ]
+    },
+    {
+      "id": "c1_h04c",
+      "hoi": "Mở",
+      "boi_canh": "Rìa doanh trại — một mạng đổi một mạng",
+      "hinh_anh": {
+        "tags": [
+          "máu",
+          "bóng tối",
+          "sát khí"
+        ]
+      },
+      "ke": "Không kịp nghĩ, ta lao tới. Lưỡi dao cắm ngọt vào cổ họng tên lính trước khi hắn kịp hét.\n\nHắn đổ xuống, máu nóng phun lên tay ta. Ta kéo xác vào bóng tối, tim đập đến nghẹn thở.\n\n*Đêm nay, ta lại nợ thêm một mạng.* Không ai phát hiện. Ta rút lui, mang theo tin vừa nghe được.",
+      "lua_chon": [
+        {
+          "chu": "Rút về chỗ trú",
+          "den": "c1_h05"
         }
       ]
     }
