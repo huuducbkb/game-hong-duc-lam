@@ -328,8 +328,33 @@ def _ke_theo_hao_cam(d: dict, state: dict) -> str:
     return tot_nhat["ke"] if tot_nhat else d.get("ke", "")
 
 
+def _man_ket_chuong(state: dict) -> dict:
+    """Màn hình khi đã khép chương (thay vì tra đoạn không tồn tại)."""
+    return {
+        "doan_id": "__ket_thuc__",
+        "hoi": "Kết",
+        "boi_canh": "Chương 1 — hết",
+        "chuong": state["chuong"],
+        "ten_chuong": load_chuong(state["chuong"])["ten"],
+        "ke": (
+            "Chương một khép lại. Dã Lang Bang rút lui, Thất Huyền Môn còn đứng đó, "
+            "dẫu tan hoang.\n\nTa đứng giữa buổi bình minh, biết rằng con đường phía trước "
+            "còn dài hơn cả những gì ta tưởng.\n\n*Chương sau: Huyết Sát Thí Luyện.*"
+        ),
+        "hinh_anh": {"tags": ["bình minh", "kết chương", "núi"]},
+        "video": None,
+        "lua_chon": [],
+        "cho_phep_tu_do": False,
+        "ket_thuc": True,
+        "thong_bao": [],
+        "trang_thai": _trang_thai_gon(state),
+    }
+
+
 def _goi_y(state: dict) -> dict:
     """Trả về đoạn hiện tại ở dạng cho giao diện (giấu thông tin nội bộ)."""
+    if state.get("ket_thuc"):
+        return _man_ket_chuong(state)
     d = _doan(state)
     lua_chon = []
     for i, lc in enumerate(d.get("lua_chon", [])):
@@ -406,6 +431,8 @@ def chon(state: dict, chi_so: int) -> dict:
 
 def _boi_canh(state: dict) -> str:
     """Bối cảnh ngắn cho AI nhận diện hành động tự do."""
+    if state.get("ket_thuc"):
+        return "Chương đã khép lại."
     d = _doan(state)
     npc = ", ".join(f"{ten} (hảo cảm {v['hao_cam']})" for ten, v in state["npc"].items())
     return (
@@ -457,6 +484,8 @@ def hanh_dong_tu_do(state: dict, van_ban: str, AI=None) -> dict:
     van_ban = van_ban.strip()
     if not van_ban:
         return {"loi": "Hãy nhập hành động"}
+    if state.get("ket_thuc"):
+        return {"loi": "Chương đã khép lại"}
     d = _doan(state)
     _ghi_nhat_ky(state, f"Tự do: {van_ban}")
     hien_thi = van_ban[3:] if van_ban.lower().startswith("ta ") else van_ban
@@ -533,6 +562,8 @@ def nap(slot: str) -> dict | None:
 
 def tom_tat(state: dict) -> str:
     """Tóm tắt luỹ tiến — dùng cho thẻ ngữ cảnh gửi AI (tiết kiệm token)."""
+    if state.get("ket_thuc"):
+        return f"Chương {state['chuong']} đã khép lại."
     d = _doan(state)
     npcs = ", ".join(
         f"{ten} ({v.get('hao_cam', 0):+d})" for ten, v in state["npc"].items()
