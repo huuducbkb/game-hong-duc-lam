@@ -1,0 +1,22 @@
+# Bí mật - KHÔNG commit
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Dữ liệu game sinh ra khi chạy
+data/*.db
+data/media/
+
+# Hệ điều hành / IDE
+.DS_Store
+.idea/
+.vscode/
+
+# ảnh gốc dung lượng lớn (chỉ giữ bản đã tối ưu trong assets/ui)
+assets/ui-orig/

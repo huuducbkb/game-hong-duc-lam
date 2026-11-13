@@ -1,0 +1,91 @@
+# Hồng Đức Tu Tiên Lộ
+
+Game AI text tu tiên chạy trên web. Đồng nhân xuyên không dựa trên *Phàm Nhân Tu Tiên* (Vong Ngữ).
+Người chơi xuyên không vào thế giới đó, sống cùng thời Hàn Lập.
+
+Người dùng chỉ có **Safari (iPad/iPhone), KHÔNG có terminal** → mọi thứ phải qua giao diện web.
+
+## QUY TẮC BẮT BUỘC: dùng phương pháp INKFRAME
+
+**Mọi việc đụng đến thiết kế giao diện, tạo hình ảnh, hoặc video ngắn → PHẢI dùng
+quy trình INKFRAME.** Không tự nghĩ cách khác.
+
+- Skill: `.agents/skills/inkframe-pipeline/SKILL.md`
+- Báo cáo đầy đủ: `docs/INKFRAME-report.md`
+
+Tóm tắt 5 bước: **① PROMPT** (viết prompt gửi AI ngoài) → **② NHẬN ẢNH** (kiểm kê, giữ bản gốc)
+→ **③ ĐO** (Pillow: độ dày viền, ruột sáng/tối, vị trí ấn son) → **④ GHÉP** (`border-image`
++ alpha key PNG) → **⑤ KIỂM CHỨNG** (chụp trình duyệt + bản đồ mật độ mực).
+
+Ba điều không bao giờ quên:
+1. **Không** kéo giãn ảnh khung bằng `background-size:100% 100%` → méo nét vẽ.
+2. **Không** viết số CSS bằng cách đoán → đo bằng Pillow trước, đo lại sau khi resize.
+3. **Luôn** kiểm chứng bằng ảnh chụp trình duyệt, không tin CSS "trông có vẻ đúng".
+
+## Chạy máy chủ
+
+```bash
+# tĩnh (xem demo + ảnh) — port 12000
+setsid nohup python3 -m http.server 12000 --bind 0.0.0.0 --directory /workspace/game-hong-duc-lam \
+  > /tmp/static.log 2>&1 < /dev/null & disown
+
+# Xưởng (prompt ảnh + upload) — port 12001
+setsid nohup python3 tools_server.py > /tmp/studio.log 2>&1 < /dev/null & disown
+```
+
+Dùng `setsid nohup ... & disown` để máy chủ sống qua các lệnh shell.
+URL cho người dùng: `https://work-1-...` (port 12000) và `https://work-2-...` (port 12001).
+
+## Tài nguyên ảnh (QUAN TRỌNG)
+
+Gemini free tier **chặn sinh ảnh** (quota 0), OpenRouter **hết credit**.
+→ Quy trình: agent viết **prompt chi tiết** → người dùng gửi cho AI tạo ảnh bên ngoài
+→ người dùng upload ảnh ngược lại qua Xưởng → agent ghép vào giao diện.
+
+- `assets/ui/` — 7 ảnh đã tối ưu (1.4MB). Khung/nền là **JPEG**; `avatar-ring.png` và
+  `seal.png` là **PNG alpha** (đã tách nền: giấy sáng → trong suốt, mực → đậm).
+- `assets/ui-orig/` — ảnh gốc 18MB, **đã trong .gitignore**, chỉ dùng để xử lý lại.
+- Ấn son đã tách khỏi `panel-character` thành `seal.png` để viền không méo khi co giãn.
+
+### Kỹ thuật ghép khung: `border-image`
+
+Ảnh khung không được kéo giãn trực tiếp (sẽ méo nét mực). Dùng `border-image` với
+giá trị slice đo **trên ảnh đã resize**, không phải ảnh gốc:
+
+```css
+/* panel-character.jpg (800x1200) */ border-image:url(...) 71 67 64 68 fill / 9px 9px / 0 stretch;
+/* panel-story.jpg     (800x1200) */ border-image:url(...) 39 38 32 37 fill / 9px 9px / 0 stretch;
+/* btn-choice.jpg      (1100x473) */ border-image:url(...) 67 42 73 41 fill / 11px 11px / 0 stretch;
+```
+
+Đo lại slice bằng cách quét điểm tối (L<150) theo hàng/cột giữa ảnh.
+
+## Giao diện đã chốt: **1 CỘT** (`demo/hybrid-1col.html`)
+
+Thứ tự dọc: thanh trên (avatar + tiêu đề + nút Hệ Thống) → bảng truyện (cuộn bên trong)
+→ 3 nút lựa chọn. `max-width:520px`, ưu tiên iPhone 11.
+`demo/hybrid.html` là bản 2 cột cũ, giữ để tham khảo.
+
+**Màn chính KHÔNG có khối thân phận** — chỉ số nhân vật nằm trong **tab "Nhân vật"**
+của bảng Hệ Thống, để bảng truyện rộng tối đa.
+
+Bảng Hệ Thống là **drawer trượt từ phải**, có 4 tab: Nhân vật · Kỹ năng · Túi · Đã gặp.
+Tab đầu gồm thẻ nhân vật (avatar + thanh Tu vi/Khí huyết/Thần thức) và bảng Thân phận.
+Avatar đổi ở thanh trên thì **đồng bộ** sang thẻ nhân vật trong tab.
+
+Quy ước: font `Noto Serif` + `Ma Shan Zheng`; màu mực `#1b1915`, ấn son `#a8352a`;
+`panel-character.jpg` chỉ còn dùng cho khung (nếu cần), không còn khối thân phận ở màn chính.
+
+## Cấu trúc
+
+- `demo/` — 12 phương án giao diện + `hybrid-1col.html` (chính) + `hybrid.html` (2 cột)
+- `assets/ui/` — ảnh UI đã tối ưu
+- `tools_server.py` — Xưởng: prompt ảnh + upload
+- `SPEC.md` — đặc tả game
+- `.env` — key API (KHÔNG commit; đã trong .gitignore)
+
+## Cần làm tiếp
+
+1. Người dùng duyệt giao diện 1 cột.
+2. Backend game Python + tích hợp LLM.
+3. Nội dung Chương 1 (Dã Lang Bang), Chương 2 (Huyết Sát Thí Luyện), Chương 3.

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>PA2 · Cổ phong + Hệ Thống hologram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e5ddc8;
+    --ink:#2b2620;
+    --ink-soft:#4a4238;
+    --seal:#9c3b2e;
+    --cyan:#35d6d0;         /* hologram */
+    --cyan-soft:#7ff0ea;
+    --cyan-dark:#0d3b3d;
+    --line:rgba(43,38,32,.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    min-height:100vh;
+    background:radial-gradient(circle at 30% 0%, #efe8d6 0%, #e5ddc8 45%, #d3c7aa 100%);
+    color:var(--ink);font-family:'Noto Serif',serif;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;opacity:.55;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(90,110,130,.10), transparent 42%),
+      radial-gradient(circle at 85% 70%, rgba(60,70,80,.09), transparent 45%);
+    animation:mist 50s ease-in-out infinite alternate;
+  }
+  @keyframes mist{from{transform:translate(0,0) scale(1);}to{transform:translate(-2%,1%) scale(1.06);}}
+
+  .topbar{
+    position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;background:linear-gradient(180deg,rgba(229,221,200,.97),rgba(229,221,200,.8));
+    border-bottom:1px solid var(--line);backdrop-filter:blur(4px);
+  }
+  .brand{font-family:'Ma Shan Zheng';font-size:26px;letter-spacing:2px;}
+  .brand small{display:block;font-family:'Noto Serif';font-size:11px;letter-spacing:3px;color:var(--ink-soft);opacity:.7;}
+  .sys-btn{
+    font-family:'Orbitron';font-size:12px;letter-spacing:2px;
+    border:1px solid var(--cyan-dark);color:#0a2f31;background:linear-gradient(180deg,rgba(53,214,208,.28),rgba(53,214,208,.10));
+    padding:8px 14px;border-radius:4px;cursor:pointer;transition:.2s;
+  }
+  .sys-btn:hover{box-shadow:0 0 16px rgba(53,214,208,.6);border-color:var(--cyan);}
+
+  .wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1080px;margin:0 auto;padding:20px;}
+  .col-left,.col-right{display:flex;flex-direction:column;gap:16px;}
+
+  .panel{
+    background:linear-gradient(180deg,rgba(255,252,244,.72),rgba(229,221,200,.55));
+    border:1px solid var(--line);border-radius:6px;padding:16px;position:relative;
+    box-shadow:0 6px 20px rgba(80,70,50,.10), inset 0 0 40px rgba(180,160,120,.10);
+  }
+  .panel::after{content:"";position:absolute;inset:5px;border:1px solid rgba(43,38,32,.10);border-radius:3px;pointer-events:none;}
+
+  .char-top{display:flex;gap:14px;align-items:center;}
+  .avatar{width:76px;height:76px;border-radius:50%;flex:0 0 auto;border:2px solid var(--ink-soft);
+    background:linear-gradient(135deg,#cfc4a8,#b7ab8d) center/cover no-repeat;display:flex;align-items:center;justify-content:center;
+    color:var(--ink-soft);font-size:11px;text-align:center;cursor:pointer;overflow:hidden;
+    box-shadow:0 0 0 4px rgba(53,214,208,.18);}
+  .avatar img{width:100%;height:100%;object-fit:cover;}
+  .char-name{font-family:'Ma Shan Zheng';font-size:24px;}
+  .char-origin{font-size:12px;color:var(--ink-soft);opacity:.85;margin-top:2px;}
+
+  .realm{margin-top:14px;display:inline-block;padding:6px 14px;border:1px solid var(--cyan-dark);
+    border-radius:3px;color:#0a2f31;font-size:14px;letter-spacing:1px;
+    background:linear-gradient(90deg,rgba(53,214,208,.22),rgba(53,214,208,.08));}
+  .stat{margin-top:12px;}
+  .stat label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);}
+  .bar{height:9px;background:rgba(43,38,32,.12);border-radius:2px;margin-top:5px;overflow:hidden;}
+  .bar i{display:block;height:100%;width:0;transition:width .5s;}
+  .bar .exp{background:linear-gradient(90deg,#1fa8a3,#7ff0ea);box-shadow:0 0 10px rgba(53,214,208,.5);}
+  .bar .hp{background:linear-gradient(90deg,#9c3b2e,#c96a5c);}
+
+  .attrs{list-style:none;margin-top:14px;font-size:13px;}
+  .attrs li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed rgba(43,38,32,.16);}
+  .attrs span{color:var(--ink-soft);}
+  .attrs b{font-weight:600;}
+
+  .inv{margin-top:14px;}
+  .inv h4{font-size:12px;letter-spacing:2px;color:var(--ink-soft);font-weight:400;margin-bottom:8px;text-transform:uppercase;}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{font-size:12px;padding:3px 10px;border:1px solid var(--line);border-radius:3px;background:rgba(255,252,244,.6);}
+
+  .story{max-height:52vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding-right:6px;}
+  .story::-webkit-scrollbar{width:5px;}
+  .story::-webkit-scrollbar-thumb{background:rgba(43,38,32,.25);border-radius:9px;}
+  .entry{line-height:1.85;font-size:15px;animation:up .5s ease;}
+  @keyframes up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .entry.gm{border-left:3px solid var(--cyan-dark);padding-left:12px;}
+  .entry.gm .who{font-family:'Orbitron';font-size:11px;letter-spacing:3px;color:#0d7d7a;display:block;margin-bottom:4px;}
+  .entry.player{align-self:flex-end;max-width:82%;text-align:right;background:rgba(156,59,46,.10);
+    border-right:3px solid var(--seal);padding:8px 12px;border-radius:4px;}
+  .notices{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .notices span{font-size:11px;padding:2px 9px;border:1px solid var(--cyan-dark);color:#0a2f31;
+    border-radius:3px;background:rgba(53,214,208,.14);}
+  .notices span.break{border-color:var(--seal);color:var(--seal);background:rgba(156,59,46,.10);}
+
+  .choices{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+  .choices button{text-align:left;padding:11px 14px;border:1px solid var(--line);border-radius:4px;
+    background:rgba(255,252,244,.6);font-family:inherit;font-size:14px;color:var(--ink);cursor:pointer;transition:.18s;}
+  .choices button:hover{border-color:var(--cyan);background:rgba(53,214,208,.12);transform:translateX(3px);box-shadow:0 0 14px rgba(53,214,208,.25);}
+  .choices b{font-family:'Orbitron';color:#0d7d7a;margin-right:8px;font-size:13px;}
+
+  .actionbar{display:flex;gap:8px;margin-top:14px;}
+  .actionbar input{flex:1;padding:13px 14px;border:1px solid var(--line);border-radius:4px;
+    background:rgba(255,252,244,.75);font-family:inherit;font-size:15px;color:var(--ink);}
+  .actionbar input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 12px rgba(53,214,208,.35);}
+  .actionbar button{padding:13px 20px;border:1px solid var(--cyan-dark);border-radius:4px;cursor:pointer;
+    background:linear-gradient(180deg,rgba(53,214,208,.3),rgba(53,214,208,.12));color:#0a2f31;
+    font-family:'Orbitron';font-size:13px;letter-spacing:2px;}
+  .actionbar button:hover{box-shadow:0 0 18px rgba(53,214,208,.6);}
+
+  .scene-title{font-family:'Ma Shan Zheng';font-size:20px;margin-bottom:10px;}
+  .art{position:relative;aspect-ratio:16/10;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#cfc4a8;}
+  .art svg{width:100%;height:100%;display:block;}
+  .art .cap{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;
+    background:linear-gradient(0deg,rgba(229,221,200,.95),transparent);font-size:13px;color:var(--ink);}
+  .moment{margin-top:10px;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-soft);}
+  .hint{font-size:12px;color:var(--ink-soft);opacity:.8;line-height:1.7;margin-top:8px;}
+
+  /* ===== HỆ THỐNG hologram (ẩn, bấm mới mở) ===== */
+  .sys-overlay{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;padding:20px;
+    background:rgba(20,18,14,.6);backdrop-filter:blur(4px);}
+  .sys-overlay.open{display:flex;}
+  .sys-box{
+    width:100%;max-width:450px;border-radius:8px;padding:24px;position:relative;max-height:86vh;overflow:auto;
+    background:
+      linear-gradient(180deg,rgba(9,32,34,.96),rgba(6,20,22,.97));
+    border:1px solid var(--cyan);
+    box-shadow:0 0 40px rgba(53,214,208,.4), inset 0 0 60px rgba(53,214,208,.08);
+    color:var(--cyan-soft);
+    font-family:'Noto Serif';
+  }
+  .sys-box::before{ /* đường quét hologram */
+    content:"";position:absolute;left:0;right:0;height:2px;top:0;
+    background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+    animation:scan 3.5s linear infinite;opacity:.8;
+  }
+  @keyframes scan{from{top:0;}to{top:100%;}}
+  .sys-box h3{font-family:'Orbitron';font-size:20px;letter-spacing:4px;color:var(--cyan-soft);
+    text-shadow:0 0 14px rgba(53,214,208,.8);margin-bottom:4px;}
+  .sys-box .sub{font-size:11px;letter-spacing:2px;color:rgba(127,240,234,.6);}
+  .sys-box .close{position:absolute;top:14px;right:16px;border:none;background:none;font-size:22px;cursor:pointer;color:var(--cyan-soft);}
+  .sys-box section{margin-top:16px;border-top:1px solid rgba(53,214,208,.25);padding-top:12px;}
+  .sys-box h5{font-family:'Orbitron';font-size:11px;letter-spacing:2px;color:rgba(127,240,234,.75);font-weight:500;margin-bottom:8px;}
+  .quest{font-size:14px;line-height:1.7;color:#d6fffc;}
+  .quest .now{color:var(--cyan-soft);text-shadow:0 0 10px rgba(53,214,208,.6);}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px;
+    background:rgba(20,18,14,.72);backdrop-filter:blur(5px);}
+  .modal.hide{display:none;}
+  .modal .box{width:100%;max-width:400px;background:var(--paper);border:2px solid var(--ink);border-radius:8px;
+    padding:30px 26px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.6);}
+  .modal h2{font-family:'Ma Shan Zheng';font-size:30px;letter-spacing:3px;margin-bottom:6px;}
+  .modal p{font-size:13px;color:var(--ink-soft);margin-bottom:16px;line-height:1.6;}
+  .modal .up-avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;border:2px dashed var(--cyan-dark);
+    display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink-soft);cursor:pointer;
+    background:rgba(255,252,244,.6) center/cover no-repeat;overflow:hidden;}
+  .modal input{width:100%;padding:12px;margin-bottom:10px;border:1px solid var(--line);border-radius:4px;
+    background:rgba(255,252,244,.8);font-family:inherit;font-size:15px;text-align:center;color:var(--ink);}
+  .modal input:focus{outline:none;border-color:var(--cyan);}
+  .modal .go{width:100%;padding:14px;border:1px solid var(--cyan-dark);border-radius:4px;
+    background:linear-gradient(180deg,rgba(53,214,208,.32),rgba(53,214,208,.14));color:#0a2f31;
+    font-family:'Orbitron';font-size:14px;letter-spacing:3px;cursor:pointer;margin-top:6px;}
+  .modal .go:hover{box-shadow:0 0 22px rgba(53,214,208,.6);}
+  .modal small{display:block;font-size:11px;color:var(--ink-soft);opacity:.75;margin-bottom:12px;}
+
+  @media (max-width:760px){
+    .wrap{grid-template-columns:1fr;gap:14px;padding:14px;}
+    .story{max-height:none;}
+    .brand{font-size:22px;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">Hồng Đức Tu Tiên Lộ<small>PHÀM NHÂN ĐỒNG NHÂN</small></div>
+    <button class="sys-btn" onclick="document.getElementById('sys').classList.add('open')">◈ HỆ THỐNG</button>
+  </header>
+
+  <div class="wrap">
+    <div class="col-left">
+      <div class="panel">
+        <div class="char-top">
+          <div class="avatar" id="av1" title="Bấm để đổi ảnh">Ảnh<br>đại diện</div>
+          <div>
+            <div class="char-name">Lý Tầm</div>
+            <div class="char-origin">Xuất thân: tán tu phiêu bạt</div>
+          </div>
+        </div>
+        <div class="realm">Luyện Khí Tầng 3</div>
+        <div class="stat">
+          <label>Tu vi <span>120 / 340</span></label>
+          <div class="bar"><i class="exp" style="width:35%"></i></div>
+        </div>
+        <div class="stat">
+          <label>Khí huyết <span>88 / 100</span></label>
+          <div class="bar"><i class="hp" style="width:88%"></i></div>
+        </div>
+        <ul class="attrs">
+          <li><span>Công kích</span><b>14</b></li>
+          <li><span>Linh thạch</span><b>42</b></li>
+          <li><span>Vị trí</span><b>Thanh Ngưu trấn</b></li>
+          <li><span>Chương</span><b>I · Dã Lang Bang</b></li>
+        </ul>
+        <div class="inv">
+          <h4>Túi đồ</h4>
+          <div class="chips">
+            <span class="chip">Tụ Khí Đan ×2</span>
+            <span class="chip">Thanh Phong Kiếm</span>
+            <span class="chip">Hộ Thân Phù</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-right">
+      <div class="panel">
+        <div class="scene-title">Thanh Ngưu trấn</div>
+        <div class="art">
+          <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="s2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f3ecda"/><stop offset="100%" stop-color="#cfc3a6"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#s2)"/>
+            <path d="M0 340 L160 200 L300 300 L470 150 L640 320 L800 230 L800 500 L0 500Z" fill="#3c4a44" opacity="0.55"/>
+            <path d="M0 400 L200 300 L380 380 L560 280 L800 400 L800 500 L0 500Z" fill="#2b2620" opacity="0.5"/>
+            <ellipse cx="400" cy="140" rx="320" ry="26" fill="#6a7a72" opacity="0.10"/>
+            <circle cx="640" cy="110" r="42" fill="#f7f1e0" opacity="0.85"/>
+          </svg>
+          <div class="cap">Thanh Ngưu trấn · sơn thôn yên ả</div>
+        </div>
+        <div class="moment">Tĩnh lặng</div>
+        <p class="hint">Ảnh minh họa bối cảnh theo từng lượt. Khoảnh khắc lớn sẽ có hiệu ứng chuyển động.</p>
+      </div>
+
+      <div class="panel">
+        <div class="story">
+          <div class="entry gm">
+            <span class="who">HỆ THỐNG</span>
+            Ngươi mở mắt giữa một sơn thôn heo hút. Ký ức hai đời chồng lên nhau — ngươi đã xuyên vào thân xác một tán tu nghèo khổ tại Thanh Ngưu trấn. Ngoài kia, thiên địa linh khí mờ nhạt, thế gian sắp dậy sóng.
+          </div>
+          <div class="entry player">Ta thử vận hành pháp quyết tu luyện đêm nay.</div>
+          <div class="entry gm">
+            <span class="who">HỆ THỐNG</span>
+            Ngươi khoanh chân ngồi xuống, dẫn khí nhập thể. Một tia linh khí mỏng manh chảy dọc kinh mạch, đan điền khẽ ấm lên. Tu vi tinh tiến đôi phần.
+            <div class="notices"><span>+35 tu vi</span><span>+1 Linh thạch</span></div>
+          </div>
+        </div>
+
+        <div class="choices">
+          <button><b>A</b>Tiếp tục bế quan, tranh thủ đêm yên tĩnh</button>
+          <button><b>B</b>Ra ngoài thám thính tin tức Dã Lang Bang</button>
+          <button><b>C</b>Tùy ý: <i>tự nhập hành động của ngươi…</i></button>
+        </div>
+
+        <form class="actionbar" onsubmit="return false">
+          <input placeholder="Ngươi muốn làm gì?" />
+          <button>GỬI</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="sys-overlay" id="sys" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="sys-box">
+      <button class="close" onclick="document.getElementById('sys').classList.remove('open')">×</button>
+      <h3>HỆ THỐNG</h3>
+      <div class="sub">BÀN TAY VÀNG CỦA KẺ XUYÊN KHÔNG</div>
+
+      <section>
+        <h5>NHIỆM VỤ HIỆN TẠI</h5>
+        <div class="quest">
+          <div class="now">▸ Chương I — Đại chiến Dã Lang Bang</div>
+          <div style="opacity:.85">Tìm cách sống sót qua trận chiến, và chạm mặt một tán tu trẻ tuổi tên <b>Hàn Lập</b>.</div>
+        </div>
+      </section>
+
+      <section>
+        <h5>NHẮC MỐC NGUYÊN TÁC</h5>
+        <div class="quest" style="opacity:.85">Dã Lang Bang tấn công Thất Huyền Môn. Hàn Lập khi ấy là tạp dịch đệ tử.</div>
+      </section>
+
+      <section>
+        <h5>BẢNG CẢNH GIỚI</h5>
+        <div class="quest" style="font-size:13px;opacity:.85;line-height:1.9">
+          Luyện Khí (13 tầng) → Trúc Cơ → Kết Đan → Nguyên Anh → Hóa Thần → Luyện Hư → Hợp Thể → Đại Thừa → Độ Kiếp → Chân Tiên
+        </div>
+      </section>
+
+      <section>
+        <h5>TRẠNG THÁI</h5>
+        <div class="quest">Khí huyết 88/100 · Tu vi 120/340 · Linh thạch 42</div>
+      </section>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="box">
+      <h2>Nhập Đạo</h2>
+      <p>Đạo hữu, xin để lại danh tính và nguồn cội của ngươi.</p>
+      <div class="up-avatar" id="av2" onclick="document.getElementById('f1').click()">Tải ảnh<br>đại diện</div>
+      <input id="f1" type="file" accept="image/*" hidden onchange="pickAvatar(this,'av2','av1')" />
+      <input placeholder="Danh tính (ví dụ: Lý Tầm)" />
+      <input placeholder="Xuất thân — tự do (ví dụ: tán tu, con nhà nông…)" />
+      <small>Bỏ trống xuất thân → mặc định "tán tu vô danh".</small>
+      <button class="go" onclick="document.getElementById('modal').classList.add('hide')">BƯỚC VÀO TU TIÊN</button>
+    </div>
+  </div>
+
+<script>
+  function pickAvatar(input, previewId, mainId){
+    const f = input.files && input.files[0]; if(!f) return;
+    const url = URL.createObjectURL(f);
+    const p = document.getElementById(previewId);
+    p.style.backgroundImage=`url(${url})`; p.textContent="";
+    if(mainId){const m=document.getElementById(mainId);m.style.backgroundImage=`url(${url})`;m.textContent="";}
+  }
+  document.getElementById('av1').onclick = () => document.getElementById('f1').click();
+</script>
+</body>
+</html>

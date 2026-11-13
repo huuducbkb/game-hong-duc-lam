@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hồng Đức Tu Tiên Lộ · 1 cột</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b1915;
+  --ink-soft:#3a342b;
+  --ink-faint:#6d6454;
+  --seal:#a8352a;
+  --edge:rgba(40,34,26,.15);
+  --serif:"Noto Serif","Times New Roman",serif;
+  --brush:"Ma Shan Zheng",var(--serif);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{
+  font-family:var(--serif);color:var(--ink);
+  background:#e7dcc4;overflow:hidden;font-size:15px;line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ---------- NỀN ---------- */
+.bg{position:fixed;inset:0;z-index:0;
+  background:url("../assets/ui/bg-main.jpg") center/cover no-repeat}
+.bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(130% 90% at 50% 30%, rgba(255,253,246,.30), rgba(206,192,163,.22) 68%, rgba(142,126,97,.34))}
+
+/* ---------- 1 CỘT ---------- */
+.app{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top) + 8px) 10px calc(env(safe-area-inset-bottom) + 8px);gap:8px;
+  max-width:520px;margin:0 auto}
+
+/* ---------- THANH TRÊN ---------- */
+.topbar{display:flex;align-items:center;gap:11px;flex:0 0 auto}
+.avatar-wrap{position:relative;width:48px;height:48px;flex:0 0 auto}
+.avatar{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:#d9cfb6}
+.ring{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);pointer-events:none}
+.avatar-wrap label{position:absolute;inset:0;cursor:pointer}
+.titles{flex:1 1 auto;min-width:0}
+.titles h1{margin:0;font-size:16.5px;font-weight:600;letter-spacing:.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.titles .sub{font-size:10.5px;color:var(--ink-faint);letter-spacing:1.8px;text-transform:uppercase}
+.sys-btn{flex:0 0 auto;font-family:var(--serif);font-size:12.5px;font-weight:600;color:var(--ink);
+  background:rgba(255,253,246,.62);border:1px solid var(--edge);border-radius:99px;padding:8px 13px}
+.sys-btn:active{background:rgba(255,253,246,.95)}
+
+/* ---------- KHUNG VẼ TAY ---------- */
+.frame{border-style:solid;border-color:transparent;background-color:transparent;position:relative}
+
+/* --- thẻ nhân vật (nằm trong tab Hệ Thống) --- */
+.char-head{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+.char-avatar{position:relative;width:50px;height:50px;flex:0 0 auto}
+.char-avatar .av{width:100%;height:100%;border-radius:50%;object-fit:cover;background:#d9cfb6;display:block}
+.char-avatar .rg{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px)}
+.char-head .nm{font-size:14.5px;font-weight:600;line-height:1.2}
+.char-head .rl{font-size:10.5px;color:var(--seal);letter-spacing:1px;margin-top:1px}
+.seal-mini{width:22px;height:22px;margin-left:auto;background:url("../assets/ui/seal.png") center/contain no-repeat;opacity:.85;flex:0 0 auto}
+.dstat{margin-bottom:7px}
+.dstat:last-child{margin-bottom:0}
+.dstat .top{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px}
+.dstat .top .k{color:var(--ink-faint)}
+.dstat .top .v{font-weight:600}
+.dstat .top .v small{font-weight:400;color:var(--ink-faint);font-size:9.5px}
+.dbar{height:4px;border-radius:99px;background:rgba(40,34,26,.14);overflow:hidden;margin-top:2px}
+.dbar i{display:block;height:100%;background:linear-gradient(90deg,#5a5040,#1b1915)}
+
+/* --- tab trong bảng Hệ Thống --- */
+.tabs-bar{display:flex;gap:4px;margin-bottom:11px;border-bottom:1px solid var(--edge)}
+.tabs-bar .tab{flex:1;font-family:var(--serif);font-size:12px;color:var(--ink-faint);
+  background:transparent;border:0;border-bottom:2px solid transparent;padding:8px 2px 7px;letter-spacing:.3px}
+.tabs-bar .tab.on{color:var(--ink);font-weight:600;border-bottom-color:var(--seal)}
+.tabpane{display:none}
+.tabpane.on{display:block}
+
+/* --- bảng truyện: chiếm hết phần còn lại, cuộn bên trong --- */
+.panel-story{
+  flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  border-width:8px 8px;
+  border-image:url("../assets/ui/panel-story.jpg") 39 38 32 37 fill / 9px 9px / 0 stretch;
+  padding:10px 12px;
+}
+.panel-story .chapter{font-size:10px;letter-spacing:1.8px;color:var(--seal);text-transform:uppercase;
+  text-align:center;margin-bottom:5px}
+.panel-story p{margin:0 0 9px;text-indent:1.3em;font-size:14px}
+.panel-story p:last-child{margin-bottom:0}
+.panel-story .drop{float:left;font-family:var(--brush);font-size:42px;line-height:.86;padding:2px 7px 0 0;color:var(--seal)}
+.panel-story em{font-style:italic;color:var(--ink-soft)}
+
+/* --- nút lựa chọn: xếp dọc dưới cùng --- */
+.choices{flex:0 0 auto;display:flex;flex-direction:column;gap:7px}
+.choice{
+  font-family:var(--serif);font-size:13.5px;color:var(--ink);text-align:left;
+  padding:12px 16px;min-height:44px;display:flex;align-items:center;gap:9px;
+  border-style:solid;border-color:transparent;border-width:10px 10px;
+  border-image:url("../assets/ui/btn-choice.jpg") 67 42 73 41 fill / 11px 11px / 0 stretch;
+  background:transparent;transition:transform .12s;
+}
+.choice:active{transform:scale(.985);filter:brightness(.95)}
+.choice .idx{font-family:var(--brush);font-size:16px;color:var(--seal);flex:0 0 auto;width:15px}
+
+/* ---------- NGĂN HỆ THỐNG (ẩn) ---------- */
+.scrim{position:fixed;inset:0;z-index:5;background:rgba(30,26,20,.45);
+  opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:6;width:min(86vw,355px);
+  background:url("../assets/ui/bg-main.jpg") center/cover no-repeat;
+  transform:translateX(103%);transition:transform .3s cubic-bezier(.3,.8,.3,1);
+  padding:calc(env(safe-area-inset-top) + 16px) 15px calc(env(safe-area-inset-bottom) + 16px);
+  overflow-y:auto;box-shadow:-6px 0 22px rgba(30,24,16,.3)}
+.drawer::before{content:"";position:absolute;inset:0;background:rgba(246,240,226,.55);pointer-events:none}
+.drawer>*{position:relative}
+.drawer.on{transform:translateX(0)}
+.drawer h2{margin:0 0 2px;font-size:16px;font-weight:600}
+.drawer .cap{font-size:10.5px;letter-spacing:1.8px;color:var(--seal);text-transform:uppercase;margin-bottom:12px}
+.sys-card{background:rgba(255,253,246,.55);border:1px solid var(--edge);border-radius:12px;padding:11px 12px;margin-bottom:9px}
+.sys-card h3{margin:0 0 7px;font-size:11px;letter-spacing:1.4px;color:var(--ink-faint);text-transform:uppercase;font-weight:600}
+.sys-row{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;border-bottom:1px dashed var(--edge)}
+.sys-row:last-child{border-bottom:0}
+.sys-row .k{color:var(--ink-soft)}
+.sys-row .v{font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11px;padding:4px 9px;border-radius:99px;background:rgba(168,53,42,.09);color:var(--seal);border:1px solid rgba(168,53,42,.24)}
+.drawer .close{width:100%;margin-top:4px;font-family:var(--serif);font-size:13.5px;padding:12px;
+  border-radius:11px;border:1px solid var(--edge);background:rgba(255,253,246,.72);color:var(--ink)}
+
+@media (max-height:640px){
+  .panel-story p{font-size:13.5px}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<div class="app">
+  <header class="topbar">
+    <div class="avatar-wrap">
+      <img class="avatar" id="avatarImg" alt="ảnh đại diện"
+           src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' fill='%23d9cfb6'/><text x='60' y='74' font-size='48' text-anchor='middle' fill='%238a7d63'>?</text></svg>">
+      <img class="ring" src="../assets/ui/avatar-ring.png" alt="">
+      <label title="Đổi ảnh đại diện"><input type="file" accept="image/*" id="avatarInput" hidden></label>
+    </div>
+    <div class="titles">
+      <h1>Hồng Đức Tu Tiên Lộ</h1>
+      <div class="sub">Chương 1 · Dã Lang Bang</div>
+    </div>
+    <button class="sys-btn" id="openSys">Hệ Thống</button>
+  </header>
+
+  <!-- bảng truyện -->
+  <section class="frame panel-story" id="story">
+    <div class="chapter">Chương 1 · Dã Lang Bang</div>
+    <p><span class="drop">Ng</span>ươi mở mắt giữa buổi chợ sớm của thị trấn Thất Huyền. Mùi thuốc bắc, tiếng người mặc cả, và đâu đó tiếng ngựa hí vang.</p>
+    <p>Ngươi chưa hiểu vì sao mình ở đây. Chỉ biết trên tay có một mảnh ngọc vụn còn ấm, và trong đầu vang lên một giọng nói lạnh lùng: “Nghịch chuyển càn khôn… đã bắt đầu.”</p>
+    <p>Phía xa, một thanh niên gầy gò, áo vải thô, lặng lẽ quan sát gánh hàng thuốc. Ánh mắt y sắc như dao — không giống kẻ tầm thường.</p>
+    <p><em>Ngươi sẽ làm gì?</em></p>
+  </section>
+
+  <!-- lựa chọn -->
+  <nav class="choices">
+    <button class="choice"><span class="idx">壹</span> Lặng lẽ bám theo thanh niên áo vải</button>
+    <button class="choice"><span class="idx">貳</span> Chen vào đám đông, dò hỏi chuyện Dã Lang Bang</button>
+    <button class="choice"><span class="idx">叁</span> Tìm quán trọ, ẩn mình chờ thời</button>
+  </nav>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <h2>Hệ Thống</h2>
+  <div class="cap">Bảng điều khiển tu sĩ</div>
+
+  <nav class="tabs-bar" id="tabsBar">
+    <button class="tab on" data-tab="nhanvat">Nhân vật</button>
+    <button class="tab" data-tab="kynang">Kỹ năng</button>
+    <button class="tab" data-tab="tui">Túi</button>
+    <button class="tab" data-tab="gap">Đã gặp</button>
+  </nav>
+
+  <!-- TAB: NHÂN VẬT -->
+  <section class="tabpane on" data-pane="nhanvat">
+    <div class="sys-card">
+      <div class="char-head">
+        <div class="char-avatar">
+          <img class="av" id="charAv" alt=""
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' fill='%23d9cfb6'/><text x='60' y='74' font-size='48' text-anchor='middle' fill='%238a7d63'>?</text></svg>">
+          <img class="rg" src="../assets/ui/avatar-ring.png" alt="">
+        </div>
+        <div>
+          <div class="nm">Vô Danh Tán Tu</div>
+          <div class="rl">Luyện Khí · Tầng 1</div>
+        </div>
+        <div class="seal-mini"></div>
+      </div>
+      <div class="dstat">
+        <div class="top"><span class="k">Tu vi</span><span class="v">12<small>/100</small></span></div>
+        <div class="dbar"><i style="width:12%"></i></div>
+      </div>
+      <div class="dstat">
+        <div class="top"><span class="k">Khí huyết</span><span class="v">30<small>/30</small></span></div>
+        <div class="dbar"><i style="width:100%"></i></div>
+      </div>
+      <div class="dstat">
+        <div class="top"><span class="k">Thần thức</span><span class="v">8<small>/20</small></span></div>
+        <div class="dbar"><i style="width:40%"></i></div>
+      </div>
+    </div>
+
+    <div class="sys-card">
+      <h3>Thân phận</h3>
+      <div class="sys-row"><span class="k">Xuất thân</span><span class="v">Người xuyên không</span></div>
+      <div class="sys-row"><span class="k">Cảnh giới</span><span class="v">Luyện Khí tầng 1</span></div>
+      <div class="sys-row"><span class="k">Linh căn</span><span class="v">Chưa rõ</span></div>
+      <div class="sys-row"><span class="k">Môn phái</span><span class="v">Tán tu</span></div>
+      <div class="sys-row"><span class="k">Linh thạch</span><span class="v">3 hạ phẩm</span></div>
+    </div>
+  </section>
+
+  <!-- TAB: KỸ NĂNG -->
+  <section class="tabpane" data-pane="kynang">
+    <div class="sys-card">
+      <h3>Kỹ năng</h3>
+      <div class="tags"><span class="tag">Hô hấp pháp</span><span class="tag">Nhận biết linh khí</span></div>
+    </div>
+    <div class="sys-card">
+      <h3>Công pháp</h3>
+      <div class="sys-row"><span class="k">Chưa tu luyện</span><span class="v">—</span></div>
+    </div>
+  </section>
+
+  <!-- TAB: TÚI -->
+  <section class="tabpane" data-pane="tui">
+    <div class="sys-card">
+      <h3>Túi trữ vật</h3>
+      <div class="sys-row"><span class="k">Ngọc vụn bí ẩn</span><span class="v">×1</span></div>
+      <div class="sys-row"><span class="k">Linh thạch hạ phẩm</span><span class="v">×3</span></div>
+      <div class="sys-row"><span class="k">Đan dược</span><span class="v">—</span></div>
+    </div>
+  </section>
+
+  <!-- TAB: ĐÃ GẶP -->
+  <section class="tabpane" data-pane="gap">
+    <div class="sys-card">
+      <h3>Nhân vật đã gặp</h3>
+      <div class="sys-row"><span class="k">Thanh niên áo vải</span><span class="v">???</span></div>
+    </div>
+  </section>
+
+  <button class="close" id="closeSys">Đóng bảng</button>
+</aside>
+
+<script>
+const drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim');
+document.getElementById('openSys').onclick=()=>{drawer.classList.add('on');scrim.classList.add('on')};
+const close=()=>{drawer.classList.remove('on');scrim.classList.remove('on')};
+document.getElementById('closeSys').onclick=close;
+scrim.onclick=close;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+
+// tab trong bảng Hệ Thống
+document.querySelectorAll('#tabsBar .tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('#tabsBar .tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.tabpane').forEach(p=>p.classList.remove('on'));
+  t.classList.add('on');
+  document.querySelector(`.tabpane[data-pane="${t.dataset.tab}"]`).classList.add('on');
+  drawer.scrollTop=0;
+});
+
+document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.choice').forEach(x=>x.style.filter='');
+  b.style.filter='brightness(.93)';
+});
+
+// đổi ảnh đại diện — đồng bộ cả thanh trên và tab Nhân vật
+document.getElementById('avatarInput').onchange=e=>{
+  const f=e.target.files[0]; if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    document.getElementById('avatarImg').src=r.result;
+    document.getElementById('charAv').src=r.result;
+  };
+  r.readAsDataURL(f);
+};
+</script>
+</body>
+</html>
