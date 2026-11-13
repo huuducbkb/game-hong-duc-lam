@@ -109,6 +109,18 @@ Người dùng mở `https://work-2-.../game` để chơi.
 
 Phiên giữ trong RAM + cookie `phien`; trạng thái đầy đủ lưu ở `data/saves/`.
 
+## Bản thảo để duyệt
+
+Xuất đoạn kể của mọi chương ra văn bản để người dùng đọc:
+
+```bash
+python3 tools/export_ban_thao.py        # mọi chương
+python3 tools/export_ban_thao.py 1      # chỉ Chương 1
+```
+
+Kết quả ở `docs/ban-thao/`: `chuong1.md` (xem trên GitHub), `chuong1.html` (đọc trên Safari),
+`index.html` (mục lục). Đọc trực tiếp tại `/docs/ban-thao/index.html`.
+
 ## Kế hoạch & đặc tả
 
 - `SPEC.md` — đặc tả game (Chương 1–3)
