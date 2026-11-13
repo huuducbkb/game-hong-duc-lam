@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>PA12 · Giấy dó thủy mặc (tranh AI)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dó:#e9dfc4;        /* giấy dó */
+    --dó2:#d9caa4;
+    --ink:#20201c;       /* mực tàu */
+    --ink2:#3a382e;
+    --ink-wash:rgba(32,32,28,.55);
+    --seal:#9e2b20;      /* son */
+    --jade:#4a6b52;
+    --line:rgba(32,32,28,.30);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    min-height:100vh;color:var(--ink);font-family:'Noto Serif',serif;
+    overflow-x:hidden;position:relative;
+    background:#cfc3a4;
+  }
+  /* Lớp 1: vân giấy dó thô (SVG filter dùng lại qua data-uri) */
+  .paper-layer{
+    position:fixed;inset:0;z-index:0;
+    background:#e9dfc4;
+  }
+  .paper-layer svg{position:absolute;inset:0;width:100%;height:100%;}
+  /* Lớp 2: mực loang nền (thủy mặc) */
+  .ink-bg{
+    position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(ellipse 40% 30% at 12% 18%, rgba(32,32,28,.10), transparent 70%),
+      radial-gradient(ellipse 34% 26% at 88% 78%, rgba(32,32,28,.09), transparent 70%),
+      radial-gradient(ellipse 50% 20% at 50% 100%, rgba(32,32,28,.07), transparent 70%);
+    filter:blur(2px);
+  }
+
+  .topbar{
+    position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 22px;background:rgba(233,223,196,.82);
+    border-bottom:1px solid var(--line);backdrop-filter:blur(3px);
+  }
+  .brand{
+    font-family:'Ma Shan Zheng';font-size:28px;letter-spacing:3px;color:var(--ink);
+    filter:url(#rough);
+  }
+  .brand small{display:block;font-family:'Noto Serif';font-size:10px;letter-spacing:4px;color:var(--ink2);opacity:.7;filter:none;}
+  .sys-btn{
+    font-family:'Noto Serif';font-size:13px;letter-spacing:2px;color:var(--ink);
+    background:transparent;border:1px solid var(--ink);padding:8px 16px;border-radius:2px;
+    cursor:pointer;position:relative;transition:.2s;
+  }
+  .sys-btn::before{ /* viền nham nhở */
+    content:"";position:absolute;inset:-3px;border:1px solid rgba(32,32,28,.35);
+    filter:url(#rough);pointer-events:none;
+  }
+  .sys-btn:hover{background:var(--ink);color:var(--dó);}
+
+  .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1080px;margin:0 auto;padding:28px 22px;position:relative;z-index:2;}
+  .col-left,.col-right{display:flex;flex-direction:column;gap:22px;}
+
+  /* Thẻ như được vẽ trên giấy, viền bút lông */
+  .panel{
+    position:relative;padding:18px;border-radius:3px;
+    background:linear-gradient(180deg, rgba(255,252,242,.55), rgba(217,202,164,.35));
+    box-shadow:0 8px 26px rgba(70,55,30,.18);
+  }
+  .panel::before{
+    content:"";position:absolute;inset:0;border:1.5px solid rgba(32,32,28,.55);
+    border-radius:3px;filter:url(#rough);pointer-events:none;
+  }
+  .panel::after{ /* vệt mực mờ bên trong */
+    content:"";position:absolute;inset:0;pointer-events:none;border-radius:3px;
+    background:radial-gradient(ellipse 70% 50% at 30% 20%, rgba(32,32,28,.05), transparent 70%);
+  }
+
+  .char-top{display:flex;gap:15px;align-items:center;}
+  .avatar{
+    width:78px;height:78px;flex:0 0 auto;border-radius:50%;overflow:hidden;cursor:pointer;
+    background:#d9caa4 center/cover no-repeat;
+    display:flex;align-items:center;justify-content:center;color:var(--ink2);font-size:10px;text-align:center;
+    position:relative;box-shadow:0 4px 14px rgba(70,55,30,.3);
+  }
+  .avatar::before{ /* viền mực nham nhở quanh avatar */
+    content:"";position:absolute;inset:-4px;border:2px solid var(--ink);border-radius:50%;
+    filter:url(#rough);pointer-events:none;
+  }
+  .char-name{font-family:'Ma Shan Zheng';font-size:27px;letter-spacing:2px;}
+  .char-origin{font-size:12px;color:var(--ink2);margin-top:3px;letter-spacing:1px;}
+
+  .realm{
+    margin-top:16px;display:inline-block;padding:6px 16px;font-size:14px;letter-spacing:2px;
+    border:1px solid var(--jade);color:#2f4a36;background:rgba(74,107,82,.10);border-radius:2px;position:relative;
+  }
+  .realm::before{content:"";position:absolute;inset:-2px;border:1px solid rgba(74,107,82,.5);filter:url(#rough);pointer-events:none;}
+
+  .stat{margin-top:13px;}
+  .stat label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2);letter-spacing:1px;}
+  .bar{height:8px;background:rgba(32,32,28,.12);border-radius:9px;margin-top:6px;overflow:hidden;position:relative;}
+  .bar i{display:block;height:100%;width:0;border-radius:9px;transition:width .5s;}
+  .bar .exp{background:linear-gradient(90deg,#4a6b52,#7fa588);}
+  .bar .hp{background:linear-gradient(90deg,#7e2a1f,#b8553f);}
+
+  .attrs{list-style:none;margin-top:15px;font-size:13px;}
+  .attrs li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed rgba(32,32,28,.22);}
+  .attrs span{color:var(--ink2);}
+  .attrs b{font-weight:600;}
+
+  .inv{margin-top:15px;}
+  .inv h4{font-size:11px;letter-spacing:3px;color:var(--ink2);font-weight:400;margin-bottom:9px;text-transform:uppercase;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{font-size:12px;padding:3px 11px;border-radius:2px;position:relative;color:var(--ink);background:rgba(74,107,82,.10);}
+  .chip::before{content:"";position:absolute;inset:-1px;border:1px solid rgba(74,107,82,.55);filter:url(#rough);pointer-events:none;}
+
+  .story{max-height:50vh;overflow-y:auto;display:flex;flex-direction:column;gap:16px;padding-right:8px;}
+  .story::-webkit-scrollbar{width:4px;}
+  .story::-webkit-scrollbar-thumb{background:rgba(32,32,28,.3);border-radius:9px;}
+  .entry{line-height:1.95;font-size:15px;animation:up .5s ease;}
+  @keyframes up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .entry.gm{padding-left:14px;position:relative;}
+  .entry.gm::before{ /* nét bút dọc */
+    content:"";position:absolute;left:0;top:2px;bottom:2px;width:2px;background:var(--ink);
+    filter:url(#rough);opacity:.8;
+  }
+  .entry.gm .who{font-family:'Ma Shan Zheng';font-size:15px;letter-spacing:3px;color:var(--seal);display:block;margin-bottom:4px;}
+  .entry.player{align-self:flex-end;max-width:80%;text-align:right;color:var(--ink2);font-style:italic;
+    padding-right:14px;position:relative;}
+  .entry.player::after{
+    content:"";position:absolute;right:0;top:2px;bottom:2px;width:2px;background:var(--seal);
+    filter:url(#rough);opacity:.7;
+  }
+  .notices{display:flex;flex-wrap:wrap;gap:10px;margin-top:9px;}
+  .notices span{font-size:11px;letter-spacing:1px;color:#2f4a36;}
+  .notices span::before{content:"◦ ";}
+  .notices span.break{color:var(--seal);font-weight:600;}
+
+  .choices{display:flex;flex-direction:column;gap:9px;margin-top:6px;}
+  .choices button{
+    text-align:left;padding:12px 16px;font-family:inherit;font-size:14px;color:var(--ink);
+    background:transparent;border:none;cursor:pointer;position:relative;transition:.18s;border-radius:2px;
+  }
+  .choices button::before{
+    content:"";position:absolute;inset:0;border:1px solid rgba(32,32,28,.4);border-radius:2px;
+    filter:url(#rough);pointer-events:none;transition:.18s;
+  }
+  .choices button:hover{background:rgba(32,32,28,.06);padding-left:24px;}
+  .choices button:hover::before{border-color:var(--seal);}
+  .choices b{font-family:'Ma Shan Zheng';color:var(--seal);margin-right:10px;font-size:18px;}
+
+  .actionbar{display:flex;gap:10px;margin-top:16px;position:relative;}
+  .actionbar input{
+    flex:1;padding:13px 15px;font-family:inherit;font-size:15px;color:var(--ink);
+    background:rgba(255,252,242,.5);border:1px solid rgba(32,32,28,.4);border-radius:2px;
+  }
+  .actionbar input::placeholder{color:rgba(32,32,28,.45);font-style:italic;}
+  .actionbar input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 2px rgba(32,32,28,.08);}
+  .actionbar button{
+    padding:13px 24px;font-family:'Ma Shan Zheng';font-size:18px;letter-spacing:2px;cursor:pointer;
+    color:var(--dó);background:var(--ink);border:none;border-radius:2px;position:relative;
+  }
+  .actionbar button::before{content:"";position:absolute;inset:-2px;border:1px solid var(--ink);filter:url(#rough);pointer-events:none;}
+  .actionbar button:hover{background:var(--ink2);}
+
+  .scene-title{font-family:'Ma Shan Zheng';font-size:22px;letter-spacing:2px;margin-bottom:12px;filter:url(#rough);}
+  .art{
+    position:relative;aspect-ratio:16/10;overflow:hidden;background:#ded2b0;
+    border-radius:2px;
+  }
+  .art::before{content:"";position:absolute;inset:0;border:2px solid rgba(32,32,28,.5);filter:url(#rough);z-index:3;pointer-events:none;}
+  .art svg{width:100%;height:100%;display:block;}
+  .art .cap{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;font-size:13px;letter-spacing:1px;
+    color:var(--ink);background:linear-gradient(0deg,rgba(233,223,196,.9),transparent);z-index:2;}
+  .moment{margin-top:11px;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--ink2);}
+  .hint{font-size:12px;color:var(--ink2);line-height:1.8;margin-top:9px;font-style:italic;opacity:.85;}
+
+  .seal{position:absolute;right:26px;bottom:20px;width:54px;height:54px;border:3px solid var(--seal);
+    border-radius:5px;color:var(--seal);display:flex;align-items:center;justify-content:center;
+    font-family:'Ma Shan Zheng';font-size:22px;transform:rotate(-7deg);opacity:.82;filter:url(#rough);z-index:4;}
+
+  /* Hệ thống ẩn */
+  .sys-overlay{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;padding:20px;
+    background:rgba(32,32,28,.5);backdrop-filter:blur(4px);}
+  .sys-overlay.open{display:flex;}
+  .sys-box{width:100%;max-width:450px;padding:28px;position:relative;max-height:86vh;overflow:auto;border-radius:3px;
+    background:#e9dfc4;box-shadow:0 24px 70px rgba(0,0,0,.5);}
+  .sys-box::before{content:"";position:absolute;inset:0;border:2px solid var(--ink);border-radius:3px;filter:url(#rough);pointer-events:none;}
+  .sys-box h3{font-family:'Ma Shan Zheng';font-size:26px;letter-spacing:4px;color:var(--seal);margin-bottom:2px;filter:url(#rough);}
+  .sys-box .sub{font-size:11px;letter-spacing:2px;color:var(--ink2);}
+  .sys-box .close{position:absolute;top:16px;right:18px;border:none;background:none;font-size:24px;cursor:pointer;color:var(--ink);}
+  .sys-box section{margin-top:16px;border-top:1px dashed rgba(32,32,28,.35);padding-top:13px;}
+  .sys-box h5{font-size:11px;letter-spacing:3px;color:var(--jade);font-weight:600;margin-bottom:8px;text-transform:uppercase;}
+  .quest{font-size:14px;line-height:1.75;}
+  .quest .now{color:var(--seal);font-weight:600;}
+
+  .modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px;
+    background:rgba(32,32,28,.55);backdrop-filter:blur(6px);}
+  .modal.hide{display:none;}
+  .modal .box{width:100%;max-width:400px;padding:34px 28px;text-align:center;position:relative;border-radius:3px;
+    background:#e9dfc4;box-shadow:0 24px 70px rgba(0,0,0,.5);}
+  .modal .box::before{content:"";position:absolute;inset:0;border:2px solid var(--ink);border-radius:3px;filter:url(#rough);pointer-events:none;}
+  .modal h2{font-family:'Ma Shan Zheng';font-size:34px;letter-spacing:5px;color:var(--seal);margin-bottom:8px;filter:url(#rough);}
+  .modal p{font-size:13px;color:var(--ink2);margin-bottom:18px;line-height:1.7;font-style:italic;}
+  .modal .up-avatar{width:86px;height:86px;border-radius:50%;margin:0 auto 16px;cursor:pointer;position:relative;
+    display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink2);
+    background:#d9caa4 center/cover no-repeat;overflow:hidden;}
+  .modal .up-avatar::before{content:"";position:absolute;inset:-3px;border:2px dashed var(--ink);border-radius:50%;filter:url(#rough);pointer-events:none;}
+  .modal input{width:100%;padding:12px 14px;margin-bottom:11px;font-family:inherit;font-size:15px;text-align:center;
+    color:var(--ink);background:rgba(255,252,242,.55);border:1px solid rgba(32,32,28,.4);border-radius:2px;}
+  .modal input:focus{outline:none;border-color:var(--ink);}
+  .modal .go{width:100%;padding:15px;margin-top:6px;cursor:pointer;font-family:'Ma Shan Zheng';font-size:19px;
+    letter-spacing:3px;color:var(--dó);background:var(--ink);border:none;border-radius:2px;position:relative;}
+  .modal .go::before{content:"";position:absolute;inset:-2px;border:1px solid var(--ink);filter:url(#rough);pointer-events:none;}
+  .modal .go:hover{background:var(--ink2);}
+  .modal small{display:block;font-size:11px;color:var(--ink2);margin-bottom:13px;font-style:italic;}
+
+  @media (max-width:760px){
+    .wrap{grid-template-columns:1fr;gap:18px;padding:18px 14px;}
+    .story{max-height:none;}
+    .brand{font-size:23px;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ====== BỘ LỌC SVG: TẠO VÂN GIẤY DÓ + MÉP MỰC NHAM NHỞ ====== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Mép mực nham nhở như bút lông -->
+      <filter id="rough" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.08" numOctaves="3" seed="7" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+
+      <!-- Vân giấy dó: xơ giấy thô -->
+      <filter id="paperFiber">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="3" result="fiber"/>
+        <feColorMatrix in="fiber" type="saturate" values="0" result="gray"/>
+        <feComponentTransfer in="gray" result="soft">
+          <feFuncA type="linear" slope="0.16" intercept="0"/>
+        </feComponentTransfer>
+      </filter>
+
+      <!-- Mực loang: vệt mờ thấm vào giấy -->
+      <filter id="inkBleed" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="4" seed="11" result="t"/>
+        <feDisplacementMap in="SourceGraphic" in2="t" scale="16" xChannelSelector="R" yChannelSelector="G" result="disp"/>
+        <feGaussianBlur in="disp" stdDeviation="1.4"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ====== LỚP NỀN GIẤY DÓ ====== -->
+  <div class="paper-layer">
+    <svg viewBox="0 0 1000 700" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="paperGrad" x1="0" y1="0" x2="0.3" y2="1">
+          <stop offset="0%" stop-color="#efe6cd"/>
+          <stop offset="55%" stop-color="#e6dbbc"/>
+          <stop offset="100%" stop-color="#d8c9a2"/>
+        </linearGradient>
+      </defs>
+      <rect width="1000" height="700" fill="url(#paperGrad)"/>
+      <!-- xơ giấy thô -->
+      <rect width="1000" height="700" filter="url(#paperFiber)" opacity="0.9"/>
+      <!-- vài sợi xơ dài -->
+      <g stroke="#b9a87e" stroke-width="0.7" opacity="0.35" filter="url(#paperFiber)">
+        <line x1="60" y1="120" x2="180" y2="118"/>
+        <line x1="420" y1="60" x2="560" y2="66"/>
+        <line x1="720" y1="240" x2="860" y2="236"/>
+        <line x1="140" y1="420" x2="260" y2="430"/>
+        <line x1="600" y1="520" x2="740" y2="512"/>
+        <line x1="300" y1="620" x2="430" y2="628"/>
+      </g>
+      <!-- vết mực loang lớn (thủy mặc nền) -->
+      <g filter="url(#inkBleed)" opacity="0.10" fill="#20201c">
+        <ellipse cx="150" cy="140" rx="120" ry="70"/>
+        <ellipse cx="860" cy="560" rx="150" ry="90"/>
+        <ellipse cx="500" cy="690" rx="260" ry="70"/>
+      </g>
+      <!-- đốm mực nhỏ -->
+      <g fill="#20201c" opacity="0.18" filter="url(#rough)">
+        <circle cx="905" cy="120" r="3.5"/>
+        <circle cx="925" cy="142" r="2"/>
+        <circle cx="70" cy="600" r="3"/>
+        <circle cx="96" cy="622" r="1.6"/>
+      </g>
+    </svg>
+  </div>
+  <div class="ink-bg"></div>
+
+  <header class="topbar">
+    <div class="brand">Hồng Đức Tu Tiên Lộ<small>PHÀM NHÂN ĐỒNG NHÂN</small></div>
+    <button class="sys-btn" onclick="document.getElementById('sys').classList.add('open')">Hệ Thống</button>
+  </header>
+
+  <div class="wrap">
+    <div class="col-left">
+      <div class="panel">
+        <div class="char-top">
+          <div class="avatar" id="av1" title="Bấm để đổi ảnh">Ảnh<br>đại diện</div>
+          <div>
+            <div class="char-name">Lý Tầm</div>
+            <div class="char-origin">Xuất thân · tán tu phiêu bạt</div>
+          </div>
+        </div>
+        <div class="realm">Luyện Khí Tầng 3</div>
+        <div class="stat">
+          <label>TU VI <span>120 / 340</span></label>
+          <div class="bar"><i class="exp" style="width:35%"></i></div>
+        </div>
+        <div class="stat">
+          <label>KHÍ HUYẾT <span>88 / 100</span></label>
+          <div class="bar"><i class="hp" style="width:88%"></i></div>
+        </div>
+        <ul class="attrs">
+          <li><span>Công kích</span><b>14</b></li>
+          <li><span>Linh thạch</span><b>42</b></li>
+          <li><span>Vị trí</span><b>Thanh Ngưu trấn</b></li>
+          <li><span>Chương</span><b>I · Dã Lang Bang</b></li>
+        </ul>
+        <div class="inv">
+          <h4>Túi đồ</h4>
+          <div class="chips">
+            <span class="chip">Tụ Khí Đan ×2</span>
+            <span class="chip">Thanh Phong Kiếm</span>
+            <span class="chip">Hộ Thân Phù</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-right">
+      <div class="panel">
+        <div class="scene-title">Thanh Ngưu trấn</div>
+        <div class="art">
+          <!-- Tranh thủy mặc vẽ bằng SVG + filter loang mực -->
+          <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="artSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#efe6cd"/>
+                <stop offset="100%" stop-color="#ddd0ab"/>
+              </linearGradient>
+              <filter id="artInk" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.014 0.022" numOctaves="4" seed="21" result="t"/>
+                <feDisplacementMap in="SourceGraphic" in2="t" scale="14" xChannelSelector="R" yChannelSelector="G" result="d"/>
+                <feGaussianBlur in="d" stdDeviation="1.1"/>
+              </filter>
+              <filter id="artBrush">
+                <feTurbulence type="fractalNoise" baseFrequency="0.06 0.09" numOctaves="3" seed="5" result="n"/>
+                <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+              <filter id="artFiber">
+                <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" seed="9"/>
+                <feColorMatrix type="saturate" values="0"/>
+                <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+              </filter>
+            </defs>
+
+            <rect width="800" height="500" fill="url(#artSky)"/>
+            <rect width="800" height="500" filter="url(#artFiber)"/>
+
+            <!-- Núi xa (mực nhạt) -->
+            <path d="M0 300 L120 190 L220 260 L340 150 L470 270 L600 180 L720 260 L800 210 L800 500 L0 500Z"
+                  fill="#20201c" opacity="0.18" filter="url(#artInk)"/>
+            <!-- Núi gần (mực đậm) -->
+            <path d="M0 380 L140 290 L280 350 L430 240 L580 340 L700 280 L800 330 L800 500 L0 500Z"
+                  fill="#20201c" opacity="0.42" filter="url(#artInk)"/>
+            <!-- Nét bút lông núi -->
+            <path d="M120 300 L200 230 M430 320 L520 250 M620 300 L700 250"
+                  stroke="#20201c" stroke-width="2.5" fill="none" opacity="0.5" filter="url(#artBrush)"/>
+            <!-- Trăng -->
+            <circle cx="640" cy="105" r="40" fill="#fbf6e6" opacity="0.9" filter="url(#artBrush)"/>
+            <circle cx="640" cy="105" r="40" fill="none" stroke="#20201c" stroke-width="1.5" opacity="0.35" filter="url(#artBrush)"/>
+            <!-- Mây thủy mặc -->
+            <ellipse cx="260" cy="140" rx="130" ry="20" fill="#fbf6e6" opacity="0.55" filter="url(#artInk)"/>
+            <ellipse cx="500" cy="180" rx="100" ry="14" fill="#fbf6e6" opacity="0.45" filter="url(#artInk)"/>
+            <!-- Cây trúc bên trái -->
+            <g stroke="#20201c" opacity="0.55" filter="url(#artBrush)" fill="none">
+              <path d="M70 500 L80 300" stroke-width="4"/>
+              <path d="M80 380 L120 350 M80 430 L115 400 M80 330 L115 310" stroke-width="2"/>
+              <ellipse cx="126" cy="348" rx="14" ry="4" fill="#20201c" opacity="0.6" stroke="none"/>
+              <ellipse cx="121" cy="398" rx="13" ry="4" fill="#20201c" opacity="0.6" stroke="none"/>
+              <ellipse cx="121" cy="308" rx="12" ry="4" fill="#20201c" opacity="0.6" stroke="none"/>
+            </g>
+            <!-- Vệt mực văng -->
+            <g fill="#20201c" opacity="0.35" filter="url(#artBrush)">
+              <circle cx="700" cy="420" r="3"/>
+              <circle cx="720" cy="440" r="1.6"/>
+              <circle cx="680" cy="450" r="2.2"/>
+            </g>
+            <!-- Ấn son -->
+            <g filter="url(#artBrush)">
+              <rect x="716" y="418" width="40" height="40" fill="none" stroke="#9e2b20" stroke-width="3" opacity="0.85"/>
+              <text x="736" y="445" text-anchor="middle" font-family="serif" font-size="20" fill="#9e2b20" opacity="0.85">道</text>
+            </g>
+          </svg>
+          <div class="cap">Thanh Ngưu trấn · sơn thôn yên ả</div>
+          <div class="seal">道</div>
+        </div>
+        <div class="moment">Tĩnh lặng</div>
+        <p class="hint">Tranh minh họa vẽ bằng mực loang trên giấy dó. Khoảnh khắc lớn sẽ có hiệu ứng chuyển động.</p>
+      </div>
+
+      <div class="panel">
+        <div class="story">
+          <div class="entry gm">
+            <span class="who">Thiên Đạo</span>
+            Ngươi mở mắt giữa một sơn thôn heo hút. Ký ức hai đời chồng lên nhau — ngươi đã xuyên vào thân xác một tán tu nghèo khổ tại Thanh Ngưu trấn. Ngoài kia, thiên địa linh khí mờ nhạt, thế gian sắp dậy sóng.
+          </div>
+          <div class="entry player">Ta thử vận hành pháp quyết tu luyện đêm nay.</div>
+          <div class="entry gm">
+            <span class="who">Thiên Đạo</span>
+            Ngươi khoanh chân ngồi xuống, dẫn khí nhập thể. Một tia linh khí mỏng manh chảy dọc kinh mạch, đan điền khẽ ấm lên. Tu vi tinh tiến đôi phần.
+            <div class="notices"><span>+35 tu vi</span><span>+1 Linh thạch</span></div>
+          </div>
+        </div>
+
+        <div class="choices">
+          <button><b>甲</b>Tiếp tục bế quan, tranh thủ đêm yên tĩnh</button>
+          <button><b>乙</b>Ra ngoài thám thính tin tức Dã Lang Bang</button>
+          <button><b>丙</b>Tùy ý: <i>tự nhập hành động của ngươi…</i></button>
+        </div>
+
+        <form class="actionbar" onsubmit="return false">
+          <input placeholder="Ngươi muốn làm gì?" />
+          <button>Gửi</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="sys-overlay" id="sys" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="sys-box">
+      <button class="close" onclick="document.getElementById('sys').classList.remove('open')">×</button>
+      <h3>Hệ Thống</h3>
+      <div class="sub">BÀN TAY VÀNG CỦA KẺ XUYÊN KHÔNG</div>
+      <section>
+        <h5>Nhiệm vụ hiện tại</h5>
+        <div class="quest">
+          <div class="now">▸ Chương I — Đại chiến Dã Lang Bang</div>
+          <div style="color:var(--ink2)">Tìm cách sống sót qua trận chiến, và chạm mặt một tán tu trẻ tuổi tên <b>Hàn Lập</b>.</div>
+        </div>
+      </section>
+      <section>
+        <h5>Nhắc mốc nguyên tác</h5>
+        <div class="quest" style="color:var(--ink2)">Dã Lang Bang tấn công Thất Huyền Môn. Hàn Lập khi ấy là tạp dịch đệ tử.</div>
+      </section>
+      <section>
+        <h5>Bảng cảnh giới</h5>
+        <div class="quest" style="font-size:13px;color:var(--ink2);line-height:1.9">
+          Luyện Khí (13 tầng) → Trúc Cơ → Kết Đan → Nguyên Anh → Hóa Thần → Luyện Hư → Hợp Thể → Đại Thừa → Độ Kiếp → Chân Tiên
+        </div>
+      </section>
+      <section>
+        <h5>Trạng thái</h5>
+        <div class="quest">Khí huyết 88/100 · Tu vi 120/340 · Linh thạch 42</div>
+      </section>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="box">
+      <h2>Nhập Đạo</h2>
+      <p>Đạo hữu, xin để lại danh tính và nguồn cội của ngươi.</p>
+      <div class="up-avatar" id="av2" onclick="document.getElementById('f1').click()">Tải ảnh<br>đại diện</div>
+      <input id="f1" type="file" accept="image/*" hidden onchange="pickAvatar(this,'av2','av1')" />
+      <input placeholder="Danh tính (ví dụ: Lý Tầm)" />
+      <input placeholder="Xuất thân — tự do (ví dụ: tán tu, con nhà nông…)" />
+      <small>Bỏ trống xuất thân → mặc định "tán tu vô danh".</small>
+      <button class="go" onclick="document.getElementById('modal').classList.add('hide')">Bước Vào Tu Tiên</button>
+    </div>
+  </div>
+
+<script>
+  function pickAvatar(input, previewId, mainId){
+    const f = input.files && input.files[0]; if(!f) return;
+    const url = URL.createObjectURL(f);
+    const p = document.getElementById(previewId);
+    p.style.backgroundImage=`url(${url})`; p.textContent="";
+    if(mainId){const m=document.getElementById(mainId);m.style.backgroundImage=`url(${url})`;m.textContent="";}
+  }
+  document.getElementById('av1').onclick = () => document.getElementById('f1').click();
+</script>
+</body>
+</html>

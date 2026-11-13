@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hồng Đức Tu Tiên Lộ — Demo giao diện</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif:wght@400;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% 0%, #1a2233, #070a10 70%);
+    color: #e7e2d3;
+    font-family: 'Noto Serif', serif;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 18px;
+  }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; letter-spacing: 4px; color: #e8cf94; margin-bottom: 6px; }
+  .sub { color: #8b93a5; font-size: 14px; margin-bottom: 34px; letter-spacing: 1px; }
+  .cards { display: grid; gap: 20px; width: 100%; max-width: 780px; }
+  a.card {
+    display: block; text-decoration: none; color: inherit;
+    border: 1px solid rgba(217,180,90,0.25); border-radius: 14px; padding: 22px 24px;
+    background: rgba(17,24,38,0.7); transition: all .25s;
+  }
+  a.card:hover { border-color: #d9b45a; transform: translateY(-3px); box-shadow: 0 12px 34px rgba(0,0,0,.5); }
+  .card h2 { font-size: 20px; color: #e8cf94; margin-bottom: 6px; font-weight: 600; }
+  .card p { color: #9aa3b5; font-size: 14px; line-height: 1.6; }
+  .tag { display:inline-block; margin-top:10px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#4fd1b5; }
+  .note { margin-top: 30px; max-width: 780px; font-size: 13px; color: #6f7788; line-height: 1.7; text-align: center; }
+</style>
+</head>
+<body>
+  <h1>HỒNG ĐỨC TU TIÊN LỘ</h1>
+  <div class="sub">Bản demo giao diện · 1 cột · ưu tiên iPhone 11 · bảng Hệ Thống ẩn</div>
+  <div class="cards">
+    <a class="card" href="hybrid-1col.html" style="border-color:#d9b45a;background:rgba(38,30,14,.75)">
+      <h2>★ GIAO DIỆN CHÍNH — 1 cột (ảnh AI của bạn)</h2>
+      <p>Bố cục dọc: thân phận → bảng truyện (cuộn) → nút lựa chọn. Dùng 7 ảnh thủy mặc bạn gửi,
+         viền mực giữ nguyên nét, avatar tự upload, bảng Hệ Thống ẩn. <b>Tối ưu iPhone 11.</b></p>
+      <span class="tag">1 cột · ảnh thật</span>
+    </a>
+    <a class="card" href="hybrid.html">
+      <h2>Bản 2 cột (bản cũ, để tham khảo)</h2>
+      <p>Cùng ảnh, nhưng chia 2 cột trái–phải. Giữ lại để so sánh.</p>
+      <span class="tag">2 cột · tham khảo</span>
+    </a>
+    <a class="card" href="theme-1-moc.html">
+      <h2>Phương án 1 — Thủy mặc cổ phong</h2>
+      <p>Giấy ngà, mực tàu, núi thủy mặc, chữ thư pháp. Thuần chất nguyên tác Phàm Nhân Tu Tiên.</p>
+      <span class="tag">Cổ điển · mộc mạc</span>
+    </a>
+    <a class="card" href="theme-2-hologram.html">
+      <h2>Phương án 2 — Cổ phong + Hệ Thống hologram</h2>
+      <p>Nền cổ phong, nhưng bảng chỉ số kiểu Hệ Thống phát sáng xanh lam. Tương phản bàn tay vàng.</p>
+      <span class="tag">Cổ phong · Hệ thống</span>
+    </a>
+    <a class="card" href="theme-3-dark.html">
+      <h2>Phương án 3 — Tối hiện đại</h2>
+      <p>Nền đen sâu, viền vàng kim, hiệu ứng phát sáng kiểu game mobile hiện nay. Bắt mắt, dễ đọc.</p>
+      <span class="tag">Hiện đại · vàng kim</span>
+    </a>
+    <a class="card" href="theme-4-cothu.html">
+      <h2>Phương án 4 — Cổ thư cuộn giấy</h2>
+      <p>Cả giao diện nằm trên một cuộn giấy da cũ với hai trục gỗ, đóng ấn son đỏ. Rất "cổ thư".</p>
+      <span class="tag">Cuộn giấy · trục gỗ</span>
+    </a>
+    <a class="card" href="theme-5-mobile.html">
+      <h2>Phương án 5 — Game mobile hiện đại</h2>
+      <p>Kiểu game gacha mobile: thẻ bo góc, gradient tím–vàng, thanh điều hướng dưới đáy.</p>
+      <span class="tag">Mobile · gacha</span>
+    </a>
+    <a class="card" href="theme-6-muctau.html">
+      <h2>Phương án 6 — Mực tàu tối giản</h2>
+      <p>Trắng giấy, mực đen, đường kẻ mảnh, không màu mè. Tối giản kiểu thư pháp Nhật–Trung.</p>
+      <span class="tag">Tối giản · âm dương</span>
+    </a>
+    <a class="card" href="theme-7-huyetma.html">
+      <h2>Phương án 7 — Huyết ma đạo</h2>
+      <p>Đỏ thẫm trên nền đen, ánh lửa cam. Hợp bối cảnh Hắc Sát Giáo, huyết chiến, ma đạo.</p>
+      <span class="tag">Đỏ thẫm · ma đạo</span>
+    </a>
+    <a class="card" href="theme-8-nhatky.html">
+      <h2>Phương án 8 — Nhật ký tu chân</h2>
+      <p>Vở ghi chép: giấy kẻ dòng xanh, lề đỏ, gáy vở, chữ viết tay. Như cuốn nhật ký của tu sĩ.</p>
+      <span class="tag">Sổ tay · viết tay</span>
+    </a>
+    <a class="card" href="theme-9-glass.html">
+      <h2>Phương án 9 — Kính mờ (glassmorphism)</h2>
+      <p>Thẻ kính trong suốt nổi trên nền tiên cảnh nhiều màu, viền sáng, bo góc lớn. Rất hiện đại.</p>
+      <span class="tag">Kính mờ · hiện đại</span>
+    </a>
+    <a class="card" href="theme-10-pixel.html">
+      <h2>Phương án 10 — Pixel retro 8-bit</h2>
+      <p>Đồ họa pixel, font máy tính cổ, viền vuông đổ bóng. Hoài niệm game 8-bit ngày xưa.</p>
+      <span class="tag">Pixel · retro</span>
+    </a>
+    <a class="card" href="theme-11-tiencanh.html">
+      <h2>Phương án 11 — Tiên cảnh mây trắng</h2>
+      <p>Sáng trong, mây trắng trôi, tiên khí bồng lai. Nhẹ nhàng, thanh thoát như cõi tiên.</p>
+      <span class="tag">Sáng · tiên khí</span>
+    </a>
+    <a class="card" href="theme-12-giaydo.html">
+      <h2>Phương án 12 — Giấy dó thủy mặc ⭐</h2>
+      <p>Giả lập tranh vẽ tay: vân giấy dó thô, viền mực nham nhở như bút lông, mực loang thấm giấy, ấn son. Dùng SVG filter.</p>
+      <span class="tag">Tranh vẽ · giấy dó</span>
+    </a>
+  </div>
+  <p class="note">
+    Đây là bản demo <b>tĩnh</b> chỉ để duyệt phong cách — chưa có logic game.
+    Thử kéo cửa sổ hẹp lại (hoặc mở trên iPhone 11) để xem bản mobile.
+    Có thể <b>trộn</b> phong cách (ví dụ: nền PA1 + Hệ Thống PA2).
+  </p>
+</body>
+</html>

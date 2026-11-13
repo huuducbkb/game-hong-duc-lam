@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>PA7 · Huyết ma đạo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0608;
+    --panel:#1a0c0f;
+    --panel2:#240f14;
+    --blood:#c0223a;
+    --blood2:#e04a5f;
+    --ember:#ff8a3d;
+    --gold:#d9a441;
+    --text:#efe0dc;
+    --muted:#9c7f80;
+    --line:rgba(192,34,58,.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    min-height:100vh;color:var(--text);font-family:'Noto Serif',serif;overflow-x:hidden;
+    background:radial-gradient(circle at 50% -10%, #2a0d13 0%, #140609 45%, #070304 100%);
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;
+    background:
+      radial-gradient(ellipse 400px 260px at 20% 20%, rgba(192,34,58,.16), transparent 70%),
+      radial-gradient(ellipse 360px 240px at 80% 75%, rgba(255,138,61,.09), transparent 70%);
+    animation:pulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes pulse{from{opacity:.35;}to{opacity:.6;}}
+
+  .topbar{
+    position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;background:linear-gradient(180deg,rgba(12,6,8,.97),rgba(12,6,8,.6));
+    border-bottom:1px solid var(--line);backdrop-filter:blur(6px);
+  }
+  .brand{font-family:'Ma Shan Zheng';font-size:26px;letter-spacing:2px;
+    color:#f3d9d0;text-shadow:0 0 20px rgba(192,34,58,.7);}
+  .brand small{display:block;font-family:'Noto Serif';font-size:10px;letter-spacing:3px;color:var(--muted);}
+  .sys-btn{
+    font-family:'Noto Serif';font-size:13px;letter-spacing:1px;border:1px solid var(--blood);color:#f3c9c9;
+    background:linear-gradient(180deg,rgba(192,34,58,.28),rgba(192,34,58,.08));
+    padding:8px 15px;border-radius:4px;cursor:pointer;transition:.2s;
+  }
+  .sys-btn:hover{box-shadow:0 0 20px rgba(192,34,58,.7);}
+
+  .wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1080px;margin:0 auto;padding:20px;position:relative;z-index:1;}
+  .col-left,.col-right{display:flex;flex-direction:column;gap:16px;}
+
+  .panel{
+    background:linear-gradient(180deg,rgba(26,12,15,.94),rgba(12,6,8,.94));
+    border:1px solid var(--line);border-radius:10px;padding:17px;position:relative;
+    box-shadow:0 12px 40px rgba(0,0,0,.6), inset 0 0 40px rgba(192,34,58,.05);
+  }
+  .panel::before{content:"";position:absolute;top:0;left:16px;right:16px;height:2px;
+    background:linear-gradient(90deg,transparent,var(--blood),transparent);opacity:.7;}
+
+  .char-top{display:flex;gap:14px;align-items:center;}
+  .avatar{width:76px;height:76px;border-radius:50%;flex:0 0 auto;border:2px solid var(--blood);
+    background:linear-gradient(135deg,#2a1015,#150709) center/cover no-repeat;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px;text-align:center;cursor:pointer;overflow:hidden;
+    box-shadow:0 0 22px rgba(192,34,58,.5);}
+  .char-name{font-family:'Ma Shan Zheng';font-size:25px;color:#f3d9d0;}
+  .char-origin{font-size:12px;color:var(--muted);margin-top:2px;}
+
+  .realm{margin-top:14px;display:inline-block;padding:7px 15px;border-radius:4px;font-size:14px;
+    background:linear-gradient(90deg,rgba(192,34,58,.28),rgba(217,164,65,.14));
+    border:1px solid rgba(192,34,58,.5);color:#f5c9a8;letter-spacing:1px;}
+  .stat{margin-top:12px;}
+  .stat label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);}
+  .bar{height:9px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:5px;overflow:hidden;}
+  .bar i{display:block;height:100%;width:0;transition:width .5s;}
+  .bar .exp{background:linear-gradient(90deg,var(--gold),var(--ember));box-shadow:0 0 12px rgba(255,138,61,.6);}
+  .bar .hp{background:linear-gradient(90deg,#7d1024,var(--blood2));box-shadow:0 0 12px rgba(224,74,95,.6);}
+
+  .attrs{list-style:none;margin-top:14px;font-size:13px;}
+  .attrs li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed rgba(192,34,58,.22);}
+  .attrs span{color:var(--muted);}
+  .attrs b{color:#f5c9a8;}
+
+  .inv{margin-top:14px;}
+  .inv h4{font-size:11px;letter-spacing:2px;color:var(--muted);font-weight:400;margin-bottom:8px;text-transform:uppercase;}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{font-size:12px;padding:4px 11px;border-radius:4px;background:rgba(192,34,58,.14);border:1px solid rgba(192,34,58,.35);color:#f0c2c2;}
+
+  .story{max-height:52vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding-right:6px;}
+  .story::-webkit-scrollbar{width:5px;}
+  .story::-webkit-scrollbar-thumb{background:rgba(192,34,58,.5);border-radius:9px;}
+  .entry{line-height:1.85;font-size:15px;animation:up .5s ease;}
+  @keyframes up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .entry.gm{border-left:3px solid var(--blood);padding-left:13px;}
+  .entry.gm .who{font-family:'Ma Shan Zheng';font-size:14px;letter-spacing:2px;color:var(--ember);display:block;margin-bottom:3px;}
+  .entry.player{align-self:flex-end;max-width:82%;text-align:right;background:rgba(217,164,65,.10);
+    border-right:3px solid var(--gold);padding:8px 12px;border-radius:4px;color:#f0e2c0;}
+  .notices{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .notices span{font-size:11px;padding:3px 9px;border-radius:3px;background:rgba(255,138,61,.14);border:1px solid rgba(255,138,61,.4);color:#ffc79a;}
+  .notices span.break{background:rgba(192,34,58,.22);border-color:var(--blood2);color:#ffb3c0;}
+
+  .choices{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+  .choices button{text-align:left;padding:12px 15px;border:1px solid rgba(192,34,58,.3);border-radius:6px;
+    background:rgba(255,255,255,.02);font-family:inherit;font-size:14px;color:var(--text);cursor:pointer;transition:.18s;}
+  .choices button:hover{border-color:var(--blood2);background:rgba(192,34,58,.12);transform:translateX(4px);box-shadow:0 0 18px rgba(192,34,58,.35);}
+  .choices b{font-family:'Ma Shan Zheng';color:var(--ember);margin-right:9px;font-size:17px;}
+
+  .actionbar{display:flex;gap:8px;margin-top:14px;}
+  .actionbar input{flex:1;padding:13px 15px;border-radius:6px;border:1px solid rgba(192,34,58,.3);
+    background:rgba(0,0,0,.45);color:var(--text);font-family:inherit;font-size:15px;}
+  .actionbar input:focus{outline:none;border-color:var(--blood2);box-shadow:0 0 14px rgba(192,34,58,.45);}
+  .actionbar button{padding:13px 22px;border-radius:6px;border:1px solid var(--blood);cursor:pointer;
+    background:linear-gradient(180deg,rgba(192,34,58,.4),rgba(192,34,58,.15));color:#ffd9d9;
+    font-family:inherit;font-size:14px;letter-spacing:1px;font-weight:600;}
+  .actionbar button:hover{box-shadow:0 0 22px rgba(192,34,58,.6);}
+
+  .scene-title{font-family:'Ma Shan Zheng';font-size:20px;color:#f3d9d0;margin-bottom:10px;}
+  .art{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:#000;}
+  .art svg{width:100%;height:100%;display:block;animation:kb 16s ease-in-out infinite alternate;}
+  @keyframes kb{from{transform:scale(1);}to{transform:scale(1.1) translate(-1%,-1%);}}
+  .art .cap{position:absolute;left:0;right:0;bottom:0;padding:11px 13px;
+    background:linear-gradient(0deg,rgba(7,3,4,.9),transparent);font-size:13px;color:#f0c2c2;letter-spacing:1px;}
+  .moment{margin-top:10px;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+  .hint{font-size:12px;color:var(--muted);line-height:1.7;margin-top:8px;}
+
+  .sys-overlay{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;padding:20px;
+    background:rgba(7,3,4,.88);backdrop-filter:blur(6px);}
+  .sys-overlay.open{display:flex;}
+  .sys-box{width:100%;max-width:450px;border-radius:10px;padding:24px;position:relative;max-height:86vh;overflow:auto;
+    background:linear-gradient(180deg,rgba(26,12,15,.99),rgba(12,6,8,.99));
+    border:1px solid var(--blood);box-shadow:0 0 60px rgba(192,34,58,.4), inset 0 0 60px rgba(192,34,58,.06);}
+  .sys-box h3{font-family:'Ma Shan Zheng';font-size:24px;letter-spacing:3px;color:#ffcfc0;margin-bottom:2px;}
+  .sys-box .sub{font-size:10px;letter-spacing:2px;color:var(--muted);}
+  .sys-box .close{position:absolute;top:14px;right:16px;border:none;background:none;font-size:22px;cursor:pointer;color:var(--muted);}
+  .sys-box section{margin-top:16px;border-top:1px solid var(--line);padding-top:12px;}
+  .sys-box h5{font-size:11px;letter-spacing:2px;color:var(--ember);font-weight:600;margin-bottom:8px;text-transform:uppercase;}
+  .quest{font-size:14px;line-height:1.7;}
+  .quest .now{color:#ffcfc0;font-weight:600;}
+
+  .modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px;
+    background:rgba(7,3,4,.92);backdrop-filter:blur(8px);}
+  .modal.hide{display:none;}
+  .modal .box{width:100%;max-width:400px;border-radius:12px;padding:30px 26px;text-align:center;
+    background:linear-gradient(180deg,rgba(26,12,15,.99),rgba(12,6,8,.99));
+    border:1px solid var(--blood);box-shadow:0 0 60px rgba(192,34,58,.35);}
+  .modal h2{font-family:'Ma Shan Zheng';font-size:30px;letter-spacing:3px;color:#ffcfc0;margin-bottom:6px;}
+  .modal p{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;}
+  .modal .up-avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;border:2px dashed rgba(192,34,58,.6);
+    display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted);cursor:pointer;
+    background:rgba(0,0,0,.4) center/cover no-repeat;overflow:hidden;}
+  .modal input{width:100%;padding:12px;margin-bottom:10px;border-radius:6px;border:1px solid rgba(192,34,58,.3);
+    background:rgba(0,0,0,.45);color:var(--text);font-family:inherit;font-size:15px;text-align:center;}
+  .modal input:focus{outline:none;border-color:var(--blood2);}
+  .modal .go{width:100%;padding:14px;border-radius:6px;border:1px solid var(--blood);cursor:pointer;margin-top:6px;
+    background:linear-gradient(180deg,rgba(192,34,58,.45),rgba(192,34,58,.18));color:#ffd9d9;
+    font-family:inherit;font-size:15px;font-weight:600;letter-spacing:2px;}
+  .modal .go:hover{box-shadow:0 0 24px rgba(192,34,58,.6);}
+  .modal small{display:block;font-size:11px;color:var(--muted);margin-bottom:12px;}
+
+  @media (max-width:760px){
+    .wrap{grid-template-columns:1fr;gap:14px;padding:14px;}
+    .story{max-height:none;}
+    .brand{font-size:22px;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">Hồng Đức Tu Tiên Lộ<small>PHÀM NHÂN ĐỒNG NHÂN</small></div>
+    <button class="sys-btn" onclick="document.getElementById('sys').classList.add('open')">⛧ Hệ Thống</button>
+  </header>
+
+  <div class="wrap">
+    <div class="col-left">
+      <div class="panel">
+        <div class="char-top">
+          <div class="avatar" id="av1" title="Bấm để đổi ảnh">Ảnh<br>đại diện</div>
+          <div>
+            <div class="char-name">Lý Tầm</div>
+            <div class="char-origin">Xuất thân: tán tu phiêu bạt</div>
+          </div>
+        </div>
+        <div class="realm">Luyện Khí Tầng 3</div>
+        <div class="stat">
+          <label>Tu vi <span>120 / 340</span></label>
+          <div class="bar"><i class="exp" style="width:35%"></i></div>
+        </div>
+        <div class="stat">
+          <label>Khí huyết <span>88 / 100</span></label>
+          <div class="bar"><i class="hp" style="width:88%"></i></div>
+        </div>
+        <ul class="attrs">
+          <li><span>Công kích</span><b>14</b></li>
+          <li><span>Linh thạch</span><b>42</b></li>
+          <li><span>Vị trí</span><b>Thanh Ngưu trấn</b></li>
+          <li><span>Chương</span><b>I · Dã Lang Bang</b></li>
+        </ul>
+        <div class="inv">
+          <h4>Túi đồ</h4>
+          <div class="chips">
+            <span class="chip">Tụ Khí Đan ×2</span>
+            <span class="chip">Thanh Phong Kiếm</span>
+            <span class="chip">Hộ Thân Phù</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-right">
+      <div class="panel">
+        <div class="scene-title">Thanh Ngưu trấn</div>
+        <div class="art">
+          <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="s7" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2a0d13"/><stop offset="100%" stop-color="#0d0508"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#s7)"/>
+            <path d="M0 340 L160 200 L300 300 L470 150 L640 320 L800 230 L800 500 L0 500Z" fill="#1a0509" opacity="0.9"/>
+            <path d="M0 400 L200 300 L380 380 L560 280 L800 400 L800 500 L0 500Z" fill="#0a0204" opacity="0.95"/>
+            <ellipse cx="400" cy="140" rx="320" ry="26" fill="#c0223a" opacity="0.12"/>
+            <circle cx="640" cy="110" r="42" fill="#ffb3b3" opacity="0.7"/>
+            <circle cx="656" cy="98" r="42" fill="url(#s7)" opacity="0.92"/>
+          </svg>
+          <div class="cap">Thanh Ngưu trấn · sơn thôn yên ả</div>
+        </div>
+        <div class="moment">Tĩnh lặng</div>
+        <p class="hint">Ảnh minh họa bối cảnh theo từng lượt. Khoảnh khắc lớn sẽ có hiệu ứng chuyển động.</p>
+      </div>
+
+      <div class="panel">
+        <div class="story">
+          <div class="entry gm">
+            <span class="who">Thiên Đạo</span>
+            Ngươi mở mắt giữa một sơn thôn heo hút. Ký ức hai đời chồng lên nhau — ngươi đã xuyên vào thân xác một tán tu nghèo khổ tại Thanh Ngưu trấn. Ngoài kia, thiên địa linh khí mờ nhạt, thế gian sắp dậy sóng.
+          </div>
+          <div class="entry player">Ta thử vận hành pháp quyết tu luyện đêm nay.</div>
+          <div class="entry gm">
+            <span class="who">Thiên Đạo</span>
+            Ngươi khoanh chân ngồi xuống, dẫn khí nhập thể. Một tia linh khí mỏng manh chảy dọc kinh mạch, đan điền khẽ ấm lên. Tu vi tinh tiến đôi phần.
+            <div class="notices"><span>+35 tu vi</span><span>+1 Linh thạch</span></div>
+          </div>
+        </div>
+
+        <div class="choices">
+          <button><b>天</b>Tiếp tục bế quan, tranh thủ đêm yên tĩnh</button>
+          <button><b>地</b>Ra ngoài thám thính tin tức Dã Lang Bang</button>
+          <button><b>人</b>Tùy ý: <i>tự nhập hành động của ngươi…</i></button>
+        </div>
+
+        <form class="actionbar" onsubmit="return false">
+          <input placeholder="Ngươi muốn làm gì?" />
+          <button>Gửi</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="sys-overlay" id="sys" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="sys-box">
+      <button class="close" onclick="document.getElementById('sys').classList.remove('open')">×</button>
+      <h3>Hệ Thống</h3>
+      <div class="sub">BÀN TAY VÀNG CỦA KẺ XUYÊN KHÔNG</div>
+      <section>
+        <h5>Nhiệm vụ hiện tại</h5>
+        <div class="quest">
+          <div class="now">▸ Chương I — Đại chiến Dã Lang Bang</div>
+          <div style="color:var(--muted)">Tìm cách sống sót qua trận chiến, và chạm mặt một tán tu trẻ tuổi tên <b>Hàn Lập</b>.</div>
+        </div>
+      </section>
+      <section>
+        <h5>Nhắc mốc nguyên tác</h5>
+        <div class="quest" style="color:var(--muted)">Dã Lang Bang tấn công Thất Huyền Môn. Hàn Lập khi ấy là tạp dịch đệ tử.</div>
+      </section>
+      <section>
+        <h5>Bảng cảnh giới</h5>
+        <div class="quest" style="font-size:13px;color:var(--muted);line-height:1.9">
+          Luyện Khí (13 tầng) → Trúc Cơ → Kết Đan → Nguyên Anh → Hóa Thần → Luyện Hư → Hợp Thể → Đại Thừa → Độ Kiếp → Chân Tiên
+        </div>
+      </section>
+      <section>
+        <h5>Trạng thái</h5>
+        <div class="quest">Khí huyết 88/100 · Tu vi 120/340 · Linh thạch 42</div>
+      </section>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="box">
+      <h2>Nhập Đạo</h2>
+      <p>Đạo hữu, xin để lại danh tính và nguồn cội của ngươi.</p>
+      <div class="up-avatar" id="av2" onclick="document.getElementById('f1').click()">Tải ảnh<br>đại diện</div>
+      <input id="f1" type="file" accept="image/*" hidden onchange="pickAvatar(this,'av2','av1')" />
+      <input placeholder="Danh tính (ví dụ: Lý Tầm)" />
+      <input placeholder="Xuất thân — tự do (ví dụ: tán tu, con nhà nông…)" />
+      <small>Bỏ trống xuất thân → mặc định "tán tu vô danh".</small>
+      <button class="go" onclick="document.getElementById('modal').classList.add('hide')">BƯỚC VÀO TU TIÊN</button>
+    </div>
+  </div>
+
+<script>
+  function pickAvatar(input, previewId, mainId){
+    const f = input.files && input.files[0]; if(!f) return;
+    const url = URL.createObjectURL(f);
+    const p = document.getElementById(previewId);
+    p.style.backgroundImage=`url(${url})`; p.textContent="";
+    if(mainId){const m=document.getElementById(mainId);m.style.backgroundImage=`url(${url})`;m.textContent="";}
+  }
+  document.getElementById('av1').onclick = () => document.getElementById('f1').click();
+</script>
+</body>
+</html>
