@@ -103,6 +103,15 @@ body{
 .choice:active{transform:scale(.985);filter:brightness(.95)}
 .choice .idx{font-family:var(--brush);font-size:16px;color:var(--seal);flex:0 0 auto;width:15px}
 
+/* ---------- LÙI HÀNH ĐỘNG ---------- */
+.undo-bar{flex:0 0 auto;display:flex;align-items:center;gap:9px;margin-top:2px}
+.undo-btn{font-family:var(--serif);font-size:12px;font-weight:600;color:var(--ink-soft);
+  background:rgba(255,253,246,.75);border:1px solid var(--edge);border-radius:9px;
+  padding:8px 13px;min-height:36px;transition:transform .12s}
+.undo-btn:active{transform:scale(.97);filter:brightness(.95)}
+.undo-btn:disabled{opacity:.45}
+.undo-ghi{font-size:11px;color:var(--ink-faint)}
+
 /* ---------- NGĂN HỆ THỐNG (ẩn) ---------- */
 .scrim{position:fixed;inset:0;z-index:5;background:rgba(30,26,20,.45);
   opacity:0;pointer-events:none;transition:opacity .25s}
@@ -222,6 +231,7 @@ body{
       <div class="sub" id="chuongSub">Chương 1 · Đại chiến Dã Lang Bang</div>
     </div>
     <button class="sys-btn" id="openSys">Hệ Thống</button>
+    <button class="sys-btn" id="openReset">Chơi lại</button>
   </header>
 
   <!-- bảng truyện -->
@@ -236,6 +246,12 @@ body{
     <button id="guiTuDo">Làm</button>
   </div>
   <div class="ai-note" id="aiNote"></div>
+
+  <!-- lùi hành động -->
+  <div class="undo-bar" id="undoBar">
+    <button class="undo-btn" id="nutLui">↩ Lùi hành động</button>
+    <span class="undo-ghi" id="undoGhi"></span>
+  </div>
 
   <!-- lựa chọn -->
   <nav class="choices" id="choices"></nav>
@@ -421,10 +437,20 @@ function capNhatTrangThai(tt) {
 }
 
 // ---------------------------------------------------------- hành động
+let soBuocLui = 0;   // số hành động có thể lùi
+
+function capNhatNutLui() {
+  const b = $("#nutLui");
+  if (!b) return;
+  b.disabled = soBuocLui <= 0;
+  $("#undoGhi").textContent = soBuocLui > 0 ? ("còn " + soBuocLui + " bước") : "chưa có gì để lùi";
+}
+
 async function chon(chiSo) {
   if (dangCho) return;
   dangCho = true;
   hienThi(await goi("/api/chon", {chi_so: chiSo}));
+  soBuocLui++; capNhatNutLui();
   dangCho = false;
 }
 async function tuDo() {
@@ -434,8 +460,32 @@ async function tuDo() {
   $("#tuDo").value = "";
   if (typeof coGian === "function") coGian();
   hienThi(await goi("/api/tu_do", {van_ban: v}));
+  soBuocLui++; capNhatNutLui();
   dangCho = false;
 }
+
+// lùi lại một hành động
+$("#nutLui").onclick = async () => {
+  if (dangCho || soBuocLui <= 0) return;
+  dangCho = true;
+  const kq = await goi("/api/lui", {});
+  if (kq.loi) {
+    soBuocLui = 0; capNhatNutLui();
+    $("#undoGhi").textContent = kq.loi;
+  } else {
+    soBuocLui--; capNhatNutLui();
+    hienThi(kq);
+  }
+  dangCho = false;
+};
+
+// chơi lại từ đầu (xoá phiên → về màn chọn xuất thân)
+$("#openReset").onclick = async () => {
+  if (!confirm("Chơi lại từ đầu? Tiến trình hiện tại sẽ bị xoá.")) return;
+  await goi("/api/moi", {});
+  location.reload();
+};
+capNhatNutLui();
 
 // ---------------------------------------------------------- tạo nhân vật
 let nhomChon = "";        // mã nhóm xuất thân đang chọn (nút), "" = tự gõ
@@ -514,6 +564,8 @@ $("#avatarInput").onchange = e => {
   const kq = await goi("/api/state");
   if (kq.co_phien) {
     $("#setup").style.display = "none";
+    soBuocLui = kq.so_lui || 0;
+    capNhatNutLui();
     const r = await goi("/api/doan");
     if (!r.loi) hienThi(r); else capNhatTrangThai(kq.trang_thai);
   }

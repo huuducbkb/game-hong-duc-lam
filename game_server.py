@@ -10,6 +10,7 @@ Phục vụ:
 Chạy: python3 game_server.py   (mặc định cổng 12001)
 """
 
+import copy
 import json
 import os
 import re
@@ -31,6 +32,7 @@ except Exception:
 PORT = int(os.environ.get("PORT", "12001"))
 
 _phien: dict[str, dict] = {}  # id phiên -> trạng thái (giữ trong RAM)
+_lich_su: dict[str, list] = {}  # id phiên -> ngăn xếp trạng thái để lùi
 
 
 def _phien_id(handler) -> str:
@@ -78,7 +80,25 @@ class Handler(BaseHTTPRequestHandler):
         if not sid:
             sid = os.urandom(9).hex()
         _phien[sid] = state
+        _lich_su[sid] = []
         return sid
+
+    def _luu_lich_su(self) -> None:
+        """Chụp trạng thái TRƯỚC khi người chơi hành động, để lùi lại được."""
+        sid = _phien_id(self)
+        st = _phien.get(sid)
+        if not st:
+            return
+        ngan = _lich_su.setdefault(sid, [])
+        ngan.append(copy.deepcopy(st))
+        if len(ngan) > 40:
+            ngan.pop(0)
+
+    def _bo_phien(self) -> None:
+        """Xoá phiên hiện tại → lần vào sau bắt đầu lại từ màn chọn xuất thân."""
+        sid = _phien_id(self)
+        _phien.pop(sid, None)
+        _lich_su.pop(sid, None)
 
     # ---------------------------------------------------------- GET
     def do_GET(self):
@@ -90,7 +110,8 @@ class Handler(BaseHTTPRequestHandler):
             st = self._state()
             if not st:
                 return self._json({"co_phien": False})
-            return self._json({"co_phien": True, "trang_thai": E._trang_thai_gon(st)})
+            return self._json({"co_phien": True, "trang_thai": E._trang_thai_gon(st),
+                               "so_lui": len(_lich_su.get(_phien_id(self)) or [])})
         if path.startswith("/api/doan"):
             st = self._state()
             if not st:
@@ -136,9 +157,23 @@ class Handler(BaseHTTPRequestHandler):
             return self._json({"loi": "Chưa có phiên chơi. Hãy tạo nhân vật."}, 400)
 
         if path == "/api/chon":
+            self._luu_lich_su()
             return self._json(E.chon(st, int(data.get("chi_so", -1))))
         if path == "/api/tu_do":
+            self._luu_lich_su()
             return self._json(E.hanh_dong_tu_do(st, data.get("van_ban") or "", AI=AI))
+        if path == "/api/lui":
+            ngan = _lich_su.get(_phien_id(self)) or []
+            if not ngan:
+                return self._json({"loi": "Không còn gì để lùi"}, 400)
+            _phien[_phien_id(self)] = ngan.pop()
+            kq = E.goi_y_hien_tai(_phien[_phien_id(self)])
+            kq["thong_bao"] = ["↩ Đã lùi lại một hành động"]
+            return self._json(kq)
+        if path == "/api/moi":
+            self._bo_phien()
+            return self._json({"ok": True},
+                              extra={"Set-Cookie": "phien=; Path=/; Max-Age=0"})
         if path == "/api/luu":
             p = E.luu(st, data.get("slot") or st["ten_nhan_vat"])
             return self._json({"ok": True, "tep": os.path.basename(p)})
