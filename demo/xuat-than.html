@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Demo · Xuất thân có tác dụng</title>
+<style>
+  :root{
+    --ink:#1b1915; --ink-soft:#3a352c; --ink-faint:#8a8172;
+    --seal:#a8352a; --paper:#f6f0e2; --edge:#d8cdb6;
+    --ok:#2f6b4f; --warn:#9a6b1f;
+    --serif:"Noto Serif","Songti SC",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(168,53,42,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink); font-family:var(--serif); line-height:1.6;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:22px 16px 64px}
+
+  .banner{
+    border:1px dashed var(--seal); border-radius:12px;
+    background:rgba(168,53,42,.06); padding:10px 13px; margin-bottom:18px;
+    font-size:12.5px; color:var(--ink-soft)
+  }
+  .banner b{color:var(--seal)}
+
+  h1{font-size:20px;margin:0 0 2px}
+  .cap{font-size:10.5px;letter-spacing:2px;color:var(--seal);text-transform:uppercase;margin-bottom:18px}
+
+  .card{
+    position:relative;background:#fffdf6;border:1px solid var(--edge);
+    border-radius:14px;padding:18px 17px;box-shadow:0 1px 0 rgba(0,0,0,.03)
+  }
+  label{display:block;font-size:11.5px;color:var(--ink-faint);letter-spacing:.6px;margin:0 0 6px}
+  textarea{
+    width:100%;font-family:var(--serif);font-size:15px;color:var(--ink);
+    background:rgba(255,255,255,.7);border:1px solid var(--edge);border-radius:10px;
+    padding:11px 12px;min-height:80px;resize:vertical;line-height:1.5
+  }
+  .presets{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+  .presets button{
+    font-family:var(--serif);font-size:12px;color:var(--ink-soft);
+    background:rgba(255,255,255,.8);border:1px solid var(--edge);border-radius:999px;
+    padding:6px 11px;cursor:pointer
+  }
+  .presets button:active{transform:translateY(1px)}
+  .go{
+    width:100%;margin-top:16px;font-family:var(--serif);font-size:16px;font-weight:600;
+    color:#fdf9ef;background:var(--seal);border:0;border-radius:12px;padding:14px;cursor:pointer
+  }
+
+  /* so sánh */
+  .cmp{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0}
+  @media(min-width:640px){.cmp{grid-template-columns:1fr 1fr}}
+  .col{border:1px solid var(--edge);border-radius:12px;padding:13px 13px;background:#fffdf6}
+  .col h3{margin:0 0 8px;font-size:13px;letter-spacing:.4px}
+  .col.now h3{color:var(--ink-faint)}
+  .col.new{border-color:var(--seal);background:rgba(168,53,42,.035)}
+  .col.new h3{color:var(--seal)}
+  .kv{font-size:13px;color:var(--ink-soft)}
+  .kv div{padding:3px 0;border-bottom:1px dotted var(--edge)}
+  .kv div:last-child{border-bottom:0}
+  .kv .same{color:var(--ink-faint)}
+  .kv b{color:var(--ink)}
+
+  .story{font-size:15.5px;color:var(--ink);margin:6px 0 0;white-space:pre-wrap}
+  .tags{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+  .tag{
+    font-size:11.5px;color:#5a2b12;background:rgba(168,53,42,.10);
+    border:1px solid rgba(168,53,42,.28);border-radius:999px;padding:3px 10px
+  }
+  .tag.none{color:var(--ink-faint);background:rgba(0,0,0,.03);border-color:var(--edge)}
+
+  .choices{margin:16px 0 0;display:flex;flex-direction:column;gap:9px}
+  .choices button{
+    text-align:left;font-family:var(--serif);font-size:14.5px;color:var(--ink);
+    background:rgba(255,255,255,.85);border:1px solid var(--edge);border-radius:11px;
+    padding:12px 13px;cursor:pointer;line-height:1.45
+  }
+  .choices button:hover{border-color:var(--ink-soft)}
+  .choices button.locked{
+    opacity:.55;color:var(--ink-faint);border-style:dashed;cursor:not-allowed
+  }
+  .choices button .why{
+    display:block;font-size:11.5px;margin-top:4px;color:var(--seal)
+  }
+  .choices button.locked .why{color:var(--ink-faint)}
+
+  .log{margin-top:14px;font-size:13.5px;color:var(--ink-soft)}
+  .log p{margin:8px 0}
+  .log .pick{color:var(--seal);font-weight:600}
+  .note{font-size:11.5px;color:var(--ink-faint);margin-top:16px;line-height:1.5}
+  hr{border:0;border-top:1px solid var(--edge);margin:20px 0}
+  .reset{font-size:12.5px;color:var(--seal);background:none;border:0;cursor:pointer;padding:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="banner">
+    <b>TRANG DEMO — không phải game thật.</b> Mục đích: cho bạn thấy nếu <b>xuất thân có tác dụng</b> thì khác thế nào.
+    Game thật hiện vẫn chạy như cũ (xuất thân chỉ là nhãn).
+  </div>
+
+  <h1>Xuất thân có tác dụng — bản thử</h1>
+  <div class="cap">Hồng Đức Tu Tiên Lộ · đề xuất</div>
+
+  <div class="card" id="setup">
+    <label for="xt">Nhập xuất thân (gõ tự do — thử cả câu dài)</label>
+    <textarea id="xt" placeholder="Ví dụ: ngoại môn tạp dịch đệ tử Thanh Vân Tông, linh căn tạp lục, bị Lý Hổ ép nộp linh thạch"></textarea>
+    <div class="presets">
+      <button data-x="tán tu nghèo, lang thang vô môn phái">tán tu nghèo</button>
+      <button data-x="ngoại môn tạp dịch đệ tử Thanh Vân Tông">đệ tử tông môn</button>
+      <button data-x="dược đồng ở hiệu thuốc bắc, quen tay hái dược">dược đồng</button>
+      <button data-x="con cháu gia tộc sa sút, còn giữ được ít gia sản">con nhà gia tộc</button>
+      <button data-x="thư sinh nghèo, chỉ biết chữ nghĩa">thư sinh</button>
+      <button data-x="sát thủ hắc đạo, tay đã vấy máu">sát thủ hắc đạo</button>
+    </div>
+    <button class="go" id="go">Bắt đầu →</button>
+    <div class="note" id="setupNote" style="display:none"></div>
+  </div>
+
+  <div id="out" style="display:none">
+    <div class="cmp">
+      <div class="col now">
+        <h3>HIỆN TẠI (game thật)</h3>
+        <div class="kv">
+          <div class="same">Mọi xuất thân → <b>nhân vật y hệt</b></div>
+          <div class="same">Chỉ số: 30 · 10 · 8 · 5 · 3 · 10</div>
+          <div class="same">Linh thạch: <b>3</b></div>
+          <div class="same">Kỹ năng: Hô hấp pháp</div>
+          <div class="same">Đoạn đầu: <code>c1_d01</code> (luôn giống)</div>
+          <div class="same">Lựa chọn: 3 nút (luôn giống)</div>
+        </div>
+      </div>
+      <div class="col new">
+        <h3>DEMO (nếu có tác dụng)</h3>
+        <div class="kv" id="statsNew"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 6px;font-size:13px;letter-spacing:.4px">Thẻ xuất thân nhận được</h3>
+      <div class="tags" id="tags"></div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="cap" style="margin:0 0 8px">Lời mở đầu (khác theo xuất thân)</div>
+      <div class="story" id="story"></div>
+      <div class="choices" id="choices"></div>
+      <div class="log" id="log"></div>
+      <button class="reset" id="again">↺ Thử xuất thân khác</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================ BỘ DÒ THẺ
+// (trong game thật: AI đọc xuất thân; ở demo này dùng dò từ khoá để bạn xem liền)
+const THE = [
+  {ma:"tong_mon", ten:"Tông môn", tk:["tông môn","tông môn","đệ tử","nội môn","ngoại môn","tạp dịch","thanh vân","tông"]},
+  {ma:"tan_tu",    ten:"Tán tu",    tk:["tán tu","vô môn phái","lang thang","cơ hàn","cô độc"]},
+  {ma:"duoc",      ten:"Dược sư",   tk:["dược","y thuật","thuốc","luyện đan","linh dược"]},
+  {ma:"gia_toc",   ten:"Gia tộc",   tk:["gia tộc","thế gia","công tử","tiểu thư","con cháu"]},
+  {ma:"ngheo",     ten:"Nghèo khổ", tk:["nghèo","khổ","ăn mày","nô","bần"]},
+  {ma:"sat_thu",   ten:"Hắc đạo",   tk:["sát thủ","hắc đạo","ma tu","tay đã vấy máu","huyết"]},
+  {ma:"thu_sinh",  ten:"Thư sinh",  tk:["thư sinh","nho","đọc sách","chữ nghĩa","sĩ"]},
+];
+function doThe(txt){
+  const t = txt.toLowerCase();
+  const ra = [];
+  for (const x of THE) if (x.tk.some(k => t.includes(k))) ra.push(x.ma);
+  return ra;
+}
+
+// ============================================================ GÓI KHỞI ĐẦU
+const GOC = {sinh:30, linh:10, than:8, tan:5, thu:3, toc:10, thach:3, ky:["Hô hấp pháp"], vat:[]};
+function goiKhoiDau(the){
+  const s = JSON.parse(JSON.stringify(GOC));
+  const ghi = [];
+  const co = m => the.includes(m);
+  if (co("tong_mon")){ s.than += 2; s.ky.push("Tông môn lệnh"); ghi.push("Tông môn → thần niệm +2, có <b>Tông môn lệnh</b>"); }
+  if (co("duoc")){ s.vat.push("Đan bổ khí ×3"); s.linh += 1; ghi.push("Dược sư → có <b>Đan bổ khí ×3</b>, linh lực +1"); }
+  if (co("gia_toc")){ s.thach += 5; s.thu += 1; ghi.push("Gia tộc → linh thạch +5, phòng thủ +1"); }
+  if (co("ngheo")){ s.thach = Math.max(0, s.thach - 2); s.toc += 1; ghi.push("Nghèo khổ → linh thạch −2, tốc độ +1 (quen chịu khổ)"); }
+  if (co("tan_tu")){ s.toc += 2; ghi.push("Tán tu → tốc độ +2 (sống ngoài khuôn khổ)"); }
+  if (co("sat_thu")){ s.tan += 2; s.thach = Math.max(0, s.thach - 1); ghi.push("Hắc đạo → tấn công +2, linh thạch −1"); }
+  if (co("thu_sinh")){ s.than += 1; s.ky.push("Cổ văn giải nghĩa"); ghi.push("Thư sinh → thần niệm +1, có <b>Cổ văn giải nghĩa</b>"); }
+  if (!ghi.length) ghi.push("Không nhận ra xuất thân đặc biệt → giữ gói mặc định (vẫn chơi được)");
+  return {s, ghi};
+}
+
+// ============================================================ CÂY TRUYỆN MINI
+// Mỗi đoạn: ke (theo thẻ), chon (có the_mo để khoá/mở, có hieu_ung đổi thẻ)
+const CAY = {
+  mo_dau:{
+    ke: {
+      "_": "Ngươi mở mắt giữa buổi chợ sớm của thị trấn Thất Huyền, mùi thuốc bắc nồng nặc. Mảnh ngọc vụn trong tay còn ấm…",
+      "tong_mon": "Ngươi tỉnh dậy trong phòng tạp dịch của Thanh Vân Tông. Áo vải thô, tay đầy vết chai. Ngoài kia, quản sự Lý Hổ đang đếm linh thạch cống nạp — và tên ngươi nằm cuối danh sách.",
+      "duoc": "Ngươi đứng giữa linh dược viên, tay áo còn vương mùi cam thảo. Một cọng linh thảo đang héo bỗng rung lên khi ngươi chạm vào — ngươi biết nó quý.",
+      "sat_thu": "Ngươi tỉnh dậy trong con hẻm sau chợ, máu tên trước còn dính móng tay. Một giọng lạnh vang trong đầu: 'Chủ nhân mới… cũng vấy máu sao?'",
+      "gia_toc": "Ngươi ngồi trong gian nhà còn sót lại của gia tộc, nhìn chiếc nhẫn ngọc cha để lại. Ngoài kia, Dã Lang Bang đã ngửi thấy mùi gia sản mà ngươi còn giữ.",
+      "thu_sinh": "Ngươi tỉnh dậy với cuốn sách cổ trong tay, chữ nghĩa còn nguyên. Bụi phủ dày — nhưng vài dòng chữ bỗng sáng lên khi ngươi đọc tới.",
+      "tan_tu": "Ngươi nằm dưới gốc cây bên đường, chẳng có gì ngoài manh áo và mảnh ngọc vụn trong tay. Không tông môn, không ai chống lưng — nhưng chân ngươi quen đường núi."
+    },
+    chon:[
+      {ten:"Lặng lẽ bám theo thanh niên áo vải", to:"bam_theo"},
+      {ten:"Chen vào đám đông, dò hỏi chuyện Dã Lang Bang", to:"do_hoi"},
+      {ten:"Tìm quán trọ, ẩn mình chờ thời", to:"quan_tro"},
+      {ten:"Dùng danh phận tông môn dọa lính Dã Lang Bang", to:"doa_lang", the_mo:["tong_mon"], ly:"chỉ mở khi có thẻ Tông môn"},
+      {ten:"Pha một thang dược cho lão ăn mày đổi tin tức", to:"thang_duoc", the_mo:["duoc"], ly:"chỉ mở khi có thẻ Dược sư"},
+      {ten:"Móc túi hắc đạo ra, tìm người từng là đồng đảng", to:"hong_dao", the_mo:["sat_thu"], ly:"chỉ mở khi có thẻ Hắc đạo"},
+    ]
+  },
+  bam_theo:{ ke:{
+      "_": "Ngươi lặng lẽ theo sau. Thanh niên áo vải dừng lại trước sạp thuốc, ngón tay khẽ gõ — một tín hiệu. Y biết ngươi đang theo.",
+      "toc_cao": "Chân ngươi quen núi rừng, bám theo y cả buổi mà không phát tiếng. Y liếc lại, trong mắt thoáng kinh ngạc."
+    }, chon:[{ten:"Bước ra chào hỏi", to:"ket_thuc"},{ten:"Rút lui, giữ bí mật", to:"ket_thuc"}]},
+  do_hoi:{ ke:{"_":"Ngươi dò hỏi trong đám đông. Người ta nói Dã Lang Bang mai sẽ siết nợ cả chợ. Một gã buôn ngồi gần run tay."}, chon:[{ten:"Đi tiếp", to:"ket_thuc"}]},
+  quan_tro:{ ke:{"_":"Ngươi thuê một gian tịnh phòng. Nửa đêm, có tiếng gõ cửa khoan thai ba nhịp — đúng ám hiệu của người trong giới."}, chon:[{ten:"Mở cửa", to:"ket_thuc"}]},
+  doa_lang:{ ke:{"_":"Ngươi đưa Tông môn lệnh ra. Bọn lính Dã Lang Bang khựng lại — động tới đệ tử Thanh Vân Tông là chuyện lớn. Chúng rút, nhưng mắt đỏ au ghi nhớ mặt ngươi."}, chon:[{ten:"Nhân lúc chúng chần chừ, lẻn vào kho", to:"ket_thuc"},{ten:"Rời đi trước khi sinh biến", to:"ket_thuc"}]},
+  thang_duoc:{ ke:{"_":"Ngươi bốc mấy vị thuốc, sắc một thang nóng cho lão ăn mày. Lão uống xong, thở đều lại, rồi kéo ngươi lại: 'Dã Lang Bang giấu linh thạch cướp của dân trong hắc quáng động phía tây.'"}, chon:[{ten:"Ghi nhớ đường đi", to:"ket_thuc"}]},
+  hong_dao:{ ke:{"_":"Ngươi móc mảnh ngọc đen — tín vật hắc đạo. Một gã mặt sẹo từ trong bóng tối bước ra, nhìn ngươi chăm chăm rồi cười khàn: 'Đồng đạo. Cần gì?'"}, chon:[{ten:"Hỏi chuyện Dã Lang Bang", to:"ket_thuc"}]},
+  ket_thuc:{ ke:{"_":"Chương 1 khép lại ở đây — nhưng mở đầu của ngươi đã khác hẳn một kẻ tán tu vô danh."}, chon:[]}
+};
+
+// ============================================================ CHẠY DEMO
+const $ = s => document.querySelector(s);
+let s = null; // trạng thái demo
+
+$("#go").onclick = () => {
+  const txt = $("#xt").value.trim() || "tán tu vô danh";
+  const the = doThe(txt);
+  const {s:st, ghi} = goiKhoiDau(the);
+  s = {txt, the, st, ghi, nut:"mo_dau", dem:0};
+  $("#setup").style.display = "none";
+  $("#out").style.display = "block";
+  ve();
+};
+document.querySelectorAll(".presets button").forEach(b => b.onclick = () => { $("#xt").value = b.dataset.x; });
+$("#again").onclick = () => { $("#out").style.display="none"; $("#setup").style.display="block"; $("#log").innerHTML=""; window.scrollTo({top:0,behavior:"smooth"}); };
+
+function ve(){
+  const st = s.st, the = s.the;
+  // cột DEMO
+  $("#statsNew").innerHTML =
+    `<div>Sinh lực <b>${st.sinh}</b> · Linh lực <b>${st.linh}</b> · Thần niệm <b>${st.than}</b></div>` +
+    `<div>Tấn công <b>${st.tan}</b> · Phòng thủ <b>${st.thu}</b> · Tốc độ <b>${st.toc}</b></div>` +
+    `<div>Linh thạch <b>${st.thach}</b></div>` +
+    `<div>Kỹ năng: ${st.ky.join(", ")}</div>` +
+    (st.vat.length ? `<div>Vật phẩm riêng: <b>${st.vat.join(", ")}</b></div>` : "") +
+    `<div style="margin-top:6px;color:var(--seal)">${s.ghi.map(g=>"• "+g).join("<br>")}</div>`;
+
+  // thẻ
+  const t = $("#tags");
+  if (the.length){
+    t.innerHTML = the.map(m => `<span class="tag">${THE.find(x=>x.ma===m).ten}</span>`).join("");
+  } else {
+    t.innerHTML = `<span class="tag none">không nhận ra thẻ — giữ mặc định</span>`;
+  }
+
+  // đoạn truyện
+  const nut = CAY[s.nut];
+  const ke = nut.ke[s.the.find(m=>nut.ke[m])] || nut.ke["_"] || "";
+  $("#story").innerHTML = ke;
+
+  // lựa chọn
+  const box = $("#choices"); box.innerHTML = "";
+  if (!nut.chon.length){
+    box.innerHTML = `<div class="note" style="margin:0">Hết demo. Bấm "Thử xuất thân khác" để so sánh.</div>`;
+    return;
+  }
+  nut.chon.forEach(c => {
+    const mo = !c.the_mo || c.the_mo.some(m => s.the.includes(m));
+    const b = document.createElement("button");
+    b.className = mo ? "" : "locked";
+    b.innerHTML = c.ten + (!mo && c.ly ? `<span class="why">🔒 ${c.ly}</span>` : "");
+    if (mo) b.onclick = () => {
+      s.dem++;
+      const lg = document.createElement("p");
+      lg.innerHTML = `<span class="pick">▸ Lượt ${s.dem}:</span> ${c.ten}`;
+      $("#log").appendChild(lg);
+      s.nut = c.to; ve();
+      window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+    };
+    box.appendChild(b);
+  });
+}
+</script>
+</body>
+</html>
