@@ -81,6 +81,46 @@ Kết quả do AI kể, nhưng sau đó vẫn **quay về đoạn chính kế ti
 | Quên nhân vật/đồ | Nạp lại `state.json` mỗi lượt |
 | Lạc hướng | AI bị giới hạn trong đoạn; hướng truyện do ta viết |
 
+### Số đoạn mỗi chương — tính toán
+
+**Mục tiêu: 1 chương ≈ 45 phút chơi.** Người chơi vừa chơi vừa đọc → **2–3 phút mỗi lượt**
+(đọc đoạn kể + suy nghĩ + chọn).
+
+| Giả định | Số đoạn |
+|---|---|
+| 2 phút/lượt | 22,5 |
+| **2,5 phút/lượt (trung bình)** | **18** |
+| 3 phút/lượt | 15 |
+
+Trừ ~5 phút tạo nhân vật (đầu game) → phần chơi còn ~40 phút.
+
+**→ Chốt: 18 đoạn/chương.** Cấu trúc 3 hồi:
+
+| Hồi | Số đoạn | Nội dung | Thời lượng |
+|---|---|---|---|
+| **Mở** | 5 | Tạo nhân vật + nhập môn + gặp gỡ đầu | ~12 phút |
+| **Thân** | 8 | Diễn biến chính, leo thang, gặp NPC | ~20 phút |
+| **Kết** | 5 | Cao trào + lựa chọn lớn + kết chương | ~13 phút |
+
+Trong 18 đoạn:
+- **14 đoạn có lựa chọn** (14 × 2,5 ≈ 35 phút)
+- **4 đoạn đặc biệt** (không chọn hoặc lâu hơn): mở đầu, 2 khoảnh khắc lớn (đại chiến /
+  gặp Hàn Lập — có video, ~3–4 phút mỗi đoạn), kết chương.
+
+**Lưu ý:** con số này là **mục tiêu**, sẽ **tinh chỉnh sau khi chơi thử**. Đoạn ngắn thì
+nhiều hơn, đoạn dài (đại chiến) thì ít hơn nhưng mỗi đoạn lâu hơn.
+
+### Chi phí token mỗi chương (ước tính)
+
+| Khoản | Mỗi lượt | 18 lượt/chương |
+|---|---|---|
+| Vào (thẻ ngữ cảnh + tóm tắt) | ~1.500 token | ~27.000 |
+| Ra (AI kể + JSON cập nhật) | ~400 token | ~7.200 |
+| **Tổng** | ~1.900 | **~34.000 token/chương** |
+
+→ Với Gemini free tier (hạn mức lớn), **một chương chỉ tốn ~34k token** — thoải mái.
+Chế độ KHÔNG AI thì **0 token**.
+
 ---
 
 ## B. BẢNG CHỈ SỐ (dùng chung cho cả NVC và NPC)
@@ -307,3 +347,5 @@ Khi có nhiều tab + nội dung nặng:
 | 4 | Nghề phụ | **Giai đoạn sau**; kèm theo sẽ có **thị trường kinh tế** |
 | 5 | Mục 10 | Đã hiểu |
 | 6 | Tên công cụ | Đổi `INKFRAME` → **`PIC-IN-GAME`** ✅ đã làm |
+| 7 | Số đoạn/chương | **18 đoạn** (45 phút chơi, 2,5 phút/lượt). Cấu trúc 3 hồi: 5 mở · 8 thân · 5 kết |
+| 8 | Bảng chỉ số | **Đã đủ** (10 cơ bản + 9 tấn công phép + 9 kháng phép) |

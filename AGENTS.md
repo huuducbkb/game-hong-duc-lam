@@ -97,6 +97,7 @@ Quy ước: font `Noto Serif` + `Ma Shan Zheng`; màu mực `#1b1915`, ấn son 
 - **Thần niệm** = giác quan + tay nghề + vũ khí tinh thần (xem kế hoạch mục C).
 - **Chủng loại** NPC: nhân loại · yêu thú · yêu thú hoá hình người · ma thú · quỷ ·
   khôi lỗi · cương thi… (dùng để AI tra đúng ảnh).
+- **1 chương = 18 đoạn ≈ 45 phút** (2,5 phút/lượt). Cấu trúc 3 hồi: 5 mở · 8 thân · 5 kết.
 
 ## Cần làm tiếp
 
