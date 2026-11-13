@@ -338,24 +338,85 @@ def chon(state: dict, chi_so: int) -> dict:
     return ket_qua
 
 
+def _boi_canh(state: dict) -> str:
+    """Bối cảnh ngắn cho AI nhận diện hành động tự do."""
+    d = _doan(state)
+    npc = ", ".join(f"{ten} (hảo cảm {v['hao_cam']})" for ten, v in state["npc"].items())
+    return (
+        f"Đoạn: {d.get('boi_canh', '')}. Cảnh giới: {state['canh_gioi']}. "
+        f"Sinh lực {state['chi_so']['sinh_luc']['hien']}/{state['chi_so']['sinh_luc']['max']}. "
+        f"NPC đã gặp: {npc or 'chưa gặp ai'}."
+    )
+
+
+def _so_nguyen(v) -> int | None:
+    """Ép về số nguyên nếu hợp lệ; ngược lại trả None."""
+    if isinstance(v, bool) or not isinstance(v, (int, float)):
+        return None
+    return int(v)
+
+
+def _loc_y_dinh(state: dict, y: dict) -> dict:
+    """Chỉ giữ thay đổi hợp lệ: khoá đã biết + NPC đã gặp + trong giới hạn.
+
+    Chống dữ liệu rác từ AI: None, chuỗi, số ngoài miền, NPC lạ.
+    """
+    hu: dict = {}
+    for khoa, (lo, hi) in (("sinh_luc", (-15, 10)), ("tu_vi", (0, 8)),
+                           ("linh_thach", (-10, 10)), ("than_niem", (0, 2))):
+        n = _so_nguyen(y.get(khoa))
+        if n is not None:
+            hu[khoa] = max(lo, min(hi, n))
+    hc = {}
+    hc_in = y.get("hao_cam")
+    if not isinstance(hc_in, dict):
+        hc_in = {}
+    for ten, delta in hc_in.items():
+        n = _so_nguyen(delta)
+        if n is not None and ten in state["npc"]:  # chỉ đổi hảo cảm với NPC đã gặp
+            hc[ten] = max(-10, min(10, n))
+    if hc:
+        hu["hao_cam"] = hc
+    return hu
+
+
 def hanh_dong_tu_do(state: dict, van_ban: str, AI=None) -> dict:
     """Người chơi gõ hành động tự do.
 
     Chế độ không AI: trả về đoạn kể chung và GIỮ NGUYÊN đoạn hiện tại (không lạc truyện).
-    Chế độ có AI: nhờ AI kể lại đoạn theo hành động, vẫn giữ nguyên đoạn.
+    Chế độ có AI: AI đọc hành động → áp thay đổi chỉ số NHỎ (đã lọc), rồi kể lại đoạn.
+    Đoạn truyện KHÔNG đổi — chỉ chỉ số/hảo cảm thay đổi.
     """
     van_ban = van_ban.strip()
     if not van_ban:
         return {"loi": "Hãy nhập hành động"}
     d = _doan(state)
     _ghi_nhat_ky(state, f"Tự do: {van_ban}")
-    ket_qua = _goi_y(state)
-    ket_qua["thong_bao"] = [f"(tự do) Ta {van_ban}…"]
+    hien_thi = van_ban[3:] if van_ban.lower().startswith("ta ") else van_ban
+    tb = [f"(tự do) Ta {hien_thi}…"]
+    y_dinh: dict = {}
     if AI is not None:
         try:
             if AI.san_sang():
-                ket_qua["ke"] = AI.ke_lai(d.get("ke", ""), van_ban)
-                ket_qua["thong_bao"].append("AI kể: kết quả có thể khác mỗi lần")
+                y_dinh = AI.nhan_dien(van_ban, _boi_canh(state))
+        except Exception:  # noqa: BLE001 - AI lỗi thì bỏ qua, không áp gì
+            y_dinh = {}
+    if not isinstance(y_dinh, dict):
+        y_dinh = {}
+    hu = _loc_y_dinh(state, y_dinh)
+    if hu:
+        tb.extend(_ap_hieu_ung(state, hu))
+    if y_dinh.get("nhan_xet"):
+        tb.append(f"⟡ {y_dinh['nhan_xet']}")
+
+    ket_qua = _goi_y(state)
+    ket_qua["thong_bao"] = tb
+    if AI is not None:
+        try:
+            if AI.san_sang():
+                thay_doi = "; ".join(tb[1:]) or "không đổi chỉ số"
+                ket_qua["ke"] = AI.ke_lai(d.get("ke", ""), van_ban, thay_doi)
+                tb.append("AI kể: kết quả có thể khác mỗi lần")
                 return ket_qua
         except Exception:  # noqa: BLE001 - AI lỗi thì rơi về chế độ viết sẵn
             pass
