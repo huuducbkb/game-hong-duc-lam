@@ -181,7 +181,7 @@
       "ke": "Đêm buông xuống thật nhanh, nhanh hơn ta tưởng. Ta kiểm lại trong người — không vũ khí, không pháp bảo, chỉ có mảnh ngọc vụn và chút linh thạch ít ỏi.\n\n*Với chừng này, ta khác nào tấm bia sống.*\n\nMột cảm giác lạnh chạy dọc gáy khi tiếng gầm gừ từ xa mỗi lúc một gần.\n\nBên tai, giọng nói lạnh lùng lại thì thầm: “Kẻ sống sót không phải kẻ mạnh nhất, mà là kẻ biết đứng đúng chỗ.”\n\nTa hít sâu một hơi, siết chặt tay, biết mình phải chọn chỗ đứng trước khi mọi chuyện vỡ ra.",
       "lua_chon": [
         {
-          "chu": "Tiến lên phía cổng môn, nơi đông người",
+          "chu": "Tiến lên phía tường thành, nơi đông người",
           "den": "c1_d06"
         },
         {
@@ -405,7 +405,7 @@
           "nguy hiểm"
         ]
       },
-      "ke": "Ta lần tới hậu trận địch, nơi mùi da thú, mồ hôi và máu nồng nặc đến khó thở. Giữa những túp lều da thú, có một căn lều lớn hơn hẳn — nơi phát ra luồng linh khí đen đặc quánh.\n\nMột lão nhân mặt sẹo, thân hình vạm vỡ, đang mân mê một chiếc hộp gỗ.\n\n“Thất Huyền Môn tưởng giữ được bí kíp này sao?” — lão cười khàn khàn — “Ngây thơ.”\n\nBên trong hộp, thứ gì đó tỏa ra linh quang mờ ảo, khiến ta không sao rời mắt.\n\n*Bí kíp…* Ta nín thở, máu trong người như đông lại. Nhưng ta biết, chỉ cần sơ sẩy một bước là mất mạng.",
+      "ke": "Khi trận hỗn chiến tạm lắng, ta lần theo dấu vết ra tận hậu trận địch — nơi mùi da thú, mồ hôi và máu nồng nặc đến khó thở. Giữa những túp lều da thú, có một căn lều lớn hơn hẳn — nơi phát ra luồng linh khí đen đặc quánh.\n\nMột lão nhân mặt sẹo, thân hình vạm vỡ, đang mân mê một chiếc hộp gỗ.\n\n“Thất Huyền Môn tưởng giữ được bí kíp này sao?” — lão cười khàn khàn — “Ngây thơ.”\n\nBên trong hộp, thứ gì đó tỏa ra linh quang mờ ảo, khiến ta không sao rời mắt.\n\n*Bí kíp…* Ta nín thở, máu trong người như đông lại. Nhưng ta biết, chỉ cần sơ sẩy một bước là mất mạng.",
       "lua_chon": [
         {
           "chu": "Rón rén tới gần, tìm cách đoạt hộp gỗ",
@@ -531,7 +531,7 @@
           "linh quang"
         ]
       },
-      "ke": "Trận chiến bùng lên dữ dội chưa từng thấy. Bang chủ Dã Lang Bang tung một quyền, linh khí đen cuộn thành hình sói khổng lồ, đánh sập nửa bức tường thành.\n\n“Hỡi các đệ tử, theo ta!” — một trưởng lão râu bạc quát vang, đạo bào phần phật trong gió.\n\nCác trưởng lão Thất Huyền Môn đồng loạt xuất thủ, ánh sáng xanh lục và vàng kim đan vào nhau như dệt lụa, chấn động cả bầu trời đêm.\n\nTa đứng cách đó vài chục trượng, lần đầu tiên trong đời cảm nhận được thế nào là uy lực của tu sĩ. *Đây là sức mạnh mà ta hằng mơ ước.*\n\nNhưng đồng thời, ta cũng hiểu: đứng sai chỗ trong trận này, ta sẽ tan thành tro.",
+      "ke": "Trận đại chiến vẫn chưa dứt — còn dữ dội hơn cả lúc đầu. Bang chủ Dã Lang Bang tung một quyền, linh khí đen cuộn thành hình sói khổng lồ, đánh sập nốt mảng tường thành còn sót lại.\n\n“Hỡi các đệ tử, theo ta!” — một trưởng lão râu bạc quát vang, đạo bào phần phật trong gió.\n\nCác trưởng lão Thất Huyền Môn đồng loạt xuất thủ, ánh sáng xanh lục và vàng kim đan vào nhau như dệt lụa, chấn động cả bầu trời đêm.\n\nTa đứng cách đó vài chục trượng, lần đầu tiên trong đời cảm nhận được thế nào là uy lực của tu sĩ. *Đây là sức mạnh mà ta hằng mơ ước.*\n\nNhưng đồng thời, ta cũng hiểu: đứng sai chỗ trong trận này, ta sẽ tan thành tro.",
       "lua_chon": [
         {
           "chu": "Nhân lúc hỗn loạn, lẻn vào trong môn phái",
@@ -612,7 +612,7 @@
           }
         },
         {
-          "chu": "Im lặng, giả vờ không thấy rồi đi tiếp",
+          "chu": "Không nói gì, lặng lẽ bước theo sau hắn",
           "den": "c1_d17",
           "hieu_ung": {
             "co_su_kien": [
@@ -868,7 +868,30 @@
       ]
     },
     {
-      "id": "c1_p05",
+      "id": "c1_p05a",
+      "hoi": "Mở",
+      "boi_canh": "Đêm trước — canh cổng đông, chờ trận tập kích",
+      "hinh_anh": {
+        "tags": [
+          "đêm",
+          "cảnh báo",
+          "căng thẳng"
+        ]
+      },
+      "ke": "Đêm buông xuống, ngoại môn chìm vào một thứ im lặng nặng nề. Những ngọn đèn dầu tắt sớm, tiếng chó sủa thưa dần rồi tắt hẳn.\n\nTa đã biết trước: giờ Tý, cổng đông. Ta nấp ở một góc sân, mắt dán về phía cổng đông, tay siết chặt vạt áo, chờ tiếng động đầu tiên.\n\nĐúng giờ Tý, từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng đông bùng lên tiếng hét. Rồi lửa bốc lên từ dãy nhà kho — ngọn lửa lan nhanh trong gió, kèm theo tiếng kêu cứu thất thanh vọng ra từ trong khói.",
+      "lua_chon": [
+        {
+          "chu": "Chạy thẳng ra cổng đông, cố cảnh báo mọi người",
+          "den": "c1_p06"
+        },
+        {
+          "chu": "Chạy về phía tiếng kêu cứu, cứu người bị kẹt",
+          "den": "c1_p07"
+        }
+      ]
+    },
+    {
+      "id": "c1_p05b",
       "hoi": "Mở",
       "boi_canh": "Đêm trước — ngoại môn chìm trong im lặng nặng nề",
       "hinh_anh": {
@@ -878,14 +901,14 @@
           "căng thẳng"
         ]
       },
-      "ke": "Đêm buông xuống, ngoại môn chìm vào một thứ im lặng nặng nề. Những ngọn đèn dầu tắt sớm, tiếng chó sủa thưa dần rồi tắt hẳn.\n\nTa nấp ở một góc sân, nín thở, không hiểu vì sao lòng mình bất an đến vậy.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng đông bùng lên tiếng hét.",
+      "ke": "Đêm buông xuống, ngoại môn chìm vào một thứ im lặng nặng nề. Những ngọn đèn dầu tắt sớm, tiếng chó sủa thưa dần rồi tắt hẳn.\n\nTa nấp ở một góc sân, nín thở, không hiểu vì sao lòng mình bất an đến vậy.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng đông bùng lên tiếng hét. Rồi lửa bốc lên từ dãy nhà kho, lan nhanh trong gió, kèm theo tiếng kêu cứu thất thanh.",
       "lua_chon": [
         {
-          "chu": "Chạy thẳng ra cổng đông, cố cảnh báo mọi người",
+          "chu": "Chạy thẳng ra cổng đông, xem chuyện gì đang xảy ra",
           "den": "c1_p06"
         },
         {
-          "chu": "Chạy vào hỏa trường cứu đồng môn bị kẹt",
+          "chu": "Chạy về phía tiếng kêu cứu, cứu người bị kẹt",
           "den": "c1_p07"
         }
       ]
@@ -1108,7 +1131,7 @@
       "lua_chon": [
         {
           "chu": "Hái gốc linh thảo, chấp nhận mạo hiểm",
-          "den": "c1_y05",
+          "den": "c1_y05b",
           "hieu_ung": {
             "them_vat": [
               {
@@ -1121,7 +1144,7 @@
         },
         {
           "chu": "Bỏ lại, chỉ hái thanh linh thảo thường",
-          "den": "c1_y05"
+          "den": "c1_y05b"
         }
       ]
     },
@@ -1140,7 +1163,7 @@
       "lua_chon": [
         {
           "chu": "Mua thêm thuốc cầm máu, phòng khi cần",
-          "den": "c1_y05",
+          "den": "c1_y05a",
           "hieu_ung": {
             "them_vat": [
               {
@@ -1169,12 +1192,35 @@
       "lua_chon": [
         {
           "chu": "Cảm ơn hắn, rồi lên đường hái thuốc",
-          "den": "c1_y05"
+          "den": "c1_y05b"
         }
       ]
     },
     {
-      "id": "c1_y05",
+      "id": "c1_y05a",
+      "hoi": "Mở",
+      "boi_canh": "Chiều muộn — về tới trấn, lòng đã đoán trước",
+      "hinh_anh": {
+        "tags": [
+          "chiều",
+          "trấn",
+          "bất an"
+        ]
+      },
+      "ke": "Trời ngả vàng, ta quay về Thất Huyền trấn. Nhưng không khí trong trấn đã khác lạ.\n\nNgười bán hàng dọn sạp sớm, cửa nhà đóng im ỉm. Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.\n\n*Ta đã nghe tin: Dã Lang Bang sắp động thủ.* Tim ta đập nhanh.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng trấn bùng lên tiếng hét, rồi tiếng binh khí chạm nhau. Người bị thương bắt đầu ngã xuống khắp nơi.",
+      "lua_chon": [
+        {
+          "chu": "Chạy tới chỗ đông người bị thương, cứu chữa",
+          "den": "c1_y06"
+        },
+        {
+          "chu": "Tìm chỗ trú ẩn, giữ an toàn cho bản thân",
+          "den": "c1_y07"
+        }
+      ]
+    },
+    {
+      "id": "c1_y05b",
       "hoi": "Mở",
       "boi_canh": "Chiều muộn — về tới trấn",
       "hinh_anh": {
@@ -1184,7 +1230,7 @@
           "bất an"
         ]
       },
-      "ke": "Trời ngả vàng, ta quay về Thất Huyền trấn. Nhưng không khí trong trấn đã khác lạ.\n\nNgười bán hàng dọn sạp sớm, cửa nhà đóng im ỉm. Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.\n\n*Không khí này… như trước bão.* Tim ta đập nhanh.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng trấn bùng lên tiếng hét.",
+      "ke": "Trời ngả vàng, ta quay về Thất Huyền trấn. Nhưng không khí trong trấn đã khác lạ.\n\nNgười bán hàng dọn sạp sớm, cửa nhà đóng im ỉm. Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.\n\n*Không khí này… như trước bão.* Tim ta đập nhanh.\n\nRồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng trấn bùng lên tiếng hét. Rồi tiếng binh khí chạm nhau, và người bị thương bắt đầu ngã xuống khắp nơi.",
       "lua_chon": [
         {
           "chu": "Chạy tới chỗ đông người bị thương, cứu chữa",
@@ -1207,7 +1253,7 @@
           "cấp cứu"
         ]
       },
-      "ke": "Ta băng bó cho từng người một, tay không ngừng nghỉ. Thuốc cầm máu mang theo vơi dần theo từng vết thương.\n\nMột người bị thương nặng, máu chảy không cầm. Ta dùng hết số thuốc còn lại, ép chặt vết thương, cho tới khi hơi thở hắn đều trở lại.\n\n“Dược đồng… ngươi cứu ta…” — hắn thì thào.\n\n*Ta chỉ biết bốc thuốc.* Nhưng đêm nay, ta học được rằng một bàn tay biết chữa lành, cũng có thể cứu mạng người.\n\nTa đứng dậy, tiếp tục đi tìm người bị thương.",
+      "ke": "Ta băng bó cho từng người một, tay không ngừng nghỉ. Số thuốc mang theo vơi dần theo từng vết thương.\n\nMột người bị thương nặng, máu chảy không cầm. Ta dùng hết số thuốc còn lại, ép chặt vết thương, cho tới khi hơi thở hắn đều trở lại.\n\n“Dược đồng… ngươi cứu ta…” — hắn thì thào.\n\n*Ta chỉ biết bốc thuốc.* Nhưng đêm nay, ta học được rằng một bàn tay biết chữa lành, cũng có thể cứu mạng người.\n\nTa đứng dậy, tiếp tục đi tìm người bị thương.",
       "lua_chon": [
         {
           "chu": "Đi sâu vào nơi giao tranh tìm người bị nạn",
@@ -1379,7 +1425,7 @@
           "chiều"
         ]
       },
-      "ke": "Ta là con cháu cuối cùng của một gia tộc đã sa sút. Từ đường cũ kỹ, mái ngói vỡ, chỉ còn lại chút gia sản mà cha ta để lại trước khi mất.\n\nChiều nay, một tay sai của Dã Lang Bang gõ cửa, giọng lè nhè: “Bang chủ nói rồi. Căn nhà này, đất này, đều là của Bang. Khôn hồn thì dọn đi.”\n\nTa đứng chắn trước cửa, tay siết chiếc nhẫn ngọc của tổ tiên. *Không thể để mất nốt chỗ này.*\n\nTrong túi ta còn vài viên linh thạch, đủ để thuê người — hoặc để mua một con đường sống.",
+      "ke": "Ta là con cháu cuối cùng của một gia tộc đã sa sút. Từ đường cũ kỹ, mái ngói vỡ, chỉ còn lại chút gia sản mà cha ta để lại trước khi mất.\n\nChiều nay, một tay sai của Dã Lang Bang gõ cửa, giọng lè nhè: “Bang chủ nói rồi. Căn nhà này, đất này, đều là của Bang. Khôn hồn thì dọn đi.”\n\nHắn buông thêm một câu rồi bỏ đi: “Mà thôi, mấy ngày nữa cả cái trấn này cũng chẳng còn. Bang ta sắp đánh Thất Huyền Môn.”\n\nTa đứng chắn trước cửa, tay siết chiếc nhẫn ngọc của tổ tiên. *Không thể để mất nốt chỗ này.*\n\nTrong túi ta còn vài viên linh thạch, đủ để thuê người — hoặc để mua một con đường sống.",
       "lua_chon": [
         {
           "chu": "Dùng tiền thuê người bảo vệ căn nhà",
@@ -1970,11 +2016,11 @@
       "lua_chon": [
         {
           "chu": "Giấu kỹ khối ngọc, coi như chưa từng thấy",
-          "den": "c1_p05"
+          "den": "c1_p05b"
         },
         {
           "chu": "Siết chặt vạt áo, quyết giữ nó cho riêng mình",
-          "den": "c1_p05",
+          "den": "c1_p05b",
           "hieu_ung": {
             "them_vat": [
               {
@@ -2002,7 +2048,7 @@
       "lua_chon": [
         {
           "chu": "Ngồi lặng, chờ đêm xuống",
-          "den": "c1_p05"
+          "den": "c1_p05b"
         }
       ]
     },
@@ -2021,7 +2067,7 @@
       "lua_chon": [
         {
           "chu": "Nghiến răng, tự lo cho mình",
-          "den": "c1_p05"
+          "den": "c1_p05a"
         }
       ]
     },
