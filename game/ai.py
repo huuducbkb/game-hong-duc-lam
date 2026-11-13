@@ -112,14 +112,97 @@ def san_sang() -> bool:
     return thu_ket_noi()["ok"]
 
 
-def ke_lai(doan_ke: str, hanh_dong: str) -> str:
+def ke_lai(doan_ke: str, hanh_dong: str, thay_doi: str = "") -> str:
     """AI kể lại đoạn theo hành động tự do của người chơi (giữ nguyên khung)."""
     env = load_env()
+    phan_thay_doi = f"\nCÁC THAY ĐỔI ĐÃ ÁP DỤNG (phải khớp với truyện): {thay_doi}" if thay_doi else ""
     prompt = (
         "Bạn là người dẫn chuyện tiên hiệp Việt, ngôi thứ nhất 'ta'. "
         "Viết lại đoạn sau thật sinh động, có nội tâm, 3-5 câu, KHÔNG đổi sự kiện:\n\n"
         f"ĐOẠN GỐC:\n{doan_ke}\n\n"
-        f"HÀNH ĐỘNG CỦA NGƯỜI CHƠI: {hanh_dong}\n\n"
+        f"HÀNH ĐỘNG CỦA NGƯỜI CHƠI: {hanh_dong}{phan_thay_doi}\n\n"
         "Chỉ trả về đoạn kể, không giải thích."
     )
     return _goi_gemini(env, prompt, max_token=500)
+
+
+# --------------------------------------------------- nhận diện hành động tự do
+# Tập hành động được phép + giới hạn mỗi chỉ số (engine sẽ cắt lại lần nữa).
+HANH_DONG_HOP_LE = ["tấn công", "tặng quà", "trò chuyện", "di chuyển",
+                    "quan sát", "nghỉ", "khác"]
+
+GIOI_HAN = {
+    "sinh_luc": (-15, 10),
+    "tu_vi": (0, 8),
+    "linh_thach": (-10, 10),
+    "than_niem": (0, 2),
+    "hao_cam": (-10, 10),
+}
+
+
+def _tach_json(txt: str) -> dict:
+    """Bóc JSON khỏi văn bản (AI có thể bọc trong ```json ... ```)."""
+    txt = txt.strip()
+    if txt.startswith("```"):
+        txt = txt.split("```", 2)[1] if txt.count("```") >= 2 else txt.strip("`")
+        if txt.lstrip().startswith("json"):
+            txt = txt.lstrip()[4:]
+    dau, cuoi = txt.find("{"), txt.rfind("}")
+    if dau < 0 or cuoi < dau:
+        raise ValueError("Không thấy JSON")
+    return json.loads(txt[dau:cuoi + 1])
+
+
+def nhan_dien(van_ban: str, boi_canh: str) -> dict:
+    """AI đọc hành động tự do → trả ý định đã LỌC (chỉ khoá hợp lệ, trong giới hạn).
+
+    Không gọi được AI hoặc AI trả rác → trả {} (game xử như không đổi chỉ số).
+    """
+    env = load_env()
+    prompt = (
+        "Bạn là bộ máy luật cho game nhập vai tu tiên. Người chơi gõ một hành động tự do.\n"
+        "Nhiệm vụ: phân loại hành động và đề xuất thay đổi chỉ số NHỎ, hợp lý. CHỈ TRẢ JSON.\n\n"
+        f"BỐI CẢNH:\n{boi_canh}\n\n"
+        f"HÀNH ĐỘNG NGƯỜI CHƠI: {van_ban}\n\n"
+        "Khuôn JSON (bỏ khoá nào không áp dụng):\n"
+        '{"hanh_dong": "' + "|".join(HANH_DONG_HOP_LE) + '",\n'
+        ' "sinh_luc": <số nguyên -15..10>,\n'
+        ' "tu_vi": <0..8>,\n'
+        ' "linh_thach": <-10..10>,\n'
+        ' "than_niem": <0..2>,\n'
+        ' "hao_cam": {"<tên NPC đã gặp>": <-10..10>},\n'
+        ' "nhan_xet": "<một câu tiếng Việt ngắn>"}\n'
+        "Quy tắc: thay đổi phải NHỎ; chỉ dùng NPC đã liệt kê trong bối cảnh; "
+        "KHÔNG bịa sự kiện, KHÔNG đổi đoạn truyện. Chỉ trả JSON, không giải thích."
+    )
+    try:
+        raw = _goi_gemini(env, prompt, max_token=400)
+    except Exception:  # noqa: BLE001 - AI lỗi → coi như không có ý định
+        return {}
+    try:
+        d = _tach_json(raw)
+    except Exception:  # noqa: BLE001
+        return {}
+    if not isinstance(d, dict):
+        return {}
+    y: dict = {}
+    if d.get("hanh_dong") in HANH_DONG_HOP_LE:
+        y["hanh_dong"] = d["hanh_dong"]
+    for k in ("sinh_luc", "tu_vi", "linh_thach", "than_niem"):
+        v = d.get(k)
+        if isinstance(v, (int, float)) and not isinstance(v, bool) and v != 0:
+            lo, hi = GIOI_HAN[k]
+            y[k] = max(lo, min(hi, int(v)))
+    hc = d.get("hao_cam")
+    if isinstance(hc, dict):
+        loc = {}
+        for ten, v in hc.items():
+            if isinstance(ten, str) and isinstance(v, (int, float)) \
+                    and not isinstance(v, bool) and v != 0:
+                lo, hi = GIOI_HAN["hao_cam"]
+                loc[ten] = max(lo, min(hi, int(v)))
+        if loc:
+            y["hao_cam"] = loc
+    if isinstance(d.get("nhan_xet"), str):
+        y["nhan_xet"] = d["nhan_xet"].strip()[:160]
+    return y
