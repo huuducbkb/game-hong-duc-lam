@@ -102,6 +102,16 @@ class Handler(BaseHTTPRequestHandler):
 
     # ---------------------------------------------------------- GET
     def do_GET(self):
+        try:
+            self._xu_ly_get()
+        except Exception as ex:  # lỗi bất ngờ → trả JSON thay vì đứt kết nối
+            self.log_error("GET lỗi: %r", ex)
+            try:
+                self._json({"loi": "Máy chủ gặp lỗi"}, 500)
+            except Exception:
+                pass
+
+    def _xu_ly_get(self):
         path = urllib.parse.urlparse(self.path).path
 
         if path in ("/game", "/game/"):
@@ -139,11 +149,22 @@ class Handler(BaseHTTPRequestHandler):
 
     # ---------------------------------------------------------- POST
     def do_POST(self):
+        try:
+            self._xu_ly_post()
+        except Exception as ex:  # lỗi bất ngờ → trả JSON thay vì đứt kết nối
+            self.log_error("POST lỗi: %r", ex)
+            try:
+                self._json({"loi": "Máy chủ gặp lỗi"}, 500)
+            except Exception:
+                pass
+
+    def _xu_ly_post(self):
         path = urllib.parse.urlparse(self.path).path
         data = self._body_json()
 
         if path == "/api/new":
-            ten = (data.get("ten") or "").strip()
+            ten = data.get("ten")
+            ten = ten.strip() if isinstance(ten, str) else ""
             if not ten:
                 return self._json({"loi": "Hãy nhập tên nhân vật"}, 400)
             st = E.trang_thai_moi(ten, data.get("xuat_than") or "", data.get("nhom") or "")
@@ -157,10 +178,12 @@ class Handler(BaseHTTPRequestHandler):
             return self._json({"loi": "Chưa có phiên chơi. Hãy tạo nhân vật."}, 400)
 
         if path == "/api/chon":
-            self._luu_lich_su()
-            return self._json(E.chon(st, int(data.get("chi_so", -1))))
+            if not st.get("ket_thuc"):
+                self._luu_lich_su()
+            return self._json(E.chon(st, data.get("chi_so", -1)))
         if path == "/api/tu_do":
-            self._luu_lich_su()
+            if not st.get("ket_thuc"):
+                self._luu_lich_su()
             return self._json(E.hanh_dong_tu_do(st, data.get("van_ban") or "", AI=AI))
         if path == "/api/lui":
             ngan = _lich_su.get(_phien_id(self)) or []

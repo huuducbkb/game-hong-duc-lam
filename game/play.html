@@ -135,6 +135,8 @@ body{
 .noi-tam{font-style:italic;color:var(--ink-soft)}
 #storyBody p{margin:0 0 13px}
 #storyBody em{font-style:italic}
+.loi-giua-van{margin:0 0 12px;padding:9px 12px;border-radius:8px;font-size:13.5px;
+  background:rgba(150,40,30,.10);color:#8a2a1e;border:1px solid rgba(150,40,30,.28)}
 .npc-card{margin-bottom:14px;padding:11px 12px;background:rgba(255,253,246,.5);border:1px solid var(--edge);border-radius:9px}
 .npc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
 .npc-ten{font-weight:600;font-size:14px}
@@ -237,6 +239,7 @@ body{
   <!-- bảng truyện -->
   <section class="frame panel-story" id="story">
     <div class="chapter" id="storyChapter">Chương 1 · Đại chiến Dã Lang Bang</div>
+    <div id="loiGiuaVan" class="loi-giua-van" style="display:none"></div>
     <div id="storyBody"></div>
   </section>
 
@@ -347,12 +350,21 @@ const idx = ["壹","貳","叁","肆","伍","陸","柒","捌"];
 
 // ---------------------------------------------------------- gọi API
 async function goi(duong, duLieu) {
-  const r = await fetch(duong, {
-    method: duLieu ? "POST" : "GET",
-    headers: duLieu ? {"Content-Type": "application/json"} : {},
-    body: duLieu ? JSON.stringify(duLieu) : undefined,
-  });
-  return r.json();
+  let r;
+  try {
+    r = await fetch(duong, {
+      method: duLieu ? "POST" : "GET",
+      headers: duLieu ? {"Content-Type": "application/json"} : {},
+      body: duLieu ? JSON.stringify(duLieu) : undefined,
+    });
+  } catch (e) {
+    return {loi: "Mất kết nối. Thử lại giúp ta."};
+  }
+  try {
+    return await r.json();
+  } catch (e) {
+    return {loi: "Máy chủ trả lời không hợp lệ (mã " + r.status + ")."};
+  }
 }
 
 // ---------------------------------------------------------- hiển thị đoạn
@@ -364,7 +376,19 @@ function dinhDang(p) {
   return esc(p).replace(/\*([^*]+)\*/g, '<em class="noi-tam">$1</em>');
 }
 function hienThi(kq) {
-  if (kq.loi) { $("#setupLoi").textContent = kq.loi; return; }
+  if (kq.loi) {
+    const sb = $("#setupLoi");
+    const dangChoi = $("#setup") && $("#setup").style.display === "none";
+    if (dangChoi) {
+      const tb = document.getElementById("loiGiuaVan");
+      if (tb) { tb.textContent = kq.loi; tb.style.display = "block"; }
+    } else if (sb) {
+      sb.textContent = kq.loi;
+    }
+    return;
+  }
+  const tb0 = document.getElementById("loiGiuaVan");
+  if (tb0) { tb0.style.display = "none"; tb0.textContent = ""; }
   $("#setup").style.display = "none";
   $("#chuongSub").textContent = "Chương " + kq.chuong + " · " + kq.ten_chuong;
   $("#storyChapter").textContent = "Chương " + kq.chuong + " · " + kq.ten_chuong;
@@ -449,8 +473,9 @@ function capNhatNutLui() {
 async function chon(chiSo) {
   if (dangCho) return;
   dangCho = true;
-  hienThi(await goi("/api/chon", {chi_so: chiSo}));
-  soBuocLui++; capNhatNutLui();
+  const kq = await goi("/api/chon", {chi_so: chiSo});
+  hienThi(kq);
+  if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
   dangCho = false;
 }
 async function tuDo() {
@@ -459,8 +484,9 @@ async function tuDo() {
   dangCho = true;
   $("#tuDo").value = "";
   if (typeof coGian === "function") coGian();
-  hienThi(await goi("/api/tu_do", {van_ban: v}));
-  soBuocLui++; capNhatNutLui();
+  const kq = await goi("/api/tu_do", {van_ban: v});
+  hienThi(kq);
+  if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
   dangCho = false;
 }
 

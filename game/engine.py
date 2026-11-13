@@ -412,6 +412,12 @@ def _trang_thai_gon(state: dict) -> dict:
 
 def chon(state: dict, chi_so: int) -> dict:
     """Người chơi bấm một lựa chọn."""
+    if state.get("ket_thuc"):
+        return _goi_y(state)
+    try:
+        chi_so = int(chi_so)
+    except (TypeError, ValueError):
+        return {"loi": "Lựa chọn không hợp lệ"}
     d = _doan(state)
     lcs = d.get("lua_chon", [])
     if not (0 <= chi_so < len(lcs)):
@@ -481,7 +487,7 @@ def hanh_dong_tu_do(state: dict, van_ban: str, AI=None) -> dict:
     Chế độ có AI: AI đọc hành động → áp thay đổi chỉ số NHỎ (đã lọc), rồi kể lại đoạn.
     Đoạn truyện KHÔNG đổi — chỉ chỉ số/hảo cảm thay đổi.
     """
-    van_ban = van_ban.strip()
+    van_ban = van_ban.strip() if isinstance(van_ban, str) else ""
     if not van_ban:
         return {"loi": "Hãy nhập hành động"}
     if state.get("ket_thuc"):

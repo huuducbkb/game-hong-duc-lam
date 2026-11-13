@@ -1207,7 +1207,7 @@
           "cấp cứu"
         ]
       },
-      "ke": "Ta băng bó cho từng người một, tay không ngừng nghỉ. Kim sang dược mang theo vơi dần theo từng vết thương.\n\nMột người bị thương nặng, máu chảy không cầm. Ta dùng hết số thuốc còn lại, ép chặt vết thương, cho tới khi hơi thở hắn đều trở lại.\n\n“Dược đồng… ngươi cứu ta…” — hắn thì thào.\n\n*Ta chỉ biết bốc thuốc.* Nhưng đêm nay, ta học được rằng một bàn tay biết chữa lành, cũng có thể cứu mạng người.\n\nTa đứng dậy, tiếp tục đi tìm người bị thương.",
+      "ke": "Ta băng bó cho từng người một, tay không ngừng nghỉ. Thuốc cầm máu mang theo vơi dần theo từng vết thương.\n\nMột người bị thương nặng, máu chảy không cầm. Ta dùng hết số thuốc còn lại, ép chặt vết thương, cho tới khi hơi thở hắn đều trở lại.\n\n“Dược đồng… ngươi cứu ta…” — hắn thì thào.\n\n*Ta chỉ biết bốc thuốc.* Nhưng đêm nay, ta học được rằng một bàn tay biết chữa lành, cũng có thể cứu mạng người.\n\nTa đứng dậy, tiếp tục đi tìm người bị thương.",
       "lua_chon": [
         {
           "chu": "Đi sâu vào nơi giao tranh tìm người bị nạn",
@@ -1237,7 +1237,7 @@
     {
       "id": "c1_y08",
       "hoi": "Thân",
-      "boi_canh": "Trong nhà bỏ trống — sau giao tranh",
+      "boi_canh": "Sau giao tranh — nơi tạm trú",
       "hinh_anh": {
         "tags": [
           "tàn tích",
@@ -1245,7 +1245,7 @@
           "im lặng"
         ]
       },
-      "ke": "Trận đánh tạm lắng. Ta ngồi bệt xuống sàn, hai bàn tay dính đầy máu khô.\n\nThất Huyền Môn vẫn chưa gục, nhưng tổn thất nặng nề. Ta nghe văng vẳng tiếng người khiêng xác đi trong đêm.\n\n*Ta đã cứu được vài mạng.* Nhưng có bao nhiêu người ta không kịp cứu?\n\nNgười bị thương mà ta đỡ lúc nãy khẽ cựa mình, rồi chống tay ngồi dậy. Hắn nhìn ta chăm chăm.",
+      "ke": "Trận đánh tạm lắng. Ta ngồi bệt xuống sàn, hai bàn tay dính đầy máu khô.\n\nThất Huyền Môn vẫn chưa gục, nhưng tổn thất nặng nề. Ta nghe văng vẳng tiếng người khiêng xác đi trong đêm.\n\n*Ta đã cứu được vài mạng.* Nhưng có bao nhiêu người ta không kịp cứu?\n\nMột người bị thương ta vừa cứu khẽ cựa mình, rồi chống tay ngồi dậy. Hắn nhìn ta chăm chăm.",
       "lua_chon": [
         {
           "chu": "Đưa hắn chén nước, hỏi han",
@@ -1425,7 +1425,7 @@
           "hồi hộp"
         ]
       },
-      "ke": "Ta đào một hốc nhỏ dưới nền từ đường, đặt vào đó chiếc nhẫn ngọc và mấy món gia bảo còn lại, rồi lấp đất cẩn thận.\n\n*Nếu căn nhà mất, ít nhất gia bảo còn.* Ta thắp một nén nhang trước bài vị tổ tiên, cúi đầu.\n\n“Xin tổ tiên phù hộ con cháu.”\n\nNgoài kia, tiếng chó sủa vang lên dồn dập. Ta giật mình, vội tắt nhang.",
+      "ke": "Ta đào một hốc nhỏ dưới nền từ đường, đặt vào đó mấy món gia bảo còn lại, chỉ giữ chiếc nhẫn ngọc bên mình, rồi lấp đất cẩn thận.\n\n*Nếu căn nhà mất, ít nhất còn chút gì cho tổ tiên.* Ta thắp một nén nhang trước bài vị, cúi đầu.\n\n“Xin tổ tiên phù hộ con cháu.”\n\nNgoài kia, tiếng chó sủa vang lên dồn dập. Ta giật mình, vội tắt nhang.",
       "lua_chon": [
         {
           "chu": "Ra ngoài xem chuyện gì",
@@ -1486,10 +1486,10 @@
           "chạy trốn"
         ]
       },
-      "ke": "Ta chạy về phía Thất Huyền Môn, nhưng trước mắt là cảnh tượng ta không ngờ: cổng môn đã vỡ, người chạy tán loạn, khói lửa ngút trời.\n\nDã Lang Bang không chỉ nhắm vào căn nhà ta — chúng đánh cả môn phái.\n\nMột toán cướp tràn qua con đường ta đang đứng. Ta vấp ngã, chiếc nhẫn ngọc trong tay văng ra, lăn xuống bùn.\n\n*Không!* Ta bò dậy, cố nhặt lại món gia bảo duy nhất còn sót.",
+      "ke": "Ta chạy về phía Thất Huyền Môn, nhưng trước mắt là cảnh tượng ta không ngờ: cổng môn đã vỡ, người chạy tán loạn, khói lửa ngút trời.\n\nDã Lang Bang không chỉ nhắm vào căn nhà ta — chúng đánh cả môn phái.\n\nMột toán cướp tràn qua con đường ta đang đứng. Ta vấp ngã, chiếc nhẫn ngọc trong tay văng ra, lăn xuống bùn.\n\n*Không!* Ta bò dậy, quờ tay tìm món gia bảo, nhưng dòng người cuốn ta đi. Chiếc nhẫn mất hút trong bùn.",
       "lua_chon": [
         {
-          "chu": "Vừa nhặt nhẫn vừa tìm đường chạy",
+          "chu": "Vùng dậy, tìm đường chạy giữa loạn quân",
           "den": "c1_g08"
         }
       ]
@@ -1505,7 +1505,7 @@
           "mất mát"
         ]
       },
-      "ke": "Ta chưa kịp thắp nén nhang thì cửa bị đá tung. Bọn chúng xông vào, lục lọi khắp từ đường.\n\nTa vùng vẫy, nhưng một cú đánh vào sau gáy khiến ta khuỵu xuống. Trong cơn choáng váng, ta thấy chúng đốt từ đường, thấy lửa lan lên bài vị tổ tiên.\n\n*Tổ tiên… con xin lỗi.* Nước mắt ta chảy ra hoà cùng khói.\n\nBọn chúng kéo ta lôi ra ngoài, bỏ mặc căn nhà cháy rụi sau lưng.",
+      "ke": "Nén nhang trước bài vị còn chưa tàn, cửa đã bị đá tung. Bọn chúng xông vào, lục lọi khắp từ đường.\n\nTa vùng vẫy, nhưng một cú đánh vào sau gáy khiến ta khuỵu xuống. Chiếc nhẫn ngọc vuột khỏi tay ta trong lúc giằng co, biến mất trong đám khói bụi mù mịt. Trong cơn choáng váng, ta thấy chúng đốt từ đường, thấy lửa lan lên bài vị tổ tiên.\n\n*Tổ tiên… con xin lỗi.* Nước mắt ta chảy ra hoà cùng khói.\n\nBọn chúng kéo ta lôi ra ngoài, bỏ mặc căn nhà cháy rụi sau lưng.",
       "lua_chon": [
         {
           "chu": "Vùng thoát trong lúc chúng sơ hở",
@@ -1524,7 +1524,7 @@
           "kiệt sức"
         ]
       },
-      "ke": "Ta ngồi bệt bên vệ đường, toàn thân đau nhức, tay vẫn nắm chặt chiếc nhẫn ngọc — món đồ duy nhất còn lại của gia tộc.\n\nCăn nhà mất rồi. Từ đường mất rồi. Ta trắng tay.\n\n*Thì ra, tiền bạc, danh phận, tất cả đều vô nghĩa khi kẻ mạnh muốn lấy.*\n\nPhía trước, một bóng người gầy gò đang đi trong sương sớm. Bước chân hắn chậm mà vững. Trong bùn cạnh chân hắn — một vật gì đó ánh lên.",
+      "ke": "Ta ngồi bệt bên vệ đường, toàn thân đau nhức. Bàn tay ta trống rỗng — chiếc nhẫn ngọc của tổ tiên đã thất lạc trong cơn loạn.\n\nCăn nhà mất rồi. Từ đường mất rồi. Ta trắng tay.\n\n*Thì ra, tiền bạc, danh phận, tất cả đều vô nghĩa khi kẻ mạnh muốn lấy.*\n\nPhía trước, một bóng người gầy gò đang đi trong sương sớm. Bước chân hắn chậm mà vững. Trong bùn cạnh chân hắn — một vật gì đó ánh lên.",
       "lua_chon": [
         {
           "chu": "Lê bước tới gần bóng người ấy",
@@ -1791,14 +1791,14 @@
       "lua_chon": [
         {
           "chu": "Xông thẳng tới, quyết một trận sống chết",
-          "den": "c1_h08",
+          "den": "c1_h06b",
           "hieu_ung": {
             "sinh_luc": -10
           }
         },
         {
           "chu": "Núp lại, chờ sơ hở",
-          "den": "c1_h08"
+          "den": "c1_h06b"
         }
       ]
     },
@@ -1817,14 +1817,14 @@
       "lua_chon": [
         {
           "chu": "Bám theo hắn vào kho lương",
-          "den": "c1_h08"
+          "den": "c1_h07b"
         }
       ]
     },
     {
       "id": "c1_h08",
       "hoi": "Thân",
-      "boi_canh": "Sau trận — kho lương đổ nát",
+      "boi_canh": "Sau trận — giữa đống đổ nát",
       "hinh_anh": {
         "tags": [
           "tàn tích",
@@ -1832,7 +1832,7 @@
           "mệt"
         ]
       },
-      "ke": "Ta đứng giữa đống đổ nát, thở dốc. Lưỡi dao trong tay ướt đẫm, không rõ là máu của ai.\n\nBang chủ Dã Lang Bang — ta không giết được hắn. Hắn mạnh hơn ta tưởng. Ta chỉ kịp rạch một đường lên mặt hắn rồi bị đánh bật ra.\n\n*Ta đã thua.* Nhưng ta còn sống, và hắn sẽ nhớ mặt ta.\n\nTrong đống tàn tích, ta thấy một bóng người gầy gò lướt qua, nhanh như bóng ma, không phát ra tiếng động.",
+      "ke": "Ta đứng giữa đống đổ nát, thở dốc. Lưỡi dao trong tay ướt đẫm, không rõ là máu của ai.\n\nĐêm nay ta đã chạm trán kẻ mạnh hơn mình, và chỉ thoát được nhờ may mắn. *Ta còn sống — thế là đủ.*\n\nTrong đống tàn tích, ta thấy một bóng người gầy gò lướt qua, nhanh như bóng ma, không phát ra tiếng động.",
       "lua_chon": [
         {
           "chu": "Lặng lẽ bám theo bóng người ấy",
@@ -1893,7 +1893,7 @@
           "gặp gỡ"
         ]
       },
-      "ke": "Ta và hắn nhìn nhau. Trong đầu, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh thế gian.”\n\n*Hàn Lập.* Ta không ngờ, kẻ mà ta gặp trong đêm máu này lại là hắn — một tạp dịch gầy gò, ánh mắt sắc như dao.\n\n“Ngươi giết người,” — hắn nói, giọng đều đều, không trách móc — “Ta không quan tâm. Nhưng ngươi nhìn ta như nhìn đồng loại.”",
+      "ke": "Ta và hắn nhìn nhau. Trong đầu, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh thế gian.”\n\n*Hàn Lập.* Ta không ngờ, kẻ mà ta gặp trong đêm máu này lại là hắn — một tạp dịch gầy gò, ánh mắt sắc như dao.\n\n“Tay ngươi nhuốm máu,” — hắn nói, giọng đều đều, không trách móc — “Ta không quan tâm. Nhưng ngươi nhìn ta như nhìn đồng loại.”",
       "lua_chon": [
         {
           "chu": "Thành thật: “Ta biết tương lai của ngươi.”",
@@ -2060,6 +2060,44 @@
         {
           "chu": "Rút về chỗ trú",
           "den": "c1_h05"
+        }
+      ]
+    },
+    {
+      "id": "c1_h06b",
+      "hoi": "Mở",
+      "boi_canh": "Giữa sân — đối đầu Bang chủ",
+      "hinh_anh": {
+        "tags": [
+          "đêm",
+          "đao",
+          "tuyệt vọng"
+        ]
+      },
+      "ke": "Ta xông tới. Bang chủ Dã Lang Bang vung đao lớn đỡ lấy — lực mạnh đến mức tay ta tê dại.\n\nHắn mạnh hơn ta tưởng. Ta chỉ kịp rạch một đường lên mặt hắn rồi bị đánh bật ra, ngã nhào vào đống gạch vụn.\n\n*Ta đã thua.* Nhưng ta còn sống, và hắn sẽ nhớ mặt ta.",
+      "lua_chon": [
+        {
+          "chu": "Lết dậy, rời khỏi vòng chiến",
+          "den": "c1_h08"
+        }
+      ]
+    },
+    {
+      "id": "c1_h07b",
+      "hoi": "Mở",
+      "boi_canh": "Kho lương — đội trưởng Dã Lang Bang",
+      "hinh_anh": {
+        "tags": [
+          "kho lương",
+          "giao chiến",
+          "máu"
+        ]
+      },
+      "ke": "Ta bám theo tên đội trưởng vào kho lương. Hắn quay phắt lại, đao chém tới.\n\nTa né được nhát đầu, nhưng nhát thứ hai rạch toạc vai áo. Ta vung dao đáp trả, chỉ kịp cứa vào tay hắn trước khi bị đá văng vào đống bao tải.\n\nHắn không đuổi theo — ngoài kia, trận chiến đang gọi hắn. *Ta thoát, nhưng trong máu.*",
+      "lua_chon": [
+        {
+          "chu": "Bò dậy, lần theo bóng tối",
+          "den": "c1_h08"
         }
       ]
     }
