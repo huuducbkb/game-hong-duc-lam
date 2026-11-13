@@ -1,0 +1,55 @@
+{
+  "ghi_chu": "5 xuất thân chơi được + 1 xuất thân ẩn (chưa mở). Mỗi nhóm có đoạn mở đầu riêng.",
+  "nhom": [
+    {
+      "ma": "tan_tu",
+      "ten": "Tán tu / ăn mày",
+      "mo_ta": "Không tông môn, không chống lưng. Đi đường cũ của chương (chợ sớm Thất Huyền).",
+      "doan_dau": "c1_d01",
+      "mau": "tán tu nghèo, lang thang vô môn phái, ăn mày nơi đầu đường xó chợ",
+      "tu_khoa": ["tán tu", "ăn mày", "hành khất", "khất cái", "lang thang", "vô môn", "vô danh", "dân thường", "nông dân", "cơ hàn", "cô độc", "nô bộc", "tiện dân", "bần cùng"]
+    },
+    {
+      "ma": "mon_phai",
+      "ten": "Đệ tử môn phái",
+      "mo_ta": "Đệ tử hạng bét của Thất Huyền Môn, bị quản sự Lý Hổ ép nộp cống phẩm.",
+      "doan_dau": "c1_p01",
+      "mau": "ngoại môn tạp dịch đệ tử của Thất Huyền Môn, tư chất tầm thường, linh căn tạp lục",
+      "tu_khoa": ["đệ tử", "tông môn", "môn phái", "ngoại môn", "nội môn", "tạp dịch", "thanh vân", "thất huyền", "quản sự", "linh dược viên", "cống phẩm", "sư huynh", "sư môn"]
+    },
+    {
+      "ma": "duoc",
+      "ten": "Dược đồng / y sư",
+      "mo_ta": "Dược đồng ở hiệu thuốc bắc, quen tay hái dược, cứu người.",
+      "doan_dau": "c1_y01",
+      "mau": "dược đồng ở hiệu thuốc bắc, quen tay hái dược, biết chút y thuật",
+      "tu_khoa": ["dược", "y sư", "y thuật", "y quán", "hiệu thuốc", "thuốc", "luyện đan", "đan sư", "linh thảo", "hái thuốc", "lang y", "thầy thuốc"]
+    },
+    {
+      "ma": "gia_toc",
+      "ten": "Con nhà gia tộc",
+      "mo_ta": "Con cháu gia tộc sa sút, còn giữ chút gia sản bị Dã Lang Bang dòm ngó.",
+      "doan_dau": "c1_g01",
+      "mau": "con cháu gia tộc sa sút, còn giữ được ít gia sản và món gia bảo của tổ tiên",
+      "tu_khoa": ["gia tộc", "thế gia", "công tử", "tiểu thư", "con nhà", "gia sản", "gia bảo", "hào môn", "phú hộ", "thương nhân", "thương gia", "danh gia"]
+    },
+    {
+      "ma": "hac_dao",
+      "ten": "Hắc đạo / giang hồ",
+      "mo_ta": "Kẻ giang hồ tay đã vấy máu, có món nợ máu với Dã Lang Bang.",
+      "doan_dau": "c1_h01",
+      "mau": "kẻ giang hồ hắc đạo, tay đã vấy máu, đang mang món nợ máu với Dã Lang Bang",
+      "tu_khoa": ["hắc đạo", "giang hồ", "sát thủ", "ma tu", "tà tu", "cướp", "sơn tặc", "lưu manh", "ám sát", "huyết", "bang phái đen", "đạo tặc", "hung đồ"]
+    },
+    {
+      "ma": "tuyet_co",
+      "ten": "(ẩn) Ngọc cốt Tuyết Cơ",
+      "an": true,
+      "khoa": true,
+      "doan_dau": null,
+      "ghi_chu": "Để đó, CHƯA mở. Không hiện trong menu, không tự nhận diện. Nội dung nhạy cảm — khi mở phải giữ ở mức gợi ý.",
+      "mau": "",
+      "tu_khoa": ["tuyết cơ", "ngọc cốt", "phân thân", "hắc quáng động"]
+    }
+  ]
+}
