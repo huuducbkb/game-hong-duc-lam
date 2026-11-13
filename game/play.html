@@ -162,9 +162,10 @@ body{
 .setup .hint{font-size:11px;color:var(--ink-faint);margin-top:9px;line-height:1.5}
 
 /* ---------- Ô NHẬP TỰ DO ---------- */
-.freebar{display:flex;gap:7px;flex:0 0 auto}
-.freebar input{flex:1 1 auto;min-width:0;font-family:var(--serif);font-size:14px;color:var(--ink);
-  background:rgba(255,253,246,.62);border:1px solid var(--edge);border-radius:11px;padding:11px 13px}
+.freebar{display:flex;gap:7px;flex:0 0 auto;align-items:flex-end}
+.freebar input,.freebar textarea{flex:1 1 auto;min-width:0;font-family:var(--serif);font-size:14px;color:var(--ink);
+  background:rgba(255,255,255,.7);border:1px solid var(--edge);border-radius:9px;padding:9px 11px;
+  line-height:1.45;resize:none;overflow:hidden;max-height:120px}
 .freebar button{flex:0 0 auto;font-family:var(--serif);font-size:13.5px;font-weight:600;color:#fdf9ef;
   background:var(--ink-soft);border:0;border-radius:11px;padding:11px 15px}
 .ai-note{font-size:11.5px;color:var(--ink-faint);margin:6px 2px 0;line-height:1.4}
@@ -190,7 +191,7 @@ body{
     <label for="ten">Tên nhân vật</label>
     <input id="ten" maxlength="24" placeholder="Ví dụ: Hồng Đức" autocomplete="off">
     <label for="xuat">Xuất thân (tự do — bỏ trống là “tán tu vô danh”)</label>
-    <textarea id="xuat" maxlength="200" placeholder="Ví dụ: tán tu nghèo, con nhà nông, dược đồng ở hiệu thuốc…"></textarea>
+    <textarea id="xuat" maxlength="4000" rows="8" placeholder="Ví dụ: tán tu nghèo, con nhà nông, dược đồng ở hiệu thuốc…"></textarea>
     <button class="go" id="go">Bắt đầu</button>
     <div class="hint" id="setupLoi"></div>
   </div>
@@ -219,7 +220,7 @@ body{
 
   <!-- ô nhập tự do (chỉ hiện khi AI dùng được) -->
   <div class="freebar" id="freebar">
-    <input id="tuDo" placeholder="Hoặc gõ hành động tự do…" autocomplete="off" maxlength="120">
+    <textarea id="tuDo" rows="1" placeholder="Hoặc gõ hành động tự do… (Enter để gửi, Shift+Enter xuống dòng)" autocomplete="off" maxlength="600"></textarea>
     <button id="guiTuDo">Làm</button>
   </div>
   <div class="ai-note" id="aiNote"></div>
@@ -419,6 +420,7 @@ async function tuDo() {
   if (!v || dangCho) return;
   dangCho = true;
   $("#tuDo").value = "";
+  if (typeof coGian === "function") coGian();
   hienThi(await goi("/api/tu_do", {van_ban: v}));
   dangCho = false;
 }
@@ -432,7 +434,10 @@ $("#go").onclick = async () => {
   $("#go").disabled = false;
 };
 $("#guiTuDo").onclick = tuDo;
-$("#tuDo").onkeydown = e => { if (e.key === "Enter") tuDo(); };
+const oTuDo = $("#tuDo");
+function coGian() { oTuDo.style.height = "auto"; oTuDo.style.height = Math.min(oTuDo.scrollHeight, 120) + "px"; }
+oTuDo.oninput = coGian;
+oTuDo.onkeydown = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); tuDo(); } };
 
 // ---------------------------------------------------------- drawer + tab
 const drawer = $("#drawer"), scrim = $("#scrim");
