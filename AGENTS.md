@@ -177,6 +177,21 @@ Kết quả ở `docs/ban-thao/`: `chuong1.md` (xem trên GitHub), `chuong1.html
   khôi lỗi · cương thi… (dùng để AI tra đúng ảnh).
 - **1 chương = 18 đoạn ≈ 45 phút** (2,5 phút/lượt). Cấu trúc 3 hồi: 5 mở · 8 thân · 5 kết.
 
+## Xuất thân = nhánh truyện (đã làm)
+
+Mỗi xuất thân KHÔNG chỉ là nhãn — nó quyết định **hành trình riêng** tới lúc gặp Hàn Lập.
+
+- Bảng nhóm ở `game/xuat_than.json`: 5 nhóm chơi được + 1 nhóm ẩn (`an: true`, khoá).
+  Nhóm ẩn = "Ngọc cốt Tuyết Cơ" — **chưa mở**, không hiện menu, **không tự nhận diện**.
+- Mã nhóm → đoạn mở đầu:
+  `tan_tu`→`c1_d01`, `mon_phai`→`c1_p01`, `duoc`→`c1_y01`,
+  `gia_toc`→`c1_g01`, `hac_dao`→`c1_h01`. Mọi nhánh hội tụ về `c1_d18`.
+- Nhận diện: `engine.nhan_dien_xuat_than()` dò từ khoá (bỏ dấu tiếng Việt). Không khớp → `tan_tu`.
+- Người chơi có 2 cách chọn: bấm 1 trong 5 nút (gửi `nhom`) HOẶC gõ tự do (server tự nhận diện).
+- Lựa chọn riêng theo nhóm: dùng `dieu_kien: {"nhom": ["mon_phai", ...]}`.
+- API: `POST /api/new` nhận `{ten, xuat_than, nhom}`; `GET /api/xuat_than` trả danh sách nhóm.
+- Trạng thái có khoá `nhom_xuat_than` (khác `xuat_than` là văn bản tự do người chơi gõ).
+
 ## Cần làm tiếp
 
 1. ~~Người dùng duyệt giao diện 1 cột~~ ✅
