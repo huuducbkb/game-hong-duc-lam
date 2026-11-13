@@ -26,7 +26,15 @@ HOI_TEN = {"Mở": "Hồi Mở", "Thân": "Hồi Thân", "Kết": "Hồi Kết"}
 
 
 def _ke_html(ke: str) -> str:
-    return "".join(f"<p>{html.escape(p)}</p>" for p in ke.split("\n\n") if p.strip())
+    import re as _re
+
+    def _p(p: str) -> str:
+        e = html.escape(p)
+        # *…* → nội tâm in nghiêng
+        e = _re.sub(r"\*([^*]+)\*", r"<em class='noi-tam'>\1</em>", e)
+        return f"<p>{e}</p>"
+
+    return "".join(_p(p) for p in ke.split("\n\n") if p.strip())
 
 
 def _hieu_ung_txt(hu: dict) -> str:
@@ -131,6 +139,7 @@ p{margin:0 0 15px;text-align:justify}
 .to{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--ink-faint)}
 .hu{font-size:13.5px;color:var(--seal);margin-top:3px}
 .khoa{font-size:13px;color:#8a7d63;font-style:italic}
+.noi-tam{font-style:italic;color:#5b5443}
 .het{text-align:center;color:var(--seal);letter-spacing:4px;margin:30px 0;font-size:15px}
 hr{border:0;border-top:1px dashed var(--edge);margin:30px 0}
 a{color:var(--seal)}

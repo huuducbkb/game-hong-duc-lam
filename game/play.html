@@ -123,6 +123,18 @@ body{
 .sys-row:last-child{border-bottom:0}
 .sys-row .k{color:var(--ink-soft)}
 .sys-row .v{font-weight:600}
+.noi-tam{font-style:italic;color:var(--ink-soft)}
+#storyBody p{margin:0 0 13px}
+#storyBody em{font-style:italic}
+.npc-card{margin-bottom:14px;padding:11px 12px;background:rgba(255,253,246,.5);border:1px solid var(--edge);border-radius:9px}
+.npc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+.npc-ten{font-weight:600;font-size:14px}
+.npc-muc{font-size:11.5px;color:var(--ink-faint);letter-spacing:.3px}
+.hcam{height:6px;border-radius:4px;background:rgba(40,34,26,.12);overflow:hidden;margin-bottom:8px}
+.hcam-bar{height:100%;border-radius:4px;transition:width .4s}
+.hcam-cao{background:#3f7d4e}
+.hcam-tb{background:#b08a3e}
+.hcam-thap{background:var(--seal)}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{font-size:11px;padding:4px 9px;border-radius:99px;background:rgba(168,53,42,.09);color:var(--seal);border:1px solid rgba(168,53,42,.24)}
 .drawer .close{width:100%;margin-top:4px;font-family:var(--serif);font-size:13.5px;padding:12px;
@@ -155,6 +167,8 @@ body{
   background:rgba(255,253,246,.62);border:1px solid var(--edge);border-radius:11px;padding:11px 13px}
 .freebar button{flex:0 0 auto;font-family:var(--serif);font-size:13.5px;font-weight:600;color:#fdf9ef;
   background:var(--ink-soft);border:0;border-radius:11px;padding:11px 15px}
+.ai-note{font-size:11.5px;color:var(--ink-faint);margin:6px 2px 0;line-height:1.4}
+.ai-note:empty{display:none}
 
 /* ---------- THÔNG BÁO ---------- */
 .tbao{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
@@ -192,22 +206,23 @@ body{
     </div>
     <div class="titles">
       <h1>Hồng Đức Tu Tiên Lộ</h1>
-      <div class="sub" id="chuongSub">Chương 1 · Dã Lang Bang</div>
+      <div class="sub" id="chuongSub">Chương 1 · Đại chiến Dã Lang Bang</div>
     </div>
     <button class="sys-btn" id="openSys">Hệ Thống</button>
   </header>
 
   <!-- bảng truyện -->
   <section class="frame panel-story" id="story">
-    <div class="chapter" id="storyChapter">Chương 1 · Dã Lang Bang</div>
+    <div class="chapter" id="storyChapter">Chương 1 · Đại chiến Dã Lang Bang</div>
     <div id="storyBody"></div>
   </section>
 
-  <!-- ô nhập tự do -->
+  <!-- ô nhập tự do (chỉ hiện khi AI dùng được) -->
   <div class="freebar" id="freebar">
     <input id="tuDo" placeholder="Hoặc gõ hành động tự do…" autocomplete="off" maxlength="120">
     <button id="guiTuDo">Làm</button>
   </div>
+  <div class="ai-note" id="aiNote"></div>
 
   <!-- lựa chọn -->
   <nav class="choices" id="choices"></nav>
@@ -222,7 +237,7 @@ body{
     <button class="tab on" data-tab="nhanvat">Nhân vật</button>
     <button class="tab" data-tab="kynang">Kỹ năng</button>
     <button class="tab" data-tab="tui">Túi</button>
-    <button class="tab" data-tab="gap">Đã gặp</button>
+    <button class="tab" data-tab="npc">NPC</button>
   </nav>
 
   <!-- TAB: NHÂN VẬT -->
@@ -282,10 +297,11 @@ body{
     </div>
   </section>
 
-  <!-- TAB: ĐÃ GẶP -->
-  <section class="tabpane" data-pane="gap">
+  <!-- TAB: NPC -->
+  <section class="tabpane" data-pane="npc">
     <div class="sys-card">
       <h3>Nhân vật đã gặp</h3>
+      <div class="cap" style="margin-bottom:10px">Hảo cảm quyết định thái độ và lựa chọn mở ra.</div>
       <div id="dNpc"></div>
     </div>
   </section>
@@ -296,6 +312,7 @@ body{
 <script>
 const $ = s => document.querySelector(s);
 let dangCho = false;
+let coAI = false;  // bật khi máy chủ xác nhận AI dùng được
 
 const idx = ["壹","貳","叁","肆","伍","陸","柒","捌"];
 
@@ -310,6 +327,13 @@ async function goi(duong, duLieu) {
 }
 
 // ---------------------------------------------------------- hiển thị đoạn
+function esc(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function dinhDang(p) {
+  // thoát HTML, rồi đổi *…* thành nội tâm in nghiêng
+  return esc(p).replace(/\*([^*]+)\*/g, '<em class="noi-tam">$1</em>');
+}
 function hienThi(kq) {
   if (kq.loi) { $("#setupLoi").textContent = kq.loi; return; }
   $("#setup").style.display = "none";
@@ -321,8 +345,8 @@ function hienThi(kq) {
   if (kq.thong_bao && kq.thong_bao.length) {
     html += '<div class="tbao">' + kq.thong_bao.map(t => "<span>" + t + "</span>").join("") + "</div>";
   }
-  // đoạn kể
-  const doan = (kq.ke || "").split(/\n\n+/).map(p => "<p>" + p + "</p>").join("");
+  // đoạn kể (hỗ trợ *nội tâm in nghiêng*)
+  const doan = (kq.ke || "").split(/\n\n+/).map(p => "<p>" + dinhDang(p) + "</p>").join("");
   $("#storyBody").innerHTML = html + doan;
   $("#story").scrollTop = 0;
 
@@ -338,7 +362,7 @@ function hienThi(kq) {
     b.onclick = () => chon(lc.chi_so);
     nav.appendChild(b);
   });
-  $("#freebar").style.display = kq.cho_phep_tu_do ? "flex" : "none";
+  $("#freebar").style.display = (kq.cho_phep_tu_do && coAI) ? "flex" : "none";
   capNhatTrangThai(kq.trang_thai);
 }
 
@@ -363,9 +387,24 @@ function capNhatTrangThai(tt) {
   $("#dKyNang").innerHTML = (tt.ky_nang || []).map(k => '<span class="tag">' + k + "</span>").join("") || "—";
   $("#dTuiDo").innerHTML = (tt.tui_do || []).map(v =>
     '<div class="sys-row"><span class="k">' + v.ten + '</span><span class="v">×' + v.so + "</span></div>").join("") || "—";
-  const npc = Object.entries(tt.npc_da_gap || {});
-  $("#dNpc").innerHTML = npc.length ? npc.map(([k, v]) =>
-    '<div class="sys-row"><span class="k">' + k + '</span><span class="v">' + v + "</span></div>").join("") : "—";
+  const npc = Object.entries(tt.npc || {});
+  $("#dNpc").innerHTML = npc.length ? npc.map(([k, v]) => {
+    const diem = v.hao_cam ?? 0;
+    const pct = Math.max(0, Math.min(100, (diem + 100) / 2));
+    const lop = diem >= 50 ? "hcam-cao" : (diem <= -20 ? "hcam-thap" : "hcam-tb");
+    const tt2 = v.thai_do || "người dưng";
+    const NHAN = {hien_than: "Thân phận", chuc_danh: "Chức danh", ghi_chu: "Ghi chú",
+                  quen_o: "Quen ở", biet_gi: "Điều biết"};
+    const phu = Object.entries(v)
+      .filter(([kk]) => kk !== "hao_cam" && kk !== "thai_do")
+      .map(([kk, vv]) => '<div class="sys-row"><span class="k">' + (NHAN[kk] || kk) +
+                          '</span><span class="v">' + vv + "</span></div>").join("");
+    return '<div class="npc-card">' +
+      '<div class="npc-head"><span class="npc-ten">' + k + '</span>' +
+      '<span class="npc-muc">' + tt2 + ' · ' + diem + '</span></div>' +
+      '<div class="hcam"><div class="hcam-bar ' + lop + '" style="width:' + pct + '%"></div></div>' +
+      phu + "</div>";
+  }).join("") : "—";
 }
 
 // ---------------------------------------------------------- hành động
@@ -421,6 +460,16 @@ $("#avatarInput").onchange = e => {
 
 // ---------------------------------------------------------- nạp phiên cũ
 (async () => {
+  try {
+    const ai = await goi("/api/ai");
+    coAI = !!ai.ai_san_sang;
+    if (!coAI) {
+      $("#freebar").style.display = "none";
+      const ghi = $("#aiNote");
+      if (ghi) ghi.textContent = "Chế độ không AI: chỉ bấm lựa chọn. " + (ai.ly_do || "");
+    }
+  } catch (e) { coAI = false; $("#freebar").style.display = "none"; }
+
   const kq = await goi("/api/state");
   if (kq.co_phien) {
     $("#setup").style.display = "none";

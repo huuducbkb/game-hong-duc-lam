@@ -21,6 +21,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 
 from game import engine as E  # noqa: E402
+from game import ai as AI  # noqa: E402
 
 try:
     import tools_server as TS  # Xưởng ảnh (prompt + upload)
@@ -95,6 +96,10 @@ class Handler(BaseHTTPRequestHandler):
             if not st:
                 return self._json({"loi": "Chưa có phiên chơi"}, 400)
             return self._json(E.goi_y_hien_tai(st))
+        if path.startswith("/api/ai"):
+            force = "thu_lai=1" in self.path
+            kq = AI.thu_ket_noi(force=force)
+            return self._json({"ai_san_sang": kq["ok"], "ly_do": kq["ly_do"]})
 
         # Xưởng ảnh
         if TS and path.startswith("/keys"):
@@ -127,7 +132,7 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/chon":
             return self._json(E.chon(st, int(data.get("chi_so", -1))))
         if path == "/api/tu_do":
-            return self._json(E.hanh_dong_tu_do(st, data.get("van_ban") or ""))
+            return self._json(E.hanh_dong_tu_do(st, data.get("van_ban") or "", AI=AI))
         if path == "/api/luu":
             p = E.luu(st, data.get("slot") or st["ten_nhan_vat"])
             return self._json({"ok": True, "tep": os.path.basename(p)})

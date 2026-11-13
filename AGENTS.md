@@ -69,9 +69,44 @@ Thứ tự dọc: thanh trên (avatar + tiêu đề + nút Hệ Thống) → b�
 **Màn chính KHÔNG có khối thân phận** — chỉ số nhân vật nằm trong **tab "Nhân vật"**
 của bảng Hệ Thống, để bảng truyện rộng tối đa.
 
-Bảng Hệ Thống là **drawer trượt từ phải**, có 4 tab: Nhân vật · Kỹ năng · Túi · Đã gặp.
+Bảng Hệ Thống là **drawer trượt từ phải**, có 4 tab: Nhân vật · Kỹ năng · Túi · **NPC**.
 Tab đầu gồm thẻ nhân vật (avatar + thanh Tu vi/Khí huyết/Thần thức) và bảng Thân phận.
 Avatar đổi ở thanh trên thì **đồng bộ** sang thẻ nhân vật trong tab.
+
+Tab **NPC** liệt kê NPC đã gặp + **thanh hảo cảm** (xanh ≥50, vàng −19…49, đỏ ≤−20)
+và thái độ hiện tại. (Tên cũ: "Đã gặp".)
+
+## Cơ chế HẢO CẢM (affinity)
+
+Mỗi NPC có số hảo cảm **−100…+100**, 6 mức (`MUC_HAO_CAM` trong `engine.py`):
+
+| Khoảng | Mức |
+|---|---|
+| −100…−60 | tử địch |
+| −59…−20 | thù địch |
+| −19…+19 | người dưng |
+| +20…+49 | quen biết |
+| +50…+79 | thân thiết |
+| +80…+100 | tri kỷ |
+
+- Trong JSON đoạn: `hieu_ung` hỗ trợ `gap_npc` (ghi nhận gặp, lưu chỉ số lần đầu) và
+  `hao_cam: {tên: delta}` (tăng/giảm hảo cảm, kèm thông báo).
+- `dieu_kien` hỗ trợ `hao_cam: {tên: ngưỡng}` → mở/khoá lựa chọn theo mức hảo cảm.
+- Đoạn có NPC nên có **`bien_the`**: danh sách `{npc, muc, ke}` — engine tự chọn đoạn kể
+  theo mức hảo cảm hiện tại (`_ke_theo_hao_cam`).
+- **Lưu ý**: `_gap_npc` KHÔNG ghi đè hảo cảm đã tích; chỉ đặt `hao_cam` khi gặp lần đầu.
+
+## Chế độ AI (Gemini) — QUAN TRỌNG
+
+- `game/ai.py` bọc Gemini: `thu_ket_noi()` (nhớ kết quả trong RAM), `san_sang()`,
+  `ke_lai(doan, hanh_dong)`.
+- **Model cũ đã bị khai tử với tài khoản mới** (`gemini-2.5-flash` → HTTP 404). Dùng
+  chuỗi dự phòng `MODEL_DU_PHONG` (`gemini-flash-lite-latest`, `gemini-3.5-flash`, …).
+  Có thể ép model qua `GEMINI_TEXT_MODEL` trong `.env`.
+- `GET /api/ai` → `{ai_san_sang, ly_do}`; `?thu_lai=1` để thử lại (bỏ cache).
+- **Phương án D**: khi `ai_san_sang=false`, frontend **ẩn ô gõ tự do** và hiện ghi chú;
+  gamebook vẫn chạy đủ bằng nút lựa chọn. Nút lựa chọn luôn hoạt động không cần AI.
+- Gõ tự do khi CÓ AI → AI kể lại đoạn theo hành động (không đổi sự kiện/đoạn).
 
 Quy ước: font `Noto Serif` + `Ma Shan Zheng`; màu mực `#1b1915`, ấn son `#a8352a`;
 `panel-character.jpg` chỉ còn dùng cho khung (nếu cần), không còn khối thân phận ở màn chính.
@@ -102,9 +137,10 @@ Người dùng mở `https://work-2-.../game` để chơi.
 |---|---|
 | `POST /api/new` | Tạo nhân vật `{ten, xuat_than}` |
 | `POST /api/chon` | Chọn `{chi_so}` |
-| `POST /api/tu_do` | Hành động tự do `{van_ban}` |
+| `POST /api/tu_do` | Hành động tự do `{van_ban}` (AI kể lại) |
 | `GET /api/doan` | Nạp lại đoạn đang dừng |
-| `GET /api/state` | Trạng thái gọn |
+| `GET /api/state` | Trạng thái gọn (có `co_phien`, `npc`) |
+| `GET /api/ai` | Kiểm tra AI `{ai_san_sang, ly_do}` |
 | `POST /api/luu` | Lưu `{slot}` |
 
 Phiên giữ trong RAM + cookie `phien`; trạng thái đầy đủ lưu ở `data/saves/`.
