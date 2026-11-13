@@ -1,6 +1,6 @@
 ---
-name: inkframe-pipeline
-description: Quy trình INKFRAME — ghép ảnh do AI bên ngoài vẽ vào giao diện web bằng kỹ thuật border-image, kèm đo đạc bằng Pillow và kiểm chứng bằng ảnh chụp trình duyệt. Dùng khi cần thiết kế giao diện, tạo hình ảnh, hoặc dựng video ngắn bằng CSS mà tài nguyên hình ảnh phải do người dùng tạo ở công cụ AI bên ngoài (vì API sinh ảnh không dùng được). Kích hoạt khi người dùng nói "làm giao diện", "ghép ảnh", "thiết kế UI", "ảnh nền", "video ngắn", "cinematic", hoặc khi key sinh ảnh bị chặn/hết credit.
+name: pic-in-game
+description: Quy trình PIC-IN-GAME — đưa ảnh và video do AI bên ngoài tạo vào game/giao diện web. Ghép ảnh khung bằng kỹ thuật border-image (không méo nét vẽ), tách nền alpha, dựng video ngắn bằng cách ghép nhiều ảnh + hiệu ứng CSS (kiểu intro CapCut). Kèm đo đạc bằng Pillow và kiểm chứng bằng ảnh chụp trình duyệt. Dùng khi cần thiết kế giao diện, tạo hình ảnh, dựng video ngắn, xây thư viện ảnh/video cho game, hoặc khi API sinh ảnh bị chặn/hết credit. Kích hoạt khi người dùng nói "làm giao diện", "ghép ảnh", "thiết kế UI", "ảnh nền", "video ngắn", "cinematic", "thư viện ảnh", "pic-in-game".
 triggers:
 - giao diện
 - ghép ảnh
@@ -9,13 +9,14 @@ triggers:
 - ảnh nền
 - video ngắn
 - cinematic
-- inkframe
+- thư viện ảnh
+- pic-in-game
 ---
 
-# Quy trình INKFRAME
+# Quy trình PIC-IN-GAME
 
-**Tên:** INKFRAME — *Ink Frame Integration Method*
-**Tên tiếng Việt:** Phương pháp ghép mực–khung
+**Tên:** PIC-IN-GAME — *Pic-in-Game Method*
+**Tên tiếng Việt:** Phương pháp đưa ảnh vào game
 **Một câu:** Biến ảnh do AI bên ngoài vẽ thành giao diện web thật, **không méo nét vẽ**, có đo đạc và kiểm chứng — thay vì đoán mò CSS.
 
 ## Khi nào dùng
@@ -78,14 +79,45 @@ Hai cái bẫy thường gặp:
   vị trí, chữ có nằm trong ruột khung không.
 - Đối chiếu **URL công khai** mà người dùng thật sự dùng (không chỉ localhost).
 
-## Mở rộng cho video ngắn
+## Video ngắn: ghép nhiều ảnh + hiệu ứng (kiểu intro CapCut)
 
-Khi cần "video ngắn / cinematic" mà không có file video:
-- Dùng **CSS animation** trên ảnh tĩnh: `@keyframes` cho pan/zoom chậm (Ken Burns),
-  hiệu ứng mực loang (`filter: blur()` + `opacity`), mây trôi, lá rơi.
-- Lớp mực loang: ảnh PNG alpha + `animation` đổi `opacity`/`transform`.
-- Hiệu ứng chuyển cảnh: `mask-image` + `linear-gradient` chạy ngang.
-- Vẫn phải **kiểm chứng bằng ảnh chụp ở nhiều mốc thời gian** (không chỉ 1 khung).
+Video **không phải** file phim. Video = **một chuỗi ảnh tĩnh** chạy qua hiệu ứng,
+giống các đoạn intro trong CapCut. Vì vậy cùng một thư viện ảnh phục vụ cả ảnh lẫn video.
+
+Cách dựng:
+- Một **timeline** gồm nhiều **khung** (`frame`), mỗi khung giữ 0.6–1.2 giây.
+- Mỗi khung: một ảnh từ thư viện + hiệu ứng vào/ra.
+- Nối khung bằng **chuyển cảnh** (crossfade, trượt, mực loang).
+
+Hiệu ứng từng khung:
+
+| Hiệu ứng | Kỹ thuật CSS |
+|---|---|
+| Máy quay chậm (Ken Burns) | `@keyframes` đổi `transform: scale()` + `translate()` |
+| Mực loang | ảnh PNG alpha + `animation` đổi `opacity` / `filter: blur()` |
+| Mây trôi, lá rơi | nhiều lớp ảnh, mỗi lớp một tốc độ `animation-duration` |
+| Chuyển cảnh | `mask-image` + `linear-gradient` chạy ngang |
+| Khói / sương | `radial-gradient` mờ + `animation` dịch chuyển |
+
+Dựng timeline bằng **một biến JS** liệt kê khung, rồi sinh `@keyframes` từ đó:
+
+```js
+const timeline = [
+  {img:"library/dong-phu-01.jpg", fx:"kenburns", sec:1.0},
+  {img:"library/linh-khi-02.jpg", fx:"ink-spread", sec:0.8},
+  {img:"library/dot-pha-03.jpg",  fx:"flash",     sec:1.2},
+];
+```
+
+**Kiểm chứng:** chụp ảnh ở **nhiều mốc thời gian** (ví dụ 0s, 0.8s, 1.6s), không chỉ 1 khung.
+
+### Thư viện ảnh/video dùng chung
+
+- Thư viện là **cây thư mục + tệp mô tả** (`library/index.json`), mỗi mục có **thuộc tính**
+  để AI tra đúng ảnh: `loai` (nhân vật / bối cảnh / vật phẩm), `gioi_tinh`, `tuoi`,
+  `ngoai_hinh`, `mau_da`, `chung_toc`, `tinh_cach`, `tags`.
+- AI **tra theo thuộc tính**, không đoán mò → tránh lấy ảnh nữ cho Hàn Lập hay ảnh ông già.
+- Cùng bộ ảnh phục vụ cả hiển thị tĩnh lẫn dựng video.
 
 ## Mẫu lệnh Pillow dùng lại
 

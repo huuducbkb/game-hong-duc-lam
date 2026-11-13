@@ -5,13 +5,13 @@ Người chơi xuyên không vào thế giới đó, sống cùng thời Hàn L�
 
 Người dùng chỉ có **Safari (iPad/iPhone), KHÔNG có terminal** → mọi thứ phải qua giao diện web.
 
-## QUY TẮC BẮT BUỘC: dùng phương pháp INKFRAME
+## QUY TẮC BẮT BUỘC: dùng phương pháp PIC-IN-GAME
 
 **Mọi việc đụng đến thiết kế giao diện, tạo hình ảnh, hoặc video ngắn → PHẢI dùng
-quy trình INKFRAME.** Không tự nghĩ cách khác.
+quy trình PIC-IN-GAME.** Không tự nghĩ cách khác.
 
-- Skill: `.agents/skills/inkframe-pipeline/SKILL.md`
-- Báo cáo đầy đủ: `docs/INKFRAME-report.md`
+- Skill: `.agents/skills/pic-in-game/SKILL.md`
+- Báo cáo đầy đủ: `docs/PIC-IN-GAME-report.md`
 
 Tóm tắt 5 bước: **① PROMPT** (viết prompt gửi AI ngoài) → **② NHẬN ẢNH** (kiểm kê, giữ bản gốc)
 → **③ ĐO** (Pillow: độ dày viền, ruột sáng/tối, vị trí ấn son) → **④ GHÉP** (`border-image`
@@ -84,8 +84,24 @@ Quy ước: font `Noto Serif` + `Ma Shan Zheng`; màu mực `#1b1915`, ấn son 
 - `SPEC.md` — đặc tả game
 - `.env` — key API (KHÔNG commit; đã trong .gitignore)
 
+## Kế hoạch & đặc tả
+
+- `SPEC.md` — đặc tả game (Chương 1–3)
+- `docs/KE-HOACH-CHI-TIET.md` — **kế hoạch chi tiết đã chốt với người dùng**:
+  cơ chế "chương + đoạn" chống lặp/quên, bảng chỉ số (10 chỉ số + tấn công/kháng phép
+  9 hệ), thần niệm, thư viện ảnh/video, chi phí token, tab Hệ Thống, nghề phụ + kinh tế.
+
+### Thuật ngữ quan trọng
+- **"Đoạn"** = giai đoạn nhỏ trong chương (KHÔNG phải nút bấm). Chương = chuỗi đoạn.
+- **"Lựa chọn"** = nút bấm người chơi chọn (gõ tự do vẫn giữ song song).
+- **Thần niệm** = giác quan + tay nghề + vũ khí tinh thần (xem kế hoạch mục C).
+- **Chủng loại** NPC: nhân loại · yêu thú · yêu thú hoá hình người · ma thú · quỷ ·
+  khôi lỗi · cương thi… (dùng để AI tra đúng ảnh).
+
 ## Cần làm tiếp
 
-1. Người dùng duyệt giao diện 1 cột.
-2. Backend game Python + tích hợp LLM.
-3. Nội dung Chương 1 (Dã Lang Bang), Chương 2 (Huyết Sát Thí Luyện), Chương 3.
+1. ~~Người dùng duyệt giao diện 1 cột~~ ✅
+2. Backend game Python + tích hợp LLM (theo cơ chế chương + đoạn)
+3. Nội dung Chương 1 (Dã Lang Bang), Chương 2 (Huyết Sát Thí Luyện), Chương 3
+4. Thư viện ảnh/video + thẻ thuộc tính cho AI tra
+5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế

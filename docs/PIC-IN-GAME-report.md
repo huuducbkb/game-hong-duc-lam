@@ -1,22 +1,22 @@
-# Báo cáo công cụ: INKFRAME
+# Báo cáo công cụ: PIC-IN-GAME
 
-**Tên:** INKFRAME — *Ink Frame Integration Method*
-**Tên tiếng Việt:** Phương pháp ghép mực–khung
+**Tên:** PIC-IN-GAME — *Pic-in-Game Method*
+**Tên tiếng Việt:** Phương pháp đưa ảnh vào game
 **Phiên bản:** 1.0
 **Ngày lập:** 2026-11-12
 **Nguồn gốc:** đúc kết từ việc ghép 7 ảnh thủy mặc do AI bên ngoài vẽ vào giao diện
 game *Hồng Đức Tu Tiên Lộ*.
-**Nơi lưu skill:** `.agents/skills/inkframe-pipeline/SKILL.md`
+**Nơi lưu skill:** `.agents/skills/pic-in-game/SKILL.md`
 **Script kèm theo:**
-- `.agents/skills/inkframe-pipeline/scripts/measure_frame.py` — bước ③ ĐO
-- `.agents/skills/inkframe-pipeline/scripts/prep_assets.py` — bước ④ GHÉP
-- `.agents/skills/inkframe-pipeline/scripts/verify_shot.py` — bước ⑤ KIỂM CHỨNG
+- `.agents/skills/pic-in-game/scripts/measure_frame.py` — bước ③ ĐO
+- `.agents/skills/pic-in-game/scripts/prep_assets.py` — bước ④ GHÉP
+- `.agents/skills/pic-in-game/scripts/verify_shot.py` — bước ⑤ KIỂM CHỨNG
 
 ---
 
 ## 1. Công cụ này là gì
 
-INKFRAME là **quy trình 5 bước** để biến ảnh do một công cụ AI **bên ngoài** vẽ
+PIC-IN-GAME là **quy trình 5 bước** để biến ảnh do một công cụ AI **bên ngoài** vẽ
 (tranh vẽ tay, thủy mặc, khung viền có nét mực) thành **giao diện web thật**, sao cho:
 
 - **không méo nét vẽ** khi co giãn,
@@ -29,7 +29,7 @@ Nó cũng mở rộng sang **video ngắn kiểu cinematic** dựng bằng CSS a
 
 ## 2. Vấn đề nó giải quyết
 
-| Vấn đề thực tế | Hậu quả nếu không có INKFRAME |
+| Vấn đề thực tế | Hậu quả nếu không có PIC-IN-GAME |
 |---|---|
 | API sinh ảnh không dùng được (Gemini free tier chặn, OpenRouter hết credit) | Tắc hẳn, không có tài nguyên để làm giao diện |
 | Ảnh khung vẽ tay bị kéo giãn bằng `background-size:100% 100%` | Viền mực **bị bóp méo**, nét vẽ biến dạng |
@@ -132,11 +132,15 @@ vị trí, ruột khung sáng (L ≈ 224–240) nên **chữ mực đọc tốt*
 [ ] 8. Đã thử trên URL công khai (không chỉ localhost) chưa?
 ```
 
-## 7. Mở rộng: video ngắn / cinematic không cần file video
+## 7. Video ngắn: ghép nhiều ảnh + hiệu ứng (kiểu intro CapCut)
 
-Khi cần "video ngắn" mà không có file video, dùng **CSS animation trên ảnh tĩnh**:
+Video **không phải** file phim. Video = **một chuỗi ảnh tĩnh** chạy qua hiệu ứng,
+giống các đoạn intro trong CapCut. Vì vậy cùng một thư viện ảnh phục vụ cả ảnh lẫn video.
 
-| Hiệu ứng | Kỹ thuật |
+Cách dựng: một **timeline** gồm nhiều khung, mỗi khung giữ 0.6–1.2 giây,
+mỗi khung là một ảnh + hiệu ứng vào/ra, nối nhau bằng chuyển cảnh.
+
+| Hiệu ứng | Kỹ thuật CSS |
 |---|---|
 | Máy quay chậm (Ken Burns) | `@keyframes` đổi `transform: scale()` + `translate()` |
 | Mực loang | ảnh PNG alpha + `animation` đổi `opacity` / `filter: blur()` |
@@ -144,7 +148,23 @@ Khi cần "video ngắn" mà không có file video, dùng **CSS animation trên 
 | Chuyển cảnh | `mask-image` + `linear-gradient` chạy ngang |
 | Khói / sương | `radial-gradient` mờ + `animation` dịch chuyển |
 
-**Vẫn phải kiểm chứng:** chụp ảnh ở **nhiều mốc thời gian**, không chỉ một khung hình.
+Timeline khai báo bằng biến JS, rồi sinh `@keyframes` từ đó:
+
+```js
+const timeline = [
+  { img: "library/bc_dong_phu_03.jpg", fx: "kenburns",   sec: 1.0 },
+  { img: "library/vk_kiem_01.jpg",     fx: "ink-spread", sec: 0.8 },
+  { img: "library/hq_dot_pha_02.jpg",  fx: "flash",      sec: 1.2 }
+];
+```
+
+**Kiểm chứng:** chụp ảnh ở **nhiều mốc thời gian** (ví dụ 0s, 0.8s, 1.6s), không chỉ một khung.
+
+### Thư viện ảnh/video dùng chung
+
+Thư viện là cây thư mục + tệp mô tả `index.json`. Mỗi mục có **thuộc tính** để AI tra đúng:
+`loai` (nhân vật / bối cảnh / vật phẩm), `gioi_tinh`, `tuoi`, `ngoai_hinh`, `mau_da`,
+`chung_toc`, `tinh_cach`, `tags`. AI tra theo thuộc tính, không đoán mò.
 
 ## 8. Ghi nhớ cốt lõi
 
