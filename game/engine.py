@@ -13,11 +13,13 @@ import json
 import os
 import random
 import re
+import unicodedata
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHAPTERS_DIR = os.path.join(ROOT, "game", "chapters")
 SAVES_DIR = os.path.join(ROOT, "data", "saves")
+XUAT_THAN_PATH = os.path.join(ROOT, "game", "xuat_than.json")
 
 HE_PHAP = ["kim", "moc", "thuy", "hoa", "tho", "loi", "phong", "bang", "doc"]
 
@@ -51,13 +53,68 @@ def _zero_he():
     return {h: 0 for h in HE_PHAP}
 
 
-def trang_thai_moi(ten_nhan_vat: str, xuat_than: str = "") -> dict:
-    """Tạo trạng thái nhân vật mới ở Luyện Khí tầng 1."""
+# ---------------------------------------------------------------- xuất thân
+
+_xt_cache: dict | None = None
+
+
+def load_xuat_than() -> dict:
+    """Nạp bảng xuất thân (5 nhóm chơi được + 1 nhóm ẩn)."""
+    global _xt_cache
+    if _xt_cache is None:
+        with open(XUAT_THAN_PATH, encoding="utf-8") as f:
+            _xt_cache = json.load(f)
+    return _xt_cache
+
+
+def ds_xuat_than(ke_ca_an: bool = False) -> list[dict]:
+    """Danh sách nhóm xuất thân cho giao diện (mặc định giấu nhóm ẩn)."""
+    return [n for n in load_xuat_than()["nhom"] if ke_ca_an or not n.get("an")]
+
+
+def _khong_dau(s: str) -> str:
+    """Bỏ dấu tiếng Việt để dò từ khoá chắc chắn hơn."""
+    s = unicodedata.normalize("NFD", s.lower())
+    return "".join(c for c in s if unicodedata.category(c) != "Mn").replace("đ", "d")
+
+
+def nhan_dien_xuat_than(xuat_than: str) -> str:
+    """Xếp xuất thân tự do vào mã nhóm (không dùng AI — chỉ dò từ khoá).
+
+    Không khớp gì → 'tan_tu'. Nhóm ẩn (Tuyết Cơ) KHÔNG bao giờ tự nhận.
+    """
+    t = _khong_dau(xuat_than or "")
+    for n in load_xuat_than()["nhom"]:
+        if n.get("an"):
+            continue
+        for tk in n.get("tu_khoa", []):
+            if _khong_dau(tk) in t:
+                return n["ma"]
+    return "tan_tu"
+
+
+def doan_dau_cua(nhom: str) -> str | None:
+    for n in load_xuat_than()["nhom"]:
+        if n["ma"] == nhom:
+            return n.get("doan_dau")
+    return None
+
+
+def trang_thai_moi(ten_nhan_vat: str, xuat_than: str = "", nhom: str = "") -> dict:
+    """Tạo trạng thái nhân vật mới ở Luyện Khí tầng 1.
+
+    `nhom`: mã nhóm xuất thân (nếu người chơi bấm nút chọn sẵn). Bỏ trống thì
+    tự xếp theo từ khoá trong `xuat_than`. Quyết định đoạn mở đầu của hành trình.
+    """
     if not xuat_than.strip():
         xuat_than = "tán tu vô danh"
+    hop_le = {n["ma"] for n in ds_xuat_than()}
+    if nhom not in hop_le:
+        nhom = nhan_dien_xuat_than(xuat_than)
     return {
         "ten_nhan_vat": ten_nhan_vat.strip() or "Vô Danh",
         "xuat_than": xuat_than.strip(),
+        "nhom_xuat_than": nhom,
         "canh_gioi": CANH_GIOI[0],
         "tu_vi": {"hien": 12, "max": 100},
         "chi_so": {
@@ -110,7 +167,9 @@ def _doan(state: dict) -> dict:
     ch = load_chuong(state["chuong"])
     did = state["doan_hien_tai"]
     if did is None:
-        did = ch["doan"][0]["id"]
+        did = doan_dau_cua(state.get("nhom_xuat_than") or "tan_tu") or ch["doan"][0]["id"]
+        if did not in ch["_theo_id"]:
+            did = ch["doan"][0]["id"]
         state["doan_hien_tai"] = did
     return ch["_theo_id"][did]
 
@@ -121,6 +180,12 @@ def _dieu_kien_hop(state: dict, dk: dict | None) -> bool:
     """Kiểm tra điều kiện của một lựa chọn."""
     if not dk:
         return True
+    if "nhom" in dk:
+        ds = dk["nhom"]
+        if isinstance(ds, str):
+            ds = [ds]
+        if (state.get("nhom_xuat_than") or "") not in ds:
+            return False
     if "linh_thach" in dk and state["linh_thach"] < dk["linh_thach"]:
         return False
     if "co_su_kien" in dk:
@@ -302,6 +367,7 @@ def _trang_thai_gon(state: dict) -> dict:
     return {
         "ten_nhan_vat": state["ten_nhan_vat"],
         "xuat_than": state["xuat_than"],
+        "nhom_xuat_than": state.get("nhom_xuat_than", ""),
         "canh_gioi": state["canh_gioi"],
         "tu_vi": dict(state["tu_vi"]),
         "sinh_luc": dict(cs["sinh_luc"]),
@@ -343,6 +409,7 @@ def _boi_canh(state: dict) -> str:
     d = _doan(state)
     npc = ", ".join(f"{ten} (hảo cảm {v['hao_cam']})" for ten, v in state["npc"].items())
     return (
+        f"Xuất thân người chơi: {state.get('xuat_than', '')}. "
         f"Đoạn: {d.get('boi_canh', '')}. Cảnh giới: {state['canh_gioi']}. "
         f"Sinh lực {state['chi_so']['sinh_luc']['hien']}/{state['chi_so']['sinh_luc']['max']}. "
         f"NPC đã gặp: {npc or 'chưa gặp ai'}."

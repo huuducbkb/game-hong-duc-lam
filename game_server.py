@@ -100,6 +100,12 @@ class Handler(BaseHTTPRequestHandler):
             force = "thu_lai=1" in self.path
             kq = AI.thu_ket_noi(force=force)
             return self._json({"ai_san_sang": kq["ok"], "ly_do": kq["ly_do"]})
+        if path.startswith("/api/xuat_than"):
+            return self._json({"nhom": [
+                {"ma": n["ma"], "ten": n["ten"], "mo_ta": n.get("mo_ta", ""),
+                 "mau": n.get("mau", "")}
+                for n in E.ds_xuat_than()
+            ]})
 
         # Xưởng ảnh
         if TS and path.startswith("/keys"):
@@ -119,7 +125,7 @@ class Handler(BaseHTTPRequestHandler):
             ten = (data.get("ten") or "").strip()
             if not ten:
                 return self._json({"loi": "Hãy nhập tên nhân vật"}, 400)
-            st = E.trang_thai_moi(ten, data.get("xuat_than") or "")
+            st = E.trang_thai_moi(ten, data.get("xuat_than") or "", data.get("nhom") or "")
             sid = self._set_state(st)
             kq = E.bat_dau(st)
             return self._json({"phien": sid, **kq},

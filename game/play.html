@@ -160,6 +160,15 @@ body{
   color:#fdf9ef;background:var(--seal);border:0;border-radius:12px;padding:14px}
 .setup .go:disabled{opacity:.5}
 .setup .hint{font-size:11px;color:var(--ink-faint);margin-top:9px;line-height:1.5}
+.setup .card{max-height:92vh;overflow-y:auto}
+.xt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:2px}
+.xt-grid button{font-family:var(--serif);font-size:12.5px;color:var(--ink-soft);text-align:left;
+  background:rgba(255,255,255,.7);border:1px solid var(--edge);border-radius:10px;padding:9px 10px;line-height:1.35}
+.xt-grid button.chon{border-color:var(--seal);background:rgba(168,53,42,.09);color:var(--seal);font-weight:600}
+.xt-grid button small{display:block;font-size:10.5px;color:var(--ink-faint);margin-top:2px;font-weight:400}
+.xt-grid button.chon small{color:var(--seal);opacity:.8}
+.setup .hoac{font-size:10.5px;letter-spacing:1.5px;color:var(--ink-faint);text-transform:uppercase;
+  text-align:center;margin:14px 0 0}
 
 /* ---------- Ô NHẬP TỰ DO ---------- */
 .freebar{display:flex;gap:7px;flex:0 0 auto;align-items:flex-end}
@@ -190,8 +199,11 @@ body{
     <div class="cap">Nghịch chuyển càn khôn</div>
     <label for="ten">Tên nhân vật</label>
     <input id="ten" maxlength="24" placeholder="Ví dụ: Hồng Đức" autocomplete="off">
-    <label for="xuat">Xuất thân (tự do — bỏ trống là “tán tu vô danh”)</label>
-    <textarea id="xuat" maxlength="4000" rows="8" placeholder="Ví dụ: tán tu nghèo, con nhà nông, dược đồng ở hiệu thuốc…"></textarea>
+    <label>Chọn xuất thân <span style="color:var(--ink-faint)">(mỗi xuất thân một câu chuyện riêng)</span></label>
+    <div class="xt-grid" id="xtGrid"></div>
+    <div class="hoac">hoặc tự gõ</div>
+    <label for="xuat">Xuất thân tự do (bỏ trống là “tán tu vô danh”)</label>
+    <textarea id="xuat" maxlength="4000" rows="4" placeholder="Ví dụ: tán tu nghèo, con nhà nông, dược đồng ở hiệu thuốc…"></textarea>
     <button class="go" id="go">Bắt đầu</button>
     <div class="hint" id="setupLoi"></div>
   </div>
@@ -426,13 +438,37 @@ async function tuDo() {
 }
 
 // ---------------------------------------------------------- tạo nhân vật
+let nhomChon = "";        // mã nhóm xuất thân đang chọn (nút), "" = tự gõ
+
+async function napXuatThan() {
+  try {
+    const r = await goi("/api/xuat_than");
+    const hop = $("#xtGrid");
+    if (!hop || !r.nhom) return;
+    hop.innerHTML = "";
+    r.nhom.forEach(n => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.dataset.ma = n.ma;
+      b.innerHTML = esc(n.ten) + (n.mo_ta ? "<small>" + esc(n.mo_ta) + "</small>" : "");
+      b.onclick = () => {
+        nhomChon = (nhomChon === n.ma) ? "" : n.ma;
+        [...hop.children].forEach(c => c.classList.toggle("chon", c.dataset.ma === nhomChon));
+        if (nhomChon && n.mau) $("#xuat").value = n.mau;
+      };
+      hop.appendChild(b);
+    });
+  } catch (e) { /* không có danh sách thì vẫn tự gõ được */ }
+}
+
 $("#go").onclick = async () => {
   const ten = $("#ten").value.trim();
   if (!ten) { $("#setupLoi").textContent = "Hãy nhập tên nhân vật"; return; }
   $("#go").disabled = true;
-  hienThi(await goi("/api/new", {ten, xuat_than: $("#xuat").value}));
+  hienThi(await goi("/api/new", {ten, xuat_than: $("#xuat").value, nhom: nhomChon}));
   $("#go").disabled = false;
 };
+napXuatThan();
 $("#guiTuDo").onclick = tuDo;
 const oTuDo = $("#tuDo");
 function coGian() { oTuDo.style.height = "auto"; oTuDo.style.height = Math.min(oTuDo.scrollHeight, 120) + "px"; }
