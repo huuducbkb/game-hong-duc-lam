@@ -78,11 +78,36 @@ Quy ước: font `Noto Serif` + `Ma Shan Zheng`; màu mực `#1b1915`, ấn son 
 
 ## Cấu trúc
 
-- `demo/` — 12 phương án giao diện + `hybrid-1col.html` (chính) + `hybrid.html` (2 cột)
+- `game/engine.py` — **engine game** (cơ chế chương + đoạn, chỉ số, lưu/nạp)
+- `game/chapters/chuong1.json` — **Chương 1: Đại chiến Dã Lang Bang** (23 đoạn, đường chơi ~17–18 đoạn)
+- `game/play.html` — **trang chơi** (giao diện 1 cột + 4 tab, nối API thật)
+- `game_server.py` — **máy chủ game** (API + tệp tĩnh + Xưởng ảnh), cổng 12001
+- `demo/` — 12 phương án giao diện + `hybrid-1col.html` (mẫu) + `hybrid.html` (2 cột)
 - `assets/ui/` — ảnh UI đã tối ưu
 - `tools_server.py` — Xưởng: prompt ảnh + upload
 - `SPEC.md` — đặc tả game
 - `.env` — key API (KHÔNG commit; đã trong .gitignore)
+
+## Chạy game
+
+```bash
+# máy chủ game (API + giao diện chơi + Xưởng) — port 12001
+setsid nohup python3 game_server.py > /tmp/game.log 2>&1 < /dev/null & disown
+```
+
+Người dùng mở `https://work-2-.../game` để chơi.
+
+### API
+| Đường dẫn | Việc |
+|---|---|
+| `POST /api/new` | Tạo nhân vật `{ten, xuat_than}` |
+| `POST /api/chon` | Chọn `{chi_so}` |
+| `POST /api/tu_do` | Hành động tự do `{van_ban}` |
+| `GET /api/doan` | Nạp lại đoạn đang dừng |
+| `GET /api/state` | Trạng thái gọn |
+| `POST /api/luu` | Lưu `{slot}` |
+
+Phiên giữ trong RAM + cookie `phien`; trạng thái đầy đủ lưu ở `data/saves/`.
 
 ## Kế hoạch & đặc tả
 

@@ -12,6 +12,7 @@ venv/
 # Dữ liệu game sinh ra khi chạy
 data/*.db
 data/media/
+data/saves/
 
 # Hệ điều hành / IDE
 .DS_Store
