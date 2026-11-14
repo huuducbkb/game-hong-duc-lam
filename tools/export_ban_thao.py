@@ -1,37 +1,87 @@
 #!/usr/bin/env python3
 """Xuất bản thảo chương ra Markdown + HTML để người dùng đọc và duyệt.
 
-Dùng:
-    python3 tools/export_ban_thao.py                # xuất mọi chương
-    python3 tools/export_ban_thao.py 1              # chỉ Chương 1
+Mỗi XUẤT THÂN là một nhánh truyện riêng, nên bản thảo được TÁCH THEO NHÁNH
+(không nối 5 nhánh vào một file gây cảm giác "truyện khởi động lại").
 
-Kết quả:
-    docs/ban-thao/chuong1.md    — bản thảo dạng văn bản (xem trên GitHub)
-    docs/ban-thao/chuong1.html  — trang đọc (mở trên Safari)
-    docs/ban-thao/index.html    — mục lục các chương
+Dùng:
+    python3 tools/export_ban_thao.py                  # xuất mọi chương, mọi nhánh
+    python3 tools/export_ban_thao.py 1                # chỉ Chương 1 (mọi nhánh)
+    python3 tools/export_ban_thao.py 1 --nhanh mon_phai   # chỉ nhánh môn phái
+
+Kết quả (ví dụ Chương 1):
+    docs/ban-thao/index.html               — mục lục: chương + từng nhánh
+    docs/ban-thao/chuong1-mon-phai.html    — đọc trên Safari
+    docs/ban-thao/chuong1-mon-phai.md      — xem trên GitHub
+
+Đoạn nào thuộc nhánh nào được xác định bằng CÁCH ĐI THEO LIÊN KẾT từ đoạn mở
+đầu của nhánh (không dựa vào tiền tố mã đoạn).
 """
 
 from __future__ import annotations
 
+import argparse
 import html
 import json
 import os
-import sys
+import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CH_DIR = os.path.join(ROOT, "game", "chapters")
 OUT_DIR = os.path.join(ROOT, "docs", "ban-thao")
+XUAT_THAN = os.path.join(ROOT, "game", "xuat_than.json")
 
 HOI_TEN = {"Mở": "Hồi Mở", "Thân": "Hồi Thân", "Kết": "Hồi Kết"}
 
 
-def _ke_html(ke: str) -> str:
-    import re as _re
+# ------------------------------------------------------------------ dữ liệu
 
+def doc_nhom() -> list[dict]:
+    """Danh sách nhánh chơi được (bỏ nhóm ẩn chưa mở)."""
+    d = json.load(open(XUAT_THAN, encoding="utf-8"))
+    return [n for n in d["nhom"] if not n.get("an")]
+
+
+def slug(ma: str) -> str:
+    return ma.replace("_", "-")
+
+
+def doan_theo_nhanh(ch: dict, doan_dau: str) -> list[dict]:
+    """Các đoạn thuộc một nhánh: đi theo liên kết từ đoạn mở đầu.
+
+    Giữ đúng thứ tự trong JSON để bản thảo đọc mạch lạc.
+    """
+    theo_id = {d["id"]: d for d in ch["doan"]}
+    if doan_dau not in theo_id:
+        return []
+    tham = set()
+    cho = [doan_dau]
+    while cho:
+        i = cho.pop()
+        if i in tham or i not in theo_id:
+            continue
+        tham.add(i)
+        for lc in theo_id[i].get("lua_chon", []):
+            cho.append(lc["den"])
+    return [d for d in ch["doan"] if d["id"] in tham]
+
+
+def doan_mo_coi(ch: dict, nhom: list[dict]) -> list[dict]:
+    """Đoạn không thuộc nhánh nào (liên kết đứt / rác) — để cảnh báo."""
+    thuoc = set()
+    for n in nhom:
+        if n.get("doan_dau"):
+            thuoc |= {d["id"] for d in doan_theo_nhanh(ch, n["doan_dau"])}
+    return [d for d in ch["doan"] if d["id"] not in thuoc]
+
+
+# ------------------------------------------------------------------ kết xuất
+
+def _ke_html(ke: str) -> str:
     def _p(p: str) -> str:
         e = html.escape(p)
         # *…* → nội tâm in nghiêng
-        e = _re.sub(r"\*([^*]+)\*", r"<em class='noi-tam'>\1</em>", e)
+        e = re.sub(r"\*([^*]+)\*", r"<em class='noi-tam'>\1</em>", e)
         return f"<p>{e}</p>"
 
     return "".join(_p(p) for p in ke.split("\n\n") if p.strip())
@@ -61,20 +111,21 @@ def _hieu_ung_txt(hu: dict) -> str:
     return "; ".join(phan)
 
 
-def xuat_md(ch: dict) -> str:
-    L = []
-    L.append(f"# Chương {ch['chuong']} — {ch['ten']}")
+def xuat_md(ch: dict, doan: list[dict], ten_nhanh: str | None = None) -> str:
+    L = [f"# Chương {ch['chuong']} — {ch['ten']}"]
+    if ten_nhanh:
+        L.append(f"## Nhánh: {ten_nhanh}")
     L.append("")
     if ch.get("tom_tat"):
         L.append(f"> **Tóm tắt:** {ch['tom_tat']}")
         L.append("")
-    L.append(f"*Tổng {len(ch['doan'])} đoạn.*")
+    L.append(f"*Nhánh này gồm {len(doan)} đoạn.*")
     L.append("")
     L.append("---")
     L.append("")
 
     hoi_truoc = None
-    for d in ch["doan"]:
+    for d in doan:
         if d.get("hoi") != hoi_truoc:
             hoi_truoc = d.get("hoi")
             L.append(f"## {HOI_TEN.get(hoi_truoc, hoi_truoc)}")
@@ -148,20 +199,23 @@ a{color:var(--seal)}
 """
 
 
-def xuat_html(ch: dict) -> str:
+def xuat_html(ch: dict, doan: list[dict], ten_nhanh: str | None = None) -> str:
     H = ["<!DOCTYPE html><html lang='vi'><head><meta charset='utf-8'>",
          "<meta name='viewport' content='width=device-width,initial-scale=1'>",
-         f"<title>Bản thảo Chương {ch['chuong']}</title>",
+         f"<title>Bản thảo Chương {ch['chuong']}"
+         + (f" — {html.escape(ten_nhanh)}" if ten_nhanh else "") + "</title>",
          "<link href='https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&display=swap' rel='stylesheet'>",
          f"<style>{CSS}</style></head><body><div class='wrap'>",
          "<a class='back' href='index.html'>← Mục lục bản thảo</a>",
          f"<h1>Chương {ch['chuong']} — {html.escape(ch['ten'])}</h1>"]
-    if ch.get("tom_tat"):
+    if ten_nhanh:
+        H.append(f"<div class='tom'><b>Nhánh:</b> {html.escape(ten_nhanh)}</div>")
+    elif ch.get("tom_tat"):
         H.append(f"<div class='tom'><b>Tóm tắt:</b> {html.escape(ch['tom_tat'])}</div>")
-    H.append(f"<div class='meta'>Tổng {len(ch['doan'])} đoạn · bản thảo để duyệt</div>")
+    H.append(f"<div class='meta'>Nhánh này gồm {len(doan)} đoạn · bản thảo để duyệt</div>")
 
     hoi_truoc = None
-    for d in ch["doan"]:
+    for d in doan:
         if d.get("hoi") != hoi_truoc:
             hoi_truoc = d.get("hoi")
             H.append(f"<h2>{html.escape(HOI_TEN.get(hoi_truoc, hoi_truoc or ''))}</h2>")
@@ -196,44 +250,78 @@ def xuat_html(ch: dict) -> str:
     return "\n".join(H)
 
 
-def xuat_index(chuongs: list[dict]) -> str:
+def xuat_index(chuongs: list[dict], nhom: list[dict]) -> str:
     H = ["<!DOCTYPE html><html lang='vi'><head><meta charset='utf-8'>",
          "<meta name='viewport' content='width=device-width,initial-scale=1'>",
          "<title>Bản thảo — Hồng Đức Tu Tiên Lộ</title>",
          "<link href='https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&display=swap' rel='stylesheet'>",
          f"<style>{CSS}</style></head><body><div class='wrap'>",
          "<h1>Bản thảo — Hồng Đức Tu Tiên Lộ</h1>",
-         "<div class='meta'>Các chương đã viết, để người dùng đọc và duyệt</div>"]
+         "<div class='meta'>Mỗi xuất thân là một nhánh truyện riêng. Bấm vào nhánh để đọc.</div>"]
     for ch in chuongs:
-        so_doan = len(ch["doan"])
-        H.append(f"<div class='choice'><h4>Chương {ch['chuong']}</h4>"
-                 f"<p style='margin:0 0 8px'><b>{html.escape(ch['ten'])}</b></p>"
-                 f"<div class='to'>{so_doan} đoạn</div>"
-                 f"<p style='margin:10px 0 0'><a href='chuong{ch['chuong']}.html'>Đọc bản thảo →</a> "
-                 f"· <a href='chuong{ch['chuong']}.md'>Markdown</a></p></div>")
+        H.append(f"<h2>Chương {ch['chuong']} — {html.escape(ch['ten'])}</h2>")
+        for n in nhom:
+            if not n.get("doan_dau"):
+                continue
+            doan = doan_theo_nhanh(ch, n["doan_dau"])
+            if not doan:
+                continue
+            s = slug(n["ma"])
+            H.append(f"<div class='choice'><h4>{html.escape(n['ten'])}</h4>"
+                     f"<div class='to'>{len(doan)} đoạn</div>"
+                     f"<p style='margin:10px 0 0'>"
+                     f"<a href='chuong{ch['chuong']}-{s}.html'>Đọc bản thảo →</a> "
+                     f"· <a href='chuong{ch['chuong']}-{s}.md'>Markdown</a></p></div>")
     H.append("</div></body></html>")
     return "\n".join(H)
 
 
+# ------------------------------------------------------------------ điều khiển
+
 def main():
+    ap = argparse.ArgumentParser(description="Xuất bản thảo theo nhánh")
+    ap.add_argument("chuong", nargs="*", help="số chương (bỏ trống = mọi chương)")
+    ap.add_argument("--nhanh", help="chỉ xuất một nhánh (mã: tan_tu, mon_phai, duoc, gia_toc, hac_dao)")
+    args = ap.parse_args()
+
     os.makedirs(OUT_DIR, exist_ok=True)
-    chon = sys.argv[1:] if len(sys.argv) > 1 else None
-    files = sorted(f for f in os.listdir(CH_DIR) if f.startswith("chuong") and f.endswith(".json"))
+    nhom = doc_nhom()
+    if args.nhanh:
+        nhom = [n for n in nhom if n["ma"] == args.nhanh]
+        if not nhom:
+            raise SystemExit(f"Không có nhánh '{args.nhanh}'. Chọn: "
+                             + ", ".join(n["ma"] for n in doc_nhom()))
+
+    files = sorted(f for f in os.listdir(CH_DIR)
+                   if f.startswith("chuong") and f.endswith(".json"))
     chuongs = []
     for f in files:
         so = f.replace("chuong", "").replace(".json", "")
-        if chon and so not in chon:
+        if args.chuong and so not in args.chuong:
             continue
         ch = json.load(open(os.path.join(CH_DIR, f), encoding="utf-8"))
         chuongs.append(ch)
-        md = xuat_md(ch)
-        open(os.path.join(OUT_DIR, f"chuong{ch['chuong']}.md"), "w", encoding="utf-8").write(md)
-        open(os.path.join(OUT_DIR, f"chuong{ch['chuong']}.html"), "w", encoding="utf-8").write(xuat_html(ch))
-        print(f"Chương {ch['chuong']}: {len(ch['doan'])} đoạn → chuong{ch['chuong']}.md / .html "
-              f"({len(md)} ký tự)")
-    if chuongs:
-        open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8").write(xuat_index(chuongs))
-        print(f"Mục lục → {os.path.relpath(os.path.join(OUT_DIR, 'index.html'), ROOT)}")
+        for n in nhom:
+            doan = doan_theo_nhanh(ch, n["doan_dau"])
+            if not doan:
+                continue
+            s = slug(n["ma"])
+            md = xuat_md(ch, doan, n["ten"])
+            open(os.path.join(OUT_DIR, f"chuong{ch['chuong']}-{s}.md"), "w",
+                 encoding="utf-8").write(md)
+            open(os.path.join(OUT_DIR, f"chuong{ch['chuong']}-{s}.html"), "w",
+                 encoding="utf-8").write(xuat_html(ch, doan, n["ten"]))
+            print(f"Chương {ch['chuong']} · nhánh {n['ten']}: {len(doan)} đoạn "
+                  f"→ chuong{ch['chuong']}-{s}.md / .html")
+        mo_coi = doan_mo_coi(ch, doc_nhom())
+        if mo_coi:
+            print(f"  ⚠ {len(mo_coi)} đoạn không thuộc nhánh nào: "
+                  + ", ".join(d["id"] for d in mo_coi))
+
+    if chuongs and not args.nhanh:
+        open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8").write(
+            xuat_index(chuongs, doc_nhom()))
+        print("Mục lục → " + os.path.relpath(os.path.join(OUT_DIR, "index.html"), ROOT))
 
 
 if __name__ == "__main__":

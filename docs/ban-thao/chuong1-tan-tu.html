@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang='vi'><head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Bản thảo Chương 1 — Tán tu / ăn mày</title>
+<link href='https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&display=swap' rel='stylesheet'>
+<style>
+:root{--ink:#1b1915;--ink-soft:#3a342b;--ink-faint:#6d6454;--seal:#a8352a;--edge:rgba(40,34,26,.15)}
+*{box-sizing:border-box}
+body{margin:0;background:#e7dcc4;color:var(--ink);
+  font-family:"Noto Serif","Times New Roman",serif;font-size:17px;line-height:1.75}
+.wrap{max-width:720px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:27px;margin:0 0 6px;line-height:1.25}
+h2{font-size:19px;margin:38px 0 14px;padding-bottom:7px;border-bottom:2px solid var(--seal);
+  color:var(--seal);letter-spacing:.5px}
+h3{font-size:16px;margin:26px 0 8px;color:var(--ink-soft)}
+.tom{background:rgba(255,253,246,.75);border-left:4px solid var(--seal);padding:12px 16px;
+  border-radius:8px;font-size:15px;color:var(--ink-soft);margin:16px 0}
+.meta{font-size:13px;color:var(--ink-faint);letter-spacing:.5px;margin-bottom:22px}
+.id{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--ink-faint);
+  background:rgba(255,253,246,.6);padding:2px 7px;border-radius:5px}
+.tags{font-size:12.5px;color:var(--ink-faint);margin:4px 0 12px}
+p{margin:0 0 15px;text-align:justify}
+.choice{margin:18px 0 0;padding:14px 16px;background:rgba(255,253,246,.72);
+  border:1px solid var(--edge);border-radius:10px}
+.choice h4{margin:0 0 10px;font-size:13px;letter-spacing:1.5px;color:var(--seal);
+  text-transform:uppercase}
+.choice ol{margin:0;padding-left:22px}
+.choice li{margin-bottom:11px;line-height:1.55}
+.to{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--ink-faint)}
+.hu{font-size:13.5px;color:var(--seal);margin-top:3px}
+.khoa{font-size:13px;color:#8a7d63;font-style:italic}
+.noi-tam{font-style:italic;color:#5b5443}
+.het{text-align:center;color:var(--seal);letter-spacing:4px;margin:30px 0;font-size:15px}
+hr{border:0;border-top:1px dashed var(--edge);margin:30px 0}
+a{color:var(--seal)}
+.back{display:inline-block;margin-bottom:20px;font-size:14px}
+</style></head><body><div class='wrap'>
+<a class='back' href='index.html'>← Mục lục bản thảo</a>
+<h1>Chương 1 — Đại chiến Dã Lang Bang</h1>
+<div class='tom'><b>Nhánh:</b> Tán tu / ăn mày</div>
+<div class='meta'>Nhánh này gồm 23 đoạn · bản thảo để duyệt</div>
+<h2>Hồi Mở</h2>
+<h3>Chợ sớm Thất Huyền trấn <span class='id'>c1_d01</span></h3>
+<div class='tags'>Ảnh: chợ, thị trấn, buổi sáng</div>
+<p>Ta mở mắt giữa buổi chợ sớm của thị trấn Thất Huyền. Mùi thuốc bắc nồng nặc xộc vào mũi, lẫn với tiếng mặc cả ồn ào và tiếng ngựa hí vang đâu đó phía xa.</p><p><em class='noi-tam'>Đây… là đâu?</em> Ta cố nhớ lại, nhưng ký ức hỗn độn như nước đục, không móc nối được gì.</p><p>Trên tay ta là một mảnh ngọc vụn còn ấm, và trong đầu vang lên một giọng nói lạnh lùng: “Nghịch chuyển càn khôn… đã bắt đầu.” Ta nghiến răng.</p><p><em class='noi-tam'>Thân thể này không phải của ta</em> — nhưng ta đang sống trong nó, bằng xương bằng thịt.</p><p>Phía xa, một thanh niên gầy gò, áo vải thô, lặng lẽ quan sát gánh hàng thuốc. Ánh mắt y sắc như dao, khiến tim ta khẽ đập nhanh — <em class='noi-tam'>kẻ này không tầm thường.</em></p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Lặng lẽ bám theo thanh niên áo vải<div class='to'>→ c1_d02</div>
+<div class='hu'>✦ mở cờ: nghi_ngo_han_lap</div>
+</li>
+<li>Chen vào đám đông, dò hỏi chuyện Dã Lang Bang<div class='to'>→ c1_d03</div>
+</li>
+<li>Tìm quán trọ, ẩn mình chờ thời<div class='to'>→ c1_d04</div>
+<div class='khoa'>điều kiện: {&quot;bac&quot;: 1} — Cần ít nhất 1 lượng bạc để thuê phòng</div>
+<div class='hu'>✦ bạc -1; sinh lực +5</div>
+</li>
+</ol></div>
+<hr>
+<h3>Ngõ nhỏ sau chợ <span class='id'>c1_d02</span></h3>
+<div class='tags'>Ảnh: ngõ nhỏ, thị trấn</div>
+<p>Ta theo y vào một ngõ nhỏ, nơi ánh nắng không lọt tới. Thanh niên ấy dừng trước sạp thuốc, cẩn thận chọn từng củ thảo dược, trả giá chặt chẽ đến mức lão chủ sạp phải nhăn mặt.</p><p><em class='noi-tam'>Người này tiết kiệm đến lạ.</em></p><p>Y không quay đầu, nhưng giọng nói vang lên đúng lúc ta định bước tới: “Đi theo ta làm gì?”</p><p>Ta giật mình, toan mở miệng. “Ta không thích kẻ lạ bám đuôi,” — y nói tiếp, vẫn không nhìn ta — “Nhất là kẻ không có tu vi.”</p><p><em class='noi-tam'>Y nhìn ra ta yếu ớt chỉ trong một cái liếc.</em> Ta siết chặt mảnh ngọc trong tay, biết mình không thể giả vờ được nữa.</p><p>Ta lần theo con ngõ nhỏ trở ra. Chợ đã tan tự lúc nào, và nắng chiều tắt dần sau những mái nhà.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Thú nhận mình là kẻ mới tới, xin hỏi đường<div class='to'>→ c1_d05</div>
+<div class='hu'>✦ thần niệm +1</div>
+</li>
+<li>Giả vờ hỏi mua thuốc để che mắt<div class='to'>→ c1_d05</div>
+</li>
+</ol></div>
+<hr>
+<h3>Gánh hàng rong ven chợ <span class='id'>c1_d03</span></h3>
+<div class='tags'>Ảnh: chợ, đám đông</div>
+<p>Ta ghé vào một gánh hàng rong, giả vờ hỏi giá rồi khéo léo dẫn chuyện. Lão bán hàng thoạt đầu chỉ ừ hử, nhưng khi ta nhắc tới Dã Lang Bang, tay lão khựng lại.</p><p>“Dã Lang Bang à?” — lão hạ giọng, mắt liếc quanh — “Lũ đó hung hãn lắm.”</p><p>Lão kể rằng chúng đã dòm ngó Thất Huyền Môn suốt mấy tháng, mà môn phái ấy nào có dễ chọc. <em class='noi-tam'>Vậy là ta xuyên tới đúng lúc sóng gió nổi lên.</em></p><p>“Mà ngươi hỏi làm gì?” — lão đột ngột nhìn thẳng vào ta — “Đừng dính vào, kẻo mất mạng.”</p><p>Lão lắc đầu rồi quay đi, như sợ bị ai nghe thấy. Ta đứng lại, trong lòng dấy lên một nỗi bất an khó gọi thành tên.</p><p>Ta lang thang khắp chợ cho tới khi nắng nhạt. Không ai còn muốn nói thêm điều gì, và trời thì đã về chiều.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Hỏi thêm về Thất Huyền Môn<div class='to'>→ c1_d05</div>
+<div class='hu'>✦ mở cờ: biet_tin_da_lang_bang</div>
+</li>
+<li>Cảm ơn rồi rời đi<div class='to'>→ c1_d05</div>
+</li>
+</ol></div>
+<hr>
+<h3>Quán trọ Phúc Lai <span class='id'>c1_d04</span></h3>
+<div class='tags'>Ảnh: quán trọ, trong nhà, đèn dầu</div>
+<p>Ta thuê một gian phòng nhỏ trên gác, trả một viên bạc. Vừa đặt lưng, ta đã nghe tiếng bước chân dồn dập ngoài hành lang và những giọng nói nén xuống.</p><p>“Chúng nó tập trung ở ngoại thành… đêm nay động thủ.”</p><p><em class='noi-tam'>Đêm nay sao?</em> — ta lặng người, toàn thân lạnh toát.</p><p>Ta nắm chặt mảnh ngọc vụn trong tay, và nó bỗng ấm lên một cách kỳ lạ, như có ai đáp lại lời ta. <em class='noi-tam'>Mảnh ngọc này rốt cuộc là gì?</em></p><p>Ngoài kia, tiếng bước chân xa dần, để lại căn phòng lạnh lẽo và một nỗi bất an chưa từng có.</p><p>Ta nằm vật xuống, nhưng không sao chợp mắt. Khi ta ngồi dậy mở cửa sổ, bên ngoài trời đã sẩm tối.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Lắng nghe kỹ câu chuyện ngoài hành lang<div class='to'>→ c1_d05</div>
+<div class='hu'>✦ thần niệm +1; mở cờ: biet_tin_da_lang_bang</div>
+</li>
+<li>Nghỉ ngơi, giữ sức<div class='to'>→ c1_d05</div>
+<div class='hu'>✦ sinh lực +5</div>
+</li>
+</ol></div>
+<hr>
+<h3>Trấn Thất Huyền, chạng vạng <span class='id'>c1_d05</span></h3>
+<div class='tags'>Ảnh: thị trấn, hoàng hôn, căng thẳng</div>
+<p>Trời sẩm tối, thị trấn Thất Huyền bỗng vắng vẻ lạ thường. Người bán hàng dọn sạp sớm, cửa nhà đóng im ỉm, chỉ còn vài đốm đèn dầu leo lét nơi góc phố.</p><p>Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.</p><p><em class='noi-tam'>Không khí này… như trước bão.</em> Một luồng khí lạnh chạy dọc sống lưng ta, khiến ta rùng mình.</p><p>Rồi từ phía rừng tối ngoài trấn, một tiếng sói tru dài vang lên, ai oán đến rợn người.</p><p>Ta hiểu rằng mình không còn nhiều thời gian để chọn chỗ đứng.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Lên tường thành, quan sát động tĩnh quân địch<div class='to'>→ c1_d05b</div>
+<div class='hu'>✦ mở cờ: thay_the_tran_dich</div>
+</li>
+<li>Ở lại trong trấn, tìm nơi trú ẩn kín đáo<div class='to'>→ c1_d05b</div>
+<div class='hu'>✦ mở cờ: biet_cho_an_trong_tran</div>
+</li>
+</ol></div>
+<hr>
+<h3>Đêm buông, chuẩn bị đối phó <span class='id'>c1_d05b</span></h3>
+<div class='tags'>Ảnh: thị trấn, đêm, im lặng</div>
+<p>Đêm buông xuống thật nhanh, nhanh hơn ta tưởng. Ta kiểm lại trong người — không vũ khí, không pháp bảo, chỉ có mảnh ngọc vụn và chút bạc ít ỏi.</p><p><em class='noi-tam'>Với chừng này, ta khác nào tấm bia sống.</em></p><p>Một cảm giác lạnh chạy dọc gáy khi tiếng gầm gừ từ xa mỗi lúc một gần.</p><p>Bên tai, giọng nói lạnh lùng lại thì thầm: “Kẻ sống sót không phải kẻ mạnh nhất, mà là kẻ biết đứng đúng chỗ.”</p><p>Ta hít sâu một hơi, siết chặt tay, biết mình phải chọn chỗ đứng trước khi mọi chuyện vỡ ra.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Tiến lên phía tường thành, nơi đông người<div class='to'>→ c1_d06</div>
+</li>
+<li>Nấp ở nơi khuất, quan sát trước<div class='to'>→ c1_d07</div>
+</li>
+</ol></div>
+<hr>
+<h2>Hồi Thân</h2>
+<h3>Tường thành phía bắc <span class='id'>c1_d06</span></h3>
+<div class='tags'>Ảnh: tường thành, đêm, canh gác</div>
+<p>Ta lách qua đám đông đang náo loạn, trèo lên bậc thang đá dẫn tới tường thành. Một đệ tử trẻ tuổi chặn ta lại: “Đứng lại! Ngươi là ai?”</p><p>Ta nhìn thẳng vào mắt hắn, không đổi sắc. Hắn ngập ngừng một lát rồi lùi sang: “...Thôi được, đừng gây chuyện.”</p><p>Trên cao, ta thấy rõ đội hình Dã Lang Bang dàn ra ngoài trấn — đen kịt, kéo dài tới tận rìa rừng.</p><p>“Dã Lang Bang đấy,” — hắn thì thào bên cạnh ta — “chúng kéo tới mấy trăm người. Không biết Thất Huyền Môn giữ nổi không.”</p><p><em class='noi-tam'>Mấy trăm người…</em> Ta nuốt khan, tự hỏi mình đã lạc vào chuyện gì.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Quan sát đội hình Dã Lang Bang từ trên cao<div class='to'>→ c1_d08</div>
+<div class='hu'>✦ thần niệm +2; mở cờ: thay_da_lang_bang</div>
+</li>
+</ol></div>
+<hr>
+<h3>Kho lương phía nam <span class='id'>c1_d07</span></h3>
+<div class='tags'>Ảnh: kho, tối, ẩn nấp</div>
+<p>Ta tìm được một góc khuất trong kho lương cũ, nơi có thể nghe rõ mọi động tĩnh mà vẫn an toàn. Qua khe cửa, ta thấy vài bóng người lén lút chuyển từng bao tải ra ngoài.</p><p>Không phải đệ tử môn phái — áo chúng có thêu hình đầu sói. <em class='noi-tam'>Kẻ nội gián…</em> Tim ta đập mạnh.</p><p>“Nhanh lên, trước khi trời sáng!” — một tên thúc giục, giọng khàn khàn.</p><p>Chúng chuyển bao tải cuối cùng rồi biến mất trong bóng tối.</p><p>Ta nín thở, trong đầu chỉ còn một ý nghĩ: <em class='noi-tam'>chuyện này phải báo cho ai đó.</em></p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Bám theo bọn chúng, xem chúng làm gì<div class='to'>→ c1_d08</div>
+<div class='hu'>✦ thần niệm +1; mở cờ: thay_gian_te</div>
+</li>
+<li>Quay lại báo cho đệ tử canh gác<div class='to'>→ c1_d08</div>
+<div class='hu'>✦ mở cờ: thay_gian_te</div>
+</li>
+</ol></div>
+<hr>
+<h3>Trận địa trước cổng môn <span class='id'>c1_d08</span></h3>
+<div class='tags'>Ảnh: chiến trận, cổng môn phái, đêm</div>
+<p>Một tiếng nổ lớn rung chuyển trấn nhỏ. Cổng lớn Thất Huyền Môn bị đánh bật khỏi bản lề, bụi đá mù mịt. Hàng trăm bóng người áo da thú tràn vào, gầm gừ như dã thú.</p><p>“Giữ vững đội hình!” — một trưởng lão quát vang, đạo bào phần phật trong gió.</p><p>Trên tường thành, các đạo sĩ đồng loạt xuất thủ — linh quang xanh lục và vàng kim chém xuống như mưa.</p><p>Ta đứng giữa hai làn sóng người, và không có đường lui.</p><p><em class='noi-tam'>Chạy hay ở lại?</em> — câu hỏi xé toạc đầu óc ta khi một gã áo da sói lao thẳng tới.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Xông vào đám hỗn chiến, tìm cơ hội<div class='to'>→ c1_d08b</div>
+<div class='hu'>✦ mở cờ: tham_gia_dai_chien</div>
+</li>
+<li>Vòng ra sườn, cứu người bị thương<div class='to'>→ c1_d08b</div>
+<div class='hu'>✦ sinh lực -3; mở cờ: cuu_nguoi</div>
+</li>
+</ol></div>
+<hr>
+<h3>Cổng môn vỡ — khoảnh khắc quyết định <span class='id'>c1_d08b</span></h3>
+<div class='tags'>Ảnh: cổng vỡ, hỗn loạn, linh quang</div>
+<p>Cổng lớn đổ sập, bụi đá mù mịt cả một vùng. Tiếng gầm thét và tiếng kim loại chạm nhau trộn thành một mớ hỗn độn không thể phân biệt.</p><p>Ta ép sát lưng vào bức tường còn sót lại, thở dốc, ngực đau nhói.</p><p>Một đệ tử ngã gục ngay trước mặt ta, mắt còn mở trừng trừng. “Cứu... cứu ta...” — hắn thều thào, rồi im bặt.</p><p><em class='noi-tam'>Ta chỉ có vài nhịp thở.</em> Phải quyết định ngay: xông vào đám hỗn chiến, hay vòng ra sườn tìm đường sống.</p><p>Ta cắn răng, đưa mắt nhìn cả hai phía, biết rằng chọn sai một bước là mất tất cả.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Xông thẳng vào đám hỗn chiến<div class='to'>→ c1_d09</div>
+</li>
+<li>Vòng ra sườn, tìm chỗ ít người<div class='to'>→ c1_d10</div>
+</li>
+</ol></div>
+<hr>
+<h3>Giữa vòng hỗn chiến <span class='id'>c1_d09</span></h3>
+<div class='tags'>Ảnh: hỗn chiến, vũ khí, máu</div>
+<p>Ta bị cuốn vào dòng người như một chiếc lá giữa dòng nước xoáy. Một gã áo da sói vung đao chém tới — ta nghiêng người né, lưỡi đao sượt qua mặt, rát bỏng.</p><p>“Chết đi!” — hắn gào lên rồi lại vung đao, mắt đỏ ngầu.</p><p>Trong khoảnh khắc ấy, ta nhận ra: thân thể này tuy yếu, nhưng phản xạ nhanh hơn người thường. Mảnh ngọc trong tay ta nóng ran như than hồng. <em class='noi-tam'>Nó đang giúp ta?</em></p><p>Phía trước, một thanh niên gầy gò đang bị ba gã bao vây — y không hề lùi, ánh mắt vẫn lạnh băng.</p><p>Ta nhận ra ngay: chính là hắn, người ở ngõ nhỏ.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Xông tới hỗ trợ thanh niên áo vải<div class='to'>→ c1_d11</div>
+<div class='hu'>✦ tu vi +8; sinh lực -5; mở cờ: giup_han_lap</div>
+</li>
+<li>Lùi lại, giữ mạng trước đã<div class='to'>→ c1_d11</div>
+<div class='hu'>✦ sinh lực -1</div>
+</li>
+</ol></div>
+<hr>
+<h3>Sườn đông, nơi tạm trú thương binh <span class='id'>c1_d10</span></h3>
+<div class='tags'>Ảnh: thương binh, cứu người, lửa</div>
+<p>Ta kéo một đệ tử trúng đao vào chỗ khuất, băng vết thương bằng vải áo. “Ngươi... không phải người của môn phái này,” — hắn thều thào, mắt mờ đi vì đau — “Sao lại giúp?”</p><p>“Vì ta cũng chẳng còn chỗ nào để đi,” — ta đáp, tự thấy câu trả lời ấy thật lạ.</p><p>Trước khi hắn kịp nói thêm, một bóng người gầy gò lướt qua — nhanh như mèo, hướng thẳng vào hậu trận Dã Lang Bang. Trên lưng y, một cái bình nhỏ lóe sáng dưới ánh lửa.</p><p><em class='noi-tam'>Là hắn.</em> Ta nín thở, mắt dán theo bóng dáng ấy, trong lòng dấy lên một thôi thúc lạ kỳ.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Bám theo bóng người gầy gò<div class='to'>→ c1_d11</div>
+<div class='hu'>✦ thần niệm +1; mở cờ: theo_han_lap</div>
+</li>
+<li>Ở lại chăm sóc thương binh<div class='to'>→ c1_d11</div>
+<div class='hu'>✦ thần niệm +1</div>
+</li>
+</ol></div>
+<hr>
+<h3>Hậu trận Dã Lang Bang <span class='id'>c1_d11</span></h3>
+<div class='tags'>Ảnh: doanh trại, đêm, nguy hiểm</div>
+<p>Khi trận hỗn chiến tạm lắng, ta lần theo dấu vết ra tận hậu trận địch — nơi mùi da thú, mồ hôi và máu nồng nặc đến khó thở. Giữa những túp lều da thú, có một căn lều lớn hơn hẳn — nơi phát ra luồng linh khí đen đặc quánh.</p><p>Một lão nhân mặt sẹo, thân hình vạm vỡ, đang mân mê một chiếc hộp gỗ.</p><p>“Thất Huyền Môn tưởng giữ được bí kíp này sao?” — lão cười khàn khàn — “Ngây thơ.”</p><p>Bên trong hộp, thứ gì đó tỏa ra linh quang mờ ảo, khiến ta không sao rời mắt.</p><p><em class='noi-tam'>Bí kíp…</em> Ta nín thở, máu trong người như đông lại. Nhưng ta biết, chỉ cần sơ sẩy một bước là mất mạng.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Rón rén tới gần, tìm cách đoạt hộp gỗ<div class='to'>→ c1_d11b</div>
+<div class='hu'>✦ mở cờ: thay_hop_go</div>
+</li>
+<li>Quan sát, ghi nhớ rồi rút lui an toàn<div class='to'>→ c1_d11b</div>
+<div class='hu'>✦ thần niệm +1; mở cờ: biet_bi_kip</div>
+</li>
+</ol></div>
+<hr>
+<h3>Rìa hậu trận địch <span class='id'>c1_d11b</span></h3>
+<div class='tags'>Ảnh: doanh trại, lửa, bóng tối</div>
+<p>Ta tiến sát hậu trận địch, nép mình sau những túp lều da thú xếp san sát. Bọn lính gác thưa thớt vì phần lớn đã ra trận — cơ hội hiếm có.</p><p>“Bang chủ đang ở trong lều lớn,” — một tên thì thầm với đồng bọn — “Không ai được vào.”</p><p>Một căn lều lớn hơn hẳn nằm ở giữa, từ đó phát ra luồng linh khí đen đặc quánh khiến ta lạnh gáy.</p><p><em class='noi-tam'>Vào, hay chỉ đứng nhìn?</em> Ta liếm môi khô, tim đập từng nhịp nặng nề.</p><p>Mỗi bước chân giờ đây đều có thể là bước cuối cùng.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Lẻn tới gần căn lều lớn<div class='to'>→ c1_d12</div>
+</li>
+<li>Chỉ quan sát từ xa rồi rút<div class='to'>→ c1_d13</div>
+</li>
+</ol></div>
+<hr>
+<h3>Trong lều Bang chủ <span class='id'>c1_d12</span></h3>
+<div class='tags'>Ảnh: lều, hộp gỗ, căng thẳng</div>
+<p>Ta nép sát vách lều, tim đập thình thịch đến mức tưởng như cả trại nghe thấy. Chỉ cần thêm ba bước nữa là tới được chiếc hộp gỗ đang tỏa linh quang.</p><p>“Ai đó?” — Bang chủ đột ngột ngẩng đầu, ánh mắt lão quét thẳng về phía ta. “Có chuột.”</p><p>Lão đứng dậy, linh khí đen ngòm bùng lên quanh thân như khói độc, khiến không khí quanh ta nặng trịch.</p><p><em class='noi-tam'>Chết rồi.</em> Ta không kịp nghĩ, chỉ kịp thấy toàn thân lạnh toát.</p><p>Một lựa chọn duy nhất hiện ra trong đầu: liều, hay chạy.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Liều mình lao tới đoạt hộp rồi chạy<div class='to'>→ c1_d14</div>
+<div class='hu'>✦ sinh lực -8; mở cờ: doat_hop_go; nhận: Hộp gỗ bí ẩn</div>
+</li>
+<li>Tung một nắm bụi rồi tháo chạy<div class='to'>→ c1_d13</div>
+<div class='hu'>✦ sinh lực -3</div>
+</li>
+</ol></div>
+<hr>
+<h3>Bìa rừng phía tây <span class='id'>c1_d13</span></h3>
+<div class='tags'>Ảnh: rừng, đêm, ẩn nấp</div>
+<p>Ta chạy mãi cho tới khi tiếng gầm thét xa dần, rồi gục xuống sau một gốc cổ thụ. Ngực ta đau nhói, chân run không đứng vững, nhưng ta vẫn còn sống.</p><p>Trong đầu, giọng nói lạnh lùng lại vang lên: “Biết địch biết ta, trăm trận không nguy. Ngươi học nhanh đấy.”</p><p><em class='noi-tam'>Ngươi là ai…?</em> — ta hỏi trong vô vọng, nhưng không có tiếng đáp.</p><p>Phía xa, lửa cháy rực trời Thất Huyền trấn, nhuộm đỏ cả màn đêm.</p><p>Ta siết chặt mảnh ngọc trong tay, hơi ấm nơi đó là thứ duy nhất khiến ta thấy mình còn tồn tại.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Quay lại chiến trường, tìm cơ hội cuối<div class='to'>→ c1_d14</div>
+<div class='hu'>✦ thần niệm +1</div>
+</li>
+<li>Ngồi lại, điều tức hồi phục<div class='to'>→ c1_d14</div>
+<div class='hu'>✦ tu vi +5; sinh lực +6</div>
+</li>
+</ol></div>
+<hr>
+<h2>Hồi Kết</h2>
+<h3>Đại chiến — cổng môn Thất Huyền Môn <span class='id'>c1_d14</span></h3>
+<div class='tags'>Ảnh: đại chiến, cổng môn, linh quang · Video: dai_chien</div>
+<p>Trận đại chiến vẫn chưa dứt — còn dữ dội hơn cả lúc đầu. Bang chủ Dã Lang Bang tung một quyền, linh khí đen cuộn thành hình sói khổng lồ, đánh sập nốt mảng tường thành còn sót lại.</p><p>“Hỡi các đệ tử, theo ta!” — một trưởng lão râu bạc quát vang, đạo bào phần phật trong gió.</p><p>Các trưởng lão Thất Huyền Môn đồng loạt xuất thủ, ánh sáng xanh lục và vàng kim đan vào nhau như dệt lụa, chấn động cả bầu trời đêm.</p><p>Ta đứng cách đó vài chục trượng, lần đầu tiên trong đời cảm nhận được thế nào là uy lực của tu sĩ. <em class='noi-tam'>Đây là sức mạnh mà ta hằng mơ ước.</em></p><p>Nhưng đồng thời, ta cũng hiểu: đứng sai chỗ trong trận này, ta sẽ tan thành tro.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Nhân lúc hỗn loạn, lẻn vào trong môn phái<div class='to'>→ c1_d14b</div>
+<div class='hu'>✦ mở cờ: vao_mon_phai</div>
+</li>
+<li>Ở ngoài quan sát trận chiến, học hỏi<div class='to'>→ c1_d14b</div>
+<div class='hu'>✦ thần niệm +3; mở cờ: hoc_chien_dau</div>
+</li>
+</ol></div>
+<hr>
+<h3>Đại chiến leo thang <span class='id'>c1_d14b</span></h3>
+<div class='tags'>Ảnh: đại chiến, chấn động, linh quang</div>
+<p>Trận chiến leo thang dữ dội hơn nữa. Mỗi quyền của Bang chủ đánh ra đều để lại một hố sâu trên nền đá, đá vụn bắn tung tóe.</p><p>Đám đệ tử Dã Lang Bang gào thét xông lên như thú dữ, không biết sợ là gì.</p><p>Các trưởng lão Thất Huyền Môn phải liên thủ mới cầm cự nổi, mồ hôi ướt đẫm trán.</p><p>Ta ép sát người vào tường, linh khí dư chấn quét qua khiến da mặt rát bỏng.</p><p><em class='noi-tam'>Đây là cơ hội — hoặc là mồ chôn.</em> Ta hít một hơi thật sâu, mắt quét qua hai hướng, biết không còn thời gian để do dự thêm.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Nhân lúc hỗn loạn, lẻn vào trong môn phái<div class='to'>→ c1_d15</div>
+</li>
+<li>Bám theo rìa trận địa, quan sát học hỏi<div class='to'>→ c1_d16</div>
+</li>
+</ol></div>
+<hr>
+<h3>Sân trong Thất Huyền Môn <span class='id'>c1_d15</span></h3>
+<div class='tags'>Ảnh: môn phái, sân trong, tàn phá</div>
+<p>Ta lẻn được vào sân trong, nơi đã bị tàn phá tan hoang — cột đá gãy, cỏ cháy đen, mùi khét lẹt bốc lên nồng nặc.</p><p>Bỗng ta nghe tiếng bước chân rất khẽ. Một thanh niên gầy gò, áo vải thô đang lúi húi nhặt thứ gì đó dưới đất — một chiếc bình nhỏ bằng ngọc.</p><p>Y ngẩng lên nhìn ta, và ánh mắt ấy bình thản đến lạnh người, không hề có chút sợ hãi.</p><p>“Ngươi thấy ta rồi,” — y nói, giọng không cao không thấp.</p><p><em class='noi-tam'>Hắn không chạy, cũng không hỏi han — chỉ quan sát ta.</em> Tay ta khẽ đổ mồ hôi, biết đây là khoảnh khắc quyết định.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Lên tiếng chào, tỏ ý muốn kết giao<div class='to'>→ c1_d17</div>
+<div class='hu'>✦ mở cờ: gap_han_lap</div>
+</li>
+<li>Không nói gì, lặng lẽ bước theo sau hắn<div class='to'>→ c1_d17</div>
+<div class='hu'>✦ mở cờ: gap_han_lap</div>
+</li>
+</ol></div>
+<hr>
+<h3>Mái nhà ven sườn núi <span class='id'>c1_d16</span></h3>
+<div class='tags'>Ảnh: mái nhà, quan sát, đêm</div>
+<p>Ta leo lên một mái nhà ven sườn núi, từ đó quan sát toàn cảnh trận chiến. Dưới ánh lửa chập chờn, ta thấy rõ cách các trưởng lão phối hợp, cách người yếu né đòn, cách kẻ mạnh truy sát.</p><p>“Tránh sang trái!” — một giọng chỉ huy vang lên, và đám đệ tử đồng loạt biến chuyển đội hình.</p><p>Từng chiêu thức, từng sơ hở — tất cả khắc sâu vào trí nhớ ta như khắc vào đá. <em class='noi-tam'>Thì ra chiến đấu là như vậy.</em></p><p>Khi trận chiến tạm lắng, ta nhảy xuống, hướng vào trong môn phái.</p><p>Ở đó, một bóng người gầy gò vừa lướt qua cửa hông, nhanh thoăn thoắt.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Đuổi theo bóng người gầy gò<div class='to'>→ c1_d17</div>
+<div class='hu'>✦ mở cờ: gap_han_lap</div>
+</li>
+</ol></div>
+<hr>
+<h3>Gặp Hàn Lập — hậu sơn Thất Huyền Môn <span class='id'>c1_d17</span></h3>
+<div class='tags'>Ảnh: hậu sơn, gặp gỡ, trăng · Video: gap_han_lap</div>
+<p>Trăng lên, ta và thanh niên ấy đứng cách nhau ba bước, giữa hậu sơn vắng lặng đến mức nghe được cả tiếng lá rơi.</p><p>“Ngươi không phải đệ tử ở đây,” — y nói, giọng không cao không thấp — “Và ngươi biết ta là ai.”</p><p>Ta khựng lại, tim đập lệch một nhịp. Y nhìn thẳng vào mắt ta, không chút sợ hãi, như thể đã nhìn thấu mọi thứ.</p><p>Trong đầu ta, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh tu tiên giới… nếu ngươi không làm hỏng mọi thứ.”</p><p><em class='noi-tam'>Hàn Lập — là hắn thật rồi.</em> Ta siết chặt tay, biết mình đang đứng trước người sẽ định đoạt vận mệnh của cả thế giới này.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Thành thật: “Ta biết tương lai của ngươi.”<div class='to'>→ c1_d17b</div>
+<div class='hu'>✦ mở cờ: tiet_lo_meta</div>
+</li>
+<li>Cười trừ: “Ta chỉ là kẻ đi đường, tình cờ ghé qua.”<div class='to'>→ c1_d17b</div>
+</li>
+<li>Hỏi ngược: “Vậy ngươi là ai?”<div class='to'>→ c1_d17b</div>
+</li>
+<li>Nói ra điều chỉ người thân thiết mới dám nói<div class='to'>→ c1_d17b</div>
+<div class='khoa'>điều kiện: {&quot;hao_cam&quot;: {&quot;Hàn Lập&quot;: 50}} — Cần hảo cảm 50+ (thân thiết) với Hàn Lập</div>
+</li>
+</ol></div>
+<hr>
+<h3>Đối thoại với Hàn Lập <span class='id'>c1_d17b</span></h3>
+<div class='tags'>Ảnh: hậu sơn, trăng, đối thoại</div>
+<p>Hàn Lập im lặng một lúc lâu, đủ để ta nghe rõ tiếng tim mình đập trong lồng ngực.</p><p>Rồi y chậm rãi nói: “Ngươi là kẻ đầu tiên nói với ta như vậy. Đa số người ở đây chỉ nhìn thấy một tạp dịch.”</p><p>“Vậy ngươi thấy ta là gì?” — ta hỏi, giọng khẽ run.</p><p>Y không đáp ngay, chỉ cúi xuống nhặt chiếc bình ngọc, cẩn thận lau sạch bùn đất bằng vạt áo.</p><p>“Ta không tin ngươi,” — cuối cùng y nói — “Nhưng ta sẽ nhớ ngươi.”</p><p><em class='noi-tam'>Không tin — nhưng nhớ.</em> Ta hiểu rằng với một kẻ như hắn, đó đã là một bước tiến hiếm hoi. Ta gật đầu, trong lòng nhẹ đi đôi phần.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>“Vậy hẹn gặp lại khi ngươi mạnh hơn.”<div class='to'>→ c1_d18</div>
+</li>
+<li>Im lặng gật đầu rồi rời đi<div class='to'>→ c1_d18</div>
+</li>
+</ol></div>
+<hr>
+<h3>Kết chương — bình minh Thất Huyền Môn <span class='id'>c1_d18</span></h3>
+<div class='tags'>Ảnh: bình minh, kết chương, núi</div>
+<p>Trời sáng. Dã Lang Bang rút lui, để lại Thất Huyền Môn tan hoang nhưng chưa gục ngã. Máu khô bám trên đá, khói còn vương trong gió, và tiếng người dọn dẹp vang lên lặng lẽ.</p><p>Hàn Lập quay người, bước vào trong sương sớm, dáng gầy gò in trên nền trời nhạt.</p><p>Trước khi khuất bóng, y nói một câu: “Gặp lại.”</p><p>Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.</p><p>Giọng nói lạnh lùng vang lên lần cuối: “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”</p><p><em class='noi-tam'>Tự chọn…</em> Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.</p>
+<div class='choice'><h4>Lựa chọn</h4><ol>
+<li>Khép lại Chương 1<div class='to'>→ __ket_thuc__</div>
+</li>
+</ol></div>
+<div class='het'>— HẾT CHƯƠNG —</div>
+<hr>
+</div></body></html>

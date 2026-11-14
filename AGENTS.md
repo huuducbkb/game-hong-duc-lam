@@ -152,15 +152,23 @@ Phiên giữ trong RAM + cookie `phien`; trạng thái đầy đủ lưu ở `da
 
 ## Bản thảo để duyệt
 
-Xuất đoạn kể của mọi chương ra văn bản để người dùng đọc:
+Xuất đoạn kể ra văn bản để người dùng đọc. **Mỗi xuất thân là một nhánh riêng →
+xuất thành FILE RIÊNG** (không nối 5 nhánh vào một file):
 
 ```bash
-python3 tools/export_ban_thao.py        # mọi chương
-python3 tools/export_ban_thao.py 1      # chỉ Chương 1
+python3 tools/export_ban_thao.py                      # mọi chương, mọi nhánh
+python3 tools/export_ban_thao.py 1                    # Chương 1, mọi nhánh
+python3 tools/export_ban_thao.py 1 --nhanh mon_phai   # CHỈ nhánh môn phái
 ```
 
-Kết quả ở `docs/ban-thao/`: `chuong1.md` (xem trên GitHub), `chuong1.html` (đọc trên Safari),
-`index.html` (mục lục). Đọc trực tiếp tại `/docs/ban-thao/index.html`.
+Mã nhánh: `tan_tu`, `mon_phai`, `duoc`, `gia_toc`, `hac_dao`.
+
+Kết quả ở `docs/ban-thao/`: `index.html` (mục lục: chương + từng nhánh),
+`chuong1-<nhánh>.html` (đọc trên Safari), `chuong1-<nhánh>.md` (xem trên GitHub).
+Đọc trực tiếp tại `/docs/ban-thao/index.html`.
+
+> **Khi đang viết 1 nhánh:** dùng `--nhanh <mã>` để chỉ xuất nhánh đó — đúng
+> nhánh đang duyệt, không lẫn các nhánh khác.
 
 ## Kế hoạch & đặc tả
 
