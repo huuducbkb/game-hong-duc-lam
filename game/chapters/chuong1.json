@@ -158,12 +158,22 @@
       "ke": "Trời sẩm tối, thị trấn Thất Huyền bỗng vắng vẻ lạ thường. Người bán hàng dọn sạp sớm, cửa nhà đóng im ỉm, chỉ còn vài đốm đèn dầu leo lét nơi góc phố.\n\nTrên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.\n\n*Không khí này… như trước bão.* Một luồng khí lạnh chạy dọc sống lưng ta, khiến ta rùng mình.\n\nRồi từ phía rừng tối ngoài trấn, một tiếng sói tru dài vang lên, ai oán đến rợn người.\n\nTa hiểu rằng mình không còn nhiều thời gian để chọn chỗ đứng.",
       "lua_chon": [
         {
-          "chu": "Lên tường thành, xem chuyện gì xảy ra",
-          "den": "c1_d05b"
+          "chu": "Lên tường thành, quan sát động tĩnh quân địch",
+          "den": "c1_d05b",
+          "hieu_ung": {
+            "co_su_kien": [
+              "thay_the_tran_dich"
+            ]
+          }
         },
         {
-          "chu": "Ở lại trong trấn, tìm nơi trú ẩn",
-          "den": "c1_d05b"
+          "chu": "Ở lại trong trấn, tìm nơi trú ẩn kín đáo",
+          "den": "c1_d05b",
+          "hieu_ung": {
+            "co_su_kien": [
+              "biet_cho_an_trong_tran"
+            ]
+          }
         }
       ]
     },
@@ -2015,11 +2025,11 @@
       "ke": "Ta khựng người, tay vẫn giấu khối ngọc trong vạt áo, rồi quay lại.\n\nMột tạp dịch già đang gánh nước ngang qua, chẳng nhìn thấy gì. Hắn liếc ta một cái rồi lặng lẽ đi tiếp.\n\n*May quá.* Ta thở phào. Khối ngọc cốt vẫn nằm trong vạt áo, lạnh buốt như có mạch đập riêng.\n\nTrong đầu ta lóe lên một ý nghĩ: thứ này có thể đổi được linh thạch — hoặc là thứ còn quý hơn cả mạng sống.",
       "lua_chon": [
         {
-          "chu": "Giấu kỹ khối ngọc, coi như chưa từng thấy",
+          "chu": "Lấy khối ngọc ra, chôn trả lại chỗ cũ — thứ này quá nguy hiểm",
           "den": "c1_p05b"
         },
         {
-          "chu": "Siết chặt vạt áo, quyết giữ nó cho riêng mình",
+          "chu": "Siết chặt vạt áo, quyết giữ khối ngọc cho riêng mình",
           "den": "c1_p05b",
           "hieu_ung": {
             "them_vat": [
@@ -2028,6 +2038,9 @@
                 "so": 1,
                 "mo_ta": "Khối ngọc đào được trong vườn dược, lạnh buốt như có mạch đập."
               }
+            ],
+            "co_su_kien": [
+              "giu_ngoc_cot"
             ]
           }
         }
