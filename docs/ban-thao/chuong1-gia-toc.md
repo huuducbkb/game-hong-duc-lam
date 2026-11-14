@@ -244,9 +244,7 @@ Ta ngẩng lên, nhận lại món đồ. *Một kẻ xa lạ… lại là ngư�
 
 Ta và hắn đi cạnh nhau một đoạn. Hắn im lặng, ta cũng im lặng.
 
-Trong đầu, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh thế gian.”
-
-*Hàn Lập.* Ta khẽ nhìn sang. Dáng vẻ gầy gò, áo vải thô, chẳng có gì đáng chú ý — vậy mà ta biết, đây là kẻ không tầm thường.
+*Hàn Lập.* Ta từng nghe tên này — tạp dịch đệ tử của Thất Huyền Môn, xuất thân nghèo khó chẳng kém gì ta. Ta khẽ nhìn sang. Dáng vẻ gầy gò, áo vải thô, chẳng có gì đáng chú ý — vậy mà bước chân hắn vững như kẻ đã quen chịu đựng.
 
 “Ngươi mất nhiều rồi,” — hắn nói, không nhìn ta — “Nhưng ngươi còn sống.”
 

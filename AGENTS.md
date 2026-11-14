@@ -235,8 +235,31 @@ tu luyện. Cơ duyên KHÔNG được rơi vào tay người chơi một cách 
 2. **Đi tìm** — nhân vật phải CHỦ ĐỘNG tới nơi (có lựa chọn đi / không đi).
 3. **Thử thách** — cơ duyên thử lòng (xương khô kẻ tới trước, câu hỏi, đánh đổi).
    Cho thấy nguy hiểm là THẬT, người khác đã chết vì nó.
-4. **Nhận** — cơ duyên chọn chủ (có lý do: linh hồn xuyên không sạch/lạ…) → sau đó
-   mới **tu luyện** và **kết chương**.
+4. **Nhận** — cơ duyên chọn chủ (có lý do). **Lý do tùy nhánh:**
+   - **Nhánh xuyên không** (tán tu, môn phái): linh hồn "sạch/lạ" vì không thuộc
+     thế giới này.
+   - **Nhánh bản địa** (dược đồng, gia tộc, hắc đạo): lý do **trong thế giới** —
+     tay nghề, huyết mạch tổ tiên, sát khí/kinh nghiệm giang hồ. KHÔNG dùng lý do
+     "linh hồn xuyên không".
+   → sau đó mới **tu luyện** và **kết chương**.
+
+## HỆ THỐNG & BÍ MẬT XUYÊN KHÔNG (BẮT BUỘC)
+
+- **Chỉ 2 nhánh xuyên không** (tán tu, môn phái) mới có **HỆ THỐNG** + biết mình
+  xuyên không. Ba nhánh **bản địa** (dược đồng, gia tộc, hắc đạo) **KHÔNG có hệ
+  thống**, KHÔNG biết gì về xuyên không.
+- **Giọng hệ thống** luôn viết đúng định dạng: `👁️‍🗨️ 【Hệ thống】“…”`
+  Lần đầu xuất hiện (`c1_d01`, `c1_p01`) phải **giới thiệu rõ**: dòng chữ lơ lửng
+  `👁️‍🗨️ 【 Hệ Thống · Nghịch Chuyển Càn Khôn 】 đã kích hoạt.` + giọng máy móc
+  "Từ nay ta là hệ thống của ngươi" + người chơi liên tưởng tới trò chơi ở thế giới cũ.
+  KHÔNG viết kiểu mơ hồ ("giọng nói lạnh lùng vang lên") khiến người đọc tưởng độc thoại.
+- **Xuyên không là BÍ MẬT.** Người chơi **không tự khai** với người bản địa.
+  Người bản địa có thể **cảm nhận hồn phách khác thường** (Tuyết Cơ, kiếm linh) —
+  nhưng **không biết** "xuyên không" là gì. Người chơi né tránh ("không nhớ rõ").
+- Từ **"xuyên không"** chỉ xuất hiện trong **suy nghĩ nội tâm** người chơi, KHÔNG
+  trong lời thoại với người bản địa.
+- Nhân vật bản địa **không có kiến thức meta** (không biết tương lai Hàn Lập).
+  Chỉ biết Hàn Lập qua **quan sát/lời đồn** trong thế giới.
 
 | Nhánh | Cơ duyên | Cơ chế | Kết chương 1 |
 |---|---|---|---|

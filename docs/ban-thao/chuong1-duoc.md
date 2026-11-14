@@ -273,9 +273,9 @@ Phía trước, một bóng người gầy gò đang đứng tựa cột, tay ô
 
 Ta băng lại vết thương cho hắn. Hắn không kêu một tiếng, chỉ lặng lẽ nhìn ta làm việc.
 
-Trong đầu, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh thế gian.”
+*Hàn Lập.* Ta biết hắn — tạp dịch đệ tử của Thất Huyền Môn, gầy gò, ít nói, thỉnh thoảng lên hiệu thuốc lĩnh thuốc cho các sư huynh. Chẳng ai để ý tới hắn. Nhưng ta để ý — vì mỗi lần cầm gói thuốc, mắt hắn lại sáng lên một cách lạ thường.
 
-*Hàn Lập.* Tay ta khựng lại một nhịp, rồi tiếp tục buộc dây.
+Tay ta khựng lại một nhịp, rồi tiếp tục buộc dây.
 
 “Ngươi băng không tệ,” — hắn nói, giọng đều đều — “Nhưng ngươi run.”
 
