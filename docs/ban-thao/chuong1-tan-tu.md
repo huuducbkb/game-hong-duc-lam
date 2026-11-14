@@ -3,7 +3,7 @@
 
 > **Tóm tắt:** Người chơi xuyên không tới Thất Huyền trấn ngay trước khi Dã Lang Bang tập kích Thất Huyền Môn. Trong hỗn loạn, lần đầu chạm mặt Hàn Lập — khi đó còn là một tạp dịch đệ tử gầy gò, ít nói.
 
-*Nhánh này gồm 23 đoạn.*
+*Nhánh này gồm 20 đoạn.*
 
 ---
 
@@ -11,570 +11,492 @@
 
 ### Đoạn `c1_d01` — Chợ sớm Thất Huyền trấn
 
-*Ảnh:* `chợ, thị trấn, buổi sáng`
+*Ảnh:* `chợ, ăn mày, sáng`
 
-Ta mở mắt giữa buổi chợ sớm của thị trấn Thất Huyền. Mùi thuốc bắc nồng nặc xộc vào mũi, lẫn với tiếng mặc cả ồn ào và tiếng ngựa hí vang đâu đó phía xa.
+Ta mở mắt giữa một góc chợ, lưng tựa vào bức tường lạnh, trước mặt là mấy chiếc sọt rách. Mùi thuốc bắc, mùi cá khô, mùi người chen chúc xộc vào mũi. Tiếng mặc cả ồn ào, tiếng ngựa hí, tiếng trẻ con khóc vang lên chát chúa.
 
-*Đây… là đâu?* Ta cố nhớ lại, nhưng ký ức hỗn độn như nước đục, không móc nối được gì.
+*Đây… là đâu?* Ta cố nhớ, nhưng ký ức hỗn độn như nước đục — chỉ còn một hình ảnh mờ của màn hình máy tính và tiếng còi xe ngoài cửa sổ.
 
-Trên tay ta là một mảnh ngọc vụn còn ấm, và trong đầu vang lên một giọng nói lạnh lùng: “Nghịch chuyển càn khôn… đã bắt đầu.” Ta nghiến răng.
+“Tránh ra! Tránh ra!” — một gã phu khuân vác quát, suýt giẫm lên chân ta.
 
-*Thân thể này không phải của ta* — nhưng ta đang sống trong nó, bằng xương bằng thịt.
+Ta lồm cồm bò dậy. Hai bàn tay ta chai sạn, móng đen kịt, quần áo vá chằng vá đụp. *Thân thể này không phải của ta.* Ký ức của nó ùa về từng mảnh: một kẻ ăn mày vô danh, không cha mẹ, không tông môn, sống nhờ lòng thương hại của người qua đường ở Thất Huyền trấn.
 
-Phía xa, một thanh niên gầy gò, áo vải thô, lặng lẽ quan sát gánh hàng thuốc. Ánh mắt y sắc như dao, khiến tim ta khẽ đập nhanh — *kẻ này không tầm thường.*
+Trong đầu ta, một giọng nói lạnh lùng vang lên: *“Nghịch chuyển càn khôn… đã bắt đầu.”*
+
+Ta nghiến răng, đè nén cơn choáng. *Ta xuyên không rồi. Vào thân xác kẻ thấp nhất trong cái trấn này.*
+
+Ta đếm những gì mình có: vài đồng bạc lẻ trong túi rách, một mạng người chưa biết dùng thế nào, và một giọng nói xa lạ vừa cất lên trong đầu.
 
 **Lựa chọn:**
 
-- Lặng lẽ bám theo thanh niên áo vải  
-  → `c1_d02`  
-  ✦ mở cờ: nghi_ngo_han_lap
-- Chen vào đám đông, dò hỏi chuyện Dã Lang Bang  
+- Lê bước tới ngõ sau chợ, tìm đám ăn mày  
+  → `c1_d02`
+
+---
+
+### Đoạn `c1_d02` — Ngõ nhỏ sau chợ — lời đồn
+
+*Ảnh:* `ngõ, đói, tin tức`
+
+Ta lê bước vào ngõ nhỏ sau chợ, nơi đám ăn mày tụ tập quanh đống lửa nhỏ. Bụng ta đói cồn cào, nhưng cái đói chưa bằng nỗi sợ đang lớn dần trong lòng.
+
+“Mấy ngày nữa Dã Lang Bang đánh tới,” — một lão ăn mày què chân lẩm bẩm. “Ta nghe đám buôn nói vậy. Chúng dòm ngó Thất Huyền Môn mấy tháng rồi.”
+
+“Đánh nhau thì ăn mày như ta chết trước,” — gã khác cười gằn. “Mà biết đâu, loạn lạc lại có đồ nhặt.”
+
+*Loạn lạc lại có đồ nhặt.* Câu nói ấy khiến tim ta khẽ động. Nhưng ta còn yếu hơn cả ăn mày bình thường — không võ công, không ai chống lưng.
+
+Rồi lão què hạ giọng, kể chuyện khác: “Nghe nói sau núi có cái miếu hoang. Trong đó có một cái hộp kiếm cũ. Ai chạm vào đều phát bệnh, có kẻ chết luôn. Mấy năm nay không ai dám lại gần.”
+
+*Miếu hoang… hộp kiếm.* Ta nhíu mày. Trong đầu, giọng nói lạnh lùng vang lên: *“Cơ duyên nằm nơi người khác tránh.”*
+
+Ta nuốt khan. *Ba ngày. Ta có ba ngày trước khi trận chiến ập tới.*
+
+**Lựa chọn:**
+
+- Tới miếu hoang sau núi, xem thử  
   → `c1_d03`
-- Tìm quán trọ, ẩn mình chờ thời  
-  → `c1_d04` *(điều kiện: {"bac": 1})* — *khoá: Cần ít nhất 1 lượng bạc để thuê phòng*  
-  ✦ bạc -1; sinh lực +5
+- Ở lại trấn, kiếm ăn qua ngày cho an toàn  
+  → `c1_d02b`
 
 ---
 
-### Đoạn `c1_d02` — Ngõ nhỏ sau chợ
+### Đoạn `c1_d02b` — Góc chợ — một ngày mòn mỏi
 
-*Ảnh:* `ngõ nhỏ, thị trấn`
+*Ảnh:* `chợ, chiều, quyết định`
 
-Ta theo y vào một ngõ nhỏ, nơi ánh nắng không lọt tới. Thanh niên ấy dừng trước sạp thuốc, cẩn thận chọn từng củ thảo dược, trả giá chặt chẽ đến mức lão chủ sạp phải nhăn mặt.
+Ta quyết định ở lại trấn, bám lấy những gì quen thuộc. Một ngày dài ta bò khắp các góc chợ, xin ăn, nhặt nhạnh từng thứ người ta bỏ đi.
 
-*Người này tiết kiệm đến lạ.*
+Nhưng hôm ấy người ta bận rộn lo chuyện Dã Lang Bang, chẳng ai buồn bố thí. Ta chỉ kiếm được nửa ổ bánh mốc và một trận mắng.
 
-Y không quay đầu, nhưng giọng nói vang lên đúng lúc ta định bước tới: “Đi theo ta làm gì?”
+*Ở lại đây, ta chỉ chờ chết.* Ta ngồi bệt xuống, nhìn bầu trời chiều ngả màu.
 
-Ta giật mình, toan mở miệng. “Ta không thích kẻ lạ bám đuôi,” — y nói tiếp, vẫn không nhìn ta — “Nhất là kẻ không có tu vi.”
+Giọng nói lạnh lùng vang lên: *“Cơ duyên không tự tới. Phải đi tìm.”*
 
-*Y nhìn ra ta yếu ớt chỉ trong một cái liếc.* Ta siết chặt mảnh ngọc trong tay, biết mình không thể giả vờ được nữa.
+Ta siết nắm tay, nhớ tới lời lão què về cái miếu hoang sau núi. *Miếu hoang. Hộp kiếm.*
 
-Ta lần theo con ngõ nhỏ trở ra. Chợ đã tan tự lúc nào, và nắng chiều tắt dần sau những mái nhà.
+Trời sẩm tối, ta đứng dậy, lặng lẽ bước về phía con đường mòn dẫn lên núi.
 
 **Lựa chọn:**
 
-- Thú nhận mình là kẻ mới tới, xin hỏi đường  
-  → `c1_d05`  
-  ✦ thần niệm +1
-- Giả vờ hỏi mua thuốc để che mắt  
+- Đi lên núi, tới miếu hoang  
+  → `c1_d03`
+
+---
+
+### Đoạn `c1_d03` — Đường mòn lên núi — chạng vạng
+
+*Ảnh:* `đường mòn, hoàng hôn, hẻo lánh`
+
+Con đường mòn dẫn lên núi hẹp và dốc, hai bên là cỏ dại cao quá đầu. Trời nhá nhem, tiếng dế kêu rả rích, thỉnh thoảng có tiếng chim đêm vỗ cánh khiến ta giật mình.
+
+Ta đi một mình. Không ai tiễn, không ai cản. *Kẻ ăn mày như ta, chết trên núi cũng chẳng ai hay.*
+
+Càng lên cao, không khí càng lạnh. Trước mặt, một ngôi miếu nhỏ hiện ra trong sương — mái ngói vỡ, cột gỗ mục, cửa mở toang như cái miệng đen.
+
+Trong miếu, ta thoáng thấy một vật gì đó phản chiếu ánh trăng — một cái hộp dài, phủ bụi dày.
+
+*Đó là nó.* Tim ta đập nhanh. Nhưng chân ta lại khựng lại. Lời đồn về kẻ chạm vào rồi chết vẫn vang trong đầu.
+
+Giọng nói lạnh lùng vang lên: *“Sợ, thì quay về. Chọn.”*
+
+**Lựa chọn:**
+
+- Bước thẳng vào, chạm vào hộp kiếm  
   → `c1_d05`
+- Đứng ngoài quan sát trước đã  
+  → `c1_d04`
 
 ---
 
-### Đoạn `c1_d03` — Gánh hàng rong ven chợ
+### Đoạn `c1_d04` — Ngoài miếu — quan sát
 
-*Ảnh:* `chợ, đám đông`
+*Ảnh:* `miếu, quan sát, căng thẳng`
 
-Ta ghé vào một gánh hàng rong, giả vờ hỏi giá rồi khéo léo dẫn chuyện. Lão bán hàng thoạt đầu chỉ ừ hử, nhưng khi ta nhắc tới Dã Lang Bang, tay lão khựng lại.
+Ta đứng ngoài, nín thở quan sát. Dưới ánh trăng nhạt, ta thấy trên nền miếu có mấy bộ xương khô, áo quần mục nát — kẻ từng tới đây và không đi ra.
 
-“Dã Lang Bang à?” — lão hạ giọng, mắt liếc quanh — “Lũ đó hung hãn lắm.”
+Bên cạnh chúng, ta thấy những vết cào trên vách gỗ, sâu hoắm, như ai đó tuyệt vọng cào trước khi chết.
 
-Lão kể rằng chúng đã dòm ngó Thất Huyền Môn suốt mấy tháng, mà môn phái ấy nào có dễ chọc. *Vậy là ta xuyên tới đúng lúc sóng gió nổi lên.*
+*Không phải ma quái.* Ta nhíu mày. *Là hộp kiếm này… từ chối kẻ chạm vào nó.*
 
-“Mà ngươi hỏi làm gì?” — lão đột ngột nhìn thẳng vào ta — “Đừng dính vào, kẻo mất mạng.”
+Giọng nói lạnh lùng vang lên: *“Kiếm có linh. Kẻ không xứng, chết. Kẻ xứng…”*
 
-Lão lắc đầu rồi quay đi, như sợ bị ai nghe thấy. Ta đứng lại, trong lòng dấy lên một nỗi bất an khó gọi thành tên.
+Ta nhìn cái hộp dài phủ bụi, rồi nhìn đôi bàn tay chai sạn của mình. *Ta có gì để mất đâu.*
 
-Ta lang thang khắp chợ cho tới khi nắng nhạt. Không ai còn muốn nói thêm điều gì, và trời thì đã về chiều.
+Ta hít sâu, bước qua đám xương khô, tiến tới cái hộp.
 
 **Lựa chọn:**
 
-- Hỏi thêm về Thất Huyền Môn  
-  → `c1_d05`  
-  ✦ mở cờ: biet_tin_da_lang_bang
-- Cảm ơn rồi rời đi  
+- Quỳ xuống, chạm vào nắp hộp  
   → `c1_d05`
-
----
-
-### Đoạn `c1_d04` — Quán trọ Phúc Lai
-
-*Ảnh:* `quán trọ, trong nhà, đèn dầu`
-
-Ta thuê một gian phòng nhỏ trên gác, trả một viên bạc. Vừa đặt lưng, ta đã nghe tiếng bước chân dồn dập ngoài hành lang và những giọng nói nén xuống.
-
-“Chúng nó tập trung ở ngoại thành… đêm nay động thủ.”
-
-*Đêm nay sao?* — ta lặng người, toàn thân lạnh toát.
-
-Ta nắm chặt mảnh ngọc vụn trong tay, và nó bỗng ấm lên một cách kỳ lạ, như có ai đáp lại lời ta. *Mảnh ngọc này rốt cuộc là gì?*
-
-Ngoài kia, tiếng bước chân xa dần, để lại căn phòng lạnh lẽo và một nỗi bất an chưa từng có.
-
-Ta nằm vật xuống, nhưng không sao chợp mắt. Khi ta ngồi dậy mở cửa sổ, bên ngoài trời đã sẩm tối.
-
-**Lựa chọn:**
-
-- Lắng nghe kỹ câu chuyện ngoài hành lang  
-  → `c1_d05`  
-  ✦ thần niệm +1; mở cờ: biet_tin_da_lang_bang
-- Nghỉ ngơi, giữ sức  
-  → `c1_d05`  
-  ✦ sinh lực +5
-
----
-
-### Đoạn `c1_d05` — Trấn Thất Huyền, chạng vạng
-
-*Ảnh:* `thị trấn, hoàng hôn, căng thẳng`
-
-Trời sẩm tối, thị trấn Thất Huyền bỗng vắng vẻ lạ thường. Người bán hàng dọn sạp sớm, cửa nhà đóng im ỉm, chỉ còn vài đốm đèn dầu leo lét nơi góc phố.
-
-Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.
-
-*Không khí này… như trước bão.* Một luồng khí lạnh chạy dọc sống lưng ta, khiến ta rùng mình.
-
-Rồi từ phía rừng tối ngoài trấn, một tiếng sói tru dài vang lên, ai oán đến rợn người.
-
-Ta hiểu rằng mình không còn nhiều thời gian để chọn chỗ đứng.
-
-**Lựa chọn:**
-
-- Lên tường thành, quan sát động tĩnh quân địch  
-  → `c1_d05b`  
-  ✦ mở cờ: thay_the_tran_dich
-- Ở lại trong trấn, tìm nơi trú ẩn kín đáo  
-  → `c1_d05b`  
-  ✦ mở cờ: biet_cho_an_trong_tran
-
----
-
-### Đoạn `c1_d05b` — Đêm buông, chuẩn bị đối phó
-
-*Ảnh:* `thị trấn, đêm, im lặng`
-
-Đêm buông xuống thật nhanh, nhanh hơn ta tưởng. Ta kiểm lại trong người — không vũ khí, không pháp bảo, chỉ có mảnh ngọc vụn và chút bạc ít ỏi.
-
-*Với chừng này, ta khác nào tấm bia sống.*
-
-Một cảm giác lạnh chạy dọc gáy khi tiếng gầm gừ từ xa mỗi lúc một gần.
-
-Bên tai, giọng nói lạnh lùng lại thì thầm: “Kẻ sống sót không phải kẻ mạnh nhất, mà là kẻ biết đứng đúng chỗ.”
-
-Ta hít sâu một hơi, siết chặt tay, biết mình phải chọn chỗ đứng trước khi mọi chuyện vỡ ra.
-
-**Lựa chọn:**
-
-- Tiến lên phía tường thành, nơi đông người  
-  → `c1_d06`
-- Nấp ở nơi khuất, quan sát trước  
-  → `c1_d07`
 
 ---
 
 ## Hồi Thân
 
-### Đoạn `c1_d06` — Tường thành phía bắc
+### Đoạn `c1_d05` — Trong miếu — chạm vào hộp kiếm
 
-*Ảnh:* `tường thành, đêm, canh gác`
+*Ảnh:* `hộp kiếm, cơ duyên, run rẩy`
 
-Ta lách qua đám đông đang náo loạn, trèo lên bậc thang đá dẫn tới tường thành. Một đệ tử trẻ tuổi chặn ta lại: “Đứng lại! Ngươi là ai?”
+Ta quỳ xuống trước cái hộp dài, phủi lớp bụi dày. Đó là một cái hộp gỗ đen, khắc những đường vân lạ, nặng hơn ta tưởng.
 
-Ta nhìn thẳng vào mắt hắn, không đổi sắc. Hắn ngập ngừng một lát rồi lùi sang: “...Thôi được, đừng gây chuyện.”
+Ngón tay ta run run chạm vào nắp. Ngay khoảnh khắc ấy, một luồng lạnh buốt chạy dọc cánh tay, như có thứ gì đó đang dò xét ta từ bên trong.
 
-Trên cao, ta thấy rõ đội hình Dã Lang Bang dàn ra ngoài trấn — đen kịt, kéo dài tới tận rìa rừng.
+Ta muốn rụt tay lại, nhưng không kịp — nắp hộp tự bật mở, ánh sáng trắng lóe lên, chói đến mức ta phải nhắm mắt.
 
-“Dã Lang Bang đấy,” — hắn thì thào bên cạnh ta — “chúng kéo tới mấy trăm người. Không biết Thất Huyền Môn giữ nổi không.”
+Khi mở mắt ra, trước mặt ta là hai thanh kiếm nằm song song — một dài, một ngắn — lưỡi kiếm sáng như gương, không hề gỉ sét dù nằm trong miếu hoang bao năm.
 
-*Mấy trăm người…* Ta nuốt khan, tự hỏi mình đã lạc vào chuyện gì.
+Và rồi, một giọng nói vang lên — không phải trong đầu ta, mà từ chính hai thanh kiếm: “Ngươi… khác bọn chúng.”
 
 **Lựa chọn:**
 
-- Quan sát đội hình Dã Lang Bang từ trên cao  
-  → `c1_d08`  
-  ✦ thần niệm +2; mở cờ: thay_da_lang_bang
+- Lùi lại, hỏi: “Ngươi là ai?”  
+  → `c1_d06`
+- Im lặng, chờ đợi xem nó nói gì  
+  → `c1_d06`
 
 ---
 
-### Đoạn `c1_d07` — Kho lương phía nam
+### Đoạn `c1_d06` — Kiếm linh hiện hình
 
-*Ảnh:* `kho, tối, ẩn nấp`
+*Ảnh:* `kiếm linh, bí ẩn, đối thoại`
 
-Ta tìm được một góc khuất trong kho lương cũ, nơi có thể nghe rõ mọi động tĩnh mà vẫn an toàn. Qua khe cửa, ta thấy vài bóng người lén lút chuyển từng bao tải ra ngoài.
+Hai thanh kiếm khẽ rung lên, và từ giữa chúng, một bóng người mờ ảo hiện ra. Đó là một thanh niên áo trắng, mặt lạnh như băng, mắt sáng như kiếm quang. Y đứng đó, nhưng ta biết y không phải người sống.
 
-Không phải đệ tử môn phái — áo chúng có thêu hình đầu sói. *Kẻ nội gián…* Tim ta đập mạnh.
+“Ta là kiếm linh Hồng Trần,” — y nói, giọng lạnh và ngắn — “Kẻ giữ cặp kiếm này đã chết ngàn năm. Ta chờ người kế tiếp.”
 
-“Nhanh lên, trước khi trời sáng!” — một tên thúc giục, giọng khàn khàn.
+*Kiếm linh.* Ta nuốt khan. Đây không phải thứ ta gặp mỗi ngày.
 
-Chúng chuyển bao tải cuối cùng rồi biến mất trong bóng tối.
+“Bao nhiêu kẻ đã tới đây,” — y nói tiếp, mắt quét qua đám xương khô — “Nhưng linh hồn chúng quá ô trọc. Kiếm không nhận.”
 
-Ta nín thở, trong đầu chỉ còn một ý nghĩ: *chuyện này phải báo cho ai đó.*
+Y nhìn thẳng vào ta. “Còn ngươi… linh hồn ngươi không thuộc về thế giới này. Nó sạch, và nó lạ. Đó là lý do ngươi còn sống.”
+
+*Y nhận ra ta xuyên không.* Ta siết chặt tay, không biết nên sợ hay nên mừng.
 
 **Lựa chọn:**
 
-- Bám theo bọn chúng, xem chúng làm gì  
-  → `c1_d08`  
-  ✦ thần niệm +1; mở cờ: thay_gian_te
-- Quay lại báo cho đệ tử canh gác  
-  → `c1_d08`  
-  ✦ mở cờ: thay_gian_te
+- Hỏi thẳng: “Ngươi muốn gì ở ta?”  
+  → `c1_d07`
+- Cảnh giác: “Ta không dại mà tin ngươi.”  
+  → `c1_d06b`
 
 ---
 
-### Đoạn `c1_d08` — Trận địa trước cổng môn
+### Đoạn `c1_d06b` — Kiếm linh — thử thách
 
-*Ảnh:* `chiến trận, cổng môn phái, đêm`
+*Ảnh:* `cảnh giác, thử thách, kiếm`
 
-Một tiếng nổ lớn rung chuyển trấn nhỏ. Cổng lớn Thất Huyền Môn bị đánh bật khỏi bản lề, bụi đá mù mịt. Hàng trăm bóng người áo da thú tràn vào, gầm gừ như dã thú.
+“Tin ngươi?” — ta cười gằn. “Ta mới xuyên tới đây, chưa gì đã tin một con ma trong miếu hoang?”
 
-“Giữ vững đội hình!” — một trưởng lão quát vang, đạo bào phần phật trong gió.
+Kiếm linh không giận. Y chỉ đưa tay, và thanh kiếm ngắn khẽ bay lên, xoay một vòng rồi dừng lại trước mặt ta, mũi kiếm chúc xuống.
 
-Trên tường thành, các đạo sĩ đồng loạt xuất thủ — linh quang xanh lục và vàng kim chém xuống như mưa.
+“Kiếm này,” — y nói — “Nếu ta muốn giết ngươi, ngươi đã chết từ lúc chạm vào hộp. Kiếm đã nhận ngươi — ta không thể đổi ý.”
 
-Ta đứng giữa hai làn sóng người, và không có đường lui.
+Ta nhìn thanh kiếm lơ lửng, sống lưng lạnh toát. Y nói đúng. Nếu muốn hại, ta đã không còn đứng đây.
 
-*Chạy hay ở lại?* — câu hỏi xé toạc đầu óc ta khi một gã áo da sói lao thẳng tới.
+Ta thở dài, buông vai xuống. “Được. Nói đi. Ngươi muốn gì?”
 
 **Lựa chọn:**
 
-- Xông vào đám hỗn chiến, tìm cơ hội  
-  → `c1_d08b`  
-  ✦ mở cờ: tham_gia_dai_chien
-- Vòng ra sườn, cứu người bị thương  
-  → `c1_d08b`  
-  ✦ sinh lực -3; mở cờ: cuu_nguoi
+- Nghe y nói rõ thân phận và điều kiện  
+  → `c1_d07`
 
 ---
 
-### Đoạn `c1_d08b` — Cổng môn vỡ — khoảnh khắc quyết định
+### Đoạn `c1_d07` — Kiếm linh giới thiệu thân phận
 
-*Ảnh:* `cổng vỡ, hỗn loạn, linh quang`
+*Ảnh:* `kiếm linh, thân phận, hồng trần`
 
-Cổng lớn đổ sập, bụi đá mù mịt cả một vùng. Tiếng gầm thét và tiếng kim loại chạm nhau trộn thành một mớ hỗn độn không thể phân biệt.
+“Ta là kiếm linh của Hồng Trần Kiếm,” — y bắt đầu, giọng đều đều — “Cặp kiếm này thuộc về một kiếm tu đã ngã xuống ngàn năm trước. Trước khi chết, y phong ấn kiếm vào hộp này, chờ người kế thừa.”
 
-Ta ép sát lưng vào bức tường còn sót lại, thở dốc, ngực đau nhói.
+“Hồng Trần… là gì?” — ta hỏi.
 
-Một đệ tử ngã gục ngay trước mặt ta, mắt còn mở trừng trừng. “Cứu... cứu ta...” — hắn thều thào, rồi im bặt.
+“Hồng trần là bụi trần,” — y nói — “Cặp kiếm này hấp thu hồng trần — sinh tử, vui buồn, máu và nước mắt của chúng sinh. Kiếm càng trải, càng sắc. Kẻ cầm kiếm phải đi giữa hồng trần, chứ không ẩn tu nơi tiên cảnh.”
 
-*Ta chỉ có vài nhịp thở.* Phải quyết định ngay: xông vào đám hỗn chiến, hay vòng ra sườn tìm đường sống.
+Ta nhíu mày. “Ta là ăn mày. Ta có gì đâu mà tu?”
 
-Ta cắn răng, đưa mắt nhìn cả hai phía, biết rằng chọn sai một bước là mất tất cả.
+“Ngươi có mạng,” — y đáp gọn — “Và ngươi có ta. Ta dạy ngươi kiếm đạo. Ngươi cho ta mượn thân xác để trở lại hồng trần. Một đổi một.”
+
+Giọng nói lạnh lùng vang lên trong đầu: *“Cơ duyên tới. Nắm, hay buông?”*
 
 **Lựa chọn:**
 
-- Xông thẳng vào đám hỗn chiến  
-  → `c1_d09`
-- Vòng ra sườn, tìm chỗ ít người  
-  → `c1_d10`
+- Nghiến răng: “Ta nhận.”  
+  → `c1_d08`
+- Do dự: “Ta cần biết rõ điều kiện.”  
+  → `c1_d07b`
 
 ---
 
-### Đoạn `c1_d09` — Giữa vòng hỗn chiến
+### Đoạn `c1_d07b` — Điều kiện nhận chủ
 
-*Ảnh:* `hỗn chiến, vũ khí, máu`
+*Ảnh:* `kiếm linh, điều kiện, hồng trần`
 
-Ta bị cuốn vào dòng người như một chiếc lá giữa dòng nước xoáy. Một gã áo da sói vung đao chém tới — ta nghiêng người né, lưỡi đao sượt qua mặt, rát bỏng.
+“Ta cần biết rõ,” — ta nói — “Ngươi đòi gì ở ta?”
 
-“Chết đi!” — hắn gào lên rồi lại vung đao, mắt đỏ ngầu.
+“Ta đòi ngươi đi giữa hồng trần,” — y đáp — “Kiếm này không thể tu trong hang động. Ngươi càng lăn lộn, càng sống chết, kiếm càng mạnh. Ngược lại — ngươi nhát gan, ẩn mình, kiếm sẽ bỏ ngươi mà đi.”
 
-Trong khoảnh khắc ấy, ta nhận ra: thân thể này tuy yếu, nhưng phản xạ nhanh hơn người thường. Mảnh ngọc trong tay ta nóng ran như than hồng. *Nó đang giúp ta?*
+“Nếu ta chết thì sao?”
 
-Phía trước, một thanh niên gầy gò đang bị ba gã bao vây — y không hề lùi, ánh mắt vẫn lạnh băng.
+“Thì ta lại ngủ, chờ kẻ khác.” — Y nhìn thẳng vào ta — “Nhưng ngươi sẽ không chết dễ vậy. Ta dạy ngươi cách sống.”
 
-Ta nhận ra ngay: chính là hắn, người ở ngõ nhỏ.
+Ta cúi đầu nhìn đôi tay chai sạn. *Kẻ ăn mày vô danh… hay một kiếm tu đi giữa hồng trần?* Nếu từ chối, ta vẫn là kẻ chờ chết trong góc chợ.
+
+Ta ngẩng lên. “Được.”
 
 **Lựa chọn:**
 
-- Xông tới hỗ trợ thanh niên áo vải  
+- Đưa tay ra, nhận chủ  
+  → `c1_d08`
+
+---
+
+### Đoạn `c1_d08` — Nhận chủ
+
+*Ảnh:* `nhận chủ, khế ước, kiếm`
+
+Ta đưa tay ra. Kiếm linh không chạm vào ta — y chỉ khẽ nâng cằm, và thanh kiếm ngắn tự bay tới, lưỡi kiếm rạch một đường mảnh trên lòng bàn tay ta.
+
+Máu nhỏ xuống hai thanh kiếm. Lưỡi kiếm sáng rực lên, rồi máu thấm vào, biến mất như bị nuốt chửng.
+
+Một luồng khí lạnh chạy dọc cánh tay ta, rồi lan khắp người. Ta nghiến răng chịu đau, nhưng rồi cơn đau tan biến, thay bằng một cảm giác sắc bén lạ thường — như thể tay ta vừa có thêm một giác quan mới.
+
+“Xong rồi,” — kiếm linh nói — “Từ giờ, hai thanh kiếm này là của ngươi. Một dài một ngắn — trường kiếm giết địch, đoản kiếm hộ mệnh. Học cách dùng cả hai cùng lúc.”
+
+Ta siết chuôi kiếm. *Ta có vũ khí. Nhưng ta còn quá yếu để dùng nó.*
+
+“Nghỉ đi,” — y nói — “Đêm nay, ta dạy ngươi bài đầu tiên.”
+
+**Lựa chọn:**
+
+- Ngồi xuống, nghe y dạy kiếm đạo  
+  → `c1_d09`  
+  ✦ mở cờ: co_kiem_hong_tran; nhận: Hồng Trần Kiếm Hạp
+
+---
+
+### Đoạn `c1_d09` — Tu luyện kiếm đạo — đêm đầu
+
+*Ảnh:* `tu luyện, kiếm khí, miếu hoang`
+
+Đêm ấy, trong miếu hoang, ta ngồi đối diện kiếm linh. Y không dạy ta múa kiếm như võ phu — y dạy ta cách đưa khí vào lưỡi kiếm.
+
+“Hít vào,” — y nói — “Rồi đẩy khí xuống tay, xuống chuôi, xuống mũi kiếm. Kiếm là một phần thân thể ngươi.”
+
+Ta làm theo. Lần đầu, lưỡi kiếm chỉ khẽ rung. Lần thứ mười, ta cảm nhận được một luồng ấm chảy vào kim loại lạnh.
+
+“Kẻ khác phải mất ba năm mới cảm được kiếm khí,” — y nói — “Nhưng ngươi có ta, và ngươi có cặp kiếm linh. Nhanh hơn nhiều.”
+
+Đúng như lời y, một luồng khí lạnh chảy qua kinh mạch ta, rồi tụ lại nơi đan điền. *Thì ra tu luyện là thế này.*
+
+Ta nhắm mắt, dồn hết tâm trí. Mồ hôi ướt đẫm lưng áo, nhưng ta không dừng.
+
+Khi trời sáng, ta mở mắt, và cảm nhận được một sức mạnh mới trong từng nhịp thở — thứ sức mạnh mà bao năm ăn mày ta chưa từng có.
+
+**Lựa chọn:**
+
+- Tiếp tục tu luyện theo lời kiếm linh  
+  → `c1_d10`  
+  ✦ tu vi +90; học: Hồng Trần kiếm khí
+
+---
+
+### Đoạn `c1_d10` — Đột phá Luyện Khí
+
+*Ảnh:* `tu luyện, đột phá, bí mật`
+
+Ba ngày sau, ta đã không còn là kẻ ăn mày chỉ biết co ro. Kiếm linh dạy ta từng chút, nghiêm khắc như một sư phụ thực thụ.
+
+“Ngươi lên tầng rồi,” — y nói, giọng có chút ngạc nhiên — “Nhanh hơn ta tưởng. Cặp kiếm này… đúng là chọn đúng người.”
+
+Ta cảm nhận được kiếm khí chảy mạnh hơn trong kinh mạch. Sức mạnh tăng lên từng ngày — không nhiều, nhưng đủ để ta thấy mình đã khác trước.
+
+“Nhưng nghe cho kỹ,” — y nói, giọng nghiêm lại — “Đây là phàm trần. Người thường không tu tiên. Nếu ngươi lộ kiếm khí trước mặt người khác, ngươi sẽ bị coi là yêu nhân mà giết.”
+
+*Ta biết.* Ta khẽ gật đầu.
+
+“Ba ngày nữa Dã Lang Bang tới,” — y nói thêm — “Ngươi chưa đủ mạnh để thắng, nhưng đủ để sống. Nhớ: cặp kiếm này là bí mật của ngươi.”
+
+Đêm ấy, ta luyện tới tận khuya, cho tới khi cảnh giới Luyện Khí tầng ba vững vàng trong người.
+
+**Lựa chọn:**
+
+- Nắm chắc thực lực mới, chờ biến cố  
   → `c1_d11`  
-  ✦ tu vi +8; sinh lực -5; mở cờ: giup_han_lap
-- Lùi lại, giữ mạng trước đã  
-  → `c1_d11`  
-  ✦ sinh lực -1
+  ✦ tu vi +135
 
 ---
 
-### Đoạn `c1_d10` — Sườn đông, nơi tạm trú thương binh
+### Đoạn `c1_d11` — Dã Lang Bang tập kích
 
-*Ảnh:* `thương binh, cứu người, lửa`
+*Ảnh:* `tập kích, lửa, biến cố`
 
-Ta kéo một đệ tử trúng đao vào chỗ khuất, băng vết thương bằng vải áo. “Ngươi... không phải người của môn phái này,” — hắn thều thào, mắt mờ đi vì đau — “Sao lại giúp?”
+Đêm thứ tư, ta đang ngồi điều tức trong miếu thì tiếng tù và vang lên từ phía trấn. Ta mở bừng mắt.
 
-“Vì ta cũng chẳng còn chỗ nào để đi,” — ta đáp, tự thấy câu trả lời ấy thật lạ.
+*Đến rồi.*
 
-Trước khi hắn kịp nói thêm, một bóng người gầy gò lướt qua — nhanh như mèo, hướng thẳng vào hậu trận Dã Lang Bang. Trên lưng y, một cái bình nhỏ lóe sáng dưới ánh lửa.
+Tiếp theo là tiếng hét, tiếng cháy, tiếng đao chạm đao. Từ trên núi, ta thấy lửa bùng lên ở phía Thất Huyền trấn, rồi lan về phía Thất Huyền Môn.
 
-*Là hắn.* Ta nín thở, mắt dán theo bóng dáng ấy, trong lòng dấy lên một thôi thúc lạ kỳ.
+“Dã Lang Bang tới sớm hơn ta nghĩ,” — kiếm linh nói, giọng nghiêm lại — “Ngươi có hai thanh kiếm, nhưng ngươi chưa từng giết ai. Đêm nay sẽ khác.”
 
-**Lựa chọn:**
+Ta đứng dậy, đeo cặp kiếm sau lưng. Trong người ta, kiếm khí chảy mạnh hơn. *Lần này, ta không chạy trốn nữa.*
 
-- Bám theo bóng người gầy gò  
-  → `c1_d11`  
-  ✦ thần niệm +1; mở cờ: theo_han_lap
-- Ở lại chăm sóc thương binh  
-  → `c1_d11`  
-  ✦ thần niệm +1
-
----
-
-### Đoạn `c1_d11` — Hậu trận Dã Lang Bang
-
-*Ảnh:* `doanh trại, đêm, nguy hiểm`
-
-Khi trận hỗn chiến tạm lắng, ta lần theo dấu vết ra tận hậu trận địch — nơi mùi da thú, mồ hôi và máu nồng nặc đến khó thở. Giữa những túp lều da thú, có một căn lều lớn hơn hẳn — nơi phát ra luồng linh khí đen đặc quánh.
-
-Một lão nhân mặt sẹo, thân hình vạm vỡ, đang mân mê một chiếc hộp gỗ.
-
-“Thất Huyền Môn tưởng giữ được bí kíp này sao?” — lão cười khàn khàn — “Ngây thơ.”
-
-Bên trong hộp, thứ gì đó tỏa ra linh quang mờ ảo, khiến ta không sao rời mắt.
-
-*Bí kíp…* Ta nín thở, máu trong người như đông lại. Nhưng ta biết, chỉ cần sơ sẩy một bước là mất mạng.
+Trước mặt ta, con đường rẽ làm hai: một hướng xuống trấn, nơi dân thường đang bị tàn sát; một hướng về phía Thất Huyền Môn, nơi trận đánh dữ dội nhất.
 
 **Lựa chọn:**
 
-- Rón rén tới gần, tìm cách đoạt hộp gỗ  
-  → `c1_d11b`  
-  ✦ mở cờ: thay_hop_go
-- Quan sát, ghi nhớ rồi rút lui an toàn  
-  → `c1_d11b`  
-  ✦ thần niệm +1; mở cờ: biet_bi_kip
-
----
-
-### Đoạn `c1_d11b` — Rìa hậu trận địch
-
-*Ảnh:* `doanh trại, lửa, bóng tối`
-
-Ta tiến sát hậu trận địch, nép mình sau những túp lều da thú xếp san sát. Bọn lính gác thưa thớt vì phần lớn đã ra trận — cơ hội hiếm có.
-
-“Bang chủ đang ở trong lều lớn,” — một tên thì thầm với đồng bọn — “Không ai được vào.”
-
-Một căn lều lớn hơn hẳn nằm ở giữa, từ đó phát ra luồng linh khí đen đặc quánh khiến ta lạnh gáy.
-
-*Vào, hay chỉ đứng nhìn?* Ta liếm môi khô, tim đập từng nhịp nặng nề.
-
-Mỗi bước chân giờ đây đều có thể là bước cuối cùng.
-
-**Lựa chọn:**
-
-- Lẻn tới gần căn lều lớn  
+- Xuống trấn, cứu dân thường  
   → `c1_d12`
-- Chỉ quan sát từ xa rồi rút  
+- Tới Thất Huyền Môn, nơi trận đánh chính  
   → `c1_d13`
 
 ---
 
-### Đoạn `c1_d12` — Trong lều Bang chủ
+### Đoạn `c1_d12` — Xuống trấn — cứu dân
 
-*Ảnh:* `lều, hộp gỗ, căng thẳng`
+*Ảnh:* `cứu người, lửa, kiếm`
 
-Ta nép sát vách lều, tim đập thình thịch đến mức tưởng như cả trại nghe thấy. Chỉ cần thêm ba bước nữa là tới được chiếc hộp gỗ đang tỏa linh quang.
+Ta lao xuống núi, hai thanh kiếm tuốt khỏi vỏ. Trấn Thất Huyền đang chìm trong lửa. Dân thường chạy tán loạn, đám cướp Dã Lang Bang đuổi theo chém giết.
 
-“Ai đó?” — Bang chủ đột ngột ngẩng đầu, ánh mắt lão quét thẳng về phía ta. “Có chuột.”
+Một tên cướp túm tóc một đứa bé, giơ đao. Ta không kịp nghĩ — chân ta lao tới, trường kiếm đâm thẳng.
 
-Lão đứng dậy, linh khí đen ngòm bùng lên quanh thân như khói độc, khiến không khí quanh ta nặng trịch.
+Lần đầu tiên trong đời, ta giết một người. Máu bắn lên mặt ta, nóng hổi. *Ta… vừa giết.*
 
-*Chết rồi.* Ta không kịp nghĩ, chỉ kịp thấy toàn thân lạnh toát.
+Nhưng không kịp sợ — hai tên nữa đã ập tới. Ta vung trường kiếm đỡ đòn, tay trái đưa đoản kiếm đâm vào hông một tên.
 
-Một lựa chọn duy nhất hiện ra trong đầu: liều, hay chạy.
+“Tốt,” — kiếm linh nói gọn — “Hai tay phối hợp. Đừng dừng.”
+
+Ta đẩy lùi bọn chúng, kéo đứa bé chạy về phía con hẻm. Đêm ấy, ta cứu được vài mạng người, và lần đầu nếm mùi hồng trần mà kiếm linh nói tới.
 
 **Lựa chọn:**
 
-- Liều mình lao tới đoạt hộp rồi chạy  
-  → `c1_d14`  
-  ✦ sinh lực -8; mở cờ: doat_hop_go; nhận: Hộp gỗ bí ẩn
-- Tung một nắm bụi rồi tháo chạy  
-  → `c1_d13`  
-  ✦ sinh lực -3
+- Rút khỏi đám cháy, tìm nơi an toàn  
+  → `c1_d14`
 
 ---
 
-### Đoạn `c1_d13` — Bìa rừng phía tây
+### Đoạn `c1_d13` — Thất Huyền Môn — cổng vỡ
 
-*Ảnh:* `rừng, đêm, ẩn nấp`
+*Ảnh:* `chiến đấu, cổng, kiếm`
 
-Ta chạy mãi cho tới khi tiếng gầm thét xa dần, rồi gục xuống sau một gốc cổ thụ. Ngực ta đau nhói, chân run không đứng vững, nhưng ta vẫn còn sống.
+Ta chạy về phía Thất Huyền Môn. Cổng môn đã vỡ, đệ tử ngã la liệt. Ta thấy mấy kẻ mặc áo xanh đang chống trả, nhưng đông quá.
 
-Trong đầu, giọng nói lạnh lùng lại vang lên: “Biết địch biết ta, trăm trận không nguy. Ngươi học nhanh đấy.”
+Một tên cướp xông tới. Ta nghiêng người né, trường kiếm chém chéo. Tên địch ngã xuống, mắt trợn tròn. *Ta… vừa đánh ngã một kẻ luyện võ nhiều năm.*
 
-*Ngươi là ai…?* — ta hỏi trong vô vọng, nhưng không có tiếng đáp.
+Ta vận kiếm khí, một luồng khí lạnh chảy khắp người. Tốc độ ta tăng lên, đường kiếm sắc hơn. Từng bước một, ta đẩy lùi bọn chúng.
 
-Phía xa, lửa cháy rực trời Thất Huyền trấn, nhuộm đỏ cả màn đêm.
+“Đừng ham đánh,” — kiếm linh nhắc trong đầu — “Ngươi không đủ sức đánh lâu. Giữ mạng.”
 
-Ta siết chặt mảnh ngọc trong tay, hơi ấm nơi đó là thứ duy nhất khiến ta thấy mình còn tồn tại.
+Ta cắn răng, rút lui về phía sân trong. Trong đám người hỗn loạn, ta thoáng thấy một bóng dáng gầy gò lướt qua — nhanh như mèo, hướng thẳng vào hậu trận địch.
 
 **Lựa chọn:**
 
-- Quay lại chiến trường, tìm cơ hội cuối  
-  → `c1_d14`  
-  ✦ thần niệm +1
-- Ngồi lại, điều tức hồi phục  
-  → `c1_d14`  
-  ✦ tu vi +5; sinh lực +6
+- Nấp vào bóng tối, chờ trận lắng  
+  → `c1_d14`
+
+---
+
+### Đoạn `c1_d14` — Sau trận — giữa đống đổ nát
+
+*Ảnh:* `hậu trận, tàn khốc, gặp gỡ`
+
+Trận đánh tạm lắng khi trời gần sáng. Ta ngồi bệt xuống bậc đá, toàn thân đau nhức, áo quần rách bươm.
+
+Thất Huyền trấn tan hoang. Khói còn vương trong gió, mùi máu tanh không tan. Người ta lặng lẽ khiêng xác đi.
+
+*Ta đã sống qua đêm nay.* Nhưng trong lòng ta không có chút vui mừng nào. Ta chỉ thấy rõ hơn bao giờ hết: kẻ yếu không có chỗ đứng trong thế giới này.
+
+“Ngươi làm tốt,” — kiếm linh nói, giọng hiếm khi dịu — “Nhưng đây mới chỉ là khởi đầu.”
+
+Ta đứng dậy, phủi bụi trên áo. Trong đám người qua lại, một bóng dáng gầy gò lặng lẽ bước về phía hậu sơn. Dáng đi ấy không vội, cũng không chậm — như kẻ đã quen đường.
+
+*Kẻ đó… không tầm thường.*
+
+**Lựa chọn:**
+
+- Lặng lẽ bám theo bóng người ấy  
+  → `c1_d15`
+- Về nơi trú, tìm chỗ nghỉ lấy sức  
+  → `c1_d15`
 
 ---
 
 ## Hồi Kết
 
-### Đoạn `c1_d14` — Đại chiến — cổng môn Thất Huyền Môn
+### Đoạn `c1_d15` — Gặp Hàn Lập — hậu sơn
 
-*Ảnh:* `đại chiến, cổng môn, linh quang`
+*Ảnh:* `Hàn Lập, gặp gỡ, kết`
 
-*Video:* `dai_chien`
+Ta theo bóng người ấy tới một góc khuất sau hậu sơn. Hắn dừng lại, không quay đầu, giọng trầm: “Theo ta lâu vậy, không mệt sao?”
 
-Trận đại chiến vẫn chưa dứt — còn dữ dội hơn cả lúc đầu. Bang chủ Dã Lang Bang tung một quyền, linh khí đen cuộn thành hình sói khổng lồ, đánh sập nốt mảng tường thành còn sót lại.
+Ta khựng lại. *Hắn biết từ đầu.* Ta siết chặt cán kiếm sau lưng.
 
-“Hỡi các đệ tử, theo ta!” — một trưởng lão râu bạc quát vang, đạo bào phần phật trong gió.
+Hắn quay lại. Ánh mắt sắc như dao, lạnh như băng — nhưng ta thấy trong đó một tia mỏi mệt, thứ mỏi mệt của kẻ đã giấu quá nhiều bí mật.
 
-Các trưởng lão Thất Huyền Môn đồng loạt xuất thủ, ánh sáng xanh lục và vàng kim đan vào nhau như dệt lụa, chấn động cả bầu trời đêm.
+Trong đầu ta, giọng nói lạnh lùng vang lên: *“Hàn Lập. Đệ tử Thất Huyền Môn. Cũng là kẻ sẽ đứng trên đỉnh của thế gian này.”*
 
-Ta đứng cách đó vài chục trượng, lần đầu tiên trong đời cảm nhận được thế nào là uy lực của tu sĩ. *Đây là sức mạnh mà ta hằng mơ ước.*
+*Hàn Lập.* Ta khẽ siết tay áo, che đi vẻ kinh ngạc. Người trước mặt ta — kẻ gầy gò, ít nói — chính là nhân vật chính của thế giới này.
 
-Nhưng đồng thời, ta cũng hiểu: đứng sai chỗ trong trận này, ta sẽ tan thành tro.
+“Ngươi không phải kẻ tầm thường,” — hắn nói, giọng không cao không thấp. “Và ngươi cũng đang giấu thứ gì đó.”
 
-**Lựa chọn:**
-
-- Nhân lúc hỗn loạn, lẻn vào trong môn phái  
-  → `c1_d14b`  
-  ✦ mở cờ: vao_mon_phai
-- Ở ngoài quan sát trận chiến, học hỏi  
-  → `c1_d14b`  
-  ✦ thần niệm +3; mở cờ: hoc_chien_dau
-
----
-
-### Đoạn `c1_d14b` — Đại chiến leo thang
-
-*Ảnh:* `đại chiến, chấn động, linh quang`
-
-Trận chiến leo thang dữ dội hơn nữa. Mỗi quyền của Bang chủ đánh ra đều để lại một hố sâu trên nền đá, đá vụn bắn tung tóe.
-
-Đám đệ tử Dã Lang Bang gào thét xông lên như thú dữ, không biết sợ là gì.
-
-Các trưởng lão Thất Huyền Môn phải liên thủ mới cầm cự nổi, mồ hôi ướt đẫm trán.
-
-Ta ép sát người vào tường, linh khí dư chấn quét qua khiến da mặt rát bỏng.
-
-*Đây là cơ hội — hoặc là mồ chôn.* Ta hít một hơi thật sâu, mắt quét qua hai hướng, biết không còn thời gian để do dự thêm.
-
-**Lựa chọn:**
-
-- Nhân lúc hỗn loạn, lẻn vào trong môn phái  
-  → `c1_d15`
-- Bám theo rìa trận địa, quan sát học hỏi  
-  → `c1_d16`
-
----
-
-### Đoạn `c1_d15` — Sân trong Thất Huyền Môn
-
-*Ảnh:* `môn phái, sân trong, tàn phá`
-
-Ta lẻn được vào sân trong, nơi đã bị tàn phá tan hoang — cột đá gãy, cỏ cháy đen, mùi khét lẹt bốc lên nồng nặc.
-
-Bỗng ta nghe tiếng bước chân rất khẽ. Một thanh niên gầy gò, áo vải thô đang lúi húi nhặt thứ gì đó dưới đất — một chiếc bình nhỏ bằng ngọc.
-
-Y ngẩng lên nhìn ta, và ánh mắt ấy bình thản đến lạnh người, không hề có chút sợ hãi.
-
-“Ngươi thấy ta rồi,” — y nói, giọng không cao không thấp.
-
-*Hắn không chạy, cũng không hỏi han — chỉ quan sát ta.* Tay ta khẽ đổ mồ hôi, biết đây là khoảnh khắc quyết định.
-
-**Lựa chọn:**
-
-- Lên tiếng chào, tỏ ý muốn kết giao  
-  → `c1_d17`  
-  ✦ mở cờ: gap_han_lap
-- Không nói gì, lặng lẽ bước theo sau hắn  
-  → `c1_d17`  
-  ✦ mở cờ: gap_han_lap
-
----
-
-### Đoạn `c1_d16` — Mái nhà ven sườn núi
-
-*Ảnh:* `mái nhà, quan sát, đêm`
-
-Ta leo lên một mái nhà ven sườn núi, từ đó quan sát toàn cảnh trận chiến. Dưới ánh lửa chập chờn, ta thấy rõ cách các trưởng lão phối hợp, cách người yếu né đòn, cách kẻ mạnh truy sát.
-
-“Tránh sang trái!” — một giọng chỉ huy vang lên, và đám đệ tử đồng loạt biến chuyển đội hình.
-
-Từng chiêu thức, từng sơ hở — tất cả khắc sâu vào trí nhớ ta như khắc vào đá. *Thì ra chiến đấu là như vậy.*
-
-Khi trận chiến tạm lắng, ta nhảy xuống, hướng vào trong môn phái.
-
-Ở đó, một bóng người gầy gò vừa lướt qua cửa hông, nhanh thoăn thoắt.
-
-**Lựa chọn:**
-
-- Đuổi theo bóng người gầy gò  
-  → `c1_d17`  
-  ✦ mở cờ: gap_han_lap
-
----
-
-### Đoạn `c1_d17` — Gặp Hàn Lập — hậu sơn Thất Huyền Môn
-
-*Ảnh:* `hậu sơn, gặp gỡ, trăng`
-
-*Video:* `gap_han_lap`
-
-Trăng lên, ta và thanh niên ấy đứng cách nhau ba bước, giữa hậu sơn vắng lặng đến mức nghe được cả tiếng lá rơi.
-
-“Ngươi không phải đệ tử ở đây,” — y nói, giọng không cao không thấp — “Và ngươi biết ta là ai.”
-
-Ta khựng lại, tim đập lệch một nhịp. Y nhìn thẳng vào mắt ta, không chút sợ hãi, như thể đã nhìn thấu mọi thứ.
-
-Trong đầu ta, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh tu tiên giới… nếu ngươi không làm hỏng mọi thứ.”
-
-*Hàn Lập — là hắn thật rồi.* Ta siết chặt tay, biết mình đang đứng trước người sẽ định đoạt vận mệnh của cả thế giới này.
+*Hắn nhận ra rồi.* Ta nuốt nước bọt. Đây là cơ hội — hoặc là hiểm họa. Một lời nói sai, có thể đổi cả tương lai.
 
 **Lựa chọn:**
 
 - Thành thật: “Ta biết tương lai của ngươi.”  
-  → `c1_d17b`  
-  ✦ mở cờ: tiet_lo_meta
-- Cười trừ: “Ta chỉ là kẻ đi đường, tình cờ ghé qua.”  
-  → `c1_d17b`
+  → `c1_d16`  
+  ✦ mở cờ: noi_that_han_lap
+- Cười trừ: “Ta chỉ là kẻ tình cờ ở đây.”  
+  → `c1_d16`
 - Hỏi ngược: “Vậy ngươi là ai?”  
-  → `c1_d17b`
-- Nói ra điều chỉ người thân thiết mới dám nói  
-  → `c1_d17b` *(điều kiện: {"hao_cam": {"Hàn Lập": 50}})* — *khoá: Cần hảo cảm 50+ (thân thiết) với Hàn Lập*
+  → `c1_d16`
+- Im lặng, đưa hắn bầu nước của mình  
+  → `c1_d16`
 
 ---
 
-### Đoạn `c1_d17b` — Đối thoại với Hàn Lập
+### Đoạn `c1_d16` — Đối thoại với Hàn Lập
 
-*Ảnh:* `hậu sơn, trăng, đối thoại`
+*Ảnh:* `Hàn Lập, đối thoại, kết`
 
-Hàn Lập im lặng một lúc lâu, đủ để ta nghe rõ tiếng tim mình đập trong lồng ngực.
+Hàn Lập im lặng một lúc lâu, đủ để ta nghe rõ tiếng tim mình đập.
 
-Rồi y chậm rãi nói: “Ngươi là kẻ đầu tiên nói với ta như vậy. Đa số người ở đây chỉ nhìn thấy một tạp dịch.”
+“Người ở đây chỉ nhìn thấy một kẻ lang thang nơi ta,” — cuối cùng hắn nói — “Còn ngươi… nhìn thấy gì khác.”
 
-“Vậy ngươi thấy ta là gì?” — ta hỏi, giọng khẽ run.
+Hắn không hỏi thêm. Chỉ cúi xuống, lau vết máu trên ống tay áo, như thể câu chuyện đã kết thúc. Nhưng ta biết, hắn đã ghi nhớ ta.
 
-Y không đáp ngay, chỉ cúi xuống nhặt chiếc bình ngọc, cẩn thận lau sạch bùn đất bằng vạt áo.
+“Đêm nay, ngươi cứu được mạng mình,” — hắn nói, không ngẩng lên — “Nhưng con đường phía trước còn dài. Đừng để bị cuốn vào chuyện không liên quan.”
 
-“Ta không tin ngươi,” — cuối cùng y nói — “Nhưng ta sẽ nhớ ngươi.”
+*Hắn đang nhắc ta.* Trong lòng ta dâng lên một cảm giác lạ — vừa sợ, vừa kính phục. Người này, dù còn yếu, đã có thứ khí độ mà ta chưa từng thấy ở bất kỳ ai.
 
-*Không tin — nhưng nhớ.* Ta hiểu rằng với một kẻ như hắn, đó đã là một bước tiến hiếm hoi. Ta gật đầu, trong lòng nhẹ đi đôi phần.
+Ta đứng dậy, khẽ gật đầu. Sau lưng, cặp kiếm khẽ rung — như thể kiếm linh cũng đang nhìn theo bóng người ấy.
 
 **Lựa chọn:**
 
 - “Vậy hẹn gặp lại khi ngươi mạnh hơn.”  
-  → `c1_d18`
+  → `c1_d17`
 - Im lặng gật đầu rồi rời đi  
-  → `c1_d18`
+  → `c1_d17`
 
 ---
 
-### Đoạn `c1_d18` — Kết chương — bình minh Thất Huyền Môn
+### Đoạn `c1_d17` — Kết chương — bình minh Thất Huyền trấn
 
-*Ảnh:* `bình minh, kết chương, núi`
+*Ảnh:* `bình minh, kết chương, kiếm`
 
-Trời sáng. Dã Lang Bang rút lui, để lại Thất Huyền Môn tan hoang nhưng chưa gục ngã. Máu khô bám trên đá, khói còn vương trong gió, và tiếng người dọn dẹp vang lên lặng lẽ.
+Trời sáng. Ta bước khỏi hậu sơn, ánh bình minh đầu tiên rọi lên vai áo rách.
 
-Hàn Lập quay người, bước vào trong sương sớm, dáng gầy gò in trên nền trời nhạt.
+Sau lưng, cặp kiếm khẽ rung. “Ngươi đã sống qua đêm đầu tiên,” — kiếm linh nói, giọng yếu nhưng mang theo ý cười — “Và ngươi đã lên Luyện Khí tầng ba. Không tồi cho một kẻ ăn mày.”
 
-Trước khi khuất bóng, y nói một câu: “Gặp lại.”
+Ta khẽ cười. Bốn ngày trước, ta còn là kẻ co ro trong góc chợ, chẳng ai nhớ mặt. Giờ đây, ta đã có thực lực để đứng vững, có một cơ duyên mà không ai có, và một bí mật mà không ai biết.
 
-Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.
+“Nhớ kỹ,” — kiếm linh dặn — “Kiếm này tu giữa hồng trần. Ngươi càng trải, càng mạnh. Và gã Hàn Lập kia… hắn sẽ là người quan trọng nhất trong đời ngươi.”
 
-Giọng nói lạnh lùng vang lên lần cuối: “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
+Giọng nói lạnh lùng vang lên lần cuối: *“Chương một, kết thúc. Hồng Trần Kiếm đã nhận chủ.”*
 
-*Tự chọn…* Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.
+Ta hít sâu, nhìn ánh bình minh sau núi. Thất Huyền trấn tan hoang nhưng chưa gục. Hàn Lập đã bắt đầu con đường của hắn. Còn ta — ta đã có cặp kiếm, có kiếm linh, và một cơ duyên mà kẻ khác cả đời không gặp.
+
+*Con đường phía trước… ta tự chọn.*
 
 **Lựa chọn:**
 

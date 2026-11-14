@@ -10,353 +10,263 @@
       "hinh_anh": {
         "tags": [
           "chợ",
-          "thị trấn",
-          "buổi sáng"
+          "ăn mày",
+          "sáng"
         ]
       },
-      "ke": "Ta mở mắt giữa buổi chợ sớm của thị trấn Thất Huyền. Mùi thuốc bắc nồng nặc xộc vào mũi, lẫn với tiếng mặc cả ồn ào và tiếng ngựa hí vang đâu đó phía xa.\n\n*Đây… là đâu?* Ta cố nhớ lại, nhưng ký ức hỗn độn như nước đục, không móc nối được gì.\n\nTrên tay ta là một mảnh ngọc vụn còn ấm, và trong đầu vang lên một giọng nói lạnh lùng: “Nghịch chuyển càn khôn… đã bắt đầu.” Ta nghiến răng.\n\n*Thân thể này không phải của ta* — nhưng ta đang sống trong nó, bằng xương bằng thịt.\n\nPhía xa, một thanh niên gầy gò, áo vải thô, lặng lẽ quan sát gánh hàng thuốc. Ánh mắt y sắc như dao, khiến tim ta khẽ đập nhanh — *kẻ này không tầm thường.*",
+      "ke": "Ta mở mắt giữa một góc chợ, lưng tựa vào bức tường lạnh, trước mặt là mấy chiếc sọt rách. Mùi thuốc bắc, mùi cá khô, mùi người chen chúc xộc vào mũi. Tiếng mặc cả ồn ào, tiếng ngựa hí, tiếng trẻ con khóc vang lên chát chúa.\n\n*Đây… là đâu?* Ta cố nhớ, nhưng ký ức hỗn độn như nước đục — chỉ còn một hình ảnh mờ của màn hình máy tính và tiếng còi xe ngoài cửa sổ.\n\n“Tránh ra! Tránh ra!” — một gã phu khuân vác quát, suýt giẫm lên chân ta.\n\nTa lồm cồm bò dậy. Hai bàn tay ta chai sạn, móng đen kịt, quần áo vá chằng vá đụp. *Thân thể này không phải của ta.* Ký ức của nó ùa về từng mảnh: một kẻ ăn mày vô danh, không cha mẹ, không tông môn, sống nhờ lòng thương hại của người qua đường ở Thất Huyền trấn.\n\nTrong đầu ta, một giọng nói lạnh lùng vang lên: *“Nghịch chuyển càn khôn… đã bắt đầu.”*\n\nTa nghiến răng, đè nén cơn choáng. *Ta xuyên không rồi. Vào thân xác kẻ thấp nhất trong cái trấn này.*\n\nTa đếm những gì mình có: vài đồng bạc lẻ trong túi rách, một mạng người chưa biết dùng thế nào, và một giọng nói xa lạ vừa cất lên trong đầu.",
       "lua_chon": [
         {
-          "chu": "Lặng lẽ bám theo thanh niên áo vải",
-          "den": "c1_d02",
-          "hieu_ung": {
-            "co_su_kien": [
-              "nghi_ngo_han_lap"
-            ]
-          }
-        },
-        {
-          "chu": "Chen vào đám đông, dò hỏi chuyện Dã Lang Bang",
-          "den": "c1_d03"
-        },
-        {
-          "chu": "Tìm quán trọ, ẩn mình chờ thời",
-          "den": "c1_d04",
-          "dieu_kien": {
-            "bac": 1
-          },
-          "ly_do_khoa": "Cần ít nhất 1 lượng bạc để thuê phòng",
-          "hieu_ung": {
-            "sinh_luc": 5,
-            "bac": -1
-          }
+          "chu": "Lê bước tới ngõ sau chợ, tìm đám ăn mày",
+          "den": "c1_d02"
         }
       ]
     },
     {
       "id": "c1_d02",
       "hoi": "Mở",
-      "boi_canh": "Ngõ nhỏ sau chợ",
+      "boi_canh": "Ngõ nhỏ sau chợ — lời đồn",
       "hinh_anh": {
         "tags": [
-          "ngõ nhỏ",
-          "thị trấn"
+          "ngõ",
+          "đói",
+          "tin tức"
         ]
       },
-      "ke": "Ta theo y vào một ngõ nhỏ, nơi ánh nắng không lọt tới. Thanh niên ấy dừng trước sạp thuốc, cẩn thận chọn từng củ thảo dược, trả giá chặt chẽ đến mức lão chủ sạp phải nhăn mặt.\n\n*Người này tiết kiệm đến lạ.*\n\nY không quay đầu, nhưng giọng nói vang lên đúng lúc ta định bước tới: “Đi theo ta làm gì?”\n\nTa giật mình, toan mở miệng. “Ta không thích kẻ lạ bám đuôi,” — y nói tiếp, vẫn không nhìn ta — “Nhất là kẻ không có tu vi.”\n\n*Y nhìn ra ta yếu ớt chỉ trong một cái liếc.* Ta siết chặt mảnh ngọc trong tay, biết mình không thể giả vờ được nữa.\n\nTa lần theo con ngõ nhỏ trở ra. Chợ đã tan tự lúc nào, và nắng chiều tắt dần sau những mái nhà.",
+      "ke": "Ta lê bước vào ngõ nhỏ sau chợ, nơi đám ăn mày tụ tập quanh đống lửa nhỏ. Bụng ta đói cồn cào, nhưng cái đói chưa bằng nỗi sợ đang lớn dần trong lòng.\n\n“Mấy ngày nữa Dã Lang Bang đánh tới,” — một lão ăn mày què chân lẩm bẩm. “Ta nghe đám buôn nói vậy. Chúng dòm ngó Thất Huyền Môn mấy tháng rồi.”\n\n“Đánh nhau thì ăn mày như ta chết trước,” — gã khác cười gằn. “Mà biết đâu, loạn lạc lại có đồ nhặt.”\n\n*Loạn lạc lại có đồ nhặt.* Câu nói ấy khiến tim ta khẽ động. Nhưng ta còn yếu hơn cả ăn mày bình thường — không võ công, không ai chống lưng.\n\nRồi lão què hạ giọng, kể chuyện khác: “Nghe nói sau núi có cái miếu hoang. Trong đó có một cái hộp kiếm cũ. Ai chạm vào đều phát bệnh, có kẻ chết luôn. Mấy năm nay không ai dám lại gần.”\n\n*Miếu hoang… hộp kiếm.* Ta nhíu mày. Trong đầu, giọng nói lạnh lùng vang lên: *“Cơ duyên nằm nơi người khác tránh.”*\n\nTa nuốt khan. *Ba ngày. Ta có ba ngày trước khi trận chiến ập tới.*",
       "lua_chon": [
         {
-          "chu": "Thú nhận mình là kẻ mới tới, xin hỏi đường",
-          "den": "c1_d05",
-          "hieu_ung": {
-            "than_niem": 1,
-            "gap_npc": {
-              "Hàn Lập": {
-                "hao_cam": 0,
-                "hien_than": "thanh niên áo vải, lai lịch chưa rõ"
-              }
-            },
-            "hao_cam": {
-              "Hàn Lập": 5
-            }
-          }
+          "chu": "Tới miếu hoang sau núi, xem thử",
+          "den": "c1_d03"
         },
         {
-          "chu": "Giả vờ hỏi mua thuốc để che mắt",
-          "den": "c1_d05",
-          "hieu_ung": {
-            "gap_npc": {
-              "Hàn Lập": {
-                "hao_cam": 0,
-                "hien_than": "thanh niên áo vải, lai lịch chưa rõ"
-              }
-            }
-          }
+          "chu": "Ở lại trấn, kiếm ăn qua ngày cho an toàn",
+          "den": "c1_d02b"
+        }
+      ]
+    },
+    {
+      "id": "c1_d02b",
+      "hoi": "Mở",
+      "boi_canh": "Góc chợ — một ngày mòn mỏi",
+      "hinh_anh": {
+        "tags": [
+          "chợ",
+          "chiều",
+          "quyết định"
+        ]
+      },
+      "ke": "Ta quyết định ở lại trấn, bám lấy những gì quen thuộc. Một ngày dài ta bò khắp các góc chợ, xin ăn, nhặt nhạnh từng thứ người ta bỏ đi.\n\nNhưng hôm ấy người ta bận rộn lo chuyện Dã Lang Bang, chẳng ai buồn bố thí. Ta chỉ kiếm được nửa ổ bánh mốc và một trận mắng.\n\n*Ở lại đây, ta chỉ chờ chết.* Ta ngồi bệt xuống, nhìn bầu trời chiều ngả màu.\n\nGiọng nói lạnh lùng vang lên: *“Cơ duyên không tự tới. Phải đi tìm.”*\n\nTa siết nắm tay, nhớ tới lời lão què về cái miếu hoang sau núi. *Miếu hoang. Hộp kiếm.*\n\nTrời sẩm tối, ta đứng dậy, lặng lẽ bước về phía con đường mòn dẫn lên núi.",
+      "lua_chon": [
+        {
+          "chu": "Đi lên núi, tới miếu hoang",
+          "den": "c1_d03"
         }
       ]
     },
     {
       "id": "c1_d03",
       "hoi": "Mở",
-      "boi_canh": "Gánh hàng rong ven chợ",
+      "boi_canh": "Đường mòn lên núi — chạng vạng",
       "hinh_anh": {
         "tags": [
-          "chợ",
-          "đám đông"
+          "đường mòn",
+          "hoàng hôn",
+          "hẻo lánh"
         ]
       },
-      "ke": "Ta ghé vào một gánh hàng rong, giả vờ hỏi giá rồi khéo léo dẫn chuyện. Lão bán hàng thoạt đầu chỉ ừ hử, nhưng khi ta nhắc tới Dã Lang Bang, tay lão khựng lại.\n\n“Dã Lang Bang à?” — lão hạ giọng, mắt liếc quanh — “Lũ đó hung hãn lắm.”\n\nLão kể rằng chúng đã dòm ngó Thất Huyền Môn suốt mấy tháng, mà môn phái ấy nào có dễ chọc. *Vậy là ta xuyên tới đúng lúc sóng gió nổi lên.*\n\n“Mà ngươi hỏi làm gì?” — lão đột ngột nhìn thẳng vào ta — “Đừng dính vào, kẻo mất mạng.”\n\nLão lắc đầu rồi quay đi, như sợ bị ai nghe thấy. Ta đứng lại, trong lòng dấy lên một nỗi bất an khó gọi thành tên.\n\nTa lang thang khắp chợ cho tới khi nắng nhạt. Không ai còn muốn nói thêm điều gì, và trời thì đã về chiều.",
+      "ke": "Con đường mòn dẫn lên núi hẹp và dốc, hai bên là cỏ dại cao quá đầu. Trời nhá nhem, tiếng dế kêu rả rích, thỉnh thoảng có tiếng chim đêm vỗ cánh khiến ta giật mình.\n\nTa đi một mình. Không ai tiễn, không ai cản. *Kẻ ăn mày như ta, chết trên núi cũng chẳng ai hay.*\n\nCàng lên cao, không khí càng lạnh. Trước mặt, một ngôi miếu nhỏ hiện ra trong sương — mái ngói vỡ, cột gỗ mục, cửa mở toang như cái miệng đen.\n\nTrong miếu, ta thoáng thấy một vật gì đó phản chiếu ánh trăng — một cái hộp dài, phủ bụi dày.\n\n*Đó là nó.* Tim ta đập nhanh. Nhưng chân ta lại khựng lại. Lời đồn về kẻ chạm vào rồi chết vẫn vang trong đầu.\n\nGiọng nói lạnh lùng vang lên: *“Sợ, thì quay về. Chọn.”*",
       "lua_chon": [
         {
-          "chu": "Hỏi thêm về Thất Huyền Môn",
-          "den": "c1_d05",
-          "hieu_ung": {
-            "co_su_kien": [
-              "biet_tin_da_lang_bang"
-            ]
-          }
+          "chu": "Bước thẳng vào, chạm vào hộp kiếm",
+          "den": "c1_d05"
         },
         {
-          "chu": "Cảm ơn rồi rời đi",
-          "den": "c1_d05"
+          "chu": "Đứng ngoài quan sát trước đã",
+          "den": "c1_d04"
         }
       ]
     },
     {
       "id": "c1_d04",
       "hoi": "Mở",
-      "boi_canh": "Quán trọ Phúc Lai",
+      "boi_canh": "Ngoài miếu — quan sát",
       "hinh_anh": {
         "tags": [
-          "quán trọ",
-          "trong nhà",
-          "đèn dầu"
+          "miếu",
+          "quan sát",
+          "căng thẳng"
         ]
       },
-      "ke": "Ta thuê một gian phòng nhỏ trên gác, trả một viên bạc. Vừa đặt lưng, ta đã nghe tiếng bước chân dồn dập ngoài hành lang và những giọng nói nén xuống.\n\n“Chúng nó tập trung ở ngoại thành… đêm nay động thủ.”\n\n*Đêm nay sao?* — ta lặng người, toàn thân lạnh toát.\n\nTa nắm chặt mảnh ngọc vụn trong tay, và nó bỗng ấm lên một cách kỳ lạ, như có ai đáp lại lời ta. *Mảnh ngọc này rốt cuộc là gì?*\n\nNgoài kia, tiếng bước chân xa dần, để lại căn phòng lạnh lẽo và một nỗi bất an chưa từng có.\n\nTa nằm vật xuống, nhưng không sao chợp mắt. Khi ta ngồi dậy mở cửa sổ, bên ngoài trời đã sẩm tối.",
+      "ke": "Ta đứng ngoài, nín thở quan sát. Dưới ánh trăng nhạt, ta thấy trên nền miếu có mấy bộ xương khô, áo quần mục nát — kẻ từng tới đây và không đi ra.\n\nBên cạnh chúng, ta thấy những vết cào trên vách gỗ, sâu hoắm, như ai đó tuyệt vọng cào trước khi chết.\n\n*Không phải ma quái.* Ta nhíu mày. *Là hộp kiếm này… từ chối kẻ chạm vào nó.*\n\nGiọng nói lạnh lùng vang lên: *“Kiếm có linh. Kẻ không xứng, chết. Kẻ xứng…”*\n\nTa nhìn cái hộp dài phủ bụi, rồi nhìn đôi bàn tay chai sạn của mình. *Ta có gì để mất đâu.*\n\nTa hít sâu, bước qua đám xương khô, tiến tới cái hộp.",
       "lua_chon": [
         {
-          "chu": "Lắng nghe kỹ câu chuyện ngoài hành lang",
-          "den": "c1_d05",
-          "hieu_ung": {
-            "co_su_kien": [
-              "biet_tin_da_lang_bang"
-            ],
-            "than_niem": 1
-          }
-        },
-        {
-          "chu": "Nghỉ ngơi, giữ sức",
-          "den": "c1_d05",
-          "hieu_ung": {
-            "sinh_luc": 5
-          }
+          "chu": "Quỳ xuống, chạm vào nắp hộp",
+          "den": "c1_d05"
         }
       ]
     },
     {
       "id": "c1_d05",
-      "hoi": "Mở",
-      "boi_canh": "Trấn Thất Huyền, chạng vạng",
+      "hoi": "Thân",
+      "boi_canh": "Trong miếu — chạm vào hộp kiếm",
       "hinh_anh": {
         "tags": [
-          "thị trấn",
-          "hoàng hôn",
-          "căng thẳng"
+          "hộp kiếm",
+          "cơ duyên",
+          "run rẩy"
         ]
       },
-      "ke": "Trời sẩm tối, thị trấn Thất Huyền bỗng vắng vẻ lạ thường. Người bán hàng dọn sạp sớm, cửa nhà đóng im ỉm, chỉ còn vài đốm đèn dầu leo lét nơi góc phố.\n\nTrên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.\n\n*Không khí này… như trước bão.* Một luồng khí lạnh chạy dọc sống lưng ta, khiến ta rùng mình.\n\nRồi từ phía rừng tối ngoài trấn, một tiếng sói tru dài vang lên, ai oán đến rợn người.\n\nTa hiểu rằng mình không còn nhiều thời gian để chọn chỗ đứng.",
+      "ke": "Ta quỳ xuống trước cái hộp dài, phủi lớp bụi dày. Đó là một cái hộp gỗ đen, khắc những đường vân lạ, nặng hơn ta tưởng.\n\nNgón tay ta run run chạm vào nắp. Ngay khoảnh khắc ấy, một luồng lạnh buốt chạy dọc cánh tay, như có thứ gì đó đang dò xét ta từ bên trong.\n\nTa muốn rụt tay lại, nhưng không kịp — nắp hộp tự bật mở, ánh sáng trắng lóe lên, chói đến mức ta phải nhắm mắt.\n\nKhi mở mắt ra, trước mặt ta là hai thanh kiếm nằm song song — một dài, một ngắn — lưỡi kiếm sáng như gương, không hề gỉ sét dù nằm trong miếu hoang bao năm.\n\nVà rồi, một giọng nói vang lên — không phải trong đầu ta, mà từ chính hai thanh kiếm: “Ngươi… khác bọn chúng.”",
       "lua_chon": [
         {
-          "chu": "Lên tường thành, quan sát động tĩnh quân địch",
-          "den": "c1_d05b",
-          "hieu_ung": {
-            "co_su_kien": [
-              "thay_the_tran_dich"
-            ]
-          }
-        },
-        {
-          "chu": "Ở lại trong trấn, tìm nơi trú ẩn kín đáo",
-          "den": "c1_d05b",
-          "hieu_ung": {
-            "co_su_kien": [
-              "biet_cho_an_trong_tran"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "id": "c1_d05b",
-      "hoi": "Mở",
-      "boi_canh": "Đêm buông, chuẩn bị đối phó",
-      "hinh_anh": {
-        "tags": [
-          "thị trấn",
-          "đêm",
-          "im lặng"
-        ]
-      },
-      "ke": "Đêm buông xuống thật nhanh, nhanh hơn ta tưởng. Ta kiểm lại trong người — không vũ khí, không pháp bảo, chỉ có mảnh ngọc vụn và chút bạc ít ỏi.\n\n*Với chừng này, ta khác nào tấm bia sống.*\n\nMột cảm giác lạnh chạy dọc gáy khi tiếng gầm gừ từ xa mỗi lúc một gần.\n\nBên tai, giọng nói lạnh lùng lại thì thầm: “Kẻ sống sót không phải kẻ mạnh nhất, mà là kẻ biết đứng đúng chỗ.”\n\nTa hít sâu một hơi, siết chặt tay, biết mình phải chọn chỗ đứng trước khi mọi chuyện vỡ ra.",
-      "lua_chon": [
-        {
-          "chu": "Tiến lên phía tường thành, nơi đông người",
+          "chu": "Lùi lại, hỏi: “Ngươi là ai?”",
           "den": "c1_d06"
         },
         {
-          "chu": "Nấp ở nơi khuất, quan sát trước",
-          "den": "c1_d07"
+          "chu": "Im lặng, chờ đợi xem nó nói gì",
+          "den": "c1_d06"
         }
       ]
     },
     {
       "id": "c1_d06",
       "hoi": "Thân",
-      "boi_canh": "Tường thành phía bắc",
+      "boi_canh": "Kiếm linh hiện hình",
       "hinh_anh": {
         "tags": [
-          "tường thành",
-          "đêm",
-          "canh gác"
+          "kiếm linh",
+          "bí ẩn",
+          "đối thoại"
         ]
       },
-      "ke": "Ta lách qua đám đông đang náo loạn, trèo lên bậc thang đá dẫn tới tường thành. Một đệ tử trẻ tuổi chặn ta lại: “Đứng lại! Ngươi là ai?”\n\nTa nhìn thẳng vào mắt hắn, không đổi sắc. Hắn ngập ngừng một lát rồi lùi sang: “...Thôi được, đừng gây chuyện.”\n\nTrên cao, ta thấy rõ đội hình Dã Lang Bang dàn ra ngoài trấn — đen kịt, kéo dài tới tận rìa rừng.\n\n“Dã Lang Bang đấy,” — hắn thì thào bên cạnh ta — “chúng kéo tới mấy trăm người. Không biết Thất Huyền Môn giữ nổi không.”\n\n*Mấy trăm người…* Ta nuốt khan, tự hỏi mình đã lạc vào chuyện gì.",
+      "ke": "Hai thanh kiếm khẽ rung lên, và từ giữa chúng, một bóng người mờ ảo hiện ra. Đó là một thanh niên áo trắng, mặt lạnh như băng, mắt sáng như kiếm quang. Y đứng đó, nhưng ta biết y không phải người sống.\n\n“Ta là kiếm linh Hồng Trần,” — y nói, giọng lạnh và ngắn — “Kẻ giữ cặp kiếm này đã chết ngàn năm. Ta chờ người kế tiếp.”\n\n*Kiếm linh.* Ta nuốt khan. Đây không phải thứ ta gặp mỗi ngày.\n\n“Bao nhiêu kẻ đã tới đây,” — y nói tiếp, mắt quét qua đám xương khô — “Nhưng linh hồn chúng quá ô trọc. Kiếm không nhận.”\n\nY nhìn thẳng vào ta. “Còn ngươi… linh hồn ngươi không thuộc về thế giới này. Nó sạch, và nó lạ. Đó là lý do ngươi còn sống.”\n\n*Y nhận ra ta xuyên không.* Ta siết chặt tay, không biết nên sợ hay nên mừng.",
       "lua_chon": [
         {
-          "chu": "Quan sát đội hình Dã Lang Bang từ trên cao",
-          "den": "c1_d08",
-          "hieu_ung": {
-            "than_niem": 2,
-            "co_su_kien": [
-              "thay_da_lang_bang"
-            ]
-          }
+          "chu": "Hỏi thẳng: “Ngươi muốn gì ở ta?”",
+          "den": "c1_d07"
+        },
+        {
+          "chu": "Cảnh giác: “Ta không dại mà tin ngươi.”",
+          "den": "c1_d06b"
+        }
+      ]
+    },
+    {
+      "id": "c1_d06b",
+      "hoi": "Thân",
+      "boi_canh": "Kiếm linh — thử thách",
+      "hinh_anh": {
+        "tags": [
+          "cảnh giác",
+          "thử thách",
+          "kiếm"
+        ]
+      },
+      "ke": "“Tin ngươi?” — ta cười gằn. “Ta mới xuyên tới đây, chưa gì đã tin một con ma trong miếu hoang?”\n\nKiếm linh không giận. Y chỉ đưa tay, và thanh kiếm ngắn khẽ bay lên, xoay một vòng rồi dừng lại trước mặt ta, mũi kiếm chúc xuống.\n\n“Kiếm này,” — y nói — “Nếu ta muốn giết ngươi, ngươi đã chết từ lúc chạm vào hộp. Kiếm đã nhận ngươi — ta không thể đổi ý.”\n\nTa nhìn thanh kiếm lơ lửng, sống lưng lạnh toát. Y nói đúng. Nếu muốn hại, ta đã không còn đứng đây.\n\nTa thở dài, buông vai xuống. “Được. Nói đi. Ngươi muốn gì?”",
+      "lua_chon": [
+        {
+          "chu": "Nghe y nói rõ thân phận và điều kiện",
+          "den": "c1_d07"
         }
       ]
     },
     {
       "id": "c1_d07",
       "hoi": "Thân",
-      "boi_canh": "Kho lương phía nam",
+      "boi_canh": "Kiếm linh giới thiệu thân phận",
       "hinh_anh": {
         "tags": [
-          "kho",
-          "tối",
-          "ẩn nấp"
+          "kiếm linh",
+          "thân phận",
+          "hồng trần"
         ]
       },
-      "ke": "Ta tìm được một góc khuất trong kho lương cũ, nơi có thể nghe rõ mọi động tĩnh mà vẫn an toàn. Qua khe cửa, ta thấy vài bóng người lén lút chuyển từng bao tải ra ngoài.\n\nKhông phải đệ tử môn phái — áo chúng có thêu hình đầu sói. *Kẻ nội gián…* Tim ta đập mạnh.\n\n“Nhanh lên, trước khi trời sáng!” — một tên thúc giục, giọng khàn khàn.\n\nChúng chuyển bao tải cuối cùng rồi biến mất trong bóng tối.\n\nTa nín thở, trong đầu chỉ còn một ý nghĩ: *chuyện này phải báo cho ai đó.*",
+      "ke": "“Ta là kiếm linh của Hồng Trần Kiếm,” — y bắt đầu, giọng đều đều — “Cặp kiếm này thuộc về một kiếm tu đã ngã xuống ngàn năm trước. Trước khi chết, y phong ấn kiếm vào hộp này, chờ người kế thừa.”\n\n“Hồng Trần… là gì?” — ta hỏi.\n\n“Hồng trần là bụi trần,” — y nói — “Cặp kiếm này hấp thu hồng trần — sinh tử, vui buồn, máu và nước mắt của chúng sinh. Kiếm càng trải, càng sắc. Kẻ cầm kiếm phải đi giữa hồng trần, chứ không ẩn tu nơi tiên cảnh.”\n\nTa nhíu mày. “Ta là ăn mày. Ta có gì đâu mà tu?”\n\n“Ngươi có mạng,” — y đáp gọn — “Và ngươi có ta. Ta dạy ngươi kiếm đạo. Ngươi cho ta mượn thân xác để trở lại hồng trần. Một đổi một.”\n\nGiọng nói lạnh lùng vang lên trong đầu: *“Cơ duyên tới. Nắm, hay buông?”*",
       "lua_chon": [
         {
-          "chu": "Bám theo bọn chúng, xem chúng làm gì",
-          "den": "c1_d08",
-          "hieu_ung": {
-            "co_su_kien": [
-              "thay_gian_te"
-            ],
-            "than_niem": 1
-          }
+          "chu": "Nghiến răng: “Ta nhận.”",
+          "den": "c1_d08"
         },
         {
-          "chu": "Quay lại báo cho đệ tử canh gác",
-          "den": "c1_d08",
-          "hieu_ung": {
-            "co_su_kien": [
-              "thay_gian_te"
-            ],
-            "gap_npc": {
-              "Đệ tử Thất Huyền Môn": {
-                "hao_cam": 5,
-                "hien_than": "đệ tử canh gác trẻ tuổi"
-              }
-            },
-            "hao_cam": {
-              "Đệ tử Thất Huyền Môn": 5
-            }
-          }
+          "chu": "Do dự: “Ta cần biết rõ điều kiện.”",
+          "den": "c1_d07b"
+        }
+      ]
+    },
+    {
+      "id": "c1_d07b",
+      "hoi": "Thân",
+      "boi_canh": "Điều kiện nhận chủ",
+      "hinh_anh": {
+        "tags": [
+          "kiếm linh",
+          "điều kiện",
+          "hồng trần"
+        ]
+      },
+      "ke": "“Ta cần biết rõ,” — ta nói — “Ngươi đòi gì ở ta?”\n\n“Ta đòi ngươi đi giữa hồng trần,” — y đáp — “Kiếm này không thể tu trong hang động. Ngươi càng lăn lộn, càng sống chết, kiếm càng mạnh. Ngược lại — ngươi nhát gan, ẩn mình, kiếm sẽ bỏ ngươi mà đi.”\n\n“Nếu ta chết thì sao?”\n\n“Thì ta lại ngủ, chờ kẻ khác.” — Y nhìn thẳng vào ta — “Nhưng ngươi sẽ không chết dễ vậy. Ta dạy ngươi cách sống.”\n\nTa cúi đầu nhìn đôi tay chai sạn. *Kẻ ăn mày vô danh… hay một kiếm tu đi giữa hồng trần?* Nếu từ chối, ta vẫn là kẻ chờ chết trong góc chợ.\n\nTa ngẩng lên. “Được.”",
+      "lua_chon": [
+        {
+          "chu": "Đưa tay ra, nhận chủ",
+          "den": "c1_d08"
         }
       ]
     },
     {
       "id": "c1_d08",
       "hoi": "Thân",
-      "boi_canh": "Trận địa trước cổng môn",
+      "boi_canh": "Nhận chủ",
       "hinh_anh": {
         "tags": [
-          "chiến trận",
-          "cổng môn phái",
-          "đêm"
+          "nhận chủ",
+          "khế ước",
+          "kiếm"
         ]
       },
-      "ke": "Một tiếng nổ lớn rung chuyển trấn nhỏ. Cổng lớn Thất Huyền Môn bị đánh bật khỏi bản lề, bụi đá mù mịt. Hàng trăm bóng người áo da thú tràn vào, gầm gừ như dã thú.\n\n“Giữ vững đội hình!” — một trưởng lão quát vang, đạo bào phần phật trong gió.\n\nTrên tường thành, các đạo sĩ đồng loạt xuất thủ — linh quang xanh lục và vàng kim chém xuống như mưa.\n\nTa đứng giữa hai làn sóng người, và không có đường lui.\n\n*Chạy hay ở lại?* — câu hỏi xé toạc đầu óc ta khi một gã áo da sói lao thẳng tới.",
+      "ke": "Ta đưa tay ra. Kiếm linh không chạm vào ta — y chỉ khẽ nâng cằm, và thanh kiếm ngắn tự bay tới, lưỡi kiếm rạch một đường mảnh trên lòng bàn tay ta.\n\nMáu nhỏ xuống hai thanh kiếm. Lưỡi kiếm sáng rực lên, rồi máu thấm vào, biến mất như bị nuốt chửng.\n\nMột luồng khí lạnh chạy dọc cánh tay ta, rồi lan khắp người. Ta nghiến răng chịu đau, nhưng rồi cơn đau tan biến, thay bằng một cảm giác sắc bén lạ thường — như thể tay ta vừa có thêm một giác quan mới.\n\n“Xong rồi,” — kiếm linh nói — “Từ giờ, hai thanh kiếm này là của ngươi. Một dài một ngắn — trường kiếm giết địch, đoản kiếm hộ mệnh. Học cách dùng cả hai cùng lúc.”\n\nTa siết chuôi kiếm. *Ta có vũ khí. Nhưng ta còn quá yếu để dùng nó.*\n\n“Nghỉ đi,” — y nói — “Đêm nay, ta dạy ngươi bài đầu tiên.”",
       "lua_chon": [
         {
-          "chu": "Xông vào đám hỗn chiến, tìm cơ hội",
-          "den": "c1_d08b",
+          "chu": "Ngồi xuống, nghe y dạy kiếm đạo",
+          "den": "c1_d09",
           "hieu_ung": {
+            "them_vat": [
+              {
+                "ten": "Hồng Trần Kiếm Hạp",
+                "so": 1,
+                "mo_ta": "Cặp kiếm dài-ngắn trong hộp gỗ đen, chứa kiếm linh ngàn năm. Hấp thu hồng trần để mạnh lên.",
+                "co_duyen": true,
+                "trang_thai": "đã nhận chủ"
+              }
+            ],
             "co_su_kien": [
-              "tham_gia_dai_chien"
+              "co_kiem_hong_tran"
             ]
           }
-        },
-        {
-          "chu": "Vòng ra sườn, cứu người bị thương",
-          "den": "c1_d08b",
-          "hieu_ung": {
-            "co_su_kien": [
-              "cuu_nguoi"
-            ],
-            "sinh_luc": -3
-          }
-        }
-      ]
-    },
-    {
-      "id": "c1_d08b",
-      "hoi": "Thân",
-      "boi_canh": "Cổng môn vỡ — khoảnh khắc quyết định",
-      "hinh_anh": {
-        "tags": [
-          "cổng vỡ",
-          "hỗn loạn",
-          "linh quang"
-        ]
-      },
-      "ke": "Cổng lớn đổ sập, bụi đá mù mịt cả một vùng. Tiếng gầm thét và tiếng kim loại chạm nhau trộn thành một mớ hỗn độn không thể phân biệt.\n\nTa ép sát lưng vào bức tường còn sót lại, thở dốc, ngực đau nhói.\n\nMột đệ tử ngã gục ngay trước mặt ta, mắt còn mở trừng trừng. “Cứu... cứu ta...” — hắn thều thào, rồi im bặt.\n\n*Ta chỉ có vài nhịp thở.* Phải quyết định ngay: xông vào đám hỗn chiến, hay vòng ra sườn tìm đường sống.\n\nTa cắn răng, đưa mắt nhìn cả hai phía, biết rằng chọn sai một bước là mất tất cả.",
-      "lua_chon": [
-        {
-          "chu": "Xông thẳng vào đám hỗn chiến",
-          "den": "c1_d09"
-        },
-        {
-          "chu": "Vòng ra sườn, tìm chỗ ít người",
-          "den": "c1_d10"
         }
       ]
     },
     {
       "id": "c1_d09",
       "hoi": "Thân",
-      "boi_canh": "Giữa vòng hỗn chiến",
+      "boi_canh": "Tu luyện kiếm đạo — đêm đầu",
       "hinh_anh": {
         "tags": [
-          "hỗn chiến",
-          "vũ khí",
-          "máu"
+          "tu luyện",
+          "kiếm khí",
+          "miếu hoang"
         ]
       },
-      "ke": "Ta bị cuốn vào dòng người như một chiếc lá giữa dòng nước xoáy. Một gã áo da sói vung đao chém tới — ta nghiêng người né, lưỡi đao sượt qua mặt, rát bỏng.\n\n“Chết đi!” — hắn gào lên rồi lại vung đao, mắt đỏ ngầu.\n\nTrong khoảnh khắc ấy, ta nhận ra: thân thể này tuy yếu, nhưng phản xạ nhanh hơn người thường. Mảnh ngọc trong tay ta nóng ran như than hồng. *Nó đang giúp ta?*\n\nPhía trước, một thanh niên gầy gò đang bị ba gã bao vây — y không hề lùi, ánh mắt vẫn lạnh băng.\n\nTa nhận ra ngay: chính là hắn, người ở ngõ nhỏ.",
+      "ke": "Đêm ấy, trong miếu hoang, ta ngồi đối diện kiếm linh. Y không dạy ta múa kiếm như võ phu — y dạy ta cách đưa khí vào lưỡi kiếm.\n\n“Hít vào,” — y nói — “Rồi đẩy khí xuống tay, xuống chuôi, xuống mũi kiếm. Kiếm là một phần thân thể ngươi.”\n\nTa làm theo. Lần đầu, lưỡi kiếm chỉ khẽ rung. Lần thứ mười, ta cảm nhận được một luồng ấm chảy vào kim loại lạnh.\n\n“Kẻ khác phải mất ba năm mới cảm được kiếm khí,” — y nói — “Nhưng ngươi có ta, và ngươi có cặp kiếm linh. Nhanh hơn nhiều.”\n\nĐúng như lời y, một luồng khí lạnh chảy qua kinh mạch ta, rồi tụ lại nơi đan điền. *Thì ra tu luyện là thế này.*\n\nTa nhắm mắt, dồn hết tâm trí. Mồ hôi ướt đẫm lưng áo, nhưng ta không dừng.\n\nKhi trời sáng, ta mở mắt, và cảm nhận được một sức mạnh mới trong từng nhịp thở — thứ sức mạnh mà bao năm ăn mày ta chưa từng có.",
       "lua_chon": [
         {
-          "chu": "Xông tới hỗ trợ thanh niên áo vải",
-          "den": "c1_d11",
+          "chu": "Tiếp tục tu luyện theo lời kiếm linh",
+          "den": "c1_d10",
           "hieu_ung": {
-            "tu_vi": 8,
-            "sinh_luc": -5,
-            "co_su_kien": [
-              "giup_han_lap"
-            ],
-            "hao_cam": {
-              "Hàn Lập": 30
-            }
-          }
-        },
-        {
-          "chu": "Lùi lại, giữ mạng trước đã",
-          "den": "c1_d11",
-          "hieu_ung": {
-            "sinh_luc": -1
+            "tu_vi": 90,
+            "ky_nang": [
+              "Hồng Trần kiếm khí"
+            ]
           }
         }
       ]
@@ -364,42 +274,21 @@
     {
       "id": "c1_d10",
       "hoi": "Thân",
-      "boi_canh": "Sườn đông, nơi tạm trú thương binh",
+      "boi_canh": "Đột phá Luyện Khí",
       "hinh_anh": {
         "tags": [
-          "thương binh",
-          "cứu người",
-          "lửa"
+          "tu luyện",
+          "đột phá",
+          "bí mật"
         ]
       },
-      "ke": "Ta kéo một đệ tử trúng đao vào chỗ khuất, băng vết thương bằng vải áo. “Ngươi... không phải người của môn phái này,” — hắn thều thào, mắt mờ đi vì đau — “Sao lại giúp?”\n\n“Vì ta cũng chẳng còn chỗ nào để đi,” — ta đáp, tự thấy câu trả lời ấy thật lạ.\n\nTrước khi hắn kịp nói thêm, một bóng người gầy gò lướt qua — nhanh như mèo, hướng thẳng vào hậu trận Dã Lang Bang. Trên lưng y, một cái bình nhỏ lóe sáng dưới ánh lửa.\n\n*Là hắn.* Ta nín thở, mắt dán theo bóng dáng ấy, trong lòng dấy lên một thôi thúc lạ kỳ.",
+      "ke": "Ba ngày sau, ta đã không còn là kẻ ăn mày chỉ biết co ro. Kiếm linh dạy ta từng chút, nghiêm khắc như một sư phụ thực thụ.\n\n“Ngươi lên tầng rồi,” — y nói, giọng có chút ngạc nhiên — “Nhanh hơn ta tưởng. Cặp kiếm này… đúng là chọn đúng người.”\n\nTa cảm nhận được kiếm khí chảy mạnh hơn trong kinh mạch. Sức mạnh tăng lên từng ngày — không nhiều, nhưng đủ để ta thấy mình đã khác trước.\n\n“Nhưng nghe cho kỹ,” — y nói, giọng nghiêm lại — “Đây là phàm trần. Người thường không tu tiên. Nếu ngươi lộ kiếm khí trước mặt người khác, ngươi sẽ bị coi là yêu nhân mà giết.”\n\n*Ta biết.* Ta khẽ gật đầu.\n\n“Ba ngày nữa Dã Lang Bang tới,” — y nói thêm — “Ngươi chưa đủ mạnh để thắng, nhưng đủ để sống. Nhớ: cặp kiếm này là bí mật của ngươi.”\n\nĐêm ấy, ta luyện tới tận khuya, cho tới khi cảnh giới Luyện Khí tầng ba vững vàng trong người.",
       "lua_chon": [
         {
-          "chu": "Bám theo bóng người gầy gò",
+          "chu": "Nắm chắc thực lực mới, chờ biến cố",
           "den": "c1_d11",
           "hieu_ung": {
-            "than_niem": 1,
-            "co_su_kien": [
-              "theo_han_lap"
-            ],
-            "hao_cam": {
-              "Hàn Lập": 5
-            }
-          }
-        },
-        {
-          "chu": "Ở lại chăm sóc thương binh",
-          "den": "c1_d11",
-          "hieu_ung": {
-            "than_niem": 1,
-            "gap_npc": {
-              "Đệ tử Thất Huyền Môn": {
-                "hao_cam": 5
-              }
-            },
-            "hao_cam": {
-              "Đệ tử Thất Huyền Môn": 8
-            }
+            "tu_vi": 135
           }
         }
       ]
@@ -407,56 +296,22 @@
     {
       "id": "c1_d11",
       "hoi": "Thân",
-      "boi_canh": "Hậu trận Dã Lang Bang",
+      "boi_canh": "Dã Lang Bang tập kích",
       "hinh_anh": {
         "tags": [
-          "doanh trại",
-          "đêm",
-          "nguy hiểm"
-        ]
-      },
-      "ke": "Khi trận hỗn chiến tạm lắng, ta lần theo dấu vết ra tận hậu trận địch — nơi mùi da thú, mồ hôi và máu nồng nặc đến khó thở. Giữa những túp lều da thú, có một căn lều lớn hơn hẳn — nơi phát ra luồng linh khí đen đặc quánh.\n\nMột lão nhân mặt sẹo, thân hình vạm vỡ, đang mân mê một chiếc hộp gỗ.\n\n“Thất Huyền Môn tưởng giữ được bí kíp này sao?” — lão cười khàn khàn — “Ngây thơ.”\n\nBên trong hộp, thứ gì đó tỏa ra linh quang mờ ảo, khiến ta không sao rời mắt.\n\n*Bí kíp…* Ta nín thở, máu trong người như đông lại. Nhưng ta biết, chỉ cần sơ sẩy một bước là mất mạng.",
-      "lua_chon": [
-        {
-          "chu": "Rón rén tới gần, tìm cách đoạt hộp gỗ",
-          "den": "c1_d11b",
-          "hieu_ung": {
-            "co_su_kien": [
-              "thay_hop_go"
-            ]
-          }
-        },
-        {
-          "chu": "Quan sát, ghi nhớ rồi rút lui an toàn",
-          "den": "c1_d11b",
-          "hieu_ung": {
-            "co_su_kien": [
-              "biet_bi_kip"
-            ],
-            "than_niem": 1
-          }
-        }
-      ]
-    },
-    {
-      "id": "c1_d11b",
-      "hoi": "Thân",
-      "boi_canh": "Rìa hậu trận địch",
-      "hinh_anh": {
-        "tags": [
-          "doanh trại",
+          "tập kích",
           "lửa",
-          "bóng tối"
+          "biến cố"
         ]
       },
-      "ke": "Ta tiến sát hậu trận địch, nép mình sau những túp lều da thú xếp san sát. Bọn lính gác thưa thớt vì phần lớn đã ra trận — cơ hội hiếm có.\n\n“Bang chủ đang ở trong lều lớn,” — một tên thì thầm với đồng bọn — “Không ai được vào.”\n\nMột căn lều lớn hơn hẳn nằm ở giữa, từ đó phát ra luồng linh khí đen đặc quánh khiến ta lạnh gáy.\n\n*Vào, hay chỉ đứng nhìn?* Ta liếm môi khô, tim đập từng nhịp nặng nề.\n\nMỗi bước chân giờ đây đều có thể là bước cuối cùng.",
+      "ke": "Đêm thứ tư, ta đang ngồi điều tức trong miếu thì tiếng tù và vang lên từ phía trấn. Ta mở bừng mắt.\n\n*Đến rồi.*\n\nTiếp theo là tiếng hét, tiếng cháy, tiếng đao chạm đao. Từ trên núi, ta thấy lửa bùng lên ở phía Thất Huyền trấn, rồi lan về phía Thất Huyền Môn.\n\n“Dã Lang Bang tới sớm hơn ta nghĩ,” — kiếm linh nói, giọng nghiêm lại — “Ngươi có hai thanh kiếm, nhưng ngươi chưa từng giết ai. Đêm nay sẽ khác.”\n\nTa đứng dậy, đeo cặp kiếm sau lưng. Trong người ta, kiếm khí chảy mạnh hơn. *Lần này, ta không chạy trốn nữa.*\n\nTrước mặt ta, con đường rẽ làm hai: một hướng xuống trấn, nơi dân thường đang bị tàn sát; một hướng về phía Thất Huyền Môn, nơi trận đánh dữ dội nhất.",
       "lua_chon": [
         {
-          "chu": "Lẻn tới gần căn lều lớn",
+          "chu": "Xuống trấn, cứu dân thường",
           "den": "c1_d12"
         },
         {
-          "chu": "Chỉ quan sát từ xa rồi rút",
+          "chu": "Tới Thất Huyền Môn, nơi trận đánh chính",
           "den": "c1_d13"
         }
       ]
@@ -464,172 +319,108 @@
     {
       "id": "c1_d12",
       "hoi": "Thân",
-      "boi_canh": "Trong lều Bang chủ",
+      "boi_canh": "Xuống trấn — cứu dân",
       "hinh_anh": {
         "tags": [
-          "lều",
-          "hộp gỗ",
-          "căng thẳng"
+          "cứu người",
+          "lửa",
+          "kiếm"
         ]
       },
-      "ke": "Ta nép sát vách lều, tim đập thình thịch đến mức tưởng như cả trại nghe thấy. Chỉ cần thêm ba bước nữa là tới được chiếc hộp gỗ đang tỏa linh quang.\n\n“Ai đó?” — Bang chủ đột ngột ngẩng đầu, ánh mắt lão quét thẳng về phía ta. “Có chuột.”\n\nLão đứng dậy, linh khí đen ngòm bùng lên quanh thân như khói độc, khiến không khí quanh ta nặng trịch.\n\n*Chết rồi.* Ta không kịp nghĩ, chỉ kịp thấy toàn thân lạnh toát.\n\nMột lựa chọn duy nhất hiện ra trong đầu: liều, hay chạy.",
+      "ke": "Ta lao xuống núi, hai thanh kiếm tuốt khỏi vỏ. Trấn Thất Huyền đang chìm trong lửa. Dân thường chạy tán loạn, đám cướp Dã Lang Bang đuổi theo chém giết.\n\nMột tên cướp túm tóc một đứa bé, giơ đao. Ta không kịp nghĩ — chân ta lao tới, trường kiếm đâm thẳng.\n\nLần đầu tiên trong đời, ta giết một người. Máu bắn lên mặt ta, nóng hổi. *Ta… vừa giết.*\n\nNhưng không kịp sợ — hai tên nữa đã ập tới. Ta vung trường kiếm đỡ đòn, tay trái đưa đoản kiếm đâm vào hông một tên.\n\n“Tốt,” — kiếm linh nói gọn — “Hai tay phối hợp. Đừng dừng.”\n\nTa đẩy lùi bọn chúng, kéo đứa bé chạy về phía con hẻm. Đêm ấy, ta cứu được vài mạng người, và lần đầu nếm mùi hồng trần mà kiếm linh nói tới.",
       "lua_chon": [
         {
-          "chu": "Liều mình lao tới đoạt hộp rồi chạy",
-          "den": "c1_d14",
-          "hieu_ung": {
-            "sinh_luc": -8,
-            "co_su_kien": [
-              "doat_hop_go"
-            ],
-            "them_vat": [
-              {
-                "ten": "Hộp gỗ bí ẩn",
-                "so": 1,
-                "mo_ta": "Hộp gỗ khắc phù văn, bên trong có linh quang."
-              }
-            ]
-          }
-        },
-        {
-          "chu": "Tung một nắm bụi rồi tháo chạy",
-          "den": "c1_d13",
-          "hieu_ung": {
-            "sinh_luc": -3
-          }
+          "chu": "Rút khỏi đám cháy, tìm nơi an toàn",
+          "den": "c1_d14"
         }
       ]
     },
     {
       "id": "c1_d13",
       "hoi": "Thân",
-      "boi_canh": "Bìa rừng phía tây",
+      "boi_canh": "Thất Huyền Môn — cổng vỡ",
       "hinh_anh": {
         "tags": [
-          "rừng",
-          "đêm",
-          "ẩn nấp"
+          "chiến đấu",
+          "cổng",
+          "kiếm"
         ]
       },
-      "ke": "Ta chạy mãi cho tới khi tiếng gầm thét xa dần, rồi gục xuống sau một gốc cổ thụ. Ngực ta đau nhói, chân run không đứng vững, nhưng ta vẫn còn sống.\n\nTrong đầu, giọng nói lạnh lùng lại vang lên: “Biết địch biết ta, trăm trận không nguy. Ngươi học nhanh đấy.”\n\n*Ngươi là ai…?* — ta hỏi trong vô vọng, nhưng không có tiếng đáp.\n\nPhía xa, lửa cháy rực trời Thất Huyền trấn, nhuộm đỏ cả màn đêm.\n\nTa siết chặt mảnh ngọc trong tay, hơi ấm nơi đó là thứ duy nhất khiến ta thấy mình còn tồn tại.",
+      "ke": "Ta chạy về phía Thất Huyền Môn. Cổng môn đã vỡ, đệ tử ngã la liệt. Ta thấy mấy kẻ mặc áo xanh đang chống trả, nhưng đông quá.\n\nMột tên cướp xông tới. Ta nghiêng người né, trường kiếm chém chéo. Tên địch ngã xuống, mắt trợn tròn. *Ta… vừa đánh ngã một kẻ luyện võ nhiều năm.*\n\nTa vận kiếm khí, một luồng khí lạnh chảy khắp người. Tốc độ ta tăng lên, đường kiếm sắc hơn. Từng bước một, ta đẩy lùi bọn chúng.\n\n“Đừng ham đánh,” — kiếm linh nhắc trong đầu — “Ngươi không đủ sức đánh lâu. Giữ mạng.”\n\nTa cắn răng, rút lui về phía sân trong. Trong đám người hỗn loạn, ta thoáng thấy một bóng dáng gầy gò lướt qua — nhanh như mèo, hướng thẳng vào hậu trận địch.",
       "lua_chon": [
         {
-          "chu": "Quay lại chiến trường, tìm cơ hội cuối",
-          "den": "c1_d14",
-          "hieu_ung": {
-            "than_niem": 1
-          }
-        },
-        {
-          "chu": "Ngồi lại, điều tức hồi phục",
-          "den": "c1_d14",
-          "hieu_ung": {
-            "tu_vi": 5,
-            "sinh_luc": 6
-          }
+          "chu": "Nấp vào bóng tối, chờ trận lắng",
+          "den": "c1_d14"
         }
       ]
     },
     {
       "id": "c1_d14",
-      "hoi": "Kết",
-      "boi_canh": "Đại chiến — cổng môn Thất Huyền Môn",
+      "hoi": "Thân",
+      "boi_canh": "Sau trận — giữa đống đổ nát",
       "hinh_anh": {
         "tags": [
-          "đại chiến",
-          "cổng môn",
-          "linh quang"
+          "hậu trận",
+          "tàn khốc",
+          "gặp gỡ"
         ]
       },
-      "ke": "Trận đại chiến vẫn chưa dứt — còn dữ dội hơn cả lúc đầu. Bang chủ Dã Lang Bang tung một quyền, linh khí đen cuộn thành hình sói khổng lồ, đánh sập nốt mảng tường thành còn sót lại.\n\n“Hỡi các đệ tử, theo ta!” — một trưởng lão râu bạc quát vang, đạo bào phần phật trong gió.\n\nCác trưởng lão Thất Huyền Môn đồng loạt xuất thủ, ánh sáng xanh lục và vàng kim đan vào nhau như dệt lụa, chấn động cả bầu trời đêm.\n\nTa đứng cách đó vài chục trượng, lần đầu tiên trong đời cảm nhận được thế nào là uy lực của tu sĩ. *Đây là sức mạnh mà ta hằng mơ ước.*\n\nNhưng đồng thời, ta cũng hiểu: đứng sai chỗ trong trận này, ta sẽ tan thành tro.",
+      "ke": "Trận đánh tạm lắng khi trời gần sáng. Ta ngồi bệt xuống bậc đá, toàn thân đau nhức, áo quần rách bươm.\n\nThất Huyền trấn tan hoang. Khói còn vương trong gió, mùi máu tanh không tan. Người ta lặng lẽ khiêng xác đi.\n\n*Ta đã sống qua đêm nay.* Nhưng trong lòng ta không có chút vui mừng nào. Ta chỉ thấy rõ hơn bao giờ hết: kẻ yếu không có chỗ đứng trong thế giới này.\n\n“Ngươi làm tốt,” — kiếm linh nói, giọng hiếm khi dịu — “Nhưng đây mới chỉ là khởi đầu.”\n\nTa đứng dậy, phủi bụi trên áo. Trong đám người qua lại, một bóng dáng gầy gò lặng lẽ bước về phía hậu sơn. Dáng đi ấy không vội, cũng không chậm — như kẻ đã quen đường.\n\n*Kẻ đó… không tầm thường.*",
       "lua_chon": [
         {
-          "chu": "Nhân lúc hỗn loạn, lẻn vào trong môn phái",
-          "den": "c1_d14b",
-          "hieu_ung": {
-            "co_su_kien": [
-              "vao_mon_phai"
-            ]
-          }
-        },
-        {
-          "chu": "Ở ngoài quan sát trận chiến, học hỏi",
-          "den": "c1_d14b",
-          "hieu_ung": {
-            "than_niem": 3,
-            "co_su_kien": [
-              "hoc_chien_dau"
-            ]
-          }
-        }
-      ],
-      "video": {
-        "mau": "dai_chien"
-      }
-    },
-    {
-      "id": "c1_d14b",
-      "hoi": "Kết",
-      "boi_canh": "Đại chiến leo thang",
-      "hinh_anh": {
-        "tags": [
-          "đại chiến",
-          "chấn động",
-          "linh quang"
-        ]
-      },
-      "ke": "Trận chiến leo thang dữ dội hơn nữa. Mỗi quyền của Bang chủ đánh ra đều để lại một hố sâu trên nền đá, đá vụn bắn tung tóe.\n\nĐám đệ tử Dã Lang Bang gào thét xông lên như thú dữ, không biết sợ là gì.\n\nCác trưởng lão Thất Huyền Môn phải liên thủ mới cầm cự nổi, mồ hôi ướt đẫm trán.\n\nTa ép sát người vào tường, linh khí dư chấn quét qua khiến da mặt rát bỏng.\n\n*Đây là cơ hội — hoặc là mồ chôn.* Ta hít một hơi thật sâu, mắt quét qua hai hướng, biết không còn thời gian để do dự thêm.",
-      "lua_chon": [
-        {
-          "chu": "Nhân lúc hỗn loạn, lẻn vào trong môn phái",
+          "chu": "Lặng lẽ bám theo bóng người ấy",
           "den": "c1_d15"
         },
         {
-          "chu": "Bám theo rìa trận địa, quan sát học hỏi",
-          "den": "c1_d16"
+          "chu": "Về nơi trú, tìm chỗ nghỉ lấy sức",
+          "den": "c1_d15"
         }
       ]
     },
     {
       "id": "c1_d15",
       "hoi": "Kết",
-      "boi_canh": "Sân trong Thất Huyền Môn",
+      "boi_canh": "Gặp Hàn Lập — hậu sơn",
       "hinh_anh": {
         "tags": [
-          "môn phái",
-          "sân trong",
-          "tàn phá"
+          "Hàn Lập",
+          "gặp gỡ",
+          "kết"
         ]
       },
-      "ke": "Ta lẻn được vào sân trong, nơi đã bị tàn phá tan hoang — cột đá gãy, cỏ cháy đen, mùi khét lẹt bốc lên nồng nặc.\n\nBỗng ta nghe tiếng bước chân rất khẽ. Một thanh niên gầy gò, áo vải thô đang lúi húi nhặt thứ gì đó dưới đất — một chiếc bình nhỏ bằng ngọc.\n\nY ngẩng lên nhìn ta, và ánh mắt ấy bình thản đến lạnh người, không hề có chút sợ hãi.\n\n“Ngươi thấy ta rồi,” — y nói, giọng không cao không thấp.\n\n*Hắn không chạy, cũng không hỏi han — chỉ quan sát ta.* Tay ta khẽ đổ mồ hôi, biết đây là khoảnh khắc quyết định.",
+      "ke": "Ta theo bóng người ấy tới một góc khuất sau hậu sơn. Hắn dừng lại, không quay đầu, giọng trầm: “Theo ta lâu vậy, không mệt sao?”\n\nTa khựng lại. *Hắn biết từ đầu.* Ta siết chặt cán kiếm sau lưng.\n\nHắn quay lại. Ánh mắt sắc như dao, lạnh như băng — nhưng ta thấy trong đó một tia mỏi mệt, thứ mỏi mệt của kẻ đã giấu quá nhiều bí mật.\n\nTrong đầu ta, giọng nói lạnh lùng vang lên: *“Hàn Lập. Đệ tử Thất Huyền Môn. Cũng là kẻ sẽ đứng trên đỉnh của thế gian này.”*\n\n*Hàn Lập.* Ta khẽ siết tay áo, che đi vẻ kinh ngạc. Người trước mặt ta — kẻ gầy gò, ít nói — chính là nhân vật chính của thế giới này.\n\n“Ngươi không phải kẻ tầm thường,” — hắn nói, giọng không cao không thấp. “Và ngươi cũng đang giấu thứ gì đó.”\n\n*Hắn nhận ra rồi.* Ta nuốt nước bọt. Đây là cơ hội — hoặc là hiểm họa. Một lời nói sai, có thể đổi cả tương lai.",
       "lua_chon": [
         {
-          "chu": "Lên tiếng chào, tỏ ý muốn kết giao",
-          "den": "c1_d17",
+          "chu": "Thành thật: “Ta biết tương lai của ngươi.”",
+          "den": "c1_d16",
           "hieu_ung": {
             "co_su_kien": [
-              "gap_han_lap"
+              "noi_that_han_lap"
             ],
-            "gap_npc": {
-              "Hàn Lập": {
-                "hao_cam": 0,
-                "hien_than": "thanh niên gầy gò, áo vải thô"
-              }
-            },
             "hao_cam": {
-              "Hàn Lập": 16
+              "Hàn Lập": 10
             }
           }
         },
         {
-          "chu": "Không nói gì, lặng lẽ bước theo sau hắn",
-          "den": "c1_d17",
+          "chu": "Cười trừ: “Ta chỉ là kẻ tình cờ ở đây.”",
+          "den": "c1_d16"
+        },
+        {
+          "chu": "Hỏi ngược: “Vậy ngươi là ai?”",
+          "den": "c1_d16",
           "hieu_ung": {
-            "co_su_kien": [
-              "gap_han_lap"
-            ],
             "hao_cam": {
-              "Hàn Lập": -5
+              "Hàn Lập": 5
+            }
+          }
+        },
+        {
+          "chu": "Im lặng, đưa hắn bầu nước của mình",
+          "den": "c1_d16",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 8
             }
           }
         }
@@ -638,140 +429,50 @@
     {
       "id": "c1_d16",
       "hoi": "Kết",
-      "boi_canh": "Mái nhà ven sườn núi",
+      "boi_canh": "Đối thoại với Hàn Lập",
       "hinh_anh": {
         "tags": [
-          "mái nhà",
-          "quan sát",
-          "đêm"
+          "Hàn Lập",
+          "đối thoại",
+          "kết"
         ]
       },
-      "ke": "Ta leo lên một mái nhà ven sườn núi, từ đó quan sát toàn cảnh trận chiến. Dưới ánh lửa chập chờn, ta thấy rõ cách các trưởng lão phối hợp, cách người yếu né đòn, cách kẻ mạnh truy sát.\n\n“Tránh sang trái!” — một giọng chỉ huy vang lên, và đám đệ tử đồng loạt biến chuyển đội hình.\n\nTừng chiêu thức, từng sơ hở — tất cả khắc sâu vào trí nhớ ta như khắc vào đá. *Thì ra chiến đấu là như vậy.*\n\nKhi trận chiến tạm lắng, ta nhảy xuống, hướng vào trong môn phái.\n\nỞ đó, một bóng người gầy gò vừa lướt qua cửa hông, nhanh thoăn thoắt.",
+      "ke": "Hàn Lập im lặng một lúc lâu, đủ để ta nghe rõ tiếng tim mình đập.\n\n“Người ở đây chỉ nhìn thấy một kẻ lang thang nơi ta,” — cuối cùng hắn nói — “Còn ngươi… nhìn thấy gì khác.”\n\nHắn không hỏi thêm. Chỉ cúi xuống, lau vết máu trên ống tay áo, như thể câu chuyện đã kết thúc. Nhưng ta biết, hắn đã ghi nhớ ta.\n\n“Đêm nay, ngươi cứu được mạng mình,” — hắn nói, không ngẩng lên — “Nhưng con đường phía trước còn dài. Đừng để bị cuốn vào chuyện không liên quan.”\n\n*Hắn đang nhắc ta.* Trong lòng ta dâng lên một cảm giác lạ — vừa sợ, vừa kính phục. Người này, dù còn yếu, đã có thứ khí độ mà ta chưa từng thấy ở bất kỳ ai.\n\nTa đứng dậy, khẽ gật đầu. Sau lưng, cặp kiếm khẽ rung — như thể kiếm linh cũng đang nhìn theo bóng người ấy.",
       "lua_chon": [
         {
-          "chu": "Đuổi theo bóng người gầy gò",
+          "chu": "“Vậy hẹn gặp lại khi ngươi mạnh hơn.”",
           "den": "c1_d17",
           "hieu_ung": {
-            "co_su_kien": [
-              "gap_han_lap"
-            ],
-            "gap_npc": {
-              "Hàn Lập": {
-                "hao_cam": 0,
-                "hien_than": "thanh niên gầy gò, áo vải thô"
-              }
+            "hao_cam": {
+              "Hàn Lập": 5
             }
           }
+        },
+        {
+          "chu": "Im lặng gật đầu rồi rời đi",
+          "den": "c1_d17"
         }
       ]
     },
     {
       "id": "c1_d17",
       "hoi": "Kết",
-      "boi_canh": "Gặp Hàn Lập — hậu sơn Thất Huyền Môn",
+      "boi_canh": "Kết chương — bình minh Thất Huyền trấn",
       "hinh_anh": {
         "tags": [
-          "hậu sơn",
-          "gặp gỡ",
-          "trăng"
+          "bình minh",
+          "kết chương",
+          "kiếm"
         ]
       },
-      "ke": "Trăng lên, ta và thanh niên ấy đứng cách nhau ba bước, giữa hậu sơn vắng lặng đến mức nghe được cả tiếng lá rơi.\n\n“Ngươi không phải đệ tử ở đây,” — y nói, giọng không cao không thấp — “Và ngươi biết ta là ai.”\n\nTa khựng lại, tim đập lệch một nhịp. Y nhìn thẳng vào mắt ta, không chút sợ hãi, như thể đã nhìn thấu mọi thứ.\n\nTrong đầu ta, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh tu tiên giới… nếu ngươi không làm hỏng mọi thứ.”\n\n*Hàn Lập — là hắn thật rồi.* Ta siết chặt tay, biết mình đang đứng trước người sẽ định đoạt vận mệnh của cả thế giới này.",
+      "ke": "Trời sáng. Ta bước khỏi hậu sơn, ánh bình minh đầu tiên rọi lên vai áo rách.\n\nSau lưng, cặp kiếm khẽ rung. “Ngươi đã sống qua đêm đầu tiên,” — kiếm linh nói, giọng yếu nhưng mang theo ý cười — “Và ngươi đã lên Luyện Khí tầng ba. Không tồi cho một kẻ ăn mày.”\n\nTa khẽ cười. Bốn ngày trước, ta còn là kẻ co ro trong góc chợ, chẳng ai nhớ mặt. Giờ đây, ta đã có thực lực để đứng vững, có một cơ duyên mà không ai có, và một bí mật mà không ai biết.\n\n“Nhớ kỹ,” — kiếm linh dặn — “Kiếm này tu giữa hồng trần. Ngươi càng trải, càng mạnh. Và gã Hàn Lập kia… hắn sẽ là người quan trọng nhất trong đời ngươi.”\n\nGiọng nói lạnh lùng vang lên lần cuối: *“Chương một, kết thúc. Hồng Trần Kiếm đã nhận chủ.”*\n\nTa hít sâu, nhìn ánh bình minh sau núi. Thất Huyền trấn tan hoang nhưng chưa gục. Hàn Lập đã bắt đầu con đường của hắn. Còn ta — ta đã có cặp kiếm, có kiếm linh, và một cơ duyên mà kẻ khác cả đời không gặp.\n\n*Con đường phía trước… ta tự chọn.*",
       "lua_chon": [
         {
-          "chu": "Thành thật: “Ta biết tương lai của ngươi.”",
-          "den": "c1_d17b",
-          "hieu_ung": {
-            "co_su_kien": [
-              "tiet_lo_meta"
-            ],
-            "hao_cam": {
-              "Hàn Lập": 20
-            }
-          }
-        },
-        {
-          "chu": "Cười trừ: “Ta chỉ là kẻ đi đường, tình cờ ghé qua.”",
-          "den": "c1_d17b"
-        },
-        {
-          "chu": "Hỏi ngược: “Vậy ngươi là ai?”",
-          "den": "c1_d17b",
-          "hieu_ung": {
-            "hao_cam": {
-              "Hàn Lập": 8
-            }
-          }
-        },
-        {
-          "chu": "Nói ra điều chỉ người thân thiết mới dám nói",
-          "den": "c1_d17b",
-          "dieu_kien": {
-            "hao_cam": {
-              "Hàn Lập": 50
-            }
-          },
-          "ly_do_khoa": "Cần hảo cảm 50+ (thân thiết) với Hàn Lập",
-          "hieu_ung": {
-            "hao_cam": {
-              "Hàn Lập": 20
-            }
-          }
+          "chu": "Khép lại Chương 1",
+          "den": "__ket_thuc__"
         }
       ],
-      "bien_the": [
-        {
-          "npc": "Hàn Lập",
-          "muc": "người dưng",
-          "ke": "Trăng lên, ta và thanh niên ấy đứng cách nhau ba bước, giữa hậu sơn vắng lặng đến mức nghe được cả tiếng lá rơi.\n\n“Ngươi không phải đệ tử ở đây,” — y nói, giọng không cao không thấp — “Và ngươi biết ta là ai.”\n\nTa khựng lại, tim đập lệch một nhịp. Y nhìn thẳng vào mắt ta, không chút sợ hãi, như thể đã nhìn thấu mọi thứ.\n\nTrong đầu ta, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh tu tiên giới… nếu ngươi không làm hỏng mọi thứ.”\n\n*Hàn Lập — là hắn thật rồi.* Ta siết chặt tay, biết mình đang đứng trước người sẽ định đoạt vận mệnh của cả thế giới này."
-        },
-        {
-          "npc": "Hàn Lập",
-          "muc": "quen biết",
-          "ke": "Trăng lên, ta và thanh niên ấy đứng cách nhau ba bước, giữa hậu sơn vắng lặng đến mức nghe được cả tiếng lá rơi.\n\n“Lại là ngươi,” — y nói, giọng vẫn lạnh nhưng khóe mắt khẽ động — “Kẻ đã xông vào đám loạn quân ở cổng môn.”\n\nTa giật mình, không ngờ y nhớ. “Ngươi không phải đệ tử ở đây. Và ngươi biết ta là ai.” — y tiếp, ánh mắt dò xét nhưng không còn xa cách.\n\nTrong đầu ta, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh tu tiên giới… nếu ngươi không làm hỏng mọi thứ.”\n\n*Hắn đã để ý tới ta — vậy là bước đầu đã thành.* Ta chậm rãi mở lời, biết từng câu nói giờ đây đều quan trọng."
-        },
-        {
-          "npc": "Hàn Lập",
-          "muc": "thân thiết",
-          "ke": "Trăng lên, ta và Hàn Lập đứng cách nhau ba bước, giữa hậu sơn vắng lặng. Không còn là hai kẻ lạ mặt dò xét nhau nữa.\n\n“Ngươi đã giúp ta ở cổng môn,” — y nói, giọng vẫn nhạt nhưng ánh mắt đã dịu — “Ta nhớ.”\n\n“Ta biết ngươi là ai,” — ta đáp, và lần này không hề do dự.\n\nY im lặng nhìn ta một lúc lâu. Trong đầu ta, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh tu tiên giới… nếu ngươi không làm hỏng mọi thứ.”\n\n*Ta đã có được chút tin cậy của hắn.* Nắm tay ta khẽ run — không phải vì sợ, mà vì một niềm tin vừa nhen lên."
-        },
-        {
-          "npc": "Hàn Lập",
-          "muc": "tri kỷ",
-          "ke": "Trăng lên, ta và Hàn Lập đứng cách nhau ba bước, giữa hậu sơn vắng lặng. Không còn là hai kẻ lạ mặt dò xét nhau nữa.\n\n“Ngươi đã giúp ta ở cổng môn,” — y nói, giọng vẫn nhạt nhưng ánh mắt đã dịu — “Ta nhớ.”\n\n“Ta biết ngươi là ai,” — ta đáp, và lần này không hề do dự.\n\nY im lặng nhìn ta một lúc lâu. Trong đầu ta, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh tu tiên giới… nếu ngươi không làm hỏng mọi thứ.”\n\n*Ta đã có được chút tin cậy của hắn.* Nắm tay ta khẽ run — không phải vì sợ, mà vì một niềm tin vừa nhen lên."
-        }
-      ],
-      "video": {
-        "mau": "gap_han_lap"
-      }
-    },
-    {
-      "id": "c1_d17b",
-      "hoi": "Kết",
-      "boi_canh": "Đối thoại với Hàn Lập",
-      "hinh_anh": {
-        "tags": [
-          "hậu sơn",
-          "trăng",
-          "đối thoại"
-        ]
-      },
-      "ke": "Hàn Lập im lặng một lúc lâu, đủ để ta nghe rõ tiếng tim mình đập trong lồng ngực.\n\nRồi y chậm rãi nói: “Ngươi là kẻ đầu tiên nói với ta như vậy. Đa số người ở đây chỉ nhìn thấy một tạp dịch.”\n\n“Vậy ngươi thấy ta là gì?” — ta hỏi, giọng khẽ run.\n\nY không đáp ngay, chỉ cúi xuống nhặt chiếc bình ngọc, cẩn thận lau sạch bùn đất bằng vạt áo.\n\n“Ta không tin ngươi,” — cuối cùng y nói — “Nhưng ta sẽ nhớ ngươi.”\n\n*Không tin — nhưng nhớ.* Ta hiểu rằng với một kẻ như hắn, đó đã là một bước tiến hiếm hoi. Ta gật đầu, trong lòng nhẹ đi đôi phần.",
-      "lua_chon": [
-        {
-          "chu": "“Vậy hẹn gặp lại khi ngươi mạnh hơn.”",
-          "den": "c1_d18",
-          "hieu_ung": {
-            "hao_cam": {
-              "Hàn Lập": 10
-            }
-          }
-        },
-        {
-          "chu": "Im lặng gật đầu rồi rời đi",
-          "den": "c1_d18"
-        }
-      ]
+      "ket_thuc": true
     },
     {
       "id": "c1_d18",
