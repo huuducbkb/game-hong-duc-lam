@@ -3,7 +3,7 @@
 
 > **Tóm tắt:** Người chơi xuyên không tới Thất Huyền trấn ngay trước khi Dã Lang Bang tập kích Thất Huyền Môn. Trong hỗn loạn, lần đầu chạm mặt Hàn Lập — khi đó còn là một tạp dịch đệ tử gầy gò, ít nói.
 
-*Nhánh này gồm 22 đoạn.*
+*Nhánh này gồm 34 đoạn.*
 
 ---
 
@@ -25,6 +25,8 @@ Một gã đàn ông lực lưỡng đá tung cửa bước vào, tay cầm cây
 
 Trong đầu ta, một giọng nói lạnh lùng bỗng vang lên: *“Nghịch chuyển càn khôn… đã bắt đầu.”*
 
+Ta khựng người. Giọng nói ấy không giống tiếng của chính ta — nó đều đều, lạnh nhạt, như đọc từ một cuốn sách vô hình. *Đây là ai?* Ta không biết. Chỉ biết từ khoảnh khắc đó, giọng nói ấy sẽ không buông ta ra.
+
 *Thân thể này không phải của ta.* Nhưng ta đang sống trong nó, bằng xương bằng thịt. Ký ức của thân thể này ùa về từng mảnh: ta là tân đệ tử vừa trúng tuyển của Thất Huyền Môn — một môn phái võ lâm danh tiếng — nhưng thân thủ hạng bét, chỉ hơn kẻ mới học võ chút đỉnh.
 
 Ta nghiến răng ngồi dậy. *Muốn sống, trước hết phải hiểu mình đang ở đâu.*
@@ -38,23 +40,23 @@ Ta nghiến răng ngồi dậy. *Muốn sống, trước hết phải hiểu mì
 
 ### Đoạn `c1_p02` — Sân tập Thất Huyền Môn — giữa ngày
 
-*Ảnh:* `sân tập, võ lâm, đệ tử`
+*Ảnh:* `sân tập, đệ tử, ban ngày`
 
 Sân tập rộng lớn, đất nện phẳng lì, hai bên cắm cờ xanh lam của môn phái. Hàng trăm đệ tử đang múa côn, đánh quyền, tiếng thở dốc vang khắp sân. Không khí nóng hừng hực như lò rèn.
 
-*Toàn là phàm nhân luyện võ.* Ta nhận ra điều đó ngay — không một ai tỏa ra linh khí. Đây không phải tông môn tu tiên, mà là chốn giang hồ võ lâm thuần túy.
+*Toàn là phàm nhân luyện võ.* Ta nhận ra điều đó ngay — không một ai tỏa ra linh khí. Ta biết thế gian này có tu tiên, bởi ta đã đọc về nó; nhưng Thất Huyền Môn chỉ là một môn phái võ lâm phàm tục, chốn giang hồ thuần túy, cách xa tiên đạo một trời.
 
-Ở góc sân, một thanh niên gầy gò, áo vải thô, đang lặng lẽ luyện một bài quyền. Động tác của y không đẹp, nhưng mắt y sắc như dao, không hề rời khỏi mục tiêu. *Kẻ này không giống người thường.*
+Ở góc sân, một thanh niên gầy gò, áo vải thô, đang lặng lẽ luyện một bài quyền. Động tác của y không đẹp, nhưng mắt y sắc như dao, không hề rời khỏi mục tiêu. Ta chợt khựng lại — dáng người ấy, ánh mắt ấy, ta đã gặp trong từng trang truyện. *Hàn Lập.*
 
-Giọng nói lạnh lùng vang lên trong đầu: *“Hàn Lập. Đệ tử Thất Huyền Môn. Cũng là kẻ sẽ đứng trên đỉnh của thế gian này.”*
+Giọng nói lạnh lùng vang lên trong đầu: *“Đúng vậy. Kẻ sẽ đứng trên đỉnh của thế gian này.”*
 
-*Hàn Lập.* Ta khựng người, tim đập lệch một nhịp. Người trước mặt ta — kẻ gầy gò, ít nói ấy — chính là nhân vật chính của thế giới này. Kẻ mà ta đã đọc trong truyện, đã biết trước từng bước đi của hắn.
+*Hàn Lập.* Ta siết chặt tay, cố giữ vẻ mặt bình thản. Kẻ mà ta từng đọc, từng biết trước từng bước đi — giờ đang đứng cách ta vài chục bước chân, lặng lẽ luyện quyền như bao kẻ vô danh khác.
 
-“Nghe chưa? Dã Lang Bang sắp đánh tới,” — một đệ tử bên cạnh thì thào — “Chúng dòm ngó môn ta mấy tháng nay rồi.”
+“Nghe chưa? Dã Lang Bang sắp đánh tới,” — một đệ tử bên cạnh thì thào — “Chúng dòm ngó môn ta mấy tháng nay rồi. Nghe đâu nửa tháng nữa là chúng kéo tới.”
 
 “Suỵt! Muốn chết à?” — kẻ khác bịt miệng hắn. “Để sư phụ nghe được, cả hai đứa bị phạt quỳ đấy.”
 
-*Dã Lang Bang…* Ta siết chặt tay. Một trận đại chiến đang tới gần — và ta, kẻ yếu nhất trong đám đệ tử này, sẽ là người chết đầu tiên nếu không mạnh lên. Ta có ba ngày.
+*Nửa tháng.* Ta nuốt khan. Nửa tháng để một kẻ hạng bét như ta tìm đường sống — hoặc là chết trong trận đại chiến đầu tiên.
 
 **Lựa chọn:**
 
@@ -69,24 +71,70 @@ Giọng nói lạnh lùng vang lên trong đầu: *“Hàn Lập. Đệ tử Th�
 
 ### Đoạn `c1_p03` — Sân tập — bị chèn ép
 
-*Ảnh:* `sân tập, chèn ép, yếu ớt`
+*Ảnh:* `sân tập, chèn ép, nhục nhã`
 
 Ta đứng vào hàng, bắt chước các sư huynh múa côn. Nhưng tay chân ta vụng về, côn gỗ đập vào đâu cũng trật, mấy lần suýt đánh trúng người bên cạnh.
 
 “Nhìn kìa, tên tân đệ tử!” — một gã to con cười nhạo — “Đánh côn mà như búa đập ruồi. Môn ta năm nay tuyển được cái thứ gì vậy?”
 
-Đám đệ tử xung quanh cười ồ lên. Mặt ta nóng ran, nhưng ta cúi đầu, không đáp. *Cãi lại chỉ chuốc thêm nhục.*
+Đám đệ tử xung quanh cười ồ lên. Mặt ta nóng ran.
 
 Gã to con tiến tới, đẩy mạnh vai ta một cái. Ta loạng choạng ngã ngồi xuống đất, côn gỗ văng ra xa. “Nghe cho rõ,” — hắn cúi sát mặt ta — “Mấy ngày tới động thủ với Dã Lang Bang, ngươi cứ nấp sau lưng ta. Đừng có mà liều, chết rồi lại phiền.”
 
-Hắn cười khẩy rồi bỏ đi. Ta ngồi dưới đất, hai tay run lên vì nhục. *Với thân thủ này, ta khác nào con gà chờ cắt tiết.*
-
-Ta nhớ tới vườn thuốc phía sau môn. Có lẽ ở đó có thứ gì giúp ta — dù chỉ là một vị thuốc trị thương.
+Hắn cười khẩy. Ta ngồi dưới đất, hai tay siết chặt. Máu nóng bốc lên mặt. *Nuốt nhục, hay cãi lại?*
 
 **Lựa chọn:**
 
-- Lồm cồm bò dậy, lặng lẽ tới vườn thuốc  
-  → `c1_p06`
+- Cúi đầu, nuốt nhục — lặng lẽ luyện lại một mình  
+  → `c1_p03b`
+- Cãi lại, dù biết mình sẽ thua  
+  → `c1_p03c`
+
+---
+
+### Đoạn `c1_p03b` — Tân xá — luyện lén trong đêm
+
+*Ảnh:* `luyện võ, đêm, quyết tâm`
+
+Ta cúi đầu, không đáp. Nhục thì nhục, nhưng cãi lại chỉ chuốc thêm đau. Ta lồm cồm bò dậy, nhặt cây côn gỗ, lặng lẽ bước ra khỏi sân.
+
+Đêm ấy, khi cả tân xá đã ngủ, ta lén ra sân sau, chỗ khuất nhất, tập lại bài quyền mà ban ngày ta đã nhìn lén các sư huynh múa. Không ai chỉ, ta chỉ bắt chước — sai thì sửa, ngã thì đứng lên.
+
+Một đêm, hai đêm, ba đêm. Tay chân ta rã rời, nhưng từng chiêu một dần vào nếp. Đến đêm thứ tư, ta bỗng nhận ra mình đã đánh trọn một bài mà không trật nhịp nào.
+
+*Thất Huyền quyền.* Ta nhớ tên bài quyền ấy — bài nhập môn của Thất Huyền Môn. Với kẻ khác, nó chỉ là sơ đẳng. Với ta, nó là thứ đầu tiên ta thật sự nắm được bằng mồ hôi của mình.
+
+Ta nắm chặt tay, cảm nhận sức lực đã khác trước. *Ít ra, lần này ta không còn tay không.*
+
+**Lựa chọn:**
+
+- Trở lại vườn thuốc, tìm thứ gì dùng được  
+  → `c1_p06`  
+  ✦ mở cờ: hoc_that_huyen_quyen; học: Thất Huyền quyền
+
+---
+
+### Đoạn `c1_p03c` — Sân tập — cãi lại
+
+*Ảnh:* `cãi lại, nhục nhã, bản lĩnh`
+
+“Ta không núp sau lưng ai cả,” — ta nói, giọng run nhưng mắt không cúi.
+
+Gã to con sững lại một thoáng, rồi mặt hắn đỏ bừng. “Láo!” — hắn vung tay tát ta một cái như trời giáng. Ta ngã dúi xuống, khóe miệng bật máu.
+
+“Tân đệ tử mà dám cãi!” — hắn đá thêm một cái — “Để xem ngươi trụ được mấy ngày.”
+
+Đám đông xung quanh im phăng phắc. Không ai đỡ ta, nhưng cũng không ai cười nữa. Trong mắt vài người, ta thoáng thấy một tia khác lạ — không phải thương hại, mà là chút gì đó giống sự nể.
+
+Hắn bỏ đi. Ta gượng ngồi dậy, lau máu nơi khóe miệng. *Đau. Nhưng ít ra, ta đã không cúi đầu.*
+
+Đêm ấy, ta lén ra sân sau luyện lại bài quyền nhập môn đã nhìn lén ban ngày. Đau thì đau, nhưng ta luyện tới khi trọn bài. *Thất Huyền quyền.* Lần đầu tiên, ta nắm được một thứ bằng chính mình.
+
+**Lựa chọn:**
+
+- Lặng lẽ tới vườn thuốc sau môn  
+  → `c1_p06`  
+  ✦ mở cờ: hoc_that_huyen_quyen, khong_khuat_phuc; học: Thất Huyền quyền
 
 ---
 
@@ -119,26 +167,27 @@ Mạc Đại Phu nhìn ta một lúc lâu, rồi khẽ gật đầu. “Thuốc 
 
 ### Đoạn `c1_p05` — Quán nước đầu trấn — dò tin
 
-*Ảnh:* `quán nước, tin tức, căng thẳng`
+*Ảnh:* `quán nước, dò tin, giang hồ`
 
 Ta lân la tới quán nước đầu trấn, nơi khách giang hồ tụ tập. Chỉ cần mấy đồng bạc lẻ, ta được ngồi ở góc tối và nghe ngóng.
 
-“Dã Lang Bang dạo này động tĩnh lạ lắm,” — một gã đàn ông râu quai nón hạ giọng. “Chúng kéo tới mấy trăm người, dòm ngó Thất Huyền Môn suốt mấy tháng rồi.”
+“Dã Lang Bang dạo này động tĩnh lạ lắm,” — một gã đàn ông râu quai nón hạ giọng. “Chúng kéo tới mấy trăm người, dòm ngó Thất Huyền Môn suốt mấy tháng rồi. Cầm đầu là Hùng Bá — tay đao nặng trịch, nổi tiếng tàn độc.”
+
+*Hùng Bá.* Ta khắc cái tên ấy vào lòng. Biết tên đầu lĩnh, có khi tới lúc nguy cấp lại dùng được.
 
 “Suỵt!” — kẻ bên cạnh huých tay hắn. “Nói bậy mất mạng như chơi.”
 
-Ta cúi mặt vào chén nước, tim đập nhanh. *Mấy trăm người.* Một trận chiến lớn đang tới — và kẻ yếu như ta sẽ là người chết đầu tiên.
-
 “Nghe nói trong môn có một gã đệ tử gầy gò, ít nói, mà mấy vị sư phụ để mắt lắm,” — gã râu quai nón nói tiếp. “Hình như tên là Hàn gì đó…”
 
-*Hàn Lập.* Ta siết chặt chén nước. Ngay cả kẻ ngoài môn cũng để ý tới hắn — trong khi ta thì chẳng ai nhớ mặt. *Ta phải tự tìm đường cho mình.*
+*Hàn Lập.* Ta cúi mặt vào chén nước. Ngay cả kẻ ngoài môn cũng để ý tới hắn — trong khi ta thì chẳng ai nhớ mặt. *Ta phải tự tìm đường cho mình.*
 
 Ta đứng dậy, quay về phía vườn thuốc sau môn — nơi ít người lui tới nhất.
 
 **Lựa chọn:**
 
 - Lặng lẽ tới vườn thuốc sau môn  
-  → `c1_p06`
+  → `c1_p06`  
+  ✦ mở cờ: biet_dau_linh
 
 ---
 
@@ -146,7 +195,7 @@ Ta đứng dậy, quay về phía vườn thuốc sau môn — nơi ít người
 
 ### Đoạn `c1_p06` — Vườn thuốc — Mạc Đại Phu và khối ngọc
 
-*Ảnh:* `vườn thuốc, bí ẩn, ngọc cốt`
+*Ảnh:* `vườn thuốc, Mạc Đại Phu, khối ngọc`
 
 Ta cùng Mạc Đại Phu ngồi bó thuốc. Ông lão nói chuyện rời rạc, khi thì về thời tiết, khi thì về mấy vị thuốc quý, nhưng ánh mắt thì cứ nhìn ta như muốn soi thấu điều gì.
 
@@ -158,9 +207,11 @@ Mạc Đại Phu khẽ gật gù, không nói thêm. Ông đứng dậy, chỉ v
 
 Ta cúi xuống nhổ cỏ. Móng tay ta cào vào lớp rêu ẩm, rồi bỗng chạm phải một vật lạnh buốt — cứng như đá mà trơn như ngọc. Ta giật mình rụt tay lại.
 
-Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ.
+Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.
 
-*Thứ này… không phải đồ bỏ.* Ta vội lấp đất lại, che nó đi, rồi liếc về phía Mạc Đại Phu. Ông lão vẫn cúi bó thuốc, như không hề hay biết.
+Ta vội liếc về phía Mạc Đại Phu. Ông lão vẫn cúi bó thuốc, tay thoăn thoắt, mặt không đổi sắc. *Ông ấy không cảm nhận được… hay là giả vờ không cảm nhận?*
+
+*Thứ này… không phải đồ bỏ.* Ta vội lấp đất lại, che nó đi.
 
 Giọng nói lạnh lùng vang lên trong đầu: *“Cơ duyên… đã tới.”*
 
@@ -198,7 +249,7 @@ Ta đào lên. Khối ngọc vẫn nằm đó, ánh sáng mờ nhạt như đang
 
 ### Đoạn `c1_p07` — Tân xá — đêm, khối ngọc phát sáng
 
-*Ảnh:* `đêm, ngọc cốt, bí ẩn`
+*Ảnh:* `tân xá, đêm, ngọc phát sáng`
 
 Đêm buông xuống, tân xá chìm vào im lặng. Ta nằm trên phản gỗ, đợi cho mọi người ngủ hết, rồi mới lấy khối ngọc ra.
 
@@ -207,6 +258,8 @@ Dưới ánh đèn dầu leo lét, nó chợt sáng lên — không phải thứ
 *Ngươi… là gì?*
 
 Rồi bóng người trong ngọc cốt hiện ra rõ hơn. Một dáng nữ, tóc dài buông xuống, thân hình như được khắc từ ánh trăng. Nàng không phải tàn hồn mờ ảo — mà là da thịt thật, sống động đến mức ta nghe được cả hơi thở.
+
+Cùng lúc ấy, một mùi hương lạ len vào mũi ta — mùi hoa đêm, ngọt mà lạnh, như thứ hoa chỉ nở khi trăng lên. Ta chưa từng ngửi thấy mùi ấy ở đâu. Về sau ta mới biết: mỗi lần nàng hiện thân, mùi hoa đêm ấy lại theo nàng mà tới.
 
 Ta sững người, tim đập đến nghẹn cổ. *Cái này… không thể là thật.*
 
@@ -275,19 +328,21 @@ Ta buông khối ngọc xuống lòng bàn tay, thở dài. “Được. Nói đ
 
 ### Đoạn `c1_p09` — Ngọc cốt — Tuyết Cơ giới thiệu thân phận
 
-*Ảnh:* `ngọc cốt, đối thoại, thân phận`
+*Ảnh:* `Tuyết Cơ, Hợp Hoan Tông, song tu`
 
 “Ta là Tuyết Cơ,” — nàng bắt đầu, giọng như kể một câu chuyện đã cũ ngàn năm — “Nội môn đệ tử Hợp Hoan Tông, một trong những tông môn song tu nổi tiếng nhất Cửu Châu.”
 
-“Song tu?” — ta nhíu mày. *Cái tên này nghe chẳng lành.*
+“Song tu?” — ta nhíu mày.
 
-Nàng khẽ cười, tiếng cười như chuông bạc. “Đừng vội nghĩ bậy. Song tu không chỉ là chuyện giường chiếu — mà là đạo, là cách hai người tu luyện cùng nhau, lấy dương bổ âm, lấy âm dưỡng dương.”
+Nàng khẽ cười, tiếng cười như chuông bạc. “Đừng vội nghĩ bậy. Song tu là đạo — cách hai người tu luyện cùng nhau, lấy dương bổ âm, lấy âm dưỡng dương. Và với ta, nó còn là cách duy nhất để hồi phục.”
 
-“Ngàn năm trước,” — nàng nói tiếp, ánh mắt xa xăm — “ta bị kẻ thù ám toán, nguyên thần tan vỡ. Chỉ còn một phân thân bị nhốt trong khối ngọc cốt này. Muốn khôi phục sức mạnh, ta cần một người… ký khế ước với ta.”
+“Ngàn năm trước,” — nàng nói tiếp, ánh mắt xa xăm — “ta bị kẻ thù ám toán, nguyên thần tan vỡ. Chỉ còn một phân thân bị nhốt trong khối ngọc cốt này. Muốn khôi phục, ta phải **song tu với ngươi** — hút dương khí của ngươi để vá lại nguyên thần. Không có cách nào khác.”
+
+Ta nuốt khan. *Song tu với một kẻ trong ngọc.*
 
 “Khế ước gì?” — ta hỏi, trong lòng vừa sợ vừa tò mò.
 
-“Khế ước nô lệ,” — nàng nói, và lần đầu tiên trong mắt nàng lóe lên một tia sắc lạnh — “Ngươi làm chủ, ta làm tớ. Ngươi cho ta mượn sinh cơ để khôi phục, ta dạy ngươi tu luyện. Một đổi một.”
+“Khế ước nô lệ,” — nàng nói, và lần đầu tiên trong mắt nàng lóe lên một tia sắc lạnh — “Ngươi làm chủ, ta làm tớ. Ngươi cho ta mượn dương khí để khôi phục, ta dạy ngươi tu luyện. Một đổi một.”
 
 “Tu luyện?” — ta sửng sốt. “Nhưng… đây là môn phái võ lâm. Trong môn không ai tu tiên cả.”
 
@@ -300,7 +355,7 @@ Nàng khẽ cười, tiếng cười như chuông bạc. “Đừng vội nghĩ 
 **Lựa chọn:**
 
 - Nghiến răng: “Ký. Ta cần sức mạnh.”  
-  → `c1_p10`
+  → `c1_p09c`
 - Do dự: “Ta cần biết rõ hơn — ngươi sẽ đòi gì?”  
   → `c1_p09b`
 
@@ -308,30 +363,57 @@ Nàng khẽ cười, tiếng cười như chuông bạc. “Đừng vội nghĩ 
 
 ### Đoạn `c1_p09b` — Ngọc cốt — điều kiện khế ước
 
-*Ảnh:* `ngọc cốt, đối thoại, điều kiện`
+*Ảnh:* `Tuyết Cơ, khế ước, điều kiện`
 
 “Ta cần biết rõ,” — ta nói, dù giọng đã run — “Ngươi sẽ đòi gì ở ta? Mạng? Hồn? Hay thứ gì tệ hơn?”
 
 Tuyết Cơ nhìn ta, trong mắt có chút hứng thú. “Ngươi khác đám phàm nhân ngoài kia. Ít ra còn biết hỏi trước khi bán mạng.”
 
-“Ta cần sinh cơ,” — nàng nói thẳng — “Không phải mạng ngươi. Chỉ là một phần dương khí mỗi lần ta khôi phục. Ngươi yếu thì ta lấy ít, ngươi mạnh thì ta lấy nhiều. Không đủ thì ta ngủ, chờ ngươi khỏe lại.”
+“Ta cần dương khí,” — nàng nói thẳng — “Mỗi lần song tu, ta hút một phần sinh cơ của ngươi để vá nguyên thần. Ngươi yếu thì ta lấy ít, ngươi mạnh thì ta lấy nhiều.”
 
-“Còn lại,” — nàng nghiêng đầu — “ta dạy ngươi tu luyện. Ngọc cốt này là vật chứa, cũng là bảo vật. Ngươi dùng nó hấp thu linh khí nhanh gấp mấy lần người thường. Kẻ yếu như ngươi, muốn sống trong trận đại chiến sắp tới, đây là đường duy nhất.”
+“Rồi sau đó?”
 
-*Đại chiến sắp tới.* Tim ta thắt lại. Nàng biết cả chuyện Dã Lang Bang?
+“Sau đó ta phải **ngủ** — ngủ để tiêu hoá dương khí. Trong lúc ta ngủ, ngọc cốt này im lìm, ngươi **không dùng được nó**.” — Nàng nghiêng đầu — “Đó là luật. Không có ngoại lệ.”
 
-“Ký hay không?” — nàng hỏi, giọng vẫn nhẹ như tơ. “Ta không ép. Nhưng cơ hội chỉ tới một lần.”
+*Không dùng được ngọc cốt trong lúc nàng ngủ.* Ta nhớ kỹ điều ấy. Trong trận chiến sắp tới, biết đâu đó lại là điều quyết định sống chết.
+
+“Còn lại,” — nàng nói tiếp — “ta dạy ngươi tu luyện. Ngọc cốt là vật chứa, cũng là bảo vật. Ngươi dùng nó hấp thu linh khí nhanh gấp mấy lần người thường. Kẻ yếu như ngươi, muốn sống trong trận đại chiến sắp tới, đây là đường duy nhất.”
+
+“Ký hay không?” — nàng hỏi. “Ta không ép. Nhưng cơ hội chỉ tới một lần.”
 
 **Lựa chọn:**
 
-- Nghiến răng: “Ký. Ta cần sức mạnh.”  
+- Suy nghĩ thật kỹ trước khi quyết  
+  → `c1_p09c`
+
+---
+
+### Đoạn `c1_p09c` — Ngọc cốt — khoảnh khắc do dự
+
+*Ảnh:* `do dự, cái giá, quyết định`
+
+Ta im lặng, nhìn khối ngọc trong lòng bàn tay. Ánh sáng bên trong nó nhấp nháy như nhịp thở.
+
+*Một phần dương khí.* Nàng nói nhẹ như không. Nhưng ta hiểu: đó là một phần sinh mệnh của ta, lấy đi mỗi lần nàng hồi phục, không lấy lại được. Mỗi lần nàng mạnh lên, là một lần ta yếu đi.
+
+Ta nhớ lại khuôn mặt mình trong gương nước đêm qua — gầy gò, xanh xao, mắt thâm quầng vì thiếu ngủ. Ta mới xuyên tới đây chưa đầy một ngày. Vậy mà đã phải đem mạng mình ra đặt cược.
+
+*Còn cách nào khác không?*
+
+Ta nghĩ tới gã to con ở sân tập. Nghĩ tới Dã Lang Bang đang kéo tới. Nghĩ tới cái chết đang chờ kẻ yếu trong trận đại chiến kia. Không. Không có cách nào khác.
+
+Ta hít một hơi thật sâu, rồi chậm rãi ngẩng đầu lên. *Kẻ yếu không có quyền lựa chọn. Nhưng kẻ dám đánh đổi — thì có.*
+
+**Lựa chọn:**
+
+- “Ta ký.”  
   → `c1_p10`
 
 ---
 
 ### Đoạn `c1_p10` — Ngọc cốt — ký khế ước
 
-*Ảnh:* `ngọc cốt, khế ước, dục tính`
+*Ảnh:* `khế ước, phù văn, đêm`
 
 Ta cắn môi, nhìn khối ngọc trong tay. *Kẻ yếu không có quyền lựa chọn.* Ta chỉ có một con đường sống — nắm lấy nó.
 
@@ -343,11 +425,11 @@ Ta đưa tay ra. Nàng đặt bàn tay mình lên mu bàn tay ta — bàn tay �
 
 Trên da ta, những đường phù văn đỏ hiện ra, uốn lượn như rễ cây. Ta nghiến răng chịu đau, nhưng rồi cơn đau tan biến, thay bằng một cảm giác ấm áp lạ thường.
 
-“Xong rồi,” — Tuyết Cơ nói, giọng đã yếu hơn trước — “Từ giờ, ngươi là chủ, ta là tớ. Ta… cần nghỉ.”
+“Xong rồi,” — Tuyết Cơ nói, giọng đã yếu hơn trước — “Từ giờ, ngươi là chủ, ta là tớ.”
 
-Nàng tan vào khối ngọc, nhưng trước khi biến mất, nàng quay lại nhìn ta. “Đêm nay… cho ta mượn chút dương khí nhé?”
+Rồi nàng tan vào khối ngọc. Nhưng trước khi biến mất, nàng quay lại nhìn ta — một cái nhìn thoáng qua, rất nhanh, như thể nàng vừa cân nhắc điều gì đó rồi mới quyết. *Nàng đang tính toán điều gì?* Ý nghĩ ấy vụt qua rồi tan.
 
-Trước khi ta kịp hiểu, hơi ấm từ khối ngọc lan ra, quấn lấy ta. Mùi hoa đêm nồng lên, và ý thức ta chìm vào một khoảng mờ ảo. Khi ta tỉnh lại, trời đã gần sáng, người ta mệt nhoài mà tinh thần lại sảng khoái lạ thường.
+Đêm ấy là lần **song tu đầu tiên**. Ta không nhớ rõ chuyện gì xảy ra — chỉ biết hơi ấm từ khối ngọc lan ra, quấn lấy ta, mùi hoa đêm nồng lên, và ý thức ta chìm vào một khoảng mờ ảo. Khi ta tỉnh lại, trời đã gần sáng, người ta mệt nhoài mà tinh thần lại sảng khoái lạ thường. Trong ngọc, Tuyết Cơ đã ngủ, im lìm như đá.
 
 **Lựa chọn:**
 
@@ -358,7 +440,7 @@ Trước khi ta kịp hiểu, hơi ấm từ khối ngọc lan ra, quấn lấy 
 
 ### Đoạn `c1_p11` — Tân xá — tu luyện đêm đầu
 
-*Ảnh:* `tu luyện, hô hấp, linh khí`
+*Ảnh:* `tu luyện, đêm đầu, linh khí`
 
 Ta ngồi dậy, thấy khối ngọc cốt đang phát sáng dịu dàng trên lòng bàn tay. Trong đầu, giọng Tuyết Cơ vang lên — yếu ớt hơn nhưng rõ ràng.
 
@@ -374,55 +456,108 @@ Ta làm theo lời nàng. Hít vào, giữ khí, rồi thở ra — không phả
 
 Ta nhắm mắt, dồn hết tâm trí. Trong người ta, một luồng ấm nóng dần tụ lại dưới rốn, rồi xoay tròn. Mồ hôi ướt đẫm lưng áo, nhưng ta không dừng.
 
-Khi trời sáng hẳn, ta mở mắt, và cảm nhận được một sức mạnh mới trong từng nhịp thở — thứ sức mạnh mà bao năm luyện võ phàm nhân ta chưa từng có.
+Khi trời sáng hẳn, ta mở mắt. Luồng khí trong người đã đọng lại thành một khối nhỏ nơi đan điền — mới chỉ là mầm mống, chưa đủ để phá ngưỡng. *Một đêm vẫn chưa đủ.*
 
 **Lựa chọn:**
 
-- Tiếp tục tu luyện theo lời Tuyết Cơ  
-  → `c1_p12`  
-  ✦ tu vi +90; học: Hợp Hoan hô hấp pháp
+- Tiếp tục khổ tu những đêm sau  
+  → `c1_p11b`  
+  ✦ tu vi +30; học: Hợp Hoan hô hấp pháp
 
 ---
 
-### Đoạn `c1_p12` — Tân xá — đột phá Luyện Khí
+### Đoạn `c1_p11b` — Tân xá — khổ tu, lần thất bại
 
-*Ảnh:* `tu luyện, đột phá, bí mật`
+*Ảnh:* `khổ tu, thất bại, kiên trì`
 
-Ba ngày sau, ta đã không còn là kẻ tân đệ tử chỉ biết cúi đầu. Tuyết Cơ dạy ta từng chút, kiên nhẫn như một người thầy thực thụ.
+Đêm thứ hai, ta lại ngồi vào góc tối, dẫn khí theo lời Tuyết Cơ. Nhưng lần này, mọi thứ không suôn sẻ như đêm đầu.
 
-“Ngươi lên tầng rồi,” — nàng nói, giọng có chút ngạc nhiên — “Nhanh hơn ta tưởng. Ngọc cốt này… đúng là bảo vật.”
+Luồng khí vừa tụ được nơi đan điền thì bỗng tán loạn, chạy ngược khắp kinh mạch. Ta đau đến mức ôm ngực, mồ hôi lạnh túa ra, suýt ngã ngửa.
 
-Ta cảm nhận được linh khí chảy mạnh hơn trong kinh mạch. Sức mạnh tăng lên từng ngày — không nhiều, nhưng đủ để ta thấy mình đã khác trước.
+“Sai rồi,” — Tuyết Cơ nói, giọng nghiêm — “Ngươi vội. Dẫn khí là chuyện của mười năm, không phải một đêm.”
+
+Ta nghiến răng, ngồi thẳng dậy, làm lại từ đầu. Lần này chậm hơn, từng chút một. Khí lại tán. Ta làm lại. Lại tán.
+
+Đến khi trời gần sáng, ta mới gom được một luồng nhỏ nơi đan điền — ít ỏi hơn cả đêm đầu. Ta mệt lử, người đau như bị ai đánh, nhưng trong lòng lại lặng lẽ dâng lên một thứ gì đó.
+
+*Thì ra khổ tu là thế này. Không phải một đêm thần kỳ, mà là trăm lần thất bại rồi mới được một lần thành.*
+
+**Lựa chọn:**
+
+- Đêm sau lại tiếp tục  
+  → `c1_p11c`  
+  ✦ tu vi +30
+
+---
+
+### Đoạn `c1_p11c` — Tân xá — suýt bị phát hiện
+
+*Ảnh:* `nguy hiểm, suýt lộ, Tuyết Cơ ngủ`
+
+Đêm thứ mười mấy, ta đang điều tức thì nghe tiếng bước chân ngoài hành lang. Ta giật mình mở mắt — một sư huynh đi kiểm tra tân xá ban đêm.
+
+Ta vội giấu khối ngọc vào vạt áo. Nhưng linh khí trong người ta đang vận chuyển, không kịp thu lại. Chỉ một thoáng nữa thôi là hắn sẽ cảm nhận được luồng khí lạ.
+
+Ngay lúc ấy, Tuyết Cơ bỗng lên tiếng, giọng gấp gáp: “Để ta lo.” Rồi một luồng lạnh buốt phủ lên người ta, dập tắt hết khí tức. Khối ngọc trong vạt áo tối sầm lại.
+
+Sư huynh dừng trước cửa, nhìn vào, thấy ta nằm im như ngủ. Hắn gật gù rồi bỏ đi.
+
+Khi tiếng chân xa dần, ta thở phào. “May quá…”
+
+“Không may đâu,” — Tuyết Cơ nói, giọng đã yếu hẳn — “Ta vừa tiêu hết phần dương khí tích được. Ta phải ngủ một thời gian. Từ giờ tới khi ta tỉnh, ngọc cốt vô dụng. Đừng gọi ta — ta không nghe được đâu.”
+
+Rồi nàng im bặt. Ta cầm khối ngọc lạnh ngắt trên tay, bỗng thấy trống trải lạ thường. *Thì ra, cái giá của sức mạnh là như vậy.*
+
+**Lựa chọn:**
+
+- Tiếp tục khổ tu bằng sức mình  
+  → `c1_p12`  
+  ✦ tu vi +30
+
+---
+
+### Đoạn `c1_p12` — Tân xá — đột phá Luyện Khí tầng hai
+
+*Ảnh:* `đột phá, Luyện Khí, bình minh`
+
+Nửa tháng trôi qua kể từ đêm đầu tiên ấy.
+
+Ngày thì ta hòa mình vào đám đệ tử, tập côn, gánh nước, làm những việc phàm tục nhất để không ai để ý. Đêm đến, ta lén lút ngồi trong góc tân xá, dẫn khí theo lời Tuyết Cơ.
+
+Có đêm, khí tán loạn, đau đến mức ta phải nghiến răng chịu đựng. Có đêm, ta suýt ngủ gục giữa chừng. Nhưng ngày nào cũng vậy, ta không bỏ.
+
+Rồi một đêm, khi luồng khí trong đan điền đã dày đặc đến mức không thể đè nén thêm, ta đẩy mạnh một cái — và **ngưỡng cửa vỡ ra**.
+
+“Ngươi lên tầng rồi,” — Tuyết Cơ nói, giọng vừa tỉnh ngủ, có chút ngạc nhiên — “Luyện Khí tầng hai. Nửa tháng. Nhanh hơn ta tưởng.”
+
+Ta thở ra một hơi dài. Nửa tháng, so với kẻ khác phải mất nhiều năm, vẫn là quá nhanh. Nhưng ta đã tự mình trải qua từng đêm khổ tu, từng lần thất bại — không phải chuyện một sớm một chiều.
 
 “Nhưng nghe cho kỹ,” — nàng nói, giọng nghiêm lại — “Đây là môn phái võ lâm. Không ai tu tiên ở đây cả. Nếu ngươi để lộ, ngươi sẽ chết — không phải vì Dã Lang Bang, mà vì chính đồng môn của ngươi.”
 
-*Ta biết.* Ta khẽ gật đầu. Chuyện này phải giữ kín như chuyện Hàn Lập lén học công pháp của Mạc Đại Phu.
+*Ta biết.* Ta khẽ gật đầu.
 
-“Còn nữa,” — nàng nói thêm — “Gã đệ tử gầy gò kia, Hàn Lập, không đơn giản đâu. Ngươi nên để mắt tới hắn.”
+“Còn nữa,” — nàng nói thêm — “Mỗi lần ta song tu để khôi phục, ta phải ngủ một thời gian, ngọc cốt sẽ im lìm. Nhớ lấy. Đừng chủ quan mà dựa dẫm vào nó.”
 
-Nàng đưa cho ta một quyển trục mỏng. “Đây là cách dùng ngọc cốt trong chiến đấu. Học đi. Ngươi sẽ cần nó.”
-
-Ta mở trục ra, đọc từng dòng. Đêm ấy, ta luyện tới tận khuya, cho tới khi cảnh giới Luyện Khí tầng ba vững vàng trong người.
+Ta đưa tay chạm vào ngọc cốt, cảm nhận mạch đập yếu ớt bên trong. *Tầng hai. Vẫn còn quá yếu so với Hùng Bá, so với Dã Lang Bang. Nhưng ít nhất… ta không còn là kẻ tay không.*
 
 **Lựa chọn:**
 
 - Nắm chắc thực lực mới, chờ biến cố  
-  → `c1_p13`  
-  ✦ tu vi +135
+  → `c1_p13`
 
 ---
 
-### Đoạn `c1_p13` — Đêm — Dã Lang Bang tập kích
+### Đoạn `c1_p13` — Đêm cuối — Dã Lang Bang tập kích
 
 *Ảnh:* `tập kích, lửa, biến cố`
 
-Đêm thứ tư, trời đang yên tĩnh thì tiếng tù và vang lên từ phía rừng. Ta đang ngồi điều tức trong góc phòng, mắt mở bừng.
+Đêm cuối cùng trước khi ta tưởng Dã Lang Bang sẽ tới, trời đang yên tĩnh thì tiếng tù và vang lên từ phía rừng.
 
 *Đến rồi.*
 
 Tiếp theo là tiếng hét, tiếng cháy, tiếng đao chạm đao. Cổng đông Thất Huyền Môn bùng lên ánh lửa. Qua khe cửa, ta thấy bóng người chạy tán loạn, đệ tử ngã xuống như rạ.
 
-“Dã Lang Bang tới sớm hơn ta nghĩ,” — Tuyết Cơ nói, giọng nghiêm lại — “Ngươi đủ mạnh để sống, nhưng không đủ mạnh để thắng. Nhớ kỹ: giấu tu vi, chỉ dùng võ công phàm nhân trước mặt người khác.”
+“Dã Lang Bang tới sớm hơn ta nghĩ,” — Tuyết Cơ nói, giọng nghiêm lại — “Ngươi mới tầng hai, đủ để sống, nhưng không đủ để thắng. Nhớ kỹ: giấu tu vi, chỉ dùng võ công phàm nhân trước mặt người khác.”
 
 Ta đứng dậy, nắm chặt thanh đoản đao nhặt được. Trong người ta, luồng linh khí mới tu luyện chảy mạnh hơn. *Lần này, ta không chạy trốn nữa.*
 
@@ -437,21 +572,109 @@ Trước mặt ta, con đường rẽ làm hai: một hướng ra cổng đông,
 
 ---
 
-### Đoạn `c1_p14` — Cổng đông — dùng thực lực
+### Đoạn `c1_p14` — Cổng đông — đối mặt địch
 
-*Ảnh:* `chiến đấu, cổng, đao`
+*Ảnh:* `cổng đông, giao chiến, lựa chọn`
 
 Ta chạy ngược dòng người đang tháo chạy, thẳng tới cổng đông. Cổng đã vỡ, đệ tử ngã la liệt, máu thấm đẫm đá.
 
-Một tên Dã Lang Bang xông tới, đao giơ cao. Nhưng lần này, ta không còn là kẻ tay run. Ta dồn linh khí xuống chân — nhưng chỉ dùng vừa đủ để trông như thân pháp võ công, rồi nghiêng người né, vung đao chém chéo.
+Một tên Dã Lang Bang xông tới, đao giơ cao. Ta dồn linh khí xuống chân, nghiêng người né. Nhưng quanh ta, còn ba bốn tên nữa đang áp tới, thế đao dày đặc.
 
-Tên địch ngã xuống, mắt trợn tròn. *Ta… vừa đánh ngã một kẻ luyện võ nhiều năm.* Ta không kịp sợ, vì hai tên nữa đã ập tới.
+*Nếu ta dùng toàn lực, ta thắng nhanh — nhưng sẽ lộ tu vi. Nếu ta giấu, ta an toàn hơn, nhưng vất vả hơn.*
 
-Ta vận ngọc cốt, một luồng khí ấm chảy khắp người. Tốc độ ta tăng lên, đường đao sắc hơn. Từng bước một, ta đẩy lùi bọn chúng.
+Trong đầu, Tuyết Cơ nhắc: “Chọn đi. Nhưng nhớ luật của ta.”
 
-“Đừng ham đánh,” — Tuyết Cơ nhắc trong đầu — “Ngươi không đủ sức đánh lâu. Giữ mạng.”
+**Lựa chọn:**
+
+- Giấu thực lực — chỉ dùng thân pháp võ công phàm nhân  
+  → `c1_p14b`
+- Dùng toàn lực ngọc cốt — tốc chiến tốc thắng  
+  → `c1_p14c`
+- Vận Thất Huyền quyền đỡ đòn rồi phản kích  
+  → `c1_p14d` *(điều kiện: {"co_su_kien": ["hoc_that_huyen_quyen"]})* — *khoá: Chưa học Thất Huyền quyền*
+- Quát lớn: “Hùng Bá! Ngươi ra đây!”  
+  → `c1_p14e` *(điều kiện: {"co_su_kien": ["biet_dau_linh"]})* — *khoá: Chưa biết tên đầu lĩnh*  
+  ✦ mở cờ: goi_ten_hung_ba
+
+---
+
+### Đoạn `c1_p14b` — Cổng đông — giấu thực lực
+
+*Ảnh:* `giấu thực lực, võ công, an toàn`
+
+Ta nghiến răng, dồn linh khí xuống chân nhưng chỉ dùng vừa đủ để trông như thân pháp võ công. Không hào quang, không khí tức lạ — chỉ là một tên đệ tử võ lâm vụng về nhưng dai sức.
+
+Ta nghiêng người né, vung đao chém chéo. Tên địch đầu tiên ngã xuống. Rồi hai tên nữa ập tới, ta đỡ đòn, lùi dần, từng bước một.
+
+Vất vả, nhưng an toàn. Không ai trong đám đệ tử xung quanh kịp nhận ra điều gì khác thường nơi ta.
+
+“Đúng rồi,” — Tuyết Cơ nhắc trong đầu — “Giấu cho kỹ. Sống qua đêm nay quan trọng hơn thắng.”
 
 Ta cắn răng, rút lui từng bước về phía dãy nhà kho. Trận đánh vẫn tiếp diễn sau lưng, nhưng ta đã sống qua đợt tấn kích đầu tiên.
+
+**Lựa chọn:**
+
+- Nấp vào bóng tối, chờ trận lắng  
+  → `c1_p16`  
+  ✦ sinh lực -6
+
+---
+
+### Đoạn `c1_p14c` — Cổng đông — dùng toàn lực
+
+*Ảnh:* `toàn lực, ngọc cốt, nguy cơ lộ`
+
+Ta quyết định không giấu nữa. Ta vận toàn lực ngọc cốt, một luồng khí ấm chảy khắp người. Tốc độ ta tăng vọt, đường đao sắc lẹm, mỗi nhát chém đều chuẩn xác đến lạ.
+
+Ba tên địch gục xuống chỉ trong vài hơi thở. Đám đệ tử xung quanh sững người, có kẻ quay lại nhìn ta đầy nghi hoặc.
+
+“Ngươi… dùng gì vậy?” — một sư huynh thì thào, mắt trợn tròn.
+
+Ta vội thu khí, cúi mặt: “Thân pháp tổ truyền thôi.” Nhưng ta biết, ánh mắt nghi ngờ ấy đã bám theo ta.
+
+“Nhanh thì nhanh,” — Tuyết Cơ nói, giọng không vui — “Nhưng ngươi vừa để lộ. Nhớ lấy: có kẻ đã bắt đầu để ý ngươi.”
+
+**Lựa chọn:**
+
+- Thu khí, rút lui  
+  → `c1_p16`  
+  ✦ sinh lực -3; mở cờ: nghi_ngo_tu_vi
+
+---
+
+### Đoạn `c1_p14d` — Cổng đông — Thất Huyền quyền
+
+*Ảnh:* `võ công, phòng thủ, phản kích`
+
+Ta hạ thấp trọng tâm, hai tay dựng thế — đúng bài **Thất Huyền quyền** ta khổ luyện những đêm qua. Tên địch vung đao bổ xuống, ta nghiêng người gạt đòn, rồi thuận thế phản kích một quyền vào ngực hắn.
+
+Đòn đánh không hào nhoáng, nhưng chuẩn xác và tiết kiệm sức. Ta dùng chính võ công phàm nhân ấy để đỡ đòn, chỉ điểm thêm chút linh khí vào những lúc hiểm — không ai nhận ra.
+
+Một tên, rồi hai tên ngã xuống. Ta rút lui, người không hề hấn gì nặng.
+
+“Khá lắm,” — Tuyết Cơ nói — “Võ công phàm nhân của ngươi, dùng đúng chỗ, lại thành lá chắn tốt nhất.”
+
+**Lựa chọn:**
+
+- Nấp vào bóng tối, chờ trận lắng  
+  → `c1_p16`  
+  ✦ tu vi +8
+
+---
+
+### Đoạn `c1_p14e` — Cổng đông — gọi tên Hùng Bá
+
+*Ảnh:* `Hùng Bá, thoại, khựng lại`
+
+Ta hít sâu, rồi quát lớn về phía đám địch: “Hùng Bá! Ngươi núp đâu? Để đàn em chết thay, còn ngươi trốn sau lưng chúng à?”
+
+Đám địch khựng lại. Mấy tên đang xông tới bỗng chần chừ, quay đầu nhìn nhau. Cái tên ấy là uy danh của bang chủ — bị một tân đệ tử gọi thẳng ra giữa trận, chúng không ngờ.
+
+Từ trong bóng tối phía xa, một giọng khàn vang lên: “Ai dám gọi tên ta?”
+
+Chỉ một khoảnh khắc chần chừ ấy cũng đủ. Ta nắm lấy thời cơ, đánh ngã hai tên trước mặt rồi rút lui về phía nhà kho.
+
+“Liều đấy,” — Tuyết Cơ nói — “Nhưng hay. Ngươi vừa khiến chúng biết trong môn có kẻ nhớ mặt chúng.”
 
 **Lựa chọn:**
 
@@ -487,7 +710,7 @@ Một tên Dã Lang Bang lao ra từ đám lửa. Ta né đòn, rồi dùng cán
 
 ### Đoạn `c1_p16` — Sau trận — giữa đống đổ nát
 
-*Ảnh:* `hậu trận, tàn khốc, gặp gỡ`
+*Ảnh:* `hậu trận, Mạc Đại Phu, gói thuốc`
 
 Trận đánh tạm lắng khi trời gần sáng. Ta ngồi bệt xuống bậc đá, toàn thân đau nhức, áo quần rách bươm.
 
@@ -495,22 +718,28 @@ Thất Huyền Môn vẫn chưa gục, nhưng tổn thất nặng nề. Giữa �
 
 *Ta đã sống qua đêm nay.* Nhưng trong lòng ta không có chút vui mừng nào. Ta chỉ thấy rõ hơn bao giờ hết: kẻ yếu không có chỗ đứng trong thế giới này.
 
-Mạc Đại Phu lặng lẽ đi qua đám đông, tay xách hòm thuốc, cứu chữa người bị thương. Khi ngang qua ta, ông dừng lại, nhìn ta một lúc lâu, rồi khẽ nói: “Ngươi sống sót… là tốt.”
+Mạc Đại Phu lặng lẽ đi qua đám đông, tay xách hòm thuốc, cứu chữa người bị thương. Khi ngang qua ta, ông dừng lại, nhìn ta một lúc lâu.
 
-“Vãn bối may mắn,” — ta đáp, cúi đầu.
+“Ngươi sống sót… là tốt,” — ông khẽ nói. Rồi ông mở hòm thuốc, lấy ra một gói giấy nhỏ, đưa cho ta. “Cầm lấy. Thuốc phòng thân — cần thì dùng.”
 
-Mạc Đại Phu không nói thêm, chỉ gật đầu rồi bước tiếp. Nhưng ánh mắt ông nhìn ta — như thể ông đã biết điều gì đó mà ta còn chưa hiểu.
+Ta đón lấy, hơi sững người. “Vãn bối… cảm tạ.”
 
-Ta đứng dậy, phủi bụi trên áo. Trong đám người qua lại, một bóng dáng gầy gò lặng lẽ bước về phía hậu sơn. Dáng đi ấy không vội, cũng không chậm — như kẻ đã quen đường.
+Khi ta đưa tay đón, ánh mắt ông chợt dừng lại nơi vạt áo ta — nơi khối ngọc cốt nằm im. Rất nhanh, ông nhìn đi chỗ khác, nhưng ta kịp thấy. Ông khẽ nói, giọng chỉ đủ cho ta nghe: “Đêm nay ngươi không bị thương nặng… lạ thật.”
+
+Nói xong, ông đứng dậy, bước tiếp vào đám đông, không nhìn ta thêm lần nào. Ta siết chặt gói thuốc trong tay, sống lưng lạnh buốt. *Ông ấy biết. Ông ấy biết nhiều hơn ta tưởng.*
+
+Trong đám người qua lại, một bóng dáng gầy gò lặng lẽ bước về phía hậu sơn. Dáng đi ấy không vội, cũng không chậm — như kẻ đã quen đường.
 
 *Kẻ đó… không tầm thường.*
 
 **Lựa chọn:**
 
 - Lặng lẽ bám theo bóng người ấy  
-  → `c1_p17`
+  → `c1_p17`  
+  ✦ sinh lực +10; mở cờ: mac_dai_phu_tang_thuoc; nhận: Gói thuốc phòng thân
 - Về tân xá, tìm chỗ nghỉ lấy sức  
-  → `c1_p17`
+  → `c1_p17`  
+  ✦ sinh lực +10; mở cờ: mac_dai_phu_tang_thuoc; nhận: Gói thuốc phòng thân
 
 ---
 
@@ -518,7 +747,7 @@ Ta đứng dậy, phủi bụi trên áo. Trong đám người qua lại, một 
 
 ### Đoạn `c1_p17` — Gặp Hàn Lập — sau trận
 
-*Ảnh:* `Hàn Lập, gặp gỡ, kết`
+*Ảnh:* `Hàn Lập, gặp gỡ, hậu sơn`
 
 Ta theo bóng người ấy tới một góc khuất sau hậu sơn. Hắn dừng lại, không quay đầu, giọng trầm: “Theo ta lâu vậy, không mệt sao?”
 
@@ -526,7 +755,7 @@ Ta khựng lại. *Hắn biết từ đầu.* Ta siết chặt vạt áo, nơi k
 
 Hắn quay lại. Ánh mắt sắc như dao, lạnh như băng — nhưng ta thấy trong đó một tia mỏi mệt, thứ mỏi mệt của kẻ đã giấu quá nhiều bí mật.
 
-Trong đầu ta, giọng nói lạnh lùng vang lên: *“Hàn Lập. Đệ tử Thất Huyền Môn. Cũng là kẻ sẽ đứng trên đỉnh của thế gian này.”*
+Trong đầu ta, giọng nói lạnh lùng vang lên — lần này, như có chút hứng thú: *“Hàn Lập. Đệ tử Thất Huyền Môn. Kẻ sẽ đứng trên đỉnh của thế gian này.”*
 
 *Hàn Lập.* Ta khẽ siết tay áo, che đi vẻ kinh ngạc. Người trước mặt ta — kẻ gầy gò, ít nói, bí mật học công pháp của Mạc Đại Phu — chính là nhân vật chính của thế giới này.
 
@@ -537,42 +766,105 @@ Trong đầu ta, giọng nói lạnh lùng vang lên: *“Hàn Lập. Đệ tử
 **Lựa chọn:**
 
 - Thành thật: “Ta biết tương lai của ngươi.”  
-  → `c1_p18`  
+  → `c1_p18a`  
   ✦ mở cờ: noi_that_han_lap
 - Cười trừ: “Ta chỉ là kẻ tình cờ ở đây.”  
-  → `c1_p18`
+  → `c1_p18b`
 - Hỏi ngược: “Vậy ngươi là ai?”  
-  → `c1_p18`
+  → `c1_p18c`
 - Im lặng, đưa hắn bầu nước của mình  
-  → `c1_p18`
+  → `c1_p18d`
 
 ---
 
-### Đoạn `c1_p18` — Đối thoại với Hàn Lập
+### Đoạn `c1_p18a` — Hàn Lập — lời thành thật
 
-*Ảnh:* `Hàn Lập, đối thoại, kết`
+*Ảnh:* `Hàn Lập, áp lực, bí mật`
 
-Hàn Lập im lặng một lúc lâu, đủ để ta nghe rõ tiếng tim mình đập.
+Ta nói ra, giọng khàn đi: “Ta biết tương lai của ngươi. Ta đã đọc về ngươi — về tất cả những gì ngươi sẽ làm.”
 
-“Người ở đây chỉ nhìn thấy một tân đệ tử nơi ta,” — cuối cùng hắn nói — “Còn ngươi… nhìn thấy gì khác.”
+Hàn Lập im lặng rất lâu. Lâu đến mức ta nghe rõ từng nhịp tim mình đập trong lồng ngực.
 
-Hắn không hỏi thêm. Chỉ cúi xuống, lau vết máu trên ống tay áo, như thể câu chuyện đã kết thúc. Nhưng ta biết, hắn đã ghi nhớ ta.
+Rồi hắn nhìn thẳng vào ta. Ánh mắt ấy lạnh đến mức ta rùng mình. “Vậy…” — hắn nói, chậm rãi từng tiếng — “ngươi có biết ta sẽ làm gì với kẻ biết quá nhiều không?”
 
-“Ngươi biết Mạc Đại Phu chứ?” — ta hỏi, cố đánh trúng điều ta đoán.
+Ta nghẹn thở. Một luồng lạnh chạy dọc sống lưng. *Hắn đang cân nhắc giết ta.*
 
-Bàn tay hắn khựng lại một thoáng rất ngắn — đủ để ta biết mình đoán đúng. “Sao ngươi biết?” — hắn hỏi, giọng vẫn bình thản nhưng ánh mắt đã khác.
+Nhưng rồi hắn cúi xuống, lau vết máu trên ống tay áo, như thể vừa quyết định điều gì đó. “Ta không giết ngươi,” — hắn nói — “Không phải đêm nay. Nhưng từ giờ, ta sẽ để mắt tới ngươi. Đừng để ta thất vọng.”
 
-“Ta chỉ đoán,” — ta đáp. “Ông ấy nhìn ta như nhìn kẻ biết điều gì đó.”
-
-Hàn Lập nhìn ta thật lâu, rồi khẽ gật đầu — một cái gật đầu gần như không thấy. “Đêm nay, ngươi cứu được mạng mình. Nhưng con đường phía trước còn dài. Đừng để bị cuốn vào chuyện không liên quan.”
-
-*Hắn đang nhắc ta.* Trong lòng ta dâng lên một cảm giác lạ — vừa sợ, vừa kính phục. Người này, dù còn yếu, đã có thứ khí độ mà ta chưa từng thấy ở bất kỳ ai.
+Nói xong, hắn quay lưng bước đi, không nhìn lại. Ta đứng nguyên tại chỗ, mồ hôi lạnh ướt đẫm lưng áo. *Ta vừa chạm vào một con dao. Và con dao ấy biết ta biết.*
 
 **Lựa chọn:**
 
-- “Vậy hẹn gặp lại khi ngươi mạnh hơn.”  
+- Nín thở, đứng nhìn theo bóng hắn khuất dần  
   → `c1_p19`
-- Im lặng gật đầu rồi rời đi  
+
+---
+
+### Đoạn `c1_p18b` — Hàn Lập — lời cười trừ
+
+*Ảnh:* `Hàn Lập, nghi ngờ, kín đáo`
+
+Ta cười gượng: “Ta chỉ là kẻ tình cờ ở đây thôi. Chẳng biết gì cả.”
+
+Hàn Lập nhìn ta, không đáp. Trong mắt hắn, ta thấy rõ một điều: hắn không tin một chữ nào.
+
+“Kẻ tình cờ,” — hắn lặp lại, giọng không cao không thấp — “Kẻ tình cờ thì không bám theo người khác lên hậu sơn lúc rạng sáng.”
+
+Ta cứng họng. Hắn nói đúng.
+
+“Thôi được,” — hắn nói, cúi xuống lau vết máu trên ống tay áo — “Ngươi không muốn nói, ta không hỏi nữa. Nhưng nhớ: ở cái trấn này, kẻ giấu bí mật thường chết vì chính bí mật của mình.”
+
+Hắn bước đi, để lại ta đứng một mình trong bóng tối. *Hắn đã ghi nhớ ta. Và hắn sẽ không quên lời nói dối của ta.*
+
+**Lựa chọn:**
+
+- Đứng lặng, nghe tiếng bước chân hắn xa dần  
+  → `c1_p19`
+
+---
+
+### Đoạn `c1_p18c` — Hàn Lập — hỏi ngược
+
+*Ảnh:* `Hàn Lập, thăm dò, im lặng`
+
+Ta hỏi ngược lại: “Vậy ngươi là ai? Một đệ tử hạng bét mà lại khiến cả sư phụ để mắt, khiến Dã Lang Bang dòm ngó. Ngươi giấu thứ gì?”
+
+Hàn Lập khựng lại một thoáng — rất ngắn, nhưng ta kịp thấy. Rồi hắn khẽ cười. Nụ cười ấy không vui, cũng không giận, chỉ lạnh lẽo như sương đêm.
+
+“Ta cũng đang tự hỏi điều tương tự về ngươi,” — hắn nói.
+
+Hai kẻ cùng giấu bí mật, đứng đối diện nhau dưới ánh trăng nhạt. Không ai chịu mở lời trước.
+
+“Đêm nay, ai cũng có thứ để giấu,” — cuối cùng hắn nói — “Ta không hỏi ngươi, ngươi cũng đừng hỏi ta. Cứ như vậy mà sống.”
+
+Hắn quay lưng bước đi. Ta đứng nhìn theo, trong lòng dâng lên một cảm giác lạ — như thể ta vừa chạm mặt một kẻ đồng loại.
+
+**Lựa chọn:**
+
+- Gật đầu, để hắn đi  
+  → `c1_p19`
+
+---
+
+### Đoạn `c1_p18d` — Hàn Lập — bầu nước
+
+*Ảnh:* `Hàn Lập, ghi nhận, im lặng`
+
+Ta không nói gì. Ta chỉ tháo bầu nước bên hông, đưa tới trước mặt hắn.
+
+Hàn Lập nhìn bầu nước, rồi nhìn ta. Một thoáng ngạc nhiên lướt qua mặt hắn — thứ cảm xúc mà ta đoán hắn rất ít khi để lộ.
+
+Hắn nhận lấy, mở nắp, uống một ngụm. Rồi hắn đưa lại, khẽ nói: “Ngươi không giống người ở đây.”
+
+*Câu ấy, ta đã nghe một lần rồi — từ chính hắn, trong truyện.* Ta siết chặt bầu nước, cố giữ mặt bình thản.
+
+“Đêm nay ngươi sống sót,” — hắn nói, đứng dậy — “Người ở cái trấn này thường chỉ nghĩ tới mạng mình. Ngươi lại đưa nước cho kẻ khác giữa lúc loạn. Thú vị đấy.”
+
+Hắn bước đi, để lại ta đứng một mình. Trong bóng tối, khóe miệng ta khẽ nhếch lên. *Hắn đã nhớ mặt ta. Không phải như một kẻ đáng ngờ — mà như một kẻ đáng nhớ.*
+
+**Lựa chọn:**
+
+- Nhìn theo bóng hắn khuất dần  
   → `c1_p19`
 
 ---
@@ -583,13 +875,13 @@ Hàn Lập nhìn ta thật lâu, rồi khẽ gật đầu — một cái gật �
 
 Trời sáng. Ta bước khỏi góc hậu sơn, ánh bình minh đầu tiên rọi lên vai áo rách.
 
-Trong vạt áo, khối ngọc cốt ấm lên. “Ngươi đã sống qua đêm đầu tiên,” — Tuyết Cơ nói, giọng yếu nhưng mang theo ý cười — “Và ngươi đã lên Luyện Khí tầng ba. Không tồi cho một kẻ tân đệ tử.”
+Trong vạt áo, khối ngọc cốt ấm lên. “Ngươi đã sống qua đêm đầu tiên,” — Tuyết Cơ nói, giọng còn yếu nhưng mang theo ý cười — “Và ngươi đã lên Luyện Khí tầng hai. Không tồi cho một kẻ tân đệ tử.”
 
-Ta khẽ cười. Bốn ngày trước, ta còn là kẻ bị đẩy ngã giữa sân tập, chẳng ai nhớ mặt. Giờ đây, ta đã có thực lực để đứng vững, có một cơ duyên mà không ai có, và một bí mật mà không ai biết.
+Ta khẽ cười. Nửa tháng trước, ta còn là kẻ bị đẩy ngã giữa sân tập, chẳng ai nhớ mặt. Giờ đây, ta đã có thực lực để đứng vững, có một cơ duyên mà không ai có, và một bí mật mà không ai biết.
 
 “Nhớ kỹ,” — Tuyết Cơ dặn — “Ở môn phái võ lâm này, tu vi của ngươi là tội chết. Giấu cho kỹ. Và gã Hàn Lập kia… hắn sẽ là người quan trọng nhất trong đời ngươi.”
 
-Giọng nói lạnh lùng vang lên lần cuối: *“Chương một, kết thúc. Ngọc cốt đã nhận chủ.”*
+Giọng nói lạnh lùng vang lên lần cuối. Lần này, nó không còn hoàn toàn lạnh như trước — trong đó, thoáng một chút hài lòng: *“Chương một, kết thúc. Ngọc cốt đã nhận chủ. Ngươi… bắt đầu giống một kẻ đáng để ta để mắt tới.”*
 
 Ta hít sâu, nhìn ánh bình minh sau núi. Thất Huyền Môn tan hoang nhưng chưa gục. Mạc Đại Phu vẫn lặng lẽ cứu người. Hàn Lập đã bắt đầu con đường của hắn. Còn ta — ta đã có ngọc cốt, có Tuyết Cơ, và một cơ duyên mà kẻ khác cả đời không gặp.
 
