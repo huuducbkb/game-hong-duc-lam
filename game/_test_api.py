@@ -122,5 +122,46 @@ check("lùi ở màn kết → về đoạn cuối", call(o7, "/api/lui", {}).ge
 check("lùi tiếp → về đoạn kế trước", call(o7, "/api/lui", {}).get("doan_id"), "c1_h17b")
 check("máy chủ vẫn sống sau tất cả", call(o7, "/api/state").get("co_phien"), True)
 
+print("\n=== I. Nhánh môn phái: cơ duyên + tu luyện ===")
+o8 = mk()
+r = call(o8, "/api/new", {"ten": "MP", "nhom": "mon_phai"})
+check("mở nhánh môn phái", r["doan_id"], "c1_p01")
+# p02: bới vườn dược → đào ngọc cốt → giữ (chi_so 0)
+r = call(o8, "/api/chon", {"chi_so": 0})
+check("đào ngọc cốt", r["doan_id"], "c1_p02")
+r = call(o8, "/api/chon", {"chi_so": 0})
+st = call(o8, "/api/state")["trang_thai"]
+check("nhận Ngọc cốt bí ẩn", any(v["ten"] == "Ngọc cốt bí ẩn" for v in st["tui_do"]), True)
+check("cờ co_ngoc_cot", "co_ngoc_cot" in st["co_su_kien"], True)
+# p05 → p06 → p06b → p07 → p08 (ký khế ước) → p09 (tu luyện)
+for _ in range(5):
+    r = call(o8, "/api/chon", {"chi_so": 0})
+check("tới đoạn tu luyện p09", r["doan_id"], "c1_p09")
+r = call(o8, "/api/chon", {"chi_so": 0})
+st = call(o8, "/api/state")["trang_thai"]
+check("tu luyện đêm đầu → Luyện Khí tầng 2", st["canh_gioi"], "Luyện Khí tầng 2")
+check("học Hợp Hoan hô hấp pháp", "Hợp Hoan hô hấp pháp" in st["ky_nang"], True)
+r = call(o8, "/api/chon", {"chi_so": 0})
+st = call(o8, "/api/state")["trang_thai"]
+check("đột phá Luyện Khí tầng 3", st["canh_gioi"], "Luyện Khí tầng 3")
+# đi tới hết chương
+for _ in range(20):
+    r = call(o8, "/api/chon", {"chi_so": 0})
+    if r.get("ket_thuc"):
+        break
+check("kết riêng nhánh môn phái", r["doan_id"], "c1_p18")
+st = call(o8, "/api/state")["trang_thai"]
+check("gặp Hàn Lập, có hảo cảm", st["npc"].get("Hàn Lập", {}).get("hao_cam", 0) > 0, True)
+
+# đường "chôn trả lại rồi đào lại"
+o9 = mk()
+call(o9, "/api/new", {"ten": "MP2", "nhom": "mon_phai"})
+call(o9, "/api/chon", {"chi_so": 0})   # p02
+r = call(o9, "/api/chon", {"chi_so": 1})  # chôn trả lại
+check("chôn trả lại → p02b", r["doan_id"], "c1_p02b")
+r = call(o9, "/api/chon", {"chi_so": 0})  # đào lại
+st = call(o9, "/api/state")["trang_thai"]
+check("đào lại vẫn nhận ngọc cốt", any(v["ten"] == "Ngọc cốt bí ẩn" for v in st["tui_do"]), True)
+
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)
