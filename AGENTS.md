@@ -175,7 +175,8 @@ Kết quả ở `docs/ban-thao/`: `chuong1.md` (xem trên GitHub), `chuong1.html
 - **Thần niệm** = giác quan + tay nghề + vũ khí tinh thần (xem kế hoạch mục C).
 - **Chủng loại** NPC: nhân loại · yêu thú · yêu thú hoá hình người · ma thú · quỷ ·
   khôi lỗi · cương thi… (dùng để AI tra đúng ảnh).
-- **1 chương = 18 đoạn ≈ 45 phút** (2,5 phút/lượt). Cấu trúc 3 hồi: 5 mở · 8 thân · 5 kết.
+- **Số đoạn/chương: KHÔNG ép cứng** — viết bao nhiêu tuỳ cốt truyện cần (trước đây từng
+  đặt mục tiêu 18 đoạn ≈ 45 phút, nay **bỏ ràng buộc này** để truyện khỏi bị gò).
 
 ## Xuất thân = nhánh truyện (đã làm)
 
@@ -185,7 +186,8 @@ Mỗi xuất thân KHÔNG chỉ là nhãn — nó quyết định **hành trình
   Nhóm ẩn = "Ngọc cốt Tuyết Cơ" — **chưa mở**, không hiện menu, **không tự nhận diện**.
 - Mã nhóm → đoạn mở đầu:
   `tan_tu`→`c1_d01`, `mon_phai`→`c1_p01`, `duoc`→`c1_y01`,
-  `gia_toc`→`c1_g01`, `hac_dao`→`c1_h01`. Mọi nhánh hội tụ về `c1_d18`.
+  `gia_toc`→`c1_g01`, `hac_dao`→`c1_h01`. **Mỗi nhánh có kết riêng** (không hội tụ về
+  một đoạn chung — ràng buộc cũ "mọi nhánh về `c1_d18`" đã **bỏ** để truyện mạch lạc).
 - Nhận diện: `engine.nhan_dien_xuat_than()` dò từ khoá (bỏ dấu tiếng Việt). Không khớp → `tan_tu`.
 - Người chơi có 2 cách chọn: bấm 1 trong 5 nút (gửi `nhom`) HOẶC gõ tự do (server tự nhận diện).
 - Lựa chọn riêng theo nhóm: dùng `dieu_kien: {"nhom": ["mon_phai", ...]}`.
