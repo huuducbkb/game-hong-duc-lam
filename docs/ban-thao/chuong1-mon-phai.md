@@ -443,23 +443,33 @@ Ta ngồi một mình trong bóng tối, khối ngọc cốt nằm trong lòng b
 
 *Ảnh:* `song tu, Tuyết Cơ, đêm, dương khí`
 
-Ta thổi tắt đèn dầu. Bóng tối trùm lấy căn phòng, chỉ còn khối ngọc cốt sáng mờ trên ngực ta.
+Ta thổi tắt đèn dầu. Bóng tối trùm lấy căn phòng, chỉ còn khối ngọc cốt sáng mờ trên ngực ta — nhịp sáng ấy chậm rãi, đều đặn, như một trái tim thứ hai đang đập trong ngực ta.
 
-Rồi ta cảm nhận được nàng — không phải qua mắt, mà qua hơi ấm phủ lên da thịt. Một dáng người mờ ảo, mềm như khói, đè nhẹ lên ta. Mùi hoa đêm nồng lên, quấn quanh, như có vô số cánh hoa đang nở trong bóng tối.
+Rồi ta cảm nhận được nàng. Không phải qua mắt — mà qua hơi ấm phủ lên da thịt ta, từng chút một, như sương đêm bò lên mặt hồ. Một dáng người mờ ảo, mềm hơn khói, đè nhẹ lên ta. Ta không thấy nàng, nhưng ta biết nàng ở đó — ở nơi hơi thở ta chạm vào một khoảng không ấm lạ thường.
 
-“Đừng sợ,” — nàng thì thầm, hơi thở lướt qua vành tai ta, ấm và run. “Chỉ là mượn thôi.”
+Mùi hoa đêm nồng lên. Không còn thoang thoảng nữa — nó tràn ngập, quấn lấy cổ họng ta, ngọt đến mức ta thấy hơi choáng. Như có cả một khu vườn đang nở ra trong bóng tối này, chỉ mình ta và nàng nghe thấy.
 
-Bàn tay nàng chạm vào cổ ta, rồi chậm rãi trượt xuống. Mỗi nơi nàng chạm, da ta nóng lên rồi lạnh đi, như có dòng nước chảy ngược từ trong ra ngoài. Ta muốn nói gì đó, nhưng cổ họng khô khốc, cơ thể ta không còn nghe lời ta nữa.
+“Đừng sợ,” — nàng thì thầm. Hơi thở ấy lướt qua vành tai ta, ấm và run — run thật, hay chỉ là ta tưởng tượng, ta không tài nào phân biệt. “Chỉ là mượn thôi.”
 
-Rồi ta cảm nhận được nó — sinh lực của ta đang bị rút đi. Chậm, đều, từng chút một. Không đau, chỉ là một cảm giác trống rỗng dần lan ra từ lồng ngực, như thể ai đó đang múc nước từ một cái giếng sâu, từng gàu một.
+Bàn tay nàng chạm vào cổ ta. Chỉ một ngón, rất khẽ, chậm rãi trượt xuống. Mỗi nơi nàng chạm, da ta nóng lên rồi lạnh đi, như có một dòng nước chảy ngược — từ trong xương tủy chảy ra ngoài da. Ta muốn nói gì đó, nhưng cổ họng khô khốc. Cơ thể ta không còn nghe lời ta nữa. Nó nghe lời nàng.
 
-Nàng áp sát hơn. Hơi thở nàng phả vào da ta, mỗi lúc một gần, mỗi lúc một nóng. Ta nghe rõ nhịp tim mình — chậm lại, rồi nhanh lên, rồi chậm lại, không theo một nhịp nào cả. Mười ngón tay nàng đan vào tay ta, siết nhẹ, như thể nàng cũng đang bấu víu vào điều gì đó.
+Nàng áp sát hơn. Ta cảm nhận được cả một khoảng ấm phủ dọc theo thân mình, và mùi hoa đêm bỗng đậm đến nghẹn thở. Mười ngón tay nàng đan vào tay ta, siết nhẹ — như thể nàng cũng đang bấu víu vào điều gì đó, như thể nàng cũng đang sợ điều gì đó.
 
-“Một chút nữa thôi,” — nàng thì thầm, giọng run hơn trước. “Ngươi làm tốt lắm.”
+Rồi ta cảm nhận được nó — **sinh lực của ta đang bị rút đi**. Chậm, đều, từng chút một. Không đau. Chỉ là một cảm giác trống rỗng dần lan ra từ lồng ngực, như ai đó đang múc nước từ một cái giếng sâu, từng gàu một, và cái giếng ấy là chính ta.
 
-Rồi mọi thứ nhòe đi. Ta không còn phân biệt được đâu là nàng, đâu là ta — chỉ còn hơi ấm, và mùi hoa đêm, và cảm giác sinh mệnh mình đang trôi đi như cát qua kẽ tay. Trong khoảnh khắc cuối cùng trước khi ý thức tắt hẳn, ta thoáng nghe nàng khẽ thở dài một tiếng — thỏa mãn, hay tiếc nuối, ta không tài nào đoán được.
+“Một chút nữa thôi,” — nàng thì thầm, và lần này giọng nàng **run rõ hơn**. “Ngươi làm tốt lắm.”
 
-Khi ta mở mắt, trời đã gần sáng. Người ta mệt nhoài như vừa lội qua một con sông dài, nhưng tinh thần lại sảng khoái lạ thường. Trong ngọc, Tuyết Cơ đã ngủ, im lìm như đá.
+Ta nhắm mắt. Nhịp tim ta chậm lại — rồi nhanh lên — rồi lại chậm, không theo một nhịp nào cả. Trong bóng tối, ta nghe thấy hơi thở của hai người, nhưng ta không còn phân biệt được đâu là của nàng, đâu là của ta. Ta chỉ còn là một cái giếng, và nàng đang uống. Ta chỉ còn là hơi ấm, và nàng đang lấy.
+
+Rồi — đúng vào khoảnh khắc ta tưởng mình không chịu nổi thêm nữa — nàng khẽ nói, rất nhỏ, gần như không thành tiếng: “Cảm ơn ngươi.”
+
+Và mọi thứ nhòe đi.
+
+Ta không nhớ gì nữa. Không một hình ảnh, không một âm thanh — chỉ còn một **khoảng trắng** trong ký ức, nơi lẽ ra phải có gì đó. Như một trang giấy bị xé đi, để lại mép răng cưa. Ta biết mình vừa đánh đổi thứ gì đó. Ta chỉ không biết **chính xác** là thứ gì.
+
+Khi ta mở mắt, trời đã gần sáng. Người ta mệt nhoài như vừa lội qua một con sông dài, nhưng tinh thần lại sảng khoái lạ thường. Trên ngực, khối ngọc cốt đã tối sầm. Trong ngọc, Tuyết Cơ đã ngủ, im lìm như đá.
+
+Ta chạm vào ngực mình, chỗ khối ngọc, và bỗng thấy lạnh. *Ta đã cho nàng thứ gì?* Câu hỏi ấy không có câu trả lời — chỉ có một khoảng trắng, và một mùi hoa đêm còn vương nơi gối.
 
 **Lựa chọn:**
 
