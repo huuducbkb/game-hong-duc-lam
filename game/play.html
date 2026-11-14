@@ -190,6 +190,8 @@ body{
   background:var(--ink-soft);border:0;border-radius:11px;padding:11px 15px}
 .ai-note{font-size:11.5px;color:var(--ink-faint);margin:6px 2px 0;line-height:1.4}
 .ai-note:empty{display:none}
+.ke-ai-nhan{font-size:10.5px;letter-spacing:.4px;color:var(--seal);
+  opacity:.75;margin:0 0 8px;font-style:italic}
 
 /* ---------- THÔNG BÁO ---------- */
 .tbao{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
@@ -233,6 +235,7 @@ body{
       <div class="sub" id="chuongSub">Chương 1 · Đại chiến Dã Lang Bang</div>
     </div>
     <button class="sys-btn" id="openSys">Hệ Thống</button>
+    <button class="sys-btn" id="nutKeAI" title="Bật/tắt AI kể lại đoạn truyện">AI kể: Bật</button>
     <button class="sys-btn" id="openReset">Chơi lại</button>
   </header>
 
@@ -345,8 +348,27 @@ body{
 const $ = s => document.querySelector(s);
 let dangCho = false;
 let coAI = false;  // bật khi máy chủ xác nhận AI dùng được
+let keAI = true;   // AI kể lại đoạn truyện (mặc định BẬT); nhớ trong localStorage
 
 const idx = ["壹","貳","叁","肆","伍","陸","柒","捌"];
+
+// ---------------------------------------------------------- nút AI kể
+function napNutKeAI() {
+  try { keAI = localStorage.getItem("keAI") !== "0"; } catch (e) { keAI = true; }
+  capNhatNutKeAI();
+}
+function capNhatNutKeAI() {
+  const b = $("#nutKeAI");
+  if (!b) return;
+  b.textContent = "AI kể: " + (keAI ? "Bật" : "Tắt");
+  b.style.opacity = keAI ? "1" : ".55";
+}
+function doiKeAI() {
+  keAI = !keAI;
+  try { localStorage.setItem("keAI", keAI ? "1" : "0"); } catch (e) {}
+  capNhatNutKeAI();
+}
+napNutKeAI();
 
 // ---------------------------------------------------------- gọi API
 async function goi(duong, duLieu) {
@@ -376,6 +398,7 @@ function dinhDang(p) {
   return esc(p).replace(/\*([^*]+)\*/g, '<em class="noi-tam">$1</em>');
 }
 function hienThi(kq) {
+  if (typeof xoaBaoDangKe === "function") xoaBaoDangKe();
   if (kq.loi) {
     const sb = $("#setupLoi");
     const dangChoi = $("#setup") && $("#setup").style.display === "none";
@@ -398,6 +421,7 @@ function hienThi(kq) {
   if (kq.thong_bao && kq.thong_bao.length) {
     html += '<div class="tbao">' + kq.thong_bao.map(t => "<span>" + t + "</span>").join("") + "</div>";
   }
+  if (kq.ke_ai) html += '<div class="ke-ai-nhan">✦ AI kể lại theo văn phong tiên hiệp</div>';
   // đoạn kể (hỗ trợ *nội tâm in nghiêng*)
   const doan = (kq.ke || "").split(/\n\n+/).map(p => "<p>" + dinhDang(p) + "</p>").join("");
   $("#storyBody").innerHTML = html + doan;
@@ -473,7 +497,8 @@ function capNhatNutLui() {
 async function chon(chiSo) {
   if (dangCho) return;
   dangCho = true;
-  const kq = await goi("/api/chon", {chi_so: chiSo});
+  if (keAI && coAI) baoDangKe();
+  const kq = await goi("/api/chon", {chi_so: chiSo, ke_ai: keAI});
   hienThi(kq);
   if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
   dangCho = false;
@@ -490,11 +515,25 @@ async function tuDo() {
   dangCho = false;
 }
 
+// hiện ghi chú "Đang kể lại…" trong lúc chờ AI
+function baoDangKe() {
+  const n = $("#aiNote");
+  if (n) { n.textContent = "Đang kể lại theo văn phong tiên hiệp…"; n.style.display = "block"; }
+  const b = $("#storyBody");
+  if (b) b.style.opacity = ".55";
+}
+function xoaBaoDangKe() {
+  const n = $("#aiNote");
+  if (n) { n.textContent = ""; n.style.display = "none"; }
+  const b = $("#storyBody");
+  if (b) b.style.opacity = "1";
+}
+
 // lùi lại một hành động
 $("#nutLui").onclick = async () => {
   if (dangCho || soBuocLui <= 0) return;
   dangCho = true;
-  const kq = await goi("/api/lui", {});
+  const kq = await goi("/api/lui", {ke_ai: keAI});
   if (kq.loi) {
     soBuocLui = 0; capNhatNutLui();
     $("#undoGhi").textContent = kq.loi;
@@ -541,11 +580,12 @@ $("#go").onclick = async () => {
   const ten = $("#ten").value.trim();
   if (!ten) { $("#setupLoi").textContent = "Hãy nhập tên nhân vật"; return; }
   $("#go").disabled = true;
-  hienThi(await goi("/api/new", {ten, xuat_than: $("#xuat").value, nhom: nhomChon}));
+  hienThi(await goi("/api/new", {ten, xuat_than: $("#xuat").value, nhom: nhomChon, ke_ai: keAI}));
   $("#go").disabled = false;
 };
 napXuatThan();
 $("#guiTuDo").onclick = tuDo;
+$("#nutKeAI").onclick = doiKeAI;
 const oTuDo = $("#tuDo");
 function coGian() { oTuDo.style.height = "auto"; oTuDo.style.height = Math.min(oTuDo.scrollHeight, 120) + "px"; }
 oTuDo.oninput = coGian;
@@ -592,7 +632,7 @@ $("#avatarInput").onchange = e => {
     $("#setup").style.display = "none";
     soBuocLui = kq.so_lui || 0;
     capNhatNutLui();
-    const r = await goi("/api/doan");
+    const r = await goi("/api/doan" + (keAI ? "" : "?ke_ai=0"));
     if (!r.loi) hienThi(r); else capNhatTrangThai(kq.trang_thai);
   }
 })();

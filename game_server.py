@@ -35,6 +35,26 @@ _phien: dict[str, dict] = {}  # id phiên -> trạng thái (giữ trong RAM)
 _lich_su: dict[str, list] = {}  # id phiên -> ngăn xếp trạng thái để lùi
 
 
+def _ke_ai(kq: dict, bat: bool) -> dict:
+    """Nếu bật AI: nhờ AI kể lại đoạn theo văn phong tiên hiệp (giữ nguyên sự kiện).
+
+    Không đụng tới trạng thái game — chỉ thay chữ hiển thị. Lỗi AI thì giữ
+    nguyên văn bản gốc.
+    """
+    if not bat or not isinstance(kq, dict) or kq.get("ket_thuc"):
+        return kq
+    van_goc = kq.get("ke") or ""
+    if not van_goc:
+        return kq
+    try:
+        moi = AI.ke_lai_tien_hiep(van_goc, kq.get("boi_canh") or "")
+    except Exception:  # noqa: BLE001 - AI lỗi thì dùng văn bản gốc
+        moi = ""
+    if moi:
+        kq = {**kq, "ke": moi, "ke_ai": True}
+    return kq
+
+
 def _phien_id(handler) -> str:
     """Lấy/đặt id phiên qua cookie đơn giản."""
     cookie = handler.headers.get("Cookie", "")
@@ -126,7 +146,8 @@ class Handler(BaseHTTPRequestHandler):
             st = self._state()
             if not st:
                 return self._json({"loi": "Chưa có phiên chơi"}, 400)
-            return self._json(E.goi_y_hien_tai(st))
+            bat = "ke_ai=0" not in self.path
+            return self._json(_ke_ai(E.goi_y_hien_tai(st), bat))
         if path.startswith("/api/ai"):
             force = "thu_lai=1" in self.path
             kq = AI.thu_ket_noi(force=force)
@@ -170,7 +191,7 @@ class Handler(BaseHTTPRequestHandler):
             st = E.trang_thai_moi(ten, data.get("xuat_than") or "", data.get("nhom") or "")
             sid = self._set_state(st)
             kq = E.bat_dau(st)
-            return self._json({"phien": sid, **kq},
+            return self._json({"phien": sid, **_ke_ai(kq, data.get("ke_ai", True))},
                               extra={"Set-Cookie": f"phien={sid}; Path=/; Max-Age=604800"})
 
         st = self._state()
@@ -180,7 +201,8 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/chon":
             if not st.get("ket_thuc"):
                 self._luu_lich_su()
-            return self._json(E.chon(st, data.get("chi_so", -1)))
+            kq = E.chon(st, data.get("chi_so", -1))
+            return self._json(_ke_ai(kq, data.get("ke_ai", True)))
         if path == "/api/tu_do":
             if not st.get("ket_thuc"):
                 self._luu_lich_su()
@@ -192,7 +214,7 @@ class Handler(BaseHTTPRequestHandler):
             _phien[_phien_id(self)] = ngan.pop()
             kq = E.goi_y_hien_tai(_phien[_phien_id(self)])
             kq["thong_bao"] = ["↩ Đã lùi lại một hành động"]
-            return self._json(kq)
+            return self._json(_ke_ai(kq, data.get("ke_ai", True)))
         if path == "/api/moi":
             self._bo_phien()
             return self._json({"ok": True},
