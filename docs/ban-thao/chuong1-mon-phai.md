@@ -23,9 +23,15 @@ Một gã đàn ông lực lưỡng đá tung cửa bước vào, tay cầm cây
 
 *Thất Huyền Môn.* Ta chưa từng nghe tên ấy, vậy mà trong lòng đã dâng lên một nỗi sợ lạnh buốt — như thể thân thể này đã biết nơi đây là đâu.
 
-Trong đầu ta, một giọng nói lạnh lùng bỗng vang lên: *“Nghịch chuyển càn khôn… đã bắt đầu.”*
+Rồi trước mắt ta, một dòng chữ mờ ảo hiện ra lơ lửng giữa không trung — như khắc bằng ánh sáng xanh lam, chỉ mình ta nhìn thấy:
 
-Ta khựng người. Giọng nói ấy không giống tiếng của chính ta — nó đều đều, lạnh nhạt, như đọc từ một cuốn sách vô hình. *Đây là ai?* Ta không biết. Chỉ biết từ khoảnh khắc đó, giọng nói ấy sẽ không buông ta ra.
+👁️‍🗨️ 【 Hệ Thống · Nghịch Chuyển Càn Khôn 】 đã kích hoạt.
+
+Ta sững người. *Hệ thống?* — cái thứ ta từng thấy trong mấy trò chơi, mấy cuốn truyện ở thế giới cũ?
+
+Một giọng nói vô cảm vang lên trong đầu ta, đều đều như máy móc: “Ngươi đã xuyên qua. Từ nay, ta là hệ thống của ngươi.”
+
+Ta đưa tay chạm vào dòng chữ — ngón tay xuyên thẳng qua, không chạm được gì. Nó chỉ tồn tại trong đầu ta. *Vậy là… ta thật sự đã rời khỏi thế giới cũ.*
 
 *Thân thể này không phải của ta.* Nhưng ta đang sống trong nó, bằng xương bằng thịt. Ký ức của thân thể này ùa về từng mảnh: ta là tân đệ tử vừa trúng tuyển của Thất Huyền Môn — một môn phái võ lâm danh tiếng — nhưng thân thủ hạng bét, chỉ hơn kẻ mới học võ chút đỉnh.
 
@@ -150,7 +156,7 @@ Rồi ta chợt dừng lại. Ở góc vườn, một ông lão áo xám đang n
 
 “Tân đệ tử?” — ông hỏi, giọng khàn khàn. “Ta là Mạc Đại Phu, coi sóc vườn thuốc này.”
 
-*Mạc Đại Phu.* Trong đầu ta, giọng nói lạnh lùng vang lên: *“Sư phụ của Hàn Lập. Kẻ sẽ truyền cho hắn Trường Xuân Công.”*
+*Mạc Đại Phu.* 👁️‍🗨️ 【Hệ thống】“Sư phụ của Hàn Lập. Kẻ sẽ truyền cho hắn Trường Xuân Công.”
 
 Ta cố giữ vẻ mặt bình thản, cúi chào. “Vãn bối bị thương nhẹ khi luyện võ, muốn xin ít thuốc.”
 
@@ -282,13 +288,15 @@ Một giọng nữ vang lên, mềm như tơ, nhưng lạnh như băng: “Ngư�
 
 Ta lùi lại một bước, lưng chạm vào vách gỗ. “Ngươi… ngươi là ai? Sao lại ở trong khối ngọc này?”
 
-Nàng không bước ra khỏi khối ngọc, chỉ nghiêng đầu nhìn ta. Đôi mắt nàng sáng như sao, nhưng sâu hun hút như vực thẳm. “Ta hỏi ngươi trước — ngươi là ai? Linh hồn ngươi… không thuộc về thế giới này.”
+Nàng không bước ra khỏi khối ngọc, chỉ nghiêng đầu nhìn ta. Đôi mắt nàng sáng như sao, nhưng sâu hun hút như vực thẳm.
 
-*Nàng nhận ra rồi.* Ta nuốt nước bọt. Không thể giấu.
+“Ta hỏi ngươi trước — ngươi là ai?” — nàng nói, rồi khẽ nhíu mày, như đang lắng nghe thứ gì đó trong ta. “Lạ thật… Hồn phách ngươi không giống người ở đây. Nó sạch — sạch đến lạ. Như thể ngươi vừa mới sinh ra, mà cũng như thể… đã sống ở một nơi rất xa.”
 
-“Ta… từ một nơi rất xa tới,” — ta nói, giọng khàn đi. “Ta không phải kẻ này. Ta là người xuyên không.”
+*Nàng cảm nhận được.* Tim ta đập mạnh. *Nhưng nàng chỉ biết hồn ta khác thường — nàng không biết ta từ đâu tới. Không được để nàng biết.*
 
-Nàng im lặng một lúc lâu, rồi khẽ cười. Nụ cười ấy không ấm, mà như lưỡi dao cắt qua không khí. “Xuyên không… thú vị đấy.”
+Ta cúi mặt, giấu ánh mắt. “Ta… không nhớ rõ. Từ lúc tỉnh dậy, ký ức ta hỗn độn như nước đục.”
+
+Nàng im lặng một lúc lâu, rồi khẽ cười. Nụ cười ấy không ấm, mà như lưỡi dao cắt qua không khí. “Giấu cũng được. Ta không cần biết ngươi từ đâu. Ta chỉ cần biết ngươi có ích cho ta hay không.”
 
 “Còn ngươi?” — ta siết chặt khối ngọc — “Ngươi là thứ gì?”
 
@@ -795,7 +803,7 @@ Ta khựng lại. *Hắn biết từ đầu.* Ta siết chặt vạt áo, nơi k
 
 Hắn quay lại. Ánh mắt sắc như dao, lạnh như băng — nhưng ta thấy trong đó một tia mỏi mệt, thứ mỏi mệt của kẻ đã giấu quá nhiều bí mật.
 
-Trong đầu ta, giọng nói lạnh lùng vang lên — lần này, như có chút hứng thú: *“Hàn Lập. Đệ tử Thất Huyền Môn. Kẻ sẽ đứng trên đỉnh của thế gian này.”*
+👁️‍🗨️ 【Hệ thống】— lần này, như có chút hứng thú — “Hàn Lập. Đệ tử Thất Huyền Môn. Kẻ sẽ đứng trên đỉnh của thế gian này.”
 
 *Hàn Lập.* Ta khẽ siết tay áo, che đi vẻ kinh ngạc. Người trước mặt ta — kẻ gầy gò, ít nói, bí mật học công pháp của Mạc Đại Phu — chính là nhân vật chính của thế giới này.
 

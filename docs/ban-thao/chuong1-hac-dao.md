@@ -250,9 +250,9 @@ Ta không nghe thấy hắn tới. *Kẻ này, không tầm thường.*
 
 *Ảnh:* `bóng tối, cảnh giác, gặp gỡ`
 
-Ta và hắn nhìn nhau. Trong đầu, giọng nói lạnh lùng vang lên: “Hàn Lập. Tạp dịch đệ tử. Cũng là kẻ sẽ đứng trên đỉnh thế gian.”
+Ta và hắn nhìn nhau.
 
-*Hàn Lập.* Ta không ngờ, kẻ mà ta gặp trong đêm máu này lại là hắn — một tạp dịch gầy gò, ánh mắt sắc như dao.
+*Hàn Lập.* Ta không ngờ, kẻ mà ta gặp trong đêm máu này lại là hắn — một tạp dịch gầy gò của Thất Huyền Môn, ánh mắt sắc như dao. Đám buôn tin từng nhắc tới hắn: một tên tạp dịch nghèo rớt, vậy mà chưa ai từng thấy hắn hoảng loạn.
 
 “Tay ngươi nhuốm máu,” — hắn nói, giọng đều đều, không trách móc — “Ta không quan tâm. Nhưng ngươi nhìn ta như nhìn đồng loại.”
 

@@ -21,11 +21,15 @@ Ta mở mắt giữa một góc chợ, lưng tựa vào bức tường lạnh, t
 
 Ta lồm cồm bò dậy. Hai bàn tay ta chai sạn, móng đen kịt, quần áo vá chằng vá đụp. *Thân thể này không phải của ta.* Ký ức của nó ùa về từng mảnh: một kẻ ăn mày vô danh, không cha mẹ, không tông môn, sống nhờ lòng thương hại của người qua đường ở Thất Huyền trấn.
 
-Trong đầu ta, một giọng nói lạnh lùng vang lên: *“Nghịch chuyển càn khôn… đã bắt đầu.”*
+Rồi trước mắt ta, một dòng chữ mờ ảo hiện ra lơ lửng giữa không trung — như khắc bằng ánh sáng xanh lam, chỉ mình ta nhìn thấy:
 
-Ta nghiến răng, đè nén cơn choáng. *Ta xuyên không rồi. Vào thân xác kẻ thấp nhất trong cái trấn này.*
+👁️‍🗨️ 【 Hệ Thống · Nghịch Chuyển Càn Khôn 】 đã kích hoạt.
 
-Ta đếm những gì mình có: vài đồng bạc lẻ trong túi rách, một mạng người chưa biết dùng thế nào, và một giọng nói xa lạ vừa cất lên trong đầu.
+Một giọng nói vô cảm vang lên trong đầu ta, đều đều như máy móc: “Ngươi đã xuyên qua. Từ nay, ta là hệ thống của ngươi.”
+
+Ta nghiến răng, đè nén cơn choáng. *Ta xuyên không rồi. Vào thân xác kẻ thấp nhất trong cái trấn này.* Ta đưa tay chạm vào dòng chữ — ngón tay xuyên thẳng qua. Nó chỉ tồn tại trong đầu ta.
+
+Ta đếm những gì mình có: vài đồng bạc lẻ trong túi rách, một mạng người chưa biết dùng thế nào, và một thứ vừa cất lên trong đầu ta — thứ mà ta chỉ từng thấy trong mấy trò chơi ở thế giới cũ.
 
 **Lựa chọn:**
 
@@ -48,7 +52,7 @@ Ta lê bước vào ngõ nhỏ sau chợ, nơi đám ăn mày tụ tập quanh �
 
 Rồi lão què hạ giọng, kể chuyện khác: “Nghe nói sau núi có cái miếu hoang. Trong đó có một cái hộp kiếm cũ. Ai chạm vào đều phát bệnh, có kẻ chết luôn. Mấy năm nay không ai dám lại gần.”
 
-*Miếu hoang… hộp kiếm.* Ta nhíu mày. Trong đầu, giọng nói lạnh lùng vang lên: *“Cơ duyên nằm nơi người khác tránh.”*
+*Miếu hoang… hộp kiếm.* Ta nhíu mày. 👁️‍🗨️ 【Hệ thống】“Cơ duyên nằm nơi người khác tránh.”
 
 Ta nuốt khan. *Ba ngày. Ta có ba ngày trước khi trận chiến ập tới.*
 
@@ -169,7 +173,7 @@ Hắn chỉ tay xuống xác người dưới nền. “Thấy chưa? Nó cũng 
 
 Nhưng mắt ta dán vào cái hộp. *Ba ngày nữa Dã Lang Bang tới. Nếu ta bỏ đi bây giờ, ta vẫn là kẻ ăn mày chờ chết.*
 
-Trong đầu, giọng nói lạnh lùng vang lên: *“Kiếm đạo không sợ kẻ mạnh hơn. Chỉ sợ kẻ bỏ chạy.”*
+👁️‍🗨️ 【Hệ thống】“Kiếm đạo không sợ kẻ mạnh hơn. Chỉ sợ kẻ bỏ chạy.”
 
 Ta không cúi đầu. Ta nhìn thẳng vào mắt hắn, chậm rãi nói: “Hộp này… không phải của ngươi.”
 
@@ -202,7 +206,7 @@ Rồi mọi thứ đổi thay trong một khoảnh khắc.
 
 Ta ôm vai rỉ máu, thở dốc, nhìn cái xác. *Hắn chết… không phải vì ta. Vì hắn không xứng.*
 
-Trong đầu ta, giọng nói lạnh lùng vang lên: *“Kiếm chọn người. Ngươi hiểu chưa?”*
+👁️‍🗨️ 【Hệ thống】“Kiếm chọn người. Ngươi hiểu chưa?”
 
 Ta gượng đứng dậy, máu vẫn nhỏ giọt xuống nền, bước tới bên cái hộp vẫn đóng nguyên.
 
@@ -253,7 +257,7 @@ Hai thanh kiếm khẽ rung lên, và từ giữa chúng, một bóng người m
 
 Y nhìn thẳng vào ta. “Còn ngươi… linh hồn ngươi không thuộc về thế giới này. Nó sạch, và nó lạ. Đó là lý do ngươi còn sống.”
 
-*Y nhận ra ta xuyên không.* Ta siết chặt tay, không biết nên sợ hay nên mừng.
+*Y nhận ra hồn ta khác thường.* Ta siết chặt tay, không biết nên sợ hay nên mừng. *Nhưng y chỉ biết hồn ta khác — y không biết ta từ đâu tới. Bí mật này, phải giữ.*
 
 **Lựa chọn:**
 
@@ -515,7 +519,7 @@ Ta khựng lại. *Hắn biết từ đầu.* Ta siết chặt cán kiếm sau l
 
 Hắn quay lại. Ánh mắt sắc như dao, lạnh như băng — nhưng ta thấy trong đó một tia mỏi mệt, thứ mỏi mệt của kẻ đã giấu quá nhiều bí mật.
 
-Trong đầu ta, giọng nói lạnh lùng vang lên: *“Hàn Lập. Đệ tử Thất Huyền Môn. Cũng là kẻ sẽ đứng trên đỉnh của thế gian này.”*
+👁️‍🗨️ 【Hệ thống】“Hàn Lập. Đệ tử Thất Huyền Môn. Cũng là kẻ sẽ đứng trên đỉnh của thế gian này.”
 
 *Hàn Lập.* Ta khẽ siết tay áo, che đi vẻ kinh ngạc. Người trước mặt ta — kẻ gầy gò, ít nói — chính là nhân vật chính của thế giới này.
 
