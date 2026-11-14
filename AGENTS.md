@@ -192,7 +192,8 @@ Mỗi xuất thân KHÔNG chỉ là nhãn — nó quyết định **hành trình
 - Người chơi có 2 cách chọn: bấm 1 trong 5 nút (gửi `nhom`) HOẶC gõ tự do (server tự nhận diện).
 - Lựa chọn riêng theo nhóm: dùng `dieu_kien: {"nhom": ["mon_phai", ...]}`.
 - API: `POST /api/new` nhận `{ten, xuat_than, nhom}`; `GET /api/xuat_than` trả danh sách nhóm.
-- Trạng thái có khoá `nhom_xuat_than` (khác `xuat_than` là văn bản tự do người chơi gõ).
+- **Quy ước gọi tên nhánh:** luôn gọi **tên đầy đủ** (tán tu · môn phái · dược đồng ·
+  gia tộc · hắc đạo) khi trao đổi với người dùng — **không dùng ký hiệu** (d/p/y/g/h).
 
 ## Cần làm tiếp
 
