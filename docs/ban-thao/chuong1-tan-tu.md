@@ -3,7 +3,7 @@
 
 > **Tóm tắt:** Người chơi xuyên không tới Thất Huyền trấn ngay trước khi Dã Lang Bang tập kích Thất Huyền Môn. Trong hỗn loạn, lần đầu chạm mặt Hàn Lập — khi đó còn là một tạp dịch đệ tử gầy gò, ít nói.
 
-*Nhánh này gồm 20 đoạn.*
+*Nhánh này gồm 23 đoạn.*
 
 ---
 
@@ -102,8 +102,8 @@ Giọng nói lạnh lùng vang lên: *“Sợ, thì quay về. Chọn.”*
 
 **Lựa chọn:**
 
-- Bước thẳng vào, chạm vào hộp kiếm  
-  → `c1_d05`
+- Bước thẳng vào trong miếu  
+  → `c1_d04b`
 - Đứng ngoài quan sát trước đã  
   → `c1_d04`
 
@@ -128,7 +128,89 @@ Ta hít sâu, bước qua đám xương khô, tiến tới cái hộp.
 **Lựa chọn:**
 
 - Quỳ xuống, chạm vào nắp hộp  
-  → `c1_d05`
+  → `c1_d04b`
+
+---
+
+### Đoạn `c1_d04b` — Trong miếu — xác người còn ấm
+
+*Ảnh:* `miếu, xác, kinh hoàng`
+
+Ta bước qua ngưỡng cửa mục nát. Mùi ẩm mốc trộn lẫn một mùi khác — mùi máu tươi, tanh nồng, chưa kịp khô.
+
+Trên nền miếu, bên cạnh đám xương khô cổ xưa, là một xác người MỚI. Áo vải thô, tay còn nắm chặt một con dao găm. Vết thương trên cổ hắn còn rỉ máu. Ta khẽ chạm vào cánh tay hắn — vẫn còn ấm.
+
+*Hắn chết chưa đầy nửa khắc.* Ta nuốt khan, sống lưng lạnh toát. *Không phải xương khô ngàn năm. Có kẻ vừa ở đây. Có kẻ đang ở đây.*
+
+Giọng nói lạnh lùng vang lên trong đầu: *“Ngươi không phải kẻ duy nhất nghe đồn.”*
+
+Ngay lúc ấy, phía sau ta vang lên tiếng bước chân — chậm, nặng, không hề giấu diếm.
+
+**Lựa chọn:**
+
+- Quay phắt lại  
+  → `c1_d04c`
+
+---
+
+### Đoạn `c1_d04c` — Đỗ Tam — kẻ tranh giành
+
+*Ảnh:* `Đỗ Tam, tranh giành, nguy hiểm`
+
+Một gã đàn ông đứng chắn ngay cửa miếu. Mặt hắn có một vết sẹo dài chéo qua mắt trái, thân hình vạm vỡ, tay phải cầm một thanh đao bản to đã sứt mẻ. Hắn nhìn ta, rồi nhìn cái hộp dài, khóe miệng nhếch lên.
+
+“Lại thêm một con chuột,” — hắn nói, giọng khàn — “Ta nghe đồn về cái hộp này ba năm rồi. Ba năm! Ta đã giết hai kẻ tới trước. Ngươi là kẻ thứ ba.”
+
+Hắn chỉ tay xuống xác người dưới nền. “Thấy chưa? Nó cũng tưởng mình có duyên. Có duyên với đao của ta thì có.”
+
+*Đỗ Tam.* Ta nhớ ra rồi — lão què ở chợ từng nhắc: một tán tu khét tiếng quanh vùng, giết người cướp của, ai gặp cũng tránh. Hắn mạnh hơn ta gấp nhiều lần.
+
+“Cút,” — hắn gằn giọng — “Hoặc chết tại chỗ.”
+
+Nhưng mắt ta dán vào cái hộp. *Ba ngày nữa Dã Lang Bang tới. Nếu ta bỏ đi bây giờ, ta vẫn là kẻ ăn mày chờ chết.*
+
+Trong đầu, giọng nói lạnh lùng vang lên: *“Kiếm đạo không sợ kẻ mạnh hơn. Chỉ sợ kẻ bỏ chạy.”*
+
+Ta không cúi đầu. Ta nhìn thẳng vào mắt hắn, chậm rãi nói: “Hộp này… không phải của ngươi.”
+
+**Lựa chọn:**
+
+- Xông thẳng ra giành hộp — không lùi một bước  
+  → `c1_d04d`
+
+---
+
+### Đoạn `c1_d04d` — Đoạt hộp — Đỗ Tam phản phệ
+
+*Ảnh:* `giao chiến, phản phệ, trọng thương`
+
+Ta xông thẳng tới. Đỗ Tam cười khẩy, vung đao.
+
+Hắn nhanh hơn ta tưởng. Một đao chém trúng vai ta, rách toạc áo, máu phun ra. Cơn đau xé toạc khiến ta khuỵu gối. Ta lăn một vòng, chộp lấy cái hộp trước khi hắn kịp tới.
+
+“Ngu xuẩn,” — hắn gầm lên, một tay túm lấy hộp, giật mạnh khỏi tay ta. “Để ta cho ngươi xem, kẻ có duyên trông ra sao.”
+
+Hắn đặt bàn tay lên nắp hộp.
+
+Rồi mọi thứ đổi thay trong một khoảnh khắc.
+
+Ánh sáng trắng từ trong hộp bùng lên như một lưỡi kiếm, đâm thẳng vào mặt Đỗ Tam. Hắn gào lên — một tiếng gào không giống tiếng người. Máu trào ra từ mắt, mũi, tai, miệng hắn. Hắn buông đao, hai tay cào vào không khí, cào vào chính mặt mình, như thể có thứ gì đó đang xé nát hắn từ bên trong.
+
+“Không… xứng…” — một giọng nói vang lên từ hai thanh kiếm, lạnh như băng vạn năm.
+
+Đỗ Tam đổ gục xuống, co giật vài cái, rồi bất động. Máu hắn loang ra, trộn với máu của kẻ hắn giết khi nãy.
+
+Ta ôm vai rỉ máu, thở dốc, nhìn cái xác. *Hắn chết… không phải vì ta. Vì hắn không xứng.*
+
+Trong đầu ta, giọng nói lạnh lùng vang lên: *“Kiếm chọn người. Ngươi hiểu chưa?”*
+
+Ta gượng đứng dậy, máu vẫn nhỏ giọt xuống nền, bước tới bên cái hộp vẫn đóng nguyên.
+
+**Lựa chọn:**
+
+- Quỳ xuống, chạm vào hai thanh kiếm  
+  → `c1_d05`  
+  ✦ sinh lực -12; mở cờ: thay_do_tam_chet
 
 ---
 

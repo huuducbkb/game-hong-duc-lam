@@ -78,8 +78,8 @@
       "ke": "Con đường mòn dẫn lên núi hẹp và dốc, hai bên là cỏ dại cao quá đầu. Trời nhá nhem, tiếng dế kêu rả rích, thỉnh thoảng có tiếng chim đêm vỗ cánh khiến ta giật mình.\n\nTa đi một mình. Không ai tiễn, không ai cản. *Kẻ ăn mày như ta, chết trên núi cũng chẳng ai hay.*\n\nCàng lên cao, không khí càng lạnh. Trước mặt, một ngôi miếu nhỏ hiện ra trong sương — mái ngói vỡ, cột gỗ mục, cửa mở toang như cái miệng đen.\n\nTrong miếu, ta thoáng thấy một vật gì đó phản chiếu ánh trăng — một cái hộp dài, phủ bụi dày.\n\n*Đó là nó.* Tim ta đập nhanh. Nhưng chân ta lại khựng lại. Lời đồn về kẻ chạm vào rồi chết vẫn vang trong đầu.\n\nGiọng nói lạnh lùng vang lên: *“Sợ, thì quay về. Chọn.”*",
       "lua_chon": [
         {
-          "chu": "Bước thẳng vào, chạm vào hộp kiếm",
-          "den": "c1_d05"
+          "chu": "Bước thẳng vào trong miếu",
+          "den": "c1_d04b"
         },
         {
           "chu": "Đứng ngoài quan sát trước đã",
@@ -102,7 +102,70 @@
       "lua_chon": [
         {
           "chu": "Quỳ xuống, chạm vào nắp hộp",
-          "den": "c1_d05"
+          "den": "c1_d04b"
+        }
+      ]
+    },
+    {
+      "id": "c1_d04b",
+      "hoi": "Mở",
+      "boi_canh": "Trong miếu — xác người còn ấm",
+      "hinh_anh": {
+        "tags": [
+          "miếu",
+          "xác",
+          "kinh hoàng"
+        ]
+      },
+      "ke": "Ta bước qua ngưỡng cửa mục nát. Mùi ẩm mốc trộn lẫn một mùi khác — mùi máu tươi, tanh nồng, chưa kịp khô.\n\nTrên nền miếu, bên cạnh đám xương khô cổ xưa, là một xác người MỚI. Áo vải thô, tay còn nắm chặt một con dao găm. Vết thương trên cổ hắn còn rỉ máu. Ta khẽ chạm vào cánh tay hắn — vẫn còn ấm.\n\n*Hắn chết chưa đầy nửa khắc.* Ta nuốt khan, sống lưng lạnh toát. *Không phải xương khô ngàn năm. Có kẻ vừa ở đây. Có kẻ đang ở đây.*\n\nGiọng nói lạnh lùng vang lên trong đầu: *“Ngươi không phải kẻ duy nhất nghe đồn.”*\n\nNgay lúc ấy, phía sau ta vang lên tiếng bước chân — chậm, nặng, không hề giấu diếm.",
+      "lua_chon": [
+        {
+          "chu": "Quay phắt lại",
+          "den": "c1_d04c"
+        }
+      ]
+    },
+    {
+      "id": "c1_d04c",
+      "hoi": "Mở",
+      "boi_canh": "Đỗ Tam — kẻ tranh giành",
+      "hinh_anh": {
+        "tags": [
+          "Đỗ Tam",
+          "tranh giành",
+          "nguy hiểm"
+        ]
+      },
+      "ke": "Một gã đàn ông đứng chắn ngay cửa miếu. Mặt hắn có một vết sẹo dài chéo qua mắt trái, thân hình vạm vỡ, tay phải cầm một thanh đao bản to đã sứt mẻ. Hắn nhìn ta, rồi nhìn cái hộp dài, khóe miệng nhếch lên.\n\n“Lại thêm một con chuột,” — hắn nói, giọng khàn — “Ta nghe đồn về cái hộp này ba năm rồi. Ba năm! Ta đã giết hai kẻ tới trước. Ngươi là kẻ thứ ba.”\n\nHắn chỉ tay xuống xác người dưới nền. “Thấy chưa? Nó cũng tưởng mình có duyên. Có duyên với đao của ta thì có.”\n\n*Đỗ Tam.* Ta nhớ ra rồi — lão què ở chợ từng nhắc: một tán tu khét tiếng quanh vùng, giết người cướp của, ai gặp cũng tránh. Hắn mạnh hơn ta gấp nhiều lần.\n\n“Cút,” — hắn gằn giọng — “Hoặc chết tại chỗ.”\n\nNhưng mắt ta dán vào cái hộp. *Ba ngày nữa Dã Lang Bang tới. Nếu ta bỏ đi bây giờ, ta vẫn là kẻ ăn mày chờ chết.*\n\nTrong đầu, giọng nói lạnh lùng vang lên: *“Kiếm đạo không sợ kẻ mạnh hơn. Chỉ sợ kẻ bỏ chạy.”*\n\nTa không cúi đầu. Ta nhìn thẳng vào mắt hắn, chậm rãi nói: “Hộp này… không phải của ngươi.”",
+      "lua_chon": [
+        {
+          "chu": "Xông thẳng ra giành hộp — không lùi một bước",
+          "den": "c1_d04d"
+        }
+      ]
+    },
+    {
+      "id": "c1_d04d",
+      "hoi": "Mở",
+      "boi_canh": "Đoạt hộp — Đỗ Tam phản phệ",
+      "hinh_anh": {
+        "tags": [
+          "giao chiến",
+          "phản phệ",
+          "trọng thương"
+        ]
+      },
+      "ke": "Ta xông thẳng tới. Đỗ Tam cười khẩy, vung đao.\n\nHắn nhanh hơn ta tưởng. Một đao chém trúng vai ta, rách toạc áo, máu phun ra. Cơn đau xé toạc khiến ta khuỵu gối. Ta lăn một vòng, chộp lấy cái hộp trước khi hắn kịp tới.\n\n“Ngu xuẩn,” — hắn gầm lên, một tay túm lấy hộp, giật mạnh khỏi tay ta. “Để ta cho ngươi xem, kẻ có duyên trông ra sao.”\n\nHắn đặt bàn tay lên nắp hộp.\n\nRồi mọi thứ đổi thay trong một khoảnh khắc.\n\nÁnh sáng trắng từ trong hộp bùng lên như một lưỡi kiếm, đâm thẳng vào mặt Đỗ Tam. Hắn gào lên — một tiếng gào không giống tiếng người. Máu trào ra từ mắt, mũi, tai, miệng hắn. Hắn buông đao, hai tay cào vào không khí, cào vào chính mặt mình, như thể có thứ gì đó đang xé nát hắn từ bên trong.\n\n“Không… xứng…” — một giọng nói vang lên từ hai thanh kiếm, lạnh như băng vạn năm.\n\nĐỗ Tam đổ gục xuống, co giật vài cái, rồi bất động. Máu hắn loang ra, trộn với máu của kẻ hắn giết khi nãy.\n\nTa ôm vai rỉ máu, thở dốc, nhìn cái xác. *Hắn chết… không phải vì ta. Vì hắn không xứng.*\n\nTrong đầu ta, giọng nói lạnh lùng vang lên: *“Kiếm chọn người. Ngươi hiểu chưa?”*\n\nTa gượng đứng dậy, máu vẫn nhỏ giọt xuống nền, bước tới bên cái hộp vẫn đóng nguyên.",
+      "lua_chon": [
+        {
+          "chu": "Quỳ xuống, chạm vào hai thanh kiếm",
+          "den": "c1_d05",
+          "hieu_ung": {
+            "sinh_luc": -12,
+            "co_su_kien": [
+              "thay_do_tam_chet"
+            ]
+          }
         }
       ]
     },
