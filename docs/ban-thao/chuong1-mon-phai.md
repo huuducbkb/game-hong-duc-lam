@@ -3,7 +3,7 @@
 
 > **Tóm tắt:** Người chơi xuyên không tới Thất Huyền trấn ngay trước khi Dã Lang Bang tập kích Thất Huyền Môn. Trong hỗn loạn, lần đầu chạm mặt Hàn Lập — khi đó còn là một tạp dịch đệ tử gầy gò, ít nói.
 
-*Nhánh này gồm 34 đoạn.*
+*Nhánh này gồm 35 đoạn.*
 
 ---
 
@@ -429,7 +429,37 @@ Trên da ta, những đường phù văn đỏ hiện ra, uốn lượn như r�
 
 Rồi nàng tan vào khối ngọc. Nhưng trước khi biến mất, nàng quay lại nhìn ta — một cái nhìn thoáng qua, rất nhanh, như thể nàng vừa cân nhắc điều gì đó rồi mới quyết. *Nàng đang tính toán điều gì?* Ý nghĩ ấy vụt qua rồi tan.
 
-Đêm ấy là lần **song tu đầu tiên**. Ta không nhớ rõ chuyện gì xảy ra — chỉ biết hơi ấm từ khối ngọc lan ra, quấn lấy ta, mùi hoa đêm nồng lên, và ý thức ta chìm vào một khoảng mờ ảo. Khi ta tỉnh lại, trời đã gần sáng, người ta mệt nhoài mà tinh thần lại sảng khoái lạ thường. Trong ngọc, Tuyết Cơ đã ngủ, im lìm như đá.
+Ta ngồi một mình trong bóng tối, khối ngọc cốt nằm trong lòng bàn tay, ấm ran.
+
+**Lựa chọn:**
+
+- Thổi tắt đèn dầu, chuẩn bị cho lần song tu đầu tiên  
+  → `c1_p10b`  
+  ✦ sinh lực -8
+
+---
+
+### Đoạn `c1_p10b` — Tân xá — đêm, lần song tu đầu tiên
+
+*Ảnh:* `song tu, Tuyết Cơ, đêm, dương khí`
+
+Ta thổi tắt đèn dầu. Bóng tối trùm lấy căn phòng, chỉ còn khối ngọc cốt sáng mờ trên ngực ta.
+
+Rồi ta cảm nhận được nàng — không phải qua mắt, mà qua hơi ấm phủ lên da thịt. Một dáng người mờ ảo, mềm như khói, đè nhẹ lên ta. Mùi hoa đêm nồng lên, quấn quanh, như có vô số cánh hoa đang nở trong bóng tối.
+
+“Đừng sợ,” — nàng thì thầm, hơi thở lướt qua vành tai ta, ấm và run. “Chỉ là mượn thôi.”
+
+Bàn tay nàng chạm vào cổ ta, rồi chậm rãi trượt xuống. Mỗi nơi nàng chạm, da ta nóng lên rồi lạnh đi, như có dòng nước chảy ngược từ trong ra ngoài. Ta muốn nói gì đó, nhưng cổ họng khô khốc, cơ thể ta không còn nghe lời ta nữa.
+
+Rồi ta cảm nhận được nó — sinh lực của ta đang bị rút đi. Chậm, đều, từng chút một. Không đau, chỉ là một cảm giác trống rỗng dần lan ra từ lồng ngực, như thể ai đó đang múc nước từ một cái giếng sâu, từng gàu một.
+
+Nàng áp sát hơn. Hơi thở nàng phả vào da ta, mỗi lúc một gần, mỗi lúc một nóng. Ta nghe rõ nhịp tim mình — chậm lại, rồi nhanh lên, rồi chậm lại, không theo một nhịp nào cả. Mười ngón tay nàng đan vào tay ta, siết nhẹ, như thể nàng cũng đang bấu víu vào điều gì đó.
+
+“Một chút nữa thôi,” — nàng thì thầm, giọng run hơn trước. “Ngươi làm tốt lắm.”
+
+Rồi mọi thứ nhòe đi. Ta không còn phân biệt được đâu là nàng, đâu là ta — chỉ còn hơi ấm, và mùi hoa đêm, và cảm giác sinh mệnh mình đang trôi đi như cát qua kẽ tay. Trong khoảnh khắc cuối cùng trước khi ý thức tắt hẳn, ta thoáng nghe nàng khẽ thở dài một tiếng — thỏa mãn, hay tiếc nuối, ta không tài nào đoán được.
+
+Khi ta mở mắt, trời đã gần sáng. Người ta mệt nhoài như vừa lội qua một con sông dài, nhưng tinh thần lại sảng khoái lạ thường. Trong ngọc, Tuyết Cơ đã ngủ, im lìm như đá.
 
 **Lựa chọn:**
 
@@ -442,7 +472,7 @@ Rồi nàng tan vào khối ngọc. Nhưng trước khi biến mất, nàng quay
 
 *Ảnh:* `tu luyện, đêm đầu, linh khí`
 
-Ta ngồi dậy, thấy khối ngọc cốt đang phát sáng dịu dàng trên lòng bàn tay. Trong đầu, giọng Tuyết Cơ vang lên — yếu ớt hơn nhưng rõ ràng.
+Trời gần sáng, ta ngồi dậy. Khối ngọc cốt trong tay vẫn tối mờ — nhưng rồi nó khẽ ấm lên, và trong đầu ta vang lên giọng Tuyết Cơ, yếu ớt nhưng rõ ràng. Nàng đã tiêu hoá xong phần dương khí đầu tiên, vừa tỉnh dậy.
 
 “Ngồi yên. Ta dạy ngươi hô hấp pháp của Hợp Hoan Tông.”
 

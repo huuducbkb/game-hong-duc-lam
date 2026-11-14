@@ -935,7 +935,30 @@
           "đêm"
         ]
       },
-      "ke": "Ta cắn môi, nhìn khối ngọc trong tay. *Kẻ yếu không có quyền lựa chọn.* Ta chỉ có một con đường sống — nắm lấy nó.\n\n“Ta ký,” — ta nói.\n\nTuyết Cơ khẽ mỉm cười, và nụ cười ấy lần này có chút gì đó ấm. “Tốt. Đưa tay ngươi đây.”\n\nTa đưa tay ra. Nàng đặt bàn tay mình lên mu bàn tay ta — bàn tay ấy ấm và mềm, không giống thứ gì ta từng chạm. Một luồng khí nóng từ tay nàng chảy vào người ta, rồi khối ngọc cốt sáng rực lên.\n\nTrên da ta, những đường phù văn đỏ hiện ra, uốn lượn như rễ cây. Ta nghiến răng chịu đau, nhưng rồi cơn đau tan biến, thay bằng một cảm giác ấm áp lạ thường.\n\n“Xong rồi,” — Tuyết Cơ nói, giọng đã yếu hơn trước — “Từ giờ, ngươi là chủ, ta là tớ.”\n\nRồi nàng tan vào khối ngọc. Nhưng trước khi biến mất, nàng quay lại nhìn ta — một cái nhìn thoáng qua, rất nhanh, như thể nàng vừa cân nhắc điều gì đó rồi mới quyết. *Nàng đang tính toán điều gì?* Ý nghĩ ấy vụt qua rồi tan.\n\nĐêm ấy là lần **song tu đầu tiên**. Ta không nhớ rõ chuyện gì xảy ra — chỉ biết hơi ấm từ khối ngọc lan ra, quấn lấy ta, mùi hoa đêm nồng lên, và ý thức ta chìm vào một khoảng mờ ảo. Khi ta tỉnh lại, trời đã gần sáng, người ta mệt nhoài mà tinh thần lại sảng khoái lạ thường. Trong ngọc, Tuyết Cơ đã ngủ, im lìm như đá.",
+      "ke": "Ta cắn môi, nhìn khối ngọc trong tay. *Kẻ yếu không có quyền lựa chọn.* Ta chỉ có một con đường sống — nắm lấy nó.\n\n“Ta ký,” — ta nói.\n\nTuyết Cơ khẽ mỉm cười, và nụ cười ấy lần này có chút gì đó ấm. “Tốt. Đưa tay ngươi đây.”\n\nTa đưa tay ra. Nàng đặt bàn tay mình lên mu bàn tay ta — bàn tay ấy ấm và mềm, không giống thứ gì ta từng chạm. Một luồng khí nóng từ tay nàng chảy vào người ta, rồi khối ngọc cốt sáng rực lên.\n\nTrên da ta, những đường phù văn đỏ hiện ra, uốn lượn như rễ cây. Ta nghiến răng chịu đau, nhưng rồi cơn đau tan biến, thay bằng một cảm giác ấm áp lạ thường.\n\n“Xong rồi,” — Tuyết Cơ nói, giọng đã yếu hơn trước — “Từ giờ, ngươi là chủ, ta là tớ.”\n\nRồi nàng tan vào khối ngọc. Nhưng trước khi biến mất, nàng quay lại nhìn ta — một cái nhìn thoáng qua, rất nhanh, như thể nàng vừa cân nhắc điều gì đó rồi mới quyết. *Nàng đang tính toán điều gì?* Ý nghĩ ấy vụt qua rồi tan.\n\nTa ngồi một mình trong bóng tối, khối ngọc cốt nằm trong lòng bàn tay, ấm ran.",
+      "lua_chon": [
+        {
+          "chu": "Thổi tắt đèn dầu, chuẩn bị cho lần song tu đầu tiên",
+          "den": "c1_p10b",
+          "hieu_ung": {
+            "sinh_luc": -8
+          }
+        }
+      ]
+    },
+    {
+      "id": "c1_p10b",
+      "hoi": "Thân",
+      "boi_canh": "Tân xá — đêm, lần song tu đầu tiên",
+      "hinh_anh": {
+        "tags": [
+          "song tu",
+          "Tuyết Cơ",
+          "đêm",
+          "dương khí"
+        ]
+      },
+      "ke": "Ta thổi tắt đèn dầu. Bóng tối trùm lấy căn phòng, chỉ còn khối ngọc cốt sáng mờ trên ngực ta.\n\nRồi ta cảm nhận được nàng — không phải qua mắt, mà qua hơi ấm phủ lên da thịt. Một dáng người mờ ảo, mềm như khói, đè nhẹ lên ta. Mùi hoa đêm nồng lên, quấn quanh, như có vô số cánh hoa đang nở trong bóng tối.\n\n“Đừng sợ,” — nàng thì thầm, hơi thở lướt qua vành tai ta, ấm và run. “Chỉ là mượn thôi.”\n\nBàn tay nàng chạm vào cổ ta, rồi chậm rãi trượt xuống. Mỗi nơi nàng chạm, da ta nóng lên rồi lạnh đi, như có dòng nước chảy ngược từ trong ra ngoài. Ta muốn nói gì đó, nhưng cổ họng khô khốc, cơ thể ta không còn nghe lời ta nữa.\n\nRồi ta cảm nhận được nó — sinh lực của ta đang bị rút đi. Chậm, đều, từng chút một. Không đau, chỉ là một cảm giác trống rỗng dần lan ra từ lồng ngực, như thể ai đó đang múc nước từ một cái giếng sâu, từng gàu một.\n\nNàng áp sát hơn. Hơi thở nàng phả vào da ta, mỗi lúc một gần, mỗi lúc một nóng. Ta nghe rõ nhịp tim mình — chậm lại, rồi nhanh lên, rồi chậm lại, không theo một nhịp nào cả. Mười ngón tay nàng đan vào tay ta, siết nhẹ, như thể nàng cũng đang bấu víu vào điều gì đó.\n\n“Một chút nữa thôi,” — nàng thì thầm, giọng run hơn trước. “Ngươi làm tốt lắm.”\n\nRồi mọi thứ nhòe đi. Ta không còn phân biệt được đâu là nàng, đâu là ta — chỉ còn hơi ấm, và mùi hoa đêm, và cảm giác sinh mệnh mình đang trôi đi như cát qua kẽ tay. Trong khoảnh khắc cuối cùng trước khi ý thức tắt hẳn, ta thoáng nghe nàng khẽ thở dài một tiếng — thỏa mãn, hay tiếc nuối, ta không tài nào đoán được.\n\nKhi ta mở mắt, trời đã gần sáng. Người ta mệt nhoài như vừa lội qua một con sông dài, nhưng tinh thần lại sảng khoái lạ thường. Trong ngọc, Tuyết Cơ đã ngủ, im lìm như đá.",
       "lua_chon": [
         {
           "chu": "Ngồi dậy, nghe Tuyết Cơ hướng dẫn tu luyện",
@@ -954,7 +977,7 @@
           "linh khí"
         ]
       },
-      "ke": "Ta ngồi dậy, thấy khối ngọc cốt đang phát sáng dịu dàng trên lòng bàn tay. Trong đầu, giọng Tuyết Cơ vang lên — yếu ớt hơn nhưng rõ ràng.\n\n“Ngồi yên. Ta dạy ngươi hô hấp pháp của Hợp Hoan Tông.”\n\nTa làm theo lời nàng. Hít vào, giữ khí, rồi thở ra — không phải kiểu thở bình thường, mà là cách đưa linh khí từ đất trời vào từng thớ thịt.\n\n“Kẻ khác phải mất ba năm mới cảm nhận được linh khí,” — nàng nói — “Nhưng ngươi có ngọc cốt. Linh khí sẽ tự tìm tới ngươi.”\n\nĐúng như lời nàng, một luồng khí mát lạnh tràn vào người ta, chảy qua kinh mạch. Ta thấy rõ từng đường đi của nó, như thấy một dòng nước chảy trong bóng tối. *Thì ra tu luyện là thế này.*\n\n“Tập trung,” — nàng nhắc — “Dẫn khí về đan điền. Đừng vội.”\n\nTa nhắm mắt, dồn hết tâm trí. Trong người ta, một luồng ấm nóng dần tụ lại dưới rốn, rồi xoay tròn. Mồ hôi ướt đẫm lưng áo, nhưng ta không dừng.\n\nKhi trời sáng hẳn, ta mở mắt. Luồng khí trong người đã đọng lại thành một khối nhỏ nơi đan điền — mới chỉ là mầm mống, chưa đủ để phá ngưỡng. *Một đêm vẫn chưa đủ.*",
+      "ke": "Trời gần sáng, ta ngồi dậy. Khối ngọc cốt trong tay vẫn tối mờ — nhưng rồi nó khẽ ấm lên, và trong đầu ta vang lên giọng Tuyết Cơ, yếu ớt nhưng rõ ràng. Nàng đã tiêu hoá xong phần dương khí đầu tiên, vừa tỉnh dậy.\n\n“Ngồi yên. Ta dạy ngươi hô hấp pháp của Hợp Hoan Tông.”\n\nTa làm theo lời nàng. Hít vào, giữ khí, rồi thở ra — không phải kiểu thở bình thường, mà là cách đưa linh khí từ đất trời vào từng thớ thịt.\n\n“Kẻ khác phải mất ba năm mới cảm nhận được linh khí,” — nàng nói — “Nhưng ngươi có ngọc cốt. Linh khí sẽ tự tìm tới ngươi.”\n\nĐúng như lời nàng, một luồng khí mát lạnh tràn vào người ta, chảy qua kinh mạch. Ta thấy rõ từng đường đi của nó, như thấy một dòng nước chảy trong bóng tối. *Thì ra tu luyện là thế này.*\n\n“Tập trung,” — nàng nhắc — “Dẫn khí về đan điền. Đừng vội.”\n\nTa nhắm mắt, dồn hết tâm trí. Trong người ta, một luồng ấm nóng dần tụ lại dưới rốn, rồi xoay tròn. Mồ hôi ướt đẫm lưng áo, nhưng ta không dừng.\n\nKhi trời sáng hẳn, ta mở mắt. Luồng khí trong người đã đọng lại thành một khối nhỏ nơi đan điền — mới chỉ là mầm mống, chưa đủ để phá ngưỡng. *Một đêm vẫn chưa đủ.*",
       "lua_chon": [
         {
           "chu": "Tiếp tục khổ tu những đêm sau",

@@ -136,9 +136,11 @@ r = call(o8, "/api/chon", {"chi_so": 0})   # đào lên, giữ ngọc
 st = call(o8, "/api/state")["trang_thai"]
 check("nhận Ngọc cốt bí ẩn", any(v["ten"] == "Ngọc cốt bí ẩn" for v in st["tui_do"]), True)
 check("cờ co_ngoc_cot", "co_ngoc_cot" in st["co_su_kien"], True)
-# p07 → p08 → p08b → p09 → p09b → p09c (do dự) → p10 (ký) → p11 (tu luyện)
+# p07 → p08 → p08b → p09 → p09b → p09c (do dự) → p10 (ký) → p10b (song tu) → p11 (tu luyện)
 for _ in range(6):
     r = call(o8, "/api/chon", {"chi_so": 0})
+check("tới đoạn song tu p10b", r["doan_id"], "c1_p10b")
+r = call(o8, "/api/chon", {"chi_so": 0})
 check("tới đoạn tu luyện p11", r["doan_id"], "c1_p11")
 check("đêm đầu chưa đột phá", call(o8, "/api/state")["trang_thai"]["canh_gioi"], "Luyện Khí tầng 1")
 r = call(o8, "/api/chon", {"chi_so": 0})   # p11b khổ tu
