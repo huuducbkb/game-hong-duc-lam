@@ -224,6 +224,32 @@ Mỗi xuất thân KHÔNG chỉ là nhãn — nó quyết định **hành trình
 - **Quy ước gọi tên nhánh:** luôn gọi **tên đầy đủ** (tán tu · môn phái · dược đồng ·
   gia tộc · hắc đạo) khi trao đổi với người dùng — **không dùng ký hiệu** (d/p/y/g/h).
 
+## 5 CƠ DUYÊN — mỗi nhánh một cơ duyên (BẮT BUỘC)
+
+Mỗi nhánh phải có **cơ duyên riêng** — thứ đưa người chơi từ phàm nhân lên con đường
+tu luyện. Cơ duyên KHÔNG được rơi vào tay người chơi một cách vô cớ.
+
+**Quy tắc vàng — "làm sao CÓ cơ duyên" (4 bước, mọi nhánh phải theo):**
+1. **Nghe đồn / manh mối** — nhân vật biết tới cơ duyên qua lời đồn, người kể, hoặc
+   vật lạ (không tự nhiên xuất hiện).
+2. **Đi tìm** — nhân vật phải CHỦ ĐỘNG tới nơi (có lựa chọn đi / không đi).
+3. **Thử thách** — cơ duyên thử lòng (xương khô kẻ tới trước, câu hỏi, đánh đổi).
+   Cho thấy nguy hiểm là THẬT, người khác đã chết vì nó.
+4. **Nhận** — cơ duyên chọn chủ (có lý do: linh hồn xuyên không sạch/lạ…) → sau đó
+   mới **tu luyện** và **kết chương**.
+
+| Nhánh | Cơ duyên | Cơ chế | Kết chương 1 |
+|---|---|---|---|
+| **Tán tu** | Hồng Trần Kiếm Hạp (cặp kiếm dài-ngắn + kiếm linh) | Hấp thu **hồng trần** để mạnh; phải đi giữa đời, không ẩn tu | ✅ `c1_d17` |
+| **Môn phái** | Ngọc cốt bí ẩn (đào ở vườn thuốc, Mạc Đại Phu để ý) | Hấp thu **linh khí** nhanh gấp mấy lần; giấu kín vì môn võ lâm | ✅ `c1_p19` |
+| **Dược đồng** | Vô Vạn Thọ Nguyên (1 viên đan) | **Vô hạn thọ nguyên** → đốt thọ nguyên tăng tu vi (nhánh khác đốt là chết) | ⏳ cần kết riêng |
+| **Gia tộc** | Nhẫn ngọc (thức tỉnh nhận chủ) | Tu luyện nhanh **30×**, tốn **bạc**; **không** rơi gần Hàn Lập | ⏳ cần kết riêng |
+| **Hắc đạo** | Thôn Thiên Ma Công (nuốt để mạnh) | Mạnh **10×** nhưng tích **sát nghiệp** → mất bản ngã; cứu bằng **lôi kiếp** | ⏳ cần kết riêng |
+
+**Còn nợ:** dược đồng / gia tộc / hắc đạo chưa có cơ duyên trong truyện + còn lỗi canon
+(`linh thảo`, `Trúc Cơ`) + còn dùng chung đoạn kết `c1_d18` (tàn dư cũ) → phải viết lại
+theo 4 bước trên, mỗi nhánh một kết riêng. Nhánh tán tu và môn phái đã xong (chuẩn mẫu).
+
 ## Cần làm tiếp
 
 1. ~~Người dùng duyệt giao diện 1 cột~~ ✅
