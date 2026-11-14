@@ -202,7 +202,7 @@ HANH_DONG_HOP_LE = ["tấn công", "tặng quà", "trò chuyện", "di chuyển"
 GIOI_HAN = {
     "sinh_luc": (-15, 10),
     "tu_vi": (0, 8),
-    "linh_thach": (-10, 10),
+    "bac": (-10, 10),
     "than_niem": (0, 2),
     "hao_cam": (-10, 10),
 }
@@ -236,7 +236,7 @@ def nhan_dien(van_ban: str, boi_canh: str) -> dict:
         '{"hanh_dong": "' + "|".join(HANH_DONG_HOP_LE) + '",\n'
         ' "sinh_luc": <số nguyên -15..10>,\n'
         ' "tu_vi": <0..8>,\n'
-        ' "linh_thach": <-10..10>,\n'
+        ' "bac": <-10..10>,\n'
         ' "than_niem": <0..2>,\n'
         ' "hao_cam": {"<tên NPC đã gặp>": <-10..10>},\n'
         ' "nhan_xet": "<một câu tiếng Việt ngắn>"}\n'
@@ -256,7 +256,7 @@ def nhan_dien(van_ban: str, boi_canh: str) -> dict:
     y: dict = {}
     if d.get("hanh_dong") in HANH_DONG_HOP_LE:
         y["hanh_dong"] = d["hanh_dong"]
-    for k in ("sinh_luc", "tu_vi", "linh_thach", "than_niem"):
+    for k in ("sinh_luc", "tu_vi", "bac", "than_niem"):
         v = d.get(k)
         if isinstance(v, (int, float)) and not isinstance(v, bool) and v != 0:
             lo, hi = GIOI_HAN[k]

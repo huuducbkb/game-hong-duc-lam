@@ -312,7 +312,7 @@ body{
       <div class="sys-row"><span class="k">Tấn công</span><span class="v" id="dTanCong">—</span></div>
       <div class="sys-row"><span class="k">Phòng thủ</span><span class="v" id="dPhongThu">—</span></div>
       <div class="sys-row"><span class="k">Tốc độ</span><span class="v" id="dTocDo">—</span></div>
-      <div class="sys-row"><span class="k">Linh thạch</span><span class="v" id="dLinhThach">—</span></div>
+      <div class="sys-row"><span class="k">Bạc</span><span class="v" id="dBac">—</span></div>
     </div>
   </section>
 
@@ -454,7 +454,7 @@ function capNhatTrangThai(tt) {
   $("#dTanCong").textContent = tt.tan_cong;
   $("#dPhongThu").textContent = tt.phong_thu;
   $("#dTocDo").textContent = tt.toc_do;
-  $("#dLinhThach").textContent = tt.linh_thach + " hạ phẩm";
+  $("#dBac").textContent = (tt.bac ?? tt.linh_thach ?? 0) + " lượng";
   $("#dTuVi").innerHTML = tt.tu_vi.hien + "<small>/" + tt.tu_vi.max + "</small>";
   $("#bTuVi").style.width = pc(tt.tu_vi.hien, tt.tu_vi.max) + "%";
   $("#dSinhLuc").innerHTML = tt.sinh_luc.hien + "<small>/" + tt.sinh_luc.max + "</small>";

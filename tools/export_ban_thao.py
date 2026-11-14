@@ -41,8 +41,9 @@ def _hieu_ung_txt(hu: dict) -> str:
     if not hu:
         return ""
     phan = []
-    if hu.get("linh_thach"):
-        phan.append(f"linh thạch {hu['linh_thach']:+d}")
+    tien = hu.get("bac", hu.get("linh_thach"))
+    if tien:
+        phan.append(f"bạc {tien:+d}")
     if hu.get("tu_vi"):
         phan.append(f"tu vi {hu['tu_vi']:+d}")
     if hu.get("sinh_luc"):

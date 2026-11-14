@@ -120,6 +120,14 @@ Mọi cờ sự kiện (`biet_tin_da_lang_bang`, `thay_gian_te`, `giup_han_lap`�
 **Ghi chú:** ràng buộc **canon** vẫn giữ (theo `SPEC.md`): chương 1 = Đại chiến Dã Lang Bang,
 lần đầu gặp Hàn Lập. Chỉ bỏ ràng buộc **tự đặt**.
 
+> ⚠️ **CANON ĐÃ SỬA (2026-11-12):** Trước đây tài liệu này coi Thất Huyền Môn là **tông môn
+> tu tiên** — **SAI**. Canon đúng: Thất Huyền Môn là **môn phái giang hồ (võ lâm)**, đệ tử
+> là **phàm nhân luyện võ**; Hàn Lập vào môn do **chú dẫn tới**; **Mạc Đại Phu** bí mật
+> truyền **Trường Xuân Công** cho Hàn Lập; tiền tệ là **bạc/vàng** (không phải linh thạch).
+> Bảng canon đầy đủ ở `AGENTS.md` mục "CANON — BẮT BUỘC ĐÚNG". Nhánh môn phái đã viết lại
+> theo canon này; **4 nhánh còn lại (tán tu, dược đồng, gia tộc, hắc đạo) còn lỗi tương tự,
+> chưa sửa.**
+
 ---
 
 ## 2. CHỮA MẠCH TRUYỆN
