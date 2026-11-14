@@ -135,6 +135,8 @@ body{
 .noi-tam{font-style:italic;color:var(--ink-soft)}
 #storyBody p{margin:0 0 13px}
 #storyBody em{font-style:italic}
+.loi-giua-van{margin:0 0 12px;padding:9px 12px;border-radius:8px;font-size:13.5px;
+  background:rgba(150,40,30,.10);color:#8a2a1e;border:1px solid rgba(150,40,30,.28)}
 .npc-card{margin-bottom:14px;padding:11px 12px;background:rgba(255,253,246,.5);border:1px solid var(--edge);border-radius:9px}
 .npc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
 .npc-ten{font-weight:600;font-size:14px}
@@ -188,6 +190,8 @@ body{
   background:var(--ink-soft);border:0;border-radius:11px;padding:11px 15px}
 .ai-note{font-size:11.5px;color:var(--ink-faint);margin:6px 2px 0;line-height:1.4}
 .ai-note:empty{display:none}
+.ke-ai-nhan{font-size:10.5px;letter-spacing:.4px;color:var(--seal);
+  opacity:.75;margin:0 0 8px;font-style:italic}
 
 /* ---------- THÔNG BÁO ---------- */
 .tbao{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
@@ -231,12 +235,14 @@ body{
       <div class="sub" id="chuongSub">Chương 1 · Đại chiến Dã Lang Bang</div>
     </div>
     <button class="sys-btn" id="openSys">Hệ Thống</button>
+    <button class="sys-btn" id="nutKeAI" title="Bật/tắt AI kể lại đoạn truyện">AI kể: Bật</button>
     <button class="sys-btn" id="openReset">Chơi lại</button>
   </header>
 
   <!-- bảng truyện -->
   <section class="frame panel-story" id="story">
     <div class="chapter" id="storyChapter">Chương 1 · Đại chiến Dã Lang Bang</div>
+    <div id="loiGiuaVan" class="loi-giua-van" style="display:none"></div>
     <div id="storyBody"></div>
   </section>
 
@@ -306,7 +312,7 @@ body{
       <div class="sys-row"><span class="k">Tấn công</span><span class="v" id="dTanCong">—</span></div>
       <div class="sys-row"><span class="k">Phòng thủ</span><span class="v" id="dPhongThu">—</span></div>
       <div class="sys-row"><span class="k">Tốc độ</span><span class="v" id="dTocDo">—</span></div>
-      <div class="sys-row"><span class="k">Linh thạch</span><span class="v" id="dLinhThach">—</span></div>
+      <div class="sys-row"><span class="k">Bạc</span><span class="v" id="dBac">—</span></div>
     </div>
   </section>
 
@@ -342,17 +348,45 @@ body{
 const $ = s => document.querySelector(s);
 let dangCho = false;
 let coAI = false;  // bật khi máy chủ xác nhận AI dùng được
+let keAI = true;   // AI kể lại đoạn truyện (mặc định BẬT); nhớ trong localStorage
 
 const idx = ["壹","貳","叁","肆","伍","陸","柒","捌"];
 
+// ---------------------------------------------------------- nút AI kể
+function napNutKeAI() {
+  try { keAI = localStorage.getItem("keAI") !== "0"; } catch (e) { keAI = true; }
+  capNhatNutKeAI();
+}
+function capNhatNutKeAI() {
+  const b = $("#nutKeAI");
+  if (!b) return;
+  b.textContent = "AI kể: " + (keAI ? "Bật" : "Tắt");
+  b.style.opacity = keAI ? "1" : ".55";
+}
+function doiKeAI() {
+  keAI = !keAI;
+  try { localStorage.setItem("keAI", keAI ? "1" : "0"); } catch (e) {}
+  capNhatNutKeAI();
+}
+napNutKeAI();
+
 // ---------------------------------------------------------- gọi API
 async function goi(duong, duLieu) {
-  const r = await fetch(duong, {
-    method: duLieu ? "POST" : "GET",
-    headers: duLieu ? {"Content-Type": "application/json"} : {},
-    body: duLieu ? JSON.stringify(duLieu) : undefined,
-  });
-  return r.json();
+  let r;
+  try {
+    r = await fetch(duong, {
+      method: duLieu ? "POST" : "GET",
+      headers: duLieu ? {"Content-Type": "application/json"} : {},
+      body: duLieu ? JSON.stringify(duLieu) : undefined,
+    });
+  } catch (e) {
+    return {loi: "Mất kết nối. Thử lại giúp ta."};
+  }
+  try {
+    return await r.json();
+  } catch (e) {
+    return {loi: "Máy chủ trả lời không hợp lệ (mã " + r.status + ")."};
+  }
 }
 
 // ---------------------------------------------------------- hiển thị đoạn
@@ -364,7 +398,20 @@ function dinhDang(p) {
   return esc(p).replace(/\*([^*]+)\*/g, '<em class="noi-tam">$1</em>');
 }
 function hienThi(kq) {
-  if (kq.loi) { $("#setupLoi").textContent = kq.loi; return; }
+  if (typeof xoaBaoDangKe === "function") xoaBaoDangKe();
+  if (kq.loi) {
+    const sb = $("#setupLoi");
+    const dangChoi = $("#setup") && $("#setup").style.display === "none";
+    if (dangChoi) {
+      const tb = document.getElementById("loiGiuaVan");
+      if (tb) { tb.textContent = kq.loi; tb.style.display = "block"; }
+    } else if (sb) {
+      sb.textContent = kq.loi;
+    }
+    return;
+  }
+  const tb0 = document.getElementById("loiGiuaVan");
+  if (tb0) { tb0.style.display = "none"; tb0.textContent = ""; }
   $("#setup").style.display = "none";
   $("#chuongSub").textContent = "Chương " + kq.chuong + " · " + kq.ten_chuong;
   $("#storyChapter").textContent = "Chương " + kq.chuong + " · " + kq.ten_chuong;
@@ -374,6 +421,7 @@ function hienThi(kq) {
   if (kq.thong_bao && kq.thong_bao.length) {
     html += '<div class="tbao">' + kq.thong_bao.map(t => "<span>" + t + "</span>").join("") + "</div>";
   }
+  if (kq.ke_ai) html += '<div class="ke-ai-nhan">✦ AI kể lại theo văn phong tiên hiệp</div>';
   // đoạn kể (hỗ trợ *nội tâm in nghiêng*)
   const doan = (kq.ke || "").split(/\n\n+/).map(p => "<p>" + dinhDang(p) + "</p>").join("");
   $("#storyBody").innerHTML = html + doan;
@@ -406,7 +454,7 @@ function capNhatTrangThai(tt) {
   $("#dTanCong").textContent = tt.tan_cong;
   $("#dPhongThu").textContent = tt.phong_thu;
   $("#dTocDo").textContent = tt.toc_do;
-  $("#dLinhThach").textContent = tt.linh_thach + " hạ phẩm";
+  $("#dBac").textContent = (tt.bac ?? tt.linh_thach ?? 0) + " lượng";
   $("#dTuVi").innerHTML = tt.tu_vi.hien + "<small>/" + tt.tu_vi.max + "</small>";
   $("#bTuVi").style.width = pc(tt.tu_vi.hien, tt.tu_vi.max) + "%";
   $("#dSinhLuc").innerHTML = tt.sinh_luc.hien + "<small>/" + tt.sinh_luc.max + "</small>";
@@ -449,8 +497,10 @@ function capNhatNutLui() {
 async function chon(chiSo) {
   if (dangCho) return;
   dangCho = true;
-  hienThi(await goi("/api/chon", {chi_so: chiSo}));
-  soBuocLui++; capNhatNutLui();
+  if (keAI && coAI) baoDangKe();
+  const kq = await goi("/api/chon", {chi_so: chiSo, ke_ai: keAI});
+  hienThi(kq);
+  if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
   dangCho = false;
 }
 async function tuDo() {
@@ -459,16 +509,31 @@ async function tuDo() {
   dangCho = true;
   $("#tuDo").value = "";
   if (typeof coGian === "function") coGian();
-  hienThi(await goi("/api/tu_do", {van_ban: v}));
-  soBuocLui++; capNhatNutLui();
+  const kq = await goi("/api/tu_do", {van_ban: v});
+  hienThi(kq);
+  if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
   dangCho = false;
+}
+
+// hiện ghi chú "Đang kể lại…" trong lúc chờ AI
+function baoDangKe() {
+  const n = $("#aiNote");
+  if (n) { n.textContent = "Đang kể lại theo văn phong tiên hiệp…"; n.style.display = "block"; }
+  const b = $("#storyBody");
+  if (b) b.style.opacity = ".55";
+}
+function xoaBaoDangKe() {
+  const n = $("#aiNote");
+  if (n) { n.textContent = ""; n.style.display = "none"; }
+  const b = $("#storyBody");
+  if (b) b.style.opacity = "1";
 }
 
 // lùi lại một hành động
 $("#nutLui").onclick = async () => {
   if (dangCho || soBuocLui <= 0) return;
   dangCho = true;
-  const kq = await goi("/api/lui", {});
+  const kq = await goi("/api/lui", {ke_ai: keAI});
   if (kq.loi) {
     soBuocLui = 0; capNhatNutLui();
     $("#undoGhi").textContent = kq.loi;
@@ -515,11 +580,12 @@ $("#go").onclick = async () => {
   const ten = $("#ten").value.trim();
   if (!ten) { $("#setupLoi").textContent = "Hãy nhập tên nhân vật"; return; }
   $("#go").disabled = true;
-  hienThi(await goi("/api/new", {ten, xuat_than: $("#xuat").value, nhom: nhomChon}));
+  hienThi(await goi("/api/new", {ten, xuat_than: $("#xuat").value, nhom: nhomChon, ke_ai: keAI}));
   $("#go").disabled = false;
 };
 napXuatThan();
 $("#guiTuDo").onclick = tuDo;
+$("#nutKeAI").onclick = doiKeAI;
 const oTuDo = $("#tuDo");
 function coGian() { oTuDo.style.height = "auto"; oTuDo.style.height = Math.min(oTuDo.scrollHeight, 120) + "px"; }
 oTuDo.oninput = coGian;
@@ -566,7 +632,7 @@ $("#avatarInput").onchange = e => {
     $("#setup").style.display = "none";
     soBuocLui = kq.so_lui || 0;
     capNhatNutLui();
-    const r = await goi("/api/doan");
+    const r = await goi("/api/doan" + (keAI ? "" : "?ke_ai=0"));
     if (!r.loi) hienThi(r); else capNhatTrangThai(kq.trang_thai);
   }
 })();

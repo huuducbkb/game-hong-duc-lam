@@ -32,12 +32,20 @@
 
 ## 3. Bối cảnh & mốc thời gian
 
-**Thời điểm bắt đầu: TỰ DO — trước khi Hàn Lập gia nhập Thất Huyền Môn.**
+**Thời điểm bắt đầu: SAU khi Hàn Lập đã gia nhập Thất Huyền Môn** (được chú dẫn
+tới dự tuyển), và **trước trận Dã Lang Bang tập kích** — tức ngay trong khoảng
+thời gian của Chương 1.
 
-Lý do: người chơi có thể chọn **xuất thân khác nhau** (tán tu, tạp dịch đệ tử
-môn phái khác, con nhà nông, đệ tử bang hội…). Vì thế không thể cố định người
-chơi "cùng lứa Hàn Lập". Thay vào đó, người chơi **gặp Hàn Lập tại các sự kiện
-của thế giới** khi thời cơ đến.
+Lý do: Chương 1 là **trận Đại chiến Dã Lang Bang đánh Thất Huyền Môn**, việc chỉ
+xảy ra **sau khi Hàn Lập đã ở trong môn**. Người chơi vẫn chọn **xuất thân khác
+nhau** (tán tu, đệ tử võ lâm Thất Huyền Môn, dược đồng, con nhà gia tộc, hắc đạo…),
+và **gặp Hàn Lập tại sự kiện của thế giới** khi thời cơ đến.
+
+> **Bối cảnh tầng phàm nhân (QUAN TRỌNG):** Chương 1–3 diễn ra ở **tầng giang hồ /
+> phàm nhân**. **Thất Huyền Môn là môn phái GIANG HỒ (võ lâm)** — đệ tử phần lớn là
+> **phàm nhân luyện võ**, KHÔNG phải tông môn tu tiên. Tu luyện ở đây là **bí mật,
+> hiếm** (Hàn Lập lén học Trường Xuân Công từ Mạc Đại Phu). Tiền tệ là **bạc / vàng**,
+> KHÔNG phải linh thạch. Xem bảng canon đầy đủ trong `AGENTS.md`.
 
 **Cơ chế gặp nhân vật chính:** không gặp ở đầu game. Hàn Lập xuất hiện khi
 người chơi chạm tới đúng sự kiện canon (xem "Dòng thời gian sự kiện").
@@ -49,13 +57,13 @@ người chơi chạm tới đúng sự kiện canon (xem "Dòng thời gian s�
 
 | Chương | Sự kiện canon | Hàn Lập ở đâu | Người chơi có thể |
 |---|---|---|---|
-| 1 | Đại chiến **Dã Lang Bang** tấn công Thất Huyền Môn | Tạp dịch đệ tử Thất Huyền Môn | Lần đầu chạm mặt Hàn Lập (tùy xuất thân) |
+| 1 | Đại chiến **Dã Lang Bang** tấn công Thất Huyền Môn | Đệ tử (do chú dẫn vào), bí mật học Trường Xuân Công từ Mạc Đại Phu | Lần đầu chạm mặt Hàn Lập (tùy xuất thân) |
 | 2 | **Huyết Sát Thí Luyện** | Trong môn phái | Chen vào thí luyện, tranh cơ duyên |
 | 3 | **Đêm đại chiến trong Hoàng Cung** — diệt **Hắc Sát Giáo** | Tham gia | Chọn phe, cứu/giết, đoạt bảo |
 | 4+ | *(chưa chốt — sẽ trao đổi với người dùng)* | — | — |
 
 **Thế lực & nhân vật chính thống:** Hàn Lập, Lệ Phi Vũ, Nam Cung Uyển,
-Mặc Đại Phu, Trương Thiết, Đổng Huyên Nhi, Nguyên Dao, Hải Đại Thiếu, Khúc Hồn…
+**Mạc Đại Phu**, Trương Thiết, Đổng Huyên Nhi, Nguyên Dao, Hải Đại Thiếu, Khúc Hồn…
 
 ---
 

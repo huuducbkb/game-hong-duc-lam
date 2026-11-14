@@ -152,15 +152,23 @@ Phiên giữ trong RAM + cookie `phien`; trạng thái đầy đủ lưu ở `da
 
 ## Bản thảo để duyệt
 
-Xuất đoạn kể của mọi chương ra văn bản để người dùng đọc:
+Xuất đoạn kể ra văn bản để người dùng đọc. **Mỗi xuất thân là một nhánh riêng →
+xuất thành FILE RIÊNG** (không nối 5 nhánh vào một file):
 
 ```bash
-python3 tools/export_ban_thao.py        # mọi chương
-python3 tools/export_ban_thao.py 1      # chỉ Chương 1
+python3 tools/export_ban_thao.py                      # mọi chương, mọi nhánh
+python3 tools/export_ban_thao.py 1                    # Chương 1, mọi nhánh
+python3 tools/export_ban_thao.py 1 --nhanh mon_phai   # CHỈ nhánh môn phái
 ```
 
-Kết quả ở `docs/ban-thao/`: `chuong1.md` (xem trên GitHub), `chuong1.html` (đọc trên Safari),
-`index.html` (mục lục). Đọc trực tiếp tại `/docs/ban-thao/index.html`.
+Mã nhánh: `tan_tu`, `mon_phai`, `duoc`, `gia_toc`, `hac_dao`.
+
+Kết quả ở `docs/ban-thao/`: `index.html` (mục lục: chương + từng nhánh),
+`chuong1-<nhánh>.html` (đọc trên Safari), `chuong1-<nhánh>.md` (xem trên GitHub).
+Đọc trực tiếp tại `/docs/ban-thao/index.html`.
+
+> **Khi đang viết 1 nhánh:** dùng `--nhanh <mã>` để chỉ xuất nhánh đó — đúng
+> nhánh đang duyệt, không lẫn các nhánh khác.
 
 ## Kế hoạch & đặc tả
 
@@ -175,7 +183,29 @@ Kết quả ở `docs/ban-thao/`: `chuong1.md` (xem trên GitHub), `chuong1.html
 - **Thần niệm** = giác quan + tay nghề + vũ khí tinh thần (xem kế hoạch mục C).
 - **Chủng loại** NPC: nhân loại · yêu thú · yêu thú hoá hình người · ma thú · quỷ ·
   khôi lỗi · cương thi… (dùng để AI tra đúng ảnh).
-- **1 chương = 18 đoạn ≈ 45 phút** (2,5 phút/lượt). Cấu trúc 3 hồi: 5 mở · 8 thân · 5 kết.
+- **Số đoạn/chương: KHÔNG ép cứng** — viết bao nhiêu tuỳ cốt truyện cần (trước đây từng
+  đặt mục tiêu 18 đoạn ≈ 45 phút, nay **bỏ ràng buộc này** để truyện khỏi bị gò).
+
+## CANON — BẮT BUỘC ĐÚNG (đọc trước khi viết truyện)
+
+> Đã từng viết sai nặng vì coi Thất Huyền Môn là tông môn tu tiên. Ghi lại để không tái phạm.
+
+| Điều | Canon ĐÚNG |
+|---|---|
+| **Thất Huyền Môn (七玄门)** | **Môn phái GIANG HỒ (võ lâm)** — KHÔNG phải tông môn tu tiên. Đệ tử phần lớn là **phàm nhân luyện võ**. |
+| **Tu luyện ở Thất Huyền Môn** | **Không có** (không truyền thụ tu tiên cho đệ tử). Tu luyện ở đây là **bí mật, hiếm** — ai lộ ra là chết. |
+| **Hàn Lập vào môn** | Do **chú của y dẫn tới dự tuyển** đệ tử — không tự tới. |
+| **Mạc Đại Phu (墨大夫)** | Thầy thuốc trong môn, **sư phụ của Hàn Lập**, người **bí mật truyền Trường Xuân Công** → đây là **bước đầu tu luyện** của Hàn Lập. |
+| **Trường Xuân Công** | Công pháp Hàn Lập lén học từ Mạc Đại Phu — **giữ kín**, không ai biết. |
+| **Dã Lang Bang (野狼帮)** | Bang hội giang hồ — trận đánh là **chiến tranh võ lâm**, đa số là võ giả phàm nhân. |
+| **Tiền tệ (chương giang hồ)** | **Bạc / vàng** (lượng, quan). **KHÔNG dùng "linh thạch"** — linh thạch chỉ thuộc giới tu tiên, chưa xuất hiện ở tầng phàm nhân. |
+| **Thời điểm Chương 1** | **Sau khi Hàn Lập đã vào Thất Huyền Môn** (khớp trận Dã Lang Bang). |
+| **Nhánh "môn phái" của người chơi** | **Đệ tử võ lâm phàm nhân** của Thất Huyền Môn, **tự tới dự tuyển** (không có người thân dẫn). Lén nhận **con đường tu luyện từ ngọc cốt** — song hành với Hàn Lập lén học Trường Xuân Công. |
+| **Mạc Đại Phu trong chương 1** | **Có xuất hiện** — người chơi cũng gặp ông, tạo móc nối với Hàn Lập. |
+
+**Sai thường gặp cần tránh:** gọi đệ tử Thất Huyền Môn là "tu sĩ"; dùng "linh thạch",
+"linh dược viên", "cống phẩm linh thạch"; cho người chơi lộ tu vi công khai.
+
 
 ## Xuất thân = nhánh truyện (đã làm)
 
@@ -185,12 +215,40 @@ Mỗi xuất thân KHÔNG chỉ là nhãn — nó quyết định **hành trình
   Nhóm ẩn = "Ngọc cốt Tuyết Cơ" — **chưa mở**, không hiện menu, **không tự nhận diện**.
 - Mã nhóm → đoạn mở đầu:
   `tan_tu`→`c1_d01`, `mon_phai`→`c1_p01`, `duoc`→`c1_y01`,
-  `gia_toc`→`c1_g01`, `hac_dao`→`c1_h01`. Mọi nhánh hội tụ về `c1_d18`.
+  `gia_toc`→`c1_g01`, `hac_dao`→`c1_h01`. **Mỗi nhánh có kết riêng** (không hội tụ về
+  một đoạn chung — ràng buộc cũ "mọi nhánh về `c1_d18`" đã **bỏ** để truyện mạch lạc).
 - Nhận diện: `engine.nhan_dien_xuat_than()` dò từ khoá (bỏ dấu tiếng Việt). Không khớp → `tan_tu`.
 - Người chơi có 2 cách chọn: bấm 1 trong 5 nút (gửi `nhom`) HOẶC gõ tự do (server tự nhận diện).
 - Lựa chọn riêng theo nhóm: dùng `dieu_kien: {"nhom": ["mon_phai", ...]}`.
 - API: `POST /api/new` nhận `{ten, xuat_than, nhom}`; `GET /api/xuat_than` trả danh sách nhóm.
-- Trạng thái có khoá `nhom_xuat_than` (khác `xuat_than` là văn bản tự do người chơi gõ).
+- **Quy ước gọi tên nhánh:** luôn gọi **tên đầy đủ** (tán tu · môn phái · dược đồng ·
+  gia tộc · hắc đạo) khi trao đổi với người dùng — **không dùng ký hiệu** (d/p/y/g/h).
+
+## 5 CƠ DUYÊN — mỗi nhánh một cơ duyên (BẮT BUỘC)
+
+Mỗi nhánh phải có **cơ duyên riêng** — thứ đưa người chơi từ phàm nhân lên con đường
+tu luyện. Cơ duyên KHÔNG được rơi vào tay người chơi một cách vô cớ.
+
+**Quy tắc vàng — "làm sao CÓ cơ duyên" (4 bước, mọi nhánh phải theo):**
+1. **Nghe đồn / manh mối** — nhân vật biết tới cơ duyên qua lời đồn, người kể, hoặc
+   vật lạ (không tự nhiên xuất hiện).
+2. **Đi tìm** — nhân vật phải CHỦ ĐỘNG tới nơi (có lựa chọn đi / không đi).
+3. **Thử thách** — cơ duyên thử lòng (xương khô kẻ tới trước, câu hỏi, đánh đổi).
+   Cho thấy nguy hiểm là THẬT, người khác đã chết vì nó.
+4. **Nhận** — cơ duyên chọn chủ (có lý do: linh hồn xuyên không sạch/lạ…) → sau đó
+   mới **tu luyện** và **kết chương**.
+
+| Nhánh | Cơ duyên | Cơ chế | Kết chương 1 |
+|---|---|---|---|
+| **Tán tu** | Hồng Trần Kiếm Hạp (cặp kiếm dài-ngắn + kiếm linh) | Hấp thu **hồng trần** để mạnh; phải đi giữa đời, không ẩn tu | ✅ `c1_d17` |
+| **Môn phái** | Ngọc cốt bí ẩn (đào ở vườn thuốc, Mạc Đại Phu để ý) | Hấp thu **linh khí** nhanh gấp mấy lần; giấu kín vì môn võ lâm | ✅ `c1_p19` |
+| **Dược đồng** | Vô Vạn Thọ Nguyên (1 viên đan) | **Vô hạn thọ nguyên** → đốt thọ nguyên tăng tu vi (nhánh khác đốt là chết) | ⏳ cần kết riêng |
+| **Gia tộc** | Nhẫn ngọc (thức tỉnh nhận chủ) | Tu luyện nhanh **30×**, tốn **bạc**; **không** rơi gần Hàn Lập | ⏳ cần kết riêng |
+| **Hắc đạo** | Thôn Thiên Ma Công (nuốt để mạnh) | Mạnh **10×** nhưng tích **sát nghiệp** → mất bản ngã; cứu bằng **lôi kiếp** | ⏳ cần kết riêng |
+
+**Còn nợ:** dược đồng / gia tộc / hắc đạo chưa có cơ duyên trong truyện + còn lỗi canon
+(`linh thảo`, `Trúc Cơ`) + còn dùng chung đoạn kết `c1_d18` (tàn dư cũ) → phải viết lại
+theo 4 bước trên, mỗi nhánh một kết riêng. Nhánh tán tu và môn phái đã xong (chuẩn mẫu).
 
 ## Cần làm tiếp
 

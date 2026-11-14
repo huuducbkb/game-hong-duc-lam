@@ -130,10 +130,10 @@ def trang_thai_moi(ten_nhan_vat: str, xuat_than: str = "", nhom: str = "") -> di
             "tan_cong_phep": _zero_he(),
             "khang_phep": _zero_he(),
         },
-        "linh_thach": 3,
+        "bac": 3,
         "tui_do": [
             {"ten": "Ngọc vụn bí ẩn", "so": 1, "mo_ta": "Mảnh ngọc còn ấm, phát sáng mờ khi gặp linh khí."},
-            {"ten": "Linh thạch hạ phẩm", "so": 3, "mo_ta": "Tiền tệ tu tiên giới."},
+            {"ten": "Bạc vụn", "so": 3, "mo_ta": "Tiền tệ nơi phàm trần."},
         ],
         "ky_nang": ["Hô hấp pháp", "Nhận biết linh khí"],
         "co_su_kien": [],
@@ -186,7 +186,8 @@ def _dieu_kien_hop(state: dict, dk: dict | None) -> bool:
             ds = [ds]
         if (state.get("nhom_xuat_than") or "") not in ds:
             return False
-    if "linh_thach" in dk and state["linh_thach"] < dk["linh_thach"]:
+    tien = dk.get("bac", dk.get("linh_thach"))
+    if tien is not None and state["bac"] < tien:
         return False
     if "co_su_kien" in dk:
         if not all(f in state["co_su_kien"] for f in dk["co_su_kien"]):
@@ -234,9 +235,10 @@ def _ap_hieu_ung(state: dict, hu: dict | None) -> list[str]:
     if not hu:
         return []
     tb = []
-    if "linh_thach" in hu:
-        state["linh_thach"] = max(0, state["linh_thach"] + hu["linh_thach"])
-        tb.append(f"Linh thạch {'+' if hu['linh_thach'] > 0 else ''}{hu['linh_thach']}")
+    tien = hu.get("bac", hu.get("linh_thach"))
+    if tien is not None:
+        state["bac"] = max(0, state["bac"] + tien)
+        tb.append(f"Bạc {'+' if tien > 0 else ''}{tien}")
     if "tu_vi" in hu:
         tv = state["tu_vi"]
         tv["hien"] = min(tv["max"], tv["hien"] + hu["tu_vi"])
@@ -401,7 +403,8 @@ def _trang_thai_gon(state: dict) -> dict:
         "tan_cong": cs["tan_cong"],
         "phong_thu": cs["phong_thu"],
         "toc_do": cs["toc_do"],
-        "linh_thach": state["linh_thach"],
+        "bac": state["bac"],
+        "linh_thach": state["bac"],
         "tui_do": [dict(v) for v in state["tui_do"]],
         "ky_nang": list(state["ky_nang"]),
         "npc": {k: dict(v) for k, v in state["npc"].items()},
@@ -412,6 +415,12 @@ def _trang_thai_gon(state: dict) -> dict:
 
 def chon(state: dict, chi_so: int) -> dict:
     """Người chơi bấm một lựa chọn."""
+    if state.get("ket_thuc"):
+        return _goi_y(state)
+    try:
+        chi_so = int(chi_so)
+    except (TypeError, ValueError):
+        return {"loi": "Lựa chọn không hợp lệ"}
     d = _doan(state)
     lcs = d.get("lua_chon", [])
     if not (0 <= chi_so < len(lcs)):
@@ -457,7 +466,7 @@ def _loc_y_dinh(state: dict, y: dict) -> dict:
     """
     hu: dict = {}
     for khoa, (lo, hi) in (("sinh_luc", (-15, 10)), ("tu_vi", (0, 8)),
-                           ("linh_thach", (-10, 10)), ("than_niem", (0, 2))):
+                           ("bac", (-10, 10)), ("than_niem", (0, 2))):
         n = _so_nguyen(y.get(khoa))
         if n is not None:
             hu[khoa] = max(lo, min(hi, n))
@@ -481,7 +490,7 @@ def hanh_dong_tu_do(state: dict, van_ban: str, AI=None) -> dict:
     Chế độ có AI: AI đọc hành động → áp thay đổi chỉ số NHỎ (đã lọc), rồi kể lại đoạn.
     Đoạn truyện KHÔNG đổi — chỉ chỉ số/hảo cảm thay đổi.
     """
-    van_ban = van_ban.strip()
+    van_ban = van_ban.strip() if isinstance(van_ban, str) else ""
     if not van_ban:
         return {"loi": "Hãy nhập hành động"}
     if state.get("ket_thuc"):
@@ -557,7 +566,11 @@ def nap(slot: str) -> dict | None:
     if not os.path.exists(path):
         return None
     with open(path, encoding="utf-8") as f:
-        return json.load(f)
+        state = json.load(f)
+    # Bản lưu cũ dùng "linh_thach" → nay là "bac"
+    if "bac" not in state:
+        state["bac"] = state.pop("linh_thach", 0)
+    return state
 
 
 def tom_tat(state: dict) -> str:
@@ -571,7 +584,7 @@ def tom_tat(state: dict) -> str:
     return (
         f"Chương {state['chuong']}: {load_chuong(state['chuong'])['ten']}. "
         f"Đoạn {d['id']} ({d.get('boi_canh')}). "
-        f"Cảnh giới {state['canh_gioi']}, linh thạch {state['linh_thach']}. "
+        f"Cảnh giới {state['canh_gioi']}, bạc {state['bac']}. "
         f"Nhân vật đã gặp: {npcs}. "
         f"Sự kiện: {', '.join(state['co_su_kien']) or 'chưa có'}."
     )

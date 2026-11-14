@@ -126,6 +126,74 @@ def ke_lai(doan_ke: str, hanh_dong: str, thay_doi: str = "") -> str:
     return _goi_gemini(env, prompt, max_token=500)
 
 
+# --------------------------------------------------- kể lại đoạn theo văn phong
+# Danh sách tên riêng chuẩn — đưa vào prompt để AI không viết sai chính tả.
+TEN_RIENG = ["Hàn Lập", "Thất Huyền Môn", "Dã Lang Bang", "Lý Hổ",
+             "Tần Báo", "Thất Huyền trấn", "hắc quáng động"]
+
+# Cache kết quả kể lại: khoá = (đoạn gốc, hành động). Trong RAM, mất khi tắt máy chủ.
+_cache_ke: dict = {}
+CACHE_TOI_DA = 500
+
+
+def _khoa_cache(doan_ke: str, hanh_dong: str) -> tuple:
+    return (doan_ke, hanh_dong)
+
+
+def ke_lai_tien_hiep(doan_ke: str, boi_canh: str = "", hanh_dong: str = "") -> str:
+    """AI kể lại một đoạn cốt truyện theo văn phong tiên hiệp (GIỮ NGUYÊN sự kiện).
+
+    Kết quả được NHỚ theo (đoạn, hành động) — chơi lại cùng đường không tốn thêm
+    lần gọi API nào. Lỗi mạng/API → trả "" để nơi gọi dùng lại văn bản gốc.
+    """
+    doan_ke = (doan_ke or "").strip()
+    if not doan_ke:
+        return ""
+    khoa = _khoa_cache(doan_ke, hanh_dong)
+    if khoa in _cache_ke:
+        return _cache_ke[khoa]
+
+    env = load_env()
+    ten = ", ".join(TEN_RIENG)
+    phan_boi_canh = f"\nBỐI CẢNH: {boi_canh}" if boi_canh else ""
+    phan_hanh_dong = f"\nHÀNH ĐỘNG VỪA RỒI CỦA NGƯỜI CHƠI: {hanh_dong}" if hanh_dong else ""
+    gioi_han = int(len(doan_ke) * 1.2)
+    prompt = (
+        "Bạn là biên tập viên văn tiên hiệp. Nhiệm vụ: ĐỔI TỪ NGỮ trong đoạn dưới "
+        "sang giọng cổ phong tiên hiệp. TUYỆT ĐỐI KHÔNG viết lại tự do.\n\n"
+        "CÁCH LÀM:\n"
+        "- Giữ nguyên TỪNG CÂU, giữ nguyên thứ tự câu, giữ nguyên số câu.\n"
+        "- Chỉ thay một số từ ngữ (thường → cổ phong). Ví dụ: 'im lặng'→'tịch mịch', "
+        "'chạy'→'phi thân', 'nghĩ'→'thầm nghĩ'.\n"
+        "- KHÔNG thêm câu mới. KHÔNG thêm sự việc mới. KHÔNG thêm nhân vật/địa danh.\n\n"
+        "VÍ DỤ:\n"
+        "GỐC: Ta ngồi xuống, im lặng hồi lâu.\n"
+        "ĐÚNG: Ta ngồi xuống, tịch mịch hồi lâu.\n"
+        "SAI: Ta ngồi xuống bên vách đá, im lặng hồi lâu, lòng dấy lên nỗi bất an.\n"
+        "(câu SAI thêm 'bên vách đá' và 'nỗi bất an' — KHÔNG được làm vậy)\n\n"
+        "QUY TẮC:\n"
+        "1. GIỮ NGUYÊN mọi sự kiện, nhân vật, địa điểm, vật phẩm, kết quả.\n"
+        "2. KHÔNG thêm bất kỳ chi tiết nào không có trong đoạn gốc.\n"
+        "3. Giữ nguyên giới tính và cách gọi nhân vật (hắn/ta/nó…).\n"
+        f"4. Tối đa {gioi_han} ký tự.\n"
+        "5. Viết đúng tên riêng: " + ten + ".\n"
+        "6. Giữ định dạng: dòng trống giữa các đoạn; nội tâm trong *…*.\n"
+        "7. Chỉ trả về đoạn đã sửa, không giải thích.\n\n"
+        f"ĐOẠN GỐC:\n{doan_ke}{phan_boi_canh}{phan_hanh_dong}"
+    )
+    try:
+        ket_qua = _goi_gemini(env, prompt, max_token=700).strip()
+    except Exception:  # noqa: BLE001 - AI lỗi → nơi gọi dùng văn bản gốc
+        return ""
+    if not ket_qua:
+        return ""
+    if len(_cache_ke) >= CACHE_TOI_DA:  # xoá bớt khi cache đầy
+        for k in list(_cache_ke)[:100]:
+            del _cache_ke[k]
+    _cache_ke[khoa] = ket_qua
+    return ket_qua
+
+
 # --------------------------------------------------- nhận diện hành động tự do
 # Tập hành động được phép + giới hạn mỗi chỉ số (engine sẽ cắt lại lần nữa).
 HANH_DONG_HOP_LE = ["tấn công", "tặng quà", "trò chuyện", "di chuyển",
@@ -134,7 +202,7 @@ HANH_DONG_HOP_LE = ["tấn công", "tặng quà", "trò chuyện", "di chuyển"
 GIOI_HAN = {
     "sinh_luc": (-15, 10),
     "tu_vi": (0, 8),
-    "linh_thach": (-10, 10),
+    "bac": (-10, 10),
     "than_niem": (0, 2),
     "hao_cam": (-10, 10),
 }
@@ -168,7 +236,7 @@ def nhan_dien(van_ban: str, boi_canh: str) -> dict:
         '{"hanh_dong": "' + "|".join(HANH_DONG_HOP_LE) + '",\n'
         ' "sinh_luc": <số nguyên -15..10>,\n'
         ' "tu_vi": <0..8>,\n'
-        ' "linh_thach": <-10..10>,\n'
+        ' "bac": <-10..10>,\n'
         ' "than_niem": <0..2>,\n'
         ' "hao_cam": {"<tên NPC đã gặp>": <-10..10>},\n'
         ' "nhan_xet": "<một câu tiếng Việt ngắn>"}\n'
@@ -188,7 +256,7 @@ def nhan_dien(van_ban: str, boi_canh: str) -> dict:
     y: dict = {}
     if d.get("hanh_dong") in HANH_DONG_HOP_LE:
         y["hanh_dong"] = d["hanh_dong"]
-    for k in ("sinh_luc", "tu_vi", "linh_thach", "than_niem"):
+    for k in ("sinh_luc", "tu_vi", "bac", "than_niem"):
         v = d.get(k)
         if isinstance(v, (int, float)) and not isinstance(v, bool) and v != 0:
             lo, hi = GIOI_HAN[k]

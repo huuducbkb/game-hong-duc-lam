@@ -96,6 +96,10 @@ Trừ ~5 phút tạo nhân vật (đầu game) → phần chơi còn ~40 phút.
 
 **→ Chốt: 18 đoạn/chương.** Cấu trúc 3 hồi:
 
+> ⚠️ **ĐÃ BỎ (2026-11-14):** ràng buộc "18 đoạn/chương" gây **gò bó**, khiến nhánh bị nén
+> và nhảy cảnh. Nay **không ép số đoạn** — viết bao nhiêu tuỳ cốt truyện cần.
+> Xem `docs/KE-HOACH-SUA-CHUONG-1.md`.
+
 | Hồi | Số đoạn | Nội dung | Thời lượng |
 |---|---|---|---|
 | **Mở** | 5 | Tạo nhân vật + nhập môn + gặp gỡ đầu | ~12 phút |
@@ -347,5 +351,5 @@ Khi có nhiều tab + nội dung nặng:
 | 4 | Nghề phụ | **Giai đoạn sau**; kèm theo sẽ có **thị trường kinh tế** |
 | 5 | Mục 10 | Đã hiểu |
 | 6 | Tên công cụ | Đổi `INKFRAME` → **`PIC-IN-GAME`** ✅ đã làm |
-| 7 | Số đoạn/chương | **18 đoạn** (45 phút chơi, 2,5 phút/lượt). Cấu trúc 3 hồi: 5 mở · 8 thân · 5 kết |
+| 7 | Số đoạn/chương | ~~**18 đoạn** (45 phút chơi, 2,5 phút/lượt)~~ **→ ĐÃ BỎ (2026-11-14)**: không ép số đoạn |
 | 8 | Bảng chỉ số | **Đã đủ** (10 cơ bản + 9 tấn công phép + 9 kháng phép) |
