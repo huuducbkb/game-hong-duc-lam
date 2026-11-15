@@ -148,7 +148,7 @@ Hắn bỏ đi. Ta gượng ngồi dậy, lau máu nơi khóe miệng. *Đau. Nh
 
 *Ảnh:* `sân sau, đêm, ánh sáng lạ`
 
-Đêm thứ năm, ta luyện tới khi trăng lên đỉnh đầu. Sân sau vắng lặng, chỉ có tiếng dế và hơi sương lạnh.
+Mấy đêm sau, ta luyện tới khi trăng lên đỉnh đầu. Sân sau vắng lặng, chỉ có tiếng dế và hơi sương lạnh.
 
 Giữa lúc thu quyền, ta chợt thấy một vệt sáng mờ nhạt lóe lên dưới gốc cổ thụ già — chỗ rễ cây xù xì nổi lên khỏi mặt đất. Ánh sáng ấy không phải ánh trăng, cũng không phải đom đóm. Nó xanh lạnh, chớp một cái rồi tắt.
 
