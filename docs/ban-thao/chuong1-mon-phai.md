@@ -3,7 +3,7 @@
 
 > **Tóm tắt:** Người chơi xuyên không tới Thất Huyền trấn ngay trước khi Dã Lang Bang tập kích Thất Huyền Môn. Trong hỗn loạn, lần đầu chạm mặt Hàn Lập — khi đó còn là một tạp dịch đệ tử gầy gò, ít nói.
 
-*Nhánh này gồm 35 đoạn.*
+*Nhánh này gồm 41 đoạn.*
 
 ---
 
@@ -114,8 +114,8 @@ Ta nắm chặt tay, cảm nhận sức lực đã khác trước. *Ít ra, lầ
 
 **Lựa chọn:**
 
-- Trở lại vườn thuốc, tìm thứ gì dùng được  
-  → `c1_p06`  
+- Luyện xong, tình cờ thấy ánh sáng lạ dưới gốc cổ thụ  
+  → `c1_p03d`  
   ✦ mở cờ: hoc_that_huyen_quyen; học: Thất Huyền quyền
 
 ---
@@ -138,11 +138,63 @@ Hắn bỏ đi. Ta gượng ngồi dậy, lau máu nơi khóe miệng. *Đau. Nh
 
 **Lựa chọn:**
 
-- Lặng lẽ tới vườn thuốc sau môn  
-  → `c1_p06`  
+- Đêm ấy, luyện xong thì thấy ánh sáng lạ dưới gốc cổ thụ  
+  → `c1_p03d`  
   ✦ mở cờ: hoc_that_huyen_quyen, khong_khuat_phuc; học: Thất Huyền quyền
 
 ---
+
+### Đoạn `c1_p03d` — Sân sau — đêm, dưới gốc cổ thụ
+
+*Ảnh:* `sân sau, đêm, ánh sáng lạ`
+
+Mấy đêm sau, ta luyện tới khi trăng lên đỉnh đầu. Sân sau vắng lặng, chỉ có tiếng dế và hơi sương lạnh.
+
+Giữa lúc thu quyền, ta chợt thấy một vệt sáng mờ nhạt lóe lên dưới gốc cổ thụ già — chỗ rễ cây xù xì nổi lên khỏi mặt đất. Ánh sáng ấy không phải ánh trăng, cũng không phải đom đóm. Nó xanh lạnh, chớp một cái rồi tắt.
+
+*Cái gì vậy?* Ta đứng lặng, tim đập nhanh. Trong môn, đêm nào cũng có kẻ canh gác — nếu bị bắt gặp lục lọi quanh gốc cây, ta chắc chắn bị đuổi.
+
+Ta quỳ xuống, gạt lớp lá mục. Đất mềm, tơi như vừa được ai xới. Móng tay ta cào xuống vài tấc, chạm phải một vật lạnh buốt — cứng như đá mà trơn như ngọc.
+
+Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.
+
+*Thứ này… không phải đồ bỏ.* Ta ngồi giữa bóng tối, khối ngọc trong tay, không biết nên mừng hay nên sợ.
+
+👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”
+
+**Lựa chọn:**
+
+- Siết chặt khối ngọc, mang về tân xá  
+  → `c1_p07`  
+  ✦ mở cờ: co_ngoc_cot; nhận: Ngọc cốt bí ẩn
+- Hoảng hốt chôn trả lại — thứ này quá tà dị  
+  → `c1_p03e`
+
+---
+
+## Hồi Thân
+
+### Đoạn `c1_p03e` — Sân sau — chôn trả lại
+
+*Ảnh:* `sân sau, đêm, trăn trở`
+
+Ta vội vàng lấp đất lại, tay run đến mức lá mục văng cả ra ngoài. *Không phải của ta. Không nên dính vào.* Ta tự nhủ, rồi lặng lẽ quay về tân xá.
+
+Nhưng đêm ấy, ta không sao ngủ được. Trong giấc mơ chập chờn, một bóng người nữ hiện lên, mờ ảo như sương, giọng nói như rót mật vào tai: “Ngươi… đã chạm vào ta rồi.”
+
+Ta choàng tỉnh, mồ hôi ướt đẫm lưng áo. *Không thể nào.* Nhưng tiếng gọi ấy vẫn vang vọng, kéo ta ra khỏi chăn, kéo ta lê bước trở lại sân sau giữa đêm.
+
+Ta đào lên. Khối ngọc vẫn nằm đó dưới gốc cổ thụ, ánh sáng mờ nhạt như đang chờ ta. Lần này, ta không chôn nữa.
+
+**Lựa chọn:**
+
+- Siết chặt khối ngọc, mang về tân xá  
+  → `c1_p07`  
+  ✦ mở cờ: co_ngoc_cot; nhận: Ngọc cốt bí ẩn
+
+---
+
+## Hồi Mở
 
 ### Đoạn `c1_p04` — Vườn thuốc phía sau môn
 
@@ -165,9 +217,45 @@ Mạc Đại Phu nhìn ta một lúc lâu, rồi khẽ gật đầu. “Thuốc 
 **Lựa chọn:**
 
 - Giật mình, hỏi ông thấy gì khác thường  
-  → `c1_p06`
-- Không dám hỏi nhiều, xin thuốc rồi đi  
-  → `c1_p06`
+  → `c1_p04a`
+- Không dám hỏi nhiều, im lặng phụ ông  
+  → `c1_p04b`
+
+---
+
+### Đoạn `c1_p04a` — Vườn thuốc — hỏi thẳng
+
+*Ảnh:* `vườn thuốc, Mạc Đại Phu, cảnh giác`
+
+Ta không kìm được. “Tiền bối thấy ở vãn bối… điều gì khác thường?”
+
+Mạc Đại Phu ngừng tay bó thuốc. Ông nhìn ta một lúc lâu, ánh mắt già nua mà sâu như giếng cổ. “Ta làm y mấy chục năm,” — ông chậm rãi nói — “Người bị thương thì ta nhìn ra ngay. Nhưng ngươi… không giống kẻ bị thương.”
+
+Ta nuốt khan, không dám hỏi thêm. Ông cũng không nói gì nữa, chỉ lặng lẽ bó tiếp nắm thuốc trong tay. Ta đành ngồi xuống bên cạnh, phụ ông nhặt lá.
+
+**Lựa chọn:**
+
+- Ngồi xuống phụ ông bó thuốc  
+  → `c1_p06`  
+  ✦ mở cờ: mac_dai_phu_de_y
+
+---
+
+### Đoạn `c1_p04b` — Vườn thuốc — im lặng
+
+*Ảnh:* `vườn thuốc, Mạc Đại Phu, kín đáo`
+
+Ta cúi đầu, không dám hỏi thêm. Ở chốn môn phái này, biết quá nhiều chưa chắc đã là chuyện tốt.
+
+“Đa tạ tiền bối,” — ta nói, rồi đứng lặng chờ.
+
+Mạc Đại Phu nhìn ta thêm một lát, rồi khẽ gật gù — như hài lòng vì ta không hỏi. Ông cúi xuống bó tiếp nắm thuốc. Ta lặng lẽ ngồi xuống bên cạnh, phụ ông nhặt lá.
+
+**Lựa chọn:**
+
+- Ngồi xuống phụ ông bó thuốc  
+  → `c1_p06`  
+  ✦ mở cờ: mac_dai_phu_an_tuong
 
 ---
 
@@ -187,17 +275,69 @@ Ta lân la tới quán nước đầu trấn, nơi khách giang hồ tụ tập.
 
 *Hàn Lập.* Ta cúi mặt vào chén nước. Ngay cả kẻ ngoài môn cũng để ý tới hắn — trong khi ta thì chẳng ai nhớ mặt. *Ta phải tự tìm đường cho mình.*
 
-Ta đứng dậy, quay về phía vườn thuốc sau môn — nơi ít người lui tới nhất.
+“Mà này,” — gã râu quai nón hạ giọng, như nói với chính mình — “nghe đâu sau hậu sơn có cái khe núi lạ lắm. Đêm đêm có ánh sáng xanh chớp lên. Mấy kẻ tò mò tới đó rồi… chẳng ai kể lại được gì.”
+
+*Ánh sáng xanh.* Ta khẽ nhíu mày. Giữa lúc môn ta sắp bị đánh tới nơi, một chuyện lạ như vậy… biết đâu lại là cơ hội của kẻ chẳng còn gì để mất.
+
+Ta đứng dậy, tính tiền nước. Đêm nay, ta sẽ tới khe núi sau hậu sơn xem thử.
 
 **Lựa chọn:**
 
-- Lặng lẽ tới vườn thuốc sau môn  
-  → `c1_p06`  
+- Lặng lẽ tới khe núi sau hậu sơn  
+  → `c1_p05b`  
   ✦ mở cờ: biet_dau_linh
 
 ---
 
+### Đoạn `c1_p05b` — Hậu sơn — khe núi đêm, theo lời đồn
+
+*Ảnh:* `hậu sơn, khe núi, đêm`
+
+Đêm buông xuống, ta lẻn ra khỏi tân xá, theo con đường mòn vòng ra sau hậu sơn. Trăng lưỡi liềm treo thấp, đủ soi những phiến đá xám nằm rải rác ven đường.
+
+Khe núi nằm khuất sau một vách đá, hẹp và sâu, quanh năm ẩm ướt. Ta đứng trên miệng khe, lắng nghe. Gió lùa qua khe đá nghe như tiếng ai đó thở dài.
+
+Rồi ta thấy nó — một vệt sáng xanh mờ nhạt chớp lên từ đám rêu ướt nơi vách khe, chớp một cái rồi tắt. Ta nín thở, men theo vách đá tới chỗ ấy.
+
+Đất nơi đó mềm và tơi, như vừa được ai xới lên. Ta quỳ xuống, đào bới. Móng tay cào xuống vài tấc, chạm phải một vật lạnh buốt — cứng như đá mà trơn như ngọc.
+
+Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.
+
+*Thứ này… không phải đồ bỏ.* Ta ngồi giữa khe núi tối tăm, khối ngọc trong tay, không biết nên mừng hay nên sợ.
+
+👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”
+
+**Lựa chọn:**
+
+- Siết chặt khối ngọc, mang về tân xá  
+  → `c1_p07`  
+  ✦ mở cờ: co_ngoc_cot; nhận: Ngọc cốt bí ẩn
+- Hoảng hốt chôn trả lại — thứ này quá tà dị  
+  → `c1_p05c`
+
+---
+
 ## Hồi Thân
+
+### Đoạn `c1_p05c` — Hậu sơn — chôn trả lại
+
+*Ảnh:* `hậu sơn, khe núi, trăn trở`
+
+Ta vội vàng lấp đất lại, tay run đến mức rêu văng cả ra ngoài. *Không phải của ta. Không nên dính vào.* Ta tự nhủ, rồi lặng lẽ theo đường mòn trở về tân xá.
+
+Nhưng đêm ấy, ta không sao ngủ được. Trong giấc mơ chập chờn, một bóng người nữ hiện lên, mờ ảo như sương, giọng nói như rót mật vào tai: “Ngươi… đã chạm vào ta rồi.”
+
+Ta choàng tỉnh, mồ hôi ướt đẫm lưng áo. *Không thể nào.* Nhưng tiếng gọi ấy vẫn vang vọng, kéo ta ra khỏi chăn, kéo ta lê bước trở lại khe núi sau hậu sơn giữa đêm.
+
+Ta đào lên. Khối ngọc vẫn nằm đó nơi vách khe, ánh sáng mờ nhạt như đang chờ ta. Lần này, ta không chôn nữa.
+
+**Lựa chọn:**
+
+- Siết chặt khối ngọc, mang về tân xá  
+  → `c1_p07`  
+  ✦ mở cờ: co_ngoc_cot; nhận: Ngọc cốt bí ẩn
+
+---
 
 ### Đoạn `c1_p06` — Vườn thuốc — Mạc Đại Phu và khối ngọc
 

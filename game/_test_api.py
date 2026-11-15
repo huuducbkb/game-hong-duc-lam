@@ -130,8 +130,10 @@ r = call(o8, "/api/chon", {"chi_so": 0})
 check("p01 → sân tập", r["doan_id"], "c1_p02")
 r = call(o8, "/api/chon", {"chi_so": 1})
 check("chọn vườn thuốc", r["doan_id"], "c1_p04")
-r = call(o8, "/api/chon", {"chi_so": 0})
-check("gặp Mạc Đại Phu → vườn thuốc", r["doan_id"], "c1_p06")
+r = call(o8, "/api/chon", {"chi_so": 0})   # p04 → p04a hỏi thẳng
+check("gặp Mạc Đại Phu → p04a", r["doan_id"], "c1_p04a")
+r = call(o8, "/api/chon", {"chi_so": 0})   # p04a → p06
+check("phụ bó thuốc → p06", r["doan_id"], "c1_p06")
 r = call(o8, "/api/chon", {"chi_so": 0})   # đào lên, giữ ngọc
 st = call(o8, "/api/state")["trang_thai"]
 check("nhận Ngọc cốt bí ẩn", any(v["ten"] == "Ngọc cốt bí ẩn" for v in st["tui_do"]), True)
@@ -164,17 +166,79 @@ check("kết riêng nhánh môn phái", r["doan_id"], "c1_p19")
 st = call(o8, "/api/state")["trang_thai"]
 check("gặp Hàn Lập, có hảo cảm", st["npc"].get("Hàn Lập", {}).get("hao_cam", 0) > 0, True)
 
-# đường "chôn trả lại rồi đào lại"
+# đường "chôn trả lại rồi đào lại" (đường ②)
 o9 = mk()
 call(o9, "/api/new", {"ten": "MP2", "nhom": "mon_phai"})
 call(o9, "/api/chon", {"chi_so": 0})   # p02
 call(o9, "/api/chon", {"chi_so": 1})   # p04
+call(o9, "/api/chon", {"chi_so": 0})   # p04a
 call(o9, "/api/chon", {"chi_so": 0})   # p06
 r = call(o9, "/api/chon", {"chi_so": 1})  # chôn trả lại
 check("chôn trả lại → p06b", r["doan_id"], "c1_p06b")
 r = call(o9, "/api/chon", {"chi_so": 0})  # đào lại
 st = call(o9, "/api/state")["trang_thai"]
 check("đào lại vẫn nhận ngọc cốt", any(v["ten"] == "Ngọc cốt bí ẩn" for v in st["tui_do"]), True)
+
+# đường ① sân sau — gốc cổ thụ (p03b → p03d → p07)
+o13 = mk()
+call(o13, "/api/new", {"ten": "MP6", "nhom": "mon_phai"})
+call(o13, "/api/chon", {"chi_so": 0})   # p02
+call(o13, "/api/chon", {"chi_so": 0})   # p03
+call(o13, "/api/chon", {"chi_so": 0})   # p03b nuốt nhục
+r = call(o13, "/api/chon", {"chi_so": 0})  # → p03d
+check("đường ① p03b → p03d (sân sau)", r["doan_id"], "c1_p03d")
+r = call(o13, "/api/chon", {"chi_so": 0})  # lấy ngọc → p07
+check("đường ① lấy ngọc → p07", r["doan_id"], "c1_p07")
+st = call(o13, "/api/state")["trang_thai"]
+check("đường ① có ngọc cốt", any(v["ten"] == "Ngọc cốt bí ẩn" for v in st["tui_do"]), True)
+
+# đường ① do dự: p03d → chôn trả lại → p03e → p07
+o14 = mk()
+call(o14, "/api/new", {"ten": "MP7", "nhom": "mon_phai"})
+call(o14, "/api/chon", {"chi_so": 0})
+call(o14, "/api/chon", {"chi_so": 0})
+call(o14, "/api/chon", {"chi_so": 0})   # p03b
+call(o14, "/api/chon", {"chi_so": 0})   # p03d
+r = call(o14, "/api/chon", {"chi_so": 1})  # chôn trả lại
+check("đường ① do dự → p03e", r["doan_id"], "c1_p03e")
+r = call(o14, "/api/chon", {"chi_so": 0})  # đào lại → p07
+check("đường ① do dự đào lại → p07", r["doan_id"], "c1_p07")
+st = call(o14, "/api/state")["trang_thai"]
+check("đường ① do dự vẫn có ngọc", any(v["ten"] == "Ngọc cốt bí ẩn" for v in st["tui_do"]), True)
+
+# đường ③ hậu sơn — khe núi (p05 → p05b → p07)
+o15 = mk()
+call(o15, "/api/new", {"ten": "MP8", "nhom": "mon_phai"})
+call(o15, "/api/chon", {"chi_so": 0})   # p02
+r = call(o15, "/api/chon", {"chi_so": 2})  # p05 dò tin
+check("đường ③ p02 → p05", r["doan_id"], "c1_p05")
+r = call(o15, "/api/chon", {"chi_so": 0})  # → p05b
+check("đường ③ p05 → p05b (khe núi)", r["doan_id"], "c1_p05b")
+st = call(o15, "/api/state")["trang_thai"]
+check("đường ③ biết Hùng Bá", "biet_dau_linh" in st["co_su_kien"], True)
+r = call(o15, "/api/chon", {"chi_so": 0})  # lấy ngọc → p07
+check("đường ③ lấy ngọc → p07", r["doan_id"], "c1_p07")
+
+# đường ③ do dự: p05b → chôn trả lại → p05c → p07
+o16 = mk()
+call(o16, "/api/new", {"ten": "MP9", "nhom": "mon_phai"})
+call(o16, "/api/chon", {"chi_so": 0})
+call(o16, "/api/chon", {"chi_so": 2})   # p05
+call(o16, "/api/chon", {"chi_so": 0})   # p05b
+r = call(o16, "/api/chon", {"chi_so": 1})  # chôn trả lại
+check("đường ③ do dự → p05c", r["doan_id"], "c1_p05c")
+r = call(o16, "/api/chon", {"chi_so": 0})  # đào lại → p07
+check("đường ③ do dự đào lại → p07", r["doan_id"], "c1_p07")
+
+# đường ② p04 lựa chọn KHÔNG còn giả (2 đích khác nhau)
+o17 = mk()
+call(o17, "/api/new", {"ten": "MP10", "nhom": "mon_phai"})
+call(o17, "/api/chon", {"chi_so": 0})   # p02
+r = call(o17, "/api/chon", {"chi_so": 1})  # p04
+chu = {l["chu"] for l in r["lua_chon"]}
+check("p04 2 lựa chọn khác nhau", len(chu), 2)
+r = call(o17, "/api/chon", {"chi_so": 1})  # im lặng → p04b
+check("đường ② im lặng → p04b", r["doan_id"], "c1_p04b")
 
 # đường luyện võ p03 (nuốt nhục) → học Thất Huyền quyền → p14 mở lựa chọn quyền
 o10 = mk()
