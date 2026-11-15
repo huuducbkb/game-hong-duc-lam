@@ -10,9 +10,9 @@ Dùng:
     python3 tools/export_ban_thao.py 1 --nhanh mon_phai   # chỉ nhánh môn phái
 
 Kết quả (ví dụ Chương 1):
-    docs/ban-thao/index.html               — mục lục: chương + từng nhánh
-    docs/ban-thao/chuong1-mon-phai.html    — đọc trên Safari
-    docs/ban-thao/chuong1-mon-phai.md      — xem trên GitHub
+    docs/luu-tru/ban-thao/index.html       — mục lục: chương + từng nhánh
+    docs/luu-tru/ban-thao/chuong1-mon-phai.html — đọc trên Safari
+    docs/luu-tru/ban-thao/chuong1-mon-phai.md   — xem trên GitHub
 
 Đoạn nào thuộc nhánh nào được xác định bằng CÁCH ĐI THEO LIÊN KẾT từ đoạn mở
 đầu của nhánh (không dựa vào tiền tố mã đoạn).
@@ -28,7 +28,7 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CH_DIR = os.path.join(ROOT, "game", "chapters")
-OUT_DIR = os.path.join(ROOT, "docs", "ban-thao")
+OUT_DIR = os.path.join(ROOT, "docs", "luu-tru", "ban-thao")
 XUAT_THAN = os.path.join(ROOT, "game", "xuat_than.json")
 
 HOI_TEN = {"Mở": "Hồi Mở", "Thân": "Hồi Thân", "Kết": "Hồi Kết"}
@@ -383,7 +383,8 @@ def xuat_index(chuongs: list[dict], nhom: list[dict]) -> str:
          "<link href='https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&display=swap' rel='stylesheet'>",
          f"<style>{CSS}</style></head><body><div class='wrap'>",
          "<h1>Bản thảo — Hồng Đức Tu Tiên Lộ</h1>",
-         "<div class='meta'>Mỗi xuất thân là một nhánh truyện riêng. Bấm vào nhánh để đọc.</div>"]
+         "<div class='meta'>Lưu trữ · bản thảo để duyệt, không phải bản phát hành. Mỗi xuất thân là một nhánh truyện riêng.</div>",
+         "<p class='khoa' style='margin-bottom:22px'><a href='../../index.html'>← Về trang chủ</a> · <a href='../../game/index.html'>🎮 Chơi game</a></p>"]
     for ch in chuongs:
         H.append(f"<h2>Chương {ch['chuong']} — {html.escape(ch['ten'])}</h2>")
         for n in nhom:

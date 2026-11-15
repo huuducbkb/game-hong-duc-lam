@@ -91,7 +91,7 @@ Dịch `game/ai.py` (276 dòng) → `docs/game/ai.js`.
 ```
 docs/
 ├── index.html              ← thêm nút "Chơi game"
-├── ban-thao/               ← giữ nguyên (đọc truyện)
+├── luu-tru/ban-thao/       ← bản thảo (đọc truyện, đã gom vào Lưu trữ)
 └── game/                   ← MỚI
     ├── play.html           ← giao diện (sửa từ game/play.html)
     ├── engine.js           ← luật game (dịch từ engine.py)

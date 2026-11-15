@@ -80,7 +80,7 @@ người bên trong) — thì bị **nhảy thẳng** sang cảnh "đêm buông,
 rồi tới trận đánh. Không có câu bắc cầu, không có đoạn tìm hiểu ngọc cốt.
 
 ### 0.2. Nguyên nhân (đã tra bằng chứng)
-1. **Bản thảo gốc = nhánh tán tu** (`docs/ban-thao/chuong1.md`, 23 đoạn, id `c1_d01`…`c1_d18`).
+1. **Bản thảo gốc = nhánh tán tu** (`docs/luu-tru/ban-thao/chuong1-tan-tu.md`, 23 đoạn, id `c1_d01`…`c1_d18`).
 2. **4 nhánh kia viết sau**, sao chép **khung nhịp** của bản thảo gốc (01→02→…→17→18)
    rồi thay bối cảnh. Bằng chứng: các nhánh dùng **cùng số nhịp** (`p01`, `y01`, `g01`…).
 3. **Ép hội tụ**: mọi nhánh phải đổ về `c1_d18` → nhánh ngắn (12–16 đoạn) phải **nhảy**

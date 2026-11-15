@@ -163,9 +163,9 @@ python3 tools/export_ban_thao.py 1 --nhanh mon_phai   # CHỈ nhánh môn phái
 
 Mã nhánh: `tan_tu`, `mon_phai`. **(Chỉ còn 2 nhánh — xem mục "Phạm vi xây dựng".)**
 
-Kết quả ở `docs/ban-thao/`: `index.html` (mục lục: chương + từng nhánh),
+Kết quả ở `docs/luu-tru/ban-thao/`: `index.html` (mục lục: chương + từng nhánh),
 `chuong1-<nhánh>.html` (đọc trên Safari), `chuong1-<nhánh>.md` (xem trên GitHub).
-Đọc trực tiếp tại `/docs/ban-thao/index.html`.
+Đọc trực tiếp tại `/docs/luu-tru/ban-thao/index.html`.
 
 > **Khi đang viết 1 nhánh:** dùng `--nhanh <mã>` để chỉ xuất nhánh đó — đúng
 > nhánh đang duyệt, không lẫn các nhánh khác.
