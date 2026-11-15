@@ -174,7 +174,7 @@ Ta quỳ xuống, gạt lớp lá mục. Đất mềm, tơi như vừa được 
 
 Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.
 
-*Thứ này… không phải đồ bỏ.* Ta ngồi giữa bóng tối, khối ngọc trong tay, không biết nên mừng hay nên sợ.
+*Thứ này… không phải phàm vật.* Ta ngồi giữa bóng tối, khối ngọc trong tay, không biết nên mừng hay nên sợ.
 
 👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”
 
@@ -291,7 +291,7 @@ Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp
 
 Ta vội liếc về phía Mạc Đại Phu. Ông lão vẫn cúi bó thuốc, tay thoăn thoắt, mặt không đổi sắc. *Ông ấy không cảm nhận được… hay là giả vờ không cảm nhận?*
 
-*Thứ này… không phải đồ bỏ.* Ta vội lấp đất lại, che nó đi.
+*Thứ này… không phải phàm vật.* Ta vội lấp đất lại, che nó đi.
 
 👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”
 
@@ -371,7 +371,7 @@ Rồi ta thấy nó — một vệt sáng xanh mờ nhạt chớp lên từ đá
 
 Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.
 
-*Thứ này… không phải đồ bỏ.* Ta ngồi giữa khe núi tối tăm, khối ngọc trong tay, không biết nên mừng hay nên sợ.
+*Thứ này… không phải phàm vật.* Ta ngồi giữa khe núi tối tăm, khối ngọc trong tay, không biết nên mừng hay nên sợ.
 
 👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”
 
