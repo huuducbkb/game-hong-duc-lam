@@ -325,6 +325,14 @@ xem `docs/luu-tru/Y-TUONG-3-NHANH-CHUA-XAY.md`.
   muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
 - Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
 - Test: `node docs/game/_test_engine.js` → 92/92.
+
+### Túi đồ khởi đầu
+
+Nhân vật mới chỉ có **Bạc vụn ×3** (`bac: 3` + `tui_do`). Trước đây có thêm
+`Ngọc vụn bí ẩn ×1` — di chứng của bản thảo ngôi-thứ-hai cũ (mảnh ngọc dẫn
+xuyên không, xem `GOP-Y-BAN-THAO.md`). Chi tiết đó đã bỏ khỏi truyện nên món
+này không đoạn nào nhắc, không logic nào dùng → đã xóa khỏi `trang_thai_moi()`
+ở **cả** `game/engine.py` và `docs/game/engine.js` (giữ 2 bản khớp nhau).
 - Deploy tự động qua `.github/workflows/pages.yml` khi push lên `main` (đường dẫn `docs/**`).
 
 ### Bài học: gắn sự kiện phải an toàn với null

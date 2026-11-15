@@ -134,7 +134,6 @@
       },
       bac: 3,
       tui_do: [
-        { ten: "Ngọc vụn bí ẩn", so: 1, mo_ta: "Mảnh ngọc còn ấm, phát sáng mờ khi gặp linh khí." },
         { ten: "Bạc vụn", so: 3, mo_ta: "Tiền tệ nơi phàm trần." },
       ],
       ky_nang: ["Hô hấp pháp", "Nhận biết linh khí"],
