@@ -75,7 +75,7 @@ Nhưng hôm ấy người ta bận rộn lo chuyện Dã Lang Bang, chẳng ai b
 
 *Ở lại đây, ta chỉ chờ chết.* Ta ngồi bệt xuống, nhìn bầu trời chiều ngả màu.
 
-Giọng nói lạnh lùng vang lên: *“Cơ duyên không tự tới. Phải đi tìm.”*
+👁️‍🗨️ 【Hệ thống】“Cơ duyên không tự tới. Phải đi tìm.”
 
 Ta siết nắm tay, nhớ tới lời lão què về cái miếu hoang sau núi. *Miếu hoang. Hộp kiếm.*
 
@@ -102,7 +102,7 @@ Trong miếu, ta thoáng thấy một vật gì đó phản chiếu ánh trăng 
 
 *Đó là nó.* Tim ta đập nhanh. Nhưng chân ta lại khựng lại. Lời đồn về kẻ chạm vào rồi chết vẫn vang trong đầu.
 
-Giọng nói lạnh lùng vang lên: *“Sợ, thì quay về. Chọn.”*
+👁️‍🗨️ 【Hệ thống】“Sợ, thì quay về. Chọn.”
 
 **Lựa chọn:**
 
@@ -123,7 +123,7 @@ Bên cạnh chúng, ta thấy những vết cào trên vách gỗ, sâu hoắm, 
 
 *Không phải ma quái.* Ta nhíu mày. *Là hộp kiếm này… từ chối kẻ chạm vào nó.*
 
-Giọng nói lạnh lùng vang lên: *“Kiếm có linh. Kẻ không xứng, chết. Kẻ xứng…”*
+👁️‍🗨️ 【Hệ thống】“Kiếm có linh. Kẻ không xứng, chết. Kẻ xứng…”
 
 Ta nhìn cái hộp dài phủ bụi, rồi nhìn đôi bàn tay chai sạn của mình. *Ta có gì để mất đâu.*
 
@@ -146,7 +146,7 @@ Trên nền miếu, bên cạnh đám xương khô cổ xưa, là một xác ng�
 
 *Hắn chết chưa đầy nửa khắc.* Ta nuốt khan, sống lưng lạnh toát. *Không phải xương khô ngàn năm. Có kẻ vừa ở đây. Có kẻ đang ở đây.*
 
-Giọng nói lạnh lùng vang lên trong đầu: *“Ngươi không phải kẻ duy nhất nghe đồn.”*
+👁️‍🗨️ 【Hệ thống】“Ngươi không phải kẻ duy nhất nghe đồn.”
 
 Ngay lúc ấy, phía sau ta vang lên tiếng bước chân — chậm, nặng, không hề giấu diếm.
 
@@ -303,7 +303,7 @@ Ta nhíu mày. “Ta là ăn mày. Ta có gì đâu mà tu?”
 
 “Ngươi có mạng,” — y đáp gọn — “Và ngươi có ta. Ta dạy ngươi kiếm đạo. Ngươi cho ta mượn thân xác để trở lại hồng trần. Một đổi một.”
 
-Giọng nói lạnh lùng vang lên trong đầu: *“Cơ duyên tới. Nắm, hay buông?”*
+👁️‍🗨️ 【Hệ thống】“Cơ duyên tới. Nắm, hay buông?”
 
 **Lựa chọn:**
 
@@ -578,7 +578,7 @@ Ta khẽ cười. Bốn ngày trước, ta còn là kẻ co ro trong góc chợ,
 
 “Nhớ kỹ,” — kiếm linh dặn — “Kiếm này tu giữa hồng trần. Ngươi càng trải, càng mạnh. Và gã Hàn Lập kia… hắn sẽ là người quan trọng nhất trong đời ngươi.”
 
-Giọng nói lạnh lùng vang lên lần cuối: *“Chương một, kết thúc. Hồng Trần Kiếm đã nhận chủ.”*
+👁️‍🗨️ 【Hệ thống】— lần cuối — “Chương một, kết thúc. Hồng Trần Kiếm đã nhận chủ.”
 
 Ta hít sâu, nhìn ánh bình minh sau núi. Thất Huyền trấn tan hoang nhưng chưa gục. Hàn Lập đã bắt đầu con đường của hắn. Còn ta — ta đã có cặp kiếm, có kiếm linh, và một cơ duyên mà kẻ khác cả đời không gặp.
 

@@ -54,7 +54,7 @@ Sân tập rộng lớn, đất nện phẳng lì, hai bên cắm cờ xanh lam 
 
 Ở góc sân, một thanh niên gầy gò, áo vải thô, đang lặng lẽ luyện một bài quyền. Động tác của y không đẹp, nhưng mắt y sắc như dao, không hề rời khỏi mục tiêu. Ta chợt khựng lại — dáng người ấy, ánh mắt ấy, ta đã gặp trong từng trang truyện. *Hàn Lập.*
 
-Giọng nói lạnh lùng vang lên trong đầu: *“Đúng vậy. Kẻ sẽ đứng trên đỉnh của thế gian này.”*
+👁️‍🗨️ 【Hệ thống】“Đúng vậy. Kẻ sẽ đứng trên đỉnh của thế gian này.”
 
 *Hàn Lập.* Ta siết chặt tay, cố giữ vẻ mặt bình thản. Kẻ mà ta từng đọc, từng biết trước từng bước đi — giờ đang đứng cách ta vài chục bước chân, lặng lẽ luyện quyền như bao kẻ vô danh khác.
 
@@ -219,7 +219,7 @@ Ta vội liếc về phía Mạc Đại Phu. Ông lão vẫn cúi bó thuốc, t
 
 *Thứ này… không phải đồ bỏ.* Ta vội lấp đất lại, che nó đi.
 
-Giọng nói lạnh lùng vang lên trong đầu: *“Cơ duyên… đã tới.”*
+👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”
 
 **Lựa chọn:**
 
@@ -269,7 +269,7 @@ Cùng lúc ấy, một mùi hương lạ len vào mũi ta — mùi hoa đêm, ng
 
 Ta sững người, tim đập đến nghẹn cổ. *Cái này… không thể là thật.*
 
-Giọng nói lạnh lùng vang lên trong đầu: *“Hợp Hoan Tông. Phân thân. Bị phong ấn ngàn năm.”*
+👁️‍🗨️ 【Hệ thống】“Hợp Hoan Tông. Phân thân. Bị phong ấn ngàn năm.”
 
 Một giọng nữ vang lên, mềm như tơ, nhưng lạnh như băng: “Ngươi… cuối cùng cũng tới rồi.”
 
@@ -929,7 +929,7 @@ Ta khẽ cười. Nửa tháng trước, ta còn là kẻ bị đẩy ngã giữ
 
 “Nhớ kỹ,” — Tuyết Cơ dặn — “Ở môn phái võ lâm này, tu vi của ngươi là tội chết. Giấu cho kỹ. Và gã Hàn Lập kia… hắn sẽ là người quan trọng nhất trong đời ngươi.”
 
-Giọng nói lạnh lùng vang lên lần cuối. Lần này, nó không còn hoàn toàn lạnh như trước — trong đó, thoáng một chút hài lòng: *“Chương một, kết thúc. Ngọc cốt đã nhận chủ. Ngươi… bắt đầu giống một kẻ đáng để ta để mắt tới.”*
+👁️‍🗨️ 【Hệ thống】— lần cuối, không còn hoàn toàn lạnh như trước, thoáng một chút hài lòng — “Chương một, kết thúc. Ngọc cốt đã nhận chủ. Ngươi… bắt đầu giống một kẻ đáng để ta để mắt tới.”
 
 Ta hít sâu, nhìn ánh bình minh sau núi. Thất Huyền Môn tan hoang nhưng chưa gục. Mạc Đại Phu vẫn lặng lẽ cứu người. Hàn Lập đã bắt đầu con đường của hắn. Còn ta — ta đã có ngọc cốt, có Tuyết Cơ, và một cơ duyên mà kẻ khác cả đời không gặp.
 
