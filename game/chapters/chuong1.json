@@ -1088,7 +1088,12 @@
       "lua_chon": [
         {
           "chu": "“Ta ký.”",
-          "den": "c1_p10"
+          "den": "c1_p10",
+          "hieu_ung": {
+            "doi_trang_thai": {
+              "Ngọc cốt bí ẩn": "đã khế ước · đang hồi phục"
+            }
+          }
         }
       ]
     },

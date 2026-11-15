@@ -141,6 +141,23 @@ body{
 .sys-row:last-child{border-bottom:0}
 .sys-row .k{color:var(--ink-soft)}
 .sys-row .v{font-weight:600}
+
+/* --- cơ duyên trong túi: xếp đầu, viền gradient nhiều màu, bấm xem thông tin --- */
+.sys-row.co-duyen{position:relative;border-bottom:0;border-radius:10px;padding:8px 11px;margin:5px 0;
+  background:rgba(255,253,246,.9);cursor:pointer;align-items:center}
+.sys-row.co-duyen:last-child{border-bottom:0}
+.sys-row.co-duyen::before{content:"";position:absolute;inset:0;border-radius:10px;padding:1.6px;
+  background:linear-gradient(120deg,#c9a227,#e0b64a,#7fb069,#3fa9c9,#8e6fc9,#c94f7c,#c9a227);
+  background-size:300% 300%;animation:cdChay 7s linear infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;pointer-events:none}
+@keyframes cdChay{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+.sys-row.co-duyen .k{font-weight:600;color:var(--ink)}
+.sys-row.co-duyen .v{color:var(--seal)}
+.sys-row.co-duyen .tt{display:block;font-size:10.5px;color:var(--ink-faint);font-weight:400;letter-spacing:.3px;margin-top:1px}
+.sys-row.co-duyen:active{background:rgba(255,253,246,1)}
+@media (prefers-reduced-motion:reduce){.sys-row.co-duyen::before{animation:none}}
 .noi-tam{font-style:italic;color:var(--ink-soft)}
 #storyBody p{margin:0 0 13px}
 #storyBody em{font-style:italic}
@@ -234,6 +251,29 @@ body{
   font-family:var(--serif);font-size:15px;line-height:1;color:var(--ink-faint);
   background:transparent;border:1px solid var(--edge);border-radius:50%;cursor:pointer}
 .caidat .x:active{background:rgba(40,34,26,.08)}
+
+/* --- bảng thông tin cơ duyên --- */
+.coduyen{position:fixed;inset:0;z-index:12;display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(30,26,20,.55)}
+.coduyen .card{position:relative;width:100%;max-width:430px;padding:22px 20px;max-height:92vh;overflow-y:auto;
+  background:rgba(255,253,246,.98);border-radius:16px}
+.coduyen .card::before{content:"";position:absolute;inset:0;border-radius:16px;padding:2px;
+  background:linear-gradient(120deg,#c9a227,#e0b64a,#7fb069,#3fa9c9,#8e6fc9,#c94f7c,#c9a227);
+  background-size:300% 300%;animation:cdChay 7s linear infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;pointer-events:none}
+.coduyen .x{position:absolute;top:10px;right:12px;width:32px;height:32px;padding:0;
+  font-size:15px;line-height:1;border:0;border-radius:50%;background:rgba(40,34,26,.06);color:var(--ink-soft);cursor:pointer}
+.coduyen .x:active{background:rgba(40,34,26,.08)}
+.coduyen .nhan{font-size:10.5px;letter-spacing:1.8px;color:var(--seal);text-transform:uppercase;margin-bottom:6px}
+.coduyen h2{margin:0 0 10px;font-size:19px}
+.coduyen .tt{display:inline-block;font-size:11.5px;font-weight:600;color:var(--ink);
+  background:rgba(201,162,39,.16);border:1px solid rgba(201,162,39,.5);border-radius:99px;
+  padding:4px 11px;margin-bottom:14px}
+.coduyen .muc{font-size:11.5px;color:var(--ink-faint);letter-spacing:.5px;margin:14px 0 5px;text-transform:uppercase}
+.coduyen .nd{font-size:14px;line-height:1.62;color:var(--ink-soft)}
+@media (prefers-reduced-motion:reduce){.coduyen .card::before{animation:none}}
 </style>
 </head>
 <body>
@@ -409,6 +449,17 @@ body{
   </div>
 </div>
 
+<div class="coduyen" id="coDuyen">
+  <div class="card">
+    <button class="x" id="closeCoDuyen" title="Đóng" aria-label="Đóng">✕</button>
+    <div class="nhan">✦ Cơ duyên</div>
+    <h2 id="cdTen">—</h2>
+    <div class="tt" id="cdTrangThai">—</div>
+    <div class="muc">Mô tả</div>
+    <div class="nd" id="cdMoTa">—</div>
+  </div>
+</div>
+
 
 <script src="engine.js"></script>
 <script src="ai.js"></script>
@@ -534,8 +585,21 @@ function capNhatTrangThai(tt) {
   $("#dLinhLuc").innerHTML = tt.linh_luc.hien + "<small>/" + tt.linh_luc.max + "</small>";
   $("#bLinhLuc").style.width = pc(tt.linh_luc.hien, tt.linh_luc.max) + "%";
   $("#dKyNang").innerHTML = (tt.ky_nang || []).map(k => '<span class="tag">' + esc(k) + "</span>").join("") || "—";
-  $("#dTuiDo").innerHTML = (tt.tui_do || []).map(v =>
-    '<div class="sys-row"><span class="k">' + esc(v.ten) + '</span><span class="v">×' + v.so + "</span></div>").join("") || "—";
+  const tuiDo = tt.tui_do || [];
+  const coDuyen = tuiDo.filter(v => v.co_duyen);
+  const thuong = tuiDo.filter(v => !v.co_duyen);
+  $("#dTuiDo").innerHTML = [...coDuyen, ...thuong].map(v => {
+    if (v.co_duyen) {
+      return '<div class="sys-row co-duyen" data-cd="' + esc(v.ten) + '">' +
+        '<span class="k">✦ ' + esc(v.ten) + (v.trang_thai ? '<span class="tt">' + esc(v.trang_thai) + "</span>" : "") + "</span>" +
+        '<span class="v">×' + v.so + "</span></div>";
+    }
+    return '<div class="sys-row"><span class="k">' + esc(v.ten) + '</span><span class="v">×' + v.so + "</span></div>";
+  }).join("") || "—";
+  gan("#dTuiDo", "onclick", e => {
+    const hang = e.target.closest(".co-duyen");
+    if (hang) moCoDuyen(tuiDo.find(v => v.ten === hang.dataset.cd));
+  });
   const npc = Object.entries(tt.npc || {});
   $("#dNpc").innerHTML = npc.length ? npc.map(([k, v]) => {
     const diem = v.hao_cam ?? 0;
@@ -688,6 +752,18 @@ function moCaiDat() {
 }
 function dongCaiDat() { $("#caiDat").style.display = "none"; }
 
+// ---------------------------------------------------------- bảng thông tin cơ duyên
+function moCoDuyen(v) {
+  if (!v) return;
+  $("#cdTen").textContent = v.ten;
+  const tt = $("#cdTrangThai");
+  if (v.trang_thai) { tt.textContent = v.trang_thai; tt.style.display = "inline-block"; }
+  else { tt.style.display = "none"; }
+  $("#cdMoTa").textContent = v.mo_ta || "Chưa rõ lai lịch.";
+  $("#coDuyen").style.display = "flex";
+}
+function dongCoDuyen() { $("#coDuyen").style.display = "none"; }
+
 async function luuKey() {
   const v = $("#oKey").value.trim();
   AI.dat_key(v);
@@ -761,6 +837,7 @@ gan("#guiTuDo", "onclick", tuDo);
 gan("#nutKeAI", "onclick", doiKeAI);
 gan("#openCaiDat", "onclick", moCaiDat);
 gan("#closeCaiDat", "onclick", dongCaiDat);
+gan("#closeCoDuyen", "onclick", dongCoDuyen);
 gan("#luuKey", "onclick", luuKey);
 gan("#xoaKey", "onclick", () => { $("#oKey").value = ""; luuKey(); });
 gan("#hienKey", "onchange", e => { $("#oKey").type = e.target.checked ? "text" : "password"; });
@@ -775,7 +852,7 @@ gan("#openSys", "onclick", () => { drawer.classList.add("on"); scrim.classList.a
 const dong = () => { drawer.classList.remove("on"); scrim.classList.remove("on"); };
 gan("#closeSys", "onclick", dong);
 scrim.onclick = dong;
-document.addEventListener("keydown", e => { if (e.key === "Escape") { dong(); dongCaiDat(); } });
+document.addEventListener("keydown", e => { if (e.key === "Escape") { dong(); dongCaiDat(); dongCoDuyen(); } });
 
 document.querySelectorAll("#tabsBar .tab").forEach(t => t.onclick = () => {
   document.querySelectorAll("#tabsBar .tab").forEach(x => x.classList.remove("on"));

@@ -171,6 +171,29 @@ for (const [cs, dich, ten] of [[0, "c1_p18a", "thành thật"], [1, "c1_p18b", "
   check(`  ${ten} → kết p19`, Engine.chon(ox, 0).doan_id, "c1_p19");
 }
 
+console.log("\n=== N. Cơ duyên trong túi ===");
+{
+  const o = mk("CơDuyên", "mon_phai");
+  Engine.bat_dau(o);
+  check("túi đầu chưa có cơ duyên", o.tui_do.some((v) => v.co_duyen), false);
+  let r2 = {};
+  for (let i = 0; i < 12; i++) {
+    r2 = Engine.chon(o, 0);
+    if (o.tui_do.some((v) => v.co_duyen)) break;
+  }
+  const ngoc = o.tui_do.find((v) => v.ten === "Ngọc cốt bí ẩn");
+  check("nhặt được Ngọc cốt", !!ngoc, true);
+  check("Ngọc cốt có cờ co_duyen", ngoc && ngoc.co_duyen, true);
+  check("trạng thái ban đầu", ngoc && ngoc.trang_thai, "chưa khế ước");
+  check("có mô tả", !!(ngoc && ngoc.mo_ta), true);
+  toi(o, "c1_p09", 20);
+  Engine.chon(o, 0); // p09 → p09c
+  r2 = Engine.chon(o, 0); // p09c "Ta ký" → p10
+  const ngoc2 = r2.trang_thai.tui_do.find((v) => v.ten === "Ngọc cốt bí ẩn");
+  check("ký khế ước → đổi trạng thái", ngoc2 && ngoc2.trang_thai, "đã khế ước · đang hồi phục");
+  check("trạng thái ra tới giao diện", JSON.stringify(r2.trang_thai.tui_do).includes("đã khế ước"), true);
+}
+
 console.log("\n=== L. Lưu / nạp ===");
 o = mk("Save", "tan_tu");
 Engine.bat_dau(o);

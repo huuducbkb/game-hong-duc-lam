@@ -265,6 +265,13 @@ def _ap_hieu_ung(state: dict, hu: dict | None) -> list[str]:
         for v in hu["them_vat"]:
             state["tui_do"].append(copy.deepcopy(v))
             tb.append(f"Nhận: {v['ten']}")
+    if "doi_trang_thai" in hu:
+        for ten, tt_moi in hu["doi_trang_thai"].items():
+            for v in state["tui_do"]:
+                if v["ten"] == ten:
+                    v["trang_thai"] = tt_moi
+                    tb.append(f"{ten}: {tt_moi}")
+                    break
     if "ky_nang" in hu:
         for k in hu["ky_nang"]:
             if k not in state["ky_nang"]:

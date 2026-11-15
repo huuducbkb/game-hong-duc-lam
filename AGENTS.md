@@ -319,6 +319,7 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 ## Cần làm tiếp
 
 1. ~~Người dùng duyệt giao diện 1 cột~~ ✅
+1b. ~~Giao diện cơ duyên trong túi (viền nhiều màu + bấm xem thông tin)~~ ✅
 2. Backend game Python + tích hợp LLM (theo cơ chế chương + đoạn)
 3. Nội dung Chương 1 (Dã Lang Bang), Chương 2 (Huyết Sát Thí Luyện), Chương 3
 4. Thư viện ảnh/video + thẻ thuộc tính cho AI tra
@@ -335,7 +336,7 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 - **Bẫy cần nhớ**: công cụ trình duyệt tự động không gõ được vào ô `type="password"`;
   muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
 - Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
-- Test: `node game/_test_engine.js` → 92/92.
+- Test: `node game/_test_engine.js` → 99/99.
 
 ### Túi đồ khởi đầu
 
@@ -345,6 +346,27 @@ xuyên không, xem `GOP-Y-BAN-THAO.md`). Chi tiết đó đã bỏ khỏi truy�
 này không đoạn nào nhắc, không logic nào dùng → đã xóa khỏi `trang_thai_moi()`
 ở **cả** `game/engine.py` và `docs/game/engine.js` (giữ 2 bản khớp nhau).
 - Deploy tự động qua `.github/workflows/pages.yml` khi push lên `main` (đường dẫn `docs/**`).
+
+### Cơ duyên trong túi (đã chốt với người dùng)
+
+Cơ duyên (bảo vật gắn với nhân vật) là **linh hồn truyện** — mỗi nhánh xuất thân có
+một cơ duyên riêng (môn phái: Ngọc cốt; tán tu: Hồng Trần Kiếm Hạp). Quyết định giao
+diện, chốt trong `tai-lieu/KE-HOACH-SUA-CHUONG-1.md` mục 7:
+
+- Vật có cờ `co_duyen: true` **luôn xếp đầu** danh sách túi đồ.
+- **Viền gradient nhiều màu** chạy động (`.sys-row.co-duyen::before` + `@keyframes cdChay`).
+- **Bấm vào → hiện bảng thông tin** (`#coDuyen`): tên, `trang_thai`, `mo_ta`.
+- Dữ liệu món cơ duyên có thêm 2 trường: `co_duyen` (cờ) + `trang_thai` (chuỗi hiển thị,
+  ví dụ `"chưa khế ước"` → `"đã khế ước · đang hồi phục"`).
+
+**Cách đổi trạng thái cơ duyên:** dùng khoá hiệu ứng `doi_trang_thai` trong `hieu_ung`
+của lựa chọn — dạng `{"doi_trang_thai": {"Ngọc cốt bí ẩn": "đã khế ước · đang hồi phục"}}`.
+Engine tìm món theo **đúng tên** trong `tui_do` rồi ghi đè `trang_thai`. Hiện gán ở
+`c1_p09c` (lựa chọn "Ta ký"). **Sửa cả 2 engine** (`game/engine.py` + `docs/game/engine.js`)
+và **cả 2 file dữ liệu** (`game/chapters/chuong1.json` + `docs/game/du-lieu/chuong1.json`).
+
+**Đừng quên:** khi thêm món cơ duyên mới, phải có cả `co_duyen`, `trang_thai`, `mo_ta` —
+thiếu `trang_thai` thì bảng thông tin sẽ ẩn dòng trạng thái (không lỗi, chỉ thiếu thông tin).
 
 ### Bài học: gắn sự kiện phải an toàn với null
 

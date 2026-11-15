@@ -261,6 +261,15 @@
         tb.push(`Nhận: ${v.ten}`);
       }
     }
+    if ("doi_trang_thai" in hu) {
+      for (const [ten, ttMoi] of Object.entries(hu.doi_trang_thai)) {
+        const v = state.tui_do.find((x) => x.ten === ten);
+        if (v) {
+          v.trang_thai = ttMoi;
+          tb.push(`${ten}: ${ttMoi}`);
+        }
+      }
+    }
     if ("ky_nang" in hu) {
       for (const k of hu.ky_nang) {
         if (!state.ky_nang.includes(k)) {
