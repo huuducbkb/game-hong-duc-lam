@@ -1,0 +1,65 @@
+{
+  "ghi_chu": "5 xuất thân chơi được + 1 xuất thân ẩn (chưa mở). Mỗi nhóm có đoạn mở đầu riêng.",
+  "nhom": [
+    {
+      "ma": "tan_tu",
+      "ten": "Tán tu / ăn mày",
+      "mo_ta": "Không tông môn, không chống lưng. Đi đường cũ của chương (chợ sớm Thất Huyền).",
+      "doan_dau": "c1_d01",
+      "mau": "tán tu nghèo, lang thang vô môn phái, ăn mày nơi đầu đường xó chợ",
+      "tu_khoa": [
+        "tán tu",
+        "ăn mày",
+        "hành khất",
+        "khất cái",
+        "lang thang",
+        "vô môn",
+        "vô danh",
+        "dân thường",
+        "nông dân",
+        "cơ hàn",
+        "cô độc",
+        "nô bộc",
+        "tiện dân",
+        "bần cùng"
+      ]
+    },
+    {
+      "ma": "mon_phai",
+      "ten": "Đệ tử môn phái",
+      "mo_ta": "Đệ tử hạng bét của Thất Huyền Môn, bị quản sự Lý Hổ ép nộp cống phẩm.",
+      "doan_dau": "c1_p01",
+      "mau": "ngoại môn tạp dịch đệ tử của Thất Huyền Môn, tư chất tầm thường, linh căn tạp lục",
+      "tu_khoa": [
+        "đệ tử",
+        "tông môn",
+        "môn phái",
+        "ngoại môn",
+        "nội môn",
+        "tạp dịch",
+        "thanh vân",
+        "thất huyền",
+        "quản sự",
+        "linh dược viên",
+        "cống phẩm",
+        "sư huynh",
+        "sư môn"
+      ]
+    },
+    {
+      "ma": "tuyet_co",
+      "ten": "(ẩn) Ngọc cốt Tuyết Cơ",
+      "an": true,
+      "khoa": true,
+      "doan_dau": null,
+      "ghi_chu": "Để đó, CHƯA mở. Không hiện trong menu, không tự nhận diện. Nội dung nhạy cảm — khi mở phải giữ ở mức gợi ý.",
+      "mau": "",
+      "tu_khoa": [
+        "tuyết cơ",
+        "ngọc cốt",
+        "phân thân",
+        "hắc quáng động"
+      ]
+    }
+  ]
+}
