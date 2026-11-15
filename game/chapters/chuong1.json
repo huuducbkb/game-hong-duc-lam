@@ -640,8 +640,8 @@
       "ke": "Ta cúi đầu, không đáp. Nhục thì nhục, nhưng cãi lại chỉ chuốc thêm đau. Ta lồm cồm bò dậy, nhặt cây côn gỗ, lặng lẽ bước ra khỏi sân.\n\nĐêm ấy, khi cả tân xá đã ngủ, ta lén ra sân sau, chỗ khuất nhất, tập lại bài quyền mà ban ngày ta đã nhìn lén các sư huynh múa. Không ai chỉ, ta chỉ bắt chước — sai thì sửa, ngã thì đứng lên.\n\nMột đêm, hai đêm, ba đêm. Tay chân ta rã rời, nhưng từng chiêu một dần vào nếp. Đến đêm thứ tư, ta bỗng nhận ra mình đã đánh trọn một bài mà không trật nhịp nào.\n\n*Thất Huyền quyền.* Ta nhớ tên bài quyền ấy — bài nhập môn của Thất Huyền Môn. Với kẻ khác, nó chỉ là sơ đẳng. Với ta, nó là thứ đầu tiên ta thật sự nắm được bằng mồ hôi của mình.\n\nTa nắm chặt tay, cảm nhận sức lực đã khác trước. *Ít ra, lần này ta không còn tay không.*",
       "lua_chon": [
         {
-          "chu": "Trở lại vườn thuốc, tìm thứ gì dùng được",
-          "den": "c1_p06",
+          "chu": "Luyện xong, tình cờ thấy ánh sáng lạ dưới gốc cổ thụ",
+          "den": "c1_p03d",
           "hieu_ung": {
             "ky_nang": [
               "Thất Huyền quyền"
@@ -667,8 +667,8 @@
       "ke": "“Ta không núp sau lưng ai cả,” — ta nói, giọng run nhưng mắt không cúi.\n\nGã to con sững lại một thoáng, rồi mặt hắn đỏ bừng. “Láo!” — hắn vung tay tát ta một cái như trời giáng. Ta ngã dúi xuống, khóe miệng bật máu.\n\n“Tân đệ tử mà dám cãi!” — hắn đá thêm một cái — “Để xem ngươi trụ được mấy ngày.”\n\nĐám đông xung quanh im phăng phắc. Không ai đỡ ta, nhưng cũng không ai cười nữa. Trong mắt vài người, ta thoáng thấy một tia khác lạ — không phải thương hại, mà là chút gì đó giống sự nể.\n\nHắn bỏ đi. Ta gượng ngồi dậy, lau máu nơi khóe miệng. *Đau. Nhưng ít ra, ta đã không cúi đầu.*\n\nĐêm ấy, ta lén ra sân sau luyện lại bài quyền nhập môn đã nhìn lén ban ngày. Đau thì đau, nhưng ta luyện tới khi trọn bài. *Thất Huyền quyền.* Lần đầu tiên, ta nắm được một thứ bằng chính mình.",
       "lua_chon": [
         {
-          "chu": "Lặng lẽ tới vườn thuốc sau môn",
-          "den": "c1_p06",
+          "chu": "Đêm ấy, luyện xong thì thấy ánh sáng lạ dưới gốc cổ thụ",
+          "den": "c1_p03d",
           "hieu_ung": {
             "ky_nang": [
               "Thất Huyền quyền"
@@ -676,6 +676,76 @@
             "co_su_kien": [
               "hoc_that_huyen_quyen",
               "khong_khuat_phuc"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c1_p03d",
+      "hoi": "Mở",
+      "boi_canh": "Sân sau — đêm, dưới gốc cổ thụ",
+      "hinh_anh": {
+        "tags": [
+          "sân sau",
+          "đêm",
+          "ánh sáng lạ"
+        ]
+      },
+      "ke": "Đêm thứ năm, ta luyện tới khi trăng lên đỉnh đầu. Sân sau vắng lặng, chỉ có tiếng dế và hơi sương lạnh.\n\nGiữa lúc thu quyền, ta chợt thấy một vệt sáng mờ nhạt lóe lên dưới gốc cổ thụ già — chỗ rễ cây xù xì nổi lên khỏi mặt đất. Ánh sáng ấy không phải ánh trăng, cũng không phải đom đóm. Nó xanh lạnh, chớp một cái rồi tắt.\n\n*Cái gì vậy?* Ta đứng lặng, tim đập nhanh. Trong môn, đêm nào cũng có kẻ canh gác — nếu bị bắt gặp lục lọi quanh gốc cây, ta chắc chắn bị đuổi.\n\nTa quỳ xuống, gạt lớp lá mục. Đất mềm, tơi như vừa được ai xới. Móng tay ta cào xuống vài tấc, chạm phải một vật lạnh buốt — cứng như đá mà trơn như ngọc.\n\nMột khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.\n\n*Thứ này… không phải đồ bỏ.* Ta ngồi giữa bóng tối, khối ngọc trong tay, không biết nên mừng hay nên sợ.\n\n👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”",
+      "lua_chon": [
+        {
+          "chu": "Siết chặt khối ngọc, mang về tân xá",
+          "den": "c1_p07",
+          "hieu_ung": {
+            "them_vat": [
+              {
+                "ten": "Ngọc cốt bí ẩn",
+                "so": 1,
+                "mo_ta": "Khối ngọc lạnh buốt, bên trong có một phân thân nữ tu Hợp Hoan Tông bị phong ấn.",
+                "co_duyen": true,
+                "trang_thai": "chưa khế ước"
+              }
+            ],
+            "co_su_kien": [
+              "co_ngoc_cot"
+            ]
+          }
+        },
+        {
+          "chu": "Hoảng hốt chôn trả lại — thứ này quá tà dị",
+          "den": "c1_p03e"
+        }
+      ]
+    },
+    {
+      "id": "c1_p03e",
+      "hoi": "Thân",
+      "boi_canh": "Sân sau — chôn trả lại",
+      "hinh_anh": {
+        "tags": [
+          "sân sau",
+          "đêm",
+          "trăn trở"
+        ]
+      },
+      "ke": "Ta vội vàng lấp đất lại, tay run đến mức lá mục văng cả ra ngoài. *Không phải của ta. Không nên dính vào.* Ta tự nhủ, rồi lặng lẽ quay về tân xá.\n\nNhưng đêm ấy, ta không sao ngủ được. Trong giấc mơ chập chờn, một bóng người nữ hiện lên, mờ ảo như sương, giọng nói như rót mật vào tai: “Ngươi… đã chạm vào ta rồi.”\n\nTa choàng tỉnh, mồ hôi ướt đẫm lưng áo. *Không thể nào.* Nhưng tiếng gọi ấy vẫn vang vọng, kéo ta ra khỏi chăn, kéo ta lê bước trở lại sân sau giữa đêm.\n\nTa đào lên. Khối ngọc vẫn nằm đó dưới gốc cổ thụ, ánh sáng mờ nhạt như đang chờ ta. Lần này, ta không chôn nữa.",
+      "lua_chon": [
+        {
+          "chu": "Siết chặt khối ngọc, mang về tân xá",
+          "den": "c1_p07",
+          "hieu_ung": {
+            "them_vat": [
+              {
+                "ten": "Ngọc cốt bí ẩn",
+                "so": 1,
+                "mo_ta": "Khối ngọc lạnh buốt, bên trong có một phân thân nữ tu Hợp Hoan Tông bị phong ấn.",
+                "co_duyen": true,
+                "trang_thai": "chưa khế ước"
+              }
+            ],
+            "co_su_kien": [
+              "co_ngoc_cot"
             ]
           }
         }
@@ -696,11 +766,59 @@
       "lua_chon": [
         {
           "chu": "Giật mình, hỏi ông thấy gì khác thường",
-          "den": "c1_p06"
+          "den": "c1_p04a"
         },
         {
-          "chu": "Không dám hỏi nhiều, xin thuốc rồi đi",
-          "den": "c1_p06"
+          "chu": "Không dám hỏi nhiều, im lặng phụ ông",
+          "den": "c1_p04b"
+        }
+      ]
+    },
+    {
+      "id": "c1_p04a",
+      "hoi": "Mở",
+      "boi_canh": "Vườn thuốc — hỏi thẳng",
+      "hinh_anh": {
+        "tags": [
+          "vườn thuốc",
+          "Mạc Đại Phu",
+          "cảnh giác"
+        ]
+      },
+      "ke": "Ta không kìm được. “Tiền bối thấy ở vãn bối… điều gì khác thường?”\n\nMạc Đại Phu ngừng tay bó thuốc. Ông nhìn ta một lúc lâu, ánh mắt già nua mà sâu như giếng cổ. “Ta làm y mấy chục năm,” — ông chậm rãi nói — “Người bị thương thì ta nhìn ra ngay. Nhưng ngươi… không giống kẻ bị thương.”\n\nTa nuốt khan, không dám hỏi thêm. Ông cũng không nói gì nữa, chỉ lặng lẽ bó tiếp nắm thuốc trong tay. Ta đành ngồi xuống bên cạnh, phụ ông nhặt lá.",
+      "lua_chon": [
+        {
+          "chu": "Ngồi xuống phụ ông bó thuốc",
+          "den": "c1_p06",
+          "hieu_ung": {
+            "co_su_kien": [
+              "mac_dai_phu_de_y"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c1_p04b",
+      "hoi": "Mở",
+      "boi_canh": "Vườn thuốc — im lặng",
+      "hinh_anh": {
+        "tags": [
+          "vườn thuốc",
+          "Mạc Đại Phu",
+          "kín đáo"
+        ]
+      },
+      "ke": "Ta cúi đầu, không dám hỏi thêm. Ở chốn môn phái này, biết quá nhiều chưa chắc đã là chuyện tốt.\n\n“Đa tạ tiền bối,” — ta nói, rồi đứng lặng chờ.\n\nMạc Đại Phu nhìn ta thêm một lát, rồi khẽ gật gù — như hài lòng vì ta không hỏi. Ông cúi xuống bó tiếp nắm thuốc. Ta lặng lẽ ngồi xuống bên cạnh, phụ ông nhặt lá.",
+      "lua_chon": [
+        {
+          "chu": "Ngồi xuống phụ ông bó thuốc",
+          "den": "c1_p06",
+          "hieu_ung": {
+            "co_su_kien": [
+              "mac_dai_phu_an_tuong"
+            ]
+          }
         }
       ]
     },
@@ -715,14 +833,84 @@
           "giang hồ"
         ]
       },
-      "ke": "Ta lân la tới quán nước đầu trấn, nơi khách giang hồ tụ tập. Chỉ cần mấy đồng bạc lẻ, ta được ngồi ở góc tối và nghe ngóng.\n\n“Dã Lang Bang dạo này động tĩnh lạ lắm,” — một gã đàn ông râu quai nón hạ giọng. “Chúng kéo tới mấy trăm người, dòm ngó Thất Huyền Môn suốt mấy tháng rồi. Cầm đầu là Hùng Bá — tay đao nặng trịch, nổi tiếng tàn độc.”\n\n*Hùng Bá.* Ta khắc cái tên ấy vào lòng. Biết tên đầu lĩnh, có khi tới lúc nguy cấp lại dùng được.\n\n“Suỵt!” — kẻ bên cạnh huých tay hắn. “Nói bậy mất mạng như chơi.”\n\n“Nghe nói trong môn có một gã đệ tử gầy gò, ít nói, mà mấy vị sư phụ để mắt lắm,” — gã râu quai nón nói tiếp. “Hình như tên là Hàn gì đó…”\n\n*Hàn Lập.* Ta cúi mặt vào chén nước. Ngay cả kẻ ngoài môn cũng để ý tới hắn — trong khi ta thì chẳng ai nhớ mặt. *Ta phải tự tìm đường cho mình.*\n\nTa đứng dậy, quay về phía vườn thuốc sau môn — nơi ít người lui tới nhất.",
+      "ke": "Ta lân la tới quán nước đầu trấn, nơi khách giang hồ tụ tập. Chỉ cần mấy đồng bạc lẻ, ta được ngồi ở góc tối và nghe ngóng.\n\n“Dã Lang Bang dạo này động tĩnh lạ lắm,” — một gã đàn ông râu quai nón hạ giọng. “Chúng kéo tới mấy trăm người, dòm ngó Thất Huyền Môn suốt mấy tháng rồi. Cầm đầu là Hùng Bá — tay đao nặng trịch, nổi tiếng tàn độc.”\n\n*Hùng Bá.* Ta khắc cái tên ấy vào lòng. Biết tên đầu lĩnh, có khi tới lúc nguy cấp lại dùng được.\n\n“Suỵt!” — kẻ bên cạnh huých tay hắn. “Nói bậy mất mạng như chơi.”\n\n“Nghe nói trong môn có một gã đệ tử gầy gò, ít nói, mà mấy vị sư phụ để mắt lắm,” — gã râu quai nón nói tiếp. “Hình như tên là Hàn gì đó…”\n\n*Hàn Lập.* Ta cúi mặt vào chén nước. Ngay cả kẻ ngoài môn cũng để ý tới hắn — trong khi ta thì chẳng ai nhớ mặt. *Ta phải tự tìm đường cho mình.*\n\n“Mà này,” — gã râu quai nón hạ giọng, như nói với chính mình — “nghe đâu sau hậu sơn có cái khe núi lạ lắm. Đêm đêm có ánh sáng xanh chớp lên. Mấy kẻ tò mò tới đó rồi… chẳng ai kể lại được gì.”\n\n*Ánh sáng xanh.* Ta khẽ nhíu mày. Giữa lúc môn ta sắp bị đánh tới nơi, một chuyện lạ như vậy… biết đâu lại là cơ hội của kẻ chẳng còn gì để mất.\n\nTa đứng dậy, tính tiền nước. Đêm nay, ta sẽ tới khe núi sau hậu sơn xem thử.",
       "lua_chon": [
         {
-          "chu": "Lặng lẽ tới vườn thuốc sau môn",
-          "den": "c1_p06",
+          "chu": "Lặng lẽ tới khe núi sau hậu sơn",
+          "den": "c1_p05b",
           "hieu_ung": {
             "co_su_kien": [
               "biet_dau_linh"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c1_p05b",
+      "hoi": "Mở",
+      "boi_canh": "Hậu sơn — khe núi đêm, theo lời đồn",
+      "hinh_anh": {
+        "tags": [
+          "hậu sơn",
+          "khe núi",
+          "đêm"
+        ]
+      },
+      "ke": "Đêm buông xuống, ta lẻn ra khỏi tân xá, theo con đường mòn vòng ra sau hậu sơn. Trăng lưỡi liềm treo thấp, đủ soi những phiến đá xám nằm rải rác ven đường.\n\nKhe núi nằm khuất sau một vách đá, hẹp và sâu, quanh năm ẩm ướt. Ta đứng trên miệng khe, lắng nghe. Gió lùa qua khe đá nghe như tiếng ai đó thở dài.\n\nRồi ta thấy nó — một vệt sáng xanh mờ nhạt chớp lên từ đám rêu ướt nơi vách khe, chớp một cái rồi tắt. Ta nín thở, men theo vách đá tới chỗ ấy.\n\nĐất nơi đó mềm và tơi, như vừa được ai xới lên. Ta quỳ xuống, đào bới. Móng tay cào xuống vài tấc, chạm phải một vật lạnh buốt — cứng như đá mà trơn như ngọc.\n\nMột khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.\n\n*Thứ này… không phải đồ bỏ.* Ta ngồi giữa khe núi tối tăm, khối ngọc trong tay, không biết nên mừng hay nên sợ.\n\n👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”",
+      "lua_chon": [
+        {
+          "chu": "Siết chặt khối ngọc, mang về tân xá",
+          "den": "c1_p07",
+          "hieu_ung": {
+            "them_vat": [
+              {
+                "ten": "Ngọc cốt bí ẩn",
+                "so": 1,
+                "mo_ta": "Khối ngọc lạnh buốt, bên trong có một phân thân nữ tu Hợp Hoan Tông bị phong ấn.",
+                "co_duyen": true,
+                "trang_thai": "chưa khế ước"
+              }
+            ],
+            "co_su_kien": [
+              "co_ngoc_cot"
+            ]
+          }
+        },
+        {
+          "chu": "Hoảng hốt chôn trả lại — thứ này quá tà dị",
+          "den": "c1_p05c"
+        }
+      ]
+    },
+    {
+      "id": "c1_p05c",
+      "hoi": "Thân",
+      "boi_canh": "Hậu sơn — chôn trả lại",
+      "hinh_anh": {
+        "tags": [
+          "hậu sơn",
+          "khe núi",
+          "trăn trở"
+        ]
+      },
+      "ke": "Ta vội vàng lấp đất lại, tay run đến mức rêu văng cả ra ngoài. *Không phải của ta. Không nên dính vào.* Ta tự nhủ, rồi lặng lẽ theo đường mòn trở về tân xá.\n\nNhưng đêm ấy, ta không sao ngủ được. Trong giấc mơ chập chờn, một bóng người nữ hiện lên, mờ ảo như sương, giọng nói như rót mật vào tai: “Ngươi… đã chạm vào ta rồi.”\n\nTa choàng tỉnh, mồ hôi ướt đẫm lưng áo. *Không thể nào.* Nhưng tiếng gọi ấy vẫn vang vọng, kéo ta ra khỏi chăn, kéo ta lê bước trở lại khe núi sau hậu sơn giữa đêm.\n\nTa đào lên. Khối ngọc vẫn nằm đó nơi vách khe, ánh sáng mờ nhạt như đang chờ ta. Lần này, ta không chôn nữa.",
+      "lua_chon": [
+        {
+          "chu": "Siết chặt khối ngọc, mang về tân xá",
+          "den": "c1_p07",
+          "hieu_ung": {
+            "them_vat": [
+              {
+                "ten": "Ngọc cốt bí ẩn",
+                "so": 1,
+                "mo_ta": "Khối ngọc lạnh buốt, bên trong có một phân thân nữ tu Hợp Hoan Tông bị phong ấn.",
+                "co_duyen": true,
+                "trang_thai": "chưa khế ước"
+              }
+            ],
+            "co_su_kien": [
+              "co_ngoc_cot"
             ]
           }
         }
