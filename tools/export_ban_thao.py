@@ -407,7 +407,7 @@ def xuat_index(chuongs: list[dict], nhom: list[dict]) -> str:
 def main():
     ap = argparse.ArgumentParser(description="Xuất bản thảo theo nhánh")
     ap.add_argument("chuong", nargs="*", help="số chương (bỏ trống = mọi chương)")
-    ap.add_argument("--nhanh", help="chỉ xuất một nhánh (mã: tan_tu, mon_phai, duoc, gia_toc, hac_dao)")
+    ap.add_argument("--nhanh", help="chỉ xuất một nhánh (mã: tan_tu, mon_phai)")
     args = ap.parse_args()
 
     os.makedirs(OUT_DIR, exist_ok=True)

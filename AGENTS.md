@@ -153,7 +153,7 @@ Phiên giữ trong RAM + cookie `phien`; trạng thái đầy đủ lưu ở `da
 ## Bản thảo để duyệt
 
 Xuất đoạn kể ra văn bản để người dùng đọc. **Mỗi xuất thân là một nhánh riêng →
-xuất thành FILE RIÊNG** (không nối 5 nhánh vào một file):
+xuất thành FILE RIÊNG** (không nối các nhánh vào một file):
 
 ```bash
 python3 tools/export_ban_thao.py                      # mọi chương, mọi nhánh
@@ -161,7 +161,7 @@ python3 tools/export_ban_thao.py 1                    # Chương 1, mọi nhánh
 python3 tools/export_ban_thao.py 1 --nhanh mon_phai   # CHỈ nhánh môn phái
 ```
 
-Mã nhánh: `tan_tu`, `mon_phai`, `duoc`, `gia_toc`, `hac_dao`.
+Mã nhánh: `tan_tu`, `mon_phai`. **(Chỉ còn 2 nhánh — xem mục "Phạm vi xây dựng".)**
 
 Kết quả ở `docs/ban-thao/`: `index.html` (mục lục: chương + từng nhánh),
 `chuong1-<nhánh>.html` (đọc trên Safari), `chuong1-<nhánh>.md` (xem trên GitHub).
@@ -223,20 +223,32 @@ ra từ liên kết, nên tự đúng cho mọi nhánh.
 
 Mỗi xuất thân KHÔNG chỉ là nhãn — nó quyết định **hành trình riêng** tới lúc gặp Hàn Lập.
 
-- Bảng nhóm ở `game/xuat_than.json`: 5 nhóm chơi được + 1 nhóm ẩn (`an: true`, khoá).
+- Bảng nhóm ở `game/xuat_than.json`: **2 nhóm chơi được** + 1 nhóm ẩn (`an: true`, khoá).
   Nhóm ẩn = "Ngọc cốt Tuyết Cơ" — **chưa mở**, không hiện menu, **không tự nhận diện**.
 - Mã nhóm → đoạn mở đầu:
-  `tan_tu`→`c1_d01`, `mon_phai`→`c1_p01`, `duoc`→`c1_y01`,
-  `gia_toc`→`c1_g01`, `hac_dao`→`c1_h01`. **Mỗi nhánh có kết riêng** (không hội tụ về
-  một đoạn chung — ràng buộc cũ "mọi nhánh về `c1_d18`" đã **bỏ** để truyện mạch lạc).
+  `tan_tu`→`c1_d01`, `mon_phai`→`c1_p01`. **Mỗi nhánh có kết riêng** (không hội tụ về
+  một đoạn chung — ràng buộc cũ "mọi nhánh về `c1_d18`" đã **bỏ**, `c1_d18` đã xoá).
 - Nhận diện: `engine.nhan_dien_xuat_than()` dò từ khoá (bỏ dấu tiếng Việt). Không khớp → `tan_tu`.
-- Người chơi có 2 cách chọn: bấm 1 trong 5 nút (gửi `nhom`) HOẶC gõ tự do (server tự nhận diện).
+- Người chơi có 2 cách chọn: bấm 1 trong 2 nút (gửi `nhom`) HOẶC gõ tự do (server tự nhận diện).
 - Lựa chọn riêng theo nhóm: dùng `dieu_kien: {"nhom": ["mon_phai", ...]}`.
 - API: `POST /api/new` nhận `{ten, xuat_than, nhom}`; `GET /api/xuat_than` trả danh sách nhóm.
-- **Quy ước gọi tên nhánh:** luôn gọi **tên đầy đủ** (tán tu · môn phái · dược đồng ·
-  gia tộc · hắc đạo) khi trao đổi với người dùng — **không dùng ký hiệu** (d/p/y/g/h).
+- **Quy ước gọi tên nhánh:** luôn gọi **tên đầy đủ** (tán tu · môn phái) khi trao đổi
+  với người dùng — **không dùng ký hiệu** (d/p).
 
-## 5 CƠ DUYÊN — mỗi nhánh một cơ duyên (BẮT BUỘC)
+## PHẠM VI XÂY DỰNG — CHỈ 2 NHÁNH (chốt 2026-11-12)
+
+**Chỉ xây 2 nhánh: tán tu + môn phái.** Người dùng làm một mình, không test hết được.
+
+**3 nhánh dược đồng / gia tộc / hắc đạo đã GỠ** khỏi game (chưa xong: thiếu cơ duyên
+riêng, lỗi canon `linh thảo`/`Trúc Cơ`, từng dùng chung đoạn kết `c1_d18`). Gỡ để
+người chơi không gặp truyện lỗi.
+
+- **Ý tưởng + bản thảo cũ giữ ở** `docs/luu-tru/Y-TUONG-3-NHANH-CHUA-XAY.md`
+  và `docs/luu-tru/chuong1-3-nhanh-chua-xay.json` — để **xây lại sau**.
+- **Bật lại:** thêm nhóm vào `game/xuat_than.json` + thêm đoạn vào `chuong1.json`
+  (theo đúng 4 bước cơ duyên + quy tắc hệ thống ở dưới) + thêm test.
+
+## 2 CƠ DUYÊN — mỗi nhánh một cơ duyên (BẮT BUỘC)
 
 Mỗi nhánh phải có **cơ duyên riêng** — thứ đưa người chơi từ phàm nhân lên con đường
 tu luyện. Cơ duyên KHÔNG được rơi vào tay người chơi một cách vô cớ.
@@ -257,9 +269,9 @@ tu luyện. Cơ duyên KHÔNG được rơi vào tay người chơi một cách 
 
 ## HỆ THỐNG & BÍ MẬT XUYÊN KHÔNG (BẮT BUỘC)
 
-- **Chỉ 2 nhánh xuyên không** (tán tu, môn phái) mới có **HỆ THỐNG** + biết mình
-  xuyên không. Ba nhánh **bản địa** (dược đồng, gia tộc, hắc đạo) **KHÔNG có hệ
-  thống**, KHÔNG biết gì về xuyên không.
+- **Cả 2 nhánh** (tán tu, môn phái) đều **xuyên không** → có **HỆ THỐNG** + biết mình
+  xuyên không. (Nhánh **bản địa** — dược đồng, gia tộc, hắc đạo — nếu xây lại thì
+  **KHÔNG có hệ thống**, KHÔNG biết gì về xuyên không.)
 - **Giọng hệ thống** luôn viết đúng định dạng: `👁️‍🗨️ 【Hệ thống】“…”`
   Lần đầu xuất hiện (`c1_d01`, `c1_p01`) phải **giới thiệu rõ**: dòng chữ lơ lửng
   `👁️‍🗨️ 【 Hệ Thống · Nghịch Chuyển Càn Khôn 】 đã kích hoạt.` + giọng máy móc
@@ -277,13 +289,9 @@ tu luyện. Cơ duyên KHÔNG được rơi vào tay người chơi một cách 
 |---|---|---|---|
 | **Tán tu** | Hồng Trần Kiếm Hạp (cặp kiếm dài-ngắn + kiếm linh) | Hấp thu **hồng trần** để mạnh; phải đi giữa đời, không ẩn tu | ✅ `c1_d17` |
 | **Môn phái** | Ngọc cốt bí ẩn (đào ở vườn thuốc, Mạc Đại Phu để ý) | Hấp thu **linh khí** nhanh gấp mấy lần; giấu kín vì môn võ lâm | ✅ `c1_p19` |
-| **Dược đồng** | Vô Vạn Thọ Nguyên (1 viên đan) | **Vô hạn thọ nguyên** → đốt thọ nguyên tăng tu vi (nhánh khác đốt là chết) | ⏳ cần kết riêng |
-| **Gia tộc** | Nhẫn ngọc (thức tỉnh nhận chủ) | Tu luyện nhanh **30×**, tốn **bạc**; **không** rơi gần Hàn Lập | ⏳ cần kết riêng |
-| **Hắc đạo** | Thôn Thiên Ma Công (nuốt để mạnh) | Mạnh **10×** nhưng tích **sát nghiệp** → mất bản ngã; cứu bằng **lôi kiếp** | ⏳ cần kết riêng |
 
-**Còn nợ:** dược đồng / gia tộc / hắc đạo chưa có cơ duyên trong truyện + còn lỗi canon
-(`linh thảo`, `Trúc Cơ`) + còn dùng chung đoạn kết `c1_d18` (tàn dư cũ) → phải viết lại
-theo 4 bước trên, mỗi nhánh một kết riêng. Nhánh tán tu và môn phái đã xong (chuẩn mẫu).
+**2 nhánh đã xong (chuẩn mẫu).** 3 nhánh dược đồng / gia tộc / hắc đạo đã gỡ —
+xem `docs/luu-tru/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 
 ## Cần làm tiếp
 
