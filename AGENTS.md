@@ -326,3 +326,27 @@ xem `docs/luu-tru/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 - Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
 - Test: `node docs/game/_test_engine.js` → 92/92.
 - Deploy tự động qua `.github/workflows/pages.yml` khi push lên `main` (đường dẫn `docs/**`).
+
+### Bài học: gắn sự kiện phải an toàn với null
+
+Lỗi "giao diện tè le" (nút Hệ Thống / tab / đổi ảnh không bấm được) do một dòng
+`$("#closeCaiDat").onclick = ...` trỏ tới phần tử **không tồn tại** → `TypeError` →
+**mọi dòng gắn sự kiện phía sau đều chết theo**. Vì vậy trong `play.html` dùng hàm
+`gan(sel, ev, fn)` (kiểm tra `null` trước khi gắn) cho các nút ở cấp cao nhất.
+
+Khi thêm nút/màn mới: **luôn kiểm tra `id` trong JS có tồn tại trong HTML**, và
+kiểm thử bằng chromium headless (dump-DOM + iframe tự bấm) trước khi đẩy lên.
+
+### Bẫy bố cục thanh trên (màn hẹp)
+
+Thanh trên (`header.topbar`) là flex 1 hàng. Trên iPhone (≤430px) nhồi nhiều nút sẽ
+bóp `.titles` xuống ~28px → chữ tiêu đề/phụ **wrap thành cột dọc**, thanh cao vọt lên
+146–163px. Cách xử lý: `@media (max-width:430px)` cho `.topbar{flex-wrap:wrap}`, cho
+tiêu đề chung hàng với avatar và các nút xuống hàng dưới trải đều; `.titles .sub` cần
+`white-space:nowrap;overflow:hidden;text-overflow:ellipsis`.
+
+### Cách tự kiểm thử giao diện (không cần server)
+
+`chromium --headless=new --no-sandbox --dump-dom` một trang harness tự tạo iframe
+`play.html` rồi tự bấm nút, in kết quả vào `<pre>` để đọc. Chạy server tĩnh tạm bằng
+`python3 -m http.server <cổng>` trỏ vào thư mục chứa bản cần đo.
