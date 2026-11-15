@@ -5,32 +5,21 @@
 
 *Nhánh này gồm 13 đoạn.*
 
----
+**Sơ đồ nhánh** — cùng một nhánh, nhưng rẽ thành nhiều hướng; mỗi hướng là một cách gặp cơ duyên riêng:
 
-## Hồi Kết
+```
+c1_g01   ← rẽ 3 hướng
+  ├─ ① Dùng tiền thuê người bảo vệ căn nhà
+  │     c1_g02
+  ├─ ② Cất giấu gia bảo trước khi chúng quay lại
+  │     c1_g03
+  └─ ③ Tìm cách thương lượng với tay sai Dã Lang Bang
+  │     c1_g04
+  ↓
+  Hội tụ → c1_d18 · c1_g05 · c1_g06 · c1_g07 · …   (mọi đường dùng chung)
+```
 
-### Đoạn `c1_d18` — Kết chương — bình minh Thất Huyền Môn
-
-*Ảnh:* `bình minh, kết chương, núi`
-
-Trời sáng. Dã Lang Bang rút lui, để lại Thất Huyền Môn tan hoang nhưng chưa gục ngã. Máu khô bám trên đá, khói còn vương trong gió, và tiếng người dọn dẹp vang lên lặng lẽ.
-
-Hàn Lập quay người, bước vào trong sương sớm, dáng gầy gò in trên nền trời nhạt.
-
-Trước khi khuất bóng, y nói một câu: “Gặp lại.”
-
-Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.
-
-👁️‍🗨️ 【Hệ thống】— lần cuối — “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
-
-*Tự chọn…* Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.
-
-**Lựa chọn:**
-
-- Khép lại Chương 1  
-  → `__ket_thuc__`
-
-**— Hết chương —**
+> Các đoạn có nhãn **[ĐƯỜNG ①/②/③]** là đường riêng — người chơi chỉ đi MỘT đường. Đoạn không nhãn là dùng chung.
 
 ---
 
@@ -61,7 +50,7 @@ Trong túi ta còn vài viên bạc, đủ để thuê người — hoặc để
 
 ---
 
-### Đoạn `c1_g02` — Quán rượu — tìm người bảo vệ
+### Đoạn `c1_g02` — Quán rượu — tìm người bảo vệ · **[ĐƯỜNG ①]**
 
 *Ảnh:* `quán rượu, đàm phán, lính đánh thuê`
 
@@ -80,7 +69,7 @@ Hắn cười khẩy, đẩy túi tiền lại. Không ai nhận. *Tiền của 
 
 ---
 
-### Đoạn `c1_g03` — Từ đường — giữa đêm
+### Đoạn `c1_g03` — Từ đường — giữa đêm · **[ĐƯỜNG ②]**
 
 *Ảnh:* `đêm, giấu đồ, hồi hộp`
 
@@ -99,7 +88,7 @@ Ngoài kia, tiếng chó sủa vang lên dồn dập. Ta giật mình, vội t�
 
 ---
 
-### Đoạn `c1_g04` — Trước cổng — đối diện tay sai
+### Đoạn `c1_g04` — Trước cổng — đối diện tay sai · **[ĐƯỜNG ③]**
 
 *Ảnh:* `cổng, đối đầu, căng thẳng`
 
@@ -115,6 +104,33 @@ Hắn đẩy mạnh ta vào trong, đóng sập cổng. Ta ngã xuống nền đ
 
 - Đứng dậy, trong lòng đã có tính khác  
   → `c1_g05`
+
+---
+
+## Hồi Kết
+
+### Đoạn `c1_d18` — Kết chương — bình minh Thất Huyền Môn
+
+*Ảnh:* `bình minh, kết chương, núi`
+
+Trời sáng. Dã Lang Bang rút lui, để lại Thất Huyền Môn tan hoang nhưng chưa gục ngã. Máu khô bám trên đá, khói còn vương trong gió, và tiếng người dọn dẹp vang lên lặng lẽ.
+
+Hàn Lập quay người, bước vào trong sương sớm, dáng gầy gò in trên nền trời nhạt.
+
+Trước khi khuất bóng, y nói một câu: “Gặp lại.”
+
+Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.
+
+👁️‍🗨️ 【Hệ thống】— lần cuối — “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
+
+*Tự chọn…* Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.
+
+**Lựa chọn:**
+
+- Khép lại Chương 1  
+  → `__ket_thuc__`
+
+**— Hết chương —**
 
 ---
 
@@ -235,8 +251,6 @@ Ta ngẩng lên, nhận lại món đồ. *Một kẻ xa lạ… lại là ngư�
   → `c1_g17`
 
 ---
-
-## Hồi Kết
 
 ### Đoạn `c1_g17` — Gặp Hàn Lập — trên đường mòn rạng sáng
 

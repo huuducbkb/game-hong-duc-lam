@@ -5,6 +5,20 @@
 
 *Nhánh này gồm 23 đoạn.*
 
+**Sơ đồ nhánh** — cùng một nhánh, nhưng rẽ thành nhiều hướng; mỗi hướng là một cách gặp cơ duyên riêng:
+
+```
+c1_d01  c1_d02   ← rẽ 2 hướng
+  ├─ ① Tới miếu hoang sau núi, xem thử
+  │     (đi thẳng tới hội tụ)
+  └─ ② Ở lại trấn, kiếm ăn qua ngày cho an toàn
+  │     c1_d02b
+  ↓
+  Hội tụ → c1_d03 · c1_d04 · c1_d04b · c1_d04c · …   (mọi đường dùng chung)
+```
+
+> Các đoạn có nhãn **[ĐƯỜNG ①/②/③]** là đường riêng — người chơi chỉ đi MỘT đường. Đoạn không nhãn là dùng chung.
+
 ---
 
 ## Hồi Mở
@@ -65,7 +79,7 @@ Ta nuốt khan. *Ba ngày. Ta có ba ngày trước khi trận chiến ập tớ
 
 ---
 
-### Đoạn `c1_d02b` — Góc chợ — một ngày mòn mỏi
+### Đoạn `c1_d02b` — Góc chợ — một ngày mòn mỏi · **[ĐƯỜNG ②]**
 
 *Ảnh:* `chợ, chiều, quyết định`
 

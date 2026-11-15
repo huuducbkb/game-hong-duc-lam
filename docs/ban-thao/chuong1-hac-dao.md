@@ -5,32 +5,21 @@
 
 *Nhánh này gồm 17 đoạn.*
 
----
+**Sơ đồ nhánh** — cùng một nhánh, nhưng rẽ thành nhiều hướng; mỗi hướng là một cách gặp cơ duyên riêng:
 
-## Hồi Kết
+```
+c1_h01   ← rẽ 3 hướng
+  ├─ ① Trả tiền mua tin chính xác về kế hoạch của chúng
+  │     c1_h02
+  ├─ ② Liên lạc đồng đảng cũ trong bóng tối
+  │     c1_h03
+  └─ ③ Lẻn vào doanh trại Dã Lang Bang do thám
+  │     c1_h04 · c1_h04b / c1_h04c
+  ↓
+  Hội tụ → c1_d18 · c1_h05 · c1_h06 · c1_h07 · …   (mọi đường dùng chung)
+```
 
-### Đoạn `c1_d18` — Kết chương — bình minh Thất Huyền Môn
-
-*Ảnh:* `bình minh, kết chương, núi`
-
-Trời sáng. Dã Lang Bang rút lui, để lại Thất Huyền Môn tan hoang nhưng chưa gục ngã. Máu khô bám trên đá, khói còn vương trong gió, và tiếng người dọn dẹp vang lên lặng lẽ.
-
-Hàn Lập quay người, bước vào trong sương sớm, dáng gầy gò in trên nền trời nhạt.
-
-Trước khi khuất bóng, y nói một câu: “Gặp lại.”
-
-Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.
-
-👁️‍🗨️ 【Hệ thống】— lần cuối — “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
-
-*Tự chọn…* Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.
-
-**Lựa chọn:**
-
-- Khép lại Chương 1  
-  → `__ket_thuc__`
-
-**— Hết chương —**
+> Các đoạn có nhãn **[ĐƯỜNG ①/②/③]** là đường riêng — người chơi chỉ đi MỘT đường. Đoạn không nhãn là dùng chung.
 
 ---
 
@@ -60,7 +49,7 @@ Một gã bán tin ngồi co ro trong góc, nhìn ta bằng con mắt láo liên
 
 ---
 
-### Đoạn `c1_h02` — Gầm cầu — gã bán tin
+### Đoạn `c1_h02` — Gầm cầu — gã bán tin · **[ĐƯỜNG ①]**
 
 *Ảnh:* `tin tức, trả giá, bí mật`
 
@@ -79,7 +68,7 @@ Gã nhìn ta thêm một cái: “Mà nghe nói, ngươi có món nợ với Ban
 
 ---
 
-### Đoạn `c1_h03` — Hẻm sau — gặp đồng đảng cũ
+### Đoạn `c1_h03` — Hẻm sau — gặp đồng đảng cũ · **[ĐƯỜNG ②]**
 
 *Ảnh:* `hẻm tối, đồng bọn, dao`
 
@@ -99,7 +88,7 @@ Hắn phá lên cười, vỗ vai ta. “Đùa thôi. Có việc gì?”
 
 ---
 
-### Đoạn `c1_h04` — Doanh trại Dã Lang Bang — ngoại vi
+### Đoạn `c1_h04` — Doanh trại Dã Lang Bang — ngoại vi · **[ĐƯỜNG ③]**
 
 *Ảnh:* `doanh trại, lửa, do thám`
 
@@ -118,6 +107,67 @@ Ta ghi nhớ từng chi tiết. Nhưng khi lùi bước, ta giẫm phải cành 
 - Ra tay trước khi bị phát hiện  
   → `c1_h04c`  
   ✦ sinh lực -8; mở cờ: da_giet_nguoi
+
+---
+
+### Đoạn `c1_h04b` — Rìa doanh trại — thoát đi trong im lặng · **[ĐƯỜNG ③]**
+
+*Ảnh:* `bóng tối, trinh sát, may mắn`
+
+Ta lùi khỏi bờ rào, từng bước một, không rời mắt khỏi tên lính.
+
+Hắn ngó quanh một lúc, rồi quay lại đống lửa, tiếp tục uống rượu cùng đồng bọn.
+
+Ta tan vào màn đêm, mang theo tin mình vừa nghe được.
+
+**Lựa chọn:**
+
+- Rút về chỗ trú  
+  → `c1_h05`
+
+---
+
+### Đoạn `c1_h04c` — Rìa doanh trại — một mạng đổi một mạng · **[ĐƯỜNG ③]**
+
+*Ảnh:* `máu, bóng tối, sát khí`
+
+Không kịp nghĩ, ta lao tới. Lưỡi dao cắm ngọt vào cổ họng tên lính trước khi hắn kịp hét.
+
+Hắn đổ xuống, máu nóng phun lên tay ta. Ta kéo xác vào bóng tối, tim đập đến nghẹn thở.
+
+*Đêm nay, ta lại nợ thêm một mạng.* Không ai phát hiện. Ta rút lui, mang theo tin vừa nghe được.
+
+**Lựa chọn:**
+
+- Rút về chỗ trú  
+  → `c1_h05`
+
+---
+
+## Hồi Kết
+
+### Đoạn `c1_d18` — Kết chương — bình minh Thất Huyền Môn
+
+*Ảnh:* `bình minh, kết chương, núi`
+
+Trời sáng. Dã Lang Bang rút lui, để lại Thất Huyền Môn tan hoang nhưng chưa gục ngã. Máu khô bám trên đá, khói còn vương trong gió, và tiếng người dọn dẹp vang lên lặng lẽ.
+
+Hàn Lập quay người, bước vào trong sương sớm, dáng gầy gò in trên nền trời nhạt.
+
+Trước khi khuất bóng, y nói một câu: “Gặp lại.”
+
+Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.
+
+👁️‍🗨️ 【Hệ thống】— lần cuối — “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
+
+*Tự chọn…* Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.
+
+**Lựa chọn:**
+
+- Khép lại Chương 1  
+  → `__ket_thuc__`
+
+**— Hết chương —**
 
 ---
 
@@ -244,8 +294,6 @@ Ta không nghe thấy hắn tới. *Kẻ này, không tầm thường.*
 
 ---
 
-## Hồi Kết
-
 ### Đoạn `c1_h17` — Gặp Hàn Lập — hai kẻ sát cơ trong bóng tối
 
 *Ảnh:* `bóng tối, cảnh giác, gặp gỡ`
@@ -286,42 +334,6 @@ Ta đứng lại, lưỡi dao trong tay đã nguội lạnh. *Đừng để ngư
   → `c1_d18`
 - Cười khàn, quay lưng đi ngược hướng  
   → `c1_d18`
-
----
-
-## Hồi Mở
-
-### Đoạn `c1_h04b` — Rìa doanh trại — thoát đi trong im lặng
-
-*Ảnh:* `bóng tối, trinh sát, may mắn`
-
-Ta lùi khỏi bờ rào, từng bước một, không rời mắt khỏi tên lính.
-
-Hắn ngó quanh một lúc, rồi quay lại đống lửa, tiếp tục uống rượu cùng đồng bọn.
-
-Ta tan vào màn đêm, mang theo tin mình vừa nghe được.
-
-**Lựa chọn:**
-
-- Rút về chỗ trú  
-  → `c1_h05`
-
----
-
-### Đoạn `c1_h04c` — Rìa doanh trại — một mạng đổi một mạng
-
-*Ảnh:* `máu, bóng tối, sát khí`
-
-Không kịp nghĩ, ta lao tới. Lưỡi dao cắm ngọt vào cổ họng tên lính trước khi hắn kịp hét.
-
-Hắn đổ xuống, máu nóng phun lên tay ta. Ta kéo xác vào bóng tối, tim đập đến nghẹn thở.
-
-*Đêm nay, ta lại nợ thêm một mạng.* Không ai phát hiện. Ta rút lui, mang theo tin vừa nghe được.
-
-**Lựa chọn:**
-
-- Rút về chỗ trú  
-  → `c1_h05`
 
 ---
 

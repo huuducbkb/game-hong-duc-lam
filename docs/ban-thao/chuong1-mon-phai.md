@@ -5,6 +5,22 @@
 
 *Nhánh này gồm 41 đoạn.*
 
+**Sơ đồ nhánh** — cùng một nhánh, nhưng rẽ thành nhiều hướng; mỗi hướng là một cách gặp cơ duyên riêng:
+
+```
+c1_p01  c1_p02   ← rẽ 3 hướng
+  ├─ ① Ở lại sân tập, luyện võ cho bằng các sư huynh
+  │     c1_p03 · c1_p03b / c1_p03c · c1_p03d · c1_p03e
+  ├─ ② Tìm tới vườn thuốc của môn, xem có gì dùng được
+  │     c1_p04 · c1_p04a / c1_p04b · c1_p06 · c1_p06b
+  └─ ③ Lân la hỏi chuyện, dò la tin tức Dã Lang Bang
+  │     c1_p05 · c1_p05b · c1_p05c
+  ↓
+  Hội tụ → c1_p07 · c1_p08 · c1_p08b · c1_p09 · …   (mọi đường dùng chung)
+```
+
+> Các đoạn có nhãn **[ĐƯỜNG ①/②/③]** là đường riêng — người chơi chỉ đi MỘT đường. Đoạn không nhãn là dùng chung.
+
 ---
 
 ## Hồi Mở
@@ -75,7 +91,7 @@ Sân tập rộng lớn, đất nện phẳng lì, hai bên cắm cờ xanh lam 
 
 ---
 
-### Đoạn `c1_p03` — Sân tập — bị chèn ép
+### Đoạn `c1_p03` — Sân tập — bị chèn ép · **[ĐƯỜNG ①]**
 
 *Ảnh:* `sân tập, chèn ép, nhục nhã`
 
@@ -98,7 +114,7 @@ Hắn cười khẩy. Ta ngồi dưới đất, hai tay siết chặt. Máu nón
 
 ---
 
-### Đoạn `c1_p03b` — Tân xá — luyện lén trong đêm
+### Đoạn `c1_p03b` — Tân xá — luyện lén trong đêm · **[ĐƯỜNG ①]**
 
 *Ảnh:* `luyện võ, đêm, quyết tâm`
 
@@ -120,7 +136,7 @@ Ta nắm chặt tay, cảm nhận sức lực đã khác trước. *Ít ra, lầ
 
 ---
 
-### Đoạn `c1_p03c` — Sân tập — cãi lại
+### Đoạn `c1_p03c` — Sân tập — cãi lại · **[ĐƯỜNG ①]**
 
 *Ảnh:* `cãi lại, nhục nhã, bản lĩnh`
 
@@ -144,7 +160,7 @@ Hắn bỏ đi. Ta gượng ngồi dậy, lau máu nơi khóe miệng. *Đau. Nh
 
 ---
 
-### Đoạn `c1_p03d` — Sân sau — đêm, dưới gốc cổ thụ
+### Đoạn `c1_p03d` — Sân sau — đêm, dưới gốc cổ thụ · **[ĐƯỜNG ①]**
 
 *Ảnh:* `sân sau, đêm, ánh sáng lạ`
 
@@ -174,7 +190,7 @@ Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp
 
 ## Hồi Thân
 
-### Đoạn `c1_p03e` — Sân sau — chôn trả lại
+### Đoạn `c1_p03e` — Sân sau — chôn trả lại · **[ĐƯỜNG ①]**
 
 *Ảnh:* `sân sau, đêm, trăn trở`
 
@@ -194,9 +210,7 @@ Ta đào lên. Khối ngọc vẫn nằm đó dưới gốc cổ thụ, ánh sá
 
 ---
 
-## Hồi Mở
-
-### Đoạn `c1_p04` — Vườn thuốc phía sau môn
+### Đoạn `c1_p04` — Vườn thuốc phía sau môn · **[ĐƯỜNG ②]**
 
 *Ảnh:* `vườn thuốc, thảo dược, yên tĩnh`
 
@@ -223,7 +237,7 @@ Mạc Đại Phu nhìn ta một lúc lâu, rồi khẽ gật đầu. “Thuốc 
 
 ---
 
-### Đoạn `c1_p04a` — Vườn thuốc — hỏi thẳng
+### Đoạn `c1_p04a` — Vườn thuốc — hỏi thẳng · **[ĐƯỜNG ②]**
 
 *Ảnh:* `vườn thuốc, Mạc Đại Phu, cảnh giác`
 
@@ -241,7 +255,7 @@ Ta nuốt khan, không dám hỏi thêm. Ông cũng không nói gì nữa, chỉ
 
 ---
 
-### Đoạn `c1_p04b` — Vườn thuốc — im lặng
+### Đoạn `c1_p04b` — Vườn thuốc — im lặng · **[ĐƯỜNG ②]**
 
 *Ảnh:* `vườn thuốc, Mạc Đại Phu, kín đáo`
 
@@ -259,87 +273,7 @@ Mạc Đại Phu nhìn ta thêm một lát, rồi khẽ gật gù — như hài 
 
 ---
 
-### Đoạn `c1_p05` — Quán nước đầu trấn — dò tin
-
-*Ảnh:* `quán nước, dò tin, giang hồ`
-
-Ta lân la tới quán nước đầu trấn, nơi khách giang hồ tụ tập. Chỉ cần mấy đồng bạc lẻ, ta được ngồi ở góc tối và nghe ngóng.
-
-“Dã Lang Bang dạo này động tĩnh lạ lắm,” — một gã đàn ông râu quai nón hạ giọng. “Chúng kéo tới mấy trăm người, dòm ngó Thất Huyền Môn suốt mấy tháng rồi. Cầm đầu là Hùng Bá — tay đao nặng trịch, nổi tiếng tàn độc.”
-
-*Hùng Bá.* Ta khắc cái tên ấy vào lòng. Biết tên đầu lĩnh, có khi tới lúc nguy cấp lại dùng được.
-
-“Suỵt!” — kẻ bên cạnh huých tay hắn. “Nói bậy mất mạng như chơi.”
-
-“Nghe nói trong môn có một gã đệ tử gầy gò, ít nói, mà mấy vị sư phụ để mắt lắm,” — gã râu quai nón nói tiếp. “Hình như tên là Hàn gì đó…”
-
-*Hàn Lập.* Ta cúi mặt vào chén nước. Ngay cả kẻ ngoài môn cũng để ý tới hắn — trong khi ta thì chẳng ai nhớ mặt. *Ta phải tự tìm đường cho mình.*
-
-“Mà này,” — gã râu quai nón hạ giọng, như nói với chính mình — “nghe đâu sau hậu sơn có cái khe núi lạ lắm. Đêm đêm có ánh sáng xanh chớp lên. Mấy kẻ tò mò tới đó rồi… chẳng ai kể lại được gì.”
-
-*Ánh sáng xanh.* Ta khẽ nhíu mày. Giữa lúc môn ta sắp bị đánh tới nơi, một chuyện lạ như vậy… biết đâu lại là cơ hội của kẻ chẳng còn gì để mất.
-
-Ta đứng dậy, tính tiền nước. Đêm nay, ta sẽ tới khe núi sau hậu sơn xem thử.
-
-**Lựa chọn:**
-
-- Lặng lẽ tới khe núi sau hậu sơn  
-  → `c1_p05b`  
-  ✦ mở cờ: biet_dau_linh
-
----
-
-### Đoạn `c1_p05b` — Hậu sơn — khe núi đêm, theo lời đồn
-
-*Ảnh:* `hậu sơn, khe núi, đêm`
-
-Đêm buông xuống, ta lẻn ra khỏi tân xá, theo con đường mòn vòng ra sau hậu sơn. Trăng lưỡi liềm treo thấp, đủ soi những phiến đá xám nằm rải rác ven đường.
-
-Khe núi nằm khuất sau một vách đá, hẹp và sâu, quanh năm ẩm ướt. Ta đứng trên miệng khe, lắng nghe. Gió lùa qua khe đá nghe như tiếng ai đó thở dài.
-
-Rồi ta thấy nó — một vệt sáng xanh mờ nhạt chớp lên từ đám rêu ướt nơi vách khe, chớp một cái rồi tắt. Ta nín thở, men theo vách đá tới chỗ ấy.
-
-Đất nơi đó mềm và tơi, như vừa được ai xới lên. Ta quỳ xuống, đào bới. Móng tay cào xuống vài tấc, chạm phải một vật lạnh buốt — cứng như đá mà trơn như ngọc.
-
-Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.
-
-*Thứ này… không phải đồ bỏ.* Ta ngồi giữa khe núi tối tăm, khối ngọc trong tay, không biết nên mừng hay nên sợ.
-
-👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”
-
-**Lựa chọn:**
-
-- Siết chặt khối ngọc, mang về tân xá  
-  → `c1_p07`  
-  ✦ mở cờ: co_ngoc_cot; nhận: Ngọc cốt bí ẩn
-- Hoảng hốt chôn trả lại — thứ này quá tà dị  
-  → `c1_p05c`
-
----
-
-## Hồi Thân
-
-### Đoạn `c1_p05c` — Hậu sơn — chôn trả lại
-
-*Ảnh:* `hậu sơn, khe núi, trăn trở`
-
-Ta vội vàng lấp đất lại, tay run đến mức rêu văng cả ra ngoài. *Không phải của ta. Không nên dính vào.* Ta tự nhủ, rồi lặng lẽ theo đường mòn trở về tân xá.
-
-Nhưng đêm ấy, ta không sao ngủ được. Trong giấc mơ chập chờn, một bóng người nữ hiện lên, mờ ảo như sương, giọng nói như rót mật vào tai: “Ngươi… đã chạm vào ta rồi.”
-
-Ta choàng tỉnh, mồ hôi ướt đẫm lưng áo. *Không thể nào.* Nhưng tiếng gọi ấy vẫn vang vọng, kéo ta ra khỏi chăn, kéo ta lê bước trở lại khe núi sau hậu sơn giữa đêm.
-
-Ta đào lên. Khối ngọc vẫn nằm đó nơi vách khe, ánh sáng mờ nhạt như đang chờ ta. Lần này, ta không chôn nữa.
-
-**Lựa chọn:**
-
-- Siết chặt khối ngọc, mang về tân xá  
-  → `c1_p07`  
-  ✦ mở cờ: co_ngoc_cot; nhận: Ngọc cốt bí ẩn
-
----
-
-### Đoạn `c1_p06` — Vườn thuốc — Mạc Đại Phu và khối ngọc
+### Đoạn `c1_p06` — Vườn thuốc — Mạc Đại Phu và khối ngọc · **[ĐƯỜNG ②]**
 
 *Ảnh:* `vườn thuốc, Mạc Đại Phu, khối ngọc`
 
@@ -371,7 +305,7 @@ Ta vội liếc về phía Mạc Đại Phu. Ông lão vẫn cúi bó thuốc, t
 
 ---
 
-### Đoạn `c1_p06b` — Vườn thuốc — chôn trả lại
+### Đoạn `c1_p06b` — Vườn thuốc — chôn trả lại · **[ĐƯỜNG ②]**
 
 *Ảnh:* `vườn thuốc, đêm, trăn trở`
 
@@ -384,6 +318,84 @@ Trong giấc mơ chập chờn, một bóng người nữ hiện lên, mờ ảo
 Ta choàng tỉnh, mồ hôi ướt đẫm lưng áo. *Không thể nào.* Nhưng tiếng gọi ấy vẫn vang vọng, kéo ta ra khỏi chăn, kéo ta lê bước trở lại vườn thuốc giữa đêm.
 
 Ta đào lên. Khối ngọc vẫn nằm đó, ánh sáng mờ nhạt như đang chờ ta. Lần này, ta không chôn nữa.
+
+**Lựa chọn:**
+
+- Siết chặt khối ngọc, mang về tân xá  
+  → `c1_p07`  
+  ✦ mở cờ: co_ngoc_cot; nhận: Ngọc cốt bí ẩn
+
+---
+
+### Đoạn `c1_p05` — Quán nước đầu trấn — dò tin · **[ĐƯỜNG ③]**
+
+*Ảnh:* `quán nước, dò tin, giang hồ`
+
+Ta lân la tới quán nước đầu trấn, nơi khách giang hồ tụ tập. Chỉ cần mấy đồng bạc lẻ, ta được ngồi ở góc tối và nghe ngóng.
+
+“Dã Lang Bang dạo này động tĩnh lạ lắm,” — một gã đàn ông râu quai nón hạ giọng. “Chúng kéo tới mấy trăm người, dòm ngó Thất Huyền Môn suốt mấy tháng rồi. Cầm đầu là Hùng Bá — tay đao nặng trịch, nổi tiếng tàn độc.”
+
+*Hùng Bá.* Ta khắc cái tên ấy vào lòng. Biết tên đầu lĩnh, có khi tới lúc nguy cấp lại dùng được.
+
+“Suỵt!” — kẻ bên cạnh huých tay hắn. “Nói bậy mất mạng như chơi.”
+
+“Nghe nói trong môn có một gã đệ tử gầy gò, ít nói, mà mấy vị sư phụ để mắt lắm,” — gã râu quai nón nói tiếp. “Hình như tên là Hàn gì đó…”
+
+*Hàn Lập.* Ta cúi mặt vào chén nước. Ngay cả kẻ ngoài môn cũng để ý tới hắn — trong khi ta thì chẳng ai nhớ mặt. *Ta phải tự tìm đường cho mình.*
+
+“Mà này,” — gã râu quai nón hạ giọng, như nói với chính mình — “nghe đâu sau hậu sơn có cái khe núi lạ lắm. Đêm đêm có ánh sáng xanh chớp lên. Mấy kẻ tò mò tới đó rồi… chẳng ai kể lại được gì.”
+
+*Ánh sáng xanh.* Ta khẽ nhíu mày. Giữa lúc môn ta sắp bị đánh tới nơi, một chuyện lạ như vậy… biết đâu lại là cơ hội của kẻ chẳng còn gì để mất.
+
+Ta đứng dậy, tính tiền nước. Đêm nay, ta sẽ tới khe núi sau hậu sơn xem thử.
+
+**Lựa chọn:**
+
+- Lặng lẽ tới khe núi sau hậu sơn  
+  → `c1_p05b`  
+  ✦ mở cờ: biet_dau_linh
+
+---
+
+### Đoạn `c1_p05b` — Hậu sơn — khe núi đêm, theo lời đồn · **[ĐƯỜNG ③]**
+
+*Ảnh:* `hậu sơn, khe núi, đêm`
+
+Đêm buông xuống, ta lẻn ra khỏi tân xá, theo con đường mòn vòng ra sau hậu sơn. Trăng lưỡi liềm treo thấp, đủ soi những phiến đá xám nằm rải rác ven đường.
+
+Khe núi nằm khuất sau một vách đá, hẹp và sâu, quanh năm ẩm ướt. Ta đứng trên miệng khe, lắng nghe. Gió lùa qua khe đá nghe như tiếng ai đó thở dài.
+
+Rồi ta thấy nó — một vệt sáng xanh mờ nhạt chớp lên từ đám rêu ướt nơi vách khe, chớp một cái rồi tắt. Ta nín thở, men theo vách đá tới chỗ ấy.
+
+Đất nơi đó mềm và tơi, như vừa được ai xới lên. Ta quỳ xuống, đào bới. Móng tay cào xuống vài tấc, chạm phải một vật lạnh buốt — cứng như đá mà trơn như ngọc.
+
+Một khối ngọc cốt nằm sâu trong đất, ánh sáng mờ nhạt chớp lên rồi tắt. Trong khoảnh khắc, ta thoáng thấy một bóng người mờ ảo bên trong — dáng nữ, tóc dài, nhưng không kịp nhìn rõ. Rồi khối ngọc bỗng **ấm lên** trong lòng bàn tay ta, như có mạch đập riêng.
+
+*Thứ này… không phải đồ bỏ.* Ta ngồi giữa khe núi tối tăm, khối ngọc trong tay, không biết nên mừng hay nên sợ.
+
+👁️‍🗨️ 【Hệ thống】“Cơ duyên… đã tới.”
+
+**Lựa chọn:**
+
+- Siết chặt khối ngọc, mang về tân xá  
+  → `c1_p07`  
+  ✦ mở cờ: co_ngoc_cot; nhận: Ngọc cốt bí ẩn
+- Hoảng hốt chôn trả lại — thứ này quá tà dị  
+  → `c1_p05c`
+
+---
+
+### Đoạn `c1_p05c` — Hậu sơn — chôn trả lại · **[ĐƯỜNG ③]**
+
+*Ảnh:* `hậu sơn, khe núi, trăn trở`
+
+Ta vội vàng lấp đất lại, tay run đến mức rêu văng cả ra ngoài. *Không phải của ta. Không nên dính vào.* Ta tự nhủ, rồi lặng lẽ theo đường mòn trở về tân xá.
+
+Nhưng đêm ấy, ta không sao ngủ được. Trong giấc mơ chập chờn, một bóng người nữ hiện lên, mờ ảo như sương, giọng nói như rót mật vào tai: “Ngươi… đã chạm vào ta rồi.”
+
+Ta choàng tỉnh, mồ hôi ướt đẫm lưng áo. *Không thể nào.* Nhưng tiếng gọi ấy vẫn vang vọng, kéo ta ra khỏi chăn, kéo ta lê bước trở lại khe núi sau hậu sơn giữa đêm.
+
+Ta đào lên. Khối ngọc vẫn nằm đó nơi vách khe, ánh sáng mờ nhạt như đang chờ ta. Lần này, ta không chôn nữa.
 
 **Lựa chọn:**
 

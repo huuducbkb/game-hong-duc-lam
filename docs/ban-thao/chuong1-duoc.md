@@ -5,32 +5,21 @@
 
 *Nhánh này gồm 14 đoạn.*
 
----
+**Sơ đồ nhánh** — cùng một nhánh, nhưng rẽ thành nhiều hướng; mỗi hướng là một cách gặp cơ duyên riêng:
 
-## Hồi Kết
+```
+c1_y01   ← rẽ 3 hướng
+  ├─ ① Đi thẳng lên sườn núi phía bắc tìm linh thảo
+  │     c1_y02
+  ├─ ② Ghé qua chợ, hỏi thăm tin tức trước
+  │     c1_y03 · c1_y05a
+  └─ ③ Tới gặp một thương nhân quen, đổi thuốc lấy tin
+  │     c1_y04
+  ↓
+  Hội tụ → c1_d18 · c1_y05b · c1_y06 · c1_y07 · …   (mọi đường dùng chung)
+```
 
-### Đoạn `c1_d18` — Kết chương — bình minh Thất Huyền Môn
-
-*Ảnh:* `bình minh, kết chương, núi`
-
-Trời sáng. Dã Lang Bang rút lui, để lại Thất Huyền Môn tan hoang nhưng chưa gục ngã. Máu khô bám trên đá, khói còn vương trong gió, và tiếng người dọn dẹp vang lên lặng lẽ.
-
-Hàn Lập quay người, bước vào trong sương sớm, dáng gầy gò in trên nền trời nhạt.
-
-Trước khi khuất bóng, y nói một câu: “Gặp lại.”
-
-Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.
-
-👁️‍🗨️ 【Hệ thống】— lần cuối — “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
-
-*Tự chọn…* Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.
-
-**Lựa chọn:**
-
-- Khép lại Chương 1  
-  → `__ket_thuc__`
-
-**— Hết chương —**
+> Các đoạn có nhãn **[ĐƯỜNG ①/②/③]** là đường riêng — người chơi chỉ đi MỘT đường. Đoạn không nhãn là dùng chung.
 
 ---
 
@@ -59,7 +48,7 @@ Ta khoác sọt lên vai, bước ra khỏi cửa hiệu. Trong túi áo, ta v�
 
 ---
 
-### Đoạn `c1_y02` — Sườn núi phía bắc
+### Đoạn `c1_y02` — Sườn núi phía bắc · **[ĐƯỜNG ①]**
 
 *Ảnh:* `núi, sương, linh thảo`
 
@@ -81,7 +70,7 @@ Nhưng ngay bên cạnh nó, dấu chân thú lớn in sâu trong bùn. Và mộ
 
 ---
 
-### Đoạn `c1_y03` — Chợ sớm Thất Huyền trấn
+### Đoạn `c1_y03` — Chợ sớm Thất Huyền trấn · **[ĐƯỜNG ②]**
 
 *Ảnh:* `chợ, đông người, tin tức`
 
@@ -101,7 +90,28 @@ Ta cúi xuống sọt thuốc, che đi vẻ mặt. *Dã Lang Bang.* Nếu chúng
 
 ---
 
-### Đoạn `c1_y04` — Quán trà — gặp thương nhân quen
+### Đoạn `c1_y05a` — Chiều muộn — về tới trấn, lòng đã đoán trước · **[ĐƯỜNG ②]**
+
+*Ảnh:* `chiều, trấn, bất an`
+
+Trời ngả vàng, ta quay về Thất Huyền trấn. Nhưng không khí trong trấn đã khác lạ.
+
+Người bán hàng dọn sạp sớm, cửa nhà đóng im ỉm. Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.
+
+*Ta đã nghe tin: Dã Lang Bang sắp động thủ.* Tim ta đập nhanh.
+
+Rồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng trấn bùng lên tiếng hét, rồi tiếng binh khí chạm nhau. Người bị thương bắt đầu ngã xuống khắp nơi.
+
+**Lựa chọn:**
+
+- Chạy tới chỗ đông người bị thương, cứu chữa  
+  → `c1_y06`
+- Tìm chỗ trú ẩn, giữ an toàn cho bản thân  
+  → `c1_y07`
+
+---
+
+### Đoạn `c1_y04` — Quán trà — gặp thương nhân quen · **[ĐƯỜNG ③]**
 
 *Ảnh:* `quán trà, thương nhân, mờ ám`
 
@@ -122,24 +132,30 @@ Ta ngồi lại một mình, nhìn chén trà còn nghi ngút khói.
 
 ---
 
-### Đoạn `c1_y05a` — Chiều muộn — về tới trấn, lòng đã đoán trước
+## Hồi Kết
 
-*Ảnh:* `chiều, trấn, bất an`
+### Đoạn `c1_d18` — Kết chương — bình minh Thất Huyền Môn
 
-Trời ngả vàng, ta quay về Thất Huyền trấn. Nhưng không khí trong trấn đã khác lạ.
+*Ảnh:* `bình minh, kết chương, núi`
 
-Người bán hàng dọn sạp sớm, cửa nhà đóng im ỉm. Trên tường thành, mấy đạo sĩ mặc đạo bào xám đứng gác, tay đặt sẵn lên chuôi kiếm.
+Trời sáng. Dã Lang Bang rút lui, để lại Thất Huyền Môn tan hoang nhưng chưa gục ngã. Máu khô bám trên đá, khói còn vương trong gió, và tiếng người dọn dẹp vang lên lặng lẽ.
 
-*Ta đã nghe tin: Dã Lang Bang sắp động thủ.* Tim ta đập nhanh.
+Hàn Lập quay người, bước vào trong sương sớm, dáng gầy gò in trên nền trời nhạt.
 
-Rồi từ phía rừng tối, một tiếng sói tru dài vang lên. Cổng trấn bùng lên tiếng hét, rồi tiếng binh khí chạm nhau. Người bị thương bắt đầu ngã xuống khắp nơi.
+Trước khi khuất bóng, y nói một câu: “Gặp lại.”
+
+Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.
+
+👁️‍🗨️ 【Hệ thống】— lần cuối — “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
+
+*Tự chọn…* Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.
 
 **Lựa chọn:**
 
-- Chạy tới chỗ đông người bị thương, cứu chữa  
-  → `c1_y06`
-- Tìm chỗ trú ẩn, giữ an toàn cho bản thân  
-  → `c1_y07`
+- Khép lại Chương 1  
+  → `__ket_thuc__`
+
+**— Hết chương —**
 
 ---
 
@@ -264,8 +280,6 @@ Phía trước, một bóng người gầy gò đang đứng tựa cột, tay ô
   → `c1_y17`
 
 ---
-
-## Hồi Kết
 
 ### Đoạn `c1_y17` — Gặp Hàn Lập — chữa thương trong đêm
 
