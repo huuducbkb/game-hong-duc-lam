@@ -379,6 +379,24 @@ a{{color:#6fe0c0}}</style></head><body>
 </body></html>"""
 
 
+def luu_anh(name: str, b64: str) -> str:
+    """Lưu ảnh upload. Ảnh cảnh (bc_/vt_/nv_) ghi vào CẢ assets/scene/ lẫn docs/assets/scene/."""
+    name = os.path.basename(name or "image.png") or "image.png"
+    if not re.search(r"\.(png|jpe?g|webp|gif)$", name, re.I):
+        name += ".png"
+    data = base64.b64decode(b64)
+    dest = SCENE_DIR if re.match(r"^(bc_|vt_|nv_)", name) else UI_DIR
+    os.makedirs(dest, exist_ok=True)
+    with open(os.path.join(dest, name), "wb") as f:
+        f.write(data)
+    if dest == SCENE_DIR:
+        web = os.path.join(ROOT, "docs/assets/scene")
+        os.makedirs(web, exist_ok=True)
+        with open(os.path.join(web, name), "wb") as f:
+            f.write(data)
+    return name
+
+
 class H(BaseHTTPRequestHandler):
     def _send(self, body, code=200, ctype="text/html; charset=utf-8"):
         b = body.encode() if isinstance(body, str) else body
@@ -402,20 +420,7 @@ class H(BaseHTTPRequestHandler):
         if self.path.startswith("/upload"):
             try:
                 j = json.loads(raw.decode())
-                name = os.path.basename(j.get("name", "image.png")) or "image.png"
-                if not re.search(r"\.(png|jpe?g|webp|gif)$", name, re.I):
-                    name += ".png"
-                data = base64.b64decode(j["data"])
-                dest = SCENE_DIR if re.match(r"^(bc_|vt_|nv_)", name) else UI_DIR
-                os.makedirs(dest, exist_ok=True)
-                with open(os.path.join(dest, name), "wb") as f:
-                    f.write(data)
-                # ảnh cảnh phải có ở CẢ HAI bản (Python + Pages)
-                if dest == SCENE_DIR:
-                    web = os.path.join(ROOT, "docs/assets/scene")
-                    os.makedirs(web, exist_ok=True)
-                    with open(os.path.join(web, name), "wb") as f:
-                        f.write(data)
+                name = luu_anh(j.get("name", "image.png"), j["data"])
                 self._send(json.dumps({"ok": True, "saved": name}), ctype="application/json")
             except Exception as e:
                 self._send(json.dumps({"ok": False, "error": str(e)}), ctype="application/json")

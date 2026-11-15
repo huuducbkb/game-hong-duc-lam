@@ -181,6 +181,11 @@ class Handler(BaseHTTPRequestHandler):
 
     def _xu_ly_post(self):
         path = urllib.parse.urlparse(self.path).path
+
+        # Xưởng ảnh phải nhận body TRƯỚC khi đọc JSON (đọc rồi thì body cạn, upload 400)
+        if TS and path.startswith("/upload"):
+            return self._delegate_studio()
+
         data = self._body_json()
 
         if path == "/api/new":
@@ -223,26 +228,18 @@ class Handler(BaseHTTPRequestHandler):
             p = E.luu(st, data.get("slot") or st["ten_nhan_vat"])
             return self._json({"ok": True, "tep": os.path.basename(p)})
 
-        if TS and path.startswith("/upload"):
-            return self._delegate_studio()
-
         return self._json({"loi": "Không rõ đường dẫn"}, 404)
 
     # ---------------------------------------------------------- phụ trợ
     def _delegate_studio(self):
-        """Chuyển POST upload cho tools_server xử lý."""
+        """Nhận ảnh upload (JSON base64) và lưu qua tools_server.luu_anh."""
         try:
-            handler = TS.Handler
-            handler.path = self.path
-            handler.headers = self.headers
-            handler.rfile = self.rfile
-            handler.wfile = self.wfile
-            handler.send_response = self.send_response
-            handler.send_header = self.send_header
-            handler.end_headers = self.end_headers
-            handler.do_POST()
+            n = int(self.headers.get("Content-Length", 0) or 0)
+            j = json.loads(self.rfile.read(n).decode("utf-8"))
+            ten = TS.luu_anh(j.get("name", "image.png"), j["data"])
+            self._json({"ok": True, "saved": ten})
         except Exception as ex:
-            self._send(f"Lỗi upload: {ex}", 500)
+            self._json({"ok": False, "error": str(ex)}, 500)
 
     def _serve_file(self, rel: str):
         rel = rel.split("?")[0]

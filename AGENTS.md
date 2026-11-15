@@ -344,7 +344,7 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 - **Bẫy cần nhớ**: công cụ trình duyệt tự động không gõ được vào ô `type="password"`;
   muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
 - Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
-- Test: `node game/_test_engine.js` → 105/105.
+- Test: `node game/_test_engine.js` → 105/105; `python3 game/_test_api.py` → 145/145 (cần `game_server.py` đang chạy).
 
 ### Túi đồ khởi đầu
 
@@ -415,6 +415,10 @@ chưa gắn ảnh thì khung ảnh **ẩn**, hiện nền giấy như cũ.
 - Nạp ảnh: mở **Xưởng** (`python3 tools_server.py`, cổng 12001) → copy prompt → vẽ →
   upload. Tên file phải bắt đầu `bc_` (bối cảnh) / `vt_` (vật phẩm) / `nv_` (nhân vật)
   thì Xưởng tự lưu vào `assets/scene/` + `docs/assets/scene/`.
+- Xưởng cũng nằm trong `game_server.py` tại `/upload` (chỉ cần 1 server đang chạy). Hàm
+  lưu ảnh dùng chung: `tools_server.luu_anh(name, b64)`.
+- **Bẫy**: `game_server.py` phải định tuyến `/upload` **trước** khi đọc body JSON —
+  `_body_json()` đọc hết `Content-Length` nên đọc trước là body cạn, upload trả 400/500.
 - Prompt 4 ảnh thử nằm trong `tools_server.py` mục `ASSETS` (nhóm "Bối cảnh truyện").
   Đã gắn 20 đoạn Chương 1 với 4 ảnh: `bc_cho_01.jpg`, `bc_tan_xa_dem.jpg`,
   `vt_ngoc_cot.jpg`, `nv_tuyet_co.jpg`. Ưu tiên khi một đoạn khớp nhiều ảnh:

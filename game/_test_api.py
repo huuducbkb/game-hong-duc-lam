@@ -427,5 +427,30 @@ check("tán tu tới d17 (kết chương)", r["doan_id"], "c1_d17")
 r = call(o26, "/api/chon", {"chi_so": 0})
 check("d17 khép chương → kết", r.get("ket_thuc"), True)
 
+print("\n=== Z. Upload ảnh cảnh (Xưởng) ===")
+_anh_test = ["bc_test_api.jpg", "nv_test_api.jpg", "ui_test_api.jpg"]
+def _post_raw(p, obj):
+    r = urllib.request.Request(B + p, data=json.dumps(obj).encode(),
+                               headers={"Content-Type": "application/json"})
+    try:
+        return json.load(urllib.request.urlopen(r))
+    except urllib.error.HTTPError as e:
+        return {"_http": e.code, **json.loads(e.read())}
+_png = ("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=")
+kq = _post_raw("/upload", {"name": "bc_test_api.jpg", "data": _png})
+check("upload ảnh cảnh → ok", kq.get("ok"), True)
+check("ảnh cảnh lưu vào assets/scene/", os.path.isfile(f"/workspace/game-hong-duc-lam/assets/scene/bc_test_api.jpg"), True)
+check("ảnh cảnh lưu cả docs/assets/scene/", os.path.isfile(f"/workspace/game-hong-duc-lam/docs/assets/scene/bc_test_api.jpg"), True)
+kq = _post_raw("/upload", {"name": "nv_test_api.jpg", "data": _png})
+check("ảnh nhân vật (nv_) cũng vào scene", os.path.isfile(f"/workspace/game-hong-duc-lam/assets/scene/nv_test_api.jpg"), True)
+kq = _post_raw("/upload", {"name": "ui_test_api.jpg", "data": _png})
+check("ảnh UI (không tiền tố) → assets/ui/", os.path.isfile(f"/workspace/game-hong-duc-lam/assets/ui/ui_test_api.jpg"), True)
+check("ảnh UI KHÔNG vào scene", os.path.isfile(f"/workspace/game-hong-duc-lam/assets/scene/ui_test_api.jpg"), False)
+for _n in _anh_test:
+    for _d in ["assets/scene", "assets/ui", "docs/assets/scene"]:
+        _p = f"/workspace/game-hong-duc-lam/{_d}/{_n}"
+        if os.path.isfile(_p):
+            os.remove(_p)
+
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)
