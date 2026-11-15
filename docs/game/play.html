@@ -99,6 +99,20 @@ body{
 .panel-story p:last-child{margin-bottom:0}
 .panel-story .drop{float:left;font-family:var(--brush);font-size:42px;line-height:.86;padding:2px 7px 0 0;color:var(--seal)}
 .panel-story em{font-style:italic;color:var(--ink-soft)}
+/* --- anh canh truyen (visual novel) --- */
+.scene-box{display:none;margin:0 0 10px;position:relative}
+.scene-box.on{display:block}
+.scene-box img{width:100%;height:228px;object-fit:cover;border-radius:6px;display:block;cursor:zoom-in;
+  background:rgba(217,207,182,.35);box-shadow:0 1px 7px rgba(80,60,30,.2)}
+.scene-box .cap{position:absolute;left:0;right:0;bottom:0;font-size:10px;letter-spacing:1px;
+  color:#fdf9ef;padding:18px 10px 6px;border-radius:0 0 6px 6px;text-transform:uppercase;
+  background:linear-gradient(transparent,rgba(40,28,14,.62))}
+.scene-lb{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;
+  background:rgba(24,18,10,.93);padding:14px}
+.scene-lb.on{display:flex}
+.scene-lb img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 6px 30px rgba(0,0,0,.6)}
+.scene-lb .close{position:absolute;top:12px;right:14px;width:38px;height:38px;font-size:20px;cursor:pointer;
+  border:0;border-radius:99px;background:rgba(255,255,255,.16);color:#fdf9ef}
 
 /* --- nút lựa chọn: xếp dọc dưới cùng --- */
 .choices{flex:0 0 auto;display:flex;flex-direction:column;gap:7px}
@@ -317,8 +331,18 @@ body{
   <section class="frame panel-story" id="story">
     <div class="chapter" id="storyChapter">Chương 1 · Đại chiến Dã Lang Bang</div>
     <div id="loiGiuaVan" class="loi-giua-van" style="display:none"></div>
+    <div class="scene-box" id="sceneBox">
+      <img id="sceneImg" alt="">
+      <div class="cap" id="sceneCap"></div>
+    </div>
     <div id="storyBody"></div>
   </section>
+
+  <!-- anh phong to -->
+  <div class="scene-lb" id="sceneLb">
+    <img id="sceneLbImg" alt="">
+    <button class="close" id="closeSceneLb" aria-label="Dong">✕</button>
+  </div>
 
   <!-- ô nhập tự do (chỉ hiện khi AI dùng được) -->
   <div class="freebar" id="freebar">
@@ -523,6 +547,27 @@ function esc(s) {
 function dinhDang(p) {
   return esc(p).replace(/\*([^*]+)\*/g, '<em class="noi-tam">$1</em>');
 }
+function moAnhLon() {
+  const src = document.getElementById("sceneImg").src;
+  if (!src) return;
+  document.getElementById("sceneLbImg").src = src;
+  document.getElementById("sceneLb").classList.add("on");
+}
+function dongAnhLon() { document.getElementById("sceneLb").classList.remove("on"); }
+function hienThiAnh(kq) {
+  const box = document.getElementById("sceneBox");
+  const img = document.getElementById("sceneImg");
+  const cap = document.getElementById("sceneCap");
+  if (!box || !img) return;
+  const ha = kq.hinh_anh || {};
+  const ten = ha.anh;
+  if (!ten) { box.className = "scene-box"; img.removeAttribute("src"); cap.textContent = ""; return; }
+  img.onerror = () => { box.className = "scene-box"; };
+  img.onclick = moAnhLon;
+  img.src = "../assets/scene/" + ten;
+  box.className = "scene-box on";
+  cap.textContent = kq.boi_canh || "";
+}
 function hienThi(kq) {
   if (typeof xoaBaoDangKe === "function") xoaBaoDangKe();
   if (kq.loi) {
@@ -548,6 +593,7 @@ function hienThi(kq) {
   }
   if (kq.ke_ai) html += '<div class="ke-ai-nhan">✦ AI kể lại theo văn phong tiên hiệp</div>';
   const doan = (kq.ke || "").split(/\n\n+/).map(p => "<p>" + dinhDang(p) + "</p>").join("");
+  hienThiAnh(kq);
   $("#storyBody").innerHTML = html + doan;
   $("#story").scrollTop = 0;
 
@@ -838,6 +884,7 @@ gan("#nutKeAI", "onclick", doiKeAI);
 gan("#openCaiDat", "onclick", moCaiDat);
 gan("#closeCaiDat", "onclick", dongCaiDat);
 gan("#closeCoDuyen", "onclick", dongCoDuyen);
+gan("#closeSceneLb", "onclick", dongAnhLon);
 gan("#luuKey", "onclick", luuKey);
 gan("#xoaKey", "onclick", () => { $("#oKey").value = ""; luuKey(); });
 gan("#hienKey", "onchange", e => { $("#oKey").type = e.target.checked ? "text" : "password"; });
@@ -852,7 +899,7 @@ gan("#openSys", "onclick", () => { drawer.classList.add("on"); scrim.classList.a
 const dong = () => { drawer.classList.remove("on"); scrim.classList.remove("on"); };
 gan("#closeSys", "onclick", dong);
 scrim.onclick = dong;
-document.addEventListener("keydown", e => { if (e.key === "Escape") { dong(); dongCaiDat(); dongCoDuyen(); } });
+document.addEventListener("keydown", e => { if (e.key === "Escape") { dong(); dongCaiDat(); dongCoDuyen(); dongAnhLon(); } });
 
 document.querySelectorAll("#tabsBar .tab").forEach(t => t.onclick = () => {
   document.querySelectorAll("#tabsBar .tab").forEach(x => x.classList.remove("on"));

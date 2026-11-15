@@ -320,9 +320,10 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 
 1. ~~Người dùng duyệt giao diện 1 cột~~ ✅
 1b. ~~Giao diện cơ duyên trong túi (viền nhiều màu + bấm xem thông tin)~~ ✅
+1c. ~~Thư viện ảnh cảnh truyện + giao diện hiển thị theo đoạn (Chương 1, 4 ảnh thử)~~ ✅
 2. Backend game Python + tích hợp LLM (theo cơ chế chương + đoạn)
 3. Nội dung Chương 1 (Dã Lang Bang), Chương 2 (Huyết Sát Thí Luyện), Chương 3
-4. Thư viện ảnh/video + thẻ thuộc tính cho AI tra
+4. Thư viện ảnh/video: mở rộng đủ Chương 1 (~19 ảnh) + video ngắn (chuỗi ảnh + hiệu ứng)
 5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
 
 ## Bản game JS trên GitHub Pages (đã phát hành)
@@ -343,7 +344,7 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 - **Bẫy cần nhớ**: công cụ trình duyệt tự động không gõ được vào ô `type="password"`;
   muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
 - Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
-- Test: `node game/_test_engine.js` → 99/99.
+- Test: `node game/_test_engine.js` → 105/105.
 
 ### Túi đồ khởi đầu
 
@@ -398,6 +399,26 @@ tiêu đề chung hàng với avatar và các nút xuống hàng dưới trải 
 `chromium --headless=new --no-sandbox --dump-dom` một trang harness tự tạo iframe
 `play.html` rồi tự bấm nút, in kết quả vào `<pre>` để đọc. Chạy server tĩnh tạm bằng
 `python3 -m http.server <cổng>` trỏ vào thư mục chứa bản cần đo.
+
+### Ảnh cảnh truyện (thư viện ảnh — đã chốt với người dùng)
+
+Ảnh lớn trên đầu khung truyện, **đổi theo mỗi đoạn** (kiểu visual novel). Đoạn nào
+chưa gắn ảnh thì khung ảnh **ẩn**, hiện nền giấy như cũ.
+
+- **Cách A (đang dùng):** mỗi đoạn ghi thẳng tên ảnh — `hinh_anh.anh` trong
+  `chuong1.json` (giữ nguyên `hinh_anh.tags` cũ). Không tốn token, không đoán sai.
+  Cách B (AI tự tra theo thuộc tính) để sau.
+- Thư viện: `docs/assets/library/index.json` (mô tả `loai`, `mo_ta`, `tags`, `dung_o`).
+  Ảnh để ở `assets/scene/` (bản Python) **và** `docs/assets/scene/` (bản Pages) — phải có **cả hai**.
+- Giao diện: `#sceneBox` + `#sceneImg` + `#sceneCap` (caption = `boi_canh`), bấm ảnh mở
+  phóng to `#sceneLb`; đóng bằng nút `#closeSceneLb` hoặc phím Escape.
+- Nạp ảnh: mở **Xưởng** (`python3 tools_server.py`, cổng 12001) → copy prompt → vẽ →
+  upload. Tên file phải bắt đầu `bc_` (bối cảnh) / `vt_` (vật phẩm) / `nv_` (nhân vật)
+  thì Xưởng tự lưu vào `assets/scene/` + `docs/assets/scene/`.
+- Prompt 4 ảnh thử nằm trong `tools_server.py` mục `ASSETS` (nhóm "Bối cảnh truyện").
+  Đã gắn 20 đoạn Chương 1 với 4 ảnh: `bc_cho_01.jpg`, `bc_tan_xa_dem.jpg`,
+  `vt_ngoc_cot.jpg`, `nv_tuyet_co.jpg`. Ưu tiên khi một đoạn khớp nhiều ảnh:
+  **nhân vật > vật phẩm > bối cảnh**.
 
 ### HAI bản `play.html` phải đồng bộ giao diện
 

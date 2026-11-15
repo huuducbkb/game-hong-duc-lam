@@ -194,6 +194,23 @@ console.log("\n=== N. Cơ duyên trong túi ===");
   check("trạng thái ra tới giao diện", JSON.stringify(r2.trang_thai.tui_do).includes("đã khế ước"), true);
 }
 
+console.log("\n=== O. Ảnh cảnh truyện ===");
+{
+  const index = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "docs", "assets", "library", "index.json"), "utf8"));
+  const chuong = JSON.parse(fs.readFileSync(path.join(GOC, "chuong1.json"), "utf8"));
+  const co_anh = chuong.doan.filter((d) => d.hinh_anh && d.hinh_anh.anh);
+  check("có đoạn gắn ảnh", co_anh.length > 0, true);
+  check("tên ảnh có trong thư viện", co_anh.every((d) => index.anh[d.hinh_anh.anh]), true);
+  check("đoạn gắn ảnh vẫn giữ tags", co_anh.every((d) => Array.isArray(d.hinh_anh.tags)), true);
+  check("mọi mục thư viện có loai + tags", Object.values(index.anh).every((a) => a.loai && a.tags.length), true);
+  // engine trả hinh_anh ra giao diện
+  const o = mk("Anh", "tan_tu");
+  const r = Engine.bat_dau(o);
+  check("engine trả hinh_anh.anh ở d01", r.hinh_anh && r.hinh_anh.anh, "bc_cho_01.jpg");
+  const r2 = Engine.chon(o, 0);
+  check("đổi đoạn vẫn có ảnh", r2.hinh_anh && r2.hinh_anh.anh, "bc_cho_01.jpg");
+}
+
 console.log("\n=== L. Lưu / nạp ===");
 o = mk("Save", "tan_tu");
 Engine.bat_dau(o);

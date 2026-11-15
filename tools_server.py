@@ -111,6 +111,66 @@ ASSETS = [
         "with one or two small ink splashes. On a plain empty light paper background. "
         "Only the single brush stroke, nothing else.",
     },
+
+    # ---- Bối cảnh truyện (Chương 1) — dùng chung 1 thư viện ảnh cho cả ảnh lẫn video ----
+    {
+        "key": "bc_cho_01",
+        "name": "B.1 Chợ sớm Thất Huyền trấn",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_cho_01.jpg",
+        "use": "Cảnh mở đầu — góc chợ sớm, quầy hàng, sọt rách. Dùng cho 6 đoạn (chợ, ngõ, quán nước).",
+        "prompt": STYLE + " "
+        "An early-morning market street in an ancient Chinese mountain town, seen at eye level. "
+        "Rows of humble wooden stalls with awnings, baskets of dried fish and herbs, jars, "
+        "a few distant figures in simple cloth robes suggested loosely by a few ink strokes. "
+        "Dawn light, thin morning mist drifting between the stalls. "
+        "Composition leaves the upper third and one side calm and empty for game text. "
+        "Warm cream paper, quiet and lived-in, no dramatic action.",
+    },
+    {
+        "key": "bc_tan_xa_dem",
+        "name": "B.2 Tân xá — đêm (phòng tu luyện)",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_tan_xa_dem.jpg",
+        "use": "Phòng ở tập thể môn phái, ban đêm — tu luyện, song tu, đột phá. Dùng nhiều nhất (14 đoạn).",
+        "prompt": STYLE + " "
+        "A simple communal sleeping quarters in an ancient Chinese martial sect at night, seen from inside. "
+        "A low wooden sleeping platform with thin rolled bedding, a small paper-lantern window on one side, "
+        "a plain low table with a bowl, bare timber walls and a beam. "
+        "Cool blue night light from the window, one warm dim lamp glow, deep quiet shadow in the corners. "
+        "Composition keeps the center low and calm so game text can sit above. "
+        "Empty, still, faint incense smoke in the air.",
+    },
+    {
+        "key": "vt_ngoc_cot",
+        "name": "B.3 Ngọc cốt bí ẩn (vật phẩm cơ duyên)",
+        "ratio": "1:1 vuông (1000×1000)",
+        "file": "vt_ngoc_cot.jpg",
+        "use": "Khối ngọc chứa Tuyết Cơ — hiện ở bảng thông tin cơ duyên + cảnh 'ngọc phát sáng' (6 đoạn).",
+        "prompt": STYLE + " "
+        "A single mysterious jade bone artifact resting on plain empty paper, centered, still life. "
+        "A smooth pale bluish-white jade piece shaped like a slender bone or finger-bone, "
+        "faintly glowing from within with a soft cold light, delicate carved cloud patterns on its surface. "
+        "A few thin wisps of pale mist curling around it, tiny floating light motes. "
+        "Faint reflection shadow beneath. Nothing else in the frame, generous empty space around it. "
+        "Cold, mysterious, sacred.",
+    },
+    {
+        "key": "nv_tuyet_co",
+        "name": "B.4 Tuyết Cơ (nhân vật)",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_tuyet_co.jpg",
+        "use": "Nữ tu Hợp Hoan Tông trong ngọc cốt — chân dung hiện ở cảnh đối thoại (25 đoạn nhắc tên).",
+        "prompt": STYLE + " "
+        "Portrait of a beautiful cold aloof female cultivator of an ancient Chinese fantasy sect, "
+        "upper body only, facing the viewer at a slight angle. Young woman, pale jade-like skin, "
+        "long black hair partly loose with a simple jade hairpin, slender willow brows, calm distant eyes, "
+        "a faint knowing half-smile. She wears flowing pale blue-and-white silk robes with faint cloud embroidery, "
+        "a translucent gauze veil draping one shoulder. "
+        "Faint cold mist and a subtle inner glow around her like a spirit sealed for ages. "
+        "Background left almost empty with soft ink wash so game text can sit beside. "
+        "Elegant, ethereal, slightly dangerous, not lewd.",
+    },
 ]
 
 
@@ -151,7 +211,7 @@ def build_prompts_html():
     blocks = []
     for a in ASSETS:
         got = ""
-        for fn, size in list_files(UI_DIR):
+        for fn, size in list_files(UI_DIR) + list_files(SCENE_DIR):
             if fn == a["file"]:
                 got = f'<span class="got">✔ đã nhận ({size//1024} KB)</span>'
         blocks.append(f"""
@@ -346,9 +406,16 @@ class H(BaseHTTPRequestHandler):
                 if not re.search(r"\.(png|jpe?g|webp|gif)$", name, re.I):
                     name += ".png"
                 data = base64.b64decode(j["data"])
-                os.makedirs(UI_DIR, exist_ok=True)
-                with open(os.path.join(UI_DIR, name), "wb") as f:
+                dest = SCENE_DIR if re.match(r"^(bc_|vt_|nv_)", name) else UI_DIR
+                os.makedirs(dest, exist_ok=True)
+                with open(os.path.join(dest, name), "wb") as f:
                     f.write(data)
+                # ảnh cảnh phải có ở CẢ HAI bản (Python + Pages)
+                if dest == SCENE_DIR:
+                    web = os.path.join(ROOT, "docs/assets/scene")
+                    os.makedirs(web, exist_ok=True)
+                    with open(os.path.join(web, name), "wb") as f:
+                        f.write(data)
                 self._send(json.dumps({"ok": True, "saved": name}), ctype="application/json")
             except Exception as e:
                 self._send(json.dumps({"ok": False, "error": str(e)}), ctype="application/json")

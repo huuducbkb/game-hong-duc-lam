@@ -1,0 +1,98 @@
+{
+  "phien_ban": 1,
+  "ghi_chu": "Thư viện ảnh cảnh truyện. Mỗi mục: loai, mo_ta, tags (để tra). Cách A: đoạn ghi thẳng hinh_anh.anh = tên file.",
+  "anh": {
+    "bc_cho_01.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Chợ sớm Thất Huyền trấn — quầy hàng, sọt rách, sương sớm",
+      "dung_o": [
+        "c1_d01",
+        "c1_d02",
+        "c1_d02b",
+        "c1_p05"
+      ],
+      "tags": [
+        "chợ",
+        "ngõ",
+        "quán nước",
+        "sáng",
+        "chiều",
+        "dò tin",
+        "ăn mày"
+      ]
+    },
+    "bc_tan_xa_dem.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Tân xá môn phái — phòng ở tập thể ban đêm, sập gỗ, đèn giấy",
+      "dung_o": [
+        "c1_p01",
+        "c1_p03b",
+        "c1_p11",
+        "c1_p11b",
+        "c1_p12"
+      ],
+      "tags": [
+        "tân xá",
+        "đêm",
+        "tu luyện",
+        "song tu",
+        "đột phá",
+        "luyện võ",
+        "sáng"
+      ]
+    },
+    "vt_ngoc_cot.jpg": {
+      "loai": "vat_pham",
+      "mo_ta": "Ngọc cốt bí ẩn — khối ngọc hình xương, phát sáng lạnh từ bên trong",
+      "dung_o": [
+        "c1_p06",
+        "c1_p07",
+        "c1_p19"
+      ],
+      "tags": [
+        "ngọc cốt",
+        "khối ngọc",
+        "ngọc phát sáng",
+        "cơ duyên",
+        "vật phẩm"
+      ]
+    },
+    "nv_tuyet_co.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Tuyết Cơ — nữ tu Hợp Hoan Tông trong ngọc cốt, lạnh lùng thanh khiết",
+      "dung_o": [
+        "c1_p08",
+        "c1_p08b",
+        "c1_p09",
+        "c1_p09b",
+        "c1_p09c",
+        "c1_p10",
+        "c1_p10b",
+        "c1_p11c"
+      ],
+      "tags": [
+        "Tuyết Cơ",
+        "Hợp Hoan Tông",
+        "khế ước",
+        "ngọc cốt",
+        "song tu",
+        "đối thoại"
+      ],
+      "thuoc_tinh": {
+        "chung_loai": "nhân loại",
+        "gioi_tinh": "nữ",
+        "tuoi_tac": "trẻ",
+        "voc_dang": "thon",
+        "mau_da": "trắng ngọc",
+        "ngoai_hinh": "mày liễu, mắt lạnh, tóc dài cài trâm",
+        "than_thai": "lạnh lùng, thanh khiết",
+        "trang_phuc": "bạch y lam văn",
+        "chung_toc": "nhân loại",
+        "tinh_cach": [
+          "lạnh lùng",
+          "tính toán"
+        ]
+      }
+    }
+  }
+}
