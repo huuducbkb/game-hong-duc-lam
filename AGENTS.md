@@ -11,7 +11,7 @@ Người dùng chỉ có **Safari (iPad/iPhone), KHÔNG có terminal** → mọi
 quy trình PIC-IN-GAME.** Không tự nghĩ cách khác.
 
 - Skill: `.agents/skills/pic-in-game/SKILL.md`
-- Báo cáo đầy đủ: `docs/PIC-IN-GAME-report.md`
+- Báo cáo đầy đủ: `tai-lieu/PIC-IN-GAME-report.md`
 
 Tóm tắt 5 bước: **① PROMPT** (viết prompt gửi AI ngoài) → **② NHẬN ẢNH** (kiểm kê, giữ bản gốc)
 → **③ ĐO** (Pillow: độ dày viền, ruột sáng/tối, vị trí ấn son) → **④ GHÉP** (`border-image`
@@ -120,13 +120,24 @@ Quy ước: font `Noto Serif` + `Ma Shan Zheng`; màu mực `#1b1915`, ấn son 
 
 - `game/engine.py` — **engine game** (cơ chế chương + đoạn, chỉ số, lưu/nạp)
 - `game/chapters/chuong1.json` — **Chương 1: Đại chiến Dã Lang Bang** (23 đoạn, đường chơi ~17–18 đoạn)
-- `game/play.html` — **trang chơi** (giao diện 1 cột + 4 tab, nối API thật)
+- `game/play.html` — **trang chơi bản Python** (giao diện 1 cột + 4 tab, nối API thật)
+- `game/_test_engine.js` — test engine JS (đặt ở đây, KHÔNG trong `docs/`)
 - `game_server.py` — **máy chủ game** (API + tệp tĩnh + Xưởng ảnh), cổng 12001
 - `demo/` — 12 phương án giao diện + `hybrid-1col.html` (mẫu) + `hybrid.html` (2 cột)
 - `assets/ui/` — ảnh UI đã tối ưu
 - `tools_server.py` — Xưởng: prompt ảnh + upload
 - `SPEC.md` — đặc tả game
+- `tai-lieu/` — **tài liệu nội bộ** (kế hoạch, góp ý bản thảo, báo cáo). Nằm NGOÀI `docs/` nên không bị Pages phục vụ.
 - `.env` — key API (KHÔNG commit; đã trong .gitignore)
+
+### ⚠ `docs/` = thư mục deploy, MỌI thứ trong đó đều PUBLIC
+
+Workflow Pages upload **cả** `docs/`. Nên:
+- Chỉ để trong `docs/` những gì người chơi được thấy (game, ảnh, trang chủ, bản thảo để đọc).
+- Tài liệu nội bộ, kế hoạch, báo cáo → để ở `tai-lieu/` (ngoài `docs/`).
+- File test (`_test_engine.js`) → để ở `game/`, không để trong `docs/game/`.
+- Kiểm tra nhanh: `curl -o /dev/null -w '%{http_code}' https://huuducbkb.github.io/game-hong-duc-lam/<đường-dẫn>` — 200 nghĩa là đang public.
+- Lưu ý: repo là **public**, nên file ở `tai-lieu/` vẫn xem được trên GitHub; chỉ là hết public trên *web Pages*.
 
 ## Chạy game
 
@@ -185,7 +196,7 @@ ra từ liên kết, nên tự đúng cho mọi nhánh.
 ## Kế hoạch & đặc tả
 
 - `SPEC.md` — đặc tả game (Chương 1–3)
-- `docs/KE-HOACH-CHI-TIET.md` — **kế hoạch chi tiết đã chốt với người dùng**:
+- `tai-lieu/KE-HOACH-CHI-TIET.md` — **kế hoạch chi tiết đã chốt với người dùng**:
   cơ chế "chương + đoạn" chống lặp/quên, bảng chỉ số (10 chỉ số + tấn công/kháng phép
   9 hệ), thần niệm, thư viện ảnh/video, chi phí token, tab Hệ Thống, nghề phụ + kinh tế.
 
@@ -243,8 +254,8 @@ Mỗi xuất thân KHÔNG chỉ là nhãn — nó quyết định **hành trình
 riêng, lỗi canon `linh thảo`/`Trúc Cơ`, từng dùng chung đoạn kết `c1_d18`). Gỡ để
 người chơi không gặp truyện lỗi.
 
-- **Ý tưởng + bản thảo cũ giữ ở** `docs/luu-tru/Y-TUONG-3-NHANH-CHUA-XAY.md`
-  và `docs/luu-tru/chuong1-3-nhanh-chua-xay.json` — để **xây lại sau**.
+- **Ý tưởng + bản thảo cũ giữ ở** `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`
+  và `tai-lieu/chuong1-3-nhanh-chua-xay.json` — để **xây lại sau**.
 - **Bật lại:** thêm nhóm vào `game/xuat_than.json` + thêm đoạn vào `chuong1.json`
   (theo đúng 4 bước cơ duyên + quy tắc hệ thống ở dưới) + thêm test.
 
@@ -303,7 +314,7 @@ không hợp giọng tu tiên. Đã đổi thành **"phàm vật"**.
 | **Môn phái** | Ngọc cốt bí ẩn (đào ở vườn thuốc, Mạc Đại Phu để ý) | Hấp thu **linh khí** nhanh gấp mấy lần; giấu kín vì môn võ lâm | ✅ `c1_p19` |
 
 **2 nhánh đã xong (chuẩn mẫu).** 3 nhánh dược đồng / gia tộc / hắc đạo đã gỡ —
-xem `docs/luu-tru/Y-TUONG-3-NHANH-CHUA-XAY.md`.
+xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 
 ## Cần làm tiếp
 
@@ -324,7 +335,7 @@ xem `docs/luu-tru/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 - **Bẫy cần nhớ**: công cụ trình duyệt tự động không gõ được vào ô `type="password"`;
   muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
 - Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
-- Test: `node docs/game/_test_engine.js` → 92/92.
+- Test: `node game/_test_engine.js` → 92/92.
 
 ### Túi đồ khởi đầu
 
@@ -358,3 +369,17 @@ tiêu đề chung hàng với avatar và các nút xuống hàng dưới trải 
 `chromium --headless=new --no-sandbox --dump-dom` một trang harness tự tạo iframe
 `play.html` rồi tự bấm nút, in kết quả vào `<pre>` để đọc. Chạy server tĩnh tạm bằng
 `python3 -m http.server <cổng>` trỏ vào thư mục chứa bản cần đo.
+
+### HAI bản `play.html` phải đồng bộ giao diện
+
+- `game/play.html` — bản Python (chạy `game_server.py`, KHÔNG deploy)
+- `docs/game/play.html` — bản JS (deploy lên Pages, người dùng chơi)
+
+Hai file khác nhau phần nối backend (`/api/*` vs `Engine.*`) nhưng **giao diện + CSS
+phải giống nhau**. Khi sửa giao diện một bản, sửa luôn bản kia. Bản Python không có
+nút Cài đặt key (key nằm ở `.env`), nên đừng bê nguyên nút đó sang.
+
+Lưu ý harness: iframe **phải cùng origin** với trang cần đo, nếu không sẽ dính
+`contentDocument = null`. Cách gọn: đặt file harness vào chính thư mục server phục vụ
+(ví dụ để tạm ở gốc dự án rồi mở qua `game_server.py`), dùng đường dẫn tương đối
+(`/game`). Nhớ xoá file harness sau khi đo.

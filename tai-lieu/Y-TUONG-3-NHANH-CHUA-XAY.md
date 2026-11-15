@@ -8,7 +8,7 @@ Giữ lại ý tưởng ở đây để **xây lại sau** khi rảnh.
 
 ## Bản lưu dữ liệu cũ
 
-- `docs/luu-tru/chuong1-3-nhanh-chua-xay.json` — 41 đoạn + 3 nhóm xuất thân
+- `chuong1-3-nhanh-chua-xay.json` — 41 đoạn + 3 nhóm xuất thân
   (bản thảo cũ, để tham khảo khi viết lại — KHÔNG dùng trực tiếp vì còn lỗi).
 
 ## 3 nhánh — ý tưởng đã chốt
@@ -20,7 +20,7 @@ Giữ lại ý tưởng ở đây để **xây lại sau** khi rảnh.
 | **Hắc đạo** | Thôn Thiên Ma Công (nuốt để mạnh) | Mạnh **10×** nhưng tích **sát nghiệp** → mất bản ngã; cứu bằng **lôi kiếp** | ⏳ chưa xây |
 
 Chi tiết đầy đủ (bảng chỉ số, mức nội dung, lỗi canon cần sửa) ở
-`docs/KE-HOACH-SUA-CHUONG-1.md`.
+`KE-HOACH-SUA-CHUONG-1.md`.
 
 ## Còn nợ khi xây lại (4 bước mỗi nhánh)
 

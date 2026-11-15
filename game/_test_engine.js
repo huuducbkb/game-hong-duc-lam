@@ -7,7 +7,9 @@
 
 const fs = require("fs");
 const path = require("path");
-const Engine = require("./engine.js");
+// engine.js + du-lieu/ nam trong thu muc deploy (docs/game/) — tro nguoc ve do
+const GAME_DIR = path.join(__dirname, "..", "docs", "game");
+const Engine = require(path.join(GAME_DIR, "engine.js"));
 
 // localStorage giả cho Node
 const _kho = {};
@@ -19,7 +21,7 @@ globalThis.localStorage = {
   get length() { return Object.keys(_kho).length; },
 };
 
-const GOC = path.join(__dirname, "du-lieu");
+const GOC = path.join(GAME_DIR, "du-lieu");
 Engine.napXuatThan(JSON.parse(fs.readFileSync(path.join(GOC, "xuat_than.json"), "utf8")));
 Engine.napChuong(1, JSON.parse(fs.readFileSync(path.join(GOC, "chuong1.json"), "utf8")));
 

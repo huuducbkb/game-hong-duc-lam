@@ -6,7 +6,7 @@ Game AI text tu tiên — đồng nhân xuyên không *Phàm Nhân Tu Tiên*.
 
 Phương pháp ghép ảnh do AI bên ngoài vẽ vào giao diện web, không méo nét vẽ.
 
-- Báo cáo: [`docs/PIC-IN-GAME-report.md`](docs/PIC-IN-GAME-report.md)
+- Báo cáo: [`tai-lieu/PIC-IN-GAME-report.md`](tai-lieu/PIC-IN-GAME-report.md)
 - Skill: [`.agents/skills/pic-in-game/SKILL.md`](.agents/skills/pic-in-game/SKILL.md)
 - Script: `.agents/skills/pic-in-game/scripts/`
 
