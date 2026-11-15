@@ -44,10 +44,19 @@ body{
 .avatar-wrap label{position:absolute;inset:0;cursor:pointer}
 .titles{flex:1 1 auto;min-width:0}
 .titles h1{margin:0;font-size:16.5px;font-weight:600;letter-spacing:.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.titles .sub{font-size:10.5px;color:var(--ink-faint);letter-spacing:1.8px;text-transform:uppercase}
+.titles .sub{font-size:10.5px;color:var(--ink-faint);letter-spacing:1.8px;text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sys-btn{flex:0 0 auto;font-family:var(--serif);font-size:12.5px;font-weight:600;color:var(--ink);
   background:rgba(255,253,246,.62);border:1px solid var(--edge);border-radius:99px;padding:8px 13px}
 .sys-btn:active{background:rgba(255,253,246,.95)}
+
+/* ---------- THANH TRÊN: MÀN HẸP ---------- */
+@media (max-width:430px){
+  .topbar{flex-wrap:wrap;gap:8px 9px}
+  .avatar-wrap{width:42px;height:42px}
+  .titles{order:0;flex:1 1 auto;min-width:0}
+  .topbar .sys-btn{order:1;flex:1 1 auto;padding:8px 6px;font-size:11.5px;white-space:nowrap}
+}
 
 /* ---------- KHUNG VẼ TAY ---------- */
 .frame{border-style:solid;border-color:transparent;background-color:transparent;position:relative}
@@ -221,6 +230,10 @@ body{
 .caidat .note{font-size:12.5px;margin-top:10px;line-height:1.5;font-weight:600}
 .caidat .chk{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-soft);margin-top:9px}
 .caidat .chk input{width:auto}
+.caidat .x{position:absolute;top:10px;right:12px;width:32px;height:32px;padding:0;
+  font-family:var(--serif);font-size:15px;line-height:1;color:var(--ink-faint);
+  background:transparent;border:1px solid var(--edge);border-radius:50%;cursor:pointer}
+.caidat .x:active{background:rgba(40,34,26,.08)}
 </style>
 </head>
 <body>
@@ -258,7 +271,6 @@ body{
     <button class="sys-btn" id="openSys">Hệ Thống</button>
     <button class="sys-btn" id="nutKeAI" title="Bật/tắt AI kể lại đoạn truyện">AI kể: Bật</button>
     <button class="sys-btn" id="openReset">Chơi lại</button>
-    <button class="sys-btn" id="openCaiDat" title="Nhập key Gemini để bật gõ tự do">⚙️ Cài đặt</button>
   </header>
 
   <!-- bảng truyện -->
@@ -363,6 +375,7 @@ body{
     </div>
   </section>
 
+  <button class="close" id="openCaiDat" title="Nhập key Gemini để bật gõ tự do">⚙️ Cài đặt key AI</button>
   <button class="close" id="closeSys">Đóng bảng</button>
 </aside>
 
@@ -370,6 +383,7 @@ body{
 <!-- MÀN CÀI ĐẶT KEY GEMINI -->
 <div class="caidat" id="caiDat">
   <div class="card">
+    <button class="x" id="closeCaiDat" title="Đóng" aria-label="Đóng">✕</button>
     <h2>⚙️ Cài đặt</h2>
     <div class="cap">Key Gemini — dành cho gõ tự do</div>
 
@@ -665,6 +679,9 @@ function capNhatTrangThaiKey() {
   }
 }
 function moCaiDat() {
+  const dr = $("#drawer"), sc = $("#scrim");
+  if (dr) dr.classList.remove("on");
+  if (sc) sc.classList.remove("on");
   $("#caiDat").style.display = "flex";
   $("#oKey").value = AI.lay_key();
   capNhatTrangThaiKey();
@@ -734,13 +751,19 @@ async function luuKey() {
   }
 })();
 
-$("#guiTuDo").onclick = tuDo;
-$("#nutKeAI").onclick = doiKeAI;
-$("#openCaiDat").onclick = moCaiDat;
-$("#closeCaiDat").onclick = dongCaiDat;
-$("#luuKey").onclick = luuKey;
-$("#xoaKey").onclick = () => { $("#oKey").value = ""; luuKey(); };
-$("#hienKey").onchange = e => { $("#oKey").type = e.target.checked ? "text" : "password"; };
+// gan su kien an toan: thieu phan tu cung khong lam chet JS phia sau
+function gan(sel, ev, fn) {
+  const el = document.querySelector(sel);
+  if (el) el[ev] = fn;
+  return el;
+}
+gan("#guiTuDo", "onclick", tuDo);
+gan("#nutKeAI", "onclick", doiKeAI);
+gan("#openCaiDat", "onclick", moCaiDat);
+gan("#closeCaiDat", "onclick", dongCaiDat);
+gan("#luuKey", "onclick", luuKey);
+gan("#xoaKey", "onclick", () => { $("#oKey").value = ""; luuKey(); });
+gan("#hienKey", "onchange", e => { $("#oKey").type = e.target.checked ? "text" : "password"; });
 const oTuDo = $("#tuDo");
 function coGian() { oTuDo.style.height = "auto"; oTuDo.style.height = Math.min(oTuDo.scrollHeight, 120) + "px"; }
 oTuDo.oninput = coGian;
@@ -748,9 +771,9 @@ oTuDo.onkeydown = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefaul
 
 // ---------------------------------------------------------- drawer + tab
 const drawer = $("#drawer"), scrim = $("#scrim");
-$("#openSys").onclick = () => { drawer.classList.add("on"); scrim.classList.add("on"); };
+gan("#openSys", "onclick", () => { drawer.classList.add("on"); scrim.classList.add("on"); });
 const dong = () => { drawer.classList.remove("on"); scrim.classList.remove("on"); };
-$("#closeSys").onclick = dong;
+gan("#closeSys", "onclick", dong);
 scrim.onclick = dong;
 document.addEventListener("keydown", e => { if (e.key === "Escape") { dong(); dongCaiDat(); } });
 
