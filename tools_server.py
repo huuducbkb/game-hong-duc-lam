@@ -22,13 +22,21 @@ UI_DIR = f"{ROOT}/assets/ui"
 SCENE_DIR = f"{ROOT}/assets/scene"
 FIELDS = ["OPENROUTER_API_KEY", "geminikey", "geminikey1", "geminikey2", "geminikey3"]
 
-STYLE = (
+STYLE_GOC = (
     "Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. "
     "Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, "
     "wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), "
     "minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. "
+)
+NO_TEXT = (
     "IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, "
     "no watermark, no logo, no UI labels."
+)
+STYLE = STYLE_GOC + NO_TEXT
+# Ấn son là ngoại lệ: chữ trong dấu là nội dung chính, không được cấm chữ.
+STYLE_CHU = STYLE_GOC + (
+    "IMPORTANT: the ONLY text allowed is the two Chinese seal-script characters inside the seal; "
+    "no other letters, numbers, signature, watermark, logo or UI labels."
 )
 
 ASSETS = [
@@ -100,11 +108,13 @@ ASSETS = [
         "name": "6. Ấn son (con dấu)",
         "ratio": "1:1 vuông (512×512)",
         "file": "seal.png",
-        "use": "Con dấu đỏ trang trí (góc bảng, góc tranh).",
-        "prompt": STYLE + " "
+        "use": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: Hồng Đức.",
+        "prompt": STYLE_CHU + " "
         "A single traditional red seal stamp (chop) on a plain empty light paper background, centered. "
-        "A square vermilion-red stamped mark with rough uneven edges like real ink seal impression, "
-        "containing a simple abstract ancient seal pattern (NOT readable characters). "
+        "A square vermilion-red stamped mark with rough uneven edges like real ink seal impression. "
+        "The seal is carved in ancient Chinese seal script (zhuanshu) and reads exactly two "
+        "Chinese characters, top to bottom, meaning the Vietnamese era name 'Hong Duc' "
+        "(Vietnamese: Hồng Đức; Chinese: 洪德). Only these two characters, nothing else. "
         "Faded, slightly blotchy, authentic antique look. Only the seal, nothing else.",
     },
     {
