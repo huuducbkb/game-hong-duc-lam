@@ -312,3 +312,17 @@ xem `docs/luu-tru/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 3. Nội dung Chương 1 (Dã Lang Bang), Chương 2 (Huyết Sát Thí Luyện), Chương 3
 4. Thư viện ảnh/video + thẻ thuộc tính cho AI tra
 5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
+
+## Bản game JS trên GitHub Pages (đã phát hành)
+
+- **Link chơi**: https://huuducbkb.github.io/game-hong-duc-lam/game/
+- Nguồn JS nằm ở `docs/game/`: `play.html` (giao diện), `engine.js` (dịch từ `game/engine.py`),
+  `ai.js` (dịch từ `game/ai.py`), `du-lieu/` (JSON dùng chung với bản Python).
+- Chạy **không cần server** — mở file là chơi. Key Gemini do người chơi tự nhập qua nút
+  **⚙️ Cài đặt**, lưu trong `localStorage` (`hdttl_gemini_key`). **Không nhúng key vào code.**
+- Trang `docs/index.html` (GitHub Pages) có nút "🎮 Chơi game".
+- **Bẫy cần nhớ**: công cụ trình duyệt tự động không gõ được vào ô `type="password"`;
+  muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
+- Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
+- Test: `node docs/game/_test_engine.js` → 92/92.
+- Deploy tự động qua `.github/workflows/pages.yml` khi push lên `main` (đường dẫn `docs/**`).
