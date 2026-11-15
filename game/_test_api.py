@@ -30,9 +30,9 @@ def check(ten, dieu, thuc):
 
 print("=== A. Endpoint cơ bản ===")
 o = mk()
-check("/api/xuat_than đủ 5 nhóm",
+check("/api/xuat_than đủ 2 nhóm chơi được",
       [n["ma"] for n in call(o, "/api/xuat_than")["nhom"]],
-      ["tan_tu", "mon_phai", "duoc", "gia_toc", "hac_dao"])
+      ["tan_tu", "mon_phai"])
 check("/api/state chưa phiên", call(o, "/api/state"), {"co_phien": False})
 check("/api/doan chưa phiên → 400", call(o, "/api/doan").get("_http"), 400)
 
@@ -46,25 +46,23 @@ check("nhóm môn phái đúng đoạn mở", call(o2, "/api/new", {"ten": "B2",
 
 print("\n=== C. Lùi hành động ===")
 o3 = mk()
-call(o3, "/api/new", {"ten": "C", "nhom": "hac_dao"})
-call(o3, "/api/chon", {"chi_so": 0})     # mua tin: -5 bạc
-call(o3, "/api/chon", {"chi_so": 0})
+call(o3, "/api/new", {"ten": "C", "nhom": "tan_tu"})
+call(o3, "/api/chon", {"chi_so": 0})     # d01 → d02
+call(o3, "/api/chon", {"chi_so": 0})     # d02 → d03
 st = call(o3, "/api/state")
 check("sau 2 bước, so_lui = 2", st["so_lui"], 2)
-check("bạc đã trừ", st["trang_thai"]["bac"], 0)
 r = call(o3, "/api/lui", {})
-check("lùi 1 → đúng đoạn", r["doan_id"], "c1_h02")
+check("lùi 1 → đúng đoạn", r["doan_id"], "c1_d02")
 check("lùi 1 có thông báo", bool(r.get("thong_bao")), True)
 check("so_lui sau lùi = 1", call(o3, "/api/state")["so_lui"], 1)
 r = call(o3, "/api/lui", {})
-check("lùi 2 → về đầu", r["doan_id"], "c1_h01")
-check("bạc hoàn lại 3", r["trang_thai"]["bac"], 3)
+check("lùi 2 → về đầu", r["doan_id"], "c1_d01")
 check("lùi khi cạn → 400", call(o3, "/api/lui", {}).get("_http"), 400)
 check("so_lui sau cạn = 0", call(o3, "/api/state")["so_lui"], 0)
 
 print("\n=== D. Nhập tự do + lỗi nhập ===")
 o4 = mk()
-call(o4, "/api/new", {"ten": "D", "nhom": "duoc"})
+call(o4, "/api/new", {"ten": "D", "nhom": "tan_tu"})
 r = call(o4, "/api/tu_do", {"van_ban": "nhìn quanh tìm lối thoát"})
 check("tự do trả đoạn hợp lệ", "doan_id" in r, True)
 check("nhập rỗng → báo lỗi", call(o4, "/api/tu_do", {"van_ban": "   "}).get("loi") is not None, True)
@@ -108,7 +106,7 @@ check("ten=123 → 400, không sập", call(mk(), "/api/new", {"ten": 123}).get(
 
 # chạm đúp "Khép lại Chương 1" (lỗi gốc: KeyError '__ket_thuc__')
 o7 = mk()
-call(o7, "/api/new", {"ten": "R2", "nhom": "hac_dao"})
+call(o7, "/api/new", {"ten": "R2", "nhom": "tan_tu"})
 for _ in range(40):
     r = call(o7, "/api/chon", {"chi_so": 0})
     if r.get("ket_thuc"):
@@ -118,8 +116,8 @@ check("bấm khép chương lần 1", call(o7, "/api/chon", {"chi_so": 0}).get("
 check("bấm lần 2 (chạm đúp) không sập",
       call(o7, "/api/chon", {"chi_so": 0}).get("doan_id"), "__ket_thuc__")
 check("bấm lần 3 vẫn ổn", call(o7, "/api/chon", {"chi_so": 0}).get("ket_thuc"), True)
-check("lùi ở màn kết → về đoạn cuối", call(o7, "/api/lui", {}).get("doan_id"), "c1_d18")
-check("lùi tiếp → về đoạn kế trước", call(o7, "/api/lui", {}).get("doan_id"), "c1_h17b")
+check("lùi ở màn kết → về đoạn cuối", call(o7, "/api/lui", {}).get("doan_id"), "c1_d17")
+check("lùi tiếp → về đoạn kế trước", call(o7, "/api/lui", {}).get("doan_id"), "c1_d16")
 check("máy chủ vẫn sống sau tất cả", call(o7, "/api/state").get("co_phien"), True)
 
 print("\n=== I. Nhánh môn phái: cơ duyên + tu luyện ===")
@@ -307,6 +305,127 @@ for cs, dich, ten in [(0, "c1_p18a", "thành thật"), (1, "c1_p18b", "cười t
     check(f"p17 {ten} → {dich}", r["doan_id"], dich)
     r = call(ox, "/api/chon", {"chi_so": 0})
     check(f"  {ten} → kết p19", r["doan_id"], "c1_p19")
+
+print("\n=== J. Nhánh TÁN TU: cơ duyên + mọi đường ===")
+def toi(o, dich, toi_da=40):
+    """Tiến (chọn chi_so=0) cho tới khi tới `dich`; trả đoạn cuối."""
+    r = {}
+    for _ in range(toi_da):
+        r = call(o, "/api/chon", {"chi_so": 0})
+        if r.get("doan_id") == dich or r.get("ket_thuc"):
+            break
+    return r
+
+# Đường 1: d02 → d03 → d04b → d04c → d04d → d05 (chạm hộp)
+o20 = mk()
+r = call(o20, "/api/new", {"ten": "TT", "nhom": "tan_tu"})
+check("tán tu mở đoạn d01", r["doan_id"], "c1_d01")
+r = call(o20, "/api/chon", {"chi_so": 0})
+check("d01 → d02", r["doan_id"], "c1_d02")
+r = call(o20, "/api/chon", {"chi_so": 0})
+check("d02 → d03 (miếu hoang)", r["doan_id"], "c1_d03")
+r = call(o20, "/api/chon", {"chi_so": 0})
+check("d03 → d04b (vào trong)", r["doan_id"], "c1_d04b")
+r = call(o20, "/api/chon", {"chi_so": 0})
+check("d04b → d04c (Đỗ Tam)", r["doan_id"], "c1_d04c")
+r = call(o20, "/api/chon", {"chi_so": 0})
+check("d04c → d04d (đoạt hộp)", r["doan_id"], "c1_d04d")
+sl_truoc = call(o20, "/api/state")["trang_thai"]["sinh_luc"]["hien"]
+r = call(o20, "/api/chon", {"chi_so": 0})   # chạm hai thanh kiếm: -12 sinh lực
+check("d04d → d05 (chạm hộp)", r["doan_id"], "c1_d05")
+st = call(o20, "/api/state")["trang_thai"]
+check("cờ thay_do_tam_chet", "thay_do_tam_chet" in st["co_su_kien"], True)
+check("sinh lực bị trừ 12", sl_truoc - st["sinh_luc"]["hien"], 12)
+
+# Đường 2: d02 → d02b (ở lại trấn) → d03 → d04 (đứng ngoài) → d04b
+o21 = mk()
+call(o21, "/api/new", {"ten": "TT2", "nhom": "tan_tu"})
+call(o21, "/api/chon", {"chi_so": 0})   # d02
+r = call(o21, "/api/chon", {"chi_so": 1})   # ở lại trấn
+check("d02 → d02b (ở lại trấn)", r["doan_id"], "c1_d02b")
+r = call(o21, "/api/chon", {"chi_so": 0})   # lên núi
+check("d02b → d03", r["doan_id"], "c1_d03")
+r = call(o21, "/api/chon", {"chi_so": 1})   # đứng ngoài quan sát
+check("d03 → d04 (quan sát)", r["doan_id"], "c1_d04")
+r = call(o21, "/api/chon", {"chi_so": 0})   # quỳ chạm nắp hộp
+check("d04 → d04b", r["doan_id"], "c1_d04b")
+
+# đường cảnh giác: d06 → d06b (thử thách) → d07
+o22 = mk()
+call(o22, "/api/new", {"ten": "TT3", "nhom": "tan_tu"})
+r = toi(o22, "c1_d06")
+check("tới d06 (kiếm linh)", r["doan_id"], "c1_d06")
+r = call(o22, "/api/chon", {"chi_so": 1})   # cảnh giác
+check("d06 → d06b (thử thách)", r["doan_id"], "c1_d06b")
+r = call(o22, "/api/chon", {"chi_so": 0})   # nghe rõ điều kiện
+check("d06b → d07", r["doan_id"], "c1_d07")
+
+# đường do dự: d07 → d07b (điều kiện) → d08
+o23 = mk()
+call(o23, "/api/new", {"ten": "TT4", "nhom": "tan_tu"})
+r = toi(o23, "c1_d07")
+check("tới d07", r["doan_id"], "c1_d07")
+r = call(o23, "/api/chon", {"chi_so": 1})   # do dự
+check("d07 → d07b (điều kiện)", r["doan_id"], "c1_d07b")
+r = call(o23, "/api/chon", {"chi_so": 0})   # đưa tay nhận chủ
+check("d07b → d08", r["doan_id"], "c1_d08")
+r = call(o23, "/api/chon", {"chi_so": 0})   # nghe dạy kiếm đạo
+check("d08 → d09", r["doan_id"], "c1_d09")
+st = call(o23, "/api/state")["trang_thai"]
+check("nhận Hồng Trần Kiếm Hạp", any(v["ten"] == "Hồng Trần Kiếm Hạp" for v in st["tui_do"]), True)
+check("cờ co_kiem_hong_tran", "co_kiem_hong_tran" in st["co_su_kien"], True)
+
+# đường chiến trận: d11 → d13 (môn phái)
+o24 = mk()
+call(o24, "/api/new", {"ten": "TT5", "nhom": "tan_tu"})
+r = toi(o24, "c1_d11")
+check("tới d11 (Dã Lang Bang tập kích)", r["doan_id"], "c1_d11")
+r = call(o24, "/api/chon", {"chi_so": 1})   # tới Thất Huyền Môn
+check("d11 → d13 (cổng vỡ)", r["doan_id"], "c1_d13")
+r = call(o24, "/api/chon", {"chi_so": 0})
+check("d13 → d14 (sau trận)", r["doan_id"], "c1_d14")
+
+# đường chiến trận: d11 → d12 (cứu dân)
+o24b = mk()
+call(o24b, "/api/new", {"ten": "TT5b", "nhom": "tan_tu"})
+r = toi(o24b, "c1_d11")
+r = call(o24b, "/api/chon", {"chi_so": 0})   # xuống trấn cứu dân
+check("d11 → d12 (cứu dân)", r["doan_id"], "c1_d12")
+r = call(o24b, "/api/chon", {"chi_so": 0})
+check("d12 → d14 (sau trận)", r["doan_id"], "c1_d14")
+
+# tán tu tu luyện: d09 → d10 đột phá Luyện Khí
+o25 = mk()
+call(o25, "/api/new", {"ten": "TT6", "nhom": "tan_tu"})
+r = toi(o25, "c1_d09")
+r = call(o25, "/api/chon", {"chi_so": 0})   # tiếp tục tu luyện
+check("d09 → d10 (đột phá)", r["doan_id"], "c1_d10")
+st = call(o25, "/api/state")["trang_thai"]
+check("học Hồng Trần kiếm khí", "Hồng Trần kiếm khí" in st["ky_nang"], True)
+
+# 4 nhánh gặp Hàn Lập của tán tu (hảo cảm theo dữ liệu: 10 / 0 / 5 / 8)
+for cs, ten, coco, hc in [(0, "thành thật", "noi_that_han_lap", 10), (1, "cười trừ", None, 0),
+                          (2, "hỏi ngược", None, 5), (3, "bầu nước", None, 8)]:
+    ot = mk()
+    call(ot, "/api/new", {"ten": "TT7", "nhom": "tan_tu"})
+    r = toi(ot, "c1_d15")
+    check(f"tới d15 (gặp Hàn Lập)", r["doan_id"], "c1_d15")
+    r = call(ot, "/api/chon", {"chi_so": cs})
+    check(f"d15 {ten} → d16", r["doan_id"], "c1_d16")
+    st = call(ot, "/api/state")["trang_thai"]
+    check(f"  {ten}: hảo cảm Hàn Lập = {hc}", st["npc"].get("Hàn Lập", {}).get("hao_cam", 0), hc)
+    if coco:
+        check(f"  {ten}: cờ {coco}", coco in st["co_su_kien"], True)
+    r = call(ot, "/api/chon", {"chi_so": 0})
+    check(f"  {ten} → kết d17", r["doan_id"], "c1_d17")
+
+# tán tu đi tới hết chương (màn kết)
+o26 = mk()
+call(o26, "/api/new", {"ten": "TT8", "nhom": "tan_tu"})
+r = toi(o26, "c1_d17")
+check("tán tu tới d17 (kết chương)", r["doan_id"], "c1_d17")
+r = call(o26, "/api/chon", {"chi_so": 0})
+check("d17 khép chương → kết", r.get("ket_thuc"), True)
 
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)
