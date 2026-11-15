@@ -170,6 +170,18 @@ Kết quả ở `docs/ban-thao/`: `index.html` (mục lục: chương + từng n
 > **Khi đang viết 1 nhánh:** dùng `--nhanh <mã>` để chỉ xuất nhánh đó — đúng
 > nhánh đang duyệt, không lẫn các nhánh khác.
 
+**Sơ đồ nhánh tự động.** Nhiều nhánh rẽ thành nhiều đường song song (người chơi
+chọn 1) rồi hội tụ lại. Nếu chỉ xếp đoạn theo thứ tự JSON, người đọc tưởng nhân
+vật đi HẾT các đường liên tiếp (đã từng bị báo lỗi này). Vì vậy export tự:
+- phát hiện điểm rẽ (đoạn có ≥2 lựa chọn) và lan truyền để biết đoạn nào thuộc
+  đường nào;
+- đoạn đi được từ ≥2 đường = **hội tụ** (dùng chung, không gắn nhãn);
+- in **sơ đồ nhánh** ở đầu file (①②③ + tên lựa chọn + danh sách đoạn + điểm hội tụ);
+- gắn nhãn `· **[ĐƯỜNG ①]**` vào tiêu đề mỗi đoạn riêng của đường.
+
+Không hard-code — hàm `phan_tich_nhanh()` trong `tools/export_ban_thao.py` tự suy
+ra từ liên kết, nên tự đúng cho mọi nhánh.
+
 ## Kế hoạch & đặc tả
 
 - `SPEC.md` — đặc tả game (Chương 1–3)
