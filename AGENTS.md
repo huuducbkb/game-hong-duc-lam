@@ -344,7 +344,7 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 - **Bẫy cần nhớ**: công cụ trình duyệt tự động không gõ được vào ô `type="password"`;
   muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
 - Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
-- Test: `node game/_test_engine.js` → 105/105; `python3 game/_test_api.py` → 145/145 (cần `game_server.py` đang chạy).
+- Test: `node game/_test_engine.js` → 105/105; `python3 game/_test_api.py` → 157/157 (cần `game_server.py` đang chạy).
 
 ### Túi đồ khởi đầu
 
@@ -423,6 +423,32 @@ chưa gắn ảnh thì khung ảnh **ẩn**, hiện nền giấy như cũ.
   Đã gắn 20 đoạn Chương 1 với 4 ảnh: `bc_cho_01.jpg`, `bc_tan_xa_dem.jpg`,
   `vt_ngoc_cot.jpg`, `nv_tuyet_co.jpg`. Ưu tiên khi một đoạn khớp nhiều ảnh:
   **nhân vật > vật phẩm > bối cảnh**.
+
+#### Nhận diện ảnh hàng loạt — không phải đặt tên file (đã chốt với người dùng)
+
+Người dùng vẽ nhiều ảnh trên iPad; tên file kiểu `IMG_4821.JPG` và **không phải đổi tên**.
+Xưởng tự đoán mỗi ảnh thuộc prompt nào rồi cho xác nhận. Mô-đun: `game/nhan_dien_anh.py`.
+
+Bốn lớp, xếp theo mức tăng độ đúng:
+1. **Lọc theo tỷ lệ** (thuần Python, đúng 100%, không tốn token): `kich_thuoc_anh()` đọc
+   header PNG/JPEG/GIF/WebP (không cần PIL); `loc_ung_vien()` loại asset sai tỷ lệ. Nếu chỉ
+   còn **1 ứng viên** → gán luôn, **không gọi AI**.
+2. **Đưa AI nguyên văn `prompt` tiếng Anh** (không chỉ tên ngắn) — khớp câu gốc đã dùng để vẽ.
+3. **Tả trước, chọn sau**: AI trả JSON `{mo_ta, key, do_tin_cay, ly_do}`, `temperature=0`,
+   `responseMimeType=application/json`.
+4. **Màn duyệt**: `do_tin_cay >= 80` (và có key) → `tu_dong=True`; dưới ngưỡng → hiện lưới
+   ảnh thu nhỏ + ô chọn prompt để người dùng xác nhận.
+
+API (cả `tools_server.py` lẫn `game_server.py`, định tuyến **trước** khi đọc body):
+- `POST /doan_anh` `{anh:[{name,data(b64)}]}` → `{ok, ket_qua:[{name,kich_thuoc,ung_vien,key,ten,file,do_tin_cay,mo_ta,ly_do,tu_dong}], loi}`
+- `POST /luu_loat` `{ds:[{key,data(b64)}]}` → `{ok, da_luu:[{key,file}], loi}` (lưu theo **key**, tự đặt tên file đúng)
+- Hàm dùng chung: `TS.xu_ly_nhan_dien(anh_list, env)`, `TS.xu_ly_luu_loat(ds)`, `TS.luu_theo_key(key, b64)`, `TS.con_thieu_anh()`.
+
+Giao diện Xưởng: khu **Duyệt ảnh** (`#review`/`#grid`) + `DANH_SACH` (danh sách asset cho ô chọn),
+nút **Lưu ảnh** (`#saveBtn` → `/luu_loat`); phần "Ảnh đã nhận" nhắc **còn thiếu mấy ảnh**.
+
+Lưu ý: model Gemini có thể bị khai tử/503 theo tài khoản — dùng danh sách dự phòng
+`MODEL_DU_PHONG` (hiện `gemini-flash-lite-latest` chạy tốt; `gemini-2.5-flash` đã 404).
 
 ### HAI bản `play.html` phải đồng bộ giao diện
 

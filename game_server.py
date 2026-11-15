@@ -185,6 +185,12 @@ class Handler(BaseHTTPRequestHandler):
         # Xưởng ảnh phải nhận body TRƯỚC khi đọc JSON (đọc rồi thì body cạn, upload 400)
         if TS and path.startswith("/upload"):
             return self._delegate_studio()
+        if TS and path.startswith("/doan_anh"):
+            r = TS.xu_ly_nhan_dien(self._body_json().get("anh", []), AI.load_env())
+            return self._json({"ok": True, **r})
+        if TS and path.startswith("/luu_loat"):
+            r = TS.xu_ly_luu_loat(self._body_json().get("ds", []))
+            return self._json({"ok": True, **r})
 
         data = self._body_json()
 

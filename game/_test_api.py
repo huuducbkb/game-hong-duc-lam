@@ -452,5 +452,54 @@ for _n in _anh_test:
         if os.path.isfile(_p):
             os.remove(_p)
 
+print("\n=== Y. Nhận diện ảnh (Xưởng B+) ===")
+def _png(w, h):
+    import struct as _s, zlib as _z
+    rows = b""
+    for _ in range(h):
+        rows += b"\x00" + bytes([240, 235, 225]) * w
+    def _ch(t, d):
+        c = t + d
+        return _s.pack(">I", len(d)) + c + _s.pack(">I", _z.crc32(c) & 0xffffffff)
+    return (b"\x89PNG\r\n\x1a\n"
+            + _ch(b"IHDR", _s.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0))
+            + _ch(b"IDAT", _z.compress(rows)) + _ch(b"IEND", b""))
+
+def _b64(data):
+    import base64 as _b
+    return _b.b64encode(data).decode()
+
+# 9:16 chỉ có 1 ứng viên khớp tỷ lệ → đường tắt, KHÔNG gọi AI (nhanh, ổn định)
+kq = _post_raw("/doan_anh", {"anh": [{"name": "IMG_9999.PNG", "data": _b64(_png(1080, 1920))}]})
+check("/doan_anh trả ok", kq.get("ok"), True)
+_k0 = (kq.get("ket_qua") or [{}])[0]
+check("ảnh 9:16 → tự gán bg-main (không cần AI)", _k0.get("key"), "bg-main")
+check("  độ tin cậy 100", _k0.get("do_tin_cay"), 100)
+check("  đánh dấu tự động", _k0.get("tu_dong"), True)
+check("  có tên tiếng Việt của asset", bool(_k0.get("ten")), True)
+check("  giữ tên file gốc", _k0.get("name"), "IMG_9999.PNG")
+
+# 5:1 chỉ có 1 ứng viên → btn-choice
+kq = _post_raw("/doan_anh", {"anh": [{"name": "a.png", "data": _b64(_png(1200, 240))}]})
+check("ảnh 5:1 → btn-choice", (kq.get("ket_qua") or [{}])[0].get("key"), "btn-choice")
+
+# Lưu loạt theo key → ghi đúng tên file
+kq = _post_raw("/luu_loat", {"ds": [{"key": "divider-ink", "data": _b64(_png(1600, 160))}]})
+check("/luu_loat trả ok", kq.get("ok"), True)
+check("lưu theo key → đúng tên divider-ink.png",
+      os.path.isfile("/workspace/game-hong-duc-lam/assets/ui/divider-ink.png"), True)
+check("  đúng tên file trong kết quả",
+      (kq.get("da_luu") or [{}])[0].get("file"), "divider-ink.png")
+# Ảnh cảnh lưu theo key phải vào CẢ hai nơi
+kq = _post_raw("/luu_loat", {"ds": [{"key": "bc_cho_01", "data": _b64(_png(900, 1200))}]})
+check("lưu key bc_cho_01 → assets/scene/",
+      os.path.isfile("/workspace/game-hong-duc-lam/assets/scene/bc_cho_01.jpg"), True)
+check("  và docs/assets/scene/",
+      os.path.isfile("/workspace/game-hong-duc-lam/docs/assets/scene/bc_cho_01.jpg"), True)
+for _p in ["assets/ui/divider-ink.png", "assets/scene/bc_cho_01.jpg", "docs/assets/scene/bc_cho_01.jpg"]:
+    _f = f"/workspace/game-hong-duc-lam/{_p}"
+    if os.path.isfile(_f):
+        os.remove(_f)
+
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)

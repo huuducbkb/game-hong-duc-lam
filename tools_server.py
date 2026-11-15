@@ -6,9 +6,17 @@ import base64
 import json
 import os
 import re
+import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 ROOT = "/workspace/game-hong-duc-lam"
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+try:
+    from game import nhan_dien_anh as ND  # nhận diện ảnh (Gemini vision)
+except Exception:
+    ND = None
 ENV_PATH = f"{ROOT}/.env"
 UI_DIR = f"{ROOT}/assets/ui"
 SCENE_DIR = f"{ROOT}/assets/scene"
@@ -229,9 +237,16 @@ def build_received_html():
     for folder, label in ((UI_DIR, "Giao diện"), (SCENE_DIR, "Bối cảnh")):
         for fn, size in list_files(folder):
             rows.append(f"<li>{label}: <b>{fn}</b> — {size//1024} KB</li>")
+    thieu = con_thieu_anh()
+    tong = len(ASSETS)
+    if thieu:
+        ds = ", ".join(f"<code>{a['file']}</code>" for a in thieu)
+        nhac = (f"<p class='warn'>⚠️ Còn thiếu <b>{len(thieu)}/{tong}</b> ảnh: {ds}</p>")
+    else:
+        nhac = f"<p class='ok'>✅ Đã đủ {tong}/{tong} ảnh.</p>"
     if not rows:
-        return "<p class='muted'>Chưa nhận được ảnh nào.</p>"
-    return "<ul>" + "".join(rows) + "</ul>"
+        return nhac + "<p class='muted'>Chưa nhận được ảnh nào.</p>"
+    return nhac + "<ul>" + "".join(rows) + "</ul>"
 
 
 def page():
@@ -245,6 +260,8 @@ def page():
     html = html.replace("__PROMPTS__", build_prompts_html())
     html = html.replace("__RECEIVED__", build_received_html())
     html = html.replace("__KEYS__", keys_html)
+    ds = [{"key": a["key"], "name": a["name"]} for a in ASSETS]
+    html = html.replace("__ASSET_JSON__", json.dumps(ds, ensure_ascii=False))
     return html
 
 
@@ -284,6 +301,14 @@ PAGE_TMPL = """<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
  details{margin-top:22px}
  summary{cursor:pointer;color:var(--muted);font-size:13px}
  .steps li{margin:5px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:10px 0}
+.item{background:#0f1728;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.item img{width:100%;height:150px;object-fit:cover;display:block;background:#0a1220}
+.item .meta{padding:8px}
+.item select{width:100%;margin:6px 0 4px;padding:8px;border-radius:8px;border:1px solid var(--line);
+  background:#0a1220;color:var(--ink);font-size:12.5px}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:#0a1220;color:var(--muted)}
+.badge.chac{background:#12351f;color:#7fe0a8}
 </style></head><body>
 
 <h1>Xưởng tài nguyên</h1>
@@ -291,11 +316,12 @@ PAGE_TMPL = """<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
 
 <h2>Cách làm</h2>
 <ol class="steps">
-  <li>Bấm <b>Copy prompt</b> ở từng thẻ bên dưới.</li>
-  <li>Dán vào AI tạo ảnh của bạn, chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
-  <li>Tải ảnh kết quả về máy (đặt tên đúng như ghi trên thẻ, ví dụ <code>bg-main.png</code>).</li>
-  <li>Kéo ảnh vào ô <b>Tải ảnh lên</b> ở cuối trang này.</li>
-  <li>Nhắn trợ lý: <b>"đã gửi ảnh"</b> — tôi sẽ ghép vào giao diện.</li>
+  <li>Bấm <b>Copy prompt</b> ở từng thẻ bên dưới, dán vào AI tạo ảnh, chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
+  <li>Lưu ảnh về máy — <b>không cần đổi tên</b> (tên <code>IMG_1234.JPG</code> cũng được).</li>
+  <li>Kéo <b>tất cả</b> ảnh vào ô <b>Tải ảnh lên</b> ở cuối trang (chọn nhiều ảnh một lúc).</li>
+  <li>AI tự đoán mỗi ảnh thuộc prompt nào (theo tỷ lệ + nội dung). Ảnh nào chắc chắn thì tự gán;
+      ảnh nào chưa chắc thì hiện lưới để bạn <b>xác nhận</b>.</li>
+  <li>Bấm <b>Lưu ảnh</b> — xong, không cần đặt tên file bao giờ.</li>
 </ol>
 <p class="muted">Lưu ý: prompt đã ghi rõ <b>không có chữ/ký tự</b> trong ảnh, vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.</p>
 
@@ -307,10 +333,18 @@ __PROMPTS__
 
 <h2>Tải ảnh lên</h2>
 <div class="card">
-  <div id="drop">Bấm để chọn ảnh, hoặc kéo ảnh vào đây<br><span class="muted">(có thể chọn nhiều ảnh một lúc)</span></div>
+  <div id="drop">Bấm để chọn ảnh, hoặc kéo ảnh vào đây<br><span class="muted">(chọn nhiều ảnh một lúc — tên gì cũng được)</span></div>
   <input id="file" type="file" accept="image/*" multiple hidden>
   <button class="up" onclick="document.getElementById('file').click()">Chọn ảnh để tải lên</button>
   <div id="msg"></div>
+</div>
+
+<div id="review" style="display:none">
+  <h2>Duyệt ảnh</h2>
+  <p class="muted" id="reviewHint"></p>
+  <div class="grid" id="grid"></div>
+  <button class="up" id="saveBtn" onclick="luuLoat()">💾 Lưu ảnh</button>
+  <div id="saveMsg"></div>
 </div>
 
 <details>
@@ -322,10 +356,11 @@ __PROMPTS__
 </details>
 
 <script>
+const DANH_SACH = __ASSET_JSON__;
 function cp(btn){
   const ta = btn.parentElement.querySelector('textarea');
   ta.select(); ta.setSelectionRange(0, 999999);
-  const done = () => { btn.classList.add('done'); btn.textContent='✅ Đã copy'; 
+  const done = () => { btn.classList.add('done'); btn.textContent='✅ Đã copy';
     setTimeout(()=>{btn.classList.remove('done');btn.textContent='📋 Copy prompt';},1600); };
   if (navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(ta.value).then(done).catch(()=>{ try{document.execCommand('copy');done();}catch(e){} });
@@ -335,24 +370,67 @@ const drop=document.getElementById('drop'), fileInput=document.getElementById('f
 drop.onclick=()=>fileInput.click();
 ['dragenter','dragover'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('hot');}));
 ['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('hot');}));
-drop.addEventListener('drop',ev=>sendFiles(ev.dataTransfer.files));
-fileInput.onchange=()=>sendFiles(fileInput.files);
-async function sendFiles(files){
+drop.addEventListener('drop',ev=>nhanAnh(ev.dataTransfer.files));
+fileInput.onchange=()=>nhanAnh(fileInput.files);
+
+function docB64(f){return new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.readAsDataURL(f);});}
+
+async function nhanAnh(files){
   if(!files || !files.length) return;
-  msg.innerHTML='';
+  msg.innerHTML='<p class="muted">Đang đọc ảnh…</p>';
+  const anh=[];
   for(const f of files){
     if(!f.type.startsWith('image/')) continue;
-    const b64 = await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.readAsDataURL(f);});
-    msg.innerHTML += `<p class="muted">Đang tải ${f.name}…</p>`;
-    try{
-      const r = await fetch('/upload',{method:'POST',headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({name:f.name, data:b64})});
-      const j = await r.json();
-      msg.innerHTML += j.ok ? `<p class="ok">✅ Đã nhận <b>${j.saved}</b></p>`
-                            : `<p class="warn">⚠️ ${j.error||'lỗi'}</p>`;
-    }catch(e){ msg.innerHTML += `<p class="warn">⚠️ Lỗi tải ${f.name}: ${e}</p>`; }
+    anh.push({name:f.name, data:await docB64(f)});
   }
-  msg.innerHTML += '<p class="muted">Tải lại trang để xem danh sách "Ảnh đã nhận".</p>';
+  if(!anh.length){ msg.innerHTML='<p class="warn">Không có ảnh hợp lệ.</p>'; return; }
+  msg.innerHTML=`<p class="muted">Đang để AI nhận diện ${anh.length} ảnh… (chờ chút)</p>`;
+  try{
+    const r = await fetch('/doan_anh',{method:'POST',headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({anh})});
+    const j = await r.json();
+    if(!j.ok){ msg.innerHTML=`<p class="warn">⚠️ ${j.error||'lỗi'}</p>`; return; }
+    hienDuyet(j.ket_qua, anh);
+    msg.innerHTML=`<p class="ok">✅ Đã nhận diện ${anh.length} ảnh — xem khu <b>Duyệt ảnh</b> bên dưới.</p>`;
+  }catch(e){ msg.innerHTML=`<p class="warn">⚠️ Lỗi: ${e}</p>`; }
+}
+
+let HANG_DOI = [];
+function hienDuyet(ket_qua, anh){
+  HANG_DOI = ket_qua.map((k,i)=>({...k, data: (anh[i]||{}).data}));
+  const grid=document.getElementById('grid');
+  const chac = HANG_DOI.filter(k=>k.tu_dong).length;
+  document.getElementById('review').style.display='block';
+  document.getElementById('reviewHint').textContent =
+    `${HANG_DOI.length} ảnh · ${chac} ảnh AI chắc chắn (tự gán) · ${HANG_DOI.length-chac} ảnh cần bạn xác nhận.`;
+  grid.innerHTML = HANG_DOI.map((k,i)=>`
+    <div class="item">
+      <img src="data:image/jpeg;base64,${k.data||''}" alt="">
+      <div class="meta">
+        <div><span class="badge ${k.tu_dong?'chac':''}">${k.tu_dong?'AI chắc':'Cần duyệt'} · ${k.do_tin_cay||0}%</span></div>
+        <div class="muted" style="font-size:11px;margin-top:4px">${k.kich_thuoc||''}</div>
+        <select id="sel${i}" onchange="HANG_DOI[${i}].key=this.value">
+          <option value="">— chọn prompt —</option>
+          ${DANH_SACH.map(a=>`<option value="${a.key}" ${a.key===k.key?'selected':''}>${a.name}</option>`).join('')}
+        </select>
+        <div class="muted" style="font-size:11px">${k.mo_ta?k.mo_ta:''}</div>
+      </div>
+    </div>`).join('');
+}
+
+async function luuLoat(){
+  const ds = HANG_DOI.filter(k=>k.key).map(k=>({key:k.key, data:k.data}));
+  if(!ds.length){ document.getElementById('saveMsg').innerHTML='<p class="warn">Chưa chọn prompt nào.</p>'; return; }
+  document.getElementById('saveMsg').innerHTML='<p class="muted">Đang lưu…</p>';
+  try{
+    const r = await fetch('/luu_loat',{method:'POST',headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ds})});
+    const j = await r.json();
+    if(!j.ok){ document.getElementById('saveMsg').innerHTML=`<p class="warn">⚠️ ${j.error||'lỗi'}</p>`; return; }
+    document.getElementById('saveMsg').innerHTML =
+      `<p class="ok">✅ Đã lưu ${j.da_luu.length} ảnh: ${j.da_luu.map(x=>x.file).join(', ')}</p>
+       <p class="muted">Tải lại trang để xem danh sách "Ảnh đã nhận".</p>`;
+  }catch(e){ document.getElementById('saveMsg').innerHTML=`<p class="warn">⚠️ Lỗi: ${e}</p>`; }
 }
 </script>
 </body></html>"""
@@ -379,9 +457,13 @@ a{{color:#6fe0c0}}</style></head><body>
 </body></html>"""
 
 
-def luu_anh(name: str, b64: str) -> str:
-    """Lưu ảnh upload. Ảnh cảnh (bc_/vt_/nv_) ghi vào CẢ assets/scene/ lẫn docs/assets/scene/."""
-    name = os.path.basename(name or "image.png") or "image.png"
+def luu_anh(name: str, b64: str, dich_ten: str = "") -> str:
+    """Lưu ảnh upload. Ảnh cảnh (bc_/vt_/nv_) ghi vào CẢ assets/scene/ lẫn docs/assets/scene/.
+
+    dich_ten: nếu có, đặt tên file theo tên này (bỏ qua tên gốc) — dùng khi
+    người dùng đã xác nhận ảnh thuộc prompt nào.
+    """
+    name = os.path.basename(dich_ten or name or "image.png") or "image.png"
     if not re.search(r"\.(png|jpe?g|webp|gif)$", name, re.I):
         name += ".png"
     data = base64.b64decode(b64)
@@ -395,6 +477,75 @@ def luu_anh(name: str, b64: str) -> str:
         with open(os.path.join(web, name), "wb") as f:
             f.write(data)
     return name
+
+
+def luu_theo_key(key: str, b64: str) -> str:
+    """Lưu ảnh vào đúng tên file của asset (theo key). Trả tên file đã lưu."""
+    for a in ASSETS:
+        if a["key"] == key:
+            return luu_anh(a["file"], b64)
+    raise ValueError(f"Không có asset với key {key!r}")
+
+
+def con_thieu_anh() -> list:
+    """Danh sách asset chưa có file (để nhắc người dùng vẽ gì tiếp)."""
+    co = {fn for fn, _ in list_files(UI_DIR) + list_files(SCENE_DIR)}
+    return [a for a in ASSETS if a["file"] not in co]
+
+
+# ------------------------------------------------------- xử lý yêu cầu (dùng chung)
+def _asset_theo_key(key: str):
+    for a in ASSETS:
+        if a["key"] == key:
+            return a
+    return None
+
+
+def xu_ly_nhan_dien(anh_list: list, env: dict) -> dict:
+    """Nhận diện loạt ảnh. anh_list: [{name, data(base64)}].
+
+    Trả {ket_qua: [{name, kich_thuoc, ung_vien, key, ten, do_tin_cay, mo_ta, ly_do, tu_dong}],
+         loi}.
+    `tu_dong` = True khi độ tin cậy >= 80 (giao diện tự gán, không cần người dùng xác nhận).
+    """
+    if ND is None:
+        return {"loi": "Thiếu mô-đun nhận diện ảnh", "ket_qua": []}
+    kq = []
+    for item in anh_list or []:
+        ten_goc = os.path.basename(item.get("name", "") or "image")
+        try:
+            data = base64.b64decode(item.get("data", ""))
+        except Exception:
+            kq.append({"name": ten_goc, "loi": "Dữ liệu ảnh hỏng"})
+            continue
+        mime = "image/jpeg" if re.search(r"\.jpe?g$", ten_goc, re.I) else "image/png"
+        if re.search(r"\.webp$", ten_goc, re.I):
+            mime = "image/webp"
+        if re.search(r"\.gif$", ten_goc, re.I):
+            mime = "image/gif"
+        r = ND.goi_y_mot_anh(data, mime, ASSETS, env)
+        a = _asset_theo_key(r.get("key") or "")
+        r["name"] = ten_goc
+        r["ten"] = a["name"] if a else ""
+        r["file"] = a["file"] if a else ""
+        r["tu_dong"] = bool(r.get("key") and r.get("do_tin_cay", 0) >= 80)
+        kq.append(r)
+    return {"ket_qua": kq, "loi": ""}
+
+
+def xu_ly_luu_loat(ds: list) -> dict:
+    """Lưu loạt ảnh đã xác nhận. ds: [{key, data(base64)}]. Trả {da_luu, loi}."""
+    da_luu = []
+    for item in ds or []:
+        key = item.get("key") or ""
+        if not key:
+            continue
+        try:
+            ten = luu_theo_key(key, item.get("data", ""))
+            da_luu.append({"key": key, "file": ten})
+        except Exception as e:
+            return {"da_luu": da_luu, "loi": str(e)}
+    return {"da_luu": da_luu, "loi": ""}
 
 
 class H(BaseHTTPRequestHandler):
@@ -420,10 +571,30 @@ class H(BaseHTTPRequestHandler):
         if self.path.startswith("/upload"):
             try:
                 j = json.loads(raw.decode())
-                name = luu_anh(j.get("name", "image.png"), j["data"])
+                name = luu_anh(j.get("name", "image.png"), j["data"], j.get("dich_ten", ""))
                 self._send(json.dumps({"ok": True, "saved": name}), ctype="application/json")
             except Exception as e:
                 self._send(json.dumps({"ok": False, "error": str(e)}), ctype="application/json")
+            return
+        if self.path.startswith("/doan_anh"):
+            try:
+                j = json.loads(raw.decode())
+                r = xu_ly_nhan_dien(j.get("anh", []), load_env())
+                self._send(json.dumps({"ok": True, **r}, ensure_ascii=False),
+                           ctype="application/json")
+            except Exception as e:
+                self._send(json.dumps({"ok": False, "error": str(e)}, ensure_ascii=False),
+                           ctype="application/json")
+            return
+        if self.path.startswith("/luu_loat"):
+            try:
+                j = json.loads(raw.decode())
+                r = xu_ly_luu_loat(j.get("ds", []))
+                self._send(json.dumps({"ok": True, **r}, ensure_ascii=False),
+                           ctype="application/json")
+            except Exception as e:
+                self._send(json.dumps({"ok": False, "error": str(e)}, ensure_ascii=False),
+                           ctype="application/json")
             return
         # /keys
         from urllib.parse import parse_qs
