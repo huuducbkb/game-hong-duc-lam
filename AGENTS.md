@@ -285,6 +285,18 @@ tu luyện. Cơ duyên KHÔNG được rơi vào tay người chơi một cách 
 - Nhân vật bản địa **không có kiến thức meta** (không biết tương lai Hàn Lập).
   Chỉ biết Hàn Lập qua **quan sát/lời đồn** trong thế giới.
 
+## VĂN PHONG (BẮT BUỘC)
+
+Người chơi kêu câu *"Thứ này… không phải **đồ bỏ**"* nghe **"lúa" (dân dã)** quá —
+không hợp giọng tu tiên. Đã đổi thành **"phàm vật"**.
+
+- **Tránh từ ngữ đời thường** trong nội tâm người chơi và lời kể: "đồ bỏ",
+  "đồ nhặt", "chờ chết"… → dùng từ Hán-Việt/văn vẻ hợp bối cảnh
+  ("phàm vật", "tầm thường", "vô danh"…).
+- **Ngoại lệ:** nhánh **tán tu** (ăn mày) — giọng dân dã ở đây là **dụng ý**
+  (thân phận thấp), giữ nguyên.
+- Câu nội tâm *…* phải gãy gọn, sắc — không giải thích dài dòng.
+
 | Nhánh | Cơ duyên | Cơ chế | Kết chương 1 |
 |---|---|---|---|
 | **Tán tu** | Hồng Trần Kiếm Hạp (cặp kiếm dài-ngắn + kiếm linh) | Hấp thu **hồng trần** để mạnh; phải đi giữa đời, không ẩn tu | ✅ `c1_d17` |
