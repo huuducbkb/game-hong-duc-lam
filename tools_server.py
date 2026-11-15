@@ -3,6 +3,7 @@
 Chạy: python3 tools_server.py   -> mở http://<host>:12001
 Là công cụ tạm, xóa sau khi xong việc."""
 import base64
+import html as html_lib
 import json
 import os
 import re
@@ -259,6 +260,39 @@ def build_received_html():
     return nhac + "<ul>" + "".join(rows) + "</ul>"
 
 
+def _prompt_than(a: dict) -> str:
+    """Bỏ phần phong cách chung, chỉ giữ mô tả riêng của asset."""
+    p = a.get("prompt", "")
+    for pref in (STYLE_CHU, STYLE):
+        if p.startswith(pref):
+            return p[len(pref):].strip()
+    return p.strip()
+
+
+def build_gop_prompt() -> str:
+    """Một prompt gộp: dán 1 lần vào AI chat là nó vẽ lần lượt cả bộ ảnh."""
+    dong = [
+        'TASK: Create the full image set for a Vietnamese cultivation game named '
+        '"Hồng Đức Tu Tiên Lộ".',
+        "Produce the images ONE BY ONE, in the order below, each as a SEPARATE image at its "
+        "own aspect ratio.",
+        "If you cannot finish them all in one reply, make as many as you can and then stop; "
+        'I will reply "tiếp tục" to get the next batch.',
+        "",
+        "SHARED ART STYLE (apply to EVERY image): " + STYLE_GOC.strip(),
+        "",
+        "TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, "
+        "no logo in ANY image. The ONLY exception is image 6 (the seal): it must show exactly two "
+        "Chinese seal-script characters, 洪德 (Hồng Đức), and nothing else.",
+        "",
+    ]
+    for i, a in enumerate(ASSETS, 1):
+        dong.append(f"{i}. {a['file']} — {a['ratio']} — {a['name']}")
+        dong.append(f"   {_prompt_than(a)}")
+        dong.append("")
+    return "\n".join(dong)
+
+
 def page():
     env = load_env()
     keys_html = "".join(
@@ -272,6 +306,7 @@ def page():
     html = html.replace("__KEYS__", keys_html)
     ds = [{"key": a["key"], "name": a["name"]} for a in ASSETS]
     html = html.replace("__ASSET_JSON__", json.dumps(ds, ensure_ascii=False))
+    html = html.replace("__GOP_PROMPT__", html_lib.escape(build_gop_prompt()))
     return html
 
 
@@ -326,14 +361,26 @@ PAGE_TMPL = """<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
 
 <h2>Cách làm</h2>
 <ol class="steps">
-  <li>Bấm <b>Copy prompt</b> ở từng thẻ bên dưới, dán vào AI tạo ảnh, chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
+  <li><b>Cách nhanh:</b> ở khu <b>🎨 Vẽ cả bộ bằng 1 prompt</b> bên dưới, bấm <b>Copy</b> rồi dán
+      <b>một lần</b> vào AI của bạn — nó vẽ lần lượt cả bộ ảnh. Hết lượt thì nhắn <b>“tiếp tục”</b>.</li>
+  <li><b>Cách lẻ:</b> hoặc copy từng prompt ở danh sách dưới, dán vào AI, chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
   <li>Lưu ảnh về máy — <b>không cần đổi tên</b> (tên <code>IMG_1234.JPG</code> cũng được).</li>
   <li>Kéo <b>tất cả</b> ảnh vào ô <b>Tải ảnh lên</b> ở cuối trang (chọn nhiều ảnh một lúc).</li>
   <li>AI tự đoán mỗi ảnh thuộc prompt nào (theo tỷ lệ + nội dung). Ảnh nào chắc chắn thì tự gán;
       ảnh nào chưa chắc thì hiện lưới để bạn <b>xác nhận</b>.</li>
   <li>Bấm <b>Lưu ảnh</b> — xong, không cần đặt tên file bao giờ.</li>
 </ol>
-<p class="muted">Lưu ý: prompt đã ghi rõ <b>không có chữ/ký tự</b> trong ảnh, vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.</p>
+<p class="muted">Lưu ý: prompt đã ghi rõ <b>không có chữ/ký tự</b> trong ảnh (trừ ảnh ấn son — chữ Hồng Đức),
+vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.</p>
+
+<h2>🎨 Vẽ cả bộ bằng 1 prompt (đỡ copy từng cái)</h2>
+<div class="card">
+  <p class="muted">Bấm <b>Copy</b> rồi dán <b>một lần</b> vào Gemini chat — nó sẽ vẽ lần lượt
+  các ảnh theo đúng tỷ lệ. Hết lượt thì nhắn <b>“tiếp tục”</b> để lấy ảnh còn lại.</p>
+  <textarea readonly rows="10" id="gop" onclick="this.select()">__GOP_PROMPT__</textarea>
+  <button class="cp" onclick="cpText('gop', this)">📋 Copy prompt gộp</button>
+  <button class="up" onclick="taiPromptGop()">⬇️ Tải về file .txt</button>
+</div>
 
 <h2>Danh sách prompt</h2>
 __PROMPTS__
@@ -367,14 +414,24 @@ __PROMPTS__
 
 <script>
 const DANH_SACH = __ASSET_JSON__;
-function cp(btn){
-  const ta = btn.parentElement.querySelector('textarea');
+function cp(btn){ cpText(null, btn); }
+function cpText(id, btn){
+  const ta = id ? document.getElementById(id) : btn.parentElement.querySelector('textarea');
   ta.select(); ta.setSelectionRange(0, 999999);
   const done = () => { btn.classList.add('done'); btn.textContent='✅ Đã copy';
     setTimeout(()=>{btn.classList.remove('done');btn.textContent='📋 Copy prompt';},1600); };
   if (navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(ta.value).then(done).catch(()=>{ try{document.execCommand('copy');done();}catch(e){} });
   } else { try{document.execCommand('copy');done();}catch(e){} }
+}
+function taiPromptGop(){
+  const txt = document.getElementById('gop').value;
+  const blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'hong-duc-prompt-ve-anh.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
 }
 const drop=document.getElementById('drop'), fileInput=document.getElementById('file'), msg=document.getElementById('msg');
 drop.onclick=()=>fileInput.click();

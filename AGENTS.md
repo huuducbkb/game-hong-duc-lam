@@ -450,6 +450,15 @@ nút **Lưu ảnh** (`#saveBtn` → `/luu_loat`); phần "Ảnh đã nhận" nh�
 Lưu ý: model Gemini có thể bị khai tử/503 theo tài khoản — dùng danh sách dự phòng
 `MODEL_DU_PHONG` (hiện `gemini-flash-lite-latest` chạy tốt; `gemini-2.5-flash` đã 404).
 
+**Người dùng vẽ ảnh bằng Gemini chat bên ngoài** (không dùng API để vẽ; key Gemini chỉ dùng
+cho nhận diện). Nên Xưởng có khu **"🎨 Vẽ cả bộ bằng 1 prompt"**: `build_gop_prompt()` gộp
+cả 11 asset thành 1 prompt (chung phong cách + danh sách từng ảnh kèm tỷ lệ/tên file), hiện
+trong `#gop` + nút Copy + nút tải `.txt` (`taiPromptGop()`). `_prompt_than()` bỏ phần `STYLE`
+chung để không lặp. Prompt gộp nhắc AI vẽ lần lượt, hết lượt thì người dùng nhắn "tiếp tục".
+
+`STYLE` = `STYLE_GOC` + `NO_TEXT`. Ấn son dùng `STYLE_CHU` (= `STYLE_GOC` + cho phép đúng 2
+chữ Hán **洪德** trong dấu) — nếu để `NO_TEXT` thì AI vẽ ra con dấu trống.
+
 ### HAI bản `play.html` phải đồng bộ giao diện
 
 - `game/play.html` — bản Python (chạy `game_server.py`, KHÔNG deploy)
