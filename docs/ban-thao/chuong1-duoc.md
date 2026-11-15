@@ -21,7 +21,7 @@ Trước khi khuất bóng, y nói một câu: “Gặp lại.”
 
 Ta đứng lại, mảnh ngọc vụn trong tay đã nguội lạnh, như vừa trút hết hơi ấm cuối cùng.
 
-Giọng nói lạnh lùng vang lên lần cuối: “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
+👁️‍🗨️ 【Hệ thống】— lần cuối — “Chương một, kết thúc. Con đường phía trước… ngươi tự chọn.”
 
 *Tự chọn…* Ta hít sâu, nhìn ánh bình minh đang lên sau núi, và biết cuộc đời mình đã rẽ sang một hướng khác.
 
