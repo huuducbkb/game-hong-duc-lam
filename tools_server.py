@@ -33,16 +33,37 @@ STYLE_GOC = (
     "wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), "
     "minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. "
 )
+# 彩墨 (cǎi-mò) — thủy mặc ĐIỂM MÀU: vẫn chủ đạo mực đen trên giấy dó, chỉ phủ thêm
+# vài mảng màu trầm. Dùng cho ảnh truyện/nhân vật (không dùng cho ảnh giao diện).
+MAU_GOC = (
+    "Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: "
+    "an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, "
+    "muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush "
+    "strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient "
+    "hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade "
+    "and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for "
+    "cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, "
+    "never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. "
+)
 NO_TEXT = (
     "IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, "
     "no watermark, no logo, no UI labels."
 )
 STYLE = STYLE_GOC + NO_TEXT
+STYLE_MAU = MAU_GOC + NO_TEXT
 # Ấn son là ngoại lệ: chữ trong dấu là nội dung chính, không được cấm chữ.
 STYLE_CHU = STYLE_GOC + (
     "IMPORTANT: the ONLY text allowed is the words inside the seal; "
     "no other letters, numbers, signature, watermark, logo or UI labels."
 )
+
+# Ảnh truyện/nhân vật → tô màu điểm (彩墨). Ảnh giao diện (nền, khung, nút) giữ mực đen
+# để chữ trong game luôn dễ đọc.
+MAU_KEYS = [
+    "bc_cho_01", "bc_tan_xa_dem", "vt_ngoc_cot", "nv_tuyet_co",
+    "bc_duong_mon_nui", "bc_mieu_hoang", "vt_kiem_hap", "nv_kiem_linh",
+    "bc_tran_lua", "bc_tan_hoang", "nv_han_lap", "bc_binh_minh",
+]
 
 ASSETS = [
     {
@@ -335,6 +356,11 @@ ASSETS = [
     },
 ]
 
+# Ảnh truyện/nhân vật dùng bản tô màu điểm (彩墨) thay cho mực đen thuần.
+for _a in ASSETS:
+    if _a["key"] in MAU_KEYS and _a["prompt"].startswith(STYLE):
+        _a["prompt"] = STYLE_MAU + _a["prompt"][len(STYLE):]
+
 
 def load_env():
     env = {}
@@ -406,7 +432,7 @@ def build_received_html():
 def _prompt_than(a: dict) -> str:
     """Bỏ phần phong cách chung, chỉ giữ mô tả riêng của asset."""
     p = a.get("prompt", "")
-    for pref in (STYLE_CHU, STYLE):
+    for pref in (STYLE_CHU, STYLE_MAU, STYLE):
         if p.startswith(pref):
             return p[len(pref):].strip()
     return p.strip()
@@ -425,6 +451,9 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "") -> str:
         dong_dau = (f'TASK: Create {len(ds)} images for a Vietnamese cultivation game named '
                     f'"Hồng Đức Tu Tiên Lộ"')
         dong_dau += f" — {tieu_de}." if tieu_de else "."
+    # Nếu cả bộ đều là ảnh điểm màu thì ghi phong cách 彩墨, ngược lại ghi mực đen.
+    tat_ca_mau = all(a["prompt"].startswith(STYLE_MAU) for a in ds)
+    phong_cach = (MAU_GOC if tat_ca_mau else STYLE_GOC).strip()
     dong = [
         dong_dau,
         "Produce the images ONE BY ONE, in the order below, each as a SEPARATE image at its "
@@ -432,7 +461,7 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "") -> str:
         "If you cannot finish them all in one reply, make as many as you can and then stop; "
         'I will reply "tiếp tục" to get the next batch.',
         "",
-        "SHARED ART STYLE (apply to EVERY image): " + STYLE_GOC.strip(),
+        "SHARED ART STYLE (apply to EVERY image): " + phong_cach,
         "",
     ]
     i_seal = next((i for i, a in enumerate(ds, 1) if a["key"] == "seal"), None)
@@ -450,8 +479,16 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "") -> str:
             "no logo in ANY image."
         )
     dong.append("")
+    # Bộ trộn cả ảnh điểm màu lẫn mực đen → ghi rõ phong cách từng ảnh.
+    hoa_tron = len({a["prompt"].startswith(STYLE_MAU) for a in ds}) > 1
     for i, a in enumerate(ds, 1):
-        dong.append(f"{i}. {a['file']} — {a['ratio']} — {a['name']}")
+        nhan = ""
+        if hoa_tron:
+            if a["prompt"].startswith(STYLE_MAU):
+                nhan = " [colour-ink 彩墨]"
+            elif a["key"] != "seal":
+                nhan = " [black ink only]"
+        dong.append(f"{i}. {a['file']} — {a['ratio']} — {a['name']}{nhan}")
         dong.append(f"   {_prompt_than(a)}")
         dong.append("")
     return "\n".join(dong)
@@ -556,6 +593,8 @@ vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.
 <div class="card">
   <p class="muted">Bấm <b>Copy</b> rồi dán <b>một lần</b> vào Gemini chat — nó sẽ vẽ lần lượt
   các ảnh theo đúng tỷ lệ. Hết lượt thì nhắn <b>“tiếp tục”</b> để lấy ảnh còn lại.</p>
+  <p class="muted">Ảnh truyện &amp; nhân vật vẽ <b>thủy mặc điểm màu (彩墨)</b>; ảnh giao diện
+  (nền, khung, nút) giữ <b>mực đen</b> để chữ trong game dễ đọc.</p>
   <textarea readonly rows="10" id="gop" onclick="this.select()">__GOP_PROMPT__</textarea>
   <button class="cp" onclick="cpText('gop', this)">📋 Copy prompt gộp</button>
   <button class="up" onclick="taiPromptGop()">⬇️ Tải về file .txt</button>
@@ -564,8 +603,9 @@ vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.
 <h2>🎨 Vẽ riêng 8 ảnh nhánh tán tu bằng 1 prompt</h2>
 <div class="card">
   <p class="muted">Chỉ gồm <b>8 ảnh nhánh tán tu</b> (Chương 1): đường mòn, miếu hoang, hộp kiếm,
-  kiếm linh, trấn cháy, đống đổ nát, Hàn Lập, bình minh. Bấm <b>Copy</b> rồi dán <b>một lần</b>
-  vào Gemini chat — hết lượt thì nhắn <b>“tiếp tục”</b> để lấy ảnh còn lại.</p>
+  kiếm linh, trấn cháy, đống đổ nát, Hàn Lập, bình minh. Vẽ theo phong cách <b>thủy mặc điểm màu
+  (彩墨)</b>. Bấm <b>Copy</b> rồi dán <b>một lần</b> vào Gemini chat — hết lượt thì nhắn
+  <b>“tiếp tục”</b> để lấy ảnh còn lại.</p>
   <textarea readonly rows="10" id="goptantu" onclick="this.select()">__GOP_PROMPT_TANTU__</textarea>
   <button class="cp" onclick="cpText('goptantu', this)">📋 Copy prompt gộp 8 ảnh tán tu</button>
   <button class="up" onclick="taiPromptGop('goptantu', 'hong-duc-prompt-8-anh-tan-tu.txt')">⬇️ Tải về file .txt</button>
