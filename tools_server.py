@@ -18,6 +18,10 @@ try:
     from game import nhan_dien_anh as ND  # nhận diện ảnh (Gemini vision)
 except Exception:
     ND = None
+try:
+    from game import nen_anh as NEN  # nén ảnh trước khi lưu
+except Exception:
+    NEN = None
 ENV_PATH = f"{ROOT}/.env"
 UI_DIR = f"{ROOT}/assets/ui"
 SCENE_DIR = f"{ROOT}/assets/scene"
@@ -45,7 +49,7 @@ ASSETS = [
         "key": "bg-main",
         "name": "1. Nền toàn màn hình",
         "ratio": "9:16 dọc (1080×1920)",
-        "file": "bg-main.png",
+        "file": "bg-main.jpg",
         "use": "Nền sau tất cả (dùng background-size: cover).",
         "prompt": STYLE + " "
         "An almost empty aged-paper background for a mobile game screen, portrait orientation. "
@@ -58,7 +62,7 @@ ASSETS = [
         "key": "panel-character",
         "name": "2. Khung bảng nhân vật",
         "ratio": "3:4 dọc (900×1200)",
-        "file": "panel-character.png",
+        "file": "panel-character.jpg",
         "use": "Khung bảng chỉ số nhân vật (cột trái). Ruột để trống cho chữ.",
         "prompt": STYLE + " "
         "A vertical hanging-scroll card for a game interface, portrait orientation. "
@@ -72,7 +76,7 @@ ASSETS = [
         "key": "panel-story",
         "name": "3. Khung bảng truyện",
         "ratio": "4:5 dọc (960×1200)",
-        "file": "panel-story.png",
+        "file": "panel-story.jpg",
         "use": "Khung bảng nội dung câu chuyện. Ruột để trống cho chữ.",
         "prompt": STYLE + " "
         "A large rectangular story panel for a game interface, portrait orientation, slightly softer and simpler than a scroll. "
@@ -96,7 +100,7 @@ ASSETS = [
         "key": "btn-choice",
         "name": "5. Nền nút lựa chọn",
         "ratio": "5:1 ngang (1200×240)",
-        "file": "btn-choice.png",
+        "file": "btn-choice.jpg",
         "use": "Nền cho các nút chọn A/B/C. Ruột để trống cho chữ.",
         "prompt": STYLE + " "
         "A wide horizontal blank plaque / name-plate shape for a game button, very wide and short. "
@@ -134,7 +138,7 @@ ASSETS = [
         "key": "divider-ink",
         "name": "7. Đường kẻ mực (tùy chọn)",
         "ratio": "10:1 ngang (1600×160)",
-        "file": "divider-ink.png",
+        "file": "divider-ink.jpg",
         "use": "Đường phân cách giữa các mục.",
         "prompt": STYLE + " "
         "A single horizontal decorative divider line for a game interface, extremely wide and short. "
@@ -542,24 +546,42 @@ a{{color:#6fe0c0}}</style></head><body>
 </body></html>"""
 
 
-def luu_anh(name: str, b64: str, dich_ten: str = "") -> str:
-    """Lưu ảnh upload. Ảnh cảnh (bc_/vt_/nv_) ghi vào CẢ assets/scene/ lẫn docs/assets/scene/.
+def luu_anh(name: str, b64: str, dich_ten: str = "", key: str = "") -> str:
+    """Lưu ảnh upload (đã nén) vào assets/ và bản web docs/assets/.
 
-    dich_ten: nếu có, đặt tên file theo tên này (bỏ qua tên gốc) — dùng khi
-    người dùng đã xác nhận ảnh thuộc prompt nào.
+    - Ảnh cảnh (bc_/vt_/nv_) -> assets/scene/ + docs/assets/scene/
+    - Ảnh giao diện còn lại -> assets/ui/ + docs/assets/ui/
+    - Bản gốc (chưa nén) lưu vào assets/ui-orig/ hoặc assets/scene-orig/ (đã gitignore).
+    - Nén theo game.nen_anh; thiếu Pillow thì lưu nguyên gốc.
+
+    dich_ten: đặt tên file theo tên này (bỏ qua tên gốc) khi đã xác nhận asset.
+    key: dùng để tra quy tắc nén (tỷ lệ/định dạng/cỡ đích).
     """
     name = os.path.basename(dich_ten or name or "image.png") or "image.png"
     if not re.search(r"\.(png|jpe?g|webp|gif)$", name, re.I):
         name += ".png"
-    data = base64.b64decode(b64)
-    dest = SCENE_DIR if re.match(r"^(bc_|vt_|nv_)", name) else UI_DIR
-    os.makedirs(dest, exist_ok=True)
-    with open(os.path.join(dest, name), "wb") as f:
-        f.write(data)
-    if dest == SCENE_DIR:
-        web = os.path.join(ROOT, "docs/assets/scene")
-        os.makedirs(web, exist_ok=True)
-        with open(os.path.join(web, name), "wb") as f:
+    goc = base64.b64decode(b64)
+
+    la_canh = bool(re.match(r"^(bc_|vt_|nv_)", name))
+    if la_canh:
+        dest, web, orig = SCENE_DIR, f"{ROOT}/docs/assets/scene", f"{ROOT}/assets/scene-orig"
+    else:
+        dest, web, orig = UI_DIR, f"{ROOT}/docs/assets/ui", f"{ROOT}/assets/ui-orig"
+
+    # Bản gốc để riêng (không commit), phòng khi cần nén lại.
+    os.makedirs(orig, exist_ok=True)
+    with open(os.path.join(orig, name), "wb") as f:
+        f.write(goc)
+
+    data = None
+    if NEN is not None:
+        data = NEN.nen(goc, key=key, ten_file=name)
+    if data is None:
+        data = goc  # không nén được: vẫn lưu nguyên để không vỡ luồng
+
+    for folder in (dest, web):
+        os.makedirs(folder, exist_ok=True)
+        with open(os.path.join(folder, name), "wb") as f:
             f.write(data)
     return name
 
@@ -568,7 +590,7 @@ def luu_theo_key(key: str, b64: str) -> str:
     """Lưu ảnh vào đúng tên file của asset (theo key). Trả tên file đã lưu."""
     for a in ASSETS:
         if a["key"] == key:
-            return luu_anh(a["file"], b64)
+            return luu_anh(a["file"], b64, key=key)
     raise ValueError(f"Không có asset với key {key!r}")
 
 

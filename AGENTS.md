@@ -47,6 +47,20 @@ Gemini free tier **chặn sinh ảnh** (quota 0), OpenRouter **hết credit**.
 - `assets/ui-orig/` — ảnh gốc 18MB, **đã trong .gitignore**, chỉ dùng để xử lý lại.
 - Ấn son đã tách khỏi `panel-character` thành `seal.png` để viền không méo khi co giãn.
 
+### Nén ảnh tự động khi lưu (Xưởng)
+
+`luu_anh` (trong `tools_server.py`) tự nén mọi ảnh upload qua `game/nen_anh.py`
+(mức "vừa": JPEG q80). Quy tắc trong `QUY_TAC`:
+
+- **Bề rộng đích PHẢI khớp cỡ ảnh game đang dùng** (`panel-story` 800, `btn-choice` 1100…)
+  vì `border-image` cắt viền theo pixel cố định → đổi cỡ là lệch viền.
+- `seal`, `avatar-ring` giữ **PNG alpha**; còn lại lưu **JPEG**.
+- Bản gốc (chưa nén) lưu vào `assets/ui-orig/` hoặc `assets/scene-orig/` (đã gitignore).
+- Ảnh lưu vào **cả** `assets/…` **lẫn** `docs/assets/…` (Pages chạy từ `docs/`).
+- Thiếu Pillow → lưu nguyên gốc (không vỡ luồng). `pip install Pillow` nếu cần.
+
+Kết quả thực đo (ảnh AI 2.3MB → bản game): giảm **6–37×** (vd `bg-main` 2341→144 KB).
+
 ### Kỹ thuật ghép khung: `border-image`
 
 Ảnh khung không được kéo giãn trực tiếp (sẽ méo nét mực). Dùng `border-image` với
