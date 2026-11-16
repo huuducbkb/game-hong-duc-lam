@@ -36,7 +36,7 @@ NO_TEXT = (
 STYLE = STYLE_GOC + NO_TEXT
 # Ấn son là ngoại lệ: chữ trong dấu là nội dung chính, không được cấm chữ.
 STYLE_CHU = STYLE_GOC + (
-    "IMPORTANT: the ONLY text allowed is the two Chinese seal-script characters inside the seal; "
+    "IMPORTANT: the ONLY text allowed is the words inside the seal; "
     "no other letters, numbers, signature, watermark, logo or UI labels."
 )
 
@@ -109,16 +109,15 @@ ASSETS = [
         "name": "6. Ấn son (con dấu)",
         "ratio": "1:1 vuông (512×512)",
         "file": "seal.png",
-        "use": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: Hồng Đức (chữ Hán 洪德).",
+        "use": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: HỒNG ĐỨC (chữ Latin in hoa).",
         "prompt": STYLE_CHU + " "
         "A single traditional red seal stamp (chop) on a plain empty light paper background, centered. "
         "A square vermilion-red stamped mark with rough uneven edges like a real ink seal impression, "
         "faded and slightly blotchy, authentic antique look. "
-        "The seal contains EXACTLY TWO Chinese characters: 洪 (left) and 德 (right), placed side by "
-        "side inside the square. They are written in traditional Han-Viet (Sino-Vietnamese) style, "
-        "carved in ancient Chinese seal script (zhuanshu), and read 'Hong Duc' (Hồng Đức). "
-        "Reproduce these two characters accurately, clearly and symmetrically; only these two "
-        "characters, nothing else. Only the seal, nothing else.",
+        "Inside the square is a single line of text in the Latin alphabet, written in ALL CAPITALS: "
+        "\"HỒNG ĐỨC\". The text is clearly legible and perfectly spelled, centered inside the square, "
+        "in an elegant serif style suited to a classic seal. "
+        "Only this one line of text, nothing else. Only the seal, nothing else.",
     },
     {
         "key": "divider-ink",
@@ -288,8 +287,8 @@ def build_gop_prompt() -> str:
         "SHARED ART STYLE (apply to EVERY image): " + STYLE_GOC.strip(),
         "",
         "TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, "
-        "no logo in ANY image. The ONLY exception is image 6 (the seal): it must show exactly two "
-        "Chinese seal-script characters, 洪德 (Hồng Đức), and nothing else.",
+        "no logo in ANY image. The ONLY exception is image 6 (the seal): inside the seal it must show "
+        "the words \"HỒNG ĐỨC\" in Latin capitals, and nothing else.",
         "",
     ]
     for i, a in enumerate(ASSETS, 1):
