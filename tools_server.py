@@ -579,6 +579,8 @@ PAGE_TMPL = """<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
   background:#0a1220;color:var(--ink);font-size:12.5px}
 .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:#0a1220;color:var(--muted)}
 .badge.chac{background:#12351f;color:#7fe0a8}
+.item.thieu{border-color:#a05a2a}
+.item.thieu .meta{background:#2a150d}
 </style></head><body>
 
 <h1>Xưởng tài nguyên</h1>
@@ -721,33 +723,63 @@ function hienDuyet(ket_qua, anh){
   document.getElementById('reviewHint').textContent =
     `${HANG_DOI.length} ảnh · ${chac} ảnh AI chắc chắn (tự gán) · ${HANG_DOI.length-chac} ảnh cần bạn xác nhận.`;
   grid.innerHTML = HANG_DOI.map((k,i)=>`
-    <div class="item">
+    <div class="item ${k.key?'':'thieu'}" id="item${i}">
       <img src="data:image/jpeg;base64,${k.data||''}" alt="">
       <div class="meta">
         <div><span class="badge ${k.tu_dong?'chac':''}">${k.tu_dong?'AI chắc':'Cần duyệt'} · ${k.do_tin_cay||0}%</span></div>
         <div class="muted" style="font-size:11px;margin-top:4px">${k.kich_thuoc||''}</div>
-        <select id="sel${i}" onchange="HANG_DOI[${i}].key=this.value">
+        <select id="sel${i}" onchange="chonPrompt(${i}, this.value)">
           <option value="">— chọn prompt —</option>
           ${DANH_SACH.map(a=>`<option value="${a.key}" ${a.key===k.key?'selected':''}>${a.name}</option>`).join('')}
         </select>
+        <div class="muted" id="trangThai${i}" style="font-size:11px">${k.key?'':'⚠️ chưa chọn prompt — sẽ KHÔNG được lưu'}</div>
         <div class="muted" style="font-size:11px">${k.mo_ta?k.mo_ta:''}</div>
       </div>
     </div>`).join('');
 }
 
+function chonPrompt(i, key){
+  HANG_DOI[i].key = key;
+  const item = document.getElementById('item'+i);
+  const tt = document.getElementById('trangThai'+i);
+  if(item) item.className = 'item' + (key ? '' : ' thieu');
+  if(tt) tt.innerHTML = key ? '' : '⚠️ chưa chọn prompt — sẽ KHÔNG được lưu';
+}
+
 async function luuLoat(){
   const ds = HANG_DOI.filter(k=>k.key).map(k=>({key:k.key, data:k.data}));
-  if(!ds.length){ document.getElementById('saveMsg').innerHTML='<p class="warn">Chưa chọn prompt nào.</p>'; return; }
-  document.getElementById('saveMsg').innerHTML='<p class="muted">Đang lưu…</p>';
+  const thieu = HANG_DOI.length - ds.length;
+  const saveMsg = document.getElementById('saveMsg');
+  if(!ds.length){ saveMsg.innerHTML='<p class="warn">Chưa chọn prompt nào — chọn prompt cho ảnh rồi bấm Lưu lại.</p>'; return; }
+  if(thieu > 0 && !confirm(
+      `⚠️ Còn ${thieu} ảnh CHƯA chọn prompt, sẽ KHÔNG được lưu.\n\n` +
+      `Vẫn lưu ${ds.length} ảnh đã chọn?\n\n` +
+      `(Bấm Hủy để quay lại chọn prompt cho ${thieu} ảnh kia.)`)) {
+    saveMsg.innerHTML=`<p class="warn">Đã dừng — hãy chọn prompt cho ${thieu} ảnh còn lại rồi bấm Lưu.</p>`;
+    return;
+  }
+  saveMsg.innerHTML='<p class="muted">Đang lưu…</p>';
   try{
     const r = await fetch('/luu_loat',{method:'POST',headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ds})});
     const j = await r.json();
-    if(!j.ok){ document.getElementById('saveMsg').innerHTML=`<p class="warn">⚠️ ${j.error||'lỗi'}</p>`; return; }
-    document.getElementById('saveMsg').innerHTML =
-      `<p class="ok">✅ Đã lưu ${j.da_luu.length} ảnh: ${j.da_luu.map(x=>x.file).join(', ')}</p>
-       <p class="muted">Tải lại trang để xem danh sách "Ảnh đã nhận".</p>`;
-  }catch(e){ document.getElementById('saveMsg').innerHTML=`<p class="warn">⚠️ Lỗi: ${e}</p>`; }
+    if(!j.ok){ saveMsg.innerHTML=`<p class="warn">⚠️ ${j.error||'lỗi'}</p>`; return; }
+    let html = `<p class="ok">✅ Đã lưu ${j.da_luu.length} ảnh: ${j.da_luu.map(x=>x.file).join(', ')}</p>`;
+    if(thieu > 0){
+      html += `<p class="warn">⚠️ Bỏ qua ${thieu} ảnh chưa chọn prompt — chọn prompt rồi bấm Lưu lại.</p>`;
+    } else {
+      html += `<p class="muted">Đã lưu hết. Tải lại trang để xem danh sách "Ảnh đã nhận".</p>`;
+    }
+    saveMsg.innerHTML = html;
+    // Ảnh đã lưu xong thì bỏ khỏi hàng đợi, tránh lưu trùng khi bấm Lưu lần nữa.
+    HANG_DOI = HANG_DOI.filter(k=>!k.key);
+    if(!HANG_DOI.length){
+      document.getElementById('review').style.display='none';
+      document.getElementById('grid').innerHTML='';
+    } else {
+      hienDuyet(HANG_DOI.map(k=>k), HANG_DOI.map(k=>({data:k.data})));
+    }
+  }catch(e){ saveMsg.innerHTML=`<p class="warn">⚠️ Lỗi: ${e}</p>`; }
 }
 </script>
 </body></html>"""
