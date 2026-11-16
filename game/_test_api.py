@@ -5,6 +5,14 @@ import json, os, sys, urllib.request, urllib.error, http.cookiejar as cj
 B = "http://127.0.0.1:12001"
 ok = fail = 0
 
+try:
+    import sys as _sys
+    _sys.path.insert(0, "/workspace/game-hong-duc-lam")
+    from game import nen_anh as _NEN
+    NEN_OK = _NEN.co_pillow()
+except Exception:
+    NEN_OK = False
+
 def mk():
     return urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj.CookieJar()))
 
@@ -447,7 +455,8 @@ kq = _post_raw("/upload", {"name": "ui_test_api.jpg", "data": _png})
 check("ảnh UI (không tiền tố) → assets/ui/", os.path.isfile(f"/workspace/game-hong-duc-lam/assets/ui/ui_test_api.jpg"), True)
 check("ảnh UI KHÔNG vào scene", os.path.isfile(f"/workspace/game-hong-duc-lam/assets/scene/ui_test_api.jpg"), False)
 for _n in _anh_test:
-    for _d in ["assets/scene", "assets/ui", "docs/assets/scene"]:
+    for _d in ["assets/scene", "assets/ui", "docs/assets/scene", "docs/assets/ui",
+               "assets/scene-orig", "assets/ui-orig"]:
         _p = f"/workspace/game-hong-duc-lam/{_d}/{_n}"
         if os.path.isfile(_p):
             os.remove(_p)
@@ -469,6 +478,40 @@ def _b64(data):
     import base64 as _b
     return _b.b64encode(data).decode()
 
+def _snap(paths):
+    """Sao lưu bytes các file (None nếu chưa tồn tại) để phục hồi sau test."""
+    out = {}
+    for p in paths:
+        f = f"/workspace/game-hong-duc-lam/{p}"
+        out[p] = open(f, "rb").read() if os.path.isfile(f) else None
+    return out
+
+def _restore(snap):
+    """Phục hồi nguyên trạng: file nào có bản sao thì ghi lại, file mới thì xóa."""
+    for p, data in snap.items():
+        f = f"/workspace/game-hong-duc-lam/{p}"
+        if data is None:
+            if os.path.isfile(f):
+                os.remove(f)
+        else:
+            os.makedirs(os.path.dirname(f), exist_ok=True)
+            with open(f, "wb") as fp:
+                fp.write(data)
+
+def _png_nhieu(w, h):
+    """PNG có nhiễu (như ảnh thật) — để phép so nén có ý nghĩa."""
+    import struct as _s, zlib as _z, random as _r
+    _r.seed(7)
+    rows = b""
+    for _ in range(h):
+        rows += b"\x00" + bytes(_r.randrange(256) for _ in range(w * 3))
+    def _ch(t, d):
+        c = t + d
+        return _s.pack(">I", len(d)) + c + _s.pack(">I", _z.crc32(c) & 0xffffffff)
+    return (b"\x89PNG\r\n\x1a\n"
+            + _ch(b"IHDR", _s.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0))
+            + _ch(b"IDAT", _z.compress(rows)) + _ch(b"IEND", b""))
+
 # 9:16 chỉ có 1 ứng viên khớp tỷ lệ → đường tắt, KHÔNG gọi AI (nhanh, ổn định)
 kq = _post_raw("/doan_anh", {"anh": [{"name": "IMG_9999.PNG", "data": _b64(_png(1080, 1920))}]})
 check("/doan_anh trả ok", kq.get("ok"), True)
@@ -483,23 +526,51 @@ check("  giữ tên file gốc", _k0.get("name"), "IMG_9999.PNG")
 kq = _post_raw("/doan_anh", {"anh": [{"name": "a.png", "data": _b64(_png(1200, 240))}]})
 check("ảnh 5:1 → btn-choice", (kq.get("ket_qua") or [{}])[0].get("key"), "btn-choice")
 
-# Lưu loạt theo key → ghi đúng tên file
+# Lưu loạt theo key → ghi đúng tên file (divider-ink nay là .jpg sau khi sửa đuôi)
+# SAO LƯU trước, PHỤC HỒI sau — để test không phá ảnh thật.
+_TEP = ["assets/ui/divider-ink.jpg", "docs/assets/ui/divider-ink.jpg",
+        "assets/ui-orig/divider-ink.jpg", "assets/scene/bc_cho_01.jpg",
+        "docs/assets/scene/bc_cho_01.jpg", "assets/scene-orig/bc_cho_01.jpg",
+        "assets/ui/seal.png", "docs/assets/ui/seal.png", "assets/ui-orig/seal.png"]
+_snap = _snap(_TEP)
+
 kq = _post_raw("/luu_loat", {"ds": [{"key": "divider-ink", "data": _b64(_png(1600, 160))}]})
 check("/luu_loat trả ok", kq.get("ok"), True)
-check("lưu theo key → đúng tên divider-ink.png",
-      os.path.isfile("/workspace/game-hong-duc-lam/assets/ui/divider-ink.png"), True)
+check("lưu theo key → đúng tên divider-ink.jpg",
+      os.path.isfile("/workspace/game-hong-duc-lam/assets/ui/divider-ink.jpg"), True)
 check("  đúng tên file trong kết quả",
-      (kq.get("da_luu") or [{}])[0].get("file"), "divider-ink.png")
+      (kq.get("da_luu") or [{}])[0].get("file"), "divider-ink.jpg")
+# Ảnh giao diện cũng phải đồng bộ sang docs/ (Pages dùng docs/)
+check("  ảnh UI đồng bộ sang docs/assets/ui/",
+      os.path.isfile("/workspace/game-hong-duc-lam/docs/assets/ui/divider-ink.jpg"), True)
+# Bản gốc (chưa nén) được giữ riêng để nén lại khi cần
+check("  giữ bản gốc ở assets/ui-orig/",
+      os.path.isfile("/workspace/game-hong-duc-lam/assets/ui-orig/divider-ink.jpg"), True)
 # Ảnh cảnh lưu theo key phải vào CẢ hai nơi
 kq = _post_raw("/luu_loat", {"ds": [{"key": "bc_cho_01", "data": _b64(_png(900, 1200))}]})
 check("lưu key bc_cho_01 → assets/scene/",
       os.path.isfile("/workspace/game-hong-duc-lam/assets/scene/bc_cho_01.jpg"), True)
 check("  và docs/assets/scene/",
       os.path.isfile("/workspace/game-hong-duc-lam/docs/assets/scene/bc_cho_01.jpg"), True)
-for _p in ["assets/ui/divider-ink.png", "assets/scene/bc_cho_01.jpg", "docs/assets/scene/bc_cho_01.jpg"]:
-    _f = f"/workspace/game-hong-duc-lam/{_p}"
-    if os.path.isfile(_f):
-        os.remove(_f)
+
+print("\n=== Z. Nén ảnh khi lưu ===")
+if not NEN_OK:
+    print("  (bỏ qua: chưa cài Pillow)")
+else:
+    # Ảnh lớn (900×1200, có nhiễu như ảnh thật) lưu vào game phải NHẸ hơn gốc
+    _goc = _png_nhieu(900, 1200)
+    kq = _post_raw("/luu_loat", {"ds": [{"key": "bc_cho_01", "data": _b64(_goc)}]})
+    _duong = "/workspace/game-hong-duc-lam/assets/scene/bc_cho_01.jpg"
+    _luu = os.path.getsize(_duong) if os.path.isfile(_duong) else 0
+    check("ảnh lưu ra nhẹ hơn ảnh gốc", _luu > 0 and _luu < len(_goc), True)
+    # Ảnh giữ trong suốt (seal) phải vẫn là PNG
+    kq = _post_raw("/luu_loat", {"ds": [{"key": "seal", "data": _b64(_png(1024, 1024))}]})
+    _seal = "/workspace/game-hong-duc-lam/assets/ui/seal.png"
+    with open(_seal, "rb") as _f:
+        _hdr = _f.read(26)
+    check("ảnh seal vẫn là PNG", _hdr[:8] == b"\x89PNG\r\n\x1a\n", True)
+
+_restore(_snap)
 
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)
