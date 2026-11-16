@@ -412,11 +412,21 @@ def _prompt_than(a: dict) -> str:
     return p.strip()
 
 
-def build_gop_prompt() -> str:
-    """Một prompt gộp: dán 1 lần vào AI chat là nó vẽ lần lượt cả bộ ảnh."""
+# 8 ảnh nhánh tán tu (Chương 1) — để tạo prompt gộp riêng
+TAN_TU_KEYS = [
+    "bc_duong_mon_nui", "bc_mieu_hoang", "vt_kiem_hap", "nv_kiem_linh",
+    "bc_tran_lua", "bc_tan_hoang", "nv_han_lap", "bc_binh_minh",
+]
+
+
+def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "") -> str:
+    """Dựng prompt gộp cho một bộ ảnh: dán 1 lần vào AI chat là nó vẽ lần lượt."""
+    if not dong_dau:
+        dong_dau = (f'TASK: Create {len(ds)} images for a Vietnamese cultivation game named '
+                    f'"Hồng Đức Tu Tiên Lộ"')
+        dong_dau += f" — {tieu_de}." if tieu_de else "."
     dong = [
-        'TASK: Create the full image set for a Vietnamese cultivation game named '
-        '"Hồng Đức Tu Tiên Lộ".',
+        dong_dau,
         "Produce the images ONE BY ONE, in the order below, each as a SEPARATE image at its "
         "own aspect ratio.",
         "If you cannot finish them all in one reply, make as many as you can and then stop; "
@@ -424,18 +434,41 @@ def build_gop_prompt() -> str:
         "",
         "SHARED ART STYLE (apply to EVERY image): " + STYLE_GOC.strip(),
         "",
-        "TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, "
-        "no logo in ANY image. The ONLY exception is image 6 (the seal): inside the seal it must show "
-        "the words \"HỒNG\" and \"ĐỨC\" in Latin capitals, drawn in a Chinese ink-brush (Hán) "
-        "calligraphy style and stacked vertically one above the other (HỒNG on top, ĐỨC below), "
-        "and nothing else.",
-        "",
     ]
-    for i, a in enumerate(ASSETS, 1):
+    i_seal = next((i for i, a in enumerate(ds, 1) if a["key"] == "seal"), None)
+    if i_seal:
+        dong.append(
+            "TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, "
+            f"no logo in ANY image. The ONLY exception is image {i_seal} (the seal): inside the seal it must show "
+            "the words \"HỒNG\" and \"ĐỨC\" in Latin capitals, drawn in a Chinese ink-brush (Hán) "
+            "calligraphy style and stacked vertically one above the other (HỒNG on top, ĐỨC below), "
+            "and nothing else."
+        )
+    else:
+        dong.append(
+            "TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, "
+            "no logo in ANY image."
+        )
+    dong.append("")
+    for i, a in enumerate(ds, 1):
         dong.append(f"{i}. {a['file']} — {a['ratio']} — {a['name']}")
         dong.append(f"   {_prompt_than(a)}")
         dong.append("")
     return "\n".join(dong)
+
+
+def build_gop_prompt() -> str:
+    """Một prompt gộp: dán 1 lần vào AI chat là nó vẽ lần lượt cả bộ ảnh."""
+    return _build_gop(ASSETS, dong_dau=(
+        'TASK: Create the full image set for a Vietnamese cultivation game named '
+        '"Hồng Đức Tu Tiên Lộ".'
+    ))
+
+
+def build_gop_prompt_tantu() -> str:
+    """Prompt gộp riêng 8 ảnh nhánh tán tu (Chương 1)."""
+    ds = [a for a in ASSETS if a["key"] in TAN_TU_KEYS]
+    return _build_gop(ds, "nhánh tán tu, Chương 1")
 
 
 def page():
@@ -452,6 +485,7 @@ def page():
     ds = [{"key": a["key"], "name": a["name"]} for a in ASSETS]
     html = html.replace("__ASSET_JSON__", json.dumps(ds, ensure_ascii=False))
     html = html.replace("__GOP_PROMPT__", html_lib.escape(build_gop_prompt()))
+    html = html.replace("__GOP_PROMPT_TANTU__", html_lib.escape(build_gop_prompt_tantu()))
     return html
 
 
@@ -527,6 +561,16 @@ vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.
   <button class="up" onclick="taiPromptGop()">⬇️ Tải về file .txt</button>
 </div>
 
+<h2>🎨 Vẽ riêng 8 ảnh nhánh tán tu bằng 1 prompt</h2>
+<div class="card">
+  <p class="muted">Chỉ gồm <b>8 ảnh nhánh tán tu</b> (Chương 1): đường mòn, miếu hoang, hộp kiếm,
+  kiếm linh, trấn cháy, đống đổ nát, Hàn Lập, bình minh. Bấm <b>Copy</b> rồi dán <b>một lần</b>
+  vào Gemini chat — hết lượt thì nhắn <b>“tiếp tục”</b> để lấy ảnh còn lại.</p>
+  <textarea readonly rows="10" id="goptantu" onclick="this.select()">__GOP_PROMPT_TANTU__</textarea>
+  <button class="cp" onclick="cpText('goptantu', this)">📋 Copy prompt gộp 8 ảnh tán tu</button>
+  <button class="up" onclick="taiPromptGop('goptantu', 'hong-duc-prompt-8-anh-tan-tu.txt')">⬇️ Tải về file .txt</button>
+</div>
+
 <h2>Danh sách prompt</h2>
 __PROMPTS__
 
@@ -563,18 +607,19 @@ function cp(btn){ cpText(null, btn); }
 function cpText(id, btn){
   const ta = id ? document.getElementById(id) : btn.parentElement.querySelector('textarea');
   ta.select(); ta.setSelectionRange(0, 999999);
+  const nhan = btn.textContent;
   const done = () => { btn.classList.add('done'); btn.textContent='✅ Đã copy';
-    setTimeout(()=>{btn.classList.remove('done');btn.textContent='📋 Copy prompt';},1600); };
+    setTimeout(()=>{btn.classList.remove('done');btn.textContent=nhan;},1600); };
   if (navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(ta.value).then(done).catch(()=>{ try{document.execCommand('copy');done();}catch(e){} });
   } else { try{document.execCommand('copy');done();}catch(e){} }
 }
-function taiPromptGop(){
-  const txt = document.getElementById('gop').value;
+function taiPromptGop(id, tenFile){
+  const txt = document.getElementById(id || 'gop').value;
   const blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'hong-duc-prompt-ve-anh.txt';
+  a.download = tenFile || 'hong-duc-prompt-ve-anh.txt';
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
 }
