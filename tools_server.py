@@ -109,18 +109,22 @@ ASSETS = [
         "name": "6. Ấn son (con dấu)",
         "ratio": "1:1 vuông (512×512)",
         "file": "seal.png",
-        "use": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: HỒNG ĐỨC — chữ Latin, font kiểu Hán (bút lông cổ điển).",
+        "use": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: HỒNG ĐỨC — chữ Latin, font kiểu Hán, xếp DỌC (trên xuống).",
         "prompt": STYLE_CHU + " "
         "A single traditional red seal stamp (chop) on a plain empty light paper background, centered. "
         "A square vermilion-red stamped mark with rough uneven edges like a real ink seal impression, "
         "faded and slightly blotchy, authentic antique look. "
-        "Inside the square is a single line of text in the Latin alphabet, written in ALL CAPITALS: "
-        "\"HỒNG ĐỨC\". The letters are NOT in a modern font: they are rendered in a traditional "
-        "East Asian calligraphy style, as if the Latin letters were brushed with a Chinese ink brush — "
+        "Inside the square the text is arranged VERTICALLY, stacked in a single column from top to "
+        "bottom (NOT horizontal, NOT side by side): the word \"HỒNG\" at the top and the word \"ĐỨC\" "
+        "directly below it, in the Latin alphabet, ALL CAPITALS. "
+        "The letters are NOT in a modern font: they are rendered in a traditional East Asian "
+        "calligraphy style, as if the Latin letters were brushed with a Chinese ink brush — "
         "thick tapered brush strokes, angular Han-character (Hán) flavour, classical and ornamented, "
         "like an old Sino-Vietnamese seal inscription. "
-        "The text is clearly legible and perfectly spelled, centered inside the square. "
-        "Only this one line of text, nothing else. Only the seal, nothing else.",
+        "The two words are stacked one above the other and centered inside the square so the "
+        "composition fills the square evenly, leaving a small even margin. "
+        "The text is clearly legible and perfectly spelled. "
+        "Only this one vertical column of text, nothing else. Only the seal, nothing else.",
     },
     {
         "key": "divider-ink",
@@ -291,7 +295,8 @@ def build_gop_prompt() -> str:
         "",
         "TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, "
         "no logo in ANY image. The ONLY exception is image 6 (the seal): inside the seal it must show "
-        "the words \"HỒNG ĐỨC\" in Latin capitals, drawn in a Chinese ink-brush (Hán) calligraphy style, "
+        "the words \"HỒNG\" and \"ĐỨC\" in Latin capitals, drawn in a Chinese ink-brush (Hán) "
+        "calligraphy style and stacked vertically one above the other (HỒNG on top, ĐỨC below), "
         "and nothing else.",
         "",
     ]
