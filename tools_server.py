@@ -210,6 +210,129 @@ ASSETS = [
         "Background left almost empty with soft ink wash so game text can sit beside. "
         "Sensual, seductive, elegant, mysterious, ethereal.",
     },
+
+    # ---- NHÁNH TÁN TU (Chương 1) — mạch miếu hoang & Hồng Trần Kiếm Hạp ----
+    {
+        "key": "bc_duong_mon_nui",
+        "name": "C.1 Đường mòn lên núi — chạng vạng",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_duong_mon_nui.jpg",
+        "use": "Đường mòn hẹp dẫn lên núi, cỏ dại cao quá đầu, trời nhá nhem (đoạn d03).",
+        "prompt": STYLE + " "
+        "A narrow steep mountain footpath at dusk, seen from the walker's eye level, leading up into "
+        "dark wooded hills. Tall wild grass and weeds crowd both sides of the path higher than a person, "
+        "a few bare rocks and twisted pine trunks, faint mist gathering low between the slopes. "
+        "Deep blue-grey twilight sky, a sliver of pale moon just rising, the last dim light on the horizon. "
+        "The path curves away into shadow and disappears, lonely and slightly ominous. "
+        "Composition keeps the upper part calm and empty for game text. Quiet, solitary, a little eerie.",
+    },
+    {
+        "key": "bc_mieu_hoang",
+        "name": "C.2 Miếu hoang sau núi (bối cảnh chính nhánh tán tu)",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_mieu_hoang.jpg",
+        "use": "Miếu hoang — xương khô, vết cào trên vách, hộp gỗ đen (d04, d04b, d04c, d04d, d09, d10).",
+        "prompt": STYLE + " "
+        "The interior of a small abandoned wayside shrine deep in the mountains at night, seen from inside. "
+        "Broken timber walls, a fallen roof beam, torn paper offerings and cobwebs, a cracked stone altar "
+        "with a faded statue. Dry fallen leaves and dust on the floor, deep claw-mark scratches gouged "
+        "across the wooden wall, a few scattered old bones in the shadowed corner. "
+        "A cold shaft of moonlight falls through a gap in the roof onto the empty floor in the center. "
+        "A long dark wooden box rests low and undisturbed in the middle of the beam of light. "
+        "Composition keeps the center low and calm so game text can sit above. "
+        "Ruined, silent, desolate, faintly menacing.",
+    },
+    {
+        "key": "vt_kiem_hap",
+        "name": "C.3 Hồng Trần Kiếm Hạp (vật phẩm cơ duyên nhánh tán tu)",
+        "ratio": "1:1 vuông (1000×1000)",
+        "file": "vt_kiem_hap.jpg",
+        "use": "Hộp gỗ đen + cặp kiếm dài-ngắn chứa kiếm linh (d05, d08). Ảnh cho bảng Cơ duyên.",
+        "prompt": STYLE + " "
+        "A single ancient long black wooden sword box on plain empty paper, centered, still life. "
+        "The box is open, dark lacquered wood carved with faint cloud-pattern lines, and inside it rest "
+        "two swords — one long and one short — lying side by side, their sheaths plain dark with worn "
+        "brass fittings, a faint cold light glimmering along the exposed blades. "
+        "A few thin wisps of pale mist curling around the box, tiny floating light motes. "
+        "Faint reflection shadow beneath. Nothing else in the frame, generous empty space around it. "
+        "Ancient, solemn, mysterious, faintly dangerous.",
+    },
+    {
+        "key": "nv_kiem_linh",
+        "name": "C.4 Kiếm linh Hồng Trần (nhân vật)",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_kiem_linh.jpg",
+        "use": "Kiếm linh — thanh niên áo trắng, mặt lạnh, mắt sáng như kiếm quang (d06, d06b, d07, d07b).",
+        "prompt": STYLE + " "
+        "Portrait of a ghostly young male sword spirit of an ancient Chinese fantasy world, upper body only, "
+        "facing the viewer at a slight angle. A pale slender young man in plain flowing white robes, "
+        "long black hair tied loosely, a cold composed face, sharp bright eyes like the gleam of a blade, "
+        "thin brows, a faintly stern unsmiling expression. He is a spirit, not fully solid — his form "
+        "shimmers faintly and fades to mist at the edges, surrounded by a thin cold glow and a few drifting "
+        "wisps of pale mist. One slender sword is half-raised behind him, catching a cold light. "
+        "Background left almost empty with soft ink wash so game text can sit beside. "
+        "Cold, ethereal, austere, dignified, a little haunting.",
+    },
+    {
+        "key": "bc_tran_lua",
+        "name": "C.5 Trấn Thất Huyền chìm trong lửa (Dã Lang Bang tập kích)",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_tran_lua.jpg",
+        "use": "Trấn cháy, cướp Dã Lang Bang tấn công (d11, d12, d13 và p13, p14, p14b-e).",
+        "prompt": STYLE + " "
+        "An ancient Chinese mountain market town burning at night during a bandit raid, seen from a "
+        "distance at eye level. Rows of wooden houses and stalls engulfed in tall orange flames, thick "
+        "black smoke rolling up into the dark sky, sparks drifting in the air. Small distant silhouettes "
+        "of fleeing townsfolk and mounted raiders suggested loosely by a few ink strokes. "
+        "A broken gate and fallen banners at the town edge, embers glowing on the ground. "
+        "Dramatic contrast of firelight against the deep night, but rendered in restrained ink-wash tones. "
+        "Composition keeps the upper part smoky and calm for game text. Chaotic, tragic, tense.",
+    },
+    {
+        "key": "bc_tan_hoang",
+        "name": "C.6 Sau trận — giữa đống đổ nát (bình minh)",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_tan_hoang.jpg",
+        "use": "Thất Huyền trấn / Thất Huyền Môn tan hoang khi trời gần sáng (d14, p16).",
+        "prompt": STYLE + " "
+        "The aftermath of a battle in an ancient Chinese mountain town at first grey dawn, seen from "
+        "inside the ruins. Collapsed charred timber buildings, broken stone steps, torn banners lying in "
+        "the dust, thin smoke still curling from the wreckage, ash scattered on the ground. "
+        "A few weary distant figures quietly carrying the fallen, suggested loosely by a few ink strokes. "
+        "Pale cold dawn light, low mist over the ruins, the sky almost empty and grey. "
+        "Composition keeps the center low and calm so game text can sit above. "
+        "Desolate, quiet, sorrowful, exhausted.",
+    },
+    {
+        "key": "nv_han_lap",
+        "name": "C.7 Hàn Lập (nhân vật — crossover Phàm Nhân Tu Tiên)",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_han_lap.jpg",
+        "use": "Hàn Lập — thanh niên gầy, mắt sắc như dao, áo vải thô (d15, d16 và p17, p18a-d).",
+        "prompt": STYLE + " "
+        "Portrait of a lean, ordinary-looking young man of an ancient Chinese fantasy world, upper body "
+        "only, facing the viewer at a slight angle. A thin plain-featured youth in coarse undyed cloth "
+        "robes, simple cloth belt, black hair tied in a plain topknot, no ornament of any kind. "
+        "His most striking feature is his eyes: calm, deep and sharp as a knife, watchful and unreadable, "
+        "the gaze of someone far more than he appears. His expression is composed and reserved. "
+        "He stands quietly in the shadow of a hillside at dusk, faint cold mist behind him. "
+        "Background left almost empty with soft ink wash so game text can sit beside. "
+        "Plain, quiet, sharp-eyed, quietly formidable, understated.",
+    },
+    {
+        "key": "bc_binh_minh",
+        "name": "C.8 Kết chương — bình minh Thất Huyền trấn",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_binh_minh.jpg",
+        "use": "Ánh bình minh đầu tiên rọi lên vai áo rách — kết chương 1 (d17, p19).",
+        "prompt": STYLE + " "
+        "First dawn light breaking over an ancient Chinese mountain town and its hillside, seen at eye "
+        "level. Soft warm sunrise glow spreading across the sky, long pale rays through low mist, the "
+        "distant roofs and mountain ridges fading into gentle haze, a few birds in flight. "
+        "The foreground is quiet and almost empty — a worn stone path and a thin bare tree by the way. "
+        "Hopeful and calm after hardship, cool morning air. "
+        "Composition keeps the upper third soft and empty for game text. Serene, gentle, new beginning.",
+    },
 ]
 
 
