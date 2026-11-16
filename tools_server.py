@@ -114,17 +114,21 @@ ASSETS = [
         "A single traditional red seal stamp (chop) on a plain empty light paper background, centered. "
         "A square vermilion-red stamped mark with rough uneven edges like a real ink seal impression, "
         "faded and slightly blotchy, authentic antique look. "
-        "Inside the square the text is arranged VERTICALLY, stacked in a single column from top to "
-        "bottom (NOT horizontal, NOT side by side): the word \"HỒNG\" at the top and the word \"ĐỨC\" "
-        "directly below it, in the Latin alphabet, ALL CAPITALS. "
+        "CRITICAL LAYOUT — the text inside the seal MUST be on TWO SEPARATE LINES stacked "
+        "vertically, like two rows of a Chinese vertical banner read top-to-bottom. "
+        "LINE 1 (top half of the square): the word \"HỒNG\". "
+        "LINE 2 (bottom half of the square): the word \"ĐỨC\". "
+        "Each word is written normally and stays UPRIGHT and readable (do NOT rotate or tilt the "
+        "letters, do NOT write the words side by side on one single horizontal line, do NOT write "
+        "\"HỒNG ĐỨC\" as one line). The two lines are centered, one above the other, in the Latin "
+        "alphabet, ALL CAPITALS. "
         "The letters are NOT in a modern font: they are rendered in a traditional East Asian "
         "calligraphy style, as if the Latin letters were brushed with a Chinese ink brush — "
         "thick tapered brush strokes, angular Han-character (Hán) flavour, classical and ornamented, "
         "like an old Sino-Vietnamese seal inscription. "
-        "The two words are stacked one above the other and centered inside the square so the "
-        "composition fills the square evenly, leaving a small even margin. "
+        "The two stacked lines fill the square evenly, leaving a small even margin on all sides. "
         "The text is clearly legible and perfectly spelled. "
-        "Only this one vertical column of text, nothing else. Only the seal, nothing else.",
+        "Only these two stacked lines of text, nothing else. Only the seal, nothing else.",
     },
     {
         "key": "divider-ink",
