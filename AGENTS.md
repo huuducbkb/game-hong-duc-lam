@@ -358,7 +358,7 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 - **Bẫy cần nhớ**: công cụ trình duyệt tự động không gõ được vào ô `type="password"`;
   muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
 - Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
-- Test: `node game/_test_engine.js` → 105/105; `python3 game/_test_api.py` → 157/157 (cần `game_server.py` đang chạy).
+- Test: `node game/_test_engine.js` → 105/105; `python3 game/_test_api.py` → 161/161 (cần `game_server.py` đang chạy).
 
 ### Túi đồ khởi đầu
 
@@ -368,6 +368,31 @@ xuyên không, xem `GOP-Y-BAN-THAO.md`). Chi tiết đó đã bỏ khỏi truy�
 này không đoạn nào nhắc, không logic nào dùng → đã xóa khỏi `trang_thai_moi()`
 ở **cả** `game/engine.py` và `docs/game/engine.js` (giữ 2 bản khớp nhau).
 - Deploy tự động qua `.github/workflows/pages.yml` khi push lên `main` (đường dẫn `docs/**`).
+
+### Quy trình đưa thay đổi lên web (đã kiểm chứng 16/11)
+
+1. Sửa file → commit → `git push -u origin <nhánh>`.
+2. Mở PR (`create_pr`). ⚠️ **PR do `create_pr` tạo ra ở dạng DRAFT** → GitHub chặn merge
+   (`400 Pull request is in draft`). Phải bỏ draft trước:
+   ```bash
+   curl -s -X POST -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/json" \
+     https://api.github.com/graphql \
+     -d '{"query":"mutation { markPullRequestReadyForReview(input: {pullRequestId: \"<PR_NODE_ID>\"}) { pullRequest { isDraft } } }"}'
+   ```
+   (endpoint REST `POST /pulls/<n>/ready_for_review` trả **404** — dùng GraphQL.)
+3. Merge bằng API bất đồng bộ, rồi **poll** cho tới khi hết `pending`:
+   ```bash
+   curl -s -X PUT -H "Authorization: Bearer $GITHUB_TOKEN" \
+     https://api.github.com/repos/huuducbkb/game-hong-duc-lam/pulls/<n>/merge-async \
+     -d '{"merge_method":"squash","sha":"<HEAD_SHA>"}'
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+     https://api.github.com/repos/huuducbkb/game-hong-duc-lam/pulls/<n>/merge-async/<UUID>
+   ```
+4. Chờ workflow `Triển khai GitHub Pages` xong (~30–60 giây), rồi kiểm tra
+   `curl -s -o /dev/null -w '%{http_code}'` file trên `huuducbkb.github.io`.
+5. **Bẫy**: chưa merge thì web chính thức vẫn là bản cũ — file mới trả **404**, và
+   người dùng thấy "không hiện ảnh". Kiểm tra 404 trước khi nghi lỗi code.
+   Trình duyệt (Safari) nhớ bản cũ → bảo người dùng **làm mới trang** sau khi deploy.
 
 ### Cơ duyên trong túi (đã chốt với người dùng)
 
