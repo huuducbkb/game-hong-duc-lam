@@ -342,13 +342,7 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 
 ## Bản game JS trên GitHub Pages (đã phát hành)
 
-> ⚠️ **QUYẾT ĐỊNH CỐ ĐỊNH — KHÔNG TẠO REPO MỚI.** Chỉ dùng **duy nhất** repo
-> `huuducbkb/game-hong-duc-lam`. Người dùng đã nhắc **5 lần** (13/11 "nếu đã có repo
-> game hong duc lam rồi thì không cần tạo nữa"; "tại sao bạn cứ muốn làm repo game tu
-> tiên"; 15/11 "bỏ cái yêu cầu tạo repo đó chúng ta đã có repo rồi"). **Tuyệt đối
-> không gọi** `POST /user/repos`, `gh repo create`, hay mở https://github.com/new.
-> Mọi thay đổi push thẳng vào `main` của repo có sẵn.
-
+- **Repo**: `huuducbkb/game-hong-duc-lam` (public) — mọi thay đổi push thẳng vào `main`.
 - **Link chơi**: https://huuducbkb.github.io/game-hong-duc-lam/game/
 - Nguồn JS nằm ở `docs/game/`: `play.html` (giao diện), `engine.js` (dịch từ `game/engine.py`),
   `ai.js` (dịch từ `game/ai.py`), `du-lieu/` (JSON dùng chung với bản Python).
