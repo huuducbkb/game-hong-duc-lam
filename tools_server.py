@@ -443,6 +443,8 @@ TAN_TU_KEYS = [
     "bc_duong_mon_nui", "bc_mieu_hoang", "vt_kiem_hap", "nv_kiem_linh",
     "bc_tran_lua", "bc_tan_hoang", "nv_han_lap", "bc_binh_minh",
 ]
+# 4 ảnh truyện cũ (B.1–B.4) — đã có file, cần vẽ lại cho khớp phong cách điểm màu
+CU_KEYS = ["bc_cho_01", "bc_tan_xa_dem", "vt_ngoc_cot", "nv_tuyet_co"]
 
 
 def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "") -> str:
@@ -508,6 +510,12 @@ def build_gop_prompt_tantu() -> str:
     return _build_gop(ds, "nhánh tán tu, Chương 1")
 
 
+def build_gop_prompt_cu() -> str:
+    """Prompt gộp riêng 4 ảnh truyện cũ (B.1–B.4), vẽ lại theo phong cách điểm màu."""
+    ds = [a for a in ASSETS if a["key"] in CU_KEYS]
+    return _build_gop(ds, "4 ảnh truyện cũ (Chương 1), vẽ lại theo phong cách điểm màu")
+
+
 def page():
     env = load_env()
     keys_html = "".join(
@@ -523,6 +531,7 @@ def page():
     html = html.replace("__ASSET_JSON__", json.dumps(ds, ensure_ascii=False))
     html = html.replace("__GOP_PROMPT__", html_lib.escape(build_gop_prompt()))
     html = html.replace("__GOP_PROMPT_TANTU__", html_lib.escape(build_gop_prompt_tantu()))
+    html = html.replace("__GOP_PROMPT_CU__", html_lib.escape(build_gop_prompt_cu()))
     return html
 
 
@@ -609,6 +618,17 @@ vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.
   <textarea readonly rows="10" id="goptantu" onclick="this.select()">__GOP_PROMPT_TANTU__</textarea>
   <button class="cp" onclick="cpText('goptantu', this)">📋 Copy prompt gộp 8 ảnh tán tu</button>
   <button class="up" onclick="taiPromptGop('goptantu', 'hong-duc-prompt-8-anh-tan-tu.txt')">⬇️ Tải về file .txt</button>
+</div>
+
+<h2>🎨 Vẽ lại 4 ảnh truyện cũ bằng 1 prompt</h2>
+<div class="card">
+  <p class="muted">Gồm <b>4 ảnh truyện đã có</b> (B.1 Chợ sớm, B.2 Tân xá đêm, B.3 Ngọc cốt,
+  B.4 Tuyết Cơ) — vẽ lại theo phong cách <b>thủy mặc điểm màu (彩墨)</b> cho khớp các ảnh mới.
+  Ảnh mới tải lên sẽ <b>đè</b> ảnh cũ cùng tên. Bấm <b>Copy</b> rồi dán <b>một lần</b> vào
+  Gemini chat — hết lượt thì nhắn <b>“tiếp tục”</b> để lấy ảnh còn lại.</p>
+  <textarea readonly rows="10" id="gopcu" onclick="this.select()">__GOP_PROMPT_CU__</textarea>
+  <button class="cp" onclick="cpText('gopcu', this)">📋 Copy prompt gộp 4 ảnh cũ</button>
+  <button class="up" onclick="taiPromptGop('gopcu', 'hong-duc-prompt-4-anh-cu.txt')">⬇️ Tải về file .txt</button>
 </div>
 
 <h2>Danh sách prompt</h2>
