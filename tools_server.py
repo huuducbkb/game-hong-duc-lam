@@ -109,14 +109,16 @@ ASSETS = [
         "name": "6. Ấn son (con dấu)",
         "ratio": "1:1 vuông (512×512)",
         "file": "seal.png",
-        "use": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: Hồng Đức.",
+        "use": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: Hồng Đức (chữ Hán 洪德).",
         "prompt": STYLE_CHU + " "
         "A single traditional red seal stamp (chop) on a plain empty light paper background, centered. "
-        "A square vermilion-red stamped mark with rough uneven edges like real ink seal impression. "
-        "The seal is carved in ancient Chinese seal script (zhuanshu) and reads exactly two "
-        "Chinese characters, top to bottom, meaning the Vietnamese era name 'Hong Duc' "
-        "(Vietnamese: Hồng Đức; Chinese: 洪德). Only these two characters, nothing else. "
-        "Faded, slightly blotchy, authentic antique look. Only the seal, nothing else.",
+        "A square vermilion-red stamped mark with rough uneven edges like a real ink seal impression, "
+        "faded and slightly blotchy, authentic antique look. "
+        "The seal contains EXACTLY TWO Chinese characters: 洪 (left) and 德 (right), placed side by "
+        "side inside the square. They are written in traditional Han-Viet (Sino-Vietnamese) style, "
+        "carved in ancient Chinese seal script (zhuanshu), and read 'Hong Duc' (Hồng Đức). "
+        "Reproduce these two characters accurately, clearly and symmetrically; only these two "
+        "characters, nothing else. Only the seal, nothing else.",
     },
     {
         "key": "divider-ink",
@@ -179,16 +181,20 @@ ASSETS = [
         "name": "B.4 Tuyết Cơ (nhân vật)",
         "ratio": "3:4 dọc (900×1200)",
         "file": "nv_tuyet_co.jpg",
-        "use": "Nữ tu Hợp Hoan Tông trong ngọc cốt — chân dung hiện ở cảnh đối thoại (25 đoạn nhắc tên).",
+        "use": "Nữ tu Hợp Hoan Tông trong ngọc cốt — chân dung gợi cảm, quyến rũ, bí ẩn (25 đoạn nhắc tên).",
         "prompt": STYLE + " "
-        "Portrait of a beautiful cold aloof female cultivator of an ancient Chinese fantasy sect, "
-        "upper body only, facing the viewer at a slight angle. Young woman, pale jade-like skin, "
-        "long black hair partly loose with a simple jade hairpin, slender willow brows, calm distant eyes, "
-        "a faint knowing half-smile. She wears flowing pale blue-and-white silk robes with faint cloud embroidery, "
-        "a translucent gauze veil draping one shoulder. "
-        "Faint cold mist and a subtle inner glow around her like a spirit sealed for ages. "
+        "Portrait of a stunningly beautiful, sensual and mysterious female cultivator of an ancient "
+        "Chinese fantasy sect, upper body only, facing the viewer at a slight angle. Young woman with "
+        "luminous pale jade-like skin, long black hair partly loose and partly pinned with a simple jade "
+        "hairpin, a few loose strands falling across her cheek, slender willow brows, long half-lidded "
+        "sultry eyes with a teasing, knowing gaze, and a faintly flirtatious half-smile. She wears "
+        "flowing pale blue-and-white silk robes of thin translucent gauze that slip off one shoulder, "
+        "revealing a bare collarbone, the soft curve of her neck and a hint of décolletage, the fabric "
+        "clinging softly to her figure; a sheer gauze veil draping loosely around her bare arms. "
+        "Faint cold mist and a subtle inner glow surround her, like a spirit sealed for ages — "
+        "alluring yet dangerous and enigmatic. "
         "Background left almost empty with soft ink wash so game text can sit beside. "
-        "Elegant, ethereal, slightly dangerous, not lewd.",
+        "Sensual, seductive, elegant, mysterious, ethereal.",
     },
 ]
 
