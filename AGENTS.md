@@ -426,6 +426,9 @@ chưa gắn ảnh thì khung ảnh **ẩn**, hiện nền giấy như cũ.
   Ảnh để ở `assets/scene/` (bản Python) **và** `docs/assets/scene/` (bản Pages) — phải có **cả hai**.
 - Giao diện: `#sceneBox` + `#sceneImg` + `#sceneCap` (caption = `boi_canh`), bấm ảnh mở
   phóng to `#sceneLb`; đóng bằng nút `#closeSceneLb` hoặc phím Escape.
+- **Khổ ảnh hiển thị: `.scene-box img` dùng `height:auto` (khung tự cao theo ảnh)** —
+  ảnh dọc hiện trọn vẹn. KHÔNG đặt `height:228px` + `object-fit:cover` (cắt mất 50–67%
+  ảnh dọc). Sửa ở **cả** `game/play.html` **và** `docs/game/play.html`.
 - Nạp ảnh: mở **Xưởng** (`python3 tools_server.py`, cổng 12001) → copy prompt → vẽ →
   upload. Tên file phải bắt đầu `bc_` (bối cảnh) / `vt_` (vật phẩm) / `nv_` (nhân vật)
   thì Xưởng tự lưu vào `assets/scene/` + `docs/assets/scene/`.
