@@ -9,11 +9,20 @@
 ## 🔴 ĐANG LÀM
 
 - [~] **Phần ảnh — bước 2: 14 ảnh cảnh đợt 1 (nhánh tán tu)**
-  - [x] **4 ảnh mẫu đã xong** ✓ (người dùng vẽ + upload, đã kiểm tra: đúng tên, đúng tỷ lệ
-        3:4, đúng canon — nhân vật chính, Mạc Đại Phu, Đỗ Tam, Hùng Bá)
-  - [ ] **→ Chờ người dùng chốt:** có thêm 6 nút copy chia theo nhóm nhân vật không?
-        (mỗi nút ghi rõ đính kèm ảnh mẫu nào → giữ mặt nhân vật đều)
-  - [ ] Người dùng vẽ 14 ảnh → upload Xưởng → agent ghép vào game
+  - [x] **4 ảnh mẫu đã xong** ✓ (đã kiểm tra: đúng tên, tỷ lệ 3:4, đúng canon)
+  - [x] **Chia 7 nhóm + nút copy riêng** ✓ (PR #29 merged, commit `4b9ae0a`)
+        mỗi nhóm ghi rõ đính kèm ảnh mẫu nào → giữ mặt nhân vật đều
+  - [ ] **→ Người dùng: mở Xưởng, vẽ từng nhóm, upload lại** (xem hướng dẫn bên dưới)
+  - [ ] Agent: ghép 14 ảnh vào game khi đủ
+
+---
+
+## ✅ VỪA XONG — Chia nhóm ảnh đợt 1 (PR #29)
+
+- [x] 14 ảnh đợt 1 chia **7 nhóm theo nhân vật**, mỗi nhóm 1 nút Copy + tải .txt
+  - Prompt nhóm có khối `ATTACHED REFERENCE IMAGE(S)` nhắc AI giữ mặt/tóc/áo
+- [x] Engine test **105/105** · API test **161/161**
+- [x] Xưởng: 7 thẻ nhóm hiển thị, 0 placeholder sót, ngữ pháp đúng
 
 ---
 
