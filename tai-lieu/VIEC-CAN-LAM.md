@@ -8,10 +8,22 @@
 
 ## 🔴 ĐANG LÀM
 
-- [~] **Phần ảnh — ảnh mẫu tham chiếu** (bước nền, làm trước khi vẽ 51 ảnh cảnh)
-  - [ ] Soạn prompt 7 ảnh mẫu: nhân vật chính · Tuyết Cơ · Kiếm linh · Hàn Lập ·
-        Mạc Đại Phu · ngọc cốt · Hồng Trần Kiếm Hạp
-  - [ ] Người dùng vẽ → upload Xưởng → agent chốt ảnh mẫu
+- [~] **Phần ảnh — bước 1: ảnh mẫu tham chiếu**
+  - [x] Soạn prompt 4 ảnh mẫu **cần vẽ mới**: nhân vật chính · Mạc Đại Phu · Đỗ Tam · Hùng Bá
+        (5 ảnh mẫu khác **đã có sẵn**: Tuyết Cơ, Hàn Lập, Kiếm linh, Ngọc cốt, Hộp kiếm)
+  - [x] Thêm nút **"Copy prompt 4 ảnh mẫu"** vào Xưởng (`/upload`)
+  - [x] Thêm nút **"Copy prompt 14 ảnh đợt 1"** vào Xưởng
+  - [ ] **→ Người dùng: mở Xưởng, bấm nút, vẽ 4 ảnh mẫu, upload lại**
+
+---
+
+## ✅ VỪA XONG — Thêm prompt ảnh vào Xưởng
+
+- [x] Xưởng (`tools_server.py`): thêm **18 asset mới** (4 ảnh mẫu + 14 ảnh đợt 1)
+  - Tổng ASSETS: 19 → **37**
+  - 2 khối mới **lên đầu trang** + 2 nút copy + 2 nút tải .txt
+- [x] Engine test **105/105** · API test **161/161** (test nén ảnh nay cũng đạt)
+- [x] Đã khôi phục 2 ảnh thật bị API test ghi đè (`bc_cho_01`, `divider-ink`)
 
 ---
 
@@ -26,22 +38,17 @@
 
 ## 🟡 CHỜ LÀM — ẢNH (mỗi cảnh 1 ảnh riêng)
 
-- [ ] **Bảng canon nhân vật & đồ vật** — làm **TRƯỚC** khi vẽ ảnh
-  - [ ] Phiếu nhân vật: nhân vật chính, Tuyết Cơ, Kiếm linh Hồng Trần, Hàn Lập,
-        Mạc Đại Phu, Đỗ Tam, Hùng Bá
-  - [ ] Phiếu đồ vật: ngọc cốt, Hồng Trần Kiếm Hạp, bầu nước, gói thuốc, hộp gỗ
-- [ ] **Ảnh mẫu tham chiếu** (vẽ 1 lần, dùng lại cho mọi chương sau)
-  - [ ] Ảnh mẫu nhân vật chính · Tuyết Cơ · Kiếm linh · Hàn Lập · Mạc Đại Phu
-  - [ ] Ảnh mẫu ngọc cốt · Hồng Trần Kiếm Hạp
+- [x] **Bảng canon nhân vật & đồ vật** — `tai-lieu/CANON-NHAN-VAT-DO-VAT.md`
+- [~] **Ảnh mẫu tham chiếu** (vẽ 1 lần, dùng lại cho mọi chương sau)
+  - [ ] 4 ảnh mẫu cần vẽ: nhân vật chính · Mạc Đại Phu · Đỗ Tam · Hùng Bá
 - [ ] **51 ảnh cảnh Chương 1** (63 cảnh − 12 ảnh đã có), chia 6 đợt
-  - [ ] Đợt 1 — nhánh tán tu: miếu hoang, hộp kiếm, kiếm linh (~9)
-  - [ ] Đợt 2 — nhánh tán tu: đại chiến, Hàn Lập (~7)
-  - [ ] Đợt 3 — nhánh môn phái: sân tập, tân xá, vườn thuốc (~10)
-  - [ ] Đợt 4 — nhánh môn phái: hậu sơn, ngọc cốt (Tuyết Cơ) (~9)
-  - [ ] Đợt 5 — nhánh môn phái: khổ tu, đột phá (~8)
-  - [ ] Đợt 6 — nhánh môn phái: đại chiến, cổng đông, Hàn Lập (~8)
+  - [~] **Đợt 1 — nhánh tán tu: 14 ảnh** (prompt đã sẵn trong Xưởng)
+  - [ ] Đợt 2 — nhánh tán tu còn lại
+  - [ ] Đợt 3 — môn phái: sân tập, vườn thuốc
+  - [ ] Đợt 4 — môn phái: hậu sơn, ngọc cốt (Tuyết Cơ)
+  - [ ] Đợt 5 — môn phái: tân xá, khổ tu
+  - [ ] Đợt 6 — môn phái: cổng đông, Hàn Lập
 - [ ] Sửa ảnh gán sai: `c1_p19` (kết chương) → `bc_binh_minh` (thay `vt_ngoc_cot`)
-- [ ] Thêm nút **"ảnh tham chiếu"** vào Xưởng (gửi kèm ảnh mẫu khi vẽ)
 
 ---
 

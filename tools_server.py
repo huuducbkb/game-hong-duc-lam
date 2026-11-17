@@ -354,6 +354,185 @@ ASSETS = [
         "Hopeful and calm after hardship, cool morning air. "
         "Composition keeps the upper third soft and empty for game text. Serene, gentle, new beginning.",
     },
+    {
+        "key": "nv_chinh_mau",
+        "name": "MẪU Nhân vật chính",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_chinh_mau.jpg",
+        "nhom": "mau",
+        "use": "Ảnh MẪU tham chiếu — đính kèm khi vẽ ảnh cảnh để giữ nhân vật nhất quán.",
+        "prompt": STYLE_MAU + " " + "Character reference sheet for a game: one single figure, full body, front view, neutral standing pose, centred on plain bare paper. No scenery, no props, no other objects. Clear, simple, consistent design reference with generous empty space around. " + "A poor young male drifter of an ancient Chinese fantasy world, about 16-17 years old. Thin, slightly underfed build. Short messy black hair tied back with a rough cord. Sun-tanned skin, sharp cheekbones, dark watchful eyes with a quiet modern alertness. Wearing coarse patched frayed grey-brown hemp clothes too large for him, sleeves rolled up, a rope belt. Calloused hands with dark-rimmed nails. Guarded, calculating expression. No jewellery, no ornaments.",
+    },
+
+    {
+        "key": "nv_mac_dai_phu_mau",
+        "name": "MẪU Mạc Đại Phu",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_mac_dai_phu_mau.jpg",
+        "nhom": "mau",
+        "use": "Ảnh MẪU tham chiếu — đính kèm khi vẽ ảnh cảnh để giữ nhân vật nhất quán.",
+        "prompt": STYLE_MAU + " " + "Character reference sheet for a game: one single figure, full body, front view, neutral standing pose, centred on plain bare paper. No scenery, no props, no other objects. Clear, simple, consistent design reference with generous empty space around. " + "An old herbalist man of an ancient Chinese martial sect. Wiry and upright, grey hair and a short grey beard. Wearing a plain grey-brown robe like a village doctor. Rough steady hands, movements slow but precise. Aged yet strangely bright, piercing eyes. Carries bundles of dried herbs and a medicine bag. Calm, inscrutable expression.",
+    },
+
+    {
+        "key": "nv_do_tam_mau",
+        "name": "MẪU Đỗ Tam",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_do_tam_mau.jpg",
+        "nhom": "mau",
+        "use": "Ảnh MẪU tham chiếu — đính kèm khi vẽ ảnh cảnh để giữ nhân vật nhất quán.",
+        "prompt": STYLE_MAU + " " + "Character reference sheet for a game: one single figure, full body, front view, neutral standing pose, centred on plain bare paper. No scenery, no props, no other objects. Clear, simple, consistent design reference with generous empty space around. " + "A burly, muscular rogue cultivator and bandit of an ancient Chinese fantasy world. Heavy build, a long scar running diagonally across his left eye, thick stubble, harsh weathered face. Wearing rough dark leather-and-cloth traveller's garb. Carrying a heavy chipped broad saber. Brutish, greedy, contemptuous expression.",
+    },
+
+    {
+        "key": "nv_hung_ba_mau",
+        "name": "MẪU Hùng Bá",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_hung_ba_mau.jpg",
+        "nhom": "mau",
+        "use": "Ảnh MẪU tham chiếu — đính kèm khi vẽ ảnh cảnh để giữ nhân vật nhất quán.",
+        "prompt": STYLE_MAU + " " + "Character reference sheet for a game: one single figure, full body, front view, neutral standing pose, centred on plain bare paper. No scenery, no props, no other objects. Clear, simple, consistent design reference with generous empty space around. " + "A bandit leader of an ancient Chinese fantasy world. Tall, broad-shouldered, heavy-set. Fierce face with a thick beard and hard eyes. Wearing dark bandit armour over rough cloth, with a wolf-pelt mantle over one shoulder. Carrying a heavy blade. Arrogant, cruel expression.",
+    },
+
+    {
+        "key": "bc_cho_02",
+        "name": "D.2 Ngõ nhỏ sau chợ — lời đồn",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_cho_02.jpg",
+        "nhom": "dot1",
+        "use": "Ngõ nhỏ sau chợ — đám ăn mày quanh đống lửa, nghe lời đồn Dã Lang Bang (d02).",
+        "prompt": STYLE_MAU + " " + "A narrow back alley behind an ancient Chinese market town at dusk, seen from inside the alley. A small fire burning in a broken clay brazier, ragged beggars huddled around it in silhouette, bundles of straw and cast-off baskets along the walls, laundry strung overhead. Warm firelight against cool blue twilight shadow. Composition keeps the center low and calm so game text can sit above. Wary, hushed, conspiratorial.",
+    },
+
+    {
+        "key": "bc_cho_03",
+        "name": "D.2b Góc chợ — một ngày mòn mỏi",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_cho_03.jpg",
+        "nhom": "dot1",
+        "use": "Góc chợ — ngày dài xin ăn, mòn mỏi (d02b).",
+        "prompt": STYLE_MAU + " " + "A forgotten corner of an ancient Chinese market town in the harsh afternoon, seen at eye level. Empty wooden stalls shuttered and bare, scattered straw and broken baskets on the swept ground, a single thin stray dog lying in the shadow of a wall. Long lonely shadows, dusty pale light, no people. Composition keeps the upper part quiet and empty for game text. Weary, bleak, solitary.",
+    },
+
+    {
+        "key": "bc_mieu_trong",
+        "name": "D.4b Trong miếu — xác người còn ấm",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_mieu_trong.jpg",
+        "nhom": "dot1",
+        "use": "Trong miếu — phát hiện xác người mới chết còn ấm (d04b).",
+        "prompt": STYLE_MAU + " " + "The interior of a small abandoned wayside shrine in the mountains at night, seen from inside. Broken timber walls, torn paper offerings, dust and old bones. On the floor beside ancient dry bones lies a freshly dead man in coarse cloth, one hand still gripping a dagger, a dark wound at his throat. A cold shaft of moonlight falls across the floor. Composition keeps the center low and calm so game text can sit above. Grim, hushed, ominous.",
+    },
+
+    {
+        "key": "nv_do_tam_mieu",
+        "name": "D.4c Đỗ Tam — kẻ tranh giành",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_do_tam_mieu.jpg",
+        "nhom": "dot1",
+        "use": "Đỗ Tam chặn cửa miếu, đòi tranh hộp kiếm (d04c).",
+        "prompt": STYLE_MAU + " " + "A burly scarred rogue cultivator blocking the doorway of a ruined mountain shrine at night, seen from inside at eye level. A heavy-set man with a long scar across his left eye, thick stubble, rough dark leather-and-cloth garb, gripping a chipped broad saber. Behind him the dark mountain night; before him the dim shrine interior. Composition keeps the upper area quiet for game text. Threatening, brutish, greedy.",
+    },
+
+    {
+        "key": "bc_doat_hop",
+        "name": "D.4d Đoạt hộp — Đỗ Tam phản phệ",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_doat_hop.jpg",
+        "nhom": "dot1",
+        "use": "Đoạt hộp kiếm — Đỗ Tam chém trúng vai, phản phệ (d04d).",
+        "prompt": STYLE_MAU + " " + "A violent struggle inside a ruined mountain shrine at night, seen at eye level. Two blurred figures grapple over a long dark wooden box — one young and ragged, one burly and scarred. A broad saber mid-swing, cloth torn, blood spattering. Overturned dust and straw, cold moonlight through the broken roof. Composition keeps the upper part dark and quiet for game text. Desperate, chaotic, brutal.",
+    },
+
+    {
+        "key": "bc_tu_khiem",
+        "name": "D.9 Tu luyện kiếm đạo — đêm đầu",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_tu_khiem.jpg",
+        "nhom": "dot1",
+        "use": "Tu luyện kiếm đạo đêm đầu — dẫn khí vào lưỡi kiếm (d09).",
+        "prompt": STYLE_MAU + " " + "Inside a ruined mountain shrine at night: a ragged young man sits cross-legged on the floor in meditation, a slender sword lying across his knees, faint cold light gathering along the blade. A ghostly white-robed sword spirit stands watching him in the shadow. Dust motes drifting in a cold moonbeam. Composition keeps the center low and calm so game text can sit above. Focused, still, austere.",
+    },
+
+    {
+        "key": "bc_dot_pha",
+        "name": "D.10 Đột phá Luyện Khí",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_dot_pha.jpg",
+        "nhom": "dot1",
+        "use": "Đột phá Luyện Khí tầng một — kiếm khí chảy trong kinh mạch (d10).",
+        "prompt": STYLE_MAU + " " + "Inside a ruined mountain shrine at dawn: a ragged young man sits in meditation, faint pale light and thin swirling mist rising around him as if from within, a slender sword resting before him on the floor. The first grey light seeps through the broken roof. Composition keeps the center low and calm so game text can sit above. Quiet breakthrough, solemn, uplifted.",
+    },
+
+    {
+        "key": "vt_kiem_hap_nhan",
+        "name": "D.8 Nhận chủ — máu nhỏ lên kiếm",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "vt_kiem_hap_nhan.jpg",
+        "nhom": "dot1",
+        "use": "Nhận chủ — kiếm linh rạch tay, máu nhỏ lên hai thanh kiếm (d08).",
+        "prompt": STYLE_MAU + " " + "Close still-life inside a ruined shrine at night: an open long dark wooden sword box on the floor, a slender sword raised just above it, a thin line of blood running down the blade and soaking in, the metal glowing faintly. A few wisps of pale mist. Cold moonlight from one side. Composition centred and calm with empty space for game text. Solemn, binding, mysterious.",
+    },
+
+    {
+        "key": "nv_kiem_linh_thu",
+        "name": "D.6b Kiếm linh — thử thách",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_kiem_linh_thu.jpg",
+        "nhom": "dot1",
+        "use": "Kiếm linh thử thách — kiếm lơ lửng trước mặt (d06b).",
+        "prompt": STYLE_MAU + " " + "A ghostly young male sword spirit in plain flowing white robes, upper body, facing the viewer at a slight angle inside a ruined shrine at night. Cold composed face, sharp bright eyes, pale and half-translucent, edges fading to mist. A single slender sword floats upright before him, tip pointed down, held by no hand. Background left almost empty with soft ink wash for game text. Cold, testing, dignified.",
+    },
+
+    {
+        "key": "nv_kiem_linh_than",
+        "name": "D.7 Kiếm linh giới thiệu thân phận",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_kiem_linh_than.jpg",
+        "nhom": "dot1",
+        "use": "Kiếm linh kể thân phận — Hồng Trần Kiếm, kiếm tu ngã xuống ngàn năm trước (d07).",
+        "prompt": STYLE_MAU + " " + "A ghostly young male sword spirit in plain flowing white robes, upper body, turned slightly aside, speaking inside a ruined shrine at night. Cold composed face, sharp bright eyes, form shimmering faintly and fading to mist at the edges. Behind him, half in shadow, a long dark sword box rests open. Background left almost empty with soft ink wash for game text. Grave, ancient, austere.",
+    },
+
+    {
+        "key": "nv_kiem_linh_dieu",
+        "name": "D.7b Điều kiện nhận chủ",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_kiem_linh_dieu.jpg",
+        "nhom": "dot1",
+        "use": "Kiếm linh ra điều kiện — phải lăn lộn giữa hồng trần (d07b).",
+        "prompt": STYLE_MAU + " " + "A ghostly young male sword spirit in plain flowing white robes, upper body, facing the viewer steadily inside a ruined shrine at night, one hand lifted as if stating a condition. Cold composed face, sharp bright eyes, pale half-translucent form fading to mist at the edges. Background left almost empty with soft ink wash for game text. Stern, solemn, uncompromising.",
+    },
+
+    {
+        "key": "bc_tran_lua_2",
+        "name": "D.12 Xuống trấn — cứu dân",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_tran_lua_2.jpg",
+        "nhom": "dot1",
+        "use": "Xuống trấn cứu dân — lần đầu giết người (d12).",
+        "prompt": STYLE_MAU + " " + "An ancient Chinese market town ablaze at night, seen at eye level from a street in chaos. Wooden houses burning, thick black smoke rolling up, townsfolk fleeing, mounted raiders with blades cutting through the crowd. In the foreground a ragged youth lunges forward with a drawn sword toward a raider seizing a child. Restrained ink-wash tones with a single ember-orange accent for the fire. Composition keeps the upper part smoky and calm for game text. Desperate, chaotic, tragic.",
+    },
+
+    {
+        "key": "bc_tran_lua_3",
+        "name": "D.13 Thất Huyền Môn — cổng vỡ",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_tran_lua_3.jpg",
+        "nhom": "dot1",
+        "use": "Thất Huyền Môn cổng vỡ — đệ tử ngã la liệt (d13).",
+        "prompt": STYLE_MAU + " " + "The broken gate of an ancient Chinese martial sect at night during a raid, seen from outside at eye level. The gate smashed open, fallen disciples in blue robes strewn across the ground, raiders pushing through thick smoke, flames at the edges of the frame. A ragged youth with a drawn sword stands among the fallen, mid-guard. Restrained ink-wash tones with a single ember-orange accent for fire. Composition keeps the upper part smoky and calm for game text. Tragic, chaotic, defiant.",
+    },
+
+    {
+        "key": "nv_han_lap_2",
+        "name": "D.16 Đối thoại với Hàn Lập",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "nv_han_lap_2.jpg",
+        "nhom": "dot1",
+        "use": "Đối thoại với Hàn Lập sau trận — hắn đã ghi nhớ ta (d16).",
+        "prompt": STYLE_MAU + " " + "Portrait of a lean, ordinary-looking young man of an ancient Chinese fantasy world, upper body, facing the viewer at a slight angle, at night on a hillside. A thin plain-featured youth in coarse undyed cloth robes, simple cloth belt, black hair in a plain topknot, no ornament. His eyes are calm, deep and sharp as a knife, watchful and unreadable. He is quietly wiping blood from his sleeve, as if the matter is settled. Background left almost empty with soft ink wash so game text can sit beside. Plain, quiet, quietly formidable.",
+    },
 ]
 
 # Ảnh truyện/nhân vật dùng bản tô màu điểm (彩墨) thay cho mực đen thuần.
@@ -516,6 +695,18 @@ def build_gop_prompt_cu() -> str:
     return _build_gop(ds, "4 ảnh truyện cũ (Chương 1), vẽ lại theo phong cách điểm màu")
 
 
+def build_gop_prompt_mau() -> str:
+    """Prompt gộp 4 ảnh MẪU tham chiếu — vẽ TRƯỚC khi vẽ ảnh cảnh."""
+    ds = [a for a in ASSETS if a.get("nhom") == "mau"]
+    return _build_gop(ds, "4 ảnh MẪU tham chiếu — vẽ TRƯỚC, dùng đính kèm khi vẽ ảnh cảnh")
+
+
+def build_gop_prompt_dot1() -> str:
+    """Prompt gộp 14 ảnh đợt 1 (nhánh tán tu, Chương 1)."""
+    ds = [a for a in ASSETS if a.get("nhom") == "dot1"]
+    return _build_gop(ds, "đợt 1 — nhánh tán tu, Chương 1")
+
+
 def page():
     env = load_env()
     keys_html = "".join(
@@ -532,6 +723,8 @@ def page():
     html = html.replace("__GOP_PROMPT__", html_lib.escape(build_gop_prompt()))
     html = html.replace("__GOP_PROMPT_TANTU__", html_lib.escape(build_gop_prompt_tantu()))
     html = html.replace("__GOP_PROMPT_CU__", html_lib.escape(build_gop_prompt_cu()))
+    html = html.replace("__GOP_PROMPT_MAU__", html_lib.escape(build_gop_prompt_mau()))
+    html = html.replace("__GOP_PROMPT_DOT1__", html_lib.escape(build_gop_prompt_dot1()))
     return html
 
 
@@ -599,6 +792,29 @@ PAGE_TMPL = """<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
 </ol>
 <p class="muted">Lưu ý: prompt đã ghi rõ <b>không có chữ/ký tự</b> trong ảnh (trừ ảnh ấn son — chữ Hồng Đức),
 vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.</p>
+
+<h2>1️⃣ Vẽ 4 ảnh MẪU tham chiếu (làm TRƯỚC)</h2>
+<div class="card">
+  <p class="muted">Đây là <b>bước nền</b>: vẽ 4 ảnh mẫu nhân vật <b>một lần</b>, rồi
+  <b>đính kèm</b> chúng mỗi khi vẽ ảnh cảnh — nhờ vậy nhân vật giữ <b>cùng một gương mặt</b>
+  qua mọi cảnh, mọi chương. Bấm <b>Copy</b> rồi dán vào Gemini chat.</p>
+  <p class="muted"><b>Lưu ý:</b> 5 nhân vật/đồ vật khác <b>đã có sẵn</b> ảnh (Tuyết Cơ, Hàn Lập,
+  Kiếm linh, Ngọc cốt, Hộp kiếm) — không cần vẽ lại, dùng luôn làm ảnh mẫu.</p>
+  <textarea readonly rows="10" id="gopmau" onclick="this.select()">__GOP_PROMPT_MAU__</textarea>
+  <button class="cp" onclick="cpText('gopmau', this)">📋 Copy prompt 4 ảnh mẫu</button>
+  <button class="up" onclick="taiPromptGop('gopmau', 'hong-duc-prompt-4-anh-mau.txt')">⬇️ Tải về file .txt</button>
+</div>
+
+<h2>2️⃣ Vẽ 14 ảnh đợt 1 — nhánh tán tu</h2>
+<div class="card">
+  <p class="muted">Sau khi có 4 ảnh mẫu, vẽ đợt 1: <b>14 ảnh cảnh nhánh tán tu</b>
+  (ngõ chợ, miếu hoang, Đỗ Tam, nhận chủ kiếm, tu luyện, đại chiến, Hàn Lập).
+  <b>Đính kèm ảnh mẫu</b> nhân vật có trong cảnh. Bấm <b>Copy</b> rồi dán vào Gemini chat —
+  hết lượt thì nhắn <b>“tiếp tục”</b>.</p>
+  <textarea readonly rows="10" id="gopdot1" onclick="this.select()">__GOP_PROMPT_DOT1__</textarea>
+  <button class="cp" onclick="cpText('gopdot1', this)">📋 Copy prompt 14 ảnh đợt 1</button>
+  <button class="up" onclick="taiPromptGop('gopdot1', 'hong-duc-prompt-14-anh-dot1.txt')">⬇️ Tải về file .txt</button>
+</div>
 
 <h2>🎨 Vẽ cả bộ bằng 1 prompt (đỡ copy từng cái)</h2>
 <div class="card">
