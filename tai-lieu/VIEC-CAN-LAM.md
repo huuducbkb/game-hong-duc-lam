@@ -16,6 +16,23 @@
         lưới 9 ảnh mẫu, xem + tải về để đính kèm
   - [ ] **→ Người dùng: mở Xưởng, vẽ từng nhóm, upload lại** (xem hướng dẫn bên dưới)
   - [ ] Agent: ghép 14 ảnh vào game khi đủ
+  - **Tiến độ 14 ảnh: 3/14**
+    - [x] **Nhóm 1 — Phong cảnh (3/3)** ✓ (PR #31 merged, commit `79b30ed`)
+          bc_cho_02 · bc_cho_03 · bc_mieu_trong — khớp cảnh 95/100, phong cách 90/100, không chữ
+    - [ ] Nhóm 2 — Đồ vật hộp kiếm (0/1): vt_kiem_hap_nhan
+    - [ ] Nhóm 3 — Nhân vật chính (0/3): bc_dot_pha · bc_tran_lua_2 · bc_tran_lua_3
+    - [ ] Nhóm 4 — Kiếm linh (0/3): nv_kiem_linh_thu · nv_kiem_linh_than · nv_kiem_linh_dieu
+    - [ ] Nhóm 5 — Đỗ Tam (0/2): nv_do_tam_mieu · bc_doat_hop
+    - [ ] Nhóm 6 — NV chính + Kiếm linh (0/1): bc_tu_khiem
+    - [ ] Nhóm 7 — Hàn Lập (0/1): nv_han_lap_2
+
+---
+
+## ✅ VỪA XONG — Nhóm 1 phong cảnh (PR #31)
+
+- [x] Nhận 3 ảnh: `bc_cho_02` · `bc_cho_03` · `bc_mieu_trong` (900×1200, 3:4 ✓)
+- [x] AI vision: khớp cảnh 95/100, phong cách 90/100, không chữ
+- [x] Lưu cả `assets/` và `docs/assets/`
 
 ---
 
