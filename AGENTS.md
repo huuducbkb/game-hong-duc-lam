@@ -391,8 +391,7 @@ này không đoạn nào nhắc, không logic nào dùng → đã xóa khỏi `t
 ### Cơ duyên trong túi (đã chốt với người dùng)
 
 Cơ duyên (bảo vật gắn với nhân vật) là **linh hồn truyện** — mỗi nhánh xuất thân có
-một cơ duyên riêng (môn phái: Ngọc cốt; tán tu: Hồng Trần Kiếm Hạp). Quyết định giao
-diện, chốt trong `tai-lieu/KE-HOACH-SUA-CHUONG-1.md` mục 7:
+một cơ duyên riêng (môn phái: Ngọc cốt; tán tu: Hồng Trần Kiếm Hạp). Giao diện:
 
 - Vật có cờ `co_duyen: true` **luôn xếp đầu** danh sách túi đồ.
 - **Viền gradient nhiều màu** chạy động (`.sys-row.co-duyen::before` + `@keyframes cdChay`).

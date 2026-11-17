@@ -98,7 +98,6 @@ Trừ ~5 phút tạo nhân vật (đầu game) → phần chơi còn ~40 phút.
 
 > ⚠️ **ĐÃ BỎ (2026-11-14):** ràng buộc "18 đoạn/chương" gây **gò bó**, khiến nhánh bị nén
 > và nhảy cảnh. Nay **không ép số đoạn** — viết bao nhiêu tuỳ cốt truyện cần.
-> Xem `KE-HOACH-SUA-CHUONG-1.md`.
 
 | Hồi | Số đoạn | Nội dung | Thời lượng |
 |---|---|---|---|
