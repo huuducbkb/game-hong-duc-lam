@@ -7,8 +7,6 @@
       "mo_ta": "Chợ sớm Thất Huyền trấn — quầy hàng, sọt rách, sương sớm",
       "dung_o": [
         "c1_d01",
-        "c1_d02",
-        "c1_d02b",
         "c1_p05"
       ],
       "tags": [
@@ -46,8 +44,7 @@
       "mo_ta": "Ngọc cốt bí ẩn — khối ngọc hình xương, phát sáng lạnh từ bên trong",
       "dung_o": [
         "c1_p06",
-        "c1_p07",
-        "c1_p19"
+        "c1_p07"
       ],
       "tags": [
         "ngọc cốt",
@@ -112,7 +109,6 @@
       "mo_ta": "Miếu hoang sau núi — xương khô, vết cào, hộp gỗ đen",
       "dung_o": [
         "c1_d04",
-        "c1_d04b",
         "c1_d04c",
         "c1_d04d",
         "c1_d09",
@@ -202,12 +198,53 @@
       "loai": "boi_canh",
       "mo_ta": "Bình minh Thất Huyền trấn — kết chương 1",
       "dung_o": [
-        "c1_d17"
+        "c1_d17",
+        "c1_p19"
       ],
       "tags": [
         "bình minh",
         "kết chương",
         "hy vọng"
+      ]
+    },
+    "bc_cho_02.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Ngõ nhỏ sau chợ — đám ăn mày quanh đống lửa, nghe lời đồn Dã Lang Bang",
+      "dung_o": [
+        "c1_d02"
+      ],
+      "tags": [
+        "ngõ",
+        "chợ",
+        "lời đồn",
+        "ăn mày",
+        "chiều"
+      ]
+    },
+    "bc_cho_03.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Góc chợ — ngày dài xin ăn, mòn mỏi",
+      "dung_o": [
+        "c1_d02b"
+      ],
+      "tags": [
+        "chợ",
+        "chiều",
+        "mòn mỏi",
+        "một mình"
+      ]
+    },
+    "bc_mieu_trong.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Trong miếu — xác người mới chết còn ấm",
+      "dung_o": [
+        "c1_d04b"
+      ],
+      "tags": [
+        "miếu hoang",
+        "đêm",
+        "xác người",
+        "nguy hiểm"
       ]
     }
   }

@@ -208,7 +208,7 @@ console.log("\n=== O. Ảnh cảnh truyện ===");
   const r = Engine.bat_dau(o);
   check("engine trả hinh_anh.anh ở d01", r.hinh_anh && r.hinh_anh.anh, "bc_cho_01.jpg");
   const r2 = Engine.chon(o, 0);
-  check("đổi đoạn vẫn có ảnh", r2.hinh_anh && r2.hinh_anh.anh, "bc_cho_01.jpg");
+  check("đổi đoạn vẫn có ảnh", r2.hinh_anh && r2.hinh_anh.anh, "bc_cho_02.jpg");
 }
 
 console.log("\n=== L. Lưu / nạp ===");
