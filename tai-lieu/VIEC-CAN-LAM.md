@@ -8,12 +8,22 @@
 
 ## 🔴 ĐANG LÀM
 
-- [~] **Phần ảnh — bước 1: ảnh mẫu tham chiếu**
-  - [x] Soạn prompt 4 ảnh mẫu **cần vẽ mới**: nhân vật chính · Mạc Đại Phu · Đỗ Tam · Hùng Bá
-        (5 ảnh mẫu khác **đã có sẵn**: Tuyết Cơ, Hàn Lập, Kiếm linh, Ngọc cốt, Hộp kiếm)
-  - [x] Thêm nút **"Copy prompt 4 ảnh mẫu"** vào Xưởng (`/upload`)
-  - [x] Thêm nút **"Copy prompt 14 ảnh đợt 1"** vào Xưởng
-  - [ ] **→ Người dùng: mở Xưởng, bấm nút, vẽ 4 ảnh mẫu, upload lại**
+- [~] **Phần ảnh — bước 2: 14 ảnh cảnh đợt 1 (nhánh tán tu)**
+  - [x] **4 ảnh mẫu đã xong** ✓ (người dùng vẽ + upload, đã kiểm tra: đúng tên, đúng tỷ lệ
+        3:4, đúng canon — nhân vật chính, Mạc Đại Phu, Đỗ Tam, Hùng Bá)
+  - [ ] **→ Chờ người dùng chốt:** có thêm 6 nút copy chia theo nhóm nhân vật không?
+        (mỗi nút ghi rõ đính kèm ảnh mẫu nào → giữ mặt nhân vật đều)
+  - [ ] Người dùng vẽ 14 ảnh → upload Xưởng → agent ghép vào game
+
+---
+
+## ✅ VỪA XONG — Nhận 4 ảnh mẫu tham chiếu
+
+- [x] 4 ảnh mẫu vào `assets/scene/` + `docs/assets/scene/` (commit `0ceacd7`)
+  - `nv_chinh_mau` · `nv_mac_dai_phu_mau` · `nv_do_tam_mau` · `nv_hung_ba_mau`
+  - Kiểm tra: 900×1200 (3:4 ✓) · AI xác nhận đúng canon + đúng dạng ảnh mẫu (1 nhân vật, nền trống)
+- [x] **9 ảnh mẫu sẵn sàng** = 4 mới + 5 cũ (Tuyết Cơ, Hàn Lập, Kiếm linh, Ngọc cốt, Hộp kiếm)
+- [x] Phân tích: 14 ảnh đợt 1 chia **6 nhóm theo nhân vật** (để đính kèm đúng ảnh mẫu)
 
 ---
 
