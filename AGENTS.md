@@ -340,6 +340,28 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 4. Thư viện ảnh/video: mở rộng đủ Chương 1 (~19 ảnh) + video ngắn (chuỗi ảnh + hiệu ứng)
 5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
 
+## Bẫy môi trường khi chạy trong sandbox agent
+
+- **Đường dẫn repo**: `game/_test_api.py` và `_snap`/`_restore` dùng **đường dẫn cứng**
+  `/workspace/game-hong-duc-lam`. Nếu repo được clone vào thư mục khác (vd `/workspace/project`),
+  phải tạo symlink trước khi chạy test API:
+  `ln -sfn /workspace/project /workspace/game-hong-duc-lam`
+- **Pillow**: test mục "Nén ảnh khi lưu" chỉ chạy khi có Pillow (`pip install Pillow`).
+- Test API **tự snapshot/restore** ảnh thật nó ghi đè (`_snap`/`_restore`), nhưng vẫn nên
+  so hash `assets/scene/bc_cho_01.jpg` trước/sau để chắc chắn ảnh thật không bị thay.
+- Server test cần chạy trước: `python3 game_server.py` (cổng 12001).
+
+## Ghép ảnh cảnh vào đoạn (việc thường làm)
+
+1. Đọc `use` của từng asset trong `tools_server.py` (mục `ASSETS`) → biết ảnh dùng ở đoạn nào.
+2. Ghi `hinh_anh.anh` trong **cả** `game/chapters/chuong1.json` **và**
+   `docs/game/du-lieu/chuong1.json`.
+3. Cập nhật `docs/assets/library/index.json`: thêm mục mới + sửa `dung_o` của ảnh cũ đã
+   nhường đoạn (nếu đoạn đó đổi sang ảnh mới).
+4. Chạy `node game/_test_engine.js` — test "đổi đoạn vẫn có ảnh" hard-code tên ảnh của
+   `c1_d02`; đổi ảnh `c1_d02` thì phải sửa kỳ vọng trong test.
+5. Commit → PR → bỏ draft (GraphQL) → merge-async → poll → kiểm tra HTTP 200 + dữ liệu thật.
+
 ## Bản game JS trên GitHub Pages (đã phát hành)
 
 - **Repo**: `huuducbkb/game-hong-duc-lam` (public) — mọi thay đổi push thẳng vào `main`.

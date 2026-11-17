@@ -20,7 +20,7 @@
   - **Tiến độ 14 ảnh: 3/14 (3 ảnh đã ghép vào game)**
     - [x] **Nhóm 1 — Phong cảnh (3/3)** ✓ (PR #31 merged, commit `79b30ed`)
           bc_cho_02 · bc_cho_03 · bc_mieu_trong — khớp cảnh 95/100, phong cách 90/100, không chữ
-          **Đã ghép (commit `<GHÉP>`):** `bc_cho_02`→`c1_d02` · `bc_cho_03`→`c1_d02b` ·
+          **Đã ghép (PR #32, commit `bd17c06`):** `bc_cho_02`→`c1_d02` · `bc_cho_03`→`c1_d02b` ·
           `bc_mieu_trong`→`c1_d04b`; cập nhật `docs/assets/library/index.json`
     - [ ] Nhóm 2 — Đồ vật hộp kiếm (0/1): vt_kiem_hap_nhan
     - [ ] Nhóm 3 — Nhân vật chính (0/3): bc_dot_pha · bc_tran_lua_2 · bc_tran_lua_3
