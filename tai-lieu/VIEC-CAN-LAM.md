@@ -8,11 +8,19 @@
 
 ## 🔴 ĐANG LÀM
 
-- [~] **Giai đoạn 1 — Sửa văn Chương 1** (mục tiêu: chơi lại không thấy trùng)
-  - [ ] 3 đoạn "chôn trả lại" (`c1_p03e`, `c1_p05c`, `c1_p06b`) → viết thành 3 bản khác nhau
-  - [ ] `c1_d15` vs `c1_p17` (gặp Hàn Lập) → viết thành 2 bản khác nhau
-  - [ ] Rà toàn chương tìm cặp trùng còn sót
-  - [ ] Chạy `_test_engine.js` + `_test_api.py` sau khi sửa
+- [~] **Phần ảnh — ảnh mẫu tham chiếu** (bước nền, làm trước khi vẽ 51 ảnh cảnh)
+  - [ ] Soạn prompt 7 ảnh mẫu: nhân vật chính · Tuyết Cơ · Kiếm linh · Hàn Lập ·
+        Mạc Đại Phu · ngọc cốt · Hồng Trần Kiếm Hạp
+  - [ ] Người dùng vẽ → upload Xưởng → agent chốt ảnh mẫu
+
+---
+
+## ✅ VỪA XONG — Đẩy văn lên web
+
+- [x] PR **#27** merged (commit `e530a3a`): sửa văn trùng Chương 1 + bảng canon + sổ việc
+  - Đã kiểm chứng web thật: `p05c`/`p19` là bản mới, **0 đoạn** còn câu mơ cũ
+  - GitHub Pages deploy: **success**
+  - URL game: https://huuducbkb.github.io/game-hong-duc-lam/game/play.html
 
 ---
 
