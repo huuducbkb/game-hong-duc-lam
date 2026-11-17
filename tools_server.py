@@ -625,11 +625,47 @@ TAN_TU_KEYS = [
 # 4 ảnh truyện cũ (B.1–B.4) — đã có file, cần vẽ lại cho khớp phong cách điểm màu
 CU_KEYS = ["bc_cho_01", "bc_tan_xa_dem", "vt_ngoc_cot", "nv_tuyet_co"]
 
+# Tên tiếng Việt của ảnh mẫu — để ghi vào hướng dẫn "đính kèm ảnh mẫu nào".
+ANH_MAU_TEN = {
+    "nv_chinh_mau": "Nhân vật chính",
+    "nv_do_tam_mau": "Đỗ Tam",
+    "nv_hung_ba_mau": "Hùng Bá",
+    "nv_mac_dai_phu_mau": "Mạc Đại Phu",
+    "nv_tuyet_co": "Tuyết Cơ",
+    "nv_han_lap": "Hàn Lập",
+    "nv_kiem_linh": "Kiếm linh Hồng Trần",
+    "vt_ngoc_cot": "Ngọc cốt",
+    "vt_kiem_hap": "Hồng Trần Kiếm Hạp",
+}
 
-def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "") -> str:
-    """Dựng prompt gộp cho một bộ ảnh: dán 1 lần vào AI chat là nó vẽ lần lượt."""
+# 14 ảnh đợt 1 chia nhóm theo nhân vật/vật xuất hiện, để mỗi nhóm chỉ cần đính kèm
+# đúng ảnh mẫu liên quan — nhờ vậy mặt/tóc/áo nhân vật giữ nguyên qua mọi cảnh.
+NHOM_DOT1 = [
+    {"ten": "Phong cảnh (không có người)",
+     "keys": ["bc_cho_02", "bc_cho_03", "bc_mieu_trong"], "mau": []},
+    {"ten": "Đồ vật — hộp kiếm",
+     "keys": ["vt_kiem_hap_nhan"], "mau": ["vt_kiem_hap"]},
+    {"ten": "Nhân vật chính",
+     "keys": ["bc_dot_pha", "bc_tran_lua_2", "bc_tran_lua_3"], "mau": ["nv_chinh_mau"]},
+    {"ten": "Kiếm linh Hồng Trần",
+     "keys": ["nv_kiem_linh_thu", "nv_kiem_linh_than", "nv_kiem_linh_dieu"], "mau": ["nv_kiem_linh"]},
+    {"ten": "Đỗ Tam (phản diện)",
+     "keys": ["nv_do_tam_mieu", "bc_doat_hop"], "mau": ["nv_do_tam_mau", "nv_chinh_mau"]},
+    {"ten": "Nhân vật chính + Kiếm linh",
+     "keys": ["bc_tu_khiem"], "mau": ["nv_chinh_mau", "nv_kiem_linh"]},
+    {"ten": "Hàn Lập",
+     "keys": ["nv_han_lap_2"], "mau": ["nv_han_lap"]},
+]
+
+
+def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "", mau: list = None) -> str:
+    """Dựng prompt gộp cho một bộ ảnh: dán 1 lần vào AI chat là nó vẽ lần lượt.
+
+    mau: danh sách key ảnh mẫu cần đính kèm (rỗng/None = không cần).
+    """
     if not dong_dau:
-        dong_dau = (f'TASK: Create {len(ds)} images for a Vietnamese cultivation game named '
+        so = f"{len(ds)} image" + ("" if len(ds) == 1 else "s")
+        dong_dau = (f'TASK: Create {so} for a Vietnamese cultivation game named '
                     f'"Hồng Đức Tu Tiên Lộ"')
         dong_dau += f" — {tieu_de}." if tieu_de else "."
     # Nếu cả bộ đều là ảnh điểm màu thì ghi phong cách 彩墨, ngược lại ghi mực đen.
@@ -642,6 +678,19 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "") -> str:
         "If you cannot finish them all in one reply, make as many as you can and then stop; "
         'I will reply "tiếp tục" to get the next batch.',
         "",
+    ]
+    # Nhóm có nhân vật → nhắc đính kèm ảnh mẫu để giữ mặt/tóc/áo y hệt.
+    if mau:
+        ten = ", ".join(ANH_MAU_TEN.get(k, k) for k in mau)
+        ref = "reference image" + ("" if len(mau) == 1 else "s")
+        dong += [
+            f"ATTACHED REFERENCE IMAGE(S): I am attaching {len(mau)} {ref} — {ten}.",
+            "Every figure in EVERY image below must keep the SAME face, hair, clothing and colours "
+            "as the attached reference(s). Only the pose, expression, camera angle, lighting and "
+            "background may change. Do not redesign the character.",
+            "",
+        ]
+    dong += [
         "SHARED ART STYLE (apply to EVERY image): " + phong_cach,
         "",
     ]
@@ -707,6 +756,33 @@ def build_gop_prompt_dot1() -> str:
     return _build_gop(ds, "đợt 1 — nhánh tán tu, Chương 1")
 
 
+def build_gop_prompt_nhom(nhom: dict) -> str:
+    """Prompt gộp cho MỘT nhóm ảnh đợt 1 (kèm hướng dẫn đính kèm ảnh mẫu)."""
+    ds = [a for a in ASSETS if a["key"] in nhom["keys"]]
+    return _build_gop(ds, f'nhóm "{nhom["ten"]}" — đợt 1, Chương 1', mau=nhom["mau"])
+
+
+def build_nhom_html() -> str:
+    """Lưới 7 nhóm ảnh đợt 1 — mỗi nhóm 1 nút copy, ghi rõ đính kèm ảnh mẫu nào."""
+    the = []
+    for i, nhom in enumerate(NHOM_DOT1, 1):
+        if nhom["mau"]:
+            ds_mau = ", ".join(ANH_MAU_TEN.get(k, k) for k in nhom["mau"])
+            nhac = f'<b>Đính kèm:</b> <span class="mau">{ds_mau}</span>'
+        else:
+            nhac = '<b>Đính kèm:</b> <span class="muted">không cần</span>'
+        so_anh = len(nhom["keys"])
+        the.append(f"""
+<div class="card nhom">
+  <div class="head"><b>{i}. {nhom['ten']}</b> <span class="ratio">{so_anh} ảnh</span></div>
+  <div class="use">{nhac}</div>
+  <textarea readonly rows="8" id="nhom{i}" onclick="this.select()">{html_lib.escape(build_gop_prompt_nhom(nhom))}</textarea>
+  <button class="cp" onclick="cpText('nhom{i}', this)">📋 Copy prompt nhóm {i}</button>
+  <button class="up" onclick="taiPromptGop('nhom{i}', 'hong-duc-nhom-{i}.txt')">⬇️ Tải .txt</button>
+</div>""")
+    return "\n".join(the)
+
+
 def page():
     env = load_env()
     keys_html = "".join(
@@ -725,6 +801,7 @@ def page():
     html = html.replace("__GOP_PROMPT_CU__", html_lib.escape(build_gop_prompt_cu()))
     html = html.replace("__GOP_PROMPT_MAU__", html_lib.escape(build_gop_prompt_mau()))
     html = html.replace("__GOP_PROMPT_DOT1__", html_lib.escape(build_gop_prompt_dot1()))
+    html = html.replace("__NHOM_DOT1__", build_nhom_html())
     return html
 
 
@@ -746,6 +823,10 @@ PAGE_TMPL = """<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
  .ratio{font-size:11px;color:var(--muted);background:#0a1220;padding:2px 8px;border-radius:99px}
  .got{font-size:11px;color:#7fe0a8;background:#12351f;padding:2px 8px;border-radius:99px}
  .use{font-size:12px;color:var(--muted);margin:6px 0 8px}
+ .nhom{border-left:3px solid var(--jade)}
+ .mau{color:#ffd166}
+ details{margin:12px 0}
+ summary{cursor:pointer;font-size:13px;color:var(--jade);padding:8px 0}
  textarea{width:100%;font-size:12.5px;line-height:1.5;background:#0a1220;color:#dfe7f5;border:1px solid var(--line);
    border-radius:8px;padding:10px;resize:vertical;font-family:ui-monospace,Menlo,monospace}
  button{font-family:inherit;font-size:14px;font-weight:600;border:0;border-radius:10px;padding:11px 16px;cursor:pointer}
@@ -805,16 +886,24 @@ vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.
   <button class="up" onclick="taiPromptGop('gopmau', 'hong-duc-prompt-4-anh-mau.txt')">⬇️ Tải về file .txt</button>
 </div>
 
-<h2>2️⃣ Vẽ 14 ảnh đợt 1 — nhánh tán tu</h2>
+<h2>2️⃣ Vẽ 14 ảnh đợt 1 — chia 7 nhóm theo nhân vật</h2>
 <div class="card">
-  <p class="muted">Sau khi có 4 ảnh mẫu, vẽ đợt 1: <b>14 ảnh cảnh nhánh tán tu</b>
-  (ngõ chợ, miếu hoang, Đỗ Tam, nhận chủ kiếm, tu luyện, đại chiến, Hàn Lập).
-  <b>Đính kèm ảnh mẫu</b> nhân vật có trong cảnh. Bấm <b>Copy</b> rồi dán vào Gemini chat —
-  hết lượt thì nhắn <b>“tiếp tục”</b>.</p>
+  <p class="muted">Vẽ <b>từng nhóm một</b>: bấm <b>Copy</b> → dán vào Gemini chat → <b>đính kèm
+  ảnh mẫu</b> đúng như nhóm ghi → lấy ảnh. Cách này giữ <b>mặt/tóc/áo nhân vật y hệt</b>
+  giữa các cảnh. Vẽ xong nhóm nào, tải ảnh lên Xưởng ngay nhóm đó.</p>
+  <p class="muted">Muốn vẽ nhanh cả 14 ảnh một lần? Dùng nút <b>“Copy prompt 14 ảnh đợt 1”</b>
+  ở cuối trang (nhưng khi đó AI không thấy ảnh mẫu → mặt nhân vật có thể khác nhau).</p>
+</div>
+__NHOM_DOT1__
+
+<details>
+<summary>Hoặc vẽ cả 14 ảnh một lần (không đính kèm ảnh mẫu)</summary>
+<div class="card">
   <textarea readonly rows="10" id="gopdot1" onclick="this.select()">__GOP_PROMPT_DOT1__</textarea>
   <button class="cp" onclick="cpText('gopdot1', this)">📋 Copy prompt 14 ảnh đợt 1</button>
   <button class="up" onclick="taiPromptGop('gopdot1', 'hong-duc-prompt-14-anh-dot1.txt')">⬇️ Tải về file .txt</button>
 </div>
+</details>
 
 <h2>🎨 Vẽ cả bộ bằng 1 prompt (đỡ copy từng cái)</h2>
 <div class="card">
