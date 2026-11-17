@@ -14,17 +14,32 @@
         mỗi nhóm ghi rõ đính kèm ảnh mẫu nào → giữ mặt nhân vật đều
   - [x] **Thư viện ảnh mẫu** ✓ (PR #30 merged, commit `19923e0`)
         lưới 9 ảnh mẫu, xem + tải về để đính kèm
-  - [ ] **→ Người dùng: mở Xưởng, vẽ từng nhóm, upload lại** (xem hướng dẫn bên dưới)
-  - [ ] Agent: ghép 14 ảnh vào game khi đủ
-  - **Tiến độ 14 ảnh: 3/14**
+  - [~] **→ Người dùng: mở Xưởng, vẽ từng nhóm, upload lại** (xem hướng dẫn bên dưới)
+        Nhóm 1 đã upload xong và **đã ghép vào game**; còn 6 nhóm (11 ảnh) chờ vẽ.
+  - [~] Agent: ghép 14 ảnh vào game khi đủ — đã ghép nhóm 1 (3 ảnh)
+  - **Tiến độ 14 ảnh: 3/14 (3 ảnh đã ghép vào game)**
     - [x] **Nhóm 1 — Phong cảnh (3/3)** ✓ (PR #31 merged, commit `79b30ed`)
           bc_cho_02 · bc_cho_03 · bc_mieu_trong — khớp cảnh 95/100, phong cách 90/100, không chữ
+          **Đã ghép (commit `<GHÉP>`):** `bc_cho_02`→`c1_d02` · `bc_cho_03`→`c1_d02b` ·
+          `bc_mieu_trong`→`c1_d04b`; cập nhật `docs/assets/library/index.json`
     - [ ] Nhóm 2 — Đồ vật hộp kiếm (0/1): vt_kiem_hap_nhan
     - [ ] Nhóm 3 — Nhân vật chính (0/3): bc_dot_pha · bc_tran_lua_2 · bc_tran_lua_3
     - [ ] Nhóm 4 — Kiếm linh (0/3): nv_kiem_linh_thu · nv_kiem_linh_than · nv_kiem_linh_dieu
     - [ ] Nhóm 5 — Đỗ Tam (0/2): nv_do_tam_mieu · bc_doat_hop
     - [ ] Nhóm 6 — NV chính + Kiếm linh (0/1): bc_tu_khiem
     - [ ] Nhóm 7 — Hàn Lập (0/1): nv_han_lap_2
+
+---
+
+## ✅ VỪA XONG — Ghép 3 ảnh nhóm 1 vào game
+
+- [x] Ghép 3 ảnh phong cảnh vào đúng đoạn theo `use` trong Xưởng:
+      `bc_cho_02`→`c1_d02` · `bc_cho_03`→`c1_d02b` · `bc_mieu_trong`→`c1_d04b`
+- [x] Cập nhật `docs/assets/library/index.json`: thêm 3 mục mới, sửa `dung_o`
+      (`bc_cho_01` bỏ `c1_d02`/`c1_d02b`; `bc_mieu_hoang` bỏ `c1_d04b`)
+- [x] Sửa ảnh gán sai `c1_p19` (kết chương) → `bc_binh_minh` (thay `vt_ngoc_cot`)
+- [x] Đồng bộ `game/chapters/chuong1.json` **và** `docs/game/du-lieu/chuong1.json`
+- [x] Engine test **105/105** · API test **161/161**
 
 ---
 
@@ -95,6 +110,7 @@
   - [ ] Đợt 5 — môn phái: tân xá, khổ tu
   - [ ] Đợt 6 — môn phái: cổng đông, Hàn Lập
 - [ ] Sửa ảnh gán sai: `c1_p19` (kết chương) → `bc_binh_minh` (thay `vt_ngoc_cot`)
+      → [x] **ĐÃ SỬA** (xem "VỪA XONG — Ghép 3 ảnh nhóm 1 vào game")
 
 ---
 
