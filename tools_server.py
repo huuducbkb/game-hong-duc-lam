@@ -783,6 +783,39 @@ def build_nhom_html() -> str:
     return "\n".join(the)
 
 
+# Thứ tự hiển thị thư viện ảnh mẫu: nhân vật trước, đồ vật sau.
+THU_VIEN_THU_TU = [
+    "nv_chinh_mau", "nv_mac_dai_phu_mau", "nv_do_tam_mau", "nv_hung_ba_mau",
+    "nv_tuyet_co", "nv_han_lap", "nv_kiem_linh", "vt_ngoc_cot", "vt_kiem_hap",
+]
+
+
+def build_thu_vien_html() -> str:
+    """Lưới 9 ảnh mẫu tham chiếu — xem + tải về để đính kèm khi vẽ cảnh."""
+    theo_key = {a["key"]: a for a in ASSETS}
+    the = []
+    for k in THU_VIEN_THU_TU:
+        a = theo_key.get(k)
+        if not a:
+            continue
+        co = os.path.isfile(f'{SCENE_DIR}/{a["file"]}')
+        nhan = ANH_MAU_TEN.get(k, k)
+        nhan_file = ("<span class='badge chac'>đã có</span>" if co
+                     else "<span class='badge'>chưa có</span>")
+        the.append(f"""
+<div class="item{' thieu' if not co else ''}">
+  <img src="/assets/scene/{a['file']}" alt="{nhan}" loading="lazy">
+  <div class="meta">
+    <b>{nhan}</b><br>
+    <span class="muted" style="font-size:11px">{a['file']}</span><br>
+    {nhan_file}
+    <a class="up" style="display:block;text-align:center;text-decoration:none;margin-top:8px"
+       href="/assets/scene/{a['file']}" download="{a['file']}">⬇️ Tải ảnh</a>
+  </div>
+</div>""")
+    return "\n".join(the)
+
+
 def page():
     env = load_env()
     keys_html = "".join(
@@ -802,6 +835,7 @@ def page():
     html = html.replace("__GOP_PROMPT_MAU__", html_lib.escape(build_gop_prompt_mau()))
     html = html.replace("__GOP_PROMPT_DOT1__", html_lib.escape(build_gop_prompt_dot1()))
     html = html.replace("__NHOM_DOT1__", build_nhom_html())
+    html = html.replace("__THU_VIEN_ANH_MAU__", build_thu_vien_html())
     return html
 
 
@@ -884,6 +918,14 @@ vì chữ do AI vẽ thường sai. Chữ trong game do tôi viết bằng code.
   <textarea readonly rows="10" id="gopmau" onclick="this.select()">__GOP_PROMPT_MAU__</textarea>
   <button class="cp" onclick="cpText('gopmau', this)">📋 Copy prompt 4 ảnh mẫu</button>
   <button class="up" onclick="taiPromptGop('gopmau', 'hong-duc-prompt-4-anh-mau.txt')">⬇️ Tải về file .txt</button>
+</div>
+
+<h2>📚 Thư viện ảnh mẫu — tải về để đính kèm</h2>
+<div class="card">
+  <p class="muted">Đây là <b>9 ảnh mẫu</b> dùng để đính kèm khi vẽ ảnh cảnh. Khi vẽ nhóm nào,
+  bấm <b>⬇️ Tải ảnh</b> của ảnh mẫu mà nhóm đó ghi, rồi đính kèm vào Gemini chat cùng prompt.
+  Trên iPad: bấm giữ ảnh → <b>“Lưu vào Ảnh”</b>.</p>
+  <div class="grid">__THU_VIEN_ANH_MAU__</div>
 </div>
 
 <h2>2️⃣ Vẽ 14 ảnh đợt 1 — chia 7 nhóm theo nhân vật</h2>
