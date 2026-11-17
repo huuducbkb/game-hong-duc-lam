@@ -12,8 +12,18 @@
   - [x] **4 ảnh mẫu đã xong** ✓ (đã kiểm tra: đúng tên, tỷ lệ 3:4, đúng canon)
   - [x] **Chia 7 nhóm + nút copy riêng** ✓ (PR #29 merged, commit `4b9ae0a`)
         mỗi nhóm ghi rõ đính kèm ảnh mẫu nào → giữ mặt nhân vật đều
+  - [x] **Thư viện ảnh mẫu** ✓ (PR #30 merged, commit `19923e0`)
+        lưới 9 ảnh mẫu, xem + tải về để đính kèm
   - [ ] **→ Người dùng: mở Xưởng, vẽ từng nhóm, upload lại** (xem hướng dẫn bên dưới)
   - [ ] Agent: ghép 14 ảnh vào game khi đủ
+
+---
+
+## ✅ VỪA XONG — Thư viện ảnh mẫu (PR #30)
+
+- [x] Mục **📚 Thư viện ảnh mẫu**: lưới 9 ảnh, mỗi ảnh có xem trước + tên + badge + nút tải
+- [x] Đường dẫn tuyệt đối `/assets/scene/...` (không hỏng khi URL có `/` cuối)
+- [x] Engine test **105/105** · API test **161/161**
 
 ---
 
