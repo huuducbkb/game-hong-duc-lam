@@ -766,6 +766,23 @@
       "dung_o": [
         "c1_p09"
       ]
+    },
+    "nv_tuyet_co_dieu_kien.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Tuyết Cơ nêu điều kiện: cần một phần dương khí (p09b).",
+      "tags": [
+        "điều",
+        "kiện",
+        "khế",
+        "ước",
+        "tuyết",
+        "cơ",
+        "nêu",
+        "cần"
+      ],
+      "dung_o": [
+        "c1_p09b"
+      ]
     }
   }
 }
