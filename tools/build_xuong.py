@@ -42,11 +42,6 @@ def _folder_url(key: str) -> str:
     return f"https://github.com/{REPO}/upload/main/xuong-inbox/{key}"
 
 
-def _body_mot(key: str) -> str:
-    return (f"mã-ảnh: {key}\n\n"
-            "Dán ảnh vào đây (kéo thả hoặc Ctrl+V), rồi bấm \"Submit new issue\":\n")
-
-
 def _body_nhom(keys: list) -> str:
     return ("".join(f"mã-ảnh: {k}\n" for k in keys)
             + "\nDán ảnh vào đây ĐÚNG THỨ TỰ trên (kéo thả từng ảnh):\n")
@@ -70,8 +65,7 @@ def _the_anh(a: dict) -> str:
     gop = H.escape(TS.prompt_gui_ai(a))
     sid = "p-" + a["key"].replace("_", "-")
     tid = sid + "-t"
-    gui = _gui_url(_body_mot(a["key"]), f"Ảnh {so} — {ten_sach(a)}")
-    nhan_gui = "🔁 Thay ảnh (đã có)" if co else "📤 Gửi ảnh này"
+    k = a["key"]
     return f"""
 <article class="asset{' done' if co else ''}" id="{sid}">
   <header>
@@ -88,11 +82,21 @@ def _the_anh(a: dict) -> str:
   <textarea readonly rows="5" id="{tid}">{gop}</textarea>
   <div class="row">
     <button class="cp" onclick="cpText('{tid}', this)">📋 Copy prompt ảnh</button>
-    <button class="dl" onclick="taiTxt('{tid}', '{a['key']}.txt')">⬇️ .txt</button>
+    <button class="dl" onclick="taiTxt('{tid}', '{k}.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="{H.escape(gui)}" target="_blank">{nhan_gui}</a>
-  <a class="gui thu-muc" href="{H.escape(_folder_url(a['key']))}" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/{H.escape(a['key'])}/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/{H.escape(a['key'])}/</code></a>
+  <div class="gui-o" data-key="{k}">
+    <div class="gui-dan" tabindex="0" data-key="{k}"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>"""
 
 
@@ -309,6 +313,30 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
   padding:9px 12px}
 .gui.thu-muc:hover{background:#352c48;border-color:#a68cf0;color:#efe6ff}
 .gui.thu-muc code{font-size:11.5px;color:#c9b6ff}
+.ket-noi{margin:12px 0}
+.ket-noi input{width:100%;font-size:13px;padding:9px 10px;border-radius:8px;
+  border:1px solid var(--line);background:#0a1220;color:#dfe7f5;
+  font-family:ui-monospace,Menlo,monospace}
+.ket-noi .row{flex-wrap:wrap}
+.ket-noi button{background:#1d2b45;color:var(--gold);border:1px solid #4a628c}
+.ket-noi button:hover{background:#243757}
+.gui-o{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1726}
+.gui-dan{border:2px dashed var(--line);border-radius:9px;padding:16px 12px;text-align:center;
+  cursor:pointer;color:var(--muted);font-size:12.5px;transition:.15s}
+.gui-dan:hover,.gui-dan.act{border-color:var(--jade);color:var(--jade)}
+.gui-dan.hot{border-color:var(--gold);color:var(--gold);background:#16233a}
+.gui-xem{max-width:100%;max-height:220px;border-radius:8px;display:block;margin:0 auto}
+.gui-hang{display:flex;gap:8px;margin-top:8px}
+.gui-chon{flex:0 0 auto;background:#1d2b45;color:var(--gold);border:1px solid #4a628c;
+  border-radius:9px;padding:10px 12px;font-weight:600;cursor:pointer;font-size:13px}
+.gui-chon:hover{background:#243757}
+.gui-gui{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);
+  color:#3a2600;padding:11px;border-radius:9px;font-weight:700;border:0;cursor:pointer;
+  font-size:13.5px;font-family:inherit}
+.gui-gui:disabled{opacity:.45;cursor:not-allowed}
+.gui-tt{margin-top:7px;font-size:12.5px}
+.gui-tt .ok,.gui-tt .warn{display:block;padding:8px 10px;border-radius:8px}
+.gui-tt .muted{display:block}
 .dl.tm-nho{padding:5px 10px;font-size:12px;white-space:nowrap}
 .dl{background:linear-gradient(135deg,#2f8f7a,#6fe0c0);color:#04231c;text-decoration:none;
   display:inline-block;padding:10px 14px;border-radius:9px;font-size:13.5px;font-weight:600;
@@ -338,7 +366,7 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
 <p class="muted">Hồng Đức Tu Tiên Lộ · đã có <b>__DA_CO__/__TONG__</b> ảnh, còn thiếu
 <b>__CON__</b>. Công việc của bạn: <b>copy prompt → vẽ → dán ảnh vào Issue</b>. Phần còn lại tự động.</p>
 
-<h2>⚡ Cách làm — 3 bước</h2>
+<h2>⚡ Cách làm — 2 bước</h2>
 <div class="card">
   <ol class="steps">
     <li><b>Copy prompt</b>: bấm <b>📋 Copy</b> — có 3 mức: <b>prompt từng ảnh</b>,
@@ -346,16 +374,31 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
         Nhớ chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
     <li><b>Vẽ ảnh</b>: nếu thẻ ghi <b>đính kèm ảnh mẫu</b>, tải ảnh mẫu ở mục
         <a href="#thuvien">📚 Thư viện ảnh mẫu</a> và đính kèm để giữ mặt nhân vật.</li>
-    <li><b>Gửi ảnh ngay tại thẻ</b>: vẽ xong, bấm <b>📤 Gửi ảnh này</b> trên chính thẻ đó.
-        Trang Issue mở ra <b>đã điền sẵn mã ảnh</b> — bạn chỉ việc <b>kéo ảnh vào</b> rồi
-        bấm <b>Submit new issue</b>. Nhờ có mã sẵn, hệ thống gán <b>đúng ảnh, không đoán sai</b>.
-        Hoặc bấm <b>📁 Up thẳng vào thư mục</b> trên thẻ để mở sẵn thư mục
-        <code>xuong-inbox/&lt;mã&gt;/</code> — kéo ảnh vào rồi <b>Commit changes</b>.</li>
+    <li><b>Dán ảnh ngay dưới prompt</b>: vẽ xong, <b>dán ảnh (Ctrl+V)</b> vào ô ngay dưới prompt
+        của thẻ đó (hoặc kéo thả / bấm chọn file), rồi bấm <b>📤 Gửi ảnh này</b>.
+        Ảnh được nén ngay trên máy bạn rồi tự đưa lên GitHub — <b>không cần mở Issue</b>,
+        hệ thống gán <b>đúng ảnh theo mã trên thẻ, không đoán sai</b>.</li>
   </ol>
   <p class="muted" style="font-size:12.5px">Gửi nhiều ảnh một lúc thì dùng nút
   <b>📤 Gửi ảnh cho CẢ NHÓM</b> ở đầu mỗi nhóm — dán ảnh <b>đúng thứ tự</b> như danh sách mã.
   Không cần đổi tên ảnh, không cần gõ gì thêm.</p>
-  <a class="dl big" href="__ISSUE__" target="_blank">💬 Hoặc mở Issue trống để dán ảnh</a>
+
+  <div class="ket-noi">
+    <p class="mota" style="margin-bottom:6px"><b>🔑 Kết nối GitHub (làm 1 lần)</b> — cần để trang
+    tự đưa ảnh lên thay bạn. Dán token vào đây; token chỉ lưu trong trình duyệt này
+    (<code>localStorage</code>), không gửi đi đâu ngoài GitHub.</p>
+    <input id="gh-token" type="password" autocomplete="off" spellcheck="false"
+           placeholder="github_pat_… hoặc ghp_… (quyền: Contents = Read and write)">
+    <div class="row">
+      <button type="button" onclick="ghLuuToken()">💾 Lưu &amp; kiểm tra</button>
+      <button type="button" onclick="ghQuenToken()">🗑️ Quên token</button>
+      <a class="dl" style="text-decoration:none" target="_blank"
+         href="https://github.com/settings/personal-access-tokens/new?name=xuong-anh&amp;description=D%C3%A1n%20%E1%BA%A3nh%20v%C3%A0o%20X%C6%B0%E1%BB%9Fng&amp;contents=write">🔗 Tạo token (quyền Contents: Read and write)</a>
+    </div>
+    <div class="gui-tt" id="gh-tt" hidden></div>
+  </div>
+
+  <a class="dl big" href="__ISSUE__" target="_blank">💬 Hoặc mở Issue trống để dán ảnh (cách cũ)</a>
   <details>
     <summary>Cách khác: tải ảnh lên thư mục (nếu bạn thích)</summary>
     <p class="muted" style="font-size:12.5px">Bấm nút dưới để mở trang upload của GitHub, kéo ảnh vào
@@ -415,6 +458,192 @@ function taiTxt(id, ten){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
+
+/* ================= Kết nối GitHub (token trong máy) ================= */
+const GH_REPO='huuducbkb/game-hong-duc-lam';
+const GH_BRANCH='main';
+const GH_LS='xuong_gh_token';
+
+function ghToken(){ return localStorage.getItem(GH_LS)||''; }
+
+function ghHienTT(el, loai, html){
+  el.hidden=false;
+  el.innerHTML = `<span class="${loai}">${html}</span>`;
+}
+
+async function ghLuuToken(){
+  const inp=document.getElementById('gh-token');
+  const tt=document.getElementById('gh-tt');
+  const t=(inp.value||'').trim();
+  if(!t){ ghHienTT(tt,'warn','⚠️ Chưa dán token.'); return; }
+  ghHienTT(tt,'muted','Đang kiểm tra token…');
+  try{
+    const r=await fetch(`https://api.github.com/repos/${GH_REPO}`,{
+      headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}});
+    if(!r.ok){ ghHienTT(tt,'warn',`⚠️ Token không dùng được (HTTP ${r.status}). Kiểm tra lại quyền Contents: Read and write.`); return; }
+    const j=await r.json();
+    if(j.permissions && j.permissions.push === false){
+      ghHienTT(tt,'warn','⚠️ Token chưa có quyền ghi (cần Contents: Read and write). Tạo lại token rồi thử lại.');
+      return;
+    }
+    localStorage.setItem(GH_LS,t);
+    ghHienTT(tt,'ok',`✅ Đã kết nối <b>${j.full_name}</b>. Từ giờ dán ảnh vào ô dưới mỗi prompt rồi bấm Gửi là xong.`);
+  }catch(e){ ghHienTT(tt,'warn',`⚠️ Lỗi kết nối: ${e}`); }
+}
+
+function ghQuenToken(){
+  localStorage.removeItem(GH_LS);
+  const inp=document.getElementById('gh-token'); if(inp) inp.value='';
+  ghHienTT(document.getElementById('gh-tt'),'muted','Đã quên token trong trình duyệt này.');
+}
+
+/* Nén ảnh ngay trên máy: giữ PNG (có trong suốt), còn lại JPEG. */
+function ghNenAnh(file, maxCanh=1600, q=0.9){
+  return new Promise((res,rej)=>{
+    const url=URL.createObjectURL(file);
+    const im=new Image();
+    im.onload=()=>{
+      URL.revokeObjectURL(url);
+      let {width:w,height:h}=im;
+      const tiLe=Math.min(1, maxCanh/Math.max(w,h));
+      w=Math.round(w*tiLe); h=Math.round(h*tiLe);
+      const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+      const cx=cv.getContext('2d');
+      cx.drawImage(im,0,0,w,h);
+      const giuPng = file.type==='image/png';
+      cv.toBlob(b=>b?res({blob:b,duoi:giuPng?'png':'jpg'}):rej(new Error('nén lỗi')),
+                giuPng?'image/png':'image/jpeg', q);
+    };
+    im.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error('không đọc được ảnh')); };
+    im.src=url;
+  });
+}
+
+function blobB64(blob){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(r.result.split(',')[1]);
+    r.onerror=()=>rej(new Error('đọc file lỗi'));
+    r.readAsDataURL(blob);
+  });
+}
+
+async function ghLaySha(duong){
+  const t=ghToken();
+  const r=await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${duong}?ref=${GH_BRANCH}`,
+    {headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}});
+  if(r.status===200){ const j=await r.json(); return j.sha||null; }
+  return null; // 404 = file chưa có
+}
+
+async function ghPutAnh(duong, b64, thayThe){
+  const t=ghToken();
+  const body={message:`Xưởng: ${thayThe?'thay':'thêm'} ảnh ${duong.split('/').slice(-2,-1)[0]}`,
+              content:b64, branch:GH_BRANCH};
+  const sha=await ghLaySha(duong);
+  if(sha) body.sha=sha;
+  const r=await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${duong}`,{
+    method:'PUT',
+    headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json',
+             'Content-Type':'application/json'},
+    body:JSON.stringify(body)});
+  if(!r.ok){
+    let loi='';
+    try{ const j=await r.json(); loi=j.message||''; }catch(e){}
+    throw new Error(`HTTP ${r.status}${loi?' — '+loi:''}`);
+  }
+  return !!sha;
+}
+
+/* ================= Ô dán ảnh dưới mỗi prompt ================= */
+let O_DANG_CHON=null;   // ô dán đang được trỏ tới (để Ctrl+V dán đúng ô)
+
+function datAnhVaoO(o, file){
+  if(!file || !file.type.startsWith('image/')) return;
+  const hop=o.parentElement;
+  const xem=o.querySelector('.gui-xem');
+  const nhac=o.querySelector('.gui-nhac');
+  const nut=hop.querySelector('.gui-gui');
+  const tt=hop.querySelector('.gui-tt');
+  o._file=file;
+  const url=URL.createObjectURL(file);
+  xem.src=url; xem.hidden=false;
+  if(nhac) nhac.hidden=true;
+  o.classList.add('act');
+  nut.disabled=false;
+  if(tt){ tt.hidden=true; tt.innerHTML=''; }
+}
+
+function khoiTaoO(){
+  document.querySelectorAll('.gui-dan').forEach(o=>{
+    const hop=o.parentElement;
+    const inp=hop.querySelector('input[type=file]');
+    const chon=hop.querySelector('.gui-chon');
+    const nut=hop.querySelector('.gui-gui');
+    // Bấm vào ô = chọn ô này làm đích cho Ctrl+V (không mở hộp chọn file).
+    o.addEventListener('click',()=>{ O_DANG_CHON=o;
+      document.querySelectorAll('.gui-dan.act').forEach(x=>x.classList.remove('act'));
+      o.classList.add('act'); o.focus(); });
+    o.addEventListener('focus',()=>{ O_DANG_CHON=o; });
+    o.addEventListener('dragenter',e=>{e.preventDefault();o.classList.add('hot');});
+    o.addEventListener('dragover',e=>{e.preventDefault();o.classList.add('hot');});
+    o.addEventListener('dragleave',e=>{e.preventDefault();o.classList.remove('hot');});
+    o.addEventListener('drop',e=>{
+      e.preventDefault(); o.classList.remove('hot'); O_DANG_CHON=o;
+      const f=e.dataTransfer.files&&e.dataTransfer.files[0];
+      if(f) datAnhVaoO(o,f);
+    });
+    if(chon) chon.addEventListener('click',()=>{ O_DANG_CHON=o; inp.click(); });
+    inp.addEventListener('change',()=>{ if(inp.files[0]) datAnhVaoO(o,inp.files[0]); });
+    if(nut) nut.addEventListener('click',()=>guiMotAnh(o,nut));
+  });
+  document.addEventListener('paste',e=>{
+    const it=e.clipboardData&&e.clipboardData.items;
+    if(!it) return;
+    let f=null;
+    for(const x of it){ if(x.type.startsWith('image/')){ f=x.getAsFile(); break; } }
+    if(!f) return;
+    const o=O_DANG_CHON || document.querySelector('.gui-dan.act') ||
+            document.querySelector('.gui-dan:not([hidden])');
+    if(!o) return;
+    e.preventDefault();
+    datAnhVaoO(o,f);
+  });
+}
+
+async function guiMotAnh(o, nut){
+  const key=o.dataset.key;
+  const tt=o.parentElement.querySelector('.gui-tt');
+  const file=o._file;
+  if(!ghToken()){
+    ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục <b>🔑 Kết nối GitHub</b> phía trên rồi thử lại.');
+    return;
+  }
+  if(!file){ ghHienTT(tt,'warn','⚠️ Chưa có ảnh. Bấm vào ô rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào ô.'); return; }
+  nut.disabled=true;
+  ghHienTT(tt,'muted','Đang nén ảnh…');
+  try{
+    const {blob,duoi}=await ghNenAnh(file);
+    const b64=await blobB64(blob);
+    ghHienTT(tt,'muted',`Đang gửi ảnh (${Math.round(blob.size/1024)} KB)…`);
+    const duong=`xuong-inbox/${key}/${key}.${duoi}`;
+    await ghPutAnh(duong,b64,false);
+    ghHienTT(tt,'ok',`✅ Đã gửi <code>${key}.${duoi}</code>. Hệ thống tự ghép vào game trong ~1–2 phút; `+
+      `tải lại trang này để xem thẻ chuyển “đã có”.`);
+    o.classList.remove('act');
+    o._file=null;
+    const xem=o.querySelector('.gui-xem'); if(xem){ xem.hidden=true; xem.removeAttribute('src'); }
+    const nhac=o.querySelector('.gui-nhac'); if(nhac) nhac.hidden=false;
+    const inp=o.parentElement.querySelector('input[type=file]'); if(inp) inp.value='';
+    O_DANG_CHON=null;
+  }catch(e){
+    ghHienTT(tt,'warn',`⚠️ Không gửi được: ${e}`);
+    nut.disabled=false;
+    return;
+  }
+}
+
+khoiTaoO();
 </script>
 </body></html>
 """
