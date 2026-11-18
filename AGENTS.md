@@ -359,8 +359,11 @@ Xưởng ảnh giờ chạy **trên GitHub**, không cần agent:
     `NHOM_CANH`, rồi gửi ảnh để bot tự gán.
   - **Bẫy ID trùng**: thẻ chứa và ô `<textarea>` phải khác `id` (ô chữ dùng `<id>-t`),
     nếu không `getElementById` trả về thẻ và nút copy hỏng.
-- **Người dùng làm**: copy prompt → vẽ → **dán ảnh vào Issue** (nhãn `xuong-anh`) hoặc
-  bỏ vào `xuong-inbox/`.
+- **Người dùng làm**: copy prompt → vẽ → **bấm nút 📤 ngay trên thẻ** (ảnh) hoặc **📤 cả nhóm**.
+  Nút mở Issue **điền sẵn dòng `mã-ảnh: <key>`** (một dòng mỗi ảnh, đúng thứ tự) nên bot gán
+  thẳng theo mã, **không cần AI đoán**. Hoặc bỏ ảnh vào `xuong-inbox/<mã>/`.
+  - `ma_anh_trong()` trong `tools/xu_ly_inbox.py` đọc các dòng `mã-ảnh:`; `tai_tu_urls()`
+    gán mã theo thứ tự URL. Thừa URL thì bot tự đoán như cũ.
 - **GitHub Action** `.github/workflows/xuong-anh.yml` tự: nhận diện → nén → lưu
   (`assets/` + `docs/assets/`) → ghép vào đúng đoạn `chuong1.json` → cập nhật thư viện →
   dựng lại Xưởng → commit → deploy Pages → trả lời trong Issue.

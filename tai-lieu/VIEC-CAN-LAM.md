@@ -26,6 +26,18 @@
 
 ---
 
+## ✅ VỪA XONG — Gửi ảnh ngay tại từng thẻ trong Xưởng
+
+- [x] Mỗi thẻ ảnh có nút **📤 Gửi ảnh này** (ảnh đã có thì **🔁 Thay ảnh**). Nút mở trang
+  tạo Issue **điền sẵn dòng `mã-ảnh: <key>`** → bot gán **thẳng theo mã, không cần AI đoán**,
+  hết lộn ảnh.
+- [x] Mỗi nhóm cảnh (từ 2 ảnh) có nút **📤 Gửi ảnh cho CẢ NHÓM** — Issue điền sẵn danh sách
+  mã theo thứ tự; dán ảnh đúng thứ tự là xong.
+- [x] `tools/xu_ly_inbox.py`: thêm `ma_anh_trong()` đọc dòng `mã-ảnh:` (chịu được
+  "ma-anh", "mã ảnh", "MÃ-ẢNH"); `tai_tu_urls()` gán mã theo thứ tự URL.
+- [x] Hướng dẫn trên trang cập nhật theo luồng mới.
+- [x] Kiểm thử: engine 105/105 · API 161/161 · mô phỏng gửi ảnh gán đúng mã (tin cậy 100).
+
 ## ✅ VỪA XONG — Sửa lỗi copy + tách ảnh hai nhánh (không dùng chung)
 
 - [x] **Sửa lỗi không copy được prompt**: 52 ID trùng — thẻ `<article>/<section>` và ô

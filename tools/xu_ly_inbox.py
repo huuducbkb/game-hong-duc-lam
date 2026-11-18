@@ -67,8 +67,20 @@ def _tai(url: str) -> bytes | None:
         return None
 
 
-def tai_tu_urls(urls: list) -> list:
-    """Tải ảnh từ danh sách URL. Trả [{name, data(b64)}]."""
+MA_ANH = re.compile(r"^\s*m[ãa][\s-]*[ảa]nh\s*[:：]\s*([A-Za-z0-9_-]+)\s*$", re.I | re.M)
+
+
+def ma_anh_trong(text: str) -> list:
+    """Lấy danh sách mã ảnh từ các dòng 'mã-ảnh: <key>' (Xưởng điền sẵn)."""
+    return [m.group(1) for m in MA_ANH.finditer(text)]
+
+
+def tai_tu_urls(urls: list, ma: list | None = None) -> list:
+    """Tải ảnh từ danh sách URL. Trả [{name, data(b64), hint_key?}].
+
+    `ma`: danh sách mã ảnh theo thứ tự — gán lần lượt cho từng URL (khớp thứ tự
+    ảnh trong Issue với thứ tự dòng 'mã-ảnh:'). Còn dư URL thì để bot tự đoán.
+    """
     ds = []
     for i, u in enumerate(urls, 1):
         u = u.strip()
@@ -81,7 +93,10 @@ def tai_tu_urls(urls: list) -> list:
         m = re.search(r"\.(png|jpe?g|webp|gif)(?:\?|$)", u, re.I)
         if m:
             duoi = "." + m.group(1).lower().replace("jpeg", "jpg")
-        ds.append({"name": f"issue-{i}{duoi}", "data": base64.b64encode(data).decode()})
+        item = {"name": f"issue-{i}{duoi}", "data": base64.b64encode(data).decode()}
+        if ma and i <= len(ma):
+            item["hint_key"] = ma[i - 1]
+        ds.append(item)
     return ds
 
 
@@ -125,8 +140,12 @@ def main() -> int:
         nguon = "inbox"
     elif args.urls_file and os.path.isfile(args.urls_file):
         with open(args.urls_file, encoding="utf-8") as f:
-            urls = tach_url_anh(f.read())
-        anh = tai_tu_urls(urls)
+            noi_dung = f.read()
+        urls = tach_url_anh(noi_dung)
+        ma = ma_anh_trong(noi_dung)
+        if ma:
+            print(f"Thấy {len(ma)} dòng 'mã-ảnh' — gán theo thứ tự, không cần AI đoán.")
+        anh = tai_tu_urls(urls, ma)
         nguon = "issue"
 
     if not anh:

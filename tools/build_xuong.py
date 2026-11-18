@@ -14,6 +14,7 @@ import html as H
 import json
 import os
 import sys
+import urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
@@ -25,6 +26,22 @@ OUT = os.path.join(ROOT, "docs", "xuong", "index.html")
 UPLOAD_URL = f"https://github.com/{REPO}/upload/main/xuong-inbox"
 ISSUE_URL = (f"https://github.com/{REPO}/issues/new"
              "?template=gui-anh-xuong.md&labels=xuong-anh&title=%E1%BA%A2nh%20m%E1%BB%9Bi")
+
+
+def _gui_url(body: str, tieu_de: str) -> str:
+    """Link mở Issue điền sẵn mã ảnh — bot đọc mã nên gán thẳng, không cần đoán."""
+    q = urllib.parse.urlencode({"labels": "xuong-anh", "title": tieu_de, "body": body})
+    return f"https://github.com/{REPO}/issues/new?{q}"
+
+
+def _body_mot(key: str) -> str:
+    return (f"mã-ảnh: {key}\n\n"
+            "Dán ảnh vào đây (kéo thả hoặc Ctrl+V), rồi bấm \"Submit new issue\":\n")
+
+
+def _body_nhom(keys: list) -> str:
+    return ("".join(f"mã-ảnh: {k}\n" for k in keys)
+            + "\nDán ảnh vào đây ĐÚNG THỨ TỰ trên (kéo thả từng ảnh):\n")
 
 
 ten_sach = TS.ten_sach
@@ -45,6 +62,8 @@ def _the_anh(a: dict) -> str:
     gop = H.escape(TS.prompt_gui_ai(a))
     sid = "p-" + a["key"].replace("_", "-")
     tid = sid + "-t"
+    gui = _gui_url(_body_mot(a["key"]), f"Ảnh {so} — {ten_sach(a)}")
+    nhan_gui = "🔁 Thay ảnh (đã có)" if co else "📤 Gửi ảnh này"
     return f"""
 <article class="asset{' done' if co else ''}" id="{sid}">
   <header>
@@ -63,6 +82,7 @@ def _the_anh(a: dict) -> str:
     <button class="cp" onclick="cpText('{tid}', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('{tid}', '{a['key']}.txt')">⬇️ .txt</button>
   </div>
+  <a class="gui" href="{H.escape(gui)}" target="_blank">{nhan_gui}</a>
 </article>"""
 
 
@@ -83,6 +103,10 @@ def _the_nhom(nhom: dict) -> str:
         nhac = '<b>Đính kèm:</b> <span class="muted">không cần</span>'
     nhan_so = " · ".join(so_map.get(a["key"], "?") for a in ds)
     gop = H.escape(TS.build_gop_prompt_canh(nhom))
+    gui_nhom = _gui_url(_body_nhom(nhom["keys"]), f"Ảnh nhóm {nhom['ten']}")
+    nut_nhom = ("" if len(ds) < 2 else
+                f'<a class="gui nhom-gui" href="{H.escape(gui_nhom)}" target="_blank">'
+                f'📤 Gửi ảnh cho CẢ NHÓM này ({len(ds)} ảnh)</a>')
     the_anh = "\n".join(_the_anh(a) for a in ds)
     return f"""
 <section class="nhom" id="{sid}">
@@ -90,6 +114,7 @@ def _the_nhom(nhom: dict) -> str:
     <span class="dem">{len(ds) - con}/{len(ds)} đã có</span></h3>
   <p class="mota">{H.escape(nhom['mota'])} <span class="so-ds">({nhan_so})</span></p>
   <div class="use">{nhac}</div>
+  {nut_nhom}
   <details class="gop" open>
     <summary>🎬 Prompt vẽ CẢ NHÓM ({len(ds)} ảnh) — dán 1 lần, AI vẽ lần lượt</summary>
     <textarea readonly rows="9" id="{tid}">{gop}</textarea>
@@ -263,6 +288,11 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
 .row{display:flex;gap:8px;margin-top:8px}
 .cp{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);color:#3a2600}
 .cp.done{background:#2f8f5a;color:#eafff3}
+.gui{display:block;text-align:center;margin-top:8px;background:#1d2b45;color:var(--gold);
+  border:1px dashed #4a628c;border-radius:9px;padding:10px 14px;font-size:13.5px;
+  font-weight:600;text-decoration:none}
+.gui:hover{background:#243757;border-color:var(--gold)}
+.gui.nhom-gui{margin:8px 0 4px;font-size:13px}
 .dl{background:linear-gradient(135deg,#2f8f7a,#6fe0c0);color:#04231c;text-decoration:none;
   display:inline-block;padding:10px 14px;border-radius:9px;font-size:13.5px;font-weight:600;
   text-align:center;border:0;cursor:pointer;font-family:inherit}
@@ -299,13 +329,14 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
         Nhớ chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
     <li><b>Vẽ ảnh</b>: nếu thẻ ghi <b>đính kèm ảnh mẫu</b>, tải ảnh mẫu ở mục
         <a href="#thuvien">📚 Thư viện ảnh mẫu</a> và đính kèm để giữ mặt nhân vật.</li>
-    <li><b>Dán ảnh vào Issue</b>: mở <a href="__ISSUE__" target="_blank">trang tạo Issue</a>
-        (hoặc Issue có sẵn), <b>kéo tất cả ảnh</b> vào ô bình luận rồi bấm <b>Comment</b>.
-        Hệ thống tự nhận diện, nén, ghép vào đúng đoạn và cập nhật game.</li>
+    <li><b>Gửi ảnh ngay tại thẻ</b>: vẽ xong, bấm <b>📤 Gửi ảnh này</b> trên chính thẻ đó.
+        Trang Issue mở ra <b>đã điền sẵn mã ảnh</b> — bạn chỉ việc <b>kéo ảnh vào</b> rồi
+        bấm <b>Submit new issue</b>. Nhờ có mã sẵn, hệ thống gán <b>đúng ảnh, không đoán sai</b>.</li>
   </ol>
-  <p class="muted" style="font-size:12.5px">Không cần đổi tên ảnh, không cần gõ gì thêm.
-  Ảnh nào AI không chắc sẽ được <b>báo lại</b> để bạn xác nhận — không tự gán bừa.</p>
-  <a class="dl big" href="__ISSUE__" target="_blank">💬 Mở Issue để dán ảnh</a>
+  <p class="muted" style="font-size:12.5px">Gửi nhiều ảnh một lúc thì dùng nút
+  <b>📤 Gửi ảnh cho CẢ NHÓM</b> ở đầu mỗi nhóm — dán ảnh <b>đúng thứ tự</b> như danh sách mã.
+  Không cần đổi tên ảnh, không cần gõ gì thêm.</p>
+  <a class="dl big" href="__ISSUE__" target="_blank">💬 Hoặc mở Issue trống để dán ảnh</a>
   <details>
     <summary>Cách khác: tải ảnh lên thư mục (nếu bạn thích)</summary>
     <p class="muted" style="font-size:12.5px">Bấm nút dưới để mở trang upload của GitHub, kéo ảnh vào
