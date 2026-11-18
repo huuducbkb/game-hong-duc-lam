@@ -50,12 +50,15 @@ mỗi thẻ có **ô dán ảnh** gọi thẳng GitHub Contents API từ trình 
 - Người dùng **dán token 1 lần** ở mục "🔑 Kết nối GitHub" (fine-grained PAT, quyền
   **Contents: Read and write**). Token lưu ở `localStorage` khoá `xuong_gh_token`,
   chỉ gửi tới `api.github.com` — không qua server nào của mình.
-- Mỗi thẻ: dán `Ctrl+V` / kéo thả / "📂 Chọn file" → ảnh **nén trên máy** (canvas,
-  cạnh dài ≤1600px; PNG giữ PNG, còn lại JPEG q0.9) → `PUT /contents/xuong-inbox/<mã>/<mã>.<ext>`
-  (kèm `sha` khi ghi đè) → bot GitHub Actions nhận, nhận diện theo **tên thư mục = mã ảnh**,
-  nén lại theo quy tắc game, ghép vào đoạn, deploy Pages.
-- Bấm vào ô = **chọn ô làm đích cho Ctrl+V** (KHÔNG mở hộp chọn file, tránh dán nhầm thẻ);
-  chọn file dùng nút riêng. Chỉ một ô là đích tại một thời điểm (`O_DANG_CHON`).
+- Mỗi thẻ: **chạm vào ô 📷** → mở **thư viện ảnh** (điện thoại) hoặc hộp chọn file (máy tính);
+  trên máy tính còn **dán Ctrl+V** / **kéo thả** được. Ô là `<label>` bọc `<input type=file>`
+  phủ toàn ô (opacity 0) — **KHÔNG dùng `input.click()` bằng JS**, vì iOS/Safari chặn
+  hộp chọn file mở từ JS khi không nằm trong luồng chạm thật. Sau khi chọn, ảnh
+  **nén trên máy** (canvas, cạnh dài ≤1600px; PNG giữ PNG, còn lại JPEG q0.9) →
+  `PUT /contents/xuong-inbox/<mã>/<mã>.<ext>` (kèm `sha` khi ghi đè) → bot GitHub Actions
+  nhận, nhận diện theo **tên thư mục = mã ảnh**, nén lại theo quy tắc game, ghép vào đoạn,
+  deploy Pages. Ô và nút Gửi phải **to** (padding ≥14px) cho ngón tay.
+- Chỉ một ô là đích cho Ctrl+V tại một thời điểm (`O_DANG_CHON`, cập nhật khi chạm ô).
 - Hàm JS: `ghLuuToken` / `ghQuenToken` / `ghLaySha` / `ghPutAnh` / `ghNenAnh` / `guiMotAnh`.
 - CORS: `api.github.com` trả `access-control-allow-origin: *` cho PUT/POST — nên gọi
   thẳng từ trang Pages được, **không cần proxy**.
