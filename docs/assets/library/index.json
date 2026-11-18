@@ -148,7 +148,6 @@
       "mo_ta": "Trấn Thất Huyền chìm trong lửa — Dã Lang Bang tập kích ban đêm",
       "dung_o": [
         "c1_d11",
-        "c1_d12",
         "c1_d13"
       ],
       "tags": [
@@ -366,6 +365,23 @@
       ],
       "dung_o": [
         "c1_d10"
+      ]
+    },
+    "bc_tran_lua_2.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Xuống trấn cứu dân — lần đầu giết người (d12).",
+      "tags": [
+        "cứu",
+        "dân",
+        "xuống",
+        "trấn",
+        "lần",
+        "đầu",
+        "giết",
+        "người"
+      ],
+      "dung_o": [
+        "c1_d12"
       ]
     }
   }
