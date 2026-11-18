@@ -91,7 +91,7 @@ jobs:
             echo "Không có thay đổi để commit."
           else
             SO=$(python3 -c "import json;print(len(json.load(open('/tmp/bao-cao.json')).get('da_luu',[])))" 2>/dev/null || echo "?")
-            git commit -q -m "Xưởng: tự xử lý ${SO} ảnh mới"
+            git commit -q -m "Xưởng: tự xử lý ${SO} ảnh mới [skip ci]"
             git push origin HEAD:main
             echo "da_commit=1" >> "$GITHUB_OUTPUT"
           fi
