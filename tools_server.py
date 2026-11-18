@@ -1410,7 +1410,7 @@ async function upMotO(key, input){
   const data = await docB64(f);
   try{
     const r = await fetch('/luu_loat',{method:'POST',headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ds:[{key, name:f.name, data}]})});
+      body: JSON.stringify({ds:[{key, name:f.name, data}], day:true})});
     const j = await r.json();
     if(!j.ok){ if(tt) tt.innerHTML = `<span class="warn">⚠️ ${j.error||'lỗi'}</span>`; return; }
     let t = '✅ Đã lưu';
@@ -1445,7 +1445,7 @@ async function luuLoat(){
   saveMsg.innerHTML='<p class="muted">Đang lưu…</p>';
   try{
     const r = await fetch('/luu_loat',{method:'POST',headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ds})});
+      body: JSON.stringify({ds, day:true})});
     const j = await r.json();
     if(!j.ok){ saveMsg.innerHTML=`<p class="warn">⚠️ ${j.error||'lỗi'}</p>`; return; }
     let html = `<p class="ok">✅ Đã lưu ${j.da_luu.length} ảnh: ${j.da_luu.map(x=>x.file).join(', ')}</p>`;
@@ -1589,12 +1589,11 @@ def xu_ly_nhan_dien(anh_list: list, env: dict) -> dict:
     return {"ket_qua": kq, "loi": ""}
 
 
-def luu_loat_va_ghep(ds: list) -> dict:
-    """Lưu ảnh đã xác nhận RỒI ghép vào truyện, cập nhật thư viện, dựng lại
-    Xưởng và đẩy lên GitHub. ds: [{key, data(base64)}].
+def luu_loat_va_ghep(ds: list, day: bool = False) -> dict:
+    """Lưu ảnh đã xác nhận RỒI ghép vào truyện, cập nhật thư viện, dựng lại Xưởng.
 
-    Đây là đường "up ảnh là xong": người dùng chỉ cần tải ảnh lên, hệ thống
-    tự gán vào đúng đoạn và cập nhật bản chơi trên web.
+    ds: [{key, data(base64)}]. `day=True` mới commit + push lên GitHub — mặc định
+    KHÔNG đẩy, để chạy thử và bộ kiểm thử không bao giờ đẩy ảnh thử lên main.
     """
     ket_qua = []
     for item in ds or []:
@@ -1619,7 +1618,7 @@ def luu_loat_va_ghep(ds: list) -> dict:
 
     # Dựng lại Xưởng tĩnh + đẩy lên GitHub (nếu là kho git).
     bc["xuong"] = _dung_lai_xuong()
-    bc["day_len"] = _day_len_github(bc.get("da_luu", []))
+    bc["day_len"] = _day_len_github(bc.get("da_luu", [])) if day else "chưa đẩy (chưa bật)"
     return bc
 
 
