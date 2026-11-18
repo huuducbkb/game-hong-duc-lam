@@ -85,16 +85,13 @@ def _the_anh(a: dict) -> str:
     <button class="dl" onclick="taiTxt('{tid}', '{k}.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="{k}">
-    <div class="gui-dan" tabindex="0" data-key="{k}"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="{k}" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>"""
@@ -321,18 +318,17 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
 .ket-noi button{background:#1d2b45;color:var(--gold);border:1px solid #4a628c}
 .ket-noi button:hover{background:#243757}
 .gui-o{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1726}
-.gui-dan{border:2px dashed var(--line);border-radius:9px;padding:16px 12px;text-align:center;
-  cursor:pointer;color:var(--muted);font-size:12.5px;transition:.15s}
+.gui-dan{display:block;position:relative;border:2px dashed var(--line);border-radius:9px;
+  padding:22px 12px;text-align:center;cursor:pointer;color:var(--muted);font-size:13.5px;
+  transition:.15s;-webkit-tap-highlight-color:transparent}
 .gui-dan:hover,.gui-dan.act{border-color:var(--jade);color:var(--jade)}
-.gui-dan.hot{border-color:var(--gold);color:var(--gold);background:#16233a}
-.gui-xem{max-width:100%;max-height:220px;border-radius:8px;display:block;margin:0 auto}
-.gui-hang{display:flex;gap:8px;margin-top:8px}
-.gui-chon{flex:0 0 auto;background:#1d2b45;color:var(--gold);border:1px solid #4a628c;
-  border-radius:9px;padding:10px 12px;font-weight:600;cursor:pointer;font-size:13px}
-.gui-chon:hover{background:#243757}
-.gui-gui{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);
-  color:#3a2600;padding:11px;border-radius:9px;font-weight:700;border:0;cursor:pointer;
-  font-size:13.5px;font-family:inherit}
+.gui-file{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;
+  font-size:0;border:0;padding:0}
+.gui-nhac,.gui-xem{pointer-events:none}
+.gui-xem{max-width:100%;max-height:260px;border-radius:8px;display:block;margin:0 auto}
+.gui-gui{display:block;width:100%;margin-top:8px;background:linear-gradient(135deg,#f7b32b,#ffd166);
+  color:#3a2600;padding:14px;border-radius:9px;font-weight:700;border:0;cursor:pointer;
+  font-size:15px;font-family:inherit}
 .gui-gui:disabled{opacity:.45;cursor:not-allowed}
 .gui-tt{margin-top:7px;font-size:12.5px}
 .gui-tt .ok,.gui-tt .warn{display:block;padding:8px 10px;border-radius:8px}
@@ -364,7 +360,7 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
 
 <h1>Xưởng ảnh</h1>
 <p class="muted">Hồng Đức Tu Tiên Lộ · đã có <b>__DA_CO__/__TONG__</b> ảnh, còn thiếu
-<b>__CON__</b>. Công việc của bạn: <b>copy prompt → vẽ → dán ảnh vào Issue</b>. Phần còn lại tự động.</p>
+<b>__CON__</b>. Công việc của bạn: <b>copy prompt → vẽ → chọn ảnh ngay dưới prompt</b>. Phần còn lại tự động.</p>
 
 <h2>⚡ Cách làm — 2 bước</h2>
 <div class="card">
@@ -374,10 +370,11 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
         Nhớ chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
     <li><b>Vẽ ảnh</b>: nếu thẻ ghi <b>đính kèm ảnh mẫu</b>, tải ảnh mẫu ở mục
         <a href="#thuvien">📚 Thư viện ảnh mẫu</a> và đính kèm để giữ mặt nhân vật.</li>
-    <li><b>Dán ảnh ngay dưới prompt</b>: vẽ xong, <b>dán ảnh (Ctrl+V)</b> vào ô ngay dưới prompt
-        của thẻ đó (hoặc kéo thả / bấm chọn file), rồi bấm <b>📤 Gửi ảnh này</b>.
-        Ảnh được nén ngay trên máy bạn rồi tự đưa lên GitHub — <b>không cần mở Issue</b>,
-        hệ thống gán <b>đúng ảnh theo mã trên thẻ, không đoán sai</b>.</li>
+    <li><b>Chọn ảnh ngay dưới prompt</b>: vẽ xong, <b>bấm vào ô 📷 ngay dưới prompt</b> của
+        thẻ đó → chọn ảnh trong <b>thư viện ảnh</b> (điện thoại) hoặc hộp chọn file (máy tính).
+        Trên máy tính còn có thể <b>dán Ctrl+V</b> hoặc <b>kéo thả</b> ảnh vào ô.
+        Rồi bấm <b>📤 Gửi ảnh này</b>. Ảnh được nén ngay trên máy bạn rồi tự đưa lên GitHub —
+        <b>không cần mở Issue</b>, hệ thống gán <b>đúng ảnh theo mã trên thẻ, không đoán sai</b>.</li>
   </ol>
   <p class="muted" style="font-size:12.5px">Gửi nhiều ảnh một lúc thì dùng nút
   <b>📤 Gửi ảnh cho CẢ NHÓM</b> ở đầu mỗi nhóm — dán ảnh <b>đúng thứ tự</b> như danh sách mã.
@@ -555,8 +552,10 @@ async function ghPutAnh(duong, b64, thayThe){
   return !!sha;
 }
 
-/* ================= Ô dán ảnh dưới mỗi prompt ================= */
-let O_DANG_CHON=null;   // ô dán đang được trỏ tới (để Ctrl+V dán đúng ô)
+/* ================= Ô chọn ảnh dưới mỗi prompt ================= */
+/* Ô là <label> bọc <input type=file> phủ toàn ô → chạm là mở thư viện ảnh
+   (điện thoại) hoặc hộp chọn file (máy tính). Kéo-thả do input tự nhận. */
+let O_DANG_CHON=null;   // ô vừa chạm (để Ctrl+V trên máy tính dán đúng ô)
 
 function datAnhVaoO(o, file){
   if(!file || !file.type.startsWith('image/')) return;
@@ -577,34 +576,22 @@ function datAnhVaoO(o, file){
 function khoiTaoO(){
   document.querySelectorAll('.gui-dan').forEach(o=>{
     const hop=o.parentElement;
-    const inp=hop.querySelector('input[type=file]');
-    const chon=hop.querySelector('.gui-chon');
+    const inp=o.querySelector('input[type=file]');
     const nut=hop.querySelector('.gui-gui');
-    // Bấm vào ô = chọn ô này làm đích cho Ctrl+V (không mở hộp chọn file).
-    o.addEventListener('click',()=>{ O_DANG_CHON=o;
-      document.querySelectorAll('.gui-dan.act').forEach(x=>x.classList.remove('act'));
-      o.classList.add('act'); o.focus(); });
+    // Chạm vào ô: đánh dấu ô này để Ctrl+V dán đúng đây (máy tính).
+    o.addEventListener('click',()=>{ O_DANG_CHON=o; });
     o.addEventListener('focus',()=>{ O_DANG_CHON=o; });
-    o.addEventListener('dragenter',e=>{e.preventDefault();o.classList.add('hot');});
-    o.addEventListener('dragover',e=>{e.preventDefault();o.classList.add('hot');});
-    o.addEventListener('dragleave',e=>{e.preventDefault();o.classList.remove('hot');});
-    o.addEventListener('drop',e=>{
-      e.preventDefault(); o.classList.remove('hot'); O_DANG_CHON=o;
-      const f=e.dataTransfer.files&&e.dataTransfer.files[0];
-      if(f) datAnhVaoO(o,f);
-    });
-    if(chon) chon.addEventListener('click',()=>{ O_DANG_CHON=o; inp.click(); });
-    inp.addEventListener('change',()=>{ if(inp.files[0]) datAnhVaoO(o,inp.files[0]); });
+    if(inp) inp.addEventListener('change',()=>{ if(inp.files[0]) datAnhVaoO(o,inp.files[0]); });
     if(nut) nut.addEventListener('click',()=>guiMotAnh(o,nut));
   });
+  // Máy tính: Ctrl+V dán ảnh vào ô vừa chạm.
   document.addEventListener('paste',e=>{
     const it=e.clipboardData&&e.clipboardData.items;
     if(!it) return;
     let f=null;
     for(const x of it){ if(x.type.startsWith('image/')){ f=x.getAsFile(); break; } }
     if(!f) return;
-    const o=O_DANG_CHON || document.querySelector('.gui-dan.act') ||
-            document.querySelector('.gui-dan:not([hidden])');
+    const o=O_DANG_CHON || document.querySelector('.gui-dan.act');
     if(!o) return;
     e.preventDefault();
     datAnhVaoO(o,f);

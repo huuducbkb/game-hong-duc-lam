@@ -80,18 +80,17 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
 .ket-noi button{background:#1d2b45;color:var(--gold);border:1px solid #4a628c}
 .ket-noi button:hover{background:#243757}
 .gui-o{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1726}
-.gui-dan{border:2px dashed var(--line);border-radius:9px;padding:16px 12px;text-align:center;
-  cursor:pointer;color:var(--muted);font-size:12.5px;transition:.15s}
+.gui-dan{display:block;position:relative;border:2px dashed var(--line);border-radius:9px;
+  padding:22px 12px;text-align:center;cursor:pointer;color:var(--muted);font-size:13.5px;
+  transition:.15s;-webkit-tap-highlight-color:transparent}
 .gui-dan:hover,.gui-dan.act{border-color:var(--jade);color:var(--jade)}
-.gui-dan.hot{border-color:var(--gold);color:var(--gold);background:#16233a}
-.gui-xem{max-width:100%;max-height:220px;border-radius:8px;display:block;margin:0 auto}
-.gui-hang{display:flex;gap:8px;margin-top:8px}
-.gui-chon{flex:0 0 auto;background:#1d2b45;color:var(--gold);border:1px solid #4a628c;
-  border-radius:9px;padding:10px 12px;font-weight:600;cursor:pointer;font-size:13px}
-.gui-chon:hover{background:#243757}
-.gui-gui{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);
-  color:#3a2600;padding:11px;border-radius:9px;font-weight:700;border:0;cursor:pointer;
-  font-size:13.5px;font-family:inherit}
+.gui-file{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;
+  font-size:0;border:0;padding:0}
+.gui-nhac,.gui-xem{pointer-events:none}
+.gui-xem{max-width:100%;max-height:260px;border-radius:8px;display:block;margin:0 auto}
+.gui-gui{display:block;width:100%;margin-top:8px;background:linear-gradient(135deg,#f7b32b,#ffd166);
+  color:#3a2600;padding:14px;border-radius:9px;font-weight:700;border:0;cursor:pointer;
+  font-size:15px;font-family:inherit}
 .gui-gui:disabled{opacity:.45;cursor:not-allowed}
 .gui-tt{margin-top:7px;font-size:12.5px}
 .gui-tt .ok,.gui-tt .warn{display:block;padding:8px 10px;border-radius:8px}
@@ -123,7 +122,7 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
 
 <h1>Xưởng ảnh</h1>
 <p class="muted">Hồng Đức Tu Tiên Lộ · đã có <b>42/75</b> ảnh, còn thiếu
-<b>33</b>. Công việc của bạn: <b>copy prompt → vẽ → dán ảnh vào Issue</b>. Phần còn lại tự động.</p>
+<b>33</b>. Công việc của bạn: <b>copy prompt → vẽ → chọn ảnh ngay dưới prompt</b>. Phần còn lại tự động.</p>
 
 <h2>⚡ Cách làm — 2 bước</h2>
 <div class="card">
@@ -133,10 +132,11 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
         Nhớ chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
     <li><b>Vẽ ảnh</b>: nếu thẻ ghi <b>đính kèm ảnh mẫu</b>, tải ảnh mẫu ở mục
         <a href="#thuvien">📚 Thư viện ảnh mẫu</a> và đính kèm để giữ mặt nhân vật.</li>
-    <li><b>Dán ảnh ngay dưới prompt</b>: vẽ xong, <b>dán ảnh (Ctrl+V)</b> vào ô ngay dưới prompt
-        của thẻ đó (hoặc kéo thả / bấm chọn file), rồi bấm <b>📤 Gửi ảnh này</b>.
-        Ảnh được nén ngay trên máy bạn rồi tự đưa lên GitHub — <b>không cần mở Issue</b>,
-        hệ thống gán <b>đúng ảnh theo mã trên thẻ, không đoán sai</b>.</li>
+    <li><b>Chọn ảnh ngay dưới prompt</b>: vẽ xong, <b>bấm vào ô 📷 ngay dưới prompt</b> của
+        thẻ đó → chọn ảnh trong <b>thư viện ảnh</b> (điện thoại) hoặc hộp chọn file (máy tính).
+        Trên máy tính còn có thể <b>dán Ctrl+V</b> hoặc <b>kéo thả</b> ảnh vào ô.
+        Rồi bấm <b>📤 Gửi ảnh này</b>. Ảnh được nén ngay trên máy bạn rồi tự đưa lên GitHub —
+        <b>không cần mở Issue</b>, hệ thống gán <b>đúng ảnh theo mã trên thẻ, không đoán sai</b>.</li>
   </ol>
   <p class="muted" style="font-size:12.5px">Gửi nhiều ảnh một lúc thì dùng nút
   <b>📤 Gửi ảnh cho CẢ NHÓM</b> ở đầu mỗi nhóm — dán ảnh <b>đúng thứ tự</b> như danh sách mã.
@@ -335,16 +335,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bg-main-t', 'bg-main.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bg-main">
-    <div class="gui-dan" tabindex="0" data-key="bg-main"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bg-main" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -367,16 +364,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-panel-character-t', 'panel-character.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="panel-character">
-    <div class="gui-dan" tabindex="0" data-key="panel-character"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="panel-character" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -399,16 +393,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-panel-story-t', 'panel-story.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="panel-story">
-    <div class="gui-dan" tabindex="0" data-key="panel-story"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="panel-story" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -431,16 +422,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-avatar-ring-t', 'avatar-ring.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="avatar-ring">
-    <div class="gui-dan" tabindex="0" data-key="avatar-ring"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="avatar-ring" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -463,16 +451,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-btn-choice-t', 'btn-choice.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="btn-choice">
-    <div class="gui-dan" tabindex="0" data-key="btn-choice"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="btn-choice" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -495,16 +480,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-seal-t', 'seal.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="seal">
-    <div class="gui-dan" tabindex="0" data-key="seal"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="seal" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -527,16 +509,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-divider-ink-t', 'divider-ink.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="divider-ink">
-    <div class="gui-dan" tabindex="0" data-key="divider-ink"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="divider-ink" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -684,16 +663,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-cho-01-t', 'bc_cho_01.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_cho_01">
-    <div class="gui-dan" tabindex="0" data-key="bc_cho_01"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_cho_01" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -716,16 +692,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-cho-02-t', 'bc_cho_02.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_cho_02">
-    <div class="gui-dan" tabindex="0" data-key="bc_cho_02"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_cho_02" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -748,16 +721,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-cho-03-t', 'bc_cho_03.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_cho_03">
-    <div class="gui-dan" tabindex="0" data-key="bc_cho_03"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_cho_03" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -806,16 +776,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-duong-mon-nui-t', 'bc_duong_mon_nui.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_duong_mon_nui">
-    <div class="gui-dan" tabindex="0" data-key="bc_duong_mon_nui"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_duong_mon_nui" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -876,16 +843,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-mieu-hoang-t', 'bc_mieu_hoang.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_mieu_hoang">
-    <div class="gui-dan" tabindex="0" data-key="bc_mieu_hoang"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_mieu_hoang" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -908,16 +872,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-mieu-trong-t', 'bc_mieu_trong.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_mieu_trong">
-    <div class="gui-dan" tabindex="0" data-key="bc_mieu_trong"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_mieu_trong" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -940,16 +901,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-do-tam-mieu-t', 'nv_do_tam_mieu.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_do_tam_mieu">
-    <div class="gui-dan" tabindex="0" data-key="nv_do_tam_mieu"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_do_tam_mieu" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -972,16 +930,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-doat-hop-t', 'bc_doat_hop.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_doat_hop">
-    <div class="gui-dan" tabindex="0" data-key="bc_doat_hop"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_doat_hop" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1030,16 +985,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-vt-kiem-hap-t', 'vt_kiem_hap.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="vt_kiem_hap">
-    <div class="gui-dan" tabindex="0" data-key="vt_kiem_hap"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="vt_kiem_hap" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1094,16 +1046,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-kiem-linh-t', 'nv_kiem_linh.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_kiem_linh">
-    <div class="gui-dan" tabindex="0" data-key="nv_kiem_linh"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_kiem_linh" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -1126,16 +1075,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-kiem-linh-thu-t', 'nv_kiem_linh_thu.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_kiem_linh_thu">
-    <div class="gui-dan" tabindex="0" data-key="nv_kiem_linh_thu"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_kiem_linh_thu" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1190,16 +1136,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-kiem-linh-than-t', 'nv_kiem_linh_than.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_kiem_linh_than">
-    <div class="gui-dan" tabindex="0" data-key="nv_kiem_linh_than"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_kiem_linh_than" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -1222,16 +1165,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-kiem-linh-dieu-t', 'nv_kiem_linh_dieu.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_kiem_linh_dieu">
-    <div class="gui-dan" tabindex="0" data-key="nv_kiem_linh_dieu"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_kiem_linh_dieu" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1283,16 +1223,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-vt-kiem-hap-nhan-t', 'vt_kiem_hap_nhan.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="vt_kiem_hap_nhan">
-    <div class="gui-dan" tabindex="0" data-key="vt_kiem_hap_nhan"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="vt_kiem_hap_nhan" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1344,16 +1281,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tu-khiem-t', 'bc_tu_khiem.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tu_khiem">
-    <div class="gui-dan" tabindex="0" data-key="bc_tu_khiem"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tu_khiem" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1405,16 +1339,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-dot-pha-t', 'bc_dot_pha.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_dot_pha">
-    <div class="gui-dan" tabindex="0" data-key="bc_dot_pha"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_dot_pha" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1475,16 +1406,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tran-lua-t', 'bc_tran_lua.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tran_lua">
-    <div class="gui-dan" tabindex="0" data-key="bc_tran_lua"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tran_lua" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -1507,16 +1435,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tran-lua-2-t', 'bc_tran_lua_2.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tran_lua_2">
-    <div class="gui-dan" tabindex="0" data-key="bc_tran_lua_2"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tran_lua_2" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -1539,16 +1464,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tran-lua-3-t', 'bc_tran_lua_3.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tran_lua_3">
-    <div class="gui-dan" tabindex="0" data-key="bc_tran_lua_3"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tran_lua_3" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -1571,16 +1493,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tan-hoang-t', 'bc_tan_hoang.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tan_hoang">
-    <div class="gui-dan" tabindex="0" data-key="bc_tan_hoang"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tan_hoang" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1635,16 +1554,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-han-lap-t', 'nv_han_lap.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_han_lap">
-    <div class="gui-dan" tabindex="0" data-key="nv_han_lap"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_han_lap" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -1667,16 +1583,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-han-lap-2-t', 'nv_han_lap_2.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_han_lap_2">
-    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_2"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_han_lap_2" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1725,16 +1638,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-binh-minh-t', 'bc_binh_minh.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_binh_minh">
-    <div class="gui-dan" tabindex="0" data-key="bc_binh_minh"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_binh_minh" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -1939,16 +1849,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-sang-t', 'bc_tan_xa_sang.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tan_xa_sang">
-    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_sang"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tan_xa_sang" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -1971,16 +1878,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-san-tap-ngay-t', 'bc_san_tap_ngay.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_san_tap_ngay">
-    <div class="gui-dan" tabindex="0" data-key="bc_san_tap_ngay"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_san_tap_ngay" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2003,16 +1907,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-san-tap-chen-ep-t', 'bc_san_tap_chen_ep.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_san_tap_chen_ep">
-    <div class="gui-dan" tabindex="0" data-key="bc_san_tap_chen_ep"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_san_tap_chen_ep" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -2073,16 +1974,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-san-sau-luyen-dem-t', 'bc_san_sau_luyen_dem.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_san_sau_luyen_dem">
-    <div class="gui-dan" tabindex="0" data-key="bc_san_sau_luyen_dem"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_san_sau_luyen_dem" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2105,16 +2003,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-san-tap-cai-lai-t', 'bc_san_tap_cai_lai.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_san_tap_cai_lai">
-    <div class="gui-dan" tabindex="0" data-key="bc_san_tap_cai_lai"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_san_tap_cai_lai" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2137,16 +2032,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-san-sau-anh-sang-t', 'bc_san_sau_anh_sang.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_san_sau_anh_sang">
-    <div class="gui-dan" tabindex="0" data-key="bc_san_sau_anh_sang"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_san_sau_anh_sang" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2169,16 +2061,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-san-sau-chon-lai-t', 'bc_san_sau_chon_lai.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_san_sau_chon_lai">
-    <div class="gui-dan" tabindex="0" data-key="bc_san_sau_chon_lai"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_san_sau_chon_lai" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -2242,16 +2131,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-gap-t', 'bc_vuon_thuoc_gap.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_vuon_thuoc_gap">
-    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_gap"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_vuon_thuoc_gap" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2274,16 +2160,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-hoi-t', 'bc_vuon_thuoc_hoi.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_vuon_thuoc_hoi">
-    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_hoi"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_vuon_thuoc_hoi" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2306,16 +2189,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-im-t', 'bc_vuon_thuoc_im.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_vuon_thuoc_im">
-    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_im"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_vuon_thuoc_im" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2338,16 +2218,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-ngoc-t', 'bc_vuon_thuoc_ngoc.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_vuon_thuoc_ngoc">
-    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_ngoc"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_vuon_thuoc_ngoc" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2370,16 +2247,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-dem-t', 'bc_vuon_thuoc_dem.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_vuon_thuoc_dem">
-    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_dem"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_vuon_thuoc_dem" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -2437,16 +2311,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-quan-nuoc-t', 'bc_quan_nuoc.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_quan_nuoc">
-    <div class="gui-dan" tabindex="0" data-key="bc_quan_nuoc"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_quan_nuoc" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2469,16 +2340,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-khe-nui-dem-t', 'bc_khe_nui_dem.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_khe_nui_dem">
-    <div class="gui-dan" tabindex="0" data-key="bc_khe_nui_dem"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_khe_nui_dem" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2501,16 +2369,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-khe-nui-chon-t', 'bc_khe_nui_chon.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_khe_nui_chon">
-    <div class="gui-dan" tabindex="0" data-key="bc_khe_nui_chon"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_khe_nui_chon" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -2568,16 +2433,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-vt-ngoc-cot-t', 'vt_ngoc_cot.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="vt_ngoc_cot">
-    <div class="gui-dan" tabindex="0" data-key="vt_ngoc_cot"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="vt_ngoc_cot" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2600,16 +2462,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-t', 'nv_tuyet_co.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_tuyet_co">
-    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_tuyet_co" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2632,16 +2491,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-canh-giac-t', 'nv_tuyet_co_canh_giac.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_tuyet_co_canh_giac">
-    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_canh_giac"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_tuyet_co_canh_giac" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -2702,16 +2558,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-than-phan-t', 'nv_tuyet_co_than_phan.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_tuyet_co_than_phan">
-    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_than_phan"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_tuyet_co_than_phan" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2734,16 +2587,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-dieu-kien-t', 'nv_tuyet_co_dieu_kien.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_tuyet_co_dieu_kien">
-    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_dieu_kien"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_tuyet_co_dieu_kien" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2766,16 +2616,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-do-du-t', 'nv_tuyet_co_do_du.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_tuyet_co_do_du">
-    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_do_du"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_tuyet_co_do_du" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2798,16 +2645,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-khe-uoc-t', 'nv_tuyet_co_khe_uoc.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_tuyet_co_khe_uoc">
-    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_khe_uoc"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_tuyet_co_khe_uoc" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -2871,16 +2715,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-song-tu-t', 'bc_tan_xa_song_tu.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tan_xa_song_tu">
-    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_song_tu"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tan_xa_song_tu" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2903,16 +2744,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-dem-t', 'bc_tan_xa_dem.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tan_xa_dem">
-    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_dem"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tan_xa_dem" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2935,16 +2773,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-kho-tu-t', 'bc_tan_xa_kho_tu.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tan_xa_kho_tu">
-    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_kho_tu"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tan_xa_kho_tu" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2967,16 +2802,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-suyt-lo-t', 'bc_tan_xa_suyt_lo.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tan_xa_suyt_lo">
-    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_suyt_lo"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tan_xa_suyt_lo" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -2999,16 +2831,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-dot-pha-t', 'bc_tan_xa_dot_pha.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_tan_xa_dot_pha">
-    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_dot_pha"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_tan_xa_dot_pha" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -3060,16 +2889,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-dem-tap-kich-t', 'bc_dem_tap_kich.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_dem_tap_kich">
-    <div class="gui-dan" tabindex="0" data-key="bc_dem_tap_kich"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_dem_tap_kich" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -3133,16 +2959,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-doi-mat-t', 'bc_cong_dong_doi_mat.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_cong_dong_doi_mat">
-    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_doi_mat"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_cong_dong_doi_mat" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -3165,16 +2988,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-giau-t', 'bc_cong_dong_giau.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_cong_dong_giau">
-    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_giau"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_cong_dong_giau" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -3197,16 +3017,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-toan-luc-t', 'bc_cong_dong_toan_luc.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_cong_dong_toan_luc">
-    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_toan_luc"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_cong_dong_toan_luc" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -3229,16 +3046,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-quyen-t', 'bc_cong_dong_quyen.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_cong_dong_quyen">
-    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_quyen"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_cong_dong_quyen" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -3261,16 +3075,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-hung-ba-t', 'bc_cong_dong_hung_ba.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_cong_dong_hung_ba">
-    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_hung_ba"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_cong_dong_hung_ba" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -3322,16 +3133,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-hoa-truong-cuu-t', 'bc_hoa_truong_cuu.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_hoa_truong_cuu">
-    <div class="gui-dan" tabindex="0" data-key="bc_hoa_truong_cuu"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_hoa_truong_cuu" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -3383,16 +3191,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-mon-phai-tan-hoang-t', 'bc_mon_phai_tan_hoang.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_mon_phai_tan_hoang">
-    <div class="gui-dan" tabindex="0" data-key="bc_mon_phai_tan_hoang"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_mon_phai_tan_hoang" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -3456,16 +3261,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-han-lap-gap-t', 'nv_han_lap_gap.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_han_lap_gap">
-    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_gap"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_han_lap_gap" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -3488,16 +3290,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-han-lap-that-t', 'nv_han_lap_that.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_han_lap_that">
-    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_that"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_han_lap_that" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -3520,16 +3319,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-han-lap-cuoi-tru-t', 'nv_han_lap_cuoi_tru.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_han_lap_cuoi_tru">
-    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_cuoi_tru"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_han_lap_cuoi_tru" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -3552,16 +3348,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-han-lap-hoi-nguoc-t', 'nv_han_lap_hoi_nguoc.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_han_lap_hoi_nguoc">
-    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_hoi_nguoc"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_han_lap_hoi_nguoc" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article>
@@ -3584,16 +3377,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-nv-han-lap-bau-nuoc-t', 'nv_han_lap_bau_nuoc.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="nv_han_lap_bau_nuoc">
-    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_bau_nuoc"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="nv_han_lap_bau_nuoc" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -3642,16 +3432,13 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="dl" onclick="taiTxt('p-bc-binh-minh-ngoc-cot-t', 'bc_binh_minh_ngoc_cot.txt')">⬇️ .txt</button>
   </div>
   <div class="gui-o" data-key="bc_binh_minh_ngoc_cot">
-    <div class="gui-dan" tabindex="0" data-key="bc_binh_minh_ngoc_cot"
-         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
-      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+    <label class="gui-dan" data-key="bc_binh_minh_ngoc_cot" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
-    </div>
-    <div class="gui-hang">
-      <button class="gui-chon" type="button">📂 Chọn file</button>
-      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
-    </div>
-    <input type="file" accept="image/*" hidden>
+    </label>
+    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
     <div class="gui-tt" hidden></div>
   </div>
 </article></div>
@@ -3869,8 +3656,10 @@ async function ghPutAnh(duong, b64, thayThe){
   return !!sha;
 }
 
-/* ================= Ô dán ảnh dưới mỗi prompt ================= */
-let O_DANG_CHON=null;   // ô dán đang được trỏ tới (để Ctrl+V dán đúng ô)
+/* ================= Ô chọn ảnh dưới mỗi prompt ================= */
+/* Ô là <label> bọc <input type=file> phủ toàn ô → chạm là mở thư viện ảnh
+   (điện thoại) hoặc hộp chọn file (máy tính). Kéo-thả do input tự nhận. */
+let O_DANG_CHON=null;   // ô vừa chạm (để Ctrl+V trên máy tính dán đúng ô)
 
 function datAnhVaoO(o, file){
   if(!file || !file.type.startsWith('image/')) return;
@@ -3891,34 +3680,22 @@ function datAnhVaoO(o, file){
 function khoiTaoO(){
   document.querySelectorAll('.gui-dan').forEach(o=>{
     const hop=o.parentElement;
-    const inp=hop.querySelector('input[type=file]');
-    const chon=hop.querySelector('.gui-chon');
+    const inp=o.querySelector('input[type=file]');
     const nut=hop.querySelector('.gui-gui');
-    // Bấm vào ô = chọn ô này làm đích cho Ctrl+V (không mở hộp chọn file).
-    o.addEventListener('click',()=>{ O_DANG_CHON=o;
-      document.querySelectorAll('.gui-dan.act').forEach(x=>x.classList.remove('act'));
-      o.classList.add('act'); o.focus(); });
+    // Chạm vào ô: đánh dấu ô này để Ctrl+V dán đúng đây (máy tính).
+    o.addEventListener('click',()=>{ O_DANG_CHON=o; });
     o.addEventListener('focus',()=>{ O_DANG_CHON=o; });
-    o.addEventListener('dragenter',e=>{e.preventDefault();o.classList.add('hot');});
-    o.addEventListener('dragover',e=>{e.preventDefault();o.classList.add('hot');});
-    o.addEventListener('dragleave',e=>{e.preventDefault();o.classList.remove('hot');});
-    o.addEventListener('drop',e=>{
-      e.preventDefault(); o.classList.remove('hot'); O_DANG_CHON=o;
-      const f=e.dataTransfer.files&&e.dataTransfer.files[0];
-      if(f) datAnhVaoO(o,f);
-    });
-    if(chon) chon.addEventListener('click',()=>{ O_DANG_CHON=o; inp.click(); });
-    inp.addEventListener('change',()=>{ if(inp.files[0]) datAnhVaoO(o,inp.files[0]); });
+    if(inp) inp.addEventListener('change',()=>{ if(inp.files[0]) datAnhVaoO(o,inp.files[0]); });
     if(nut) nut.addEventListener('click',()=>guiMotAnh(o,nut));
   });
+  // Máy tính: Ctrl+V dán ảnh vào ô vừa chạm.
   document.addEventListener('paste',e=>{
     const it=e.clipboardData&&e.clipboardData.items;
     if(!it) return;
     let f=null;
     for(const x of it){ if(x.type.startsWith('image/')){ f=x.getAsFile(); break; } }
     if(!f) return;
-    const o=O_DANG_CHON || document.querySelector('.gui-dan.act') ||
-            document.querySelector('.gui-dan:not([hidden])');
+    const o=O_DANG_CHON || document.querySelector('.gui-dan.act');
     if(!o) return;
     e.preventDefault();
     datAnhVaoO(o,f);
