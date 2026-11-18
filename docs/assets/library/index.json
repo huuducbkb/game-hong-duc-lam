@@ -494,6 +494,23 @@
       "dung_o": [
         "c1_d16"
       ]
+    },
+    "bc_tan_xa_sang.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Tân xá buổi sáng, tân đệ tử choàng tỉnh (p01).",
+      "tags": [
+        "sáng",
+        "thức",
+        "giấc",
+        "tân",
+        "xá",
+        "buổi",
+        "đệ",
+        "tử"
+      ],
+      "dung_o": [
+        "c1_p01"
+      ]
     }
   }
 }
