@@ -60,6 +60,13 @@ mỗi thẻ có **ô dán ảnh** gọi thẳng GitHub Contents API từ trình 
   deploy Pages. Ô và nút Gửi phải **to** (padding ≥14px) cho ngón tay.
 - Chỉ một ô là đích cho Ctrl+V tại một thời điểm (`O_DANG_CHON`, cập nhật khi chạm ô).
 - Hàm JS: `ghLuuToken` / `ghQuenToken` / `ghLaySha` / `ghPutAnh` / `ghNenAnh` / `guiMotAnh`.
+- Nút **🔄 Kiểm tra** mỗi thẻ: `GET /repos/.../commits?path=docs/assets/<scene|ui>/<file>&per_page=1`
+  → nếu có commit thì ảnh **đã vào game**. Hiện ảnh qua `raw.githubusercontent.com/<repo>/<sha>/<path>`
+  — ghim theo **sha** nên không bị cache, luôn thấy bản mới nhất. Đổi nhãn thẻ sang "đã có".
+  Sau khi gửi ảnh, `theoDoiAnh()` tự dò mỗi **15 giây**, tối đa **10 lần**, rồi báo.
+  Thư mục suy theo tên file: `bc_`/`vt_`/`nv_` → `docs/assets/scene/`, còn lại → `docs/assets/ui/`.
+- Lưu ý khi viết JS trong chuỗi Python: `\n` trong template Python thành **xuống dòng thật**,
+  làm hỏng JS. Dùng chuỗi thô (`r"""`) hoặc tránh escape trong JS.
 - CORS: `api.github.com` trả `access-control-allow-origin: *` cho PUT/POST — nên gọi
   thẳng từ trang Pages được, **không cần proxy**.
 - Vẫn giữ đường lui: nút mở Issue trống và mục "Up thẳng vào thư mục" (không cần token).
