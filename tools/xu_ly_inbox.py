@@ -57,13 +57,17 @@ def quet_inbox(thu_muc: str) -> list:
 def _tai(url: str) -> bytes | None:
     headers = {"User-Agent": "xuong-anh-bot"}
     tok = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
-    if tok and "github" in url:
+    # Chỉ gửi token cho GitHub API. Ảnh đính kèm trong Issue nằm trên CDN
+    # (github.com/user-attachments, *.githubusercontent.com) — URL đã ký sẵn,
+    # gửi kèm Authorization sẽ bị trả 400 Bad Request.
+    if tok and "api.github.com" in url:
         headers["Authorization"] = f"Bearer {tok}"
     req = urllib.request.Request(url, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
             return r.read()
-    except Exception:
+    except Exception as e:  # noqa: BLE001 - in ra để truy lỗi, không chặn luồng
+        print(f"  ! không tải được {url[:90]}: {e}", file=sys.stderr)
         return None
 
 
