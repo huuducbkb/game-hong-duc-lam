@@ -642,6 +642,10 @@ def build_prompts_html():
   <div class="use">{a['use']} &nbsp;·&nbsp; tên file khi lưu: <code>{a['file']}</code></div>
   <textarea readonly rows="6" onclick="this.select()">{a['prompt']}</textarea>
   <button class="cp" onclick="cp(this)">📋 Copy prompt</button>
+  <label class="up-o">📤 Up ảnh cho đúng ô này (tự lưu + ghép vào game)
+    <input type="file" accept="image/*" onchange="upMotO('{a['key']}', this)">
+  </label>
+  <div class="muted" id="o-{a['key']}"></div>
 </div>""")
     return "\n".join(blocks)
 
@@ -1197,6 +1201,9 @@ PAGE_TMPL = """<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
   background:#0a1220;color:var(--ink);font-size:12.5px}
 .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:#0a1220;color:var(--muted)}
 .badge.chac{background:#12351f;color:#7fe0a8}
+.up-o{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
+.up-o input{width:100%;margin-top:6px;padding:9px;font-size:12.5px;border-radius:9px;
+  border:1px dashed #4a628c;background:#0d1726;color:var(--ink)}
 .item.thieu{border-color:#a05a2a}
 .item.thieu .meta{background:#2a150d}
 </style></head><body>
@@ -1395,6 +1402,26 @@ function hienDuyet(ket_qua, anh){
     </div>`).join('');
 }
 
+async function upMotO(key, input){
+  const f = input.files && input.files[0];
+  if(!f) return;
+  const tt = document.getElementById('o-'+key);
+  if(tt) tt.innerHTML = '<span class="muted">Đang lưu…</span>';
+  const data = await docB64(f);
+  try{
+    const r = await fetch('/luu_loat',{method:'POST',headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ds:[{key, name:f.name, data}]})});
+    const j = await r.json();
+    if(!j.ok){ if(tt) tt.innerHTML = `<span class="warn">⚠️ ${j.error||'lỗi'}</span>`; return; }
+    let t = '✅ Đã lưu';
+    if(j.ghep && Object.keys(j.ghep).length) t += ' + ghép vào truyện';
+    if(j.day_len === 'ok') t += ' + đẩy lên GitHub (web cập nhật ~1 phút)';
+    else if(j.day_len) t += ` (${j.day_len})`;
+    if(tt) tt.innerHTML = `<span class="ok">${t}</span>`;
+    input.value = '';
+  }catch(e){ if(tt) tt.innerHTML = `<span class="warn">⚠️ Lỗi: ${e}</span>`; }
+}
+
 function chonPrompt(i, key){
   HANG_DOI[i].key = key;
   const item = document.getElementById('item'+i);
@@ -1422,10 +1449,15 @@ async function luuLoat(){
     const j = await r.json();
     if(!j.ok){ saveMsg.innerHTML=`<p class="warn">⚠️ ${j.error||'lỗi'}</p>`; return; }
     let html = `<p class="ok">✅ Đã lưu ${j.da_luu.length} ảnh: ${j.da_luu.map(x=>x.file).join(', ')}</p>`;
+    const ghep = j.ghep || {};
+    const soGhep = Object.keys(ghep).length;
+    if(soGhep) html += `<p class="ok">🧩 Đã ghép vào truyện: ${soGhep} ảnh → ${Object.entries(ghep).map(([f,d])=>f+' → '+d.join(', ')).join(' · ')}</p>`;
+    if(j.day_len === 'ok') html += `<p class="ok">🚀 Đã đẩy lên GitHub — bản chơi trên web sẽ cập nhật sau ~1 phút.</p>`;
+    else if(j.day_len) html += `<p class="muted">Đẩy lên GitHub: ${j.day_len}</p>`;
     if(thieu > 0){
       html += `<p class="warn">⚠️ Bỏ qua ${thieu} ảnh chưa chọn prompt — chọn prompt rồi bấm Lưu lại.</p>`;
     } else {
-      html += `<p class="muted">Đã lưu hết. Tải lại trang để xem danh sách "Ảnh đã nhận".</p>`;
+      html += `<p class="muted">Xong hết. Tải lại trang để xem danh sách "Ảnh đã nhận".</p>`;
     }
     saveMsg.innerHTML = html;
     // Ảnh đã lưu xong thì bỏ khỏi hàng đợi, tránh lưu trùng khi bấm Lưu lần nữa.
@@ -1555,6 +1587,83 @@ def xu_ly_nhan_dien(anh_list: list, env: dict) -> dict:
         r["tu_dong"] = bool(r.get("key") and r.get("do_tin_cay", 0) >= 80)
         kq.append(r)
     return {"ket_qua": kq, "loi": ""}
+
+
+def luu_loat_va_ghep(ds: list) -> dict:
+    """Lưu ảnh đã xác nhận RỒI ghép vào truyện, cập nhật thư viện, dựng lại
+    Xưởng và đẩy lên GitHub. ds: [{key, data(base64)}].
+
+    Đây là đường "up ảnh là xong": người dùng chỉ cần tải ảnh lên, hệ thống
+    tự gán vào đúng đoạn và cập nhật bản chơi trên web.
+    """
+    ket_qua = []
+    for item in ds or []:
+        key = (item.get("key") or "").strip()
+        if not key or not _asset_theo_key(key):
+            continue
+        ket_qua.append({"key": key, "data": item.get("data", ""),
+                        "name": item.get("name") or key,
+                        "cach": "nguoi-xac-nhan", "do_tin_cay": 100})
+
+    if not ket_qua:
+        return {"ok": False, "da_luu": [], "loi": "Chưa chọn prompt nào."}
+
+    try:
+        import xuong_tu_dong as X
+    except Exception as e:  # noqa: BLE001
+        return {"ok": False, "da_luu": [], "loi": f"Thiếu mô-đun ghép ảnh: {e}"}
+
+    bc = X.luu_va_ghep(ket_qua)
+    bc["ok"] = not bc.get("loi")
+    bc["ghep"] = bc.get("ghep", {})
+
+    # Dựng lại Xưởng tĩnh + đẩy lên GitHub (nếu là kho git).
+    bc["xuong"] = _dung_lai_xuong()
+    bc["day_len"] = _day_len_github(bc.get("da_luu", []))
+    return bc
+
+
+def _dung_lai_xuong() -> str:
+    """Dựng lại docs/xuong/index.html để trạng thái ảnh đúng ngay."""
+    try:
+        from tools import build_xuong as BX  # noqa: PLC0415
+        with open(BX.OUT, "w", encoding="utf-8") as f:
+            f.write(BX.build())
+        return "ok"
+    except Exception as e:  # noqa: BLE001
+        return f"lỗi: {e}"
+
+
+def _day_len_github(da_luu: list) -> str:
+    """Commit + push ảnh mới để bản chơi trên web cập nhật.
+
+    Chỉ chạy khi thư mục là kho git và có remote (bỏ qua khi chạy thử cục bộ).
+    """
+    import subprocess
+
+    def _run(*args):
+        return subprocess.run(args, cwd=ROOT, capture_output=True, text=True)
+
+    if os.environ.get("XUONG_KHONG_DAY"):
+        return "bỏ qua (chế độ thử)"
+    try:
+        if _run("git", "rev-parse", "--is-inside-work-tree").returncode != 0:
+            return "bỏ qua (không phải kho git)"
+        if _run("git", "remote", "get-url", "origin").returncode != 0:
+            return "bỏ qua (không có remote)"
+        _run("git", "add", "-A")
+        if _run("git", "diff", "--cached", "--quiet").returncode == 0:
+            return "không có gì mới"
+        ten = ", ".join(x.get("file", "") for x in da_luu[:5]) or "ảnh mới"
+        msg = f"Xưởng: ghép {len(da_luu)} ảnh ({ten})"
+        if _run("git", "commit", "-m", msg).returncode != 0:
+            return "lỗi: không commit được"
+        r = _run("git", "push", "origin", "HEAD:main")
+        if r.returncode != 0:
+            return f"lỗi đẩy: {(r.stderr or '').strip()[:160]}"
+        return "ok"
+    except Exception as e:  # noqa: BLE001
+        return f"lỗi: {e}"
 
 
 def xu_ly_luu_loat(ds: list) -> dict:

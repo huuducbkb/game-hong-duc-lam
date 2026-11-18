@@ -189,7 +189,7 @@ class Handler(BaseHTTPRequestHandler):
             r = TS.xu_ly_nhan_dien(self._body_json().get("anh", []), AI.load_env())
             return self._json({"ok": True, **r})
         if TS and path.startswith("/luu_loat"):
-            r = TS.xu_ly_luu_loat(self._body_json().get("ds", []))
+            r = TS.luu_loat_va_ghep(self._body_json().get("ds", []))
             return self._json({"ok": True, **r})
 
         data = self._body_json()
