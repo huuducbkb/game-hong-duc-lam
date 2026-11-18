@@ -429,6 +429,23 @@
       "dung_o": [
         "c1_p05"
       ]
+    },
+    "bc_mon_phai_tan_hoang.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Thất Huyền Môn tổn thất nặng sau trận; Mạc Đại Phu xách hòm thuốc cứu chữa (p16).",
+      "tags": [
+        "sau",
+        "trận",
+        "mạc",
+        "đại",
+        "phu",
+        "cứu",
+        "người",
+        "thất"
+      ],
+      "dung_o": [
+        "c1_p16"
+      ]
     }
   }
 }
