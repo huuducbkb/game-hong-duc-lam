@@ -354,6 +354,54 @@ ASSETS = [
         "Hopeful and calm after hardship, cool morning air. "
         "Composition keeps the upper third soft and empty for game text. Serene, gentle, new beginning.",
     },
+    # ── Nhánh MÔN PHÁI: ảnh riêng, không dùng chung với nhánh tán tu ──
+    {
+        "key": "bc_quan_nuoc",
+        "name": "Quán nước đầu trấn — dò tin",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_quan_nuoc.jpg",
+        "use": "Quán nước đầu trấn nơi khách giang hồ tụ tập, nghe ngóng tin Dã Lang Bang (p05).",
+        "prompt": STYLE_MAU + " "
+        "A humble wayside tea stall at the edge of an ancient Chinese mountain town, seen at eye level. "
+        "A low thatched awning on rough wooden posts, a few worn benches and low tables, a steaming "
+        "iron kettle on a clay stove, rows of coarse ceramic bowls. A handful of travelling men in "
+        "plain robes sitting close together and talking in low voices, suggested loosely by a few ink "
+        "strokes; no faces in detail. Late-afternoon light, thin smoke from the stove, dust in the air. "
+        "Composition leaves the upper third and one side calm and empty for game text. "
+        "Quiet, watchful, a place where rumours change hands.",
+    },
+    {
+        "key": "bc_mon_phai_tan_hoang",
+        "name": "Thất Huyền Môn — sau trận, Mạc Đại Phu cứu người",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_mon_phai_tan_hoang.jpg",
+        "use": "Thất Huyền Môn tổn thất nặng sau trận; Mạc Đại Phu xách hòm thuốc cứu chữa (p16).",
+        "prompt": STYLE_MAU + " "
+        "The aftermath of a battle inside an ancient Chinese martial sect at first grey dawn, seen from "
+        "the ruined training courtyard. A broken stone gate and a collapsed wall, splintered wooden "
+        "weapon racks and fallen practice poles, torn blue banners lying in the dust, thin smoke still "
+        "curling from a burnt storehouse. An old physician in a plain long robe bends over the wounded, "
+        "a wooden medicine box open at his feet; a few weary disciples sit or kneel nearby, suggested "
+        "loosely by a few ink strokes, faces not detailed. Pale cold dawn light, low mist, ash on the "
+        "ground. Composition keeps the center low and calm so game text can sit above. "
+        "Solemn, exhausted, stubbornly unbroken.",
+    },
+    {
+        "key": "bc_binh_minh_ngoc_cot",
+        "name": "Bình minh — ngọc cốt trong vạt áo",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_binh_minh_ngoc_cot.jpg",
+        "use": "Bình minh đầu tiên sau đêm đầu; khối ngọc cốt khẽ ấm trong vạt áo — kết chương (p19).",
+        "prompt": STYLE_MAU + " "
+        "First dawn light over the quiet back hill of an ancient Chinese martial sect, seen at eye "
+        "level. Soft warm sunrise glow spreading across the sky, long pale rays through low mist, the "
+        "distant roofs of the sect and mountain ridges fading into gentle haze. In the foreground, the "
+        "shadowed figure of a young disciple seen from behind and to one side, worn robe torn at the "
+        "hem, one hand pressed lightly to the chest where a faint warm jade-coloured glow seeps through "
+        "the cloth — a small jade-bone relic hidden in the robe. Face not visible. A worn stone path "
+        "and a thin bare tree by the way. Composition keeps the upper third soft and empty for game "
+        "text. Quiet, guarded hope, a secret carried into the morning.",
+    },
     {
         "key": "nv_chinh_mau",
         "name": "MẪU Nhân vật chính",
@@ -668,7 +716,7 @@ NHOM_DOT1 = [
 # Đoạn truyện mà mỗi ảnh cảnh nhắm tới. Nhận được ảnh → gán thẳng vào các đoạn này.
 # Ảnh mới (D.x) sẽ THAY ảnh cũ dùng chung ở đúng đoạn đó (mỗi cảnh một ảnh riêng).
 DOAN_CUA_ANH = {
-    "bc_cho_01": ["c1_d01", "c1_p05"],
+    "bc_cho_01": ["c1_d01"],
     "bc_tan_xa_dem": ["c1_p01", "c1_p03b", "c1_p11", "c1_p11b", "c1_p12"],
     "vt_ngoc_cot": ["c1_p06", "c1_p07"],
     "nv_tuyet_co": ["c1_p08", "c1_p08b", "c1_p09", "c1_p09b", "c1_p09c",
@@ -678,10 +726,13 @@ DOAN_CUA_ANH = {
     "vt_kiem_hap": ["c1_d05", "c1_d08"],
     "nv_kiem_linh": ["c1_d06", "c1_d06b", "c1_d07", "c1_d07b"],
     "bc_tran_lua": ["c1_d11", "c1_d12", "c1_d13"],
-    "bc_tan_hoang": ["c1_d14", "c1_p16"],
+    "bc_tan_hoang": ["c1_d14"],
     "nv_han_lap": ["c1_d15", "c1_d16"],
-    "bc_binh_minh": ["c1_d17", "c1_p19"],
+    "bc_binh_minh": ["c1_d17"],
     # --- đợt 1: mỗi ảnh thay ảnh dùng chung ở đúng một đoạn ---
+    "bc_quan_nuoc": ["c1_p05"],
+    "bc_mon_phai_tan_hoang": ["c1_p16"],
+    "bc_binh_minh_ngoc_cot": ["c1_p19"],
     "bc_cho_02": ["c1_d02"],
     "bc_cho_03": ["c1_d02b"],
     "bc_mieu_trong": ["c1_d04b"],
@@ -746,13 +797,9 @@ NHOM_CANH = [
      "keys": ["bg-main", "panel-character", "panel-story", "avatar-ring",
               "btn-choice", "seal", "divider-ink"],
      "mau": []},
-    {"ma": "dung-chung", "phan": "chung", "ten": "Cảnh dùng chung hai nhánh",
-     "mota": "Xuất hiện ở cả nhánh tán tu lẫn môn phái.",
-     "keys": ["bc_cho_01", "bc_tan_hoang", "bc_binh_minh"],
-     "mau": []},
     # ─ Nhánh tán tu ─
     {"ma": "d-cho", "phan": "c1-tan-tu", "ten": "Chợ sớm Thất Huyền",
-     "mota": "Chợ sớm, ngõ nhỏ sau chợ.", "keys": ["bc_cho_02", "bc_cho_03"],
+     "mota": "Chợ sớm, ngõ nhỏ sau chợ.", "keys": ["bc_cho_01", "bc_cho_02", "bc_cho_03"],
      "mau": []},
     {"ma": "d-duong", "phan": "c1-tan-tu", "ten": "Đường mòn lên núi",
      "mota": "Đường mòn lên núi — chạng vạng.", "keys": ["bc_duong_mon_nui"],
@@ -781,12 +828,21 @@ NHOM_CANH = [
      "mau": ["nv_chinh_mau"]},
     {"ma": "d-tran-lua", "phan": "c1-tan-tu", "ten": "Trấn cháy — cứu dân",
      "mota": "Thất Huyền trấn chìm trong lửa, cứu dân, cổng môn vỡ.",
-     "keys": ["bc_tran_lua", "bc_tran_lua_2", "bc_tran_lua_3"],
+     "keys": ["bc_tran_lua", "bc_tran_lua_2", "bc_tran_lua_3", "bc_tan_hoang"],
      "mau": ["nv_chinh_mau"]},
     {"ma": "d-han-lap", "phan": "c1-tan-tu", "ten": "Hàn Lập",
      "mota": "Chạm mặt Hàn Lập, đối thoại.",
      "keys": ["nv_han_lap", "nv_han_lap_2"], "mau": ["nv_han_lap"]},
+    {"ma": "d-ket", "phan": "c1-tan-tu", "ten": "Kết chương — bình minh",
+     "mota": "Bình minh đầu tiên rọi lên vai áo rách.",
+     "keys": ["bc_binh_minh"], "mau": []},
     # ─ Nhánh môn phái ─
+    {"ma": "p-quan-nuoc", "phan": "c1-mon-phai", "ten": "Quán nước — dò tin",
+     "mota": "Quán nước đầu trấn, nghe ngóng tin Dã Lang Bang.",
+     "keys": ["bc_quan_nuoc"], "mau": []},
+    {"ma": "p-sau-tran", "phan": "c1-mon-phai", "ten": "Sau trận — Mạc Đại Phu",
+     "mota": "Thất Huyền Môn tổn thất; Mạc Đại Phu xách hòm thuốc cứu chữa.",
+     "keys": ["bc_mon_phai_tan_hoang"], "mau": []},
     {"ma": "p-tan-xa", "phan": "c1-mon-phai", "ten": "Tân xá — đêm",
      "mota": "Phòng tu luyện của tạp dịch đệ tử.", "keys": ["bc_tan_xa_dem"],
      "mau": []},
@@ -796,6 +852,9 @@ NHOM_CANH = [
     {"ma": "p-tuyet-co", "phan": "c1-mon-phai", "ten": "Tuyết Cơ",
      "mota": "Ngọc cốt Tuyết Cơ — nhân vật bí ẩn.", "keys": ["nv_tuyet_co"],
      "mau": []},
+    {"ma": "p-ket", "phan": "c1-mon-phai", "ten": "Kết chương — ngọc cốt",
+     "mota": "Bình minh đầu tiên; ngọc cốt khẽ ấm trong vạt áo.",
+     "keys": ["bc_binh_minh_ngoc_cot"], "mau": []},
 ]
 
 # key -> mã nhóm cảnh (suy từ NHOM_CANH)

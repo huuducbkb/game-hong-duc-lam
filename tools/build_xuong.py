@@ -44,6 +44,7 @@ def _the_anh(a: dict) -> str:
     so = TS.so_hien_thi().get(a["key"], "?")
     gop = H.escape(TS.prompt_gui_ai(a))
     sid = "p-" + a["key"].replace("_", "-")
+    tid = sid + "-t"
     return f"""
 <article class="asset{' done' if co else ''}" id="{sid}">
   <header>
@@ -57,10 +58,10 @@ def _the_anh(a: dict) -> str:
     <div><span class="k">dùng ở</span> {H.escape(noi)}</div>
     <div><span class="k">lưu là</span> <code>{a['file']}</code></div>
   </div>
-  <textarea readonly rows="5" id="{sid}">{gop}</textarea>
+  <textarea readonly rows="5" id="{tid}">{gop}</textarea>
   <div class="row">
-    <button class="cp" onclick="cpText('{sid}', this)">📋 Copy prompt ảnh</button>
-    <button class="dl" onclick="taiTxt('{sid}', '{a['key']}.txt')">⬇️ .txt</button>
+    <button class="cp" onclick="cpText('{tid}', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('{tid}', '{a['key']}.txt')">⬇️ .txt</button>
   </div>
 </article>"""
 
@@ -74,6 +75,7 @@ def _the_nhom(nhom: dict) -> str:
     so_map = TS.so_hien_thi()
     con = sum(1 for a in ds if not co_anh(a))
     sid = "g-" + nhom["ma"]
+    tid = sid + "-t"
     if nhom.get("mau"):
         ten_mau = ", ".join(TS.ANH_MAU_TEN.get(k, k) for k in nhom["mau"])
         nhac = f'<b>Đính kèm:</b> <span class="mau">{H.escape(ten_mau)}</span>'
@@ -90,10 +92,10 @@ def _the_nhom(nhom: dict) -> str:
   <div class="use">{nhac}</div>
   <details class="gop" open>
     <summary>🎬 Prompt vẽ CẢ NHÓM ({len(ds)} ảnh) — dán 1 lần, AI vẽ lần lượt</summary>
-    <textarea readonly rows="9" id="{sid}">{gop}</textarea>
+    <textarea readonly rows="9" id="{tid}">{gop}</textarea>
     <div class="row">
-      <button class="cp" onclick="cpText('{sid}', this)">📋 Copy prompt cả nhóm</button>
-      <button class="dl" onclick="taiTxt('{sid}', '{nhom['ma']}.txt')">⬇️ .txt</button>
+      <button class="cp" onclick="cpText('{tid}', this)">📋 Copy prompt cả nhóm</button>
+      <button class="dl" onclick="taiTxt('{tid}', '{nhom['ma']}.txt')">⬇️ .txt</button>
     </div>
   </details>
   <div class="ds-anh">{the_anh}</div>
@@ -106,6 +108,7 @@ def _the_phan(phan: dict) -> str:
     con = sum(1 for n in ds_nhom for k in n["keys"]
               if not co_anh(next(a for a in TS.ASSETS if a["key"] == k)))
     pid = "phan-" + phan["ma"]
+    tid = pid + "-t"
     gop = H.escape(TS.build_gop_prompt_phan(phan["ma"]))
     than = "\n".join(_the_nhom(n) for n in ds_nhom)
     return f"""
@@ -115,10 +118,10 @@ def _the_phan(phan: dict) -> str:
   <p class="mota">{H.escape(phan['mota'])}</p>
   <details class="gop-phan">
     <summary>📦 Prompt vẽ TOÀN BỘ phần này ({tong} ảnh) — dán 1 lần cho cả phần</summary>
-    <textarea readonly rows="10" id="{pid}">{gop}</textarea>
+    <textarea readonly rows="10" id="{tid}">{gop}</textarea>
     <div class="row">
-      <button class="cp" onclick="cpText('{pid}', this)">📋 Copy prompt toàn phần</button>
-      <button class="dl" onclick="taiTxt('{pid}', '{phan['ma']}.txt')">⬇️ .txt</button>
+      <button class="cp" onclick="cpText('{tid}', this)">📋 Copy prompt toàn phần</button>
+      <button class="dl" onclick="taiTxt('{tid}', '{phan['ma']}.txt')">⬇️ .txt</button>
     </div>
   </details>
   {than}
@@ -338,13 +341,21 @@ __KHOI__
 <script>
 function cpText(id, btn){
   const ta=document.getElementById(id);
-  ta.select(); ta.setSelectionRange(0,999999);
+  if(!ta){return;}
+  const val=(ta.value!==undefined?ta.value:ta.textContent)||'';
   const nhan=btn.textContent;
   const done=()=>{btn.classList.add('done');btn.textContent='✅ Đã copy';
     setTimeout(()=>{btn.classList.remove('done');btn.textContent=nhan;},1600);};
+  const duPhong=()=>{
+    const tam=document.createElement('textarea');
+    tam.value=val; tam.style.position='fixed'; tam.style.top='-1000px'; tam.style.opacity='0';
+    document.body.appendChild(tam); tam.focus(); tam.select();
+    let ok=false; try{ok=document.execCommand('copy');}catch(e){}
+    tam.remove(); if(ok){done();}
+  };
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(ta.value).then(done).catch(()=>{try{document.execCommand('copy');done();}catch(e){}});
-  } else { try{document.execCommand('copy');done();}catch(e){} }
+    navigator.clipboard.writeText(val).then(done).catch(duPhong);
+  } else { duPhong(); }
 }
 function taiTxt(id, ten){
   const txt=document.getElementById(id).value;

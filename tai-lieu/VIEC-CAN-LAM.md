@@ -26,6 +26,22 @@
 
 ---
 
+## ✅ VỪA XONG — Sửa lỗi copy + tách ảnh hai nhánh (không dùng chung)
+
+- [x] **Sửa lỗi không copy được prompt**: 52 ID trùng — thẻ `<article>/<section>` và ô
+  `<textarea>` dùng chung một `id`, nên `getElementById` trả về thẻ (không có `.value`)
+  thay vì ô chữ. Tách id ô chữ thành `<id>-t`. Kiểm: 0 ID trùng, 58 nút copy đều trỏ
+  đúng ô chữ.
+- [x] Hàm `cpText` viết lại: không phụ thuộc `ta.select()`, có đường dự phòng
+  (`execCommand`) và báo lỗi rõ nếu không tìm thấy ô chữ.
+- [x] **Tách ảnh hai nhánh**: bỏ nhóm "Cảnh dùng chung hai nhánh". Ba ảnh từng chia sẻ
+  thực ra là ba cảnh khác nhau → tạo 3 ảnh riêng cho nhánh môn phái:
+  `bc_quan_nuoc` (p05), `bc_mon_phai_tan_hoang` (p16), `bc_binh_minh_ngoc_cot` (p19).
+- [x] Gỡ `anh` khỏi 3 đoạn môn phái để chờ ảnh riêng (bot tự gán khi bạn gửi lên).
+  Thư viện: 3 ảnh cũ giờ chỉ còn dùng ở nhánh tán tu.
+- [x] Nhánh môn phái: **3 → 6 ảnh**; tổng Xưởng **36 ảnh cảnh**, 19 nhóm, 3 phần.
+- [x] Kiểm thử: engine 105/105 · API 161/161.
+
 ## ✅ VỪA XONG — Sắp xếp lại Xưởng: 3 tầng phần · nhóm cảnh · từng ảnh
 
 - [x] **Bố cục 3 tầng** trong `docs/xuong/index.html`:

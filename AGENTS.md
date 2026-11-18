@@ -345,14 +345,20 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 Xưởng ảnh giờ chạy **trên GitHub**, không cần agent:
 
 - **Xưởng tĩnh** (prompt + nút copy + trạng thái ảnh): `docs/xuong/index.html`,
-  dựng bằng `python3 tools/build_xuong.py`. Bố cục **3 tầng**: PHẦN (dùng chung / nhánh
-  tán tu / nhánh môn phái) → NHÓM CẢNH (cảnh liên tiếp trong truyện) → TỪNG ẢNH.
+  dựng bằng `python3 tools/build_xuong.py`. Bố cục **3 tầng**: PHẦN (dùng chung giao diện /
+  nhánh tán tu / nhánh môn phái) → NHÓM CẢNH (cảnh liên tiếp trong truyện) → TỪNG ẢNH.
   Dữ liệu bố cục: `XUONG_PHAN` + `NHOM_CANH` trong `tools_server.py`. Ảnh mẫu để riêng
   ở thư viện (`THU_VIEN_THU_TU`), không đánh số trùng.
   - Prompt 3 mức: `build_gop_prompt_phan()` (toàn phần), `build_gop_prompt_canh()`
     (cả nhóm cảnh, kèm nhắc đính kèm ảnh mẫu), và prompt từng ảnh (`prompt_gui_ai`).
   - Số hiển thị C.x/D.x/P.x do `so_hien_thi()`; `ten_sach()` bỏ mã đợt cũ (B.x/C.x/D.x)
     khỏi tên để không trùng số mới.
+  - **Hai nhánh KHÔNG dùng chung ảnh**: mỗi nhánh có ảnh riêng (nhánh tán tu: `bc_cho_01`,
+    `bc_tan_hoang`, `bc_binh_minh`; nhánh môn phái: `bc_quan_nuoc`, `bc_mon_phai_tan_hoang`,
+    `bc_binh_minh_ngoc_cot`). Muốn thêm ảnh thì thêm vào `ASSETS` + `DOAN_CUA_ANH` +
+    `NHOM_CANH`, rồi gửi ảnh để bot tự gán.
+  - **Bẫy ID trùng**: thẻ chứa và ô `<textarea>` phải khác `id` (ô chữ dùng `<id>-t`),
+    nếu không `getElementById` trả về thẻ và nút copy hỏng.
 - **Người dùng làm**: copy prompt → vẽ → **dán ảnh vào Issue** (nhãn `xuong-anh`) hoặc
   bỏ vào `xuong-inbox/`.
 - **GitHub Action** `.github/workflows/xuong-anh.yml` tự: nhận diện → nén → lưu
