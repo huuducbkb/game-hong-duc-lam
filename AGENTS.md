@@ -42,6 +42,24 @@ Gemini free tier **chặn sinh ảnh** (quota 0), OpenRouter **hết credit**.
 → Quy trình: agent viết **prompt chi tiết** → người dùng gửi cho AI tạo ảnh bên ngoài
 → người dùng upload ảnh ngược lại qua Xưởng → agent ghép vào giao diện.
 
+### Up ảnh là tự vào game (Xưởng studio, cổng 12001)
+
+Người dùng **chỉ cần up ảnh** — không cần đặt tên, không cần chọn đúng prompt:
+
+- **Mỗi thẻ prompt** trong Xưởng có ô **📤 Up ảnh cho đúng ô này** → up vào là ảnh
+  gán thẳng theo `key` của thẻ đó (không AI đoán, không lộn giữa các cảnh).
+- **Kéo thả nhiều ảnh** ở cuối trang → AI nhận diện theo tỷ lệ + nội dung, ảnh nào
+  chắc (≥80%) thì tự gán, còn lại hiện lưới để người dùng xác nhận.
+- Endpoint `POST /luu_loat` (`{ds:[{key,data}], day:true}`) chạy trọn:
+  lưu ảnh (nén) → **ghép vào đoạn truyện** (`xuong_tu_dong.luu_va_ghep`) →
+  cập nhật `docs/assets/library/index.json` → dựng lại `docs/xuong/index.html` →
+  commit + push (Pages tự cập nhật).
+- **`day=true` mới commit/push.** Mặc định `day=false` (không đẩy) — để chạy thử và
+  **bộ kiểm thử không bao giờ đẩy ảnh thử lên `main`**. Nút up trên Xưởng gửi `day:true`.
+  (Sự cố đã gặp: `/luu_loat` từng tự push, mà `_test_api.py` gọi endpoint này → đẩy ảnh
+  thử lên main, ghi đè ảnh thật. Vì vậy `/luu_loat` phải opt-in và test phải sao lưu
+  cả `docs/assets/library/index.json` + dữ liệu chương.)
+
 - `assets/ui/` — 7 ảnh đã tối ưu (1.4MB). Khung/nền là **JPEG**; `avatar-ring.png` và
   `seal.png` là **PNG alpha** (đã tách nền: giấy sáng → trong suốt, mực → đậm).
 - `assets/ui-orig/` — ảnh gốc 18MB, **đã trong .gitignore**, chỉ dùng để xử lý lại.
