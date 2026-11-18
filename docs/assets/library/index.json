@@ -446,6 +446,23 @@
       "dung_o": [
         "c1_p16"
       ]
+    },
+    "bc_binh_minh_ngoc_cot.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Bình minh đầu tiên sau đêm đầu; khối ngọc cốt khẽ ấm trong vạt áo — kết chương (p19).",
+      "tags": [
+        "ngọc",
+        "cốt",
+        "vạt",
+        "áo",
+        "bình",
+        "minh",
+        "đầu",
+        "tiên"
+      ],
+      "dung_o": [
+        "c1_p19"
+      ]
     }
   }
 }
