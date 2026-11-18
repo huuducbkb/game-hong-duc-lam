@@ -23,7 +23,8 @@ import tools_server as TS  # noqa: E402
 REPO = "huuducbkb/game-hong-duc-lam"
 OUT = os.path.join(ROOT, "docs", "xuong", "index.html")
 UPLOAD_URL = f"https://github.com/{REPO}/upload/main/xuong-inbox"
-ISSUE_URL = f"https://github.com/{REPO}/issues/new"
+ISSUE_URL = (f"https://github.com/{REPO}/issues/new"
+             "?template=gui-anh-xuong.md&labels=xuong-anh&title=%E1%BA%A2nh%20m%E1%BB%9Bi")
 
 
 def co_anh(a: dict) -> bool:
