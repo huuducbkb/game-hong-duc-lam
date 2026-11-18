@@ -647,6 +647,23 @@
       "dung_o": [
         "c1_p04a"
       ]
+    },
+    "bc_vuon_thuoc_im.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Không hỏi thêm, lặng lẽ phụ ông nhặt lá (p04b).",
+      "tags": [
+        "im",
+        "lặng",
+        "không",
+        "hỏi",
+        "thêm",
+        "lẽ",
+        "phụ",
+        "ông"
+      ],
+      "dung_o": [
+        "c1_p04b"
+      ]
     }
   }
 }
