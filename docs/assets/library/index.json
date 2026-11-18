@@ -664,6 +664,23 @@
       "dung_o": [
         "c1_p04b"
       ]
+    },
+    "bc_vuon_thuoc_ngoc.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Nhổ cỏ vườn thuốc, chạm phải khối ngọc trước mặt Mạc Đại Phu (p06).",
+      "tags": [
+        "khối",
+        "ngọc",
+        "dưới",
+        "luống",
+        "cỏ",
+        "nhổ",
+        "vườn",
+        "thuốc"
+      ],
+      "dung_o": [
+        "c1_p06"
+      ]
     }
   }
 }
