@@ -26,6 +26,22 @@
 
 ---
 
+## ✅ VỪA XONG — Sắp xếp lại Xưởng: 3 tầng phần · nhóm cảnh · từng ảnh
+
+- [x] **Bố cục 3 tầng** trong `docs/xuong/index.html`:
+  - **PHẦN**: 🧰 Dùng chung · 🍂 Chương 1 nhánh Tán tu · ⛩️ Chương 1 nhánh Môn phái
+  - **NHÓM CẢNH**: 16 nhóm theo cảnh liên tiếp trong truyện (Chợ sớm, Miếu hoang — Đỗ Tam,
+    Kiếm linh, Trấn cháy, Hàn Lập, Tân xá, Ngọc cốt, Tuyết Cơ…)
+  - **TỪNG ẢNH**: 33 ảnh cảnh, đánh số C.x / D.x / P.x theo từng phần
+- [x] **Prompt 3 mức**: toàn phần (3 nút) · cả nhóm cảnh (16 nút) · từng ảnh (33 nút).
+  Prompt cả nhóm và toàn phần tự nhắc **đính kèm ảnh mẫu** để giữ mặt/tóc/áo nhân vật.
+- [x] **Mục lục** nhảy nhanh tới từng phần/nhóm; **Hộp nhận ảnh** xếp theo phần.
+- [x] Ảnh mẫu tách riêng ở **thư viện** (9 ảnh), không đánh số trùng với ảnh cảnh.
+- [x] `ten_sach()` bỏ mã đợt cũ (B.x/C.x/D.x) khỏi tên hiển thị để không trùng số mới.
+- [x] Dữ liệu bố cục: `XUONG_PHAN` + `NHOM_CANH` trong `tools_server.py`; dựng bằng
+  `python3 tools/build_xuong.py`.
+- [x] Kiểm thử: engine 105/105 · API 161/161 · trang dựng 0 placeholder sót.
+
 ## ✅ VỪA XONG — Xưởng ảnh tự động trên GitHub
 
 - [x] **Xưởng tĩnh trên Pages** — `docs/xuong/index.html`, bố cục theo từng chương,

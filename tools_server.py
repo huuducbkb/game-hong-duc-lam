@@ -724,6 +724,139 @@ NHOM_CUA_ANH = {
 }
 
 
+# ── Bố cục Xưởng ────────────────────────────────────────────────────────────
+# Ba PHẦN lớn: dùng chung → nhánh tán tu → nhánh môn phái. Trong mỗi phần là
+# các NHÓM CẢNH (cảnh liên tiếp trong truyện), mỗi nhóm có prompt gộp riêng.
+XUONG_PHAN = [
+    {"ma": "chung", "icon": "🧰", "ten": "Dùng chung",
+     "mota": "Ảnh mẫu và giao diện — vẽ một lần, dùng cho cả hai nhánh."},
+    {"ma": "c1-tan-tu", "icon": "🍂", "ten": "Chương 1 · Nhánh Tán tu",
+     "mota": "Chợ sớm, miếu hoang, hộp kiếm, kiếm linh, trấn cháy, Hàn Lập."},
+    {"ma": "c1-mon-phai", "icon": "⛩️", "ten": "Chương 1 · Nhánh Môn phái",
+     "mota": "Tân xá đêm, ngọc cốt, Tuyết Cơ."},
+]
+
+# Nhóm cảnh theo thứ tự truyện. `keys` = ảnh của nhóm; `mau` = ảnh mẫu cần
+# đính kèm khi vẽ (giữ mặt/tóc/áo nhân vật y hệt). Ảnh mẫu nằm riêng ở
+# THU_VIEN_THU_TU (thư viện), không đánh số trùng ở đây.
+NHOM_CANH = [
+    # ─ Dùng chung ─
+    {"ma": "giao-dien", "phan": "chung", "ten": "Giao diện game",
+     "mota": "Nền, khung, nút, ấn son — khung chứa toàn bộ game.",
+     "keys": ["bg-main", "panel-character", "panel-story", "avatar-ring",
+              "btn-choice", "seal", "divider-ink"],
+     "mau": []},
+    {"ma": "dung-chung", "phan": "chung", "ten": "Cảnh dùng chung hai nhánh",
+     "mota": "Xuất hiện ở cả nhánh tán tu lẫn môn phái.",
+     "keys": ["bc_cho_01", "bc_tan_hoang", "bc_binh_minh"],
+     "mau": []},
+    # ─ Nhánh tán tu ─
+    {"ma": "d-cho", "phan": "c1-tan-tu", "ten": "Chợ sớm Thất Huyền",
+     "mota": "Chợ sớm, ngõ nhỏ sau chợ.", "keys": ["bc_cho_02", "bc_cho_03"],
+     "mau": []},
+    {"ma": "d-duong", "phan": "c1-tan-tu", "ten": "Đường mòn lên núi",
+     "mota": "Đường mòn lên núi — chạng vạng.", "keys": ["bc_duong_mon_nui"],
+     "mau": []},
+    {"ma": "d-mieu", "phan": "c1-tan-tu", "ten": "Miếu hoang — Đỗ Tam",
+     "mota": "Miếu hoang sau núi, xác người, Đỗ Tam tranh giành.",
+     "keys": ["bc_mieu_hoang", "bc_mieu_trong", "nv_do_tam_mieu", "bc_doat_hop"],
+     "mau": ["nv_do_tam_mau", "nv_chinh_mau"]},
+    {"ma": "d-hop", "phan": "c1-tan-tu", "ten": "Hồng Trần Kiếm Hạp",
+     "mota": "Hộp kiếm — vật phẩm cơ duyên.", "keys": ["vt_kiem_hap"],
+     "mau": []},
+    {"ma": "d-kiemlinh-1", "phan": "c1-tan-tu", "ten": "Kiếm linh — thử thách",
+     "mota": "Kiếm linh hiện ra, thử thách người chơi.",
+     "keys": ["nv_kiem_linh", "nv_kiem_linh_thu"], "mau": ["nv_kiem_linh"]},
+    {"ma": "d-kiemlinh-2", "phan": "c1-tan-tu", "ten": "Kiếm linh — thân phận & điều kiện",
+     "mota": "Kiếm linh giới thiệu thân phận, nêu điều kiện nhận chủ.",
+     "keys": ["nv_kiem_linh_than", "nv_kiem_linh_dieu"], "mau": ["nv_kiem_linh"]},
+    {"ma": "d-nhan-chu", "phan": "c1-tan-tu", "ten": "Nhận chủ — máu nhỏ lên kiếm",
+     "mota": "Máu nhỏ lên kiếm hạp, kiếm nhận chủ.",
+     "keys": ["vt_kiem_hap_nhan"], "mau": ["vt_kiem_hap", "nv_chinh_mau"]},
+    {"ma": "d-tu-khiem", "phan": "c1-tan-tu", "ten": "Tu luyện kiếm đạo",
+     "mota": "Đêm đầu tu luyện kiếm đạo.",
+     "keys": ["bc_tu_khiem"], "mau": ["nv_chinh_mau", "nv_kiem_linh"]},
+    {"ma": "d-dot-pha", "phan": "c1-tan-tu", "ten": "Đột phá Luyện Khí",
+     "mota": "Đột phá cảnh giới Luyện Khí.", "keys": ["bc_dot_pha"],
+     "mau": ["nv_chinh_mau"]},
+    {"ma": "d-tran-lua", "phan": "c1-tan-tu", "ten": "Trấn cháy — cứu dân",
+     "mota": "Thất Huyền trấn chìm trong lửa, cứu dân, cổng môn vỡ.",
+     "keys": ["bc_tran_lua", "bc_tran_lua_2", "bc_tran_lua_3"],
+     "mau": ["nv_chinh_mau"]},
+    {"ma": "d-han-lap", "phan": "c1-tan-tu", "ten": "Hàn Lập",
+     "mota": "Chạm mặt Hàn Lập, đối thoại.",
+     "keys": ["nv_han_lap", "nv_han_lap_2"], "mau": ["nv_han_lap"]},
+    # ─ Nhánh môn phái ─
+    {"ma": "p-tan-xa", "phan": "c1-mon-phai", "ten": "Tân xá — đêm",
+     "mota": "Phòng tu luyện của tạp dịch đệ tử.", "keys": ["bc_tan_xa_dem"],
+     "mau": []},
+    {"ma": "p-ngoc-cot", "phan": "c1-mon-phai", "ten": "Ngọc cốt bí ẩn",
+     "mota": "Ngọc cốt — vật phẩm cơ duyên.", "keys": ["vt_ngoc_cot"],
+     "mau": []},
+    {"ma": "p-tuyet-co", "phan": "c1-mon-phai", "ten": "Tuyết Cơ",
+     "mota": "Ngọc cốt Tuyết Cơ — nhân vật bí ẩn.", "keys": ["nv_tuyet_co"],
+     "mau": []},
+]
+
+# key -> mã nhóm cảnh (suy từ NHOM_CANH)
+NHOM_CANH_CUA = {k: n["ma"] for n in NHOM_CANH for k in n["keys"]}
+# key -> mã phần (suy từ NHOM_CANH)
+PHAN_CUA = {k: n["phan"] for n in NHOM_CANH for k in n["keys"]}
+
+
+def nhom_canh_cua(key: str) -> str:
+    return NHOM_CANH_CUA.get(key, "")
+
+
+def phan_cua(key: str) -> str:
+    return PHAN_CUA.get(key, "")
+
+
+def nhom_canh(ma: str) -> dict:
+    return next((n for n in NHOM_CANH if n["ma"] == ma), {})
+
+
+def so_hien_thi() -> dict:
+    """key -> nhãn số hiển thị, đánh số tuần tự trong từng phần (C.x, D.x, P.x)."""
+    tien_to = {"chung": "C", "c1-tan-tu": "D", "c1-mon-phai": "P"}
+    dem, kq = {}, {}
+    for n in NHOM_CANH:
+        for k in n["keys"]:
+            dem[n["phan"]] = dem.get(n["phan"], 0) + 1
+            kq[k] = f"{tien_to.get(n['phan'], 'X')}.{dem[n['phan']]}"
+    return kq
+
+
+def build_gop_prompt_canh(nhom: dict) -> str:
+    """Prompt gộp MỘT nhóm cảnh — dán 1 lần vào AI là nó vẽ lần lượt cả nhóm."""
+    theo_key = {a["key"]: a for a in ASSETS}
+    ds = [theo_key[k] for k in nhom["keys"] if k in theo_key]
+    if not ds:
+        return ""
+    return _build_gop(ds, f'nhóm cảnh "{nhom["ten"]}"', mau=nhom.get("mau") or [])
+
+
+def build_gop_prompt_phan(ma_phan: str) -> str:
+    """Prompt gộp CẢ một phần (dùng chung / tán tu / môn phái)."""
+    theo_key = {a["key"]: a for a in ASSETS}
+    ds_nhom = [n for n in NHOM_CANH if n["phan"] == ma_phan]
+    keys = [k for n in ds_nhom for k in n["keys"]]
+    ds = [theo_key[k] for k in keys if k in theo_key]
+    # Gom ảnh mẫu mà mọi nhóm trong phần cần đính kèm (giữ mặt/tóc/áo nhân vật).
+    mau = []
+    for n in ds_nhom:
+        for k in n.get("mau") or []:
+            if k not in mau:
+                mau.append(k)
+    ten = next((p["ten"] for p in XUONG_PHAN if p["ma"] == ma_phan), ma_phan)
+    return _build_gop(ds, f"toàn bộ phần {ten}", mau=mau)
+
+
+def nhom_dot1_cua(key: str) -> dict:
+    """Nhóm đợt 1 (7 nhóm cũ) chứa ảnh này — giữ để tương thích."""
+    return next((n for n in NHOM_DOT1 if key in n["keys"]), {})
+
+
 def nhom_cua(key: str) -> str:
     """Mã nhóm bố cục của asset."""
     if key in NHOM_CUA_ANH:
@@ -757,6 +890,12 @@ def ma_anh(a: dict) -> str:
             f"  · Loại   : {a.get('name', '')}\n"
             f"  · Tỷ lệ  : {a.get('ratio', '')}\n"
             f"  · Lưu là : {a['file']}")
+
+
+def ten_sach(a: dict) -> str:
+    """Tên asset đã bỏ mã đợt cũ (vd 'D.4c Đỗ Tam' → 'Đỗ Tam') để tránh trùng số hiển thị."""
+    import re
+    return re.sub(r"^[A-Z]\.\d+[a-z]?\s+", "", a.get("name", "")).strip()
 
 
 def prompt_gui_ai(a: dict) -> str:
@@ -830,7 +969,7 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "", mau: list = None
                 nhan = " [black ink only]"
         doan = doan_cua(a["key"])
         vitri = ("  · dùng ở: " + ", ".join(doan)) if doan else ""
-        dong.append(f"{i}. {a['file']} — {a['ratio']} — {a['name']}{nhan}{vitri}")
+        dong.append(f"{i}. {a['file']} — {a['ratio']} — {ten_sach(a)}{nhan}{vitri}")
         dong.append(f"   {_prompt_than(a)}")
         dong.append("")
     return "\n".join(dong)

@@ -345,8 +345,14 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 Xưởng ảnh giờ chạy **trên GitHub**, không cần agent:
 
 - **Xưởng tĩnh** (prompt + nút copy + trạng thái ảnh): `docs/xuong/index.html`,
-  dựng bằng `python3 tools/build_xuong.py`. Bố cục chia theo nhóm (ảnh mẫu, giao diện,
-  chương 1 — tán tu, chương 1 — môn phái).
+  dựng bằng `python3 tools/build_xuong.py`. Bố cục **3 tầng**: PHẦN (dùng chung / nhánh
+  tán tu / nhánh môn phái) → NHÓM CẢNH (cảnh liên tiếp trong truyện) → TỪNG ẢNH.
+  Dữ liệu bố cục: `XUONG_PHAN` + `NHOM_CANH` trong `tools_server.py`. Ảnh mẫu để riêng
+  ở thư viện (`THU_VIEN_THU_TU`), không đánh số trùng.
+  - Prompt 3 mức: `build_gop_prompt_phan()` (toàn phần), `build_gop_prompt_canh()`
+    (cả nhóm cảnh, kèm nhắc đính kèm ảnh mẫu), và prompt từng ảnh (`prompt_gui_ai`).
+  - Số hiển thị C.x/D.x/P.x do `so_hien_thi()`; `ten_sach()` bỏ mã đợt cũ (B.x/C.x/D.x)
+    khỏi tên để không trùng số mới.
 - **Người dùng làm**: copy prompt → vẽ → **dán ảnh vào Issue** (nhãn `xuong-anh`) hoặc
   bỏ vào `xuong-inbox/`.
 - **GitHub Action** `.github/workflows/xuong-anh.yml` tự: nhận diện → nén → lưu
@@ -358,12 +364,12 @@ Các mô-đun:
 - `tools/xu_ly_inbox.py` — CLI: `--inbox xuong-inbox` hoặc `--urls-file <issue.md>`.
 - `tools/bao_cao_issue.py` — sinh bình luận báo cáo trong Issue.
 - `tools/build_xuong.py` — dựng Xưởng tĩnh.
-- `tools_server.py` — thêm `DOAN_CUA_ANH` (ảnh → đoạn), `NHOM_BO_CUC`, `ma_anh()`;
-  `ROOT` động; `load_env()` đọc cả biến môi trường.
+- `tools_server.py` — thêm `DOAN_CUA_ANH` (ảnh → đoạn), `XUONG_PHAN` + `NHOM_CANH`
+  (bố cục Xưởng), `ma_anh()`; `ROOT` động; `load_env()` đọc cả biến môi trường.
 
 **Bản đồ ảnh → đoạn** nằm ở `DOAN_CUA_ANH` trong `tools_server.py`. Ảnh mới (D.x) thay
 ảnh dùng chung ở đúng đoạn của nó (mỗi cảnh một ảnh riêng). Thêm ảnh mới thì thêm key vào
-`DOAN_CUA_ANH` + `NHOM_CUA_ANH`.
+`DOAN_CUA_ANH` + `NHOM_CANH` (thêm nhóm cảnh hoặc bỏ vào nhóm có sẵn).
 
 **Khoá AI**: cần secret repo `GEMINI_KEY` (Settings → Secrets and variables → Actions) để
 nhận diện ảnh bằng AI. Không có khoá thì vẫn chạy: đường "thư mục = mã ảnh" và "tên file
