@@ -1,0 +1,129 @@
+name: Xưởng ảnh — tự xử lý ảnh mới
+
+# Nhận ảnh từ 2 nguồn rồi tự nhận diện → nén → ghép vào đúng đoạn → deploy.
+#   1. Ảnh dán trong Issue có nhãn "xuong-anh" (hoặc bình luận trong Issue đó).
+#   2. Ảnh nằm trong thư mục xuong-inbox/.
+#
+# Lưu ý: push bằng GITHUB_TOKEN KHÔNG kích hoạt workflow khác, nên việc deploy
+# Pages được gộp ngay trong workflow này (job "deploy").
+on:
+  issues:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+  push:
+    branches: [main]
+    paths: ["xuong-inbox/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: xuong-anh
+  cancel-in-progress: false
+
+jobs:
+  xu-ly:
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      (github.event_name == 'workflow_dispatch' ||
+       github.event_name == 'push' ||
+       (github.event_name == 'issues' &&
+        (contains(github.event.issue.labels.*.name, 'xuong-anh') ||
+         contains(github.event.issue.body, 'user-attachments') ||
+         contains(github.event.issue.body, 'user-images'))) ||
+       (github.event_name == 'issue_comment' &&
+        (contains(github.event.issue.labels.*.name, 'xuong-anh') ||
+         contains(github.event.comment.body, 'user-attachments') ||
+         contains(github.event.comment.body, 'user-images'))))
+    runs-on: ubuntu-latest
+    outputs:
+      da_commit: ${{ steps.commit.outputs.da_commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cài Pillow (nén ảnh)
+        run: pip install --quiet Pillow
+
+      - name: Thu thập nội dung Issue (nếu có)
+        if: github.event_name == 'issues' || github.event_name == 'issue_comment'
+        env:
+          BODY: ${{ github.event.issue.body }}
+          COMMENT: ${{ github.event.comment.body }}
+        run: |
+          printf '%s\n\n%s\n' "$BODY" "$COMMENT" > /tmp/issue.md
+          wc -c /tmp/issue.md
+
+      - name: Xử lý ảnh (Issue hoặc inbox)
+        env:
+          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          if [ -s /tmp/issue.md ] && grep -qE 'https?://[^ ]*(user-attachments|user-images\.githubusercontent|\.(png|jpe?g|webp|gif))' /tmp/issue.md; then
+            echo "Nguồn: ảnh trong Issue"
+            python3 tools/xu_ly_inbox.py --urls-file /tmp/issue.md --report /tmp/bao-cao.json
+          else
+            echo "Nguồn: thư mục xuong-inbox"
+            python3 tools/xu_ly_inbox.py --inbox xuong-inbox --report /tmp/bao-cao.json
+          fi
+
+      - name: Dựng lại Xưởng tĩnh (cập nhật trạng thái ảnh)
+        run: python3 tools/build_xuong.py
+
+      - name: Commit + đẩy lên main
+        id: commit
+        run: |
+          git config user.name "xuong-anh-bot"
+          git config user.email "xuong-anh-bot@users.noreply.github.com"
+          git add -A assets docs game xuong-inbox
+          if git diff --cached --quiet; then
+            echo "Không có thay đổi để commit."
+          else
+            SO=$(python3 -c "import json;print(len(json.load(open('/tmp/bao-cao.json')).get('da_luu',[])))" 2>/dev/null || echo "?")
+            git commit -q -m "Xưởng: tự xử lý ${SO} ảnh mới [skip ci]"
+            git push origin HEAD:main
+            echo "da_commit=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Báo lại trong Issue
+        if: (github.event_name == 'issues' || github.event_name == 'issue_comment') && steps.commit.outputs.da_commit == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SO_ISSUE: ${{ github.event.issue.number }}
+        run: |
+          python3 tools/bao_cao_issue.py /tmp/bao-cao.json > /tmp/comment.md
+          gh issue comment "$SO_ISSUE" --body-file /tmp/comment.md
+
+  deploy:
+    needs: xu-ly
+    if: needs.xu-ly.outputs.da_commit == '1'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deployment
+        uses: actions/deploy-pages@v4

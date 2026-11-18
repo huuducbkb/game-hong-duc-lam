@@ -10,7 +10,7 @@ import re
 import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-ROOT = "/workspace/game-hong-duc-lam"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
@@ -542,6 +542,7 @@ for _a in ASSETS:
 
 
 def load_env():
+    """Đọc khoá: ưu tiên biến môi trường (dùng trong GitHub Actions), rồi tới .env."""
     env = {}
     if os.path.exists(ENV_PATH):
         for line in open(ENV_PATH):
@@ -549,6 +550,12 @@ def load_env():
             if "=" in line:
                 k, v = line.split("=", 1)
                 env[k] = v
+    for k in FIELDS:
+        if os.environ.get(k):
+            env[k] = os.environ[k]
+    # Action đặt tên GEMINI_KEY → dùng như geminikey.
+    if os.environ.get("GEMINI_KEY") and not env.get("geminikey"):
+        env["geminikey"] = os.environ["GEMINI_KEY"]
     return env
 
 
@@ -658,6 +665,109 @@ NHOM_DOT1 = [
 ]
 
 
+# Đoạn truyện mà mỗi ảnh cảnh nhắm tới. Nhận được ảnh → gán thẳng vào các đoạn này.
+# Ảnh mới (D.x) sẽ THAY ảnh cũ dùng chung ở đúng đoạn đó (mỗi cảnh một ảnh riêng).
+DOAN_CUA_ANH = {
+    "bc_cho_01": ["c1_d01", "c1_p05"],
+    "bc_tan_xa_dem": ["c1_p01", "c1_p03b", "c1_p11", "c1_p11b", "c1_p12"],
+    "vt_ngoc_cot": ["c1_p06", "c1_p07"],
+    "nv_tuyet_co": ["c1_p08", "c1_p08b", "c1_p09", "c1_p09b", "c1_p09c",
+                    "c1_p10", "c1_p10b", "c1_p11c"],
+    "bc_duong_mon_nui": ["c1_d03"],
+    "bc_mieu_hoang": ["c1_d04", "c1_d04c", "c1_d04d", "c1_d09", "c1_d10"],
+    "vt_kiem_hap": ["c1_d05", "c1_d08"],
+    "nv_kiem_linh": ["c1_d06", "c1_d06b", "c1_d07", "c1_d07b"],
+    "bc_tran_lua": ["c1_d11", "c1_d12", "c1_d13"],
+    "bc_tan_hoang": ["c1_d14", "c1_p16"],
+    "nv_han_lap": ["c1_d15", "c1_d16"],
+    "bc_binh_minh": ["c1_d17", "c1_p19"],
+    # --- đợt 1: mỗi ảnh thay ảnh dùng chung ở đúng một đoạn ---
+    "bc_cho_02": ["c1_d02"],
+    "bc_cho_03": ["c1_d02b"],
+    "bc_mieu_trong": ["c1_d04b"],
+    "nv_do_tam_mieu": ["c1_d04c"],
+    "bc_doat_hop": ["c1_d04d"],
+    "bc_tu_khiem": ["c1_d09"],
+    "bc_dot_pha": ["c1_d10"],
+    "vt_kiem_hap_nhan": ["c1_d08"],
+    "nv_kiem_linh_thu": ["c1_d06b"],
+    "nv_kiem_linh_than": ["c1_d07"],
+    "nv_kiem_linh_dieu": ["c1_d07b"],
+    "bc_tran_lua_2": ["c1_d12"],
+    "bc_tran_lua_3": ["c1_d13"],
+    "nv_han_lap_2": ["c1_d16"],
+}
+
+# Bố cục Xưởng: nhóm theo chương / công dụng để dễ nhìn.
+NHOM_BO_CUC = [
+    {"ma": "mau", "ten": "Ảnh mẫu tham chiếu", "mota": "Vẽ một lần, đính kèm khi vẽ ảnh cảnh."},
+    {"ma": "giao-dien", "ten": "Giao diện", "mota": "Nền, khung, nút, ấn son."},
+    {"ma": "c1-tan-tu", "ten": "Chương 1 — nhánh tán tu", "mota": "Chợ, miếu hoang, hộp kiếm, trấn cháy, Hàn Lập."},
+    {"ma": "c1-mon-phai", "ten": "Chương 1 — nhánh môn phái", "mota": "Sân tập, vườn thuốc, tân xá, ngọc cốt."},
+]
+
+# key -> mã nhóm bố cục (mặc định suy theo `nhom`/tiền tố)
+NHOM_CUA_ANH = {
+    "bg-main": "giao-dien", "panel-character": "giao-dien", "panel-story": "giao-dien",
+    "avatar-ring": "giao-dien", "btn-choice": "giao-dien", "seal": "giao-dien",
+    "divider-ink": "giao-dien",
+    "bc_cho_01": "c1-tan-tu", "bc_tan_xa_dem": "c1-mon-phai", "vt_ngoc_cot": "c1-mon-phai",
+    "nv_tuyet_co": "c1-mon-phai", "bc_duong_mon_nui": "c1-tan-tu", "bc_mieu_hoang": "c1-tan-tu",
+    "vt_kiem_hap": "c1-tan-tu", "nv_kiem_linh": "c1-tan-tu", "bc_tran_lua": "c1-tan-tu",
+    "bc_tan_hoang": "c1-tan-tu", "nv_han_lap": "c1-tan-tu", "bc_binh_minh": "c1-tan-tu",
+    "bc_cho_02": "c1-tan-tu", "bc_cho_03": "c1-tan-tu", "bc_mieu_trong": "c1-tan-tu",
+    "nv_do_tam_mieu": "c1-tan-tu", "bc_doat_hop": "c1-tan-tu", "bc_tu_khiem": "c1-tan-tu",
+    "bc_dot_pha": "c1-tan-tu", "vt_kiem_hap_nhan": "c1-tan-tu",
+    "nv_kiem_linh_thu": "c1-tan-tu", "nv_kiem_linh_than": "c1-tan-tu",
+    "nv_kiem_linh_dieu": "c1-tan-tu", "bc_tran_lua_2": "c1-tan-tu",
+    "bc_tran_lua_3": "c1-tan-tu", "nv_han_lap_2": "c1-tan-tu",
+}
+
+
+def nhom_cua(key: str) -> str:
+    """Mã nhóm bố cục của asset."""
+    if key in NHOM_CUA_ANH:
+        return NHOM_CUA_ANH[key]
+    for a in ASSETS:
+        if a["key"] == key and a.get("nhom") == "mau":
+            return "mau"
+    return "giao-dien"
+
+
+def doan_cua(key: str) -> list:
+    return DOAN_CUA_ANH.get(key, [])
+
+
+def so_thu_tu() -> dict:
+    """key -> số thứ tự (1..n) theo đúng thứ tự ASSETS, để người dùng dễ đối chiếu."""
+    return {a["key"]: i for i, a in enumerate(ASSETS, 1)}
+
+
+def ma_anh(a: dict) -> str:
+    """Khối nhận diện của một ảnh: số thứ tự + mã + vị trí dùng.
+
+    Khối này đi kèm prompt để người dùng biết ảnh nào dùng ở đâu. Phần mô tả
+    tiếng Anh cho AI vẽ KHÔNG chứa khối này (xem `prompt_gui_ai`).
+    """
+    so = so_thu_tu().get(a["key"], 0)
+    doan = doan_cua(a["key"])
+    noi = ", ".join(doan) if doan else "—"
+    return (f"ẢNH #{so} — mã `{a['key']}`\n"
+            f"  · Dùng ở : {noi}\n"
+            f"  · Loại   : {a.get('name', '')}\n"
+            f"  · Tỷ lệ  : {a.get('ratio', '')}\n"
+            f"  · Lưu là : {a['file']}")
+
+
+def prompt_gui_ai(a: dict) -> str:
+    """Chỉ phần prompt để dán vào AI vẽ ảnh — KHÔNG kèm khối nhận diện.
+
+    Khối nhận diện (`ma_anh`) chỉ để người dùng đối chiếu, không đưa vào AI
+    vì prompt đã cấm chữ trong ảnh.
+    """
+    return a.get("prompt", "")
+
+
 def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "", mau: list = None) -> str:
     """Dựng prompt gộp cho một bộ ảnh: dán 1 lần vào AI chat là nó vẽ lần lượt.
 
@@ -718,7 +828,9 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "", mau: list = None
                 nhan = " [colour-ink 彩墨]"
             elif a["key"] != "seal":
                 nhan = " [black ink only]"
-        dong.append(f"{i}. {a['file']} — {a['ratio']} — {a['name']}{nhan}")
+        doan = doan_cua(a["key"])
+        vitri = ("  · dùng ở: " + ", ".join(doan)) if doan else ""
+        dong.append(f"{i}. {a['file']} — {a['ratio']} — {a['name']}{nhan}{vitri}")
         dong.append(f"   {_prompt_than(a)}")
         dong.append("")
     return "\n".join(dong)

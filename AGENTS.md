@@ -340,6 +340,35 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 4. Thư viện ảnh/video: mở rộng đủ Chương 1 (~19 ảnh) + video ngắn (chuỗi ảnh + hiệu ứng)
 5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
 
+## Xưởng ảnh tự động (GitHub)
+
+Xưởng ảnh giờ chạy **trên GitHub**, không cần agent:
+
+- **Xưởng tĩnh** (prompt + nút copy + trạng thái ảnh): `docs/xuong/index.html`,
+  dựng bằng `python3 tools/build_xuong.py`. Bố cục chia theo nhóm (ảnh mẫu, giao diện,
+  chương 1 — tán tu, chương 1 — môn phái).
+- **Người dùng làm**: copy prompt → vẽ → **dán ảnh vào Issue** (nhãn `xuong-anh`) hoặc
+  bỏ vào `xuong-inbox/`.
+- **GitHub Action** `.github/workflows/xuong-anh.yml` tự: nhận diện → nén → lưu
+  (`assets/` + `docs/assets/`) → ghép vào đúng đoạn `chuong1.json` → cập nhật thư viện →
+  dựng lại Xưởng → commit → deploy Pages → trả lời trong Issue.
+
+Các mô-đun:
+- `xuong_tu_dong.py` — luồng xử lý: `nhan_dien()` → `luu_va_ghep()`.
+- `tools/xu_ly_inbox.py` — CLI: `--inbox xuong-inbox` hoặc `--urls-file <issue.md>`.
+- `tools/bao_cao_issue.py` — sinh bình luận báo cáo trong Issue.
+- `tools/build_xuong.py` — dựng Xưởng tĩnh.
+- `tools_server.py` — thêm `DOAN_CUA_ANH` (ảnh → đoạn), `NHOM_BO_CUC`, `ma_anh()`;
+  `ROOT` động; `load_env()` đọc cả biến môi trường.
+
+**Bản đồ ảnh → đoạn** nằm ở `DOAN_CUA_ANH` trong `tools_server.py`. Ảnh mới (D.x) thay
+ảnh dùng chung ở đúng đoạn của nó (mỗi cảnh một ảnh riêng). Thêm ảnh mới thì thêm key vào
+`DOAN_CUA_ANH` + `NHOM_CUA_ANH`.
+
+**Khoá AI**: cần secret repo `GEMINI_KEY` (Settings → Secrets and variables → Actions) để
+nhận diện ảnh bằng AI. Không có khoá thì vẫn chạy: đường "thư mục = mã ảnh" và "tên file
+chứa mã" vẫn chính xác 100%, còn lại báo cần người xác nhận.
+
 ## Bẫy môi trường khi chạy trong sandbox agent
 
 - **Đường dẫn repo**: `game/_test_api.py` và `_snap`/`_restore` dùng **đường dẫn cứng**
