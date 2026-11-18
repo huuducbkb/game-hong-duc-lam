@@ -34,6 +34,14 @@ def _gui_url(body: str, tieu_de: str) -> str:
     return f"https://github.com/{REPO}/issues/new?{q}"
 
 
+def _folder_url(key: str) -> str:
+    """Link mở trang upload GitHub đã trỏ sẵn vào xuong-inbox/<mã>/.
+
+    Kéo ảnh vào đó rồi Commit → bot thấy thư mục con trùng mã nên gán thẳng.
+    """
+    return f"https://github.com/{REPO}/upload/main/xuong-inbox/{key}"
+
+
 def _body_mot(key: str) -> str:
     return (f"mã-ảnh: {key}\n\n"
             "Dán ảnh vào đây (kéo thả hoặc Ctrl+V), rồi bấm \"Submit new issue\":\n")
@@ -83,6 +91,8 @@ def _the_anh(a: dict) -> str:
     <button class="dl" onclick="taiTxt('{tid}', '{a['key']}.txt')">⬇️ .txt</button>
   </div>
   <a class="gui" href="{H.escape(gui)}" target="_blank">{nhan_gui}</a>
+  <a class="gui thu-muc" href="{H.escape(_folder_url(a['key']))}" target="_blank"
+     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/{H.escape(a['key'])}/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/{H.escape(a['key'])}/</code></a>
 </article>"""
 
 
@@ -199,12 +209,14 @@ def _inbox() -> str:
         hang = "\n".join(
             f"<tr><td>{so_map.get(a['key'],'?')}</td><td><code>{a['key']}</code></td>"
             f"<td>{H.escape(ten_sach(a))}</td>"
-            f"<td class='muted'>{H.escape(', '.join(TS.doan_cua(a['key'])) or '—')}</td></tr>"
+            f"<td class='muted'>{H.escape(', '.join(TS.doan_cua(a['key'])) or '—')}</td>"
+            f"<td><a class='dl tm-nho' href='{H.escape(_folder_url(a['key']))}' target='_blank'"
+            f" title='Mở GitHub trỏ sẵn vào xuong-inbox/{H.escape(a['key'])}/'>📁 Up</a></td></tr>"
             for a in ds)
         khoi.append(f"""
 <div class="inbox-khoi">
   <h3>{p['icon']} {H.escape(p['ten'])} <span class="dem">{len(ds)} ảnh chờ</span></h3>
-  <table><thead><tr><th>#</th><th>mã</th><th>loại</th><th>dùng ở</th></tr></thead>
+  <table><thead><tr><th>#</th><th>mã</th><th>loại</th><th>dùng ở</th><th>up</th></tr></thead>
   <tbody>{hang}</tbody></table>
 </div>""")
     if not khoi:
@@ -293,6 +305,11 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
   font-weight:600;text-decoration:none}
 .gui:hover{background:#243757;border-color:var(--gold)}
 .gui.nhom-gui{margin:8px 0 4px;font-size:13px}
+.gui.thu-muc{background:#2a2338;border-color:#6b5a8c;color:#d9c7ff;font-size:12.5px;
+  padding:9px 12px}
+.gui.thu-muc:hover{background:#352c48;border-color:#a68cf0;color:#efe6ff}
+.gui.thu-muc code{font-size:11.5px;color:#c9b6ff}
+.dl.tm-nho{padding:5px 10px;font-size:12px;white-space:nowrap}
 .dl{background:linear-gradient(135deg,#2f8f7a,#6fe0c0);color:#04231c;text-decoration:none;
   display:inline-block;padding:10px 14px;border-radius:9px;font-size:13.5px;font-weight:600;
   text-align:center;border:0;cursor:pointer;font-family:inherit}
@@ -331,7 +348,9 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
         <a href="#thuvien">📚 Thư viện ảnh mẫu</a> và đính kèm để giữ mặt nhân vật.</li>
     <li><b>Gửi ảnh ngay tại thẻ</b>: vẽ xong, bấm <b>📤 Gửi ảnh này</b> trên chính thẻ đó.
         Trang Issue mở ra <b>đã điền sẵn mã ảnh</b> — bạn chỉ việc <b>kéo ảnh vào</b> rồi
-        bấm <b>Submit new issue</b>. Nhờ có mã sẵn, hệ thống gán <b>đúng ảnh, không đoán sai</b>.</li>
+        bấm <b>Submit new issue</b>. Nhờ có mã sẵn, hệ thống gán <b>đúng ảnh, không đoán sai</b>.
+        Hoặc bấm <b>📁 Up thẳng vào thư mục</b> trên thẻ để mở sẵn thư mục
+        <code>xuong-inbox/&lt;mã&gt;/</code> — kéo ảnh vào rồi <b>Commit changes</b>.</li>
   </ol>
   <p class="muted" style="font-size:12.5px">Gửi nhiều ảnh một lúc thì dùng nút
   <b>📤 Gửi ảnh cho CẢ NHÓM</b> ở đầu mỗi nhóm — dán ảnh <b>đúng thứ tự</b> như danh sách mã.

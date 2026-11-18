@@ -630,12 +630,14 @@ def list_files(folder):
 
 
 def build_prompts_html():
+    repo = "huuducbkb/game-hong-duc-lam"
     blocks = []
     for a in ASSETS:
         got = ""
         for fn, size in list_files(UI_DIR) + list_files(SCENE_DIR):
             if fn == a["file"]:
                 got = f'<span class="got">✔ đã nhận ({size//1024} KB)</span>'
+        thu_muc = f"https://github.com/{repo}/upload/main/xuong-inbox/{a['key']}"
         blocks.append(f"""
 <div class="card">
   <div class="head"><b>{a['name']}</b> <span class="ratio">{a['ratio']}</span> {got}</div>
@@ -645,6 +647,8 @@ def build_prompts_html():
   <label class="up-o">📤 Up ảnh cho đúng ô này (tự lưu + ghép vào game)
     <input type="file" accept="image/*" onchange="upMotO('{a['key']}', this)">
   </label>
+  <a class="up-tm" href="{thu_muc}" target="_blank"
+     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/{a['key']}/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/{a['key']}/</code></a>
   <div class="muted" id="o-{a['key']}"></div>
 </div>""")
     return "\n".join(blocks)
@@ -1203,7 +1207,11 @@ PAGE_TMPL = """<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
 .badge.chac{background:#12351f;color:#7fe0a8}
 .up-o{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
 .up-o input{width:100%;margin-top:6px;padding:9px;font-size:12.5px;border-radius:9px;
-  border:1px dashed #4a628c;background:#0d1726;color:var(--ink)}
+  background:#1b2540;color:var(--fg);border:1px dashed #4a628c}
+.up-tm{display:block;margin-top:8px;padding:9px 12px;font-size:12.5px;text-decoration:none;
+  background:#2a2338;border:1px dashed #6b5a8c;border-radius:9px;color:#d9c7ff;font-weight:600}
+.up-tm:hover{background:#352c48;border-color:#a68cf0;color:#efe6ff}
+.up-tm code{font-size:11.5px;color:#c9b6ff}
 .item.thieu{border-color:#a05a2a}
 .item.thieu .meta{background:#2a150d}
 </style></head><body>
