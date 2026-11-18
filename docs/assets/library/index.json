@@ -698,6 +698,23 @@
       "dung_o": [
         "c1_p06b"
       ]
+    },
+    "bc_khe_nui_dem.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Theo lời đồn, lẻn ra khe núi sau hậu sơn (p05b).",
+      "tags": [
+        "khe",
+        "núi",
+        "đêm",
+        "theo",
+        "lời",
+        "đồn",
+        "lẻn",
+        "ra"
+      ],
+      "dung_o": [
+        "c1_p05b"
+      ]
     }
   }
 }
