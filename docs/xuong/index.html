@@ -72,6 +72,7 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
   padding:9px 12px}
 .gui.thu-muc:hover{background:#352c48;border-color:#a68cf0;color:#efe6ff}
 .gui.thu-muc code{font-size:11.5px;color:#c9b6ff}
+.dl.tm-nho{padding:5px 10px;font-size:12px;white-space:nowrap}
 .dl{background:linear-gradient(135deg,#2f8f7a,#6fe0c0);color:#04231c;text-decoration:none;
   display:inline-block;padding:10px 14px;border-radius:9px;font-size:13.5px;font-weight:600;
   text-align:center;border:0;cursor:pointer;font-family:inherit}
@@ -97,8 +98,8 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
 <body>
 
 <h1>Xưởng ảnh</h1>
-<p class="muted">Hồng Đức Tu Tiên Lộ · đã có <b>27/40</b> ảnh, còn thiếu
-<b>13</b>. Công việc của bạn: <b>copy prompt → vẽ → dán ảnh vào Issue</b>. Phần còn lại tự động.</p>
+<p class="muted">Hồng Đức Tu Tiên Lộ · đã có <b>28/40</b> ảnh, còn thiếu
+<b>12</b>. Công việc của bạn: <b>copy prompt → vẽ → dán ảnh vào Issue</b>. Phần còn lại tự động.</p>
 
 <h2>⚡ Cách làm — 3 bước</h2>
 <div class="card">
@@ -110,7 +111,9 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
         <a href="#thuvien">📚 Thư viện ảnh mẫu</a> và đính kèm để giữ mặt nhân vật.</li>
     <li><b>Gửi ảnh ngay tại thẻ</b>: vẽ xong, bấm <b>📤 Gửi ảnh này</b> trên chính thẻ đó.
         Trang Issue mở ra <b>đã điền sẵn mã ảnh</b> — bạn chỉ việc <b>kéo ảnh vào</b> rồi
-        bấm <b>Submit new issue</b>. Nhờ có mã sẵn, hệ thống gán <b>đúng ảnh, không đoán sai</b>.</li>
+        bấm <b>Submit new issue</b>. Nhờ có mã sẵn, hệ thống gán <b>đúng ảnh, không đoán sai</b>.
+        Hoặc bấm <b>📁 Up thẳng vào thư mục</b> trên thẻ để mở sẵn thư mục
+        <code>xuong-inbox/&lt;mã&gt;/</code> — kéo ảnh vào rồi <b>Commit changes</b>.</li>
   </ol>
   <p class="muted" style="font-size:12.5px">Gửi nhiều ảnh một lúc thì dùng nút
   <b>📤 Gửi ảnh cho CẢ NHÓM</b> ở đầu mỗi nhóm — dán ảnh <b>đúng thứ tự</b> như danh sách mã.
@@ -149,26 +152,25 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
   ảnh đó biến khỏi danh sách này.</p>
   
 <div class="inbox-khoi">
-  <h3>🍂 Chương 1 · Nhánh Tán tu <span class="dem">10 ảnh chờ</span></h3>
-  <table><thead><tr><th>#</th><th>mã</th><th>loại</th><th>dùng ở</th></tr></thead>
-  <tbody><tr><td>D.8</td><td><code>bc_doat_hop</code></td><td>Đoạt hộp — Đỗ Tam phản phệ</td><td class='muted'>c1_d04d</td></tr>
-<tr><td>D.15</td><td><code>bc_tu_khiem</code></td><td>Tu luyện kiếm đạo — đêm đầu</td><td class='muted'>c1_d09</td></tr>
-<tr><td>D.16</td><td><code>bc_dot_pha</code></td><td>Đột phá Luyện Khí</td><td class='muted'>c1_d10</td></tr>
-<tr><td>D.14</td><td><code>vt_kiem_hap_nhan</code></td><td>Nhận chủ — máu nhỏ lên kiếm</td><td class='muted'>c1_d08</td></tr>
-<tr><td>D.11</td><td><code>nv_kiem_linh_thu</code></td><td>Kiếm linh — thử thách</td><td class='muted'>c1_d06b</td></tr>
-<tr><td>D.12</td><td><code>nv_kiem_linh_than</code></td><td>Kiếm linh giới thiệu thân phận</td><td class='muted'>c1_d07</td></tr>
-<tr><td>D.13</td><td><code>nv_kiem_linh_dieu</code></td><td>Điều kiện nhận chủ</td><td class='muted'>c1_d07b</td></tr>
-<tr><td>D.18</td><td><code>bc_tran_lua_2</code></td><td>Xuống trấn — cứu dân</td><td class='muted'>c1_d12</td></tr>
-<tr><td>D.19</td><td><code>bc_tran_lua_3</code></td><td>Thất Huyền Môn — cổng vỡ</td><td class='muted'>c1_d13</td></tr>
-<tr><td>D.22</td><td><code>nv_han_lap_2</code></td><td>Đối thoại với Hàn Lập</td><td class='muted'>c1_d16</td></tr></tbody></table>
+  <h3>🍂 Chương 1 · Nhánh Tán tu <span class="dem">9 ảnh chờ</span></h3>
+  <table><thead><tr><th>#</th><th>mã</th><th>loại</th><th>dùng ở</th><th>up</th></tr></thead>
+  <tbody><tr><td>D.15</td><td><code>bc_tu_khiem</code></td><td>Tu luyện kiếm đạo — đêm đầu</td><td class='muted'>c1_d09</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tu_khiem' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/bc_tu_khiem/'>📁 Up</a></td></tr>
+<tr><td>D.16</td><td><code>bc_dot_pha</code></td><td>Đột phá Luyện Khí</td><td class='muted'>c1_d10</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_dot_pha' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/bc_dot_pha/'>📁 Up</a></td></tr>
+<tr><td>D.14</td><td><code>vt_kiem_hap_nhan</code></td><td>Nhận chủ — máu nhỏ lên kiếm</td><td class='muted'>c1_d08</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/vt_kiem_hap_nhan' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/vt_kiem_hap_nhan/'>📁 Up</a></td></tr>
+<tr><td>D.11</td><td><code>nv_kiem_linh_thu</code></td><td>Kiếm linh — thử thách</td><td class='muted'>c1_d06b</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_kiem_linh_thu' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/nv_kiem_linh_thu/'>📁 Up</a></td></tr>
+<tr><td>D.12</td><td><code>nv_kiem_linh_than</code></td><td>Kiếm linh giới thiệu thân phận</td><td class='muted'>c1_d07</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_kiem_linh_than' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/nv_kiem_linh_than/'>📁 Up</a></td></tr>
+<tr><td>D.13</td><td><code>nv_kiem_linh_dieu</code></td><td>Điều kiện nhận chủ</td><td class='muted'>c1_d07b</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_kiem_linh_dieu' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/nv_kiem_linh_dieu/'>📁 Up</a></td></tr>
+<tr><td>D.18</td><td><code>bc_tran_lua_2</code></td><td>Xuống trấn — cứu dân</td><td class='muted'>c1_d12</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tran_lua_2' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/bc_tran_lua_2/'>📁 Up</a></td></tr>
+<tr><td>D.19</td><td><code>bc_tran_lua_3</code></td><td>Thất Huyền Môn — cổng vỡ</td><td class='muted'>c1_d13</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tran_lua_3' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/bc_tran_lua_3/'>📁 Up</a></td></tr>
+<tr><td>D.22</td><td><code>nv_han_lap_2</code></td><td>Đối thoại với Hàn Lập</td><td class='muted'>c1_d16</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_han_lap_2' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/nv_han_lap_2/'>📁 Up</a></td></tr></tbody></table>
 </div>
 
 <div class="inbox-khoi">
   <h3>⛩️ Chương 1 · Nhánh Môn phái <span class="dem">3 ảnh chờ</span></h3>
-  <table><thead><tr><th>#</th><th>mã</th><th>loại</th><th>dùng ở</th></tr></thead>
-  <tbody><tr><td>P.1</td><td><code>bc_quan_nuoc</code></td><td>Quán nước đầu trấn — dò tin</td><td class='muted'>c1_p05</td></tr>
-<tr><td>P.2</td><td><code>bc_mon_phai_tan_hoang</code></td><td>Thất Huyền Môn — sau trận, Mạc Đại Phu cứu người</td><td class='muted'>c1_p16</td></tr>
-<tr><td>P.6</td><td><code>bc_binh_minh_ngoc_cot</code></td><td>Bình minh — ngọc cốt trong vạt áo</td><td class='muted'>c1_p19</td></tr></tbody></table>
+  <table><thead><tr><th>#</th><th>mã</th><th>loại</th><th>dùng ở</th><th>up</th></tr></thead>
+  <tbody><tr><td>P.1</td><td><code>bc_quan_nuoc</code></td><td>Quán nước đầu trấn — dò tin</td><td class='muted'>c1_p05</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_quan_nuoc' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/bc_quan_nuoc/'>📁 Up</a></td></tr>
+<tr><td>P.2</td><td><code>bc_mon_phai_tan_hoang</code></td><td>Thất Huyền Môn — sau trận, Mạc Đại Phu cứu người</td><td class='muted'>c1_p16</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_mon_phai_tan_hoang' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/bc_mon_phai_tan_hoang/'>📁 Up</a></td></tr>
+<tr><td>P.6</td><td><code>bc_binh_minh_ngoc_cot</code></td><td>Bình minh — ngọc cốt trong vạt áo</td><td class='muted'>c1_p19</td><td><a class='dl tm-nho' href='https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_binh_minh_ngoc_cot' target='_blank' title='Mở GitHub trỏ sẵn vào xuong-inbox/bc_binh_minh_ngoc_cot/'>📁 Up</a></td></tr></tbody></table>
 </div>
 </div>
 
@@ -418,7 +420,7 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
 
 <section class="phan" id="phan-c1-tan-tu">
   <h2>🍂 Chương 1 · Nhánh Tán tu
-    <span class="dem">13/23 đã có</span></h2>
+    <span class="dem">14/23 đã có</span></h2>
   <p class="mota">Chợ sớm, miếu hoang, hộp kiếm, kiếm linh, trấn cháy, Hàn Lập.</p>
   <details class="gop-phan">
     <summary>📦 Prompt vẽ TOÀN BỘ phần này (23 ảnh) — dán 1 lần cho cả phần</summary>
@@ -656,7 +658,7 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
 
 <section class="nhom" id="g-d-mieu">
   <h3>Miếu hoang — Đỗ Tam
-    <span class="dem">3/4 đã có</span></h3>
+    <span class="dem">4/4 đã có</span></h3>
   <p class="mota">Miếu hoang sau núi, xác người, Đỗ Tam tranh giành. <span class="so-ds">(D.5 · D.6 · D.7 · D.8)</span></p>
   <div class="use"><b>Đính kèm:</b> <span class="mau">Đỗ Tam, Nhân vật chính</span></div>
   <a class="gui nhom-gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+nh%C3%B3m+Mi%E1%BA%BFu+hoang+%E2%80%94+%C4%90%E1%BB%97+Tam&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_mieu_hoang%0Am%C3%A3-%E1%BA%A3nh%3A+bc_mieu_trong%0Am%C3%A3-%E1%BA%A3nh%3A+nv_do_tam_mieu%0Am%C3%A3-%E1%BA%A3nh%3A+bc_doat_hop%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%C4%90%C3%9ANG+TH%E1%BB%A8+T%E1%BB%B0+tr%C3%AAn+%28k%C3%A9o+th%E1%BA%A3+t%E1%BB%ABng+%E1%BA%A3nh%29%3A%0A" target="_blank">📤 Gửi ảnh cho CẢ NHÓM này (4 ảnh)</a>
@@ -757,11 +759,11 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
      title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_do_tam_mieu/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_do_tam_mieu/</code></a>
 </article>
 
-<article class="asset" id="p-bc-doat-hop">
+<article class="asset done" id="p-bc-doat-hop">
   <header>
     <span class="so">D.8</span>
     <b>Đoạt hộp — Đỗ Tam phản phệ</b>
-    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class='badge chac'>✅ đã có</span>
     <span class="ratio">3:4 dọc (900×1200)</span>
   </header>
   <div class="meta">
@@ -774,7 +776,7 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-doat-hop-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-doat-hop-t', 'bc_doat_hop.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.8+%E2%80%94+%C4%90o%E1%BA%A1t+h%E1%BB%99p+%E2%80%94+%C4%90%E1%BB%97+Tam+ph%E1%BA%A3n+ph%E1%BB%87&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_doat_hop%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
+  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.8+%E2%80%94+%C4%90o%E1%BA%A1t+h%E1%BB%99p+%E2%80%94+%C4%90%E1%BB%97+Tam+ph%E1%BA%A3n+ph%E1%BB%87&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_doat_hop%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
   <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_doat_hop" target="_blank"
      title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_doat_hop/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_doat_hop/</code></a>
 </article></div>
