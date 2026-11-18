@@ -138,7 +138,6 @@
       "mo_ta": "Kiếm linh Hồng Trần — thanh niên áo trắng, mắt sáng như kiếm quang",
       "dung_o": [
         "c1_d06",
-        "c1_d06b",
         "c1_d07",
         "c1_d07b"
       ],
@@ -275,6 +274,23 @@
       ],
       "dung_o": [
         "c1_d04d"
+      ]
+    },
+    "nv_kiem_linh_thu.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Kiếm linh thử thách — kiếm lơ lửng trước mặt (d06b).",
+      "tags": [
+        "thử",
+        "thách",
+        "kiếm",
+        "linh",
+        "lơ",
+        "lửng",
+        "trước",
+        "mặt"
+      ],
+      "dung_o": [
+        "c1_d06b"
       ]
     }
   }
