@@ -247,7 +247,16 @@
     "nv_do_tam_mieu.jpg": {
       "loai": "nhan_vat",
       "mo_ta": "Đỗ Tam chặn cửa miếu, đòi tranh hộp kiếm (d04c).",
-      "tags": [],
+      "tags": [
+        "tranh",
+        "giành",
+        "đỗ",
+        "tam",
+        "chặn",
+        "cửa",
+        "miếu",
+        "đòi"
+      ],
       "dung_o": [
         "c1_d04c"
       ]

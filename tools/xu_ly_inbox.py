@@ -100,6 +100,7 @@ def tai_tu_urls(urls: list, ma: list | None = None) -> list:
         item = {"name": f"issue-{i}{duoi}", "data": base64.b64encode(data).decode()}
         if ma and i <= len(ma):
             item["hint_key"] = ma[i - 1]
+            item["hint_cach"] = "ma-anh"
         ds.append(item)
     return ds
 

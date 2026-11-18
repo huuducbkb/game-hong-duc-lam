@@ -17,7 +17,8 @@ XUONG = f"https://huuducbkb.github.io/{REPO.split('/')[1]}/xuong/"
 def _dong_anh(x: dict) -> str:
     key = x.get("key") or "?"
     file = x.get("file") or ""
-    cach = {"ai": "AI nhận diện", "ten-file": "theo tên file", "thu-muc": "theo thư mục"}.get(
+    cach = {"ai": "AI nhận diện", "ten-file": "theo tên file", "thu-muc": "theo thư mục",
+            "ma-anh": "theo mã ảnh ghi trong Issue"}.get(
         x.get("cach", ""), x.get("cach", ""))
     tin = x.get("do_tin_cay")
     them = f" · {tin}%" if tin else ""

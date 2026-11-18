@@ -67,10 +67,14 @@ def nhan_dien(anh_list: list, env: dict, chi_con_thieu: bool = True) -> list:
         data = base64.b64decode(item.get("data", ""))
         hint = (item.get("hint_key") or "").strip()
 
-        # Có gợi ý key (thư mục đặt đúng tên key) → tin tuyệt đối.
+        # Có gợi ý key (thư mục đặt đúng tên key, hoặc dòng 'mã-ảnh' trong Issue)
+        # → tin tuyệt đối.
         if hint and _asset_theo_key(hint):
+            cach = item.get("hint_cach") or "thu-muc"
+            ly_do = ("Issue ghi rõ mã ảnh." if cach == "ma-anh"
+                     else "Thư mục upload đặt đúng mã ảnh.")
             kq.append({"name": ten, "data": data, "key": hint, "do_tin_cay": 100,
-                       "cach": "thu-muc", "mo_ta": "", "ly_do": "Thư mục upload đặt đúng mã ảnh.",
+                       "cach": cach, "mo_ta": "", "ly_do": ly_do,
                        "kich_thuoc": ""})
             continue
 
@@ -143,6 +147,46 @@ def _loai_cua(key: str) -> str:
     if key.startswith("nv_"):
         return "nhan_vat"
     return "giao_dien"
+
+
+# Bỏ các từ chung không dùng làm thẻ tìm kiếm.
+_TU_CHUNG = {"ke", "kẻ", "cua", "của", "va", "và", "tai", "tại", "o", "ở", "trong",
+             "mot", "một", "anh", "ảnh", "nhieu", "nhiều", "hinh", "hình", "mau", "mẫu"}
+
+
+def _tags_cua(key: str) -> list:
+    """Sinh thẻ tìm kiếm từ tên + mô tả asset (ảnh do bot thêm chưa có thẻ viết tay)."""
+    a = _asset_theo_key(key) or {}
+    nguon = f"{a.get('name', '')} {a.get('use', '')}"
+    nguon = re.sub(r"\([^)]*\)", " ", nguon)          # bỏ phần trong ngoặc
+    nguon = nguon.split("—", 1)[-1] if "—" in nguon else nguon
+    tags, thay = [], set()
+    for t in re.split(r"[^\wÀ-ỹ]+", nguon, flags=re.UNICODE):
+        t = t.strip().lower()
+        if len(t) < 2 or t in _TU_CHUNG or t in thay:
+            continue
+        thay.add(t)
+        tags.append(t)
+    return tags[:8]
+
+
+def _cap_nhat_thu_vien(lib: dict, key: str, ten_file: str, da_gan: list) -> None:
+    """Thêm/sửa mục thư viện: ảnh này dùng ở `da_gan`, gỡ khỏi các ảnh khác."""
+    anh = lib.setdefault("anh", {})
+    a = _asset_theo_key(key)
+    # gỡ các đoạn này khỏi mọi mục khác
+    for fn, muc in anh.items():
+        if fn == ten_file:
+            continue
+        if isinstance(muc.get("dung_o"), list):
+            muc["dung_o"] = [x for x in muc["dung_o"] if x not in da_gan]
+    muc = anh.get(ten_file) or {}
+    muc.setdefault("loai", _loai_cua(key))
+    muc.setdefault("mo_ta", (a or {}).get("use", "")[:200])
+    if not muc.get("tags"):
+        muc["tags"] = _tags_cua(key)
+    muc["dung_o"] = da_gan
+    anh[ten_file] = muc
 
 
 def luu_va_ghep(ket_qua: list) -> dict:
