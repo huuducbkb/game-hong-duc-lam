@@ -173,8 +173,7 @@
       "loai": "nhan_vat",
       "mo_ta": "Hàn Lập — thanh niên gầy, mắt sắc như dao, áo vải thô",
       "dung_o": [
-        "c1_d15",
-        "c1_d16"
+        "c1_d15"
       ],
       "tags": [
         "Hàn Lập",
@@ -398,6 +397,20 @@
       ],
       "dung_o": [
         "c1_d13"
+      ]
+    },
+    "nv_han_lap_2.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Đối thoại với Hàn Lập sau trận — hắn đã ghi nhớ ta (d16).",
+      "tags": [
+        "hắn",
+        "đã",
+        "ghi",
+        "nhớ",
+        "ta"
+      ],
+      "dung_o": [
+        "c1_d16"
       ]
     }
   }
