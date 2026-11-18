@@ -22,17 +22,24 @@
 
 ---
 
-## ✅ VỪA XONG — Gửi ảnh ngay tại từng thẻ trong Xưởng
+## ✅ VỪA XONG — Dán ảnh ngay dưới prompt, tự đưa lên GitHub
 
-- [x] Mỗi thẻ ảnh có nút **📤 Gửi ảnh này** (ảnh đã có thì **🔁 Thay ảnh**). Nút mở trang
-  tạo Issue **điền sẵn dòng `mã-ảnh: <key>`** → bot gán **thẳng theo mã, không cần AI đoán**,
-  hết lộn ảnh.
+- [x] **Bỏ nút 📤 Gửi ảnh này** (mở Issue nhiều bước). Thay bằng **ô dán ảnh ngay trong
+  thẻ**: dán `Ctrl+V` / kéo thả / **📂 Chọn file** → ảnh **nén trên máy** → tự
+  `PUT` lên `xuong-inbox/<mã>/` qua GitHub Contents API. Bot nhận theo **tên thư mục = mã ảnh**
+  nên gán thẳng, không đoán sai.
+- [x] **🔑 Kết nối GitHub (1 lần)**: dán fine-grained token (quyền **Contents: Read and write**);
+  lưu ở `localStorage`, chỉ gửi tới `api.github.com`. Có nút **Quên token** và link tạo token sẵn.
+- [x] Bấm vào ô = **chọn ô làm đích cho Ctrl+V** (không mở hộp chọn file → không dán nhầm thẻ).
+- [x] Vẫn giữ đường lui: mở Issue trống, và "Up thẳng vào thư mục" (không cần token).
+- [x] Kiểm thử: engine 105/105 · API 159/159 · logic `ghPutAnh` tạo mới/ghi đè/xoá đều OK trên repo thật.
+
+## ✅ VỪA XONG — Gửi ảnh qua Issue (cách cũ, vẫn dùng được)
+
 - [x] Mỗi nhóm cảnh (từ 2 ảnh) có nút **📤 Gửi ảnh cho CẢ NHÓM** — Issue điền sẵn danh sách
   mã theo thứ tự; dán ảnh đúng thứ tự là xong.
 - [x] `tools/xu_ly_inbox.py`: thêm `ma_anh_trong()` đọc dòng `mã-ảnh:` (chịu được
   "ma-anh", "mã ảnh", "MÃ-ẢNH"); `tai_tu_urls()` gán mã theo thứ tự URL.
-- [x] Hướng dẫn trên trang cập nhật theo luồng mới.
-- [x] Kiểm thử: engine 105/105 · API 161/161 · mô phỏng gửi ảnh gán đúng mã (tin cậy 100).
 
 ## ✅ VỪA XONG — Sửa lỗi copy + tách ảnh hai nhánh (không dùng chung)
 

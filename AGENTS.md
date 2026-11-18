@@ -42,6 +42,25 @@ Gemini free tier **chặn sinh ảnh** (quota 0), OpenRouter **hết credit**.
 → Quy trình: agent viết **prompt chi tiết** → người dùng gửi cho AI tạo ảnh bên ngoài
 → người dùng upload ảnh ngược lại qua Xưởng → agent ghép vào giao diện.
 
+### Dán ảnh ngay trong thẻ Xưởng tĩnh (GitHub Pages)
+
+Trang tĩnh `docs/xuong/index.html` **không có backend**, nên thay vì mở Issue nhiều bước,
+mỗi thẻ có **ô dán ảnh** gọi thẳng GitHub Contents API từ trình duyệt:
+
+- Người dùng **dán token 1 lần** ở mục "🔑 Kết nối GitHub" (fine-grained PAT, quyền
+  **Contents: Read and write**). Token lưu ở `localStorage` khoá `xuong_gh_token`,
+  chỉ gửi tới `api.github.com` — không qua server nào của mình.
+- Mỗi thẻ: dán `Ctrl+V` / kéo thả / "📂 Chọn file" → ảnh **nén trên máy** (canvas,
+  cạnh dài ≤1600px; PNG giữ PNG, còn lại JPEG q0.9) → `PUT /contents/xuong-inbox/<mã>/<mã>.<ext>`
+  (kèm `sha` khi ghi đè) → bot GitHub Actions nhận, nhận diện theo **tên thư mục = mã ảnh**,
+  nén lại theo quy tắc game, ghép vào đoạn, deploy Pages.
+- Bấm vào ô = **chọn ô làm đích cho Ctrl+V** (KHÔNG mở hộp chọn file, tránh dán nhầm thẻ);
+  chọn file dùng nút riêng. Chỉ một ô là đích tại một thời điểm (`O_DANG_CHON`).
+- Hàm JS: `ghLuuToken` / `ghQuenToken` / `ghLaySha` / `ghPutAnh` / `ghNenAnh` / `guiMotAnh`.
+- CORS: `api.github.com` trả `access-control-allow-origin: *` cho PUT/POST — nên gọi
+  thẳng từ trang Pages được, **không cần proxy**.
+- Vẫn giữ đường lui: nút mở Issue trống và mục "Up thẳng vào thư mục" (không cần token).
+
 ### Up ảnh là tự vào game (Xưởng studio, cổng 12001)
 
 Người dùng **chỉ cần up ảnh** — không cần đặt tên, không cần chọn đúng prompt:
