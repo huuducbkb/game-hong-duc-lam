@@ -511,6 +511,23 @@
       "dung_o": [
         "c1_p01"
       ]
+    },
+    "bc_san_tap_ngay.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Sân tập rộng, hàng trăm đệ tử luyện võ (p02).",
+      "tags": [
+        "giữa",
+        "ngày",
+        "sân",
+        "tập",
+        "rộng",
+        "hàng",
+        "trăm",
+        "đệ"
+      ],
+      "dung_o": [
+        "c1_p02"
+      ]
     }
   }
 }
