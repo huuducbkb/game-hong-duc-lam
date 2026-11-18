@@ -137,8 +137,7 @@
       "loai": "nhan_vat",
       "mo_ta": "Kiếm linh Hồng Trần — thanh niên áo trắng, mắt sáng như kiếm quang",
       "dung_o": [
-        "c1_d06",
-        "c1_d07b"
+        "c1_d06"
       ],
       "tags": [
         "kiếm linh",
@@ -307,6 +306,21 @@
       ],
       "dung_o": [
         "c1_d07"
+      ]
+    },
+    "nv_kiem_linh_dieu.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Kiếm linh ra điều kiện — phải lăn lộn giữa hồng trần (d07b).",
+      "tags": [
+        "phải",
+        "lăn",
+        "lộn",
+        "giữa",
+        "hồng",
+        "trần"
+      ],
+      "dung_o": [
+        "c1_d07b"
       ]
     }
   }
