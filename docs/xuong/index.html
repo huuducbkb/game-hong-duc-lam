@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xưởng ảnh — Hồng Đức Tu Tiên Lộ</title>
+<style>
+:root{--bg:#111a2b;--card:#182337;--ink:#e8e6df;--muted:#93a0b8;--gold:#ffd98a;
+  --jade:#6fe0c0;--line:#2b3b57;--seal:#a8352a}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);
+  color:var(--ink);margin:0 auto;padding:18px;max-width:760px;line-height:1.55;-webkit-text-size-adjust:100%}
+h1{font-size:20px;color:var(--gold);margin:6px 0 2px}
+h2{font-size:16px;color:var(--jade);margin:30px 0 6px;display:flex;flex-wrap:wrap;
+  gap:8px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:7px}
+h3{font-size:14px;color:#cbd4e4;margin:16px 0 6px}
+p,li,td{font-size:13.5px;color:#cbd4e4}
+.muted{color:var(--muted)}
+code{background:#0a1220;padding:1px 6px;border-radius:4px;color:var(--jade);font-size:12px}
+a{color:var(--jade)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.dem{font-size:11px;color:var(--muted);background:#0a1220;padding:2px 8px;border-radius:99px}
+.mota{font-size:12.5px;color:var(--muted);margin:4px 0 10px}
+.asset{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:13px;margin:12px 0;border-left:3px solid var(--jade)}
+.asset.done{border-left-color:#2f8f5a;opacity:.72}
+.asset header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.so{font-size:11px;color:#3a2600;background:var(--gold);padding:2px 7px;border-radius:99px;font-weight:700}
+.ratio{font-size:11px;color:var(--muted);background:#0a1220;padding:2px 8px;border-radius:99px}
+.badge{font-size:11px;padding:2px 8px;border-radius:99px}
+.badge.chac{background:#12351f;color:#7fe0a8}
+.badge.thieu{background:#2a150d;color:#ffb98a}
+.meta{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--muted);margin:8px 0}
+.meta .k{color:#7f8ca3}
+textarea{width:100%;font-size:12.5px;line-height:1.5;background:#0a1220;color:#dfe7f5;
+  border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical;
+  font-family:ui-monospace,Menlo,monospace}
+button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radius:9px;
+  padding:10px 14px;cursor:pointer}
+.row{display:flex;gap:8px;margin-top:8px}
+.cp{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);color:#3a2600}
+.cp.done{background:#2f8f5a;color:#eafff3}
+.dl{background:linear-gradient(135deg,#2f8f7a,#6fe0c0);color:#04231c;text-decoration:none;
+  display:inline-block;padding:10px 14px;border-radius:9px;font-size:13.5px;font-weight:600;
+  text-align:center;border:0;cursor:pointer;font-family:inherit}
+.big{display:block;text-align:center;margin:10px 0;font-size:15px;padding:14px}
+.ok{background:#12351f;border:1px solid #2f8f5a;padding:12px;border-radius:10px;color:#7fe0a8;font-size:13px}
+.warn{background:#3a1a10;border:1px solid #a05a2a;padding:12px;border-radius:10px;color:#ffb98a;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.item{background:#0f1728;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.item.thieu{border-color:#a05a2a}
+.item img{width:100%;height:150px;object-fit:cover;display:block;background:#0a1220}
+.item .cap{padding:8px;font-size:12px;display:flex;flex-direction:column;gap:5px}
+.inbox-khoi{margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:11.5px}
+ol{padding-left:20px}
+ol li{margin:5px 0}
+.steps code{font-size:12px}
+details{margin:14px 0}
+summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
+</style>
+</head>
+<body>
+
+<h1>Xưởng ảnh</h1>
+<p class="muted">Hồng Đức Tu Tiên Lộ · <b>11/37</b> ảnh còn thiếu.
+Công việc của bạn: <b>copy prompt → vẽ → dán ảnh vào Issue</b>. Phần còn lại tự động.</p>
+
+<h2>⚡ Cách làm — 3 bước</h2>
+<div class="card">
+  <ol class="steps">
+    <li><b>Copy prompt</b>: bấm <b>📋 Copy prompt</b> ở ảnh bạn muốn vẽ (hoặc copy cả nhóm bên dưới),
+        dán vào AI tạo ảnh (Gemini…). Nhớ chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
+    <li><b>Vẽ ảnh</b>: nếu thẻ ghi <b>đính kèm ảnh mẫu</b>, tải ảnh mẫu ở mục
+        <a href="#thuvien">📚 Thư viện ảnh mẫu</a> và đính kèm để giữ mặt nhân vật.</li>
+    <li><b>Dán ảnh vào Issue</b>: mở <a href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new" target="_blank">trang tạo Issue</a>
+        (hoặc Issue có sẵn), <b>kéo tất cả ảnh</b> vào ô bình luận rồi bấm <b>Comment</b>.
+        Hệ thống tự nhận diện, nén, ghép vào đúng đoạn và cập nhật game.</li>
+  </ol>
+  <p class="muted" style="font-size:12.5px">Không cần đổi tên ảnh, không cần gõ gì thêm.
+  Ảnh nào AI không chắc sẽ được <b>báo lại</b> để bạn xác nhận — không tự gán bừa.</p>
+  <a class="dl big" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new" target="_blank">💬 Mở Issue để dán ảnh</a>
+  <details>
+    <summary>Cách khác: tải ảnh lên thư mục (nếu bạn thích)</summary>
+    <p class="muted" style="font-size:12.5px">Bấm nút dưới để mở trang upload của GitHub, kéo ảnh vào
+    thư mục <code>xuong-inbox/</code> rồi bấm <b>Commit changes</b>. Hệ thống cũng tự xử lý.</p>
+    <a class="dl big" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox" target="_blank">📤 Mở trang tải ảnh lên</a>
+  </details>
+</div>
+
+<h2>📥 Hộp nhận ảnh — theo từng chương</h2>
+<div class="card">
+  <p class="mota">Danh sách ảnh <b>còn thiếu</b>, xếp theo chương/nhánh. Vẽ xong ảnh nào thì
+  ảnh đó biến khỏi danh sách này.</p>
+  
+<div class="inbox-khoi">
+  <h3>Chương 1 — nhánh tán tu <span class="dem">11 ảnh chờ</span></h3>
+  <table><thead><tr><th>#</th><th>mã</th><th>loại</th><th>dùng ở</th></tr></thead>
+  <tbody><tr><td>#27</td><td><code>nv_do_tam_mieu</code></td><td>D.4c Đỗ Tam — kẻ tranh giành</td><td class='muted'>c1_d04c</td></tr>
+<tr><td>#28</td><td><code>bc_doat_hop</code></td><td>D.4d Đoạt hộp — Đỗ Tam phản phệ</td><td class='muted'>c1_d04d</td></tr>
+<tr><td>#29</td><td><code>bc_tu_khiem</code></td><td>D.9 Tu luyện kiếm đạo — đêm đầu</td><td class='muted'>c1_d09</td></tr>
+<tr><td>#30</td><td><code>bc_dot_pha</code></td><td>D.10 Đột phá Luyện Khí</td><td class='muted'>c1_d10</td></tr>
+<tr><td>#31</td><td><code>vt_kiem_hap_nhan</code></td><td>D.8 Nhận chủ — máu nhỏ lên kiếm</td><td class='muted'>c1_d08</td></tr>
+<tr><td>#32</td><td><code>nv_kiem_linh_thu</code></td><td>D.6b Kiếm linh — thử thách</td><td class='muted'>c1_d06b</td></tr>
+<tr><td>#33</td><td><code>nv_kiem_linh_than</code></td><td>D.7 Kiếm linh giới thiệu thân phận</td><td class='muted'>c1_d07</td></tr>
+<tr><td>#34</td><td><code>nv_kiem_linh_dieu</code></td><td>D.7b Điều kiện nhận chủ</td><td class='muted'>c1_d07b</td></tr>
+<tr><td>#35</td><td><code>bc_tran_lua_2</code></td><td>D.12 Xuống trấn — cứu dân</td><td class='muted'>c1_d12</td></tr>
+<tr><td>#36</td><td><code>bc_tran_lua_3</code></td><td>D.13 Thất Huyền Môn — cổng vỡ</td><td class='muted'>c1_d13</td></tr>
+<tr><td>#37</td><td><code>nv_han_lap_2</code></td><td>D.16 Đối thoại với Hàn Lập</td><td class='muted'>c1_d16</td></tr></tbody></table>
+</div>
+</div>
+
+<h2>🎨 Prompt từng ảnh</h2>
+
+<section class="khoi">
+  <h2>Ảnh mẫu tham chiếu
+    <span class="dem">4/4 đã có</span></h2>
+  <p class="mota">Vẽ một lần, đính kèm khi vẽ ảnh cảnh.</p>
+  
+<article class="asset done" id="a20">
+  <header>
+    <span class="so">#20</span>
+    <b>MẪU Nhân vật chính</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_chinh_mau</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>nv_chinh_mau.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p20" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Character reference sheet for a game: one single figure, full body, front view, neutral standing pose, centred on plain bare paper. No scenery, no props, no other objects. Clear, simple, consistent design reference with generous empty space around. A poor young male drifter of an ancient Chinese fantasy world, about 16-17 years old. Thin, slightly underfed build. Short messy black hair tied back with a rough cord. Sun-tanned skin, sharp cheekbones, dark watchful eyes with a quiet modern alertness. Wearing coarse patched frayed grey-brown hemp clothes too large for him, sleeves rolled up, a rope belt. Calloused hands with dark-rimmed nails. Guarded, calculating expression. No jewellery, no ornaments.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p20', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p20', 'nv_chinh_mau.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a21">
+  <header>
+    <span class="so">#21</span>
+    <b>MẪU Mạc Đại Phu</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_mac_dai_phu_mau</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>nv_mac_dai_phu_mau.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p21" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Character reference sheet for a game: one single figure, full body, front view, neutral standing pose, centred on plain bare paper. No scenery, no props, no other objects. Clear, simple, consistent design reference with generous empty space around. An old herbalist man of an ancient Chinese martial sect. Wiry and upright, grey hair and a short grey beard. Wearing a plain grey-brown robe like a village doctor. Rough steady hands, movements slow but precise. Aged yet strangely bright, piercing eyes. Carries bundles of dried herbs and a medicine bag. Calm, inscrutable expression.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p21', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p21', 'nv_mac_dai_phu_mau.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a22">
+  <header>
+    <span class="so">#22</span>
+    <b>MẪU Đỗ Tam</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_do_tam_mau</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>nv_do_tam_mau.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p22" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Character reference sheet for a game: one single figure, full body, front view, neutral standing pose, centred on plain bare paper. No scenery, no props, no other objects. Clear, simple, consistent design reference with generous empty space around. A burly, muscular rogue cultivator and bandit of an ancient Chinese fantasy world. Heavy build, a long scar running diagonally across his left eye, thick stubble, harsh weathered face. Wearing rough dark leather-and-cloth traveller&#x27;s garb. Carrying a heavy chipped broad saber. Brutish, greedy, contemptuous expression.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p22', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p22', 'nv_do_tam_mau.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a23">
+  <header>
+    <span class="so">#23</span>
+    <b>MẪU Hùng Bá</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_hung_ba_mau</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>nv_hung_ba_mau.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p23" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Character reference sheet for a game: one single figure, full body, front view, neutral standing pose, centred on plain bare paper. No scenery, no props, no other objects. Clear, simple, consistent design reference with generous empty space around. A bandit leader of an ancient Chinese fantasy world. Tall, broad-shouldered, heavy-set. Fierce face with a thick beard and hard eyes. Wearing dark bandit armour over rough cloth, with a wolf-pelt mantle over one shoulder. Carrying a heavy blade. Arrogant, cruel expression.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p23', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p23', 'nv_hung_ba_mau.txt')">⬇️ .txt</button>
+  </div>
+</article>
+</section>
+
+<section class="khoi">
+  <h2>Giao diện
+    <span class="dem">7/7 đã có</span></h2>
+  <p class="mota">Nền, khung, nút, ấn son.</p>
+  
+<article class="asset done" id="a1">
+  <header>
+    <span class="so">#1</span>
+    <b>1. Nền toàn màn hình</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">9:16 dọc (1080×1920)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bg-main</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>bg-main.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p1" onclick="this.select()">Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. An almost empty aged-paper background for a mobile game screen, portrait orientation. Subtle paper texture with faint uneven washes of pale ink near the corners and edges, a very faint silhouette of distant misty mountains along the very top and bottom edges, a few tiny scattered ink specks and one or two faint dry-brush strokes at the margins. The whole center is left empty and light so game text can be placed on top. Low contrast, calm, quiet.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p1', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p1', 'bg-main.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a2">
+  <header>
+    <span class="so">#2</span>
+    <b>2. Khung bảng nhân vật</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>panel-character</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>panel-character.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p2" onclick="this.select()">Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A vertical hanging-scroll card for a game interface, portrait orientation. The border is an irregular hand-painted black ink rectangle with dry-brush ends and slightly wobbly edges, a few small ink splashes near the corners, and a thin second inner line. The INSIDE of the panel is plain empty light paper with no decoration at all, reserved for text. One small red square seal stamp sits in the bottom-right corner of the border. Flat frontal view, centered, the frame fills almost the entire image with a small even margin.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p2', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p2', 'panel-character.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a3">
+  <header>
+    <span class="so">#3</span>
+    <b>3. Khung bảng truyện</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">4:5 dọc (960×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>panel-story</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>panel-story.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p3" onclick="this.select()">Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A large rectangular story panel for a game interface, portrait orientation, slightly softer and simpler than a scroll. A rough hand-painted black ink border with rounded irregular corners and light dry-brush texture, very subtle. The entire interior is plain empty light paper with nothing drawn inside, reserved for long text. No seal, no ornaments. Flat frontal view, the frame fills almost the whole image with a small even margin.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p3', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p3', 'panel-story.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a4">
+  <header>
+    <span class="so">#4</span>
+    <b>4. Viền ảnh đại diện</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">1:1 vuông (1024×1024)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>avatar-ring</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>avatar-ring.png</code></div>
+  </div>
+  <textarea readonly rows="6" id="p4" onclick="this.select()">Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A single decorative circular ring for a game avatar frame, centered, on a plain empty light paper background. The ring is painted with bold black ink brush strokes, uneven and slightly broken, with dry-brush edges and a few tiny ink splashes. The inside of the circle and everything outside it is completely empty light paper. Only the ring itself, nothing else, no face, no figure.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p4', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p4', 'avatar-ring.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a5">
+  <header>
+    <span class="so">#5</span>
+    <b>5. Nền nút lựa chọn</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">5:1 ngang (1200×240)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>btn-choice</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>btn-choice.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p5" onclick="this.select()">Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A wide horizontal blank plaque / name-plate shape for a game button, very wide and short. Drawn as a simple hand-painted black ink rounded rectangle with thin dry-brush border and slightly wobbly edges. The interior is plain empty light paper, reserved for a single line of text. Minimal, one ink brush stroke along the bottom edge. Flat frontal view, the plaque fills almost the whole image.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p5', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p5', 'btn-choice.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a6">
+  <header>
+    <span class="so">#6</span>
+    <b>6. Ấn son (con dấu)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">1:1 vuông (512×512)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>seal</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>seal.png</code></div>
+  </div>
+  <textarea readonly rows="6" id="p6" onclick="this.select()">Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. IMPORTANT: the ONLY text allowed is the words inside the seal; no other letters, numbers, signature, watermark, logo or UI labels. A single traditional red seal stamp (chop) on a plain empty light paper background, centered. A square vermilion-red stamped mark with rough uneven edges like a real ink seal impression, faded and slightly blotchy, authentic antique look. CRITICAL LAYOUT — the text inside the seal MUST be on TWO SEPARATE LINES stacked vertically, like two rows of a Chinese vertical banner read top-to-bottom. LINE 1 (top half of the square): the word &quot;HỒNG&quot;. LINE 2 (bottom half of the square): the word &quot;ĐỨC&quot;. Each word is written normally and stays UPRIGHT and readable (do NOT rotate or tilt the letters, do NOT write the words side by side on one single horizontal line, do NOT write &quot;HỒNG ĐỨC&quot; as one line). The two lines are centered, one above the other, in the Latin alphabet, ALL CAPITALS. The letters are NOT in a modern font: they are rendered in a traditional East Asian calligraphy style, as if the Latin letters were brushed with a Chinese ink brush — thick tapered brush strokes, angular Han-character (Hán) flavour, classical and ornamented, like an old Sino-Vietnamese seal inscription. The two stacked lines fill the square evenly, leaving a small even margin on all sides. The text is clearly legible and perfectly spelled. Only these two stacked lines of text, nothing else. Only the seal, nothing else.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p6', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p6', 'seal.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a7">
+  <header>
+    <span class="so">#7</span>
+    <b>7. Đường kẻ mực (tùy chọn)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">10:1 ngang (1600×160)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>divider-ink</code></div>
+    <div><span class="k">dùng ở</span> —</div>
+    <div><span class="k">lưu là</span> <code>divider-ink.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p7" onclick="this.select()">Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A single horizontal decorative divider line for a game interface, extremely wide and short. A simple black ink brush stroke that starts thin, swells in the middle and fades to a dry broken end, with one or two small ink splashes. On a plain empty light paper background. Only the single brush stroke, nothing else.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p7', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p7', 'divider-ink.txt')">⬇️ .txt</button>
+  </div>
+</article>
+</section>
+
+<section class="khoi">
+  <h2>Chương 1 — nhánh tán tu
+    <span class="dem">12/23 đã có</span></h2>
+  <p class="mota">Chợ, miếu hoang, hộp kiếm, trấn cháy, Hàn Lập.</p>
+  
+<article class="asset done" id="a8">
+  <header>
+    <span class="so">#8</span>
+    <b>B.1 Chợ sớm Thất Huyền trấn</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_cho_01</code></div>
+    <div><span class="k">dùng ở</span> c1_d01, c1_p05</div>
+    <div><span class="k">lưu là</span> <code>bc_cho_01.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p8" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. An early-morning market street in an ancient Chinese mountain town, seen at eye level. Rows of humble wooden stalls with awnings, baskets of dried fish and herbs, jars, a few distant figures in simple cloth robes suggested loosely by a few ink strokes. Dawn light, thin morning mist drifting between the stalls. Composition leaves the upper third and one side calm and empty for game text. Warm cream paper, quiet and lived-in, no dramatic action.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p8', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p8', 'bc_cho_01.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a12">
+  <header>
+    <span class="so">#12</span>
+    <b>C.1 Đường mòn lên núi — chạng vạng</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_duong_mon_nui</code></div>
+    <div><span class="k">dùng ở</span> c1_d03</div>
+    <div><span class="k">lưu là</span> <code>bc_duong_mon_nui.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p12" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A narrow steep mountain footpath at dusk, seen from the walker&#x27;s eye level, leading up into dark wooded hills. Tall wild grass and weeds crowd both sides of the path higher than a person, a few bare rocks and twisted pine trunks, faint mist gathering low between the slopes. Deep blue-grey twilight sky, a sliver of pale moon just rising, the last dim light on the horizon. The path curves away into shadow and disappears, lonely and slightly ominous. Composition keeps the upper part calm and empty for game text. Quiet, solitary, a little eerie.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p12', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p12', 'bc_duong_mon_nui.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a13">
+  <header>
+    <span class="so">#13</span>
+    <b>C.2 Miếu hoang sau núi (bối cảnh chính nhánh tán tu)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_mieu_hoang</code></div>
+    <div><span class="k">dùng ở</span> c1_d04, c1_d04c, c1_d04d, c1_d09, c1_d10</div>
+    <div><span class="k">lưu là</span> <code>bc_mieu_hoang.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p13" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. The interior of a small abandoned wayside shrine deep in the mountains at night, seen from inside. Broken timber walls, a fallen roof beam, torn paper offerings and cobwebs, a cracked stone altar with a faded statue. Dry fallen leaves and dust on the floor, deep claw-mark scratches gouged across the wooden wall, a few scattered old bones in the shadowed corner. A cold shaft of moonlight falls through a gap in the roof onto the empty floor in the center. A long dark wooden box rests low and undisturbed in the middle of the beam of light. Composition keeps the center low and calm so game text can sit above. Ruined, silent, desolate, faintly menacing.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p13', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p13', 'bc_mieu_hoang.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a14">
+  <header>
+    <span class="so">#14</span>
+    <b>C.3 Hồng Trần Kiếm Hạp (vật phẩm cơ duyên nhánh tán tu)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">1:1 vuông (1000×1000)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>vt_kiem_hap</code></div>
+    <div><span class="k">dùng ở</span> c1_d05, c1_d08</div>
+    <div><span class="k">lưu là</span> <code>vt_kiem_hap.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p14" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A single ancient long black wooden sword box on plain empty paper, centered, still life. The box is open, dark lacquered wood carved with faint cloud-pattern lines, and inside it rest two swords — one long and one short — lying side by side, their sheaths plain dark with worn brass fittings, a faint cold light glimmering along the exposed blades. A few thin wisps of pale mist curling around the box, tiny floating light motes. Faint reflection shadow beneath. Nothing else in the frame, generous empty space around it. Ancient, solemn, mysterious, faintly dangerous.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p14', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p14', 'vt_kiem_hap.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a15">
+  <header>
+    <span class="so">#15</span>
+    <b>C.4 Kiếm linh Hồng Trần (nhân vật)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_kiem_linh</code></div>
+    <div><span class="k">dùng ở</span> c1_d06, c1_d06b, c1_d07, c1_d07b</div>
+    <div><span class="k">lưu là</span> <code>nv_kiem_linh.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p15" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Portrait of a ghostly young male sword spirit of an ancient Chinese fantasy world, upper body only, facing the viewer at a slight angle. A pale slender young man in plain flowing white robes, long black hair tied loosely, a cold composed face, sharp bright eyes like the gleam of a blade, thin brows, a faintly stern unsmiling expression. He is a spirit, not fully solid — his form shimmers faintly and fades to mist at the edges, surrounded by a thin cold glow and a few drifting wisps of pale mist. One slender sword is half-raised behind him, catching a cold light. Background left almost empty with soft ink wash so game text can sit beside. Cold, ethereal, austere, dignified, a little haunting.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p15', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p15', 'nv_kiem_linh.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a16">
+  <header>
+    <span class="so">#16</span>
+    <b>C.5 Trấn Thất Huyền chìm trong lửa (Dã Lang Bang tập kích)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_tran_lua</code></div>
+    <div><span class="k">dùng ở</span> c1_d11, c1_d12, c1_d13</div>
+    <div><span class="k">lưu là</span> <code>bc_tran_lua.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p16" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. An ancient Chinese mountain market town burning at night during a bandit raid, seen from a distance at eye level. Rows of wooden houses and stalls engulfed in tall orange flames, thick black smoke rolling up into the dark sky, sparks drifting in the air. Small distant silhouettes of fleeing townsfolk and mounted raiders suggested loosely by a few ink strokes. A broken gate and fallen banners at the town edge, embers glowing on the ground. Dramatic contrast of firelight against the deep night, but rendered in restrained ink-wash tones. Composition keeps the upper part smoky and calm for game text. Chaotic, tragic, tense.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p16', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p16', 'bc_tran_lua.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a17">
+  <header>
+    <span class="so">#17</span>
+    <b>C.6 Sau trận — giữa đống đổ nát (bình minh)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_tan_hoang</code></div>
+    <div><span class="k">dùng ở</span> c1_d14, c1_p16</div>
+    <div><span class="k">lưu là</span> <code>bc_tan_hoang.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p17" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. The aftermath of a battle in an ancient Chinese mountain town at first grey dawn, seen from inside the ruins. Collapsed charred timber buildings, broken stone steps, torn banners lying in the dust, thin smoke still curling from the wreckage, ash scattered on the ground. A few weary distant figures quietly carrying the fallen, suggested loosely by a few ink strokes. Pale cold dawn light, low mist over the ruins, the sky almost empty and grey. Composition keeps the center low and calm so game text can sit above. Desolate, quiet, sorrowful, exhausted.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p17', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p17', 'bc_tan_hoang.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a18">
+  <header>
+    <span class="so">#18</span>
+    <b>C.7 Hàn Lập (nhân vật — crossover Phàm Nhân Tu Tiên)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_han_lap</code></div>
+    <div><span class="k">dùng ở</span> c1_d15, c1_d16</div>
+    <div><span class="k">lưu là</span> <code>nv_han_lap.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p18" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Portrait of a lean, ordinary-looking young man of an ancient Chinese fantasy world, upper body only, facing the viewer at a slight angle. A thin plain-featured youth in coarse undyed cloth robes, simple cloth belt, black hair tied in a plain topknot, no ornament of any kind. His most striking feature is his eyes: calm, deep and sharp as a knife, watchful and unreadable, the gaze of someone far more than he appears. His expression is composed and reserved. He stands quietly in the shadow of a hillside at dusk, faint cold mist behind him. Background left almost empty with soft ink wash so game text can sit beside. Plain, quiet, sharp-eyed, quietly formidable, understated.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p18', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p18', 'nv_han_lap.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a19">
+  <header>
+    <span class="so">#19</span>
+    <b>C.8 Kết chương — bình minh Thất Huyền trấn</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_binh_minh</code></div>
+    <div><span class="k">dùng ở</span> c1_d17, c1_p19</div>
+    <div><span class="k">lưu là</span> <code>bc_binh_minh.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p19" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. First dawn light breaking over an ancient Chinese mountain town and its hillside, seen at eye level. Soft warm sunrise glow spreading across the sky, long pale rays through low mist, the distant roofs and mountain ridges fading into gentle haze, a few birds in flight. The foreground is quiet and almost empty — a worn stone path and a thin bare tree by the way. Hopeful and calm after hardship, cool morning air. Composition keeps the upper third soft and empty for game text. Serene, gentle, new beginning.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p19', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p19', 'bc_binh_minh.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a24">
+  <header>
+    <span class="so">#24</span>
+    <b>D.2 Ngõ nhỏ sau chợ — lời đồn</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_cho_02</code></div>
+    <div><span class="k">dùng ở</span> c1_d02</div>
+    <div><span class="k">lưu là</span> <code>bc_cho_02.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p24" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A narrow back alley behind an ancient Chinese market town at dusk, seen from inside the alley. A small fire burning in a broken clay brazier, ragged beggars huddled around it in silhouette, bundles of straw and cast-off baskets along the walls, laundry strung overhead. Warm firelight against cool blue twilight shadow. Composition keeps the center low and calm so game text can sit above. Wary, hushed, conspiratorial.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p24', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p24', 'bc_cho_02.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a25">
+  <header>
+    <span class="so">#25</span>
+    <b>D.2b Góc chợ — một ngày mòn mỏi</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_cho_03</code></div>
+    <div><span class="k">dùng ở</span> c1_d02b</div>
+    <div><span class="k">lưu là</span> <code>bc_cho_03.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p25" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A forgotten corner of an ancient Chinese market town in the harsh afternoon, seen at eye level. Empty wooden stalls shuttered and bare, scattered straw and broken baskets on the swept ground, a single thin stray dog lying in the shadow of a wall. Long lonely shadows, dusty pale light, no people. Composition keeps the upper part quiet and empty for game text. Weary, bleak, solitary.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p25', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p25', 'bc_cho_03.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a26">
+  <header>
+    <span class="so">#26</span>
+    <b>D.4b Trong miếu — xác người còn ấm</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_mieu_trong</code></div>
+    <div><span class="k">dùng ở</span> c1_d04b</div>
+    <div><span class="k">lưu là</span> <code>bc_mieu_trong.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p26" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. The interior of a small abandoned wayside shrine in the mountains at night, seen from inside. Broken timber walls, torn paper offerings, dust and old bones. On the floor beside ancient dry bones lies a freshly dead man in coarse cloth, one hand still gripping a dagger, a dark wound at his throat. A cold shaft of moonlight falls across the floor. Composition keeps the center low and calm so game text can sit above. Grim, hushed, ominous.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p26', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p26', 'bc_mieu_trong.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a27">
+  <header>
+    <span class="so">#27</span>
+    <b>D.4c Đỗ Tam — kẻ tranh giành</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_do_tam_mieu</code></div>
+    <div><span class="k">dùng ở</span> c1_d04c</div>
+    <div><span class="k">lưu là</span> <code>nv_do_tam_mieu.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p27" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A burly scarred rogue cultivator blocking the doorway of a ruined mountain shrine at night, seen from inside at eye level. A heavy-set man with a long scar across his left eye, thick stubble, rough dark leather-and-cloth garb, gripping a chipped broad saber. Behind him the dark mountain night; before him the dim shrine interior. Composition keeps the upper area quiet for game text. Threatening, brutish, greedy.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p27', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p27', 'nv_do_tam_mieu.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a28">
+  <header>
+    <span class="so">#28</span>
+    <b>D.4d Đoạt hộp — Đỗ Tam phản phệ</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_doat_hop</code></div>
+    <div><span class="k">dùng ở</span> c1_d04d</div>
+    <div><span class="k">lưu là</span> <code>bc_doat_hop.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p28" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A violent struggle inside a ruined mountain shrine at night, seen at eye level. Two blurred figures grapple over a long dark wooden box — one young and ragged, one burly and scarred. A broad saber mid-swing, cloth torn, blood spattering. Overturned dust and straw, cold moonlight through the broken roof. Composition keeps the upper part dark and quiet for game text. Desperate, chaotic, brutal.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p28', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p28', 'bc_doat_hop.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a29">
+  <header>
+    <span class="so">#29</span>
+    <b>D.9 Tu luyện kiếm đạo — đêm đầu</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_tu_khiem</code></div>
+    <div><span class="k">dùng ở</span> c1_d09</div>
+    <div><span class="k">lưu là</span> <code>bc_tu_khiem.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p29" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Inside a ruined mountain shrine at night: a ragged young man sits cross-legged on the floor in meditation, a slender sword lying across his knees, faint cold light gathering along the blade. A ghostly white-robed sword spirit stands watching him in the shadow. Dust motes drifting in a cold moonbeam. Composition keeps the center low and calm so game text can sit above. Focused, still, austere.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p29', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p29', 'bc_tu_khiem.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a30">
+  <header>
+    <span class="so">#30</span>
+    <b>D.10 Đột phá Luyện Khí</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_dot_pha</code></div>
+    <div><span class="k">dùng ở</span> c1_d10</div>
+    <div><span class="k">lưu là</span> <code>bc_dot_pha.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p30" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Inside a ruined mountain shrine at dawn: a ragged young man sits in meditation, faint pale light and thin swirling mist rising around him as if from within, a slender sword resting before him on the floor. The first grey light seeps through the broken roof. Composition keeps the center low and calm so game text can sit above. Quiet breakthrough, solemn, uplifted.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p30', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p30', 'bc_dot_pha.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a31">
+  <header>
+    <span class="so">#31</span>
+    <b>D.8 Nhận chủ — máu nhỏ lên kiếm</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>vt_kiem_hap_nhan</code></div>
+    <div><span class="k">dùng ở</span> c1_d08</div>
+    <div><span class="k">lưu là</span> <code>vt_kiem_hap_nhan.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p31" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Close still-life inside a ruined shrine at night: an open long dark wooden sword box on the floor, a slender sword raised just above it, a thin line of blood running down the blade and soaking in, the metal glowing faintly. A few wisps of pale mist. Cold moonlight from one side. Composition centred and calm with empty space for game text. Solemn, binding, mysterious.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p31', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p31', 'vt_kiem_hap_nhan.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a32">
+  <header>
+    <span class="so">#32</span>
+    <b>D.6b Kiếm linh — thử thách</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_kiem_linh_thu</code></div>
+    <div><span class="k">dùng ở</span> c1_d06b</div>
+    <div><span class="k">lưu là</span> <code>nv_kiem_linh_thu.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p32" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A ghostly young male sword spirit in plain flowing white robes, upper body, facing the viewer at a slight angle inside a ruined shrine at night. Cold composed face, sharp bright eyes, pale and half-translucent, edges fading to mist. A single slender sword floats upright before him, tip pointed down, held by no hand. Background left almost empty with soft ink wash for game text. Cold, testing, dignified.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p32', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p32', 'nv_kiem_linh_thu.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a33">
+  <header>
+    <span class="so">#33</span>
+    <b>D.7 Kiếm linh giới thiệu thân phận</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_kiem_linh_than</code></div>
+    <div><span class="k">dùng ở</span> c1_d07</div>
+    <div><span class="k">lưu là</span> <code>nv_kiem_linh_than.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p33" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A ghostly young male sword spirit in plain flowing white robes, upper body, turned slightly aside, speaking inside a ruined shrine at night. Cold composed face, sharp bright eyes, form shimmering faintly and fading to mist at the edges. Behind him, half in shadow, a long dark sword box rests open. Background left almost empty with soft ink wash for game text. Grave, ancient, austere.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p33', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p33', 'nv_kiem_linh_than.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a34">
+  <header>
+    <span class="so">#34</span>
+    <b>D.7b Điều kiện nhận chủ</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_kiem_linh_dieu</code></div>
+    <div><span class="k">dùng ở</span> c1_d07b</div>
+    <div><span class="k">lưu là</span> <code>nv_kiem_linh_dieu.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p34" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A ghostly young male sword spirit in plain flowing white robes, upper body, facing the viewer steadily inside a ruined shrine at night, one hand lifted as if stating a condition. Cold composed face, sharp bright eyes, pale half-translucent form fading to mist at the edges. Background left almost empty with soft ink wash for game text. Stern, solemn, uncompromising.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p34', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p34', 'nv_kiem_linh_dieu.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a35">
+  <header>
+    <span class="so">#35</span>
+    <b>D.12 Xuống trấn — cứu dân</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_tran_lua_2</code></div>
+    <div><span class="k">dùng ở</span> c1_d12</div>
+    <div><span class="k">lưu là</span> <code>bc_tran_lua_2.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p35" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. An ancient Chinese market town ablaze at night, seen at eye level from a street in chaos. Wooden houses burning, thick black smoke rolling up, townsfolk fleeing, mounted raiders with blades cutting through the crowd. In the foreground a ragged youth lunges forward with a drawn sword toward a raider seizing a child. Restrained ink-wash tones with a single ember-orange accent for the fire. Composition keeps the upper part smoky and calm for game text. Desperate, chaotic, tragic.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p35', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p35', 'bc_tran_lua_2.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a36">
+  <header>
+    <span class="so">#36</span>
+    <b>D.13 Thất Huyền Môn — cổng vỡ</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_tran_lua_3</code></div>
+    <div><span class="k">dùng ở</span> c1_d13</div>
+    <div><span class="k">lưu là</span> <code>bc_tran_lua_3.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p36" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. The broken gate of an ancient Chinese martial sect at night during a raid, seen from outside at eye level. The gate smashed open, fallen disciples in blue robes strewn across the ground, raiders pushing through thick smoke, flames at the edges of the frame. A ragged youth with a drawn sword stands among the fallen, mid-guard. Restrained ink-wash tones with a single ember-orange accent for fire. Composition keeps the upper part smoky and calm for game text. Tragic, chaotic, defiant.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p36', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p36', 'bc_tran_lua_3.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset" id="a37">
+  <header>
+    <span class="so">#37</span>
+    <b>D.16 Đối thoại với Hàn Lập</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_han_lap_2</code></div>
+    <div><span class="k">dùng ở</span> c1_d16</div>
+    <div><span class="k">lưu là</span> <code>nv_han_lap_2.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p37" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Portrait of a lean, ordinary-looking young man of an ancient Chinese fantasy world, upper body, facing the viewer at a slight angle, at night on a hillside. A thin plain-featured youth in coarse undyed cloth robes, simple cloth belt, black hair in a plain topknot, no ornament. His eyes are calm, deep and sharp as a knife, watchful and unreadable. He is quietly wiping blood from his sleeve, as if the matter is settled. Background left almost empty with soft ink wash so game text can sit beside. Plain, quiet, quietly formidable.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p37', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p37', 'nv_han_lap_2.txt')">⬇️ .txt</button>
+  </div>
+</article>
+</section>
+
+<section class="khoi">
+  <h2>Chương 1 — nhánh môn phái
+    <span class="dem">3/3 đã có</span></h2>
+  <p class="mota">Sân tập, vườn thuốc, tân xá, ngọc cốt.</p>
+  
+<article class="asset done" id="a9">
+  <header>
+    <span class="so">#9</span>
+    <b>B.2 Tân xá — đêm (phòng tu luyện)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>bc_tan_xa_dem</code></div>
+    <div><span class="k">dùng ở</span> c1_p01, c1_p03b, c1_p11, c1_p11b, c1_p12</div>
+    <div><span class="k">lưu là</span> <code>bc_tan_xa_dem.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p9" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A simple communal sleeping quarters in an ancient Chinese martial sect at night, seen from inside. A low wooden sleeping platform with thin rolled bedding, a small paper-lantern window on one side, a plain low table with a bowl, bare timber walls and a beam. Cool blue night light from the window, one warm dim lamp glow, deep quiet shadow in the corners. Composition keeps the center low and calm so game text can sit above. Empty, still, faint incense smoke in the air.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p9', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p9', 'bc_tan_xa_dem.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a10">
+  <header>
+    <span class="so">#10</span>
+    <b>B.3 Ngọc cốt bí ẩn (vật phẩm cơ duyên)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">1:1 vuông (1000×1000)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>vt_ngoc_cot</code></div>
+    <div><span class="k">dùng ở</span> c1_p06, c1_p07</div>
+    <div><span class="k">lưu là</span> <code>vt_ngoc_cot.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p10" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. A single mysterious jade bone artifact resting on plain empty paper, centered, still life. A smooth pale bluish-white jade piece shaped like a slender bone or finger-bone, faintly glowing from within with a soft cold light, delicate carved cloud patterns on its surface. A few thin wisps of pale mist curling around it, tiny floating light motes. Faint reflection shadow beneath. Nothing else in the frame, generous empty space around it. Cold, mysterious, sacred.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p10', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p10', 'vt_ngoc_cot.txt')">⬇️ .txt</button>
+  </div>
+</article>
+
+<article class="asset done" id="a11">
+  <header>
+    <span class="so">#11</span>
+    <b>B.4 Tuyết Cơ (nhân vật)</b>
+    <span class='badge chac'>✅ đã có</span>
+    <span class="ratio">3:4 dọc (900×1200)</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>nv_tuyet_co</code></div>
+    <div><span class="k">dùng ở</span> c1_p08, c1_p08b, c1_p09, c1_p09b, c1_p09c, c1_p10, c1_p10b, c1_p11c</div>
+    <div><span class="k">lưu là</span> <code>nv_tuyet_co.jpg</code></div>
+  </div>
+  <textarea readonly rows="6" id="p11" onclick="this.select()">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels. Portrait of a stunningly beautiful, sensual and mysterious female cultivator of an ancient Chinese fantasy sect, upper body only, facing the viewer at a slight angle. Young woman with luminous pale jade-like skin, long black hair partly loose and partly pinned with a simple jade hairpin, a few loose strands falling across her cheek, slender willow brows, long half-lidded sultry eyes with a teasing, knowing gaze, and a faintly flirtatious half-smile. She wears flowing pale blue-and-white silk robes of thin translucent gauze that slip off one shoulder, revealing a bare collarbone, the soft curve of her neck and a hint of décolletage, the fabric clinging softly to her figure; a sheer gauze veil draping loosely around her bare arms. Faint cold mist and a subtle inner glow surround her, like a spirit sealed for ages — alluring yet dangerous and enigmatic. Background left almost empty with soft ink wash so game text can sit beside. Sensual, seductive, elegant, mysterious, ethereal.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p11', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p11', 'nv_tuyet_co.txt')">⬇️ .txt</button>
+  </div>
+</article>
+</section>
+
+<h2 id="thuvien">📚 Thư viện ảnh mẫu</h2>
+<div class="card">
+  <p class="mota">Tải về để <b>đính kèm</b> khi vẽ ảnh cảnh — giữ cùng gương mặt nhân vật
+  qua mọi cảnh. Trên iPad: bấm giữ ảnh → <b>“Lưu vào Ảnh”</b>.</p>
+  <div class="grid">
+<div class="item">
+  <img src="../assets/scene/vt_ngoc_cot.jpg" alt="B.3 Ngọc cốt bí ẩn (vật phẩm cơ duyên)" loading="lazy">
+  <div class="cap">
+    <b>Ngọc cốt</b>
+    <span class="muted">vt_ngoc_cot.jpg</span>
+    <a class="dl" href="../assets/scene/vt_ngoc_cot.jpg" download="vt_ngoc_cot.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div>
+
+<div class="item">
+  <img src="../assets/scene/nv_tuyet_co.jpg" alt="B.4 Tuyết Cơ (nhân vật)" loading="lazy">
+  <div class="cap">
+    <b>Tuyết Cơ</b>
+    <span class="muted">nv_tuyet_co.jpg</span>
+    <a class="dl" href="../assets/scene/nv_tuyet_co.jpg" download="nv_tuyet_co.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div>
+
+<div class="item">
+  <img src="../assets/scene/vt_kiem_hap.jpg" alt="C.3 Hồng Trần Kiếm Hạp (vật phẩm cơ duyên nhánh tán tu)" loading="lazy">
+  <div class="cap">
+    <b>Hồng Trần Kiếm Hạp</b>
+    <span class="muted">vt_kiem_hap.jpg</span>
+    <a class="dl" href="../assets/scene/vt_kiem_hap.jpg" download="vt_kiem_hap.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div>
+
+<div class="item">
+  <img src="../assets/scene/nv_kiem_linh.jpg" alt="C.4 Kiếm linh Hồng Trần (nhân vật)" loading="lazy">
+  <div class="cap">
+    <b>Kiếm linh Hồng Trần</b>
+    <span class="muted">nv_kiem_linh.jpg</span>
+    <a class="dl" href="../assets/scene/nv_kiem_linh.jpg" download="nv_kiem_linh.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div>
+
+<div class="item">
+  <img src="../assets/scene/nv_han_lap.jpg" alt="C.7 Hàn Lập (nhân vật — crossover Phàm Nhân Tu Tiên)" loading="lazy">
+  <div class="cap">
+    <b>Hàn Lập</b>
+    <span class="muted">nv_han_lap.jpg</span>
+    <a class="dl" href="../assets/scene/nv_han_lap.jpg" download="nv_han_lap.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div>
+
+<div class="item">
+  <img src="../assets/scene/nv_chinh_mau.jpg" alt="MẪU Nhân vật chính" loading="lazy">
+  <div class="cap">
+    <b>Nhân vật chính</b>
+    <span class="muted">nv_chinh_mau.jpg</span>
+    <a class="dl" href="../assets/scene/nv_chinh_mau.jpg" download="nv_chinh_mau.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div>
+
+<div class="item">
+  <img src="../assets/scene/nv_mac_dai_phu_mau.jpg" alt="MẪU Mạc Đại Phu" loading="lazy">
+  <div class="cap">
+    <b>Mạc Đại Phu</b>
+    <span class="muted">nv_mac_dai_phu_mau.jpg</span>
+    <a class="dl" href="../assets/scene/nv_mac_dai_phu_mau.jpg" download="nv_mac_dai_phu_mau.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div>
+
+<div class="item">
+  <img src="../assets/scene/nv_do_tam_mau.jpg" alt="MẪU Đỗ Tam" loading="lazy">
+  <div class="cap">
+    <b>Đỗ Tam</b>
+    <span class="muted">nv_do_tam_mau.jpg</span>
+    <a class="dl" href="../assets/scene/nv_do_tam_mau.jpg" download="nv_do_tam_mau.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div>
+
+<div class="item">
+  <img src="../assets/scene/nv_hung_ba_mau.jpg" alt="MẪU Hùng Bá" loading="lazy">
+  <div class="cap">
+    <b>Hùng Bá</b>
+    <span class="muted">nv_hung_ba_mau.jpg</span>
+    <a class="dl" href="../assets/scene/nv_hung_ba_mau.jpg" download="nv_hung_ba_mau.jpg">⬇️ Tải ảnh</a>
+  </div>
+</div></div>
+</div>
+
+<script>
+function cpText(id, btn){
+  const ta=document.getElementById(id);
+  ta.select(); ta.setSelectionRange(0,999999);
+  const nhan=btn.textContent;
+  const done=()=>{btn.classList.add('done');btn.textContent='✅ Đã copy';
+    setTimeout(()=>{btn.classList.remove('done');btn.textContent=nhan;},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(done).catch(()=>{try{document.execCommand('copy');done();}catch(e){}});
+  } else { try{document.execCommand('copy');done();}catch(e){} }
+}
+function taiTxt(id, ten){
+  const txt=document.getElementById(id).value;
+  const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=ten||'prompt.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+}
+</script>
+</body></html>

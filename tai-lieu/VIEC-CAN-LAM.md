@@ -8,26 +8,36 @@
 
 ## 🔴 ĐANG LÀM
 
-- [~] **Phần ảnh — bước 2: 14 ảnh cảnh đợt 1 (nhánh tán tu)**
-  - [x] **4 ảnh mẫu đã xong** ✓ (đã kiểm tra: đúng tên, tỷ lệ 3:4, đúng canon)
-  - [x] **Chia 7 nhóm + nút copy riêng** ✓ (PR #29 merged, commit `4b9ae0a`)
-        mỗi nhóm ghi rõ đính kèm ảnh mẫu nào → giữ mặt nhân vật đều
-  - [x] **Thư viện ảnh mẫu** ✓ (PR #30 merged, commit `19923e0`)
-        lưới 9 ảnh mẫu, xem + tải về để đính kèm
-  - [~] **→ Người dùng: mở Xưởng, vẽ từng nhóm, upload lại** (xem hướng dẫn bên dưới)
-        Nhóm 1 đã upload xong và **đã ghép vào game**; còn 6 nhóm (11 ảnh) chờ vẽ.
-  - [~] Agent: ghép 14 ảnh vào game khi đủ — đã ghép nhóm 1 (3 ảnh)
-  - **Tiến độ 14 ảnh: 3/14 (3 ảnh đã ghép vào game)**
-    - [x] **Nhóm 1 — Phong cảnh (3/3)** ✓ (PR #31 merged, commit `79b30ed`)
-          bc_cho_02 · bc_cho_03 · bc_mieu_trong — khớp cảnh 95/100, phong cách 90/100, không chữ
-          **Đã ghép (PR #32, commit `bd17c06`):** `bc_cho_02`→`c1_d02` · `bc_cho_03`→`c1_d02b` ·
-          `bc_mieu_trong`→`c1_d04b`; cập nhật `docs/assets/library/index.json`
+- [~] **Phần ảnh — Xưởng TỰ ĐỘNG trên GitHub** (thay quy trình cũ)
+  - [x] **Xưởng tĩnh trên Pages** ✓ — `docs/xuong/index.html`, bố cục theo từng chương,
+        prompt từng ảnh + nút copy + trạng thái ảnh, không cần server
+  - [x] **GitHub Action tự xử lý ảnh** ✓ — dán ảnh vào Issue (nhãn `xuong-anh`) hoặc bỏ
+        vào `xuong-inbox/` → tự nhận diện → nén → ghép vào đúng đoạn → deploy → báo trong Issue
+  - [x] **Bản đồ ảnh → đoạn** ✓ — `DOAN_CUA_ANH` trong `tools_server.py`
+  - [~] **→ Người dùng: cần thêm secret `GEMINI_KEY`** (1 lần) để AI nhận diện ảnh
+  - **Tiến độ ảnh cảnh Chương 1: 15/26 ảnh có đoạn** (11 ảnh đợt 1 chờ vẽ)
+    - [x] **Nhóm 1 — Phong cảnh (3/3)** ✓ (PR #31 + #32)
     - [ ] Nhóm 2 — Đồ vật hộp kiếm (0/1): vt_kiem_hap_nhan
     - [ ] Nhóm 3 — Nhân vật chính (0/3): bc_dot_pha · bc_tran_lua_2 · bc_tran_lua_3
     - [ ] Nhóm 4 — Kiếm linh (0/3): nv_kiem_linh_thu · nv_kiem_linh_than · nv_kiem_linh_dieu
     - [ ] Nhóm 5 — Đỗ Tam (0/2): nv_do_tam_mieu · bc_doat_hop
     - [ ] Nhóm 6 — NV chính + Kiếm linh (0/1): bc_tu_khiem
     - [ ] Nhóm 7 — Hàn Lập (0/1): nv_han_lap_2
+
+---
+
+## ✅ VỪA XONG — Xưởng ảnh tự động trên GitHub
+
+- [x] **Xưởng tĩnh trên Pages** — `docs/xuong/index.html`, bố cục theo từng chương,
+      prompt từng ảnh + nút copy + trạng thái ảnh. Không cần server.
+- [x] **GitHub Action** `.github/workflows/xuong-anh.yml` — dán ảnh vào Issue (nhãn
+      `xuong-anh`) hoặc bỏ vào `xuong-inbox/` → tự nhận diện → nén → ghép vào đúng đoạn →
+      cập nhật thư viện → dựng lại Xưởng → commit → deploy Pages → báo lại trong Issue.
+- [x] **Bản đồ ảnh → đoạn** `DOAN_CUA_ANH` — ảnh mới (D.x) thay ảnh dùng chung ở đúng đoạn.
+- [x] **Nhận diện 3 đường**: thư mục = mã (100%) · tên file chứa mã (100%) · AI vision.
+      Không có khoá AI → báo cần xác nhận, không gán bừa.
+- [x] Kiểm thử: Engine **105/105** · API **161/161** · nhận diện thật **95%**.
+- [ ] **Người dùng cần thêm secret `GEMINI_KEY`** (1 lần) để bật nhận diện AI.
 
 ---
 
