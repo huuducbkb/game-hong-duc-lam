@@ -250,6 +250,12 @@
       "mo_ta": "Đường phân cách giữa các mục.",
       "tags": [],
       "dung_o": []
+    },
+    "seal.png": {
+      "loai": "giao_dien",
+      "mo_ta": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: HỒNG ĐỨC — chữ Latin, font kiểu Hán, xếp DỌC (trên xuống).",
+      "tags": [],
+      "dung_o": []
     }
   }
 }
