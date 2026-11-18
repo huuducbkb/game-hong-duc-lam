@@ -749,6 +749,23 @@
       "dung_o": [
         "c1_p08b"
       ]
+    },
+    "nv_tuyet_co_than_phan.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Tuyết Cơ nói rõ mình là nội môn đệ tử Hợp Hoan Tông (p09).",
+      "tags": [
+        "tuyết",
+        "cơ",
+        "giới",
+        "thiệu",
+        "thân",
+        "phận",
+        "nói",
+        "rõ"
+      ],
+      "dung_o": [
+        "c1_p09"
+      ]
     }
   }
 }
