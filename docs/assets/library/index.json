@@ -123,8 +123,7 @@
       "loai": "vat_pham",
       "mo_ta": "Hồng Trần Kiếm Hạp — hộp gỗ đen, cặp kiếm dài-ngắn chứa kiếm linh",
       "dung_o": [
-        "c1_d05",
-        "c1_d08"
+        "c1_d05"
       ],
       "tags": [
         "hộp kiếm",
@@ -321,6 +320,23 @@
       ],
       "dung_o": [
         "c1_d07b"
+      ]
+    },
+    "vt_kiem_hap_nhan.jpg": {
+      "loai": "vat_pham",
+      "mo_ta": "Nhận chủ — kiếm linh rạch tay, máu nhỏ lên hai thanh kiếm (d08).",
+      "tags": [
+        "máu",
+        "nhỏ",
+        "lên",
+        "kiếm",
+        "nhận",
+        "chủ",
+        "linh",
+        "rạch"
+      ],
+      "dung_o": [
+        "c1_d08"
       ]
     }
   }
