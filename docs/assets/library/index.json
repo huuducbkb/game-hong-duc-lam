@@ -596,6 +596,23 @@
       "dung_o": [
         "c1_p03d"
       ]
+    },
+    "bc_san_sau_chon_lai.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Vội vàng lấp đất chôn lại khối ngọc (p03e).",
+      "tags": [
+        "chôn",
+        "trả",
+        "lại",
+        "vội",
+        "vàng",
+        "lấp",
+        "đất",
+        "khối"
+      ],
+      "dung_o": [
+        "c1_p03e"
+      ]
     }
   }
 }
