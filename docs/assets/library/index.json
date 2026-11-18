@@ -147,8 +147,7 @@
       "loai": "boi_canh",
       "mo_ta": "Trấn Thất Huyền chìm trong lửa — Dã Lang Bang tập kích ban đêm",
       "dung_o": [
-        "c1_d11",
-        "c1_d13"
+        "c1_d11"
       ],
       "tags": [
         "trấn cháy",
@@ -382,6 +381,23 @@
       ],
       "dung_o": [
         "c1_d12"
+      ]
+    },
+    "bc_tran_lua_3.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Thất Huyền Môn cổng vỡ — đệ tử ngã la liệt (d13).",
+      "tags": [
+        "cổng",
+        "vỡ",
+        "thất",
+        "huyền",
+        "môn",
+        "đệ",
+        "tử",
+        "ngã"
+      ],
+      "dung_o": [
+        "c1_d13"
       ]
     }
   }
