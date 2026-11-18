@@ -72,6 +72,30 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
   padding:9px 12px}
 .gui.thu-muc:hover{background:#352c48;border-color:#a68cf0;color:#efe6ff}
 .gui.thu-muc code{font-size:11.5px;color:#c9b6ff}
+.ket-noi{margin:12px 0}
+.ket-noi input{width:100%;font-size:13px;padding:9px 10px;border-radius:8px;
+  border:1px solid var(--line);background:#0a1220;color:#dfe7f5;
+  font-family:ui-monospace,Menlo,monospace}
+.ket-noi .row{flex-wrap:wrap}
+.ket-noi button{background:#1d2b45;color:var(--gold);border:1px solid #4a628c}
+.ket-noi button:hover{background:#243757}
+.gui-o{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1726}
+.gui-dan{border:2px dashed var(--line);border-radius:9px;padding:16px 12px;text-align:center;
+  cursor:pointer;color:var(--muted);font-size:12.5px;transition:.15s}
+.gui-dan:hover,.gui-dan.act{border-color:var(--jade);color:var(--jade)}
+.gui-dan.hot{border-color:var(--gold);color:var(--gold);background:#16233a}
+.gui-xem{max-width:100%;max-height:220px;border-radius:8px;display:block;margin:0 auto}
+.gui-hang{display:flex;gap:8px;margin-top:8px}
+.gui-chon{flex:0 0 auto;background:#1d2b45;color:var(--gold);border:1px solid #4a628c;
+  border-radius:9px;padding:10px 12px;font-weight:600;cursor:pointer;font-size:13px}
+.gui-chon:hover{background:#243757}
+.gui-gui{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);
+  color:#3a2600;padding:11px;border-radius:9px;font-weight:700;border:0;cursor:pointer;
+  font-size:13.5px;font-family:inherit}
+.gui-gui:disabled{opacity:.45;cursor:not-allowed}
+.gui-tt{margin-top:7px;font-size:12.5px}
+.gui-tt .ok,.gui-tt .warn{display:block;padding:8px 10px;border-radius:8px}
+.gui-tt .muted{display:block}
 .dl.tm-nho{padding:5px 10px;font-size:12px;white-space:nowrap}
 .dl{background:linear-gradient(135deg,#2f8f7a,#6fe0c0);color:#04231c;text-decoration:none;
   display:inline-block;padding:10px 14px;border-radius:9px;font-size:13.5px;font-weight:600;
@@ -101,7 +125,7 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
 <p class="muted">Hồng Đức Tu Tiên Lộ · đã có <b>41/75</b> ảnh, còn thiếu
 <b>34</b>. Công việc của bạn: <b>copy prompt → vẽ → dán ảnh vào Issue</b>. Phần còn lại tự động.</p>
 
-<h2>⚡ Cách làm — 3 bước</h2>
+<h2>⚡ Cách làm — 2 bước</h2>
 <div class="card">
   <ol class="steps">
     <li><b>Copy prompt</b>: bấm <b>📋 Copy</b> — có 3 mức: <b>prompt từng ảnh</b>,
@@ -109,16 +133,31 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
         Nhớ chọn đúng <b>tỷ lệ</b> ghi trên thẻ.</li>
     <li><b>Vẽ ảnh</b>: nếu thẻ ghi <b>đính kèm ảnh mẫu</b>, tải ảnh mẫu ở mục
         <a href="#thuvien">📚 Thư viện ảnh mẫu</a> và đính kèm để giữ mặt nhân vật.</li>
-    <li><b>Gửi ảnh ngay tại thẻ</b>: vẽ xong, bấm <b>📤 Gửi ảnh này</b> trên chính thẻ đó.
-        Trang Issue mở ra <b>đã điền sẵn mã ảnh</b> — bạn chỉ việc <b>kéo ảnh vào</b> rồi
-        bấm <b>Submit new issue</b>. Nhờ có mã sẵn, hệ thống gán <b>đúng ảnh, không đoán sai</b>.
-        Hoặc bấm <b>📁 Up thẳng vào thư mục</b> trên thẻ để mở sẵn thư mục
-        <code>xuong-inbox/&lt;mã&gt;/</code> — kéo ảnh vào rồi <b>Commit changes</b>.</li>
+    <li><b>Dán ảnh ngay dưới prompt</b>: vẽ xong, <b>dán ảnh (Ctrl+V)</b> vào ô ngay dưới prompt
+        của thẻ đó (hoặc kéo thả / bấm chọn file), rồi bấm <b>📤 Gửi ảnh này</b>.
+        Ảnh được nén ngay trên máy bạn rồi tự đưa lên GitHub — <b>không cần mở Issue</b>,
+        hệ thống gán <b>đúng ảnh theo mã trên thẻ, không đoán sai</b>.</li>
   </ol>
   <p class="muted" style="font-size:12.5px">Gửi nhiều ảnh một lúc thì dùng nút
   <b>📤 Gửi ảnh cho CẢ NHÓM</b> ở đầu mỗi nhóm — dán ảnh <b>đúng thứ tự</b> như danh sách mã.
   Không cần đổi tên ảnh, không cần gõ gì thêm.</p>
-  <a class="dl big" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?template=gui-anh-xuong.md&labels=xuong-anh&title=%E1%BA%A2nh%20m%E1%BB%9Bi" target="_blank">💬 Hoặc mở Issue trống để dán ảnh</a>
+
+  <div class="ket-noi">
+    <p class="mota" style="margin-bottom:6px"><b>🔑 Kết nối GitHub (làm 1 lần)</b> — cần để trang
+    tự đưa ảnh lên thay bạn. Dán token vào đây; token chỉ lưu trong trình duyệt này
+    (<code>localStorage</code>), không gửi đi đâu ngoài GitHub.</p>
+    <input id="gh-token" type="password" autocomplete="off" spellcheck="false"
+           placeholder="github_pat_… hoặc ghp_… (quyền: Contents = Read and write)">
+    <div class="row">
+      <button type="button" onclick="ghLuuToken()">💾 Lưu &amp; kiểm tra</button>
+      <button type="button" onclick="ghQuenToken()">🗑️ Quên token</button>
+      <a class="dl" style="text-decoration:none" target="_blank"
+         href="https://github.com/settings/personal-access-tokens/new?name=xuong-anh&amp;description=D%C3%A1n%20%E1%BA%A3nh%20v%C3%A0o%20X%C6%B0%E1%BB%9Fng&amp;contents=write">🔗 Tạo token (quyền Contents: Read and write)</a>
+    </div>
+    <div class="gui-tt" id="gh-tt" hidden></div>
+  </div>
+
+  <a class="dl big" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?template=gui-anh-xuong.md&labels=xuong-anh&title=%E1%BA%A2nh%20m%E1%BB%9Bi" target="_blank">💬 Hoặc mở Issue trống để dán ảnh (cách cũ)</a>
   <details>
     <summary>Cách khác: tải ảnh lên thư mục (nếu bạn thích)</summary>
     <p class="muted" style="font-size:12.5px">Bấm nút dưới để mở trang upload của GitHub, kéo ảnh vào
@@ -296,9 +335,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bg-main-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bg-main-t', 'bg-main.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+C.1+%E2%80%94+1.+N%E1%BB%81n+to%C3%A0n+m%C3%A0n+h%C3%ACnh&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bg-main%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bg-main" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bg-main/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bg-main/</code></a>
+  <div class="gui-o" data-key="bg-main">
+    <div class="gui-dan" tabindex="0" data-key="bg-main"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-panel-character">
@@ -318,9 +367,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-panel-character-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-panel-character-t', 'panel-character.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+C.2+%E2%80%94+2.+Khung+b%E1%BA%A3ng+nh%C3%A2n+v%E1%BA%ADt&amp;body=m%C3%A3-%E1%BA%A3nh%3A+panel-character%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/panel-character" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/panel-character/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/panel-character/</code></a>
+  <div class="gui-o" data-key="panel-character">
+    <div class="gui-dan" tabindex="0" data-key="panel-character"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-panel-story">
@@ -340,9 +399,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-panel-story-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-panel-story-t', 'panel-story.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+C.3+%E2%80%94+3.+Khung+b%E1%BA%A3ng+truy%E1%BB%87n&amp;body=m%C3%A3-%E1%BA%A3nh%3A+panel-story%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/panel-story" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/panel-story/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/panel-story/</code></a>
+  <div class="gui-o" data-key="panel-story">
+    <div class="gui-dan" tabindex="0" data-key="panel-story"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-avatar-ring">
@@ -362,9 +431,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-avatar-ring-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-avatar-ring-t', 'avatar-ring.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+C.4+%E2%80%94+4.+Vi%E1%BB%81n+%E1%BA%A3nh+%C4%91%E1%BA%A1i+di%E1%BB%87n&amp;body=m%C3%A3-%E1%BA%A3nh%3A+avatar-ring%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/avatar-ring" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/avatar-ring/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/avatar-ring/</code></a>
+  <div class="gui-o" data-key="avatar-ring">
+    <div class="gui-dan" tabindex="0" data-key="avatar-ring"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-btn-choice">
@@ -384,9 +463,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-btn-choice-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-btn-choice-t', 'btn-choice.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+C.5+%E2%80%94+5.+N%E1%BB%81n+n%C3%BAt+l%E1%BB%B1a+ch%E1%BB%8Dn&amp;body=m%C3%A3-%E1%BA%A3nh%3A+btn-choice%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/btn-choice" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/btn-choice/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/btn-choice/</code></a>
+  <div class="gui-o" data-key="btn-choice">
+    <div class="gui-dan" tabindex="0" data-key="btn-choice"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-seal">
@@ -406,9 +495,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-seal-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-seal-t', 'seal.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+C.6+%E2%80%94+6.+%E1%BA%A4n+son+%28con+d%E1%BA%A5u%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+seal%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/seal" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/seal/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/seal/</code></a>
+  <div class="gui-o" data-key="seal">
+    <div class="gui-dan" tabindex="0" data-key="seal"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-divider-ink">
@@ -428,9 +527,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-divider-ink-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-divider-ink-t', 'divider-ink.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+C.7+%E2%80%94+7.+%C4%90%C6%B0%E1%BB%9Dng+k%E1%BA%BB+m%E1%BB%B1c+%28t%C3%B9y+ch%E1%BB%8Dn%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+divider-ink%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/divider-ink" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/divider-ink/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/divider-ink/</code></a>
+  <div class="gui-o" data-key="divider-ink">
+    <div class="gui-dan" tabindex="0" data-key="divider-ink"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 </section>
@@ -575,9 +684,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-cho-01-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-cho-01-t', 'bc_cho_01.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.1+%E2%80%94+Ch%E1%BB%A3+s%E1%BB%9Bm+Th%E1%BA%A5t+Huy%E1%BB%81n+tr%E1%BA%A5n&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_cho_01%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_cho_01" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_cho_01/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_cho_01/</code></a>
+  <div class="gui-o" data-key="bc_cho_01">
+    <div class="gui-dan" tabindex="0" data-key="bc_cho_01"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-bc-cho-02">
@@ -597,9 +716,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-cho-02-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-cho-02-t', 'bc_cho_02.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.2+%E2%80%94+Ng%C3%B5+nh%E1%BB%8F+sau+ch%E1%BB%A3+%E2%80%94+l%E1%BB%9Di+%C4%91%E1%BB%93n&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_cho_02%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_cho_02" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_cho_02/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_cho_02/</code></a>
+  <div class="gui-o" data-key="bc_cho_02">
+    <div class="gui-dan" tabindex="0" data-key="bc_cho_02"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-bc-cho-03">
@@ -619,9 +748,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-cho-03-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-cho-03-t', 'bc_cho_03.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.3+%E2%80%94+G%C3%B3c+ch%E1%BB%A3+%E2%80%94+m%E1%BB%99t+ng%C3%A0y+m%C3%B2n+m%E1%BB%8Fi&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_cho_03%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_cho_03" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_cho_03/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_cho_03/</code></a>
+  <div class="gui-o" data-key="bc_cho_03">
+    <div class="gui-dan" tabindex="0" data-key="bc_cho_03"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -667,9 +806,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-duong-mon-nui-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-duong-mon-nui-t', 'bc_duong_mon_nui.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.4+%E2%80%94+%C4%90%C6%B0%E1%BB%9Dng+m%C3%B2n+l%C3%AAn+n%C3%BAi+%E2%80%94+ch%E1%BA%A1ng+v%E1%BA%A1ng&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_duong_mon_nui%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_duong_mon_nui" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_duong_mon_nui/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_duong_mon_nui/</code></a>
+  <div class="gui-o" data-key="bc_duong_mon_nui">
+    <div class="gui-dan" tabindex="0" data-key="bc_duong_mon_nui"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -727,9 +876,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-mieu-hoang-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-mieu-hoang-t', 'bc_mieu_hoang.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.5+%E2%80%94+Mi%E1%BA%BFu+hoang+sau+n%C3%BAi+%28b%E1%BB%91i+c%E1%BA%A3nh+ch%C3%ADnh+nh%C3%A1nh+t%C3%A1n+tu%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_mieu_hoang%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_mieu_hoang" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_mieu_hoang/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_mieu_hoang/</code></a>
+  <div class="gui-o" data-key="bc_mieu_hoang">
+    <div class="gui-dan" tabindex="0" data-key="bc_mieu_hoang"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-bc-mieu-trong">
@@ -749,9 +908,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-mieu-trong-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-mieu-trong-t', 'bc_mieu_trong.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.6+%E2%80%94+Trong+mi%E1%BA%BFu+%E2%80%94+x%C3%A1c+ng%C6%B0%E1%BB%9Di+c%C3%B2n+%E1%BA%A5m&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_mieu_trong%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_mieu_trong" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_mieu_trong/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_mieu_trong/</code></a>
+  <div class="gui-o" data-key="bc_mieu_trong">
+    <div class="gui-dan" tabindex="0" data-key="bc_mieu_trong"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-nv-do-tam-mieu">
@@ -771,9 +940,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-do-tam-mieu-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-do-tam-mieu-t', 'nv_do_tam_mieu.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.7+%E2%80%94+%C4%90%E1%BB%97+Tam+%E2%80%94+k%E1%BA%BB+tranh+gi%C3%A0nh&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_do_tam_mieu%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_do_tam_mieu" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_do_tam_mieu/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_do_tam_mieu/</code></a>
+  <div class="gui-o" data-key="nv_do_tam_mieu">
+    <div class="gui-dan" tabindex="0" data-key="nv_do_tam_mieu"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-bc-doat-hop">
@@ -793,9 +972,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-doat-hop-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-doat-hop-t', 'bc_doat_hop.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.8+%E2%80%94+%C4%90o%E1%BA%A1t+h%E1%BB%99p+%E2%80%94+%C4%90%E1%BB%97+Tam+ph%E1%BA%A3n+ph%E1%BB%87&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_doat_hop%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_doat_hop" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_doat_hop/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_doat_hop/</code></a>
+  <div class="gui-o" data-key="bc_doat_hop">
+    <div class="gui-dan" tabindex="0" data-key="bc_doat_hop"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -841,9 +1030,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-vt-kiem-hap-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-vt-kiem-hap-t', 'vt_kiem_hap.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.9+%E2%80%94+H%E1%BB%93ng+Tr%E1%BA%A7n+Ki%E1%BA%BFm+H%E1%BA%A1p+%28v%E1%BA%ADt+ph%E1%BA%A9m+c%C6%A1+duy%C3%AAn+nh%C3%A1nh+t%C3%A1n+tu%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+vt_kiem_hap%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/vt_kiem_hap" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/vt_kiem_hap/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/vt_kiem_hap/</code></a>
+  <div class="gui-o" data-key="vt_kiem_hap">
+    <div class="gui-dan" tabindex="0" data-key="vt_kiem_hap"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -895,9 +1094,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-kiem-linh-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-kiem-linh-t', 'nv_kiem_linh.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.10+%E2%80%94+Ki%E1%BA%BFm+linh+H%E1%BB%93ng+Tr%E1%BA%A7n+%28nh%C3%A2n+v%E1%BA%ADt%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_kiem_linh%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_kiem_linh" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_kiem_linh/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_kiem_linh/</code></a>
+  <div class="gui-o" data-key="nv_kiem_linh">
+    <div class="gui-dan" tabindex="0" data-key="nv_kiem_linh"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-nv-kiem-linh-thu">
@@ -917,9 +1126,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-kiem-linh-thu-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-kiem-linh-thu-t', 'nv_kiem_linh_thu.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.11+%E2%80%94+Ki%E1%BA%BFm+linh+%E2%80%94+th%E1%BB%AD+th%C3%A1ch&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_kiem_linh_thu%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_kiem_linh_thu" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_kiem_linh_thu/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_kiem_linh_thu/</code></a>
+  <div class="gui-o" data-key="nv_kiem_linh_thu">
+    <div class="gui-dan" tabindex="0" data-key="nv_kiem_linh_thu"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -971,9 +1190,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-kiem-linh-than-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-kiem-linh-than-t', 'nv_kiem_linh_than.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.12+%E2%80%94+Ki%E1%BA%BFm+linh+gi%E1%BB%9Bi+thi%E1%BB%87u+th%C3%A2n+ph%E1%BA%ADn&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_kiem_linh_than%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_kiem_linh_than" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_kiem_linh_than/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_kiem_linh_than/</code></a>
+  <div class="gui-o" data-key="nv_kiem_linh_than">
+    <div class="gui-dan" tabindex="0" data-key="nv_kiem_linh_than"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-nv-kiem-linh-dieu">
@@ -993,9 +1222,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-kiem-linh-dieu-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-kiem-linh-dieu-t', 'nv_kiem_linh_dieu.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.13+%E2%80%94+%C4%90i%E1%BB%81u+ki%E1%BB%87n+nh%E1%BA%ADn+ch%E1%BB%A7&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_kiem_linh_dieu%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_kiem_linh_dieu" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_kiem_linh_dieu/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_kiem_linh_dieu/</code></a>
+  <div class="gui-o" data-key="nv_kiem_linh_dieu">
+    <div class="gui-dan" tabindex="0" data-key="nv_kiem_linh_dieu"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1044,9 +1283,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-vt-kiem-hap-nhan-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-vt-kiem-hap-nhan-t', 'vt_kiem_hap_nhan.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.14+%E2%80%94+Nh%E1%BA%ADn+ch%E1%BB%A7+%E2%80%94+m%C3%A1u+nh%E1%BB%8F+l%C3%AAn+ki%E1%BA%BFm&amp;body=m%C3%A3-%E1%BA%A3nh%3A+vt_kiem_hap_nhan%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/vt_kiem_hap_nhan" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/vt_kiem_hap_nhan/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/vt_kiem_hap_nhan/</code></a>
+  <div class="gui-o" data-key="vt_kiem_hap_nhan">
+    <div class="gui-dan" tabindex="0" data-key="vt_kiem_hap_nhan"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1095,9 +1344,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tu-khiem-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tu-khiem-t', 'bc_tu_khiem.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.15+%E2%80%94+Tu+luy%E1%BB%87n+ki%E1%BA%BFm+%C4%91%E1%BA%A1o+%E2%80%94+%C4%91%C3%AAm+%C4%91%E1%BA%A7u&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tu_khiem%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tu_khiem" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tu_khiem/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tu_khiem/</code></a>
+  <div class="gui-o" data-key="bc_tu_khiem">
+    <div class="gui-dan" tabindex="0" data-key="bc_tu_khiem"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1146,9 +1405,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-dot-pha-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-dot-pha-t', 'bc_dot_pha.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.16+%E2%80%94+%C4%90%E1%BB%99t+ph%C3%A1+Luy%E1%BB%87n+Kh%C3%AD&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_dot_pha%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_dot_pha" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_dot_pha/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_dot_pha/</code></a>
+  <div class="gui-o" data-key="bc_dot_pha">
+    <div class="gui-dan" tabindex="0" data-key="bc_dot_pha"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1206,9 +1475,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tran-lua-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tran-lua-t', 'bc_tran_lua.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.17+%E2%80%94+Tr%E1%BA%A5n+Th%E1%BA%A5t+Huy%E1%BB%81n+ch%C3%ACm+trong+l%E1%BB%ADa+%28D%C3%A3+Lang+Bang+t%E1%BA%ADp+k%C3%ADch%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tran_lua%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tran_lua" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tran_lua/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tran_lua/</code></a>
+  <div class="gui-o" data-key="bc_tran_lua">
+    <div class="gui-dan" tabindex="0" data-key="bc_tran_lua"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-bc-tran-lua-2">
@@ -1228,9 +1507,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tran-lua-2-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tran-lua-2-t', 'bc_tran_lua_2.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.18+%E2%80%94+Xu%E1%BB%91ng+tr%E1%BA%A5n+%E2%80%94+c%E1%BB%A9u+d%C3%A2n&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tran_lua_2%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tran_lua_2" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tran_lua_2/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tran_lua_2/</code></a>
+  <div class="gui-o" data-key="bc_tran_lua_2">
+    <div class="gui-dan" tabindex="0" data-key="bc_tran_lua_2"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-bc-tran-lua-3">
@@ -1250,9 +1539,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tran-lua-3-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tran-lua-3-t', 'bc_tran_lua_3.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.19+%E2%80%94+Th%E1%BA%A5t+Huy%E1%BB%81n+M%C3%B4n+%E2%80%94+c%E1%BB%95ng+v%E1%BB%A1&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tran_lua_3%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tran_lua_3" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tran_lua_3/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tran_lua_3/</code></a>
+  <div class="gui-o" data-key="bc_tran_lua_3">
+    <div class="gui-dan" tabindex="0" data-key="bc_tran_lua_3"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-bc-tan-hoang">
@@ -1272,9 +1571,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tan-hoang-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tan-hoang-t', 'bc_tan_hoang.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.20+%E2%80%94+Sau+tr%E1%BA%ADn+%E2%80%94+gi%E1%BB%AFa+%C4%91%E1%BB%91ng+%C4%91%E1%BB%95+n%C3%A1t+%28b%C3%ACnh+minh%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tan_hoang%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tan_hoang" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tan_hoang/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tan_hoang/</code></a>
+  <div class="gui-o" data-key="bc_tan_hoang">
+    <div class="gui-dan" tabindex="0" data-key="bc_tan_hoang"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1326,9 +1635,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-han-lap-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-han-lap-t', 'nv_han_lap.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.21+%E2%80%94+H%C3%A0n+L%E1%BA%ADp+%28nh%C3%A2n+v%E1%BA%ADt+%E2%80%94+crossover+Ph%C3%A0m+Nh%C3%A2n+Tu+Ti%C3%AAn%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_han_lap%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_han_lap" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_han_lap/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_han_lap/</code></a>
+  <div class="gui-o" data-key="nv_han_lap">
+    <div class="gui-dan" tabindex="0" data-key="nv_han_lap"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-nv-han-lap-2">
@@ -1348,9 +1667,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-han-lap-2-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-han-lap-2-t', 'nv_han_lap_2.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.22+%E2%80%94+%C4%90%E1%BB%91i+tho%E1%BA%A1i+v%E1%BB%9Bi+H%C3%A0n+L%E1%BA%ADp&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_han_lap_2%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_han_lap_2" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_han_lap_2/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_han_lap_2/</code></a>
+  <div class="gui-o" data-key="nv_han_lap_2">
+    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_2"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1396,9 +1725,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-binh-minh-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-binh-minh-t', 'bc_binh_minh.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+D.23+%E2%80%94+K%E1%BA%BFt+ch%C6%B0%C6%A1ng+%E2%80%94+b%C3%ACnh+minh+Th%E1%BA%A5t+Huy%E1%BB%81n+tr%E1%BA%A5n&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_binh_minh%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_binh_minh" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_binh_minh/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_binh_minh/</code></a>
+  <div class="gui-o" data-key="bc_binh_minh">
+    <div class="gui-dan" tabindex="0" data-key="bc_binh_minh"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 </section>
@@ -1600,9 +1939,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tan-xa-sang-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-sang-t', 'bc_tan_xa_sang.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.1+%E2%80%94+T%C3%A2n+x%C3%A1+%E2%80%94+s%C3%A1ng%2C+th%E1%BB%A9c+gi%E1%BA%A5c&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tan_xa_sang%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tan_xa_sang" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tan_xa_sang/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tan_xa_sang/</code></a>
+  <div class="gui-o" data-key="bc_tan_xa_sang">
+    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_sang"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-san-tap-ngay">
@@ -1622,9 +1971,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-san-tap-ngay-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-san-tap-ngay-t', 'bc_san_tap_ngay.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.2+%E2%80%94+S%C3%A2n+t%E1%BA%ADp+%E2%80%94+gi%E1%BB%AFa+ng%C3%A0y&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_san_tap_ngay%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_san_tap_ngay" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_san_tap_ngay/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_san_tap_ngay/</code></a>
+  <div class="gui-o" data-key="bc_san_tap_ngay">
+    <div class="gui-dan" tabindex="0" data-key="bc_san_tap_ngay"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-san-tap-chen-ep">
@@ -1644,9 +2003,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-san-tap-chen-ep-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-san-tap-chen-ep-t', 'bc_san_tap_chen_ep.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.3+%E2%80%94+S%C3%A2n+t%E1%BA%ADp+%E2%80%94+b%E1%BB%8B+ch%C3%A8n+%C3%A9p&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_san_tap_chen_ep%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_san_tap_chen_ep" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_san_tap_chen_ep/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_san_tap_chen_ep/</code></a>
+  <div class="gui-o" data-key="bc_san_tap_chen_ep">
+    <div class="gui-dan" tabindex="0" data-key="bc_san_tap_chen_ep"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1704,9 +2073,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-san-sau-luyen-dem-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-san-sau-luyen-dem-t', 'bc_san_sau_luyen_dem.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.4+%E2%80%94+S%C3%A2n+sau+%E2%80%94+luy%E1%BB%87n+l%C3%A9n+trong+%C4%91%C3%AAm&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_san_sau_luyen_dem%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_san_sau_luyen_dem" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_san_sau_luyen_dem/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_san_sau_luyen_dem/</code></a>
+  <div class="gui-o" data-key="bc_san_sau_luyen_dem">
+    <div class="gui-dan" tabindex="0" data-key="bc_san_sau_luyen_dem"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-san-tap-cai-lai">
@@ -1726,9 +2105,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-san-tap-cai-lai-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-san-tap-cai-lai-t', 'bc_san_tap_cai_lai.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.5+%E2%80%94+S%C3%A2n+t%E1%BA%ADp+%E2%80%94+c%C3%A3i+l%E1%BA%A1i&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_san_tap_cai_lai%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_san_tap_cai_lai" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_san_tap_cai_lai/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_san_tap_cai_lai/</code></a>
+  <div class="gui-o" data-key="bc_san_tap_cai_lai">
+    <div class="gui-dan" tabindex="0" data-key="bc_san_tap_cai_lai"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-san-sau-anh-sang">
@@ -1748,9 +2137,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-san-sau-anh-sang-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-san-sau-anh-sang-t', 'bc_san_sau_anh_sang.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.6+%E2%80%94+S%C3%A2n+sau+%E2%80%94+%C3%A1nh+s%C3%A1ng+l%E1%BA%A1+d%C6%B0%E1%BB%9Bi+g%E1%BB%91c+c%E1%BB%95+th%E1%BB%A5&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_san_sau_anh_sang%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_san_sau_anh_sang" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_san_sau_anh_sang/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_san_sau_anh_sang/</code></a>
+  <div class="gui-o" data-key="bc_san_sau_anh_sang">
+    <div class="gui-dan" tabindex="0" data-key="bc_san_sau_anh_sang"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-san-sau-chon-lai">
@@ -1770,9 +2169,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-san-sau-chon-lai-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-san-sau-chon-lai-t', 'bc_san_sau_chon_lai.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.7+%E2%80%94+S%C3%A2n+sau+%E2%80%94+ch%C3%B4n+tr%E1%BA%A3+l%E1%BA%A1i&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_san_sau_chon_lai%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_san_sau_chon_lai" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_san_sau_chon_lai/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_san_sau_chon_lai/</code></a>
+  <div class="gui-o" data-key="bc_san_sau_chon_lai">
+    <div class="gui-dan" tabindex="0" data-key="bc_san_sau_chon_lai"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1833,9 +2242,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-vuon-thuoc-gap-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-gap-t', 'bc_vuon_thuoc_gap.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.8+%E2%80%94+V%C6%B0%E1%BB%9Dn+thu%E1%BB%91c+%E2%80%94+g%E1%BA%B7p+M%E1%BA%A1c+%C4%90%E1%BA%A1i+Phu&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_vuon_thuoc_gap%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_vuon_thuoc_gap" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_vuon_thuoc_gap/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_vuon_thuoc_gap/</code></a>
+  <div class="gui-o" data-key="bc_vuon_thuoc_gap">
+    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_gap"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-vuon-thuoc-hoi">
@@ -1855,9 +2274,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-vuon-thuoc-hoi-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-hoi-t', 'bc_vuon_thuoc_hoi.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.9+%E2%80%94+V%C6%B0%E1%BB%9Dn+thu%E1%BB%91c+%E2%80%94+h%E1%BB%8Fi+th%E1%BA%B3ng&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_vuon_thuoc_hoi%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_vuon_thuoc_hoi" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_vuon_thuoc_hoi/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_vuon_thuoc_hoi/</code></a>
+  <div class="gui-o" data-key="bc_vuon_thuoc_hoi">
+    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_hoi"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-vuon-thuoc-im">
@@ -1877,9 +2306,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-vuon-thuoc-im-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-im-t', 'bc_vuon_thuoc_im.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.10+%E2%80%94+V%C6%B0%E1%BB%9Dn+thu%E1%BB%91c+%E2%80%94+im+l%E1%BA%B7ng&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_vuon_thuoc_im%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_vuon_thuoc_im" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_vuon_thuoc_im/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_vuon_thuoc_im/</code></a>
+  <div class="gui-o" data-key="bc_vuon_thuoc_im">
+    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_im"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-vuon-thuoc-ngoc">
@@ -1899,9 +2338,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-vuon-thuoc-ngoc-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-ngoc-t', 'bc_vuon_thuoc_ngoc.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.11+%E2%80%94+V%C6%B0%E1%BB%9Dn+thu%E1%BB%91c+%E2%80%94+kh%E1%BB%91i+ng%E1%BB%8Dc+d%C6%B0%E1%BB%9Bi+lu%E1%BB%91ng+c%E1%BB%8F&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_vuon_thuoc_ngoc%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_vuon_thuoc_ngoc" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_vuon_thuoc_ngoc/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_vuon_thuoc_ngoc/</code></a>
+  <div class="gui-o" data-key="bc_vuon_thuoc_ngoc">
+    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_ngoc"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-vuon-thuoc-dem">
@@ -1921,9 +2370,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-vuon-thuoc-dem-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-vuon-thuoc-dem-t', 'bc_vuon_thuoc_dem.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.12+%E2%80%94+V%C6%B0%E1%BB%9Dn+thu%E1%BB%91c+%E2%80%94+ch%C3%B4n+tr%E1%BA%A3+l%E1%BA%A1i%2C+%C4%91%C3%AAm&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_vuon_thuoc_dem%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_vuon_thuoc_dem" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_vuon_thuoc_dem/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_vuon_thuoc_dem/</code></a>
+  <div class="gui-o" data-key="bc_vuon_thuoc_dem">
+    <div class="gui-dan" tabindex="0" data-key="bc_vuon_thuoc_dem"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -1978,9 +2437,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-quan-nuoc-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-quan-nuoc-t', 'bc_quan_nuoc.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.13+%E2%80%94+Qu%C3%A1n+n%C6%B0%E1%BB%9Bc+%C4%91%E1%BA%A7u+tr%E1%BA%A5n+%E2%80%94+d%C3%B2+tin&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_quan_nuoc%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_quan_nuoc" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_quan_nuoc/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_quan_nuoc/</code></a>
+  <div class="gui-o" data-key="bc_quan_nuoc">
+    <div class="gui-dan" tabindex="0" data-key="bc_quan_nuoc"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-khe-nui-dem">
@@ -2000,9 +2469,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-khe-nui-dem-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-khe-nui-dem-t', 'bc_khe_nui_dem.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.14+%E2%80%94+H%E1%BA%ADu+s%C6%A1n+%E2%80%94+khe+n%C3%BAi+%C4%91%C3%AAm&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_khe_nui_dem%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_khe_nui_dem" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_khe_nui_dem/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_khe_nui_dem/</code></a>
+  <div class="gui-o" data-key="bc_khe_nui_dem">
+    <div class="gui-dan" tabindex="0" data-key="bc_khe_nui_dem"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-khe-nui-chon">
@@ -2022,9 +2501,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-khe-nui-chon-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-khe-nui-chon-t', 'bc_khe_nui_chon.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.15+%E2%80%94+H%E1%BA%ADu+s%C6%A1n+%E2%80%94+ch%C3%B4n+tr%E1%BA%A3+l%E1%BA%A1i&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_khe_nui_chon%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_khe_nui_chon" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_khe_nui_chon/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_khe_nui_chon/</code></a>
+  <div class="gui-o" data-key="bc_khe_nui_chon">
+    <div class="gui-dan" tabindex="0" data-key="bc_khe_nui_chon"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2079,9 +2568,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-vt-ngoc-cot-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-vt-ngoc-cot-t', 'vt_ngoc_cot.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.16+%E2%80%94+Ng%E1%BB%8Dc+c%E1%BB%91t+b%C3%AD+%E1%BA%A9n+%28v%E1%BA%ADt+ph%E1%BA%A9m+c%C6%A1+duy%C3%AAn%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+vt_ngoc_cot%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/vt_ngoc_cot" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/vt_ngoc_cot/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/vt_ngoc_cot/</code></a>
+  <div class="gui-o" data-key="vt_ngoc_cot">
+    <div class="gui-dan" tabindex="0" data-key="vt_ngoc_cot"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-nv-tuyet-co">
@@ -2101,9 +2600,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-tuyet-co-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-t', 'nv_tuyet_co.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.17+%E2%80%94+Tuy%E1%BA%BFt+C%C6%A1+%28nh%C3%A2n+v%E1%BA%ADt%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_tuyet_co%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_tuyet_co" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_tuyet_co/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_tuyet_co/</code></a>
+  <div class="gui-o" data-key="nv_tuyet_co">
+    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-nv-tuyet-co-canh-giac">
@@ -2123,9 +2632,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-tuyet-co-canh-giac-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-canh-giac-t', 'nv_tuyet_co_canh_giac.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.18+%E2%80%94+Ng%E1%BB%8Dc+c%E1%BB%91t+%E2%80%94+c%E1%BA%A3nh+gi%C3%A1c&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_tuyet_co_canh_giac%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_tuyet_co_canh_giac" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_tuyet_co_canh_giac/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_tuyet_co_canh_giac/</code></a>
+  <div class="gui-o" data-key="nv_tuyet_co_canh_giac">
+    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_canh_giac"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2183,9 +2702,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-tuyet-co-than-phan-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-than-phan-t', 'nv_tuyet_co_than_phan.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.19+%E2%80%94+Ng%E1%BB%8Dc+c%E1%BB%91t+%E2%80%94+Tuy%E1%BA%BFt+C%C6%A1+gi%E1%BB%9Bi+thi%E1%BB%87u+th%C3%A2n+ph%E1%BA%ADn&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_tuyet_co_than_phan%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_tuyet_co_than_phan" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_tuyet_co_than_phan/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_tuyet_co_than_phan/</code></a>
+  <div class="gui-o" data-key="nv_tuyet_co_than_phan">
+    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_than_phan"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-nv-tuyet-co-dieu-kien">
@@ -2205,9 +2734,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-tuyet-co-dieu-kien-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-dieu-kien-t', 'nv_tuyet_co_dieu_kien.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.20+%E2%80%94+Ng%E1%BB%8Dc+c%E1%BB%91t+%E2%80%94+%C4%91i%E1%BB%81u+ki%E1%BB%87n+kh%E1%BA%BF+%C6%B0%E1%BB%9Bc&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_tuyet_co_dieu_kien%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_tuyet_co_dieu_kien" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_tuyet_co_dieu_kien/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_tuyet_co_dieu_kien/</code></a>
+  <div class="gui-o" data-key="nv_tuyet_co_dieu_kien">
+    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_dieu_kien"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-nv-tuyet-co-do-du">
@@ -2227,9 +2766,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-tuyet-co-do-du-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-do-du-t', 'nv_tuyet_co_do_du.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.21+%E2%80%94+Ng%E1%BB%8Dc+c%E1%BB%91t+%E2%80%94+kho%E1%BA%A3nh+kh%E1%BA%AFc+do+d%E1%BB%B1&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_tuyet_co_do_du%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_tuyet_co_do_du" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_tuyet_co_do_du/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_tuyet_co_do_du/</code></a>
+  <div class="gui-o" data-key="nv_tuyet_co_do_du">
+    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_do_du"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-nv-tuyet-co-khe-uoc">
@@ -2249,9 +2798,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-tuyet-co-khe-uoc-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-tuyet-co-khe-uoc-t', 'nv_tuyet_co_khe_uoc.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.22+%E2%80%94+Ng%E1%BB%8Dc+c%E1%BB%91t+%E2%80%94+k%C3%BD+kh%E1%BA%BF+%C6%B0%E1%BB%9Bc&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_tuyet_co_khe_uoc%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_tuyet_co_khe_uoc" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_tuyet_co_khe_uoc/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_tuyet_co_khe_uoc/</code></a>
+  <div class="gui-o" data-key="nv_tuyet_co_khe_uoc">
+    <div class="gui-dan" tabindex="0" data-key="nv_tuyet_co_khe_uoc"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2312,9 +2871,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tan-xa-song-tu-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-song-tu-t', 'bc_tan_xa_song_tu.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.23+%E2%80%94+T%C3%A2n+x%C3%A1+%E2%80%94+%C4%91%C3%AAm%2C+l%E1%BA%A7n+song+tu+%C4%91%E1%BA%A7u+ti%C3%AAn&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tan_xa_song_tu%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tan_xa_song_tu" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tan_xa_song_tu/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tan_xa_song_tu/</code></a>
+  <div class="gui-o" data-key="bc_tan_xa_song_tu">
+    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_song_tu"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset done" id="p-bc-tan-xa-dem">
@@ -2334,9 +2903,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tan-xa-dem-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-dem-t', 'bc_tan_xa_dem.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.24+%E2%80%94+T%C3%A2n+x%C3%A1+%E2%80%94+%C4%91%C3%AAm+%28ph%C3%B2ng+tu+luy%E1%BB%87n%29&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tan_xa_dem%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tan_xa_dem" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tan_xa_dem/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tan_xa_dem/</code></a>
+  <div class="gui-o" data-key="bc_tan_xa_dem">
+    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_dem"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-tan-xa-kho-tu">
@@ -2356,9 +2935,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tan-xa-kho-tu-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-kho-tu-t', 'bc_tan_xa_kho_tu.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.25+%E2%80%94+T%C3%A2n+x%C3%A1+%E2%80%94+kh%E1%BB%95+tu%2C+l%E1%BA%A7n+th%E1%BA%A5t+b%E1%BA%A1i&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tan_xa_kho_tu%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tan_xa_kho_tu" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tan_xa_kho_tu/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tan_xa_kho_tu/</code></a>
+  <div class="gui-o" data-key="bc_tan_xa_kho_tu">
+    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_kho_tu"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-tan-xa-suyt-lo">
@@ -2378,9 +2967,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tan-xa-suyt-lo-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-suyt-lo-t', 'bc_tan_xa_suyt_lo.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.26+%E2%80%94+T%C3%A2n+x%C3%A1+%E2%80%94+su%C3%BDt+b%E1%BB%8B+ph%C3%A1t+hi%E1%BB%87n&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tan_xa_suyt_lo%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tan_xa_suyt_lo" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tan_xa_suyt_lo/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tan_xa_suyt_lo/</code></a>
+  <div class="gui-o" data-key="bc_tan_xa_suyt_lo">
+    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_suyt_lo"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-tan-xa-dot-pha">
@@ -2400,9 +2999,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-tan-xa-dot-pha-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-tan-xa-dot-pha-t', 'bc_tan_xa_dot_pha.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.27+%E2%80%94+T%C3%A2n+x%C3%A1+%E2%80%94+%C4%91%E1%BB%99t+ph%C3%A1+Luy%E1%BB%87n+Kh%C3%AD+t%E1%BA%A7ng+hai&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_tan_xa_dot_pha%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_tan_xa_dot_pha" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_tan_xa_dot_pha/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_tan_xa_dot_pha/</code></a>
+  <div class="gui-o" data-key="bc_tan_xa_dot_pha">
+    <div class="gui-dan" tabindex="0" data-key="bc_tan_xa_dot_pha"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2451,9 +3060,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-dem-tap-kich-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-dem-tap-kich-t', 'bc_dem_tap_kich.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.28+%E2%80%94+%C4%90%C3%AAm+cu%E1%BB%91i+%E2%80%94+D%C3%A3+Lang+Bang+t%E1%BA%ADp+k%C3%ADch&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_dem_tap_kich%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_dem_tap_kich" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_dem_tap_kich/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_dem_tap_kich/</code></a>
+  <div class="gui-o" data-key="bc_dem_tap_kich">
+    <div class="gui-dan" tabindex="0" data-key="bc_dem_tap_kich"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2514,9 +3133,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-cong-dong-doi-mat-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-doi-mat-t', 'bc_cong_dong_doi_mat.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.29+%E2%80%94+C%E1%BB%95ng+%C4%91%C3%B4ng+%E2%80%94+%C4%91%E1%BB%91i+m%E1%BA%B7t+%C4%91%E1%BB%8Bch&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_cong_dong_doi_mat%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_cong_dong_doi_mat" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_cong_dong_doi_mat/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_cong_dong_doi_mat/</code></a>
+  <div class="gui-o" data-key="bc_cong_dong_doi_mat">
+    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_doi_mat"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-cong-dong-giau">
@@ -2536,9 +3165,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-cong-dong-giau-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-giau-t', 'bc_cong_dong_giau.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.30+%E2%80%94+C%E1%BB%95ng+%C4%91%C3%B4ng+%E2%80%94+gi%E1%BA%A5u+th%E1%BB%B1c+l%E1%BB%B1c&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_cong_dong_giau%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_cong_dong_giau" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_cong_dong_giau/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_cong_dong_giau/</code></a>
+  <div class="gui-o" data-key="bc_cong_dong_giau">
+    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_giau"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-cong-dong-toan-luc">
@@ -2558,9 +3197,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-cong-dong-toan-luc-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-toan-luc-t', 'bc_cong_dong_toan_luc.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.31+%E2%80%94+C%E1%BB%95ng+%C4%91%C3%B4ng+%E2%80%94+d%C3%B9ng+to%C3%A0n+l%E1%BB%B1c+ng%E1%BB%8Dc+c%E1%BB%91t&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_cong_dong_toan_luc%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_cong_dong_toan_luc" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_cong_dong_toan_luc/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_cong_dong_toan_luc/</code></a>
+  <div class="gui-o" data-key="bc_cong_dong_toan_luc">
+    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_toan_luc"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-cong-dong-quyen">
@@ -2580,9 +3229,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-cong-dong-quyen-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-quyen-t', 'bc_cong_dong_quyen.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.32+%E2%80%94+C%E1%BB%95ng+%C4%91%C3%B4ng+%E2%80%94+Th%E1%BA%A5t+Huy%E1%BB%81n+quy%E1%BB%81n&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_cong_dong_quyen%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_cong_dong_quyen" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_cong_dong_quyen/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_cong_dong_quyen/</code></a>
+  <div class="gui-o" data-key="bc_cong_dong_quyen">
+    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_quyen"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-bc-cong-dong-hung-ba">
@@ -2602,9 +3261,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-cong-dong-hung-ba-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-cong-dong-hung-ba-t', 'bc_cong_dong_hung_ba.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.33+%E2%80%94+C%E1%BB%95ng+%C4%91%C3%B4ng+%E2%80%94+g%E1%BB%8Di+t%C3%AAn+H%C3%B9ng+B%C3%A1&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_cong_dong_hung_ba%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_cong_dong_hung_ba" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_cong_dong_hung_ba/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_cong_dong_hung_ba/</code></a>
+  <div class="gui-o" data-key="bc_cong_dong_hung_ba">
+    <div class="gui-dan" tabindex="0" data-key="bc_cong_dong_hung_ba"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2653,9 +3322,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-hoa-truong-cuu-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-hoa-truong-cuu-t', 'bc_hoa_truong_cuu.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.34+%E2%80%94+H%E1%BB%8Fa+tr%C6%B0%E1%BB%9Dng+%E2%80%94+c%E1%BB%A9u+ng%C6%B0%E1%BB%9Di&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_hoa_truong_cuu%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_hoa_truong_cuu" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_hoa_truong_cuu/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_hoa_truong_cuu/</code></a>
+  <div class="gui-o" data-key="bc_hoa_truong_cuu">
+    <div class="gui-dan" tabindex="0" data-key="bc_hoa_truong_cuu"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2704,9 +3383,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-mon-phai-tan-hoang-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-mon-phai-tan-hoang-t', 'bc_mon_phai_tan_hoang.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.35+%E2%80%94+Th%E1%BA%A5t+Huy%E1%BB%81n+M%C3%B4n+%E2%80%94+sau+tr%E1%BA%ADn%2C+M%E1%BA%A1c+%C4%90%E1%BA%A1i+Phu+c%E1%BB%A9u+ng%C6%B0%E1%BB%9Di&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_mon_phai_tan_hoang%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_mon_phai_tan_hoang" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_mon_phai_tan_hoang/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_mon_phai_tan_hoang/</code></a>
+  <div class="gui-o" data-key="bc_mon_phai_tan_hoang">
+    <div class="gui-dan" tabindex="0" data-key="bc_mon_phai_tan_hoang"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2767,9 +3456,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-han-lap-gap-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-han-lap-gap-t', 'nv_han_lap_gap.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.36+%E2%80%94+G%E1%BA%B7p+H%C3%A0n+L%E1%BA%ADp+%E2%80%94+sau+tr%E1%BA%ADn&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_han_lap_gap%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_han_lap_gap" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_han_lap_gap/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_han_lap_gap/</code></a>
+  <div class="gui-o" data-key="nv_han_lap_gap">
+    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_gap"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-nv-han-lap-that">
@@ -2789,9 +3488,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-han-lap-that-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-han-lap-that-t', 'nv_han_lap_that.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.37+%E2%80%94+H%C3%A0n+L%E1%BA%ADp+%E2%80%94+l%E1%BB%9Di+th%C3%A0nh+th%E1%BA%ADt&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_han_lap_that%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_han_lap_that" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_han_lap_that/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_han_lap_that/</code></a>
+  <div class="gui-o" data-key="nv_han_lap_that">
+    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_that"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-nv-han-lap-cuoi-tru">
@@ -2811,9 +3520,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-han-lap-cuoi-tru-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-han-lap-cuoi-tru-t', 'nv_han_lap_cuoi_tru.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.38+%E2%80%94+H%C3%A0n+L%E1%BA%ADp+%E2%80%94+l%E1%BB%9Di+c%C6%B0%E1%BB%9Di+tr%E1%BB%AB&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_han_lap_cuoi_tru%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_han_lap_cuoi_tru" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_han_lap_cuoi_tru/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_han_lap_cuoi_tru/</code></a>
+  <div class="gui-o" data-key="nv_han_lap_cuoi_tru">
+    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_cuoi_tru"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-nv-han-lap-hoi-nguoc">
@@ -2833,9 +3552,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-han-lap-hoi-nguoc-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-han-lap-hoi-nguoc-t', 'nv_han_lap_hoi_nguoc.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.39+%E2%80%94+H%C3%A0n+L%E1%BA%ADp+%E2%80%94+h%E1%BB%8Fi+ng%C6%B0%E1%BB%A3c&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_han_lap_hoi_nguoc%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_han_lap_hoi_nguoc" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_han_lap_hoi_nguoc/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_han_lap_hoi_nguoc/</code></a>
+  <div class="gui-o" data-key="nv_han_lap_hoi_nguoc">
+    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_hoi_nguoc"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article>
 
 <article class="asset" id="p-nv-han-lap-bau-nuoc">
@@ -2855,9 +3584,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-nv-han-lap-bau-nuoc-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-nv-han-lap-bau-nuoc-t', 'nv_han_lap_bau_nuoc.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.40+%E2%80%94+H%C3%A0n+L%E1%BA%ADp+%E2%80%94+b%E1%BA%A7u+n%C6%B0%E1%BB%9Bc&amp;body=m%C3%A3-%E1%BA%A3nh%3A+nv_han_lap_bau_nuoc%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">📤 Gửi ảnh này</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/nv_han_lap_bau_nuoc" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/nv_han_lap_bau_nuoc/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/nv_han_lap_bau_nuoc/</code></a>
+  <div class="gui-o" data-key="nv_han_lap_bau_nuoc">
+    <div class="gui-dan" tabindex="0" data-key="nv_han_lap_bau_nuoc"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 
@@ -2903,9 +3642,19 @@ TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no wat
     <button class="cp" onclick="cpText('p-bc-binh-minh-ngoc-cot-t', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('p-bc-binh-minh-ngoc-cot-t', 'bc_binh_minh_ngoc_cot.txt')">⬇️ .txt</button>
   </div>
-  <a class="gui" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-anh&amp;title=%E1%BA%A2nh+P.41+%E2%80%94+B%C3%ACnh+minh+%E2%80%94+ng%E1%BB%8Dc+c%E1%BB%91t+trong+v%E1%BA%A1t+%C3%A1o&amp;body=m%C3%A3-%E1%BA%A3nh%3A+bc_binh_minh_ngoc_cot%0A%0AD%C3%A1n+%E1%BA%A3nh+v%C3%A0o+%C4%91%C3%A2y+%28k%C3%A9o+th%E1%BA%A3+ho%E1%BA%B7c+Ctrl%2BV%29%2C+r%E1%BB%93i+b%E1%BA%A5m+%22Submit+new+issue%22%3A%0A" target="_blank">🔁 Thay ảnh (đã có)</a>
-  <a class="gui thu-muc" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/xuong-inbox/bc_binh_minh_ngoc_cot" target="_blank"
-     title="Mở GitHub đã trỏ sẵn vào xuong-inbox/bc_binh_minh_ngoc_cot/ — kéo ảnh vào rồi bấm Commit changes">📁 Up thẳng vào thư mục <code>xuong-inbox/bc_binh_minh_ngoc_cot/</code></a>
+  <div class="gui-o" data-key="bc_binh_minh_ngoc_cot">
+    <div class="gui-dan" tabindex="0" data-key="bc_binh_minh_ngoc_cot"
+         title="Bấm vào ô này rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào">
+      <span class="gui-nhac">🖼️ Bấm vào ô này → dán ảnh (Ctrl+V) / kéo thả</span>
+      <img class="gui-xem" alt="" hidden>
+    </div>
+    <div class="gui-hang">
+      <button class="gui-chon" type="button">📂 Chọn file</button>
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    </div>
+    <input type="file" accept="image/*" hidden>
+    <div class="gui-tt" hidden></div>
+  </div>
 </article></div>
 </section>
 </section>
@@ -3024,5 +3773,191 @@ function taiTxt(id, ten){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
+
+/* ================= Kết nối GitHub (token trong máy) ================= */
+const GH_REPO='huuducbkb/game-hong-duc-lam';
+const GH_BRANCH='main';
+const GH_LS='xuong_gh_token';
+
+function ghToken(){ return localStorage.getItem(GH_LS)||''; }
+
+function ghHienTT(el, loai, html){
+  el.hidden=false;
+  el.innerHTML = `<span class="${loai}">${html}</span>`;
+}
+
+async function ghLuuToken(){
+  const inp=document.getElementById('gh-token');
+  const tt=document.getElementById('gh-tt');
+  const t=(inp.value||'').trim();
+  if(!t){ ghHienTT(tt,'warn','⚠️ Chưa dán token.'); return; }
+  ghHienTT(tt,'muted','Đang kiểm tra token…');
+  try{
+    const r=await fetch(`https://api.github.com/repos/${GH_REPO}`,{
+      headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}});
+    if(!r.ok){ ghHienTT(tt,'warn',`⚠️ Token không dùng được (HTTP ${r.status}). Kiểm tra lại quyền Contents: Read and write.`); return; }
+    const j=await r.json();
+    if(j.permissions && j.permissions.push === false){
+      ghHienTT(tt,'warn','⚠️ Token chưa có quyền ghi (cần Contents: Read and write). Tạo lại token rồi thử lại.');
+      return;
+    }
+    localStorage.setItem(GH_LS,t);
+    ghHienTT(tt,'ok',`✅ Đã kết nối <b>${j.full_name}</b>. Từ giờ dán ảnh vào ô dưới mỗi prompt rồi bấm Gửi là xong.`);
+  }catch(e){ ghHienTT(tt,'warn',`⚠️ Lỗi kết nối: ${e}`); }
+}
+
+function ghQuenToken(){
+  localStorage.removeItem(GH_LS);
+  const inp=document.getElementById('gh-token'); if(inp) inp.value='';
+  ghHienTT(document.getElementById('gh-tt'),'muted','Đã quên token trong trình duyệt này.');
+}
+
+/* Nén ảnh ngay trên máy: giữ PNG (có trong suốt), còn lại JPEG. */
+function ghNenAnh(file, maxCanh=1600, q=0.9){
+  return new Promise((res,rej)=>{
+    const url=URL.createObjectURL(file);
+    const im=new Image();
+    im.onload=()=>{
+      URL.revokeObjectURL(url);
+      let {width:w,height:h}=im;
+      const tiLe=Math.min(1, maxCanh/Math.max(w,h));
+      w=Math.round(w*tiLe); h=Math.round(h*tiLe);
+      const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+      const cx=cv.getContext('2d');
+      cx.drawImage(im,0,0,w,h);
+      const giuPng = file.type==='image/png';
+      cv.toBlob(b=>b?res({blob:b,duoi:giuPng?'png':'jpg'}):rej(new Error('nén lỗi')),
+                giuPng?'image/png':'image/jpeg', q);
+    };
+    im.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error('không đọc được ảnh')); };
+    im.src=url;
+  });
+}
+
+function blobB64(blob){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(r.result.split(',')[1]);
+    r.onerror=()=>rej(new Error('đọc file lỗi'));
+    r.readAsDataURL(blob);
+  });
+}
+
+async function ghLaySha(duong){
+  const t=ghToken();
+  const r=await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${duong}?ref=${GH_BRANCH}`,
+    {headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}});
+  if(r.status===200){ const j=await r.json(); return j.sha||null; }
+  return null; // 404 = file chưa có
+}
+
+async function ghPutAnh(duong, b64, thayThe){
+  const t=ghToken();
+  const body={message:`Xưởng: ${thayThe?'thay':'thêm'} ảnh ${duong.split('/').slice(-2,-1)[0]}`,
+              content:b64, branch:GH_BRANCH};
+  const sha=await ghLaySha(duong);
+  if(sha) body.sha=sha;
+  const r=await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${duong}`,{
+    method:'PUT',
+    headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json',
+             'Content-Type':'application/json'},
+    body:JSON.stringify(body)});
+  if(!r.ok){
+    let loi='';
+    try{ const j=await r.json(); loi=j.message||''; }catch(e){}
+    throw new Error(`HTTP ${r.status}${loi?' — '+loi:''}`);
+  }
+  return !!sha;
+}
+
+/* ================= Ô dán ảnh dưới mỗi prompt ================= */
+let O_DANG_CHON=null;   // ô dán đang được trỏ tới (để Ctrl+V dán đúng ô)
+
+function datAnhVaoO(o, file){
+  if(!file || !file.type.startsWith('image/')) return;
+  const hop=o.parentElement;
+  const xem=o.querySelector('.gui-xem');
+  const nhac=o.querySelector('.gui-nhac');
+  const nut=hop.querySelector('.gui-gui');
+  const tt=hop.querySelector('.gui-tt');
+  o._file=file;
+  const url=URL.createObjectURL(file);
+  xem.src=url; xem.hidden=false;
+  if(nhac) nhac.hidden=true;
+  o.classList.add('act');
+  nut.disabled=false;
+  if(tt){ tt.hidden=true; tt.innerHTML=''; }
+}
+
+function khoiTaoO(){
+  document.querySelectorAll('.gui-dan').forEach(o=>{
+    const hop=o.parentElement;
+    const inp=hop.querySelector('input[type=file]');
+    const chon=hop.querySelector('.gui-chon');
+    const nut=hop.querySelector('.gui-gui');
+    // Bấm vào ô = chọn ô này làm đích cho Ctrl+V (không mở hộp chọn file).
+    o.addEventListener('click',()=>{ O_DANG_CHON=o;
+      document.querySelectorAll('.gui-dan.act').forEach(x=>x.classList.remove('act'));
+      o.classList.add('act'); o.focus(); });
+    o.addEventListener('focus',()=>{ O_DANG_CHON=o; });
+    o.addEventListener('dragenter',e=>{e.preventDefault();o.classList.add('hot');});
+    o.addEventListener('dragover',e=>{e.preventDefault();o.classList.add('hot');});
+    o.addEventListener('dragleave',e=>{e.preventDefault();o.classList.remove('hot');});
+    o.addEventListener('drop',e=>{
+      e.preventDefault(); o.classList.remove('hot'); O_DANG_CHON=o;
+      const f=e.dataTransfer.files&&e.dataTransfer.files[0];
+      if(f) datAnhVaoO(o,f);
+    });
+    if(chon) chon.addEventListener('click',()=>{ O_DANG_CHON=o; inp.click(); });
+    inp.addEventListener('change',()=>{ if(inp.files[0]) datAnhVaoO(o,inp.files[0]); });
+    if(nut) nut.addEventListener('click',()=>guiMotAnh(o,nut));
+  });
+  document.addEventListener('paste',e=>{
+    const it=e.clipboardData&&e.clipboardData.items;
+    if(!it) return;
+    let f=null;
+    for(const x of it){ if(x.type.startsWith('image/')){ f=x.getAsFile(); break; } }
+    if(!f) return;
+    const o=O_DANG_CHON || document.querySelector('.gui-dan.act') ||
+            document.querySelector('.gui-dan:not([hidden])');
+    if(!o) return;
+    e.preventDefault();
+    datAnhVaoO(o,f);
+  });
+}
+
+async function guiMotAnh(o, nut){
+  const key=o.dataset.key;
+  const tt=o.parentElement.querySelector('.gui-tt');
+  const file=o._file;
+  if(!ghToken()){
+    ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục <b>🔑 Kết nối GitHub</b> phía trên rồi thử lại.');
+    return;
+  }
+  if(!file){ ghHienTT(tt,'warn','⚠️ Chưa có ảnh. Bấm vào ô rồi dán ảnh (Ctrl+V), hoặc kéo thả ảnh vào ô.'); return; }
+  nut.disabled=true;
+  ghHienTT(tt,'muted','Đang nén ảnh…');
+  try{
+    const {blob,duoi}=await ghNenAnh(file);
+    const b64=await blobB64(blob);
+    ghHienTT(tt,'muted',`Đang gửi ảnh (${Math.round(blob.size/1024)} KB)…`);
+    const duong=`xuong-inbox/${key}/${key}.${duoi}`;
+    await ghPutAnh(duong,b64,false);
+    ghHienTT(tt,'ok',`✅ Đã gửi <code>${key}.${duoi}</code>. Hệ thống tự ghép vào game trong ~1–2 phút; `+
+      `tải lại trang này để xem thẻ chuyển “đã có”.`);
+    o.classList.remove('act');
+    o._file=null;
+    const xem=o.querySelector('.gui-xem'); if(xem){ xem.hidden=true; xem.removeAttribute('src'); }
+    const nhac=o.querySelector('.gui-nhac'); if(nhac) nhac.hidden=false;
+    const inp=o.parentElement.querySelector('input[type=file]'); if(inp) inp.value='';
+    O_DANG_CHON=null;
+  }catch(e){
+    ghHienTT(tt,'warn',`⚠️ Không gửi được: ${e}`);
+    nut.disabled=false;
+    return;
+  }
+}
+
+khoiTaoO();
 </script>
 </body></html>
