@@ -138,7 +138,6 @@
       "mo_ta": "Kiếm linh Hồng Trần — thanh niên áo trắng, mắt sáng như kiếm quang",
       "dung_o": [
         "c1_d06",
-        "c1_d07",
         "c1_d07b"
       ],
       "tags": [
@@ -291,6 +290,23 @@
       ],
       "dung_o": [
         "c1_d06b"
+      ]
+    },
+    "nv_kiem_linh_than.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Kiếm linh kể thân phận — Hồng Trần Kiếm, kiếm tu ngã xuống ngàn năm trước (d07).",
+      "tags": [
+        "hồng",
+        "trần",
+        "kiếm",
+        "tu",
+        "ngã",
+        "xuống",
+        "ngàn",
+        "năm"
+      ],
+      "dung_o": [
+        "c1_d07"
       ]
     }
   }
