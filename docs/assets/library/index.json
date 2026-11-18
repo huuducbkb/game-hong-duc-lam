@@ -108,7 +108,6 @@
       "mo_ta": "Miếu hoang sau núi — xương khô, vết cào, hộp gỗ đen",
       "dung_o": [
         "c1_d04",
-        "c1_d09",
         "c1_d10"
       ],
       "tags": [
@@ -337,6 +336,23 @@
       ],
       "dung_o": [
         "c1_d08"
+      ]
+    },
+    "bc_tu_khiem.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Tu luyện kiếm đạo đêm đầu — dẫn khí vào lưỡi kiếm (d09).",
+      "tags": [
+        "đêm",
+        "đầu",
+        "tu",
+        "luyện",
+        "kiếm",
+        "đạo",
+        "dẫn",
+        "khí"
+      ],
+      "dung_o": [
+        "c1_d09"
       ]
     }
   }
