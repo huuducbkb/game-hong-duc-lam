@@ -545,6 +545,23 @@
       "dung_o": [
         "c1_p03"
       ]
+    },
+    "bc_san_sau_luyen_dem.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Lén ra sân sau luyện lại bài quyền nhập môn (p03b).",
+      "tags": [
+        "luyện",
+        "lén",
+        "đêm",
+        "ra",
+        "sân",
+        "sau",
+        "lại",
+        "bài"
+      ],
+      "dung_o": [
+        "c1_p03b"
+      ]
     }
   }
 }
