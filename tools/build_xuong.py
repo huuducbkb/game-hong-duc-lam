@@ -84,15 +84,20 @@ def _the_anh(a: dict) -> str:
     <button class="cp" onclick="cpText('{tid}', this)">📋 Copy prompt ảnh</button>
     <button class="dl" onclick="taiTxt('{tid}', '{k}.txt')">⬇️ .txt</button>
   </div>
-  <div class="gui-o" data-key="{k}">
+  <div class="gui-o" data-key="{k}" data-file="{a['file']}">
     <label class="gui-dan" data-key="{k}" tabindex="0"
            title="Bấm để chọn ảnh trong thư viện ảnh (điện thoại) hoặc dán/kéo thả (máy tính)">
       <input class="gui-file" type="file" accept="image/*">
       <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
       <img class="gui-xem" alt="" hidden>
     </label>
-    <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+    <div class="gui-hang">
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+      <button class="gui-kt" type="button"
+              title="Xem ảnh đã vào game chưa — không cần tải lại trang">🔄 Kiểm tra</button>
+    </div>
     <div class="gui-tt" hidden></div>
+    <img class="gui-game" alt="" hidden>
   </div>
 </article>"""
 
@@ -326,10 +331,18 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
   font-size:0;border:0;padding:0}
 .gui-nhac,.gui-xem{pointer-events:none}
 .gui-xem{max-width:100%;max-height:260px;border-radius:8px;display:block;margin:0 auto}
-.gui-gui{display:block;width:100%;margin-top:8px;background:linear-gradient(135deg,#f7b32b,#ffd166);
+.gui-gui{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);
   color:#3a2600;padding:14px;border-radius:9px;font-weight:700;border:0;cursor:pointer;
   font-size:15px;font-family:inherit}
 .gui-gui:disabled{opacity:.45;cursor:not-allowed}
+.gui-hang{display:flex;gap:8px;margin-top:8px}
+.gui-kt{flex:0 0 auto;background:#1d2b45;color:var(--jade);border:1px solid #4a628c;
+  border-radius:9px;padding:14px 13px;font-weight:600;cursor:pointer;font-size:14px;
+  font-family:inherit;white-space:nowrap}
+.gui-kt:hover{background:#243757;border-color:var(--jade)}
+.gui-kt.dang{opacity:.6;cursor:wait}
+.gui-game{max-width:100%;max-height:280px;border-radius:8px;display:block;margin:8px auto 0;
+  border:1px solid #2f8f5a}
 .gui-tt{margin-top:7px;font-size:12.5px}
 .gui-tt .ok,.gui-tt .warn{display:block;padding:8px 10px;border-radius:8px}
 .gui-tt .muted{display:block}
@@ -374,7 +387,9 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
         thẻ đó → chọn ảnh trong <b>thư viện ảnh</b> (điện thoại) hoặc hộp chọn file (máy tính).
         Trên máy tính còn có thể <b>dán Ctrl+V</b> hoặc <b>kéo thả</b> ảnh vào ô.
         Rồi bấm <b>📤 Gửi ảnh này</b>. Ảnh được nén ngay trên máy bạn rồi tự đưa lên GitHub —
-        <b>không cần mở Issue</b>, hệ thống gán <b>đúng ảnh theo mã trên thẻ, không đoán sai</b>.</li>
+        <b>không cần mở Issue</b>, hệ thống gán <b>đúng ảnh theo mã trên thẻ, không đoán sai</b>.
+        Trang <b>tự báo khi bot ghép xong</b> và hiện luôn ảnh trong game; muốn xem lại
+        bất cứ lúc nào thì bấm <b>🔄 Kiểm tra</b> trên thẻ — <b>không cần tải lại trang</b>.</li>
   </ol>
   <p class="muted" style="font-size:12.5px">Gửi nhiều ảnh một lúc thì dùng nút
   <b>📤 Gửi ảnh cho CẢ NHÓM</b> ở đầu mỗi nhóm — dán ảnh <b>đúng thứ tự</b> như danh sách mã.
@@ -573,16 +588,90 @@ function datAnhVaoO(o, file){
   if(tt){ tt.hidden=true; tt.innerHTML=''; }
 }
 
+/* ---- Kiểm tra ảnh đã vào game chưa (không cần tải lại trang) ---- */
+function thuMucAnh(tenFile){
+  return /^(bc_|vt_|nv_)/.test(tenFile) ? 'docs/assets/scene/' : 'docs/assets/ui/';
+}
+
+async function ghCommitAnh(tenFile){
+  const duong=thuMucAnh(tenFile)+tenFile;
+  const t=ghToken();
+  const hd={'Accept':'application/vnd.github+json'};
+  if(t) hd['Authorization']=`Bearer ${t}`;
+  const r=await fetch(`https://api.github.com/repos/${GH_REPO}/commits?path=${duong}&per_page=1`,{headers:hd});
+  if(r.status===403 || r.status===429) throw new Error('GitHub tạm giới hạn lượt gọi — chờ chút rồi thử lại');
+  if(!r.ok) throw new Error(`HTTP ${r.status}`);
+  const ds=await r.json();
+  if(!Array.isArray(ds) || !ds.length) return null;   // file chưa có
+  return {sha:ds[0].sha, ngay:ds[0].commit.author.date};
+}
+
+async function kiemTraAnh(hop, imLang){
+  const tenFile=hop.dataset.file;
+  const tt=hop.querySelector('.gui-tt');
+  const nut=hop.querySelector('.gui-kt');
+  const im=hop.querySelector('.gui-game');
+  if(nut){ nut.classList.add('dang'); }
+  if(!imLang) ghHienTT(tt,'muted','Đang kiểm tra trên GitHub…');
+  try{
+    const kq=await ghCommitAnh(tenFile);
+    if(!kq){
+      im.hidden=true; im.removeAttribute('src'); im.dataset.sha='';
+      ghHienTT(tt,'muted','⬜ Chưa có trong game. Gửi ảnh rồi bấm 🔄 Kiểm tra lại (bot cần ~1–2 phút).');
+      return {co:false};
+    }
+    im.dataset.sha=kq.sha;
+    im.src=`https://raw.githubusercontent.com/${GH_REPO}/${kq.sha}/${thuMucAnh(tenFile)}${tenFile}`;
+    im.hidden=false;
+    // Đổi nhãn trên thẻ cho khớp (không cần tải lại trang).
+    const the=hop.closest('article');
+    if(the){
+      the.classList.add('done');
+      const nh=the.querySelector('header .badge');
+      if(nh){ nh.className='badge chac'; nh.textContent='✅ đã có'; }
+    }
+    const khi=new Date(kq.ngay);
+    const gio=isNaN(khi)?kq.ngay:khi.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',
+      day:'2-digit',month:'2-digit'});
+    ghHienTT(tt,'ok',`✅ Đã vào game · ${gio} · <code>${kq.sha.slice(0,7)}</code> — ảnh dưới là bản trong game.`);
+    return {co:true, sha:kq.sha};
+  }catch(e){
+    ghHienTT(tt,'warn',`⚠️ Không kiểm tra được: ${e}`);
+    return {co:null};
+  }finally{
+    if(nut) nut.classList.remove('dang');
+  }
+}
+
+/* Sau khi gửi: tự dò vài lần, không cần bấm gì. */
+async function theoDoiAnh(hop){
+  const tt=hop.querySelector('.gui-tt');
+  for(let lan=1; lan<=10; lan++){
+    await new Promise(r=>setTimeout(r, 15000));
+    const kq=await kiemTraAnh(hop, true);
+    if(kq.co){
+      ghHienTT(tt,'ok','🎉 Bot đã ghép ảnh vào game! (xem ảnh dưới)');
+      return;
+    }
+    if(kq.co===null) return;   // lỗi mạng thì thôi, để người dùng tự bấm
+    if(lan<10) ghHienTT(tt,'muted',
+      `⏳ Bot đang xử lý… tự kiểm tra lại sau 15 giây (lần ${lan}/10). Cứ để trang mở.`);
+  }
+  ghHienTT(tt,'muted','⏳ Lâu hơn thường lệ. Bấm 🔄 Kiểm tra để thử lại.');
+}
+
 function khoiTaoO(){
   document.querySelectorAll('.gui-dan').forEach(o=>{
     const hop=o.parentElement;
     const inp=o.querySelector('input[type=file]');
     const nut=hop.querySelector('.gui-gui');
+    const kt=hop.querySelector('.gui-kt');
     // Chạm vào ô: đánh dấu ô này để Ctrl+V dán đúng đây (máy tính).
     o.addEventListener('click',()=>{ O_DANG_CHON=o; });
     o.addEventListener('focus',()=>{ O_DANG_CHON=o; });
     if(inp) inp.addEventListener('change',()=>{ if(inp.files[0]) datAnhVaoO(o,inp.files[0]); });
     if(nut) nut.addEventListener('click',()=>guiMotAnh(o,nut));
+    if(kt) kt.addEventListener('click',()=>kiemTraAnh(hop, false));
   });
   // Máy tính: Ctrl+V dán ảnh vào ô vừa chạm.
   document.addEventListener('paste',e=>{
@@ -615,14 +704,17 @@ async function guiMotAnh(o, nut){
     ghHienTT(tt,'muted',`Đang gửi ảnh (${Math.round(blob.size/1024)} KB)…`);
     const duong=`xuong-inbox/${key}/${key}.${duoi}`;
     await ghPutAnh(duong,b64,false);
-    ghHienTT(tt,'ok',`✅ Đã gửi <code>${key}.${duoi}</code>. Hệ thống tự ghép vào game trong ~1–2 phút; `+
-      `tải lại trang này để xem thẻ chuyển “đã có”.`);
+    ghHienTT(tt,'ok',`✅ Đã gửi <code>${key}.${duoi}</code>. Đang chờ bot ghép vào game — `+
+      `trang sẽ tự báo khi xong, không cần tải lại.`);
     o.classList.remove('act');
     o._file=null;
     const xem=o.querySelector('.gui-xem'); if(xem){ xem.hidden=true; xem.removeAttribute('src'); }
     const nhac=o.querySelector('.gui-nhac'); if(nhac) nhac.hidden=false;
     const inp=o.parentElement.querySelector('input[type=file]'); if(inp) inp.value='';
     O_DANG_CHON=null;
+    nut.disabled=true;
+    theoDoiAnh(o.parentElement);   // tự dò tới khi ảnh vào game
+    return;
   }catch(e){
     ghHienTT(tt,'warn',`⚠️ Không gửi được: ${e}`);
     nut.disabled=false;
