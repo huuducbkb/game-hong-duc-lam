@@ -732,6 +732,23 @@
       "dung_o": [
         "c1_p05c"
       ]
+    },
+    "nv_tuyet_co_canh_giac.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Cảnh giác trước lời đề nghị của Tuyết Cơ (p08b).",
+      "tags": [
+        "cảnh",
+        "giác",
+        "trước",
+        "lời",
+        "đề",
+        "nghị",
+        "tuyết",
+        "cơ"
+      ],
+      "dung_o": [
+        "c1_p08b"
+      ]
     }
   }
 }
