@@ -613,6 +613,23 @@
       "dung_o": [
         "c1_p03e"
       ]
+    },
+    "bc_vuon_thuoc_gap.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Lần đầu tới vườn thuốc, gặp Mạc Đại Phu (p04).",
+      "tags": [
+        "gặp",
+        "mạc",
+        "đại",
+        "phu",
+        "lần",
+        "đầu",
+        "tới",
+        "vườn"
+      ],
+      "dung_o": [
+        "c1_p04"
+      ]
     }
   }
 }
