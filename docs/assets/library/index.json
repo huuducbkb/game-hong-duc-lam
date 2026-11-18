@@ -111,8 +111,7 @@
         "c1_d04",
         "c1_d04c",
         "c1_d04d",
-        "c1_d09",
-        "c1_d10"
+        "c1_d09"
       ],
       "tags": [
         "miếu hoang",
@@ -245,6 +244,14 @@
         "đêm",
         "xác người",
         "nguy hiểm"
+      ]
+    },
+    "bc_dot_pha.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Đột phá Luyện Khí tầng một — kiếm khí chảy trong kinh mạch (d10).",
+      "tags": [],
+      "dung_o": [
+        "c1_d10"
       ]
     }
   }
