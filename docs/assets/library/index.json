@@ -4,427 +4,220 @@
   "anh": {
     "bc_cho_01.jpg": {
       "loai": "boi_canh",
-      "mo_ta": "Chợ sớm Thất Huyền trấn — quầy hàng, sọt rách, sương sớm",
+      "mo_ta": "Cảnh mở đầu — góc chợ sớm, quầy hàng, sọt rách. Dùng cho 6 đoạn (chợ, ngõ, quán nước).",
+      "tags": [
+        "cảnh",
+        "mở",
+        "đầu",
+        "—",
+        "góc",
+        "chợ",
+        "sớm,",
+        "quầy"
+      ],
       "dung_o": [
         "c1_d01"
-      ],
-      "tags": [
-        "chợ",
-        "ngõ",
-        "quán nước",
-        "sáng",
-        "chiều",
-        "dò tin",
-        "ăn mày"
       ]
     },
     "bc_tan_xa_dem.jpg": {
       "loai": "boi_canh",
-      "mo_ta": "Tân xá môn phái — phòng ở tập thể ban đêm, sập gỗ, đèn giấy",
-      "dung_o": [
-        "c1_p01",
-        "c1_p03b",
-        "c1_p11",
-        "c1_p11b",
-        "c1_p12"
-      ],
+      "mo_ta": "Phòng ở tập thể môn phái, ban đêm — tu luyện, song tu, đột phá. Dùng nhiều nhất (14 đoạn).",
       "tags": [
-        "tân xá",
-        "đêm",
-        "tu luyện",
-        "song tu",
-        "đột phá",
-        "luyện võ",
-        "sáng"
+        "phòng",
+        "ở",
+        "tập",
+        "thể",
+        "môn",
+        "phái,",
+        "ban",
+        "đêm"
+      ],
+      "dung_o": [
+        "c1_p11"
       ]
     },
     "vt_ngoc_cot.jpg": {
       "loai": "vat_pham",
-      "mo_ta": "Ngọc cốt bí ẩn — khối ngọc hình xương, phát sáng lạnh từ bên trong",
-      "dung_o": [
-        "c1_p06",
-        "c1_p07"
-      ],
+      "mo_ta": "Khối ngọc chứa Tuyết Cơ — hiện ở bảng thông tin cơ duyên + cảnh 'ngọc phát sáng' (6 đoạn).",
       "tags": [
-        "ngọc cốt",
-        "khối ngọc",
-        "ngọc phát sáng",
-        "cơ duyên",
-        "vật phẩm"
+        "khối",
+        "ngọc",
+        "chứa",
+        "tuyết",
+        "cơ",
+        "—",
+        "hiện",
+        "ở"
+      ],
+      "dung_o": [
+        "c1_p07"
       ]
     },
     "nv_tuyet_co.jpg": {
       "loai": "nhan_vat",
-      "mo_ta": "Tuyết Cơ — nữ tu Hợp Hoan Tông trong ngọc cốt, lạnh lùng thanh khiết",
-      "dung_o": [
-        "c1_p08",
-        "c1_p08b",
-        "c1_p09",
-        "c1_p09b",
-        "c1_p09c",
-        "c1_p10",
-        "c1_p10b",
-        "c1_p11c"
-      ],
+      "mo_ta": "Nữ tu Hợp Hoan Tông trong ngọc cốt — chân dung gợi cảm, quyến rũ, bí ẩn (25 đoạn nhắc tên).",
       "tags": [
-        "Tuyết Cơ",
-        "Hợp Hoan Tông",
-        "khế ước",
-        "ngọc cốt",
-        "song tu",
-        "đối thoại"
+        "nữ",
+        "tu",
+        "hợp",
+        "hoan",
+        "tông",
+        "trong",
+        "ngọc",
+        "cốt"
       ],
-      "thuoc_tinh": {
-        "chung_loai": "nhân loại",
-        "gioi_tinh": "nữ",
-        "tuoi_tac": "trẻ",
-        "voc_dang": "thon",
-        "mau_da": "trắng ngọc",
-        "ngoai_hinh": "mày liễu, mắt lạnh, tóc dài cài trâm",
-        "than_thai": "lạnh lùng, thanh khiết",
-        "trang_phuc": "bạch y lam văn",
-        "chung_toc": "nhân loại",
-        "tinh_cach": [
-          "lạnh lùng",
-          "tính toán"
-        ]
-      }
+      "dung_o": [
+        "c1_p08"
+      ]
     },
     "bc_duong_mon_nui.jpg": {
       "loai": "boi_canh",
-      "mo_ta": "Đường mòn hẹp lên núi, cỏ dại cao, trời chạng vạng",
+      "mo_ta": "Đường mòn hẹp dẫn lên núi, cỏ dại cao quá đầu, trời nhá nhem (đoạn d03).",
+      "tags": [
+        "đường",
+        "mòn",
+        "hẹp",
+        "dẫn",
+        "lên",
+        "núi,",
+        "cỏ",
+        "dại"
+      ],
       "dung_o": [
         "c1_d03"
-      ],
-      "tags": [
-        "đường mòn",
-        "núi",
-        "chạng vạng",
-        "một mình"
       ]
     },
     "bc_mieu_hoang.jpg": {
       "loai": "boi_canh",
-      "mo_ta": "Miếu hoang sau núi — xương khô, vết cào, hộp gỗ đen",
+      "mo_ta": "Miếu hoang — xương khô, vết cào trên vách, hộp gỗ đen (d04, d04b, d04c, d04d, d09, d10).",
+      "tags": [
+        "miếu",
+        "hoang",
+        "—",
+        "xương",
+        "khô,",
+        "vết",
+        "cào",
+        "trên"
+      ],
       "dung_o": [
         "c1_d04"
-      ],
-      "tags": [
-        "miếu hoang",
-        "đêm",
-        "hộp gỗ",
-        "xương khô",
-        "nguy hiểm"
       ]
     },
     "vt_kiem_hap.jpg": {
       "loai": "vat_pham",
-      "mo_ta": "Hồng Trần Kiếm Hạp — hộp gỗ đen, cặp kiếm dài-ngắn chứa kiếm linh",
+      "mo_ta": "Hộp gỗ đen + cặp kiếm dài-ngắn chứa kiếm linh (d05, d08). Ảnh cho bảng Cơ duyên.",
+      "tags": [
+        "hộp",
+        "gỗ",
+        "đen",
+        "+",
+        "cặp",
+        "kiếm",
+        "dài-ngắn",
+        "chứa"
+      ],
       "dung_o": [
         "c1_d05"
-      ],
-      "tags": [
-        "hộp kiếm",
-        "cặp kiếm",
-        "cơ duyên",
-        "vật phẩm"
       ]
     },
     "nv_kiem_linh.jpg": {
       "loai": "nhan_vat",
-      "mo_ta": "Kiếm linh Hồng Trần — thanh niên áo trắng, mắt sáng như kiếm quang",
+      "mo_ta": "Kiếm linh — thanh niên áo trắng, mặt lạnh, mắt sáng như kiếm quang (d06, d06b, d07, d07b).",
+      "tags": [
+        "kiếm",
+        "linh",
+        "—",
+        "thanh",
+        "niên",
+        "áo",
+        "trắng,",
+        "mặt"
+      ],
       "dung_o": [
         "c1_d06"
-      ],
-      "tags": [
-        "kiếm linh",
-        "áo trắng",
-        "đối thoại",
-        "bí ẩn"
       ]
     },
     "bc_tran_lua.jpg": {
       "loai": "boi_canh",
-      "mo_ta": "Trấn Thất Huyền chìm trong lửa — Dã Lang Bang tập kích ban đêm",
+      "mo_ta": "Trấn cháy, cướp Dã Lang Bang tấn công (d11, d12, d13 và p13, p14, p14b-e).",
+      "tags": [
+        "trấn",
+        "cháy,",
+        "cướp",
+        "dã",
+        "lang",
+        "bang",
+        "tấn",
+        "công"
+      ],
       "dung_o": [
         "c1_d11"
-      ],
-      "tags": [
-        "trấn cháy",
-        "Dã Lang Bang",
-        "tập kích",
-        "hỗn loạn"
       ]
     },
     "bc_tan_hoang.jpg": {
       "loai": "boi_canh",
-      "mo_ta": "Sau trận — đống đổ nát lúc bình minh, khói còn vương",
+      "mo_ta": "Thất Huyền trấn / Thất Huyền Môn tan hoang khi trời gần sáng (d14, p16).",
+      "tags": [
+        "thất",
+        "huyền",
+        "trấn",
+        "/",
+        "thất",
+        "huyền",
+        "môn",
+        "tan"
+      ],
       "dung_o": [
         "c1_d14"
-      ],
-      "tags": [
-        "đổ nát",
-        "sau trận",
-        "bình minh",
-        "tang thương"
       ]
     },
     "nv_han_lap.jpg": {
       "loai": "nhan_vat",
-      "mo_ta": "Hàn Lập — thanh niên gầy, mắt sắc như dao, áo vải thô",
+      "mo_ta": "Hàn Lập — thanh niên gầy, mắt sắc như dao, áo vải thô (d15, d16 và p17, p18a-d).",
+      "tags": [
+        "hàn",
+        "lập",
+        "—",
+        "thanh",
+        "niên",
+        "gầy,",
+        "mắt",
+        "sắc"
+      ],
       "dung_o": [
         "c1_d15"
-      ],
-      "tags": [
-        "Hàn Lập",
-        "đối thoại",
-        "hậu sơn",
-        "bí ẩn"
       ]
     },
     "bc_binh_minh.jpg": {
       "loai": "boi_canh",
-      "mo_ta": "Bình minh Thất Huyền trấn — kết chương 1",
+      "mo_ta": "Ánh bình minh đầu tiên rọi lên vai áo rách — kết chương 1 (d17, p19).",
+      "tags": [
+        "ánh",
+        "bình",
+        "minh",
+        "đầu",
+        "tiên",
+        "rọi",
+        "lên",
+        "vai"
+      ],
       "dung_o": [
         "c1_d17"
-      ],
-      "tags": [
-        "bình minh",
-        "kết chương",
-        "hy vọng"
-      ]
-    },
-    "bc_cho_02.jpg": {
-      "loai": "boi_canh",
-      "mo_ta": "Ngõ nhỏ sau chợ — đám ăn mày quanh đống lửa, nghe lời đồn Dã Lang Bang",
-      "dung_o": [
-        "c1_d02"
-      ],
-      "tags": [
-        "ngõ",
-        "chợ",
-        "lời đồn",
-        "ăn mày",
-        "chiều"
-      ]
-    },
-    "bc_cho_03.jpg": {
-      "loai": "boi_canh",
-      "mo_ta": "Góc chợ — ngày dài xin ăn, mòn mỏi",
-      "dung_o": [
-        "c1_d02b"
-      ],
-      "tags": [
-        "chợ",
-        "chiều",
-        "mòn mỏi",
-        "một mình"
-      ]
-    },
-    "bc_mieu_trong.jpg": {
-      "loai": "boi_canh",
-      "mo_ta": "Trong miếu — xác người mới chết còn ấm",
-      "dung_o": [
-        "c1_d04b"
-      ],
-      "tags": [
-        "miếu hoang",
-        "đêm",
-        "xác người",
-        "nguy hiểm"
-      ]
-    },
-    "nv_do_tam_mieu.jpg": {
-      "loai": "nhan_vat",
-      "mo_ta": "Đỗ Tam chặn cửa miếu, đòi tranh hộp kiếm (d04c).",
-      "tags": [
-        "tranh",
-        "giành",
-        "đỗ",
-        "tam",
-        "chặn",
-        "cửa",
-        "miếu",
-        "đòi"
-      ],
-      "dung_o": [
-        "c1_d04c"
-      ]
-    },
-    "bc_doat_hop.jpg": {
-      "loai": "boi_canh",
-      "mo_ta": "Đoạt hộp kiếm — Đỗ Tam chém trúng vai, phản phệ (d04d).",
-      "tags": [
-        "đỗ",
-        "tam",
-        "phản",
-        "phệ",
-        "đoạt",
-        "hộp",
-        "kiếm",
-        "chém"
-      ],
-      "dung_o": [
-        "c1_d04d"
-      ]
-    },
-    "nv_kiem_linh_thu.jpg": {
-      "loai": "nhan_vat",
-      "mo_ta": "Kiếm linh thử thách — kiếm lơ lửng trước mặt (d06b).",
-      "tags": [
-        "thử",
-        "thách",
-        "kiếm",
-        "linh",
-        "lơ",
-        "lửng",
-        "trước",
-        "mặt"
-      ],
-      "dung_o": [
-        "c1_d06b"
-      ]
-    },
-    "nv_kiem_linh_than.jpg": {
-      "loai": "nhan_vat",
-      "mo_ta": "Kiếm linh kể thân phận — Hồng Trần Kiếm, kiếm tu ngã xuống ngàn năm trước (d07).",
-      "tags": [
-        "hồng",
-        "trần",
-        "kiếm",
-        "tu",
-        "ngã",
-        "xuống",
-        "ngàn",
-        "năm"
-      ],
-      "dung_o": [
-        "c1_d07"
-      ]
-    },
-    "nv_kiem_linh_dieu.jpg": {
-      "loai": "nhan_vat",
-      "mo_ta": "Kiếm linh ra điều kiện — phải lăn lộn giữa hồng trần (d07b).",
-      "tags": [
-        "phải",
-        "lăn",
-        "lộn",
-        "giữa",
-        "hồng",
-        "trần"
-      ],
-      "dung_o": [
-        "c1_d07b"
-      ]
-    },
-    "vt_kiem_hap_nhan.jpg": {
-      "loai": "vat_pham",
-      "mo_ta": "Nhận chủ — kiếm linh rạch tay, máu nhỏ lên hai thanh kiếm (d08).",
-      "tags": [
-        "máu",
-        "nhỏ",
-        "lên",
-        "kiếm",
-        "nhận",
-        "chủ",
-        "linh",
-        "rạch"
-      ],
-      "dung_o": [
-        "c1_d08"
-      ]
-    },
-    "bc_tu_khiem.jpg": {
-      "loai": "boi_canh",
-      "mo_ta": "Tu luyện kiếm đạo đêm đầu — dẫn khí vào lưỡi kiếm (d09).",
-      "tags": [
-        "đêm",
-        "đầu",
-        "tu",
-        "luyện",
-        "kiếm",
-        "đạo",
-        "dẫn",
-        "khí"
-      ],
-      "dung_o": [
-        "c1_d09"
-      ]
-    },
-    "bc_dot_pha.jpg": {
-      "loai": "boi_canh",
-      "mo_ta": "Đột phá Luyện Khí tầng một — kiếm khí chảy trong kinh mạch (d10).",
-      "tags": [
-        "kiếm",
-        "khí",
-        "chảy",
-        "kinh",
-        "mạch"
-      ],
-      "dung_o": [
-        "c1_d10"
-      ]
-    },
-    "bc_tran_lua_2.jpg": {
-      "loai": "boi_canh",
-      "mo_ta": "Xuống trấn cứu dân — lần đầu giết người (d12).",
-      "tags": [
-        "cứu",
-        "dân",
-        "xuống",
-        "trấn",
-        "lần",
-        "đầu",
-        "giết",
-        "người"
-      ],
-      "dung_o": [
-        "c1_d12"
-      ]
-    },
-    "bc_tran_lua_3.jpg": {
-      "loai": "boi_canh",
-      "mo_ta": "Thất Huyền Môn cổng vỡ — đệ tử ngã la liệt (d13).",
-      "tags": [
-        "cổng",
-        "vỡ",
-        "thất",
-        "huyền",
-        "môn",
-        "đệ",
-        "tử",
-        "ngã"
-      ],
-      "dung_o": [
-        "c1_d13"
-      ]
-    },
-    "nv_han_lap_2.jpg": {
-      "loai": "nhan_vat",
-      "mo_ta": "Đối thoại với Hàn Lập sau trận — hắn đã ghi nhớ ta (d16).",
-      "tags": [
-        "hắn",
-        "đã",
-        "ghi",
-        "nhớ",
-        "ta"
-      ],
-      "dung_o": [
-        "c1_d16"
       ]
     },
     "bc_quan_nuoc.jpg": {
       "loai": "boi_canh",
       "mo_ta": "Quán nước đầu trấn nơi khách giang hồ tụ tập, nghe ngóng tin Dã Lang Bang (p05).",
       "tags": [
-        "dò",
-        "tin",
         "quán",
         "nước",
         "đầu",
         "trấn",
         "nơi",
-        "khách"
+        "khách",
+        "giang",
+        "hồ"
       ],
       "dung_o": [
         "c1_p05"
@@ -434,14 +227,14 @@
       "loai": "boi_canh",
       "mo_ta": "Thất Huyền Môn tổn thất nặng sau trận; Mạc Đại Phu xách hòm thuốc cứu chữa (p16).",
       "tags": [
+        "thất",
+        "huyền",
+        "môn",
+        "tổn",
+        "thất",
+        "nặng",
         "sau",
-        "trận",
-        "mạc",
-        "đại",
-        "phu",
-        "cứu",
-        "người",
-        "thất"
+        "trận;"
       ],
       "dung_o": [
         "c1_p16"
@@ -451,17 +244,255 @@
       "loai": "boi_canh",
       "mo_ta": "Bình minh đầu tiên sau đêm đầu; khối ngọc cốt khẽ ấm trong vạt áo — kết chương (p19).",
       "tags": [
-        "ngọc",
-        "cốt",
-        "vạt",
-        "áo",
         "bình",
         "minh",
         "đầu",
-        "tiên"
+        "tiên",
+        "sau",
+        "đêm",
+        "đầu;",
+        "khối"
       ],
       "dung_o": [
         "c1_p19"
+      ]
+    },
+    "bc_cho_02.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Ngõ nhỏ sau chợ — đám ăn mày quanh đống lửa, nghe lời đồn Dã Lang Bang (d02).",
+      "tags": [
+        "ngõ",
+        "nhỏ",
+        "sau",
+        "chợ",
+        "—",
+        "đám",
+        "ăn",
+        "mày"
+      ],
+      "dung_o": [
+        "c1_d02"
+      ]
+    },
+    "bc_cho_03.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Góc chợ — ngày dài xin ăn, mòn mỏi (d02b).",
+      "tags": [
+        "góc",
+        "chợ",
+        "—",
+        "ngày",
+        "dài",
+        "xin",
+        "ăn,",
+        "mòn"
+      ],
+      "dung_o": [
+        "c1_d02b"
+      ]
+    },
+    "bc_mieu_trong.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Trong miếu — phát hiện xác người mới chết còn ấm (d04b).",
+      "tags": [
+        "trong",
+        "miếu",
+        "—",
+        "phát",
+        "hiện",
+        "xác",
+        "người",
+        "mới"
+      ],
+      "dung_o": [
+        "c1_d04b"
+      ]
+    },
+    "nv_do_tam_mieu.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Đỗ Tam chặn cửa miếu, đòi tranh hộp kiếm (d04c).",
+      "tags": [
+        "đỗ",
+        "tam",
+        "chặn",
+        "cửa",
+        "miếu,",
+        "đòi",
+        "tranh",
+        "hộp"
+      ],
+      "dung_o": [
+        "c1_d04c"
+      ]
+    },
+    "bc_doat_hop.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Đoạt hộp kiếm — Đỗ Tam chém trúng vai, phản phệ (d04d).",
+      "tags": [
+        "đoạt",
+        "hộp",
+        "kiếm",
+        "—",
+        "đỗ",
+        "tam",
+        "chém",
+        "trúng"
+      ],
+      "dung_o": [
+        "c1_d04d"
+      ]
+    },
+    "bc_tu_khiem.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Tu luyện kiếm đạo đêm đầu — dẫn khí vào lưỡi kiếm (d09).",
+      "tags": [
+        "tu",
+        "luyện",
+        "kiếm",
+        "đạo",
+        "đêm",
+        "đầu",
+        "—",
+        "dẫn"
+      ],
+      "dung_o": [
+        "c1_d09"
+      ]
+    },
+    "bc_dot_pha.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Đột phá Luyện Khí tầng một — kiếm khí chảy trong kinh mạch (d10).",
+      "tags": [
+        "đột",
+        "phá",
+        "luyện",
+        "khí",
+        "tầng",
+        "một",
+        "—",
+        "kiếm"
+      ],
+      "dung_o": [
+        "c1_d10"
+      ]
+    },
+    "vt_kiem_hap_nhan.jpg": {
+      "loai": "vat_pham",
+      "mo_ta": "Nhận chủ — kiếm linh rạch tay, máu nhỏ lên hai thanh kiếm (d08).",
+      "tags": [
+        "nhận",
+        "chủ",
+        "—",
+        "kiếm",
+        "linh",
+        "rạch",
+        "tay,",
+        "máu"
+      ],
+      "dung_o": [
+        "c1_d08"
+      ]
+    },
+    "nv_kiem_linh_thu.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Kiếm linh thử thách — kiếm lơ lửng trước mặt (d06b).",
+      "tags": [
+        "kiếm",
+        "linh",
+        "thử",
+        "thách",
+        "—",
+        "kiếm",
+        "lơ",
+        "lửng"
+      ],
+      "dung_o": [
+        "c1_d06b"
+      ]
+    },
+    "nv_kiem_linh_than.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Kiếm linh kể thân phận — Hồng Trần Kiếm, kiếm tu ngã xuống ngàn năm trước (d07).",
+      "tags": [
+        "kiếm",
+        "linh",
+        "kể",
+        "thân",
+        "phận",
+        "—",
+        "hồng",
+        "trần"
+      ],
+      "dung_o": [
+        "c1_d07"
+      ]
+    },
+    "nv_kiem_linh_dieu.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Kiếm linh ra điều kiện — phải lăn lộn giữa hồng trần (d07b).",
+      "tags": [
+        "kiếm",
+        "linh",
+        "ra",
+        "điều",
+        "kiện",
+        "—",
+        "phải",
+        "lăn"
+      ],
+      "dung_o": [
+        "c1_d07b"
+      ]
+    },
+    "bc_tran_lua_2.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Xuống trấn cứu dân — lần đầu giết người (d12).",
+      "tags": [
+        "xuống",
+        "trấn",
+        "cứu",
+        "dân",
+        "—",
+        "lần",
+        "đầu",
+        "giết"
+      ],
+      "dung_o": [
+        "c1_d12"
+      ]
+    },
+    "bc_tran_lua_3.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Thất Huyền Môn cổng vỡ — đệ tử ngã la liệt (d13).",
+      "tags": [
+        "thất",
+        "huyền",
+        "môn",
+        "cổng",
+        "vỡ",
+        "—",
+        "đệ",
+        "tử"
+      ],
+      "dung_o": [
+        "c1_d13"
+      ]
+    },
+    "nv_han_lap_2.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Đối thoại với Hàn Lập sau trận — hắn đã ghi nhớ ta (d16).",
+      "tags": [
+        "đối",
+        "thoại",
+        "với",
+        "hàn",
+        "lập",
+        "sau",
+        "trận",
+        "—"
+      ],
+      "dung_o": [
+        "c1_d16"
       ]
     }
   }

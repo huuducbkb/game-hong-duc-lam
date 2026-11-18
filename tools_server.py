@@ -583,6 +583,14 @@ ASSETS = [
     },
 ]
 
+# Nhánh môn phái: mỗi đoạn một cảnh riêng (xem tools/xuong_monphai.py).
+import importlib.util as _ilu
+_mp_spec = _ilu.spec_from_file_location(
+    "xuong_monphai", os.path.join(ROOT, "tools", "xuong_monphai.py"))
+MP = _ilu.module_from_spec(_mp_spec)
+_mp_spec.loader.exec_module(MP)
+ASSETS.extend(MP.assets(STYLE_MAU))
+
 # Ảnh truyện/nhân vật dùng bản tô màu điểm (彩墨) thay cho mực đen thuần.
 for _a in ASSETS:
     if _a["key"] in MAU_KEYS and _a["prompt"].startswith(STYLE):
@@ -721,41 +729,36 @@ NHOM_DOT1 = [
 ]
 
 
-# Đoạn truyện mà mỗi ảnh cảnh nhắm tới. Nhận được ảnh → gán thẳng vào các đoạn này.
-# Ảnh mới (D.x) sẽ THAY ảnh cũ dùng chung ở đúng đoạn đó (mỗi cảnh một ảnh riêng).
+# Đoạn truyện mà mỗi ảnh cảnh nhắm tới. Nhận được ảnh → gán thẳng vào đoạn này.
+# QUY TẮC: mỗi cảnh một ảnh riêng — không ảnh nào gánh hai đoạn.
 DOAN_CUA_ANH = {
+    # ─ Nhánh tán tu ─
     "bc_cho_01": ["c1_d01"],
-    "bc_tan_xa_dem": ["c1_p01", "c1_p03b", "c1_p11", "c1_p11b", "c1_p12"],
-    "vt_ngoc_cot": ["c1_p06", "c1_p07"],
-    "nv_tuyet_co": ["c1_p08", "c1_p08b", "c1_p09", "c1_p09b", "c1_p09c",
-                    "c1_p10", "c1_p10b", "c1_p11c"],
-    "bc_duong_mon_nui": ["c1_d03"],
-    "bc_mieu_hoang": ["c1_d04", "c1_d04c", "c1_d04d", "c1_d09", "c1_d10"],
-    "vt_kiem_hap": ["c1_d05", "c1_d08"],
-    "nv_kiem_linh": ["c1_d06", "c1_d06b", "c1_d07", "c1_d07b"],
-    "bc_tran_lua": ["c1_d11", "c1_d12", "c1_d13"],
-    "bc_tan_hoang": ["c1_d14"],
-    "nv_han_lap": ["c1_d15", "c1_d16"],
-    "bc_binh_minh": ["c1_d17"],
-    # --- đợt 1: mỗi ảnh thay ảnh dùng chung ở đúng một đoạn ---
-    "bc_quan_nuoc": ["c1_p05"],
-    "bc_mon_phai_tan_hoang": ["c1_p16"],
-    "bc_binh_minh_ngoc_cot": ["c1_p19"],
     "bc_cho_02": ["c1_d02"],
     "bc_cho_03": ["c1_d02b"],
+    "bc_duong_mon_nui": ["c1_d03"],
+    "bc_mieu_hoang": ["c1_d04"],
     "bc_mieu_trong": ["c1_d04b"],
     "nv_do_tam_mieu": ["c1_d04c"],
     "bc_doat_hop": ["c1_d04d"],
-    "bc_tu_khiem": ["c1_d09"],
-    "bc_dot_pha": ["c1_d10"],
-    "vt_kiem_hap_nhan": ["c1_d08"],
+    "vt_kiem_hap": ["c1_d05"],
+    "nv_kiem_linh": ["c1_d06"],
     "nv_kiem_linh_thu": ["c1_d06b"],
     "nv_kiem_linh_than": ["c1_d07"],
     "nv_kiem_linh_dieu": ["c1_d07b"],
+    "vt_kiem_hap_nhan": ["c1_d08"],
+    "bc_tu_khiem": ["c1_d09"],
+    "bc_dot_pha": ["c1_d10"],
+    "bc_tran_lua": ["c1_d11"],
     "bc_tran_lua_2": ["c1_d12"],
     "bc_tran_lua_3": ["c1_d13"],
+    "bc_tan_hoang": ["c1_d14"],
+    "nv_han_lap": ["c1_d15"],
     "nv_han_lap_2": ["c1_d16"],
+    "bc_binh_minh": ["c1_d17"],
 }
+# ─ Nhánh môn phái: mỗi đoạn một cảnh riêng (35 cảnh mới + 6 cảnh đã có) ─
+DOAN_CUA_ANH.update(MP.doan_cua_anh())
 
 # Bố cục Xưởng: nhóm theo chương / công dụng để dễ nhìn.
 NHOM_BO_CUC = [
@@ -844,26 +847,7 @@ NHOM_CANH = [
     {"ma": "d-ket", "phan": "c1-tan-tu", "ten": "Kết chương — bình minh",
      "mota": "Bình minh đầu tiên rọi lên vai áo rách.",
      "keys": ["bc_binh_minh"], "mau": []},
-    # ─ Nhánh môn phái ─
-    {"ma": "p-quan-nuoc", "phan": "c1-mon-phai", "ten": "Quán nước — dò tin",
-     "mota": "Quán nước đầu trấn, nghe ngóng tin Dã Lang Bang.",
-     "keys": ["bc_quan_nuoc"], "mau": []},
-    {"ma": "p-sau-tran", "phan": "c1-mon-phai", "ten": "Sau trận — Mạc Đại Phu",
-     "mota": "Thất Huyền Môn tổn thất; Mạc Đại Phu xách hòm thuốc cứu chữa.",
-     "keys": ["bc_mon_phai_tan_hoang"], "mau": []},
-    {"ma": "p-tan-xa", "phan": "c1-mon-phai", "ten": "Tân xá — đêm",
-     "mota": "Phòng tu luyện của tạp dịch đệ tử.", "keys": ["bc_tan_xa_dem"],
-     "mau": []},
-    {"ma": "p-ngoc-cot", "phan": "c1-mon-phai", "ten": "Ngọc cốt bí ẩn",
-     "mota": "Ngọc cốt — vật phẩm cơ duyên.", "keys": ["vt_ngoc_cot"],
-     "mau": []},
-    {"ma": "p-tuyet-co", "phan": "c1-mon-phai", "ten": "Tuyết Cơ",
-     "mota": "Ngọc cốt Tuyết Cơ — nhân vật bí ẩn.", "keys": ["nv_tuyet_co"],
-     "mau": []},
-    {"ma": "p-ket", "phan": "c1-mon-phai", "ten": "Kết chương — ngọc cốt",
-     "mota": "Bình minh đầu tiên; ngọc cốt khẽ ấm trong vạt áo.",
-     "keys": ["bc_binh_minh_ngoc_cot"], "mau": []},
-]
+] + MP.NHOM_CANH
 
 # key -> mã nhóm cảnh (suy từ NHOM_CANH)
 NHOM_CANH_CUA = {k: n["ma"] for n in NHOM_CANH for k in n["keys"]}

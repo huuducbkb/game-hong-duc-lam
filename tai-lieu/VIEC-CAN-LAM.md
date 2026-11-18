@@ -13,16 +13,12 @@
         prompt từng ảnh + nút copy + trạng thái ảnh, không cần server
   - [x] **GitHub Action tự xử lý ảnh** ✓ — dán ảnh vào Issue (nhãn `xuong-anh`) hoặc bỏ
         vào `xuong-inbox/` → tự nhận diện → nén → ghép vào đúng đoạn → deploy → báo trong Issue
-  - [x] **Bản đồ ảnh → đoạn** ✓ — `DOAN_CUA_ANH` trong `tools_server.py`
+  - [x] **Bản đồ ảnh → đoạn** ✓ — `DOAN_CUA_ANH` (mỗi ảnh đúng **một** đoạn)
   - [~] **→ Người dùng: cần thêm secret `GEMINI_KEY`** (1 lần) để AI nhận diện ảnh
-  - **Tiến độ ảnh cảnh Chương 1: 15/26 ảnh có đoạn** (11 ảnh đợt 1 chờ vẽ)
-    - [x] **Nhóm 1 — Phong cảnh (3/3)** ✓ (PR #31 + #32)
-    - [ ] Nhóm 2 — Đồ vật hộp kiếm (0/1): vt_kiem_hap_nhan
-    - [ ] Nhóm 3 — Nhân vật chính (0/3): bc_dot_pha · bc_tran_lua_2 · bc_tran_lua_3
-    - [ ] Nhóm 4 — Kiếm linh (0/3): nv_kiem_linh_thu · nv_kiem_linh_than · nv_kiem_linh_dieu
-    - [ ] Nhóm 5 — Đỗ Tam (0/2): nv_do_tam_mieu · bc_doat_hop
-    - [ ] Nhóm 6 — NV chính + Kiếm linh (0/1): bc_tu_khiem
-    - [ ] Nhóm 7 — Hàn Lập (0/1): nv_han_lap_2
+  - **Tiến độ ảnh cảnh Chương 1: 29/64 đoạn có ảnh** (mỗi đoạn một cảnh riêng)
+    - [x] **Nhánh tán tu — 23 đoạn, đủ 23 ảnh** ✓
+    - [x] **Nhánh môn phái — 6/41 đoạn có ảnh** (p05 · p07 · p08 · p11 · p16 · p19)
+    - [ ] Nhánh môn phái còn **35 cảnh chờ vẽ** — prompt + nút 📁 Up đã sẵn trong Xưởng
 
 ---
 
@@ -156,13 +152,17 @@
 - [x] **Bảng canon nhân vật & đồ vật** — `tai-lieu/CANON-NHAN-VAT-DO-VAT.md`
 - [~] **Ảnh mẫu tham chiếu** (vẽ 1 lần, dùng lại cho mọi chương sau)
   - [ ] 4 ảnh mẫu cần vẽ: nhân vật chính · Mạc Đại Phu · Đỗ Tam · Hùng Bá
-- [ ] **51 ảnh cảnh Chương 1** (63 cảnh − 12 ảnh đã có), chia 6 đợt
-  - [~] **Đợt 1 — nhánh tán tu: 14 ảnh** (prompt đã sẵn trong Xưởng)
-  - [ ] Đợt 2 — nhánh tán tu còn lại
-  - [ ] Đợt 3 — môn phái: sân tập, vườn thuốc
-  - [ ] Đợt 4 — môn phái: hậu sơn, ngọc cốt (Tuyết Cơ)
-  - [ ] Đợt 5 — môn phái: tân xá, khổ tu
-  - [ ] Đợt 6 — môn phái: cổng đông, Hàn Lập
+- [ ] **Ảnh cảnh Chương 1 — mỗi đoạn một cảnh riêng**
+  - Quy tắc: **mỗi đoạn truyện một ảnh riêng**, hai nhánh không dùng chung ảnh.
+    Nhánh tán tu đã đủ (23 đoạn = 23 ảnh). Nhánh môn phái trước đây chỉ 6 ảnh
+    gánh 41 đoạn → đã bổ sung **35 cảnh còn thiếu** vào Xưởng (`tools/xuong_monphai.py`).
+  - [x] Nhánh tán tu — 23 đoạn, 23 ảnh riêng ✓
+  - [x] Nhánh môn phái — 41 đoạn, **41 cảnh riêng** (6 ảnh đã có + 35 prompt mới)
+        · 6 đoạn đã gán ảnh (p05 · p07 · p08 · p11 · p16 · p19)
+        · 35 cảnh còn lại chờ vẽ (prompt + nút 📁 Up đã sẵn trong Xưởng)
+  - Nhóm cảnh môn phái trong Xưởng: mở đầu · sân tập/sân sau · vườn thuốc ·
+    quán nước & khe núi · ngọc cốt · Tuyết Cơ · tân xá · tập kích · cổng đông ·
+    hỏa trường · sau trận · Hàn Lập · kết chương.
 - [ ] Sửa ảnh gán sai: `c1_p19` (kết chương) → `bc_binh_minh` (thay `vt_ngoc_cot`)
       → [x] **ĐÃ SỬA** (xem "VỪA XONG — Ghép 3 ảnh nhóm 1 vào game")
 
