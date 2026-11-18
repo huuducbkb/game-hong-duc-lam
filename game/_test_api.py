@@ -531,7 +531,10 @@ check("ảnh 5:1 → btn-choice", (kq.get("ket_qua") or [{}])[0].get("key"), "bt
 _TEP = ["assets/ui/divider-ink.jpg", "docs/assets/ui/divider-ink.jpg",
         "assets/ui-orig/divider-ink.jpg", "assets/scene/bc_cho_01.jpg",
         "docs/assets/scene/bc_cho_01.jpg", "assets/scene-orig/bc_cho_01.jpg",
-        "assets/ui/seal.png", "docs/assets/ui/seal.png", "assets/ui-orig/seal.png"]
+        "assets/ui/seal.png", "docs/assets/ui/seal.png", "assets/ui-orig/seal.png",
+        # /luu_loat nay cung ghep vao truyen + cap nhat thu vien → phai phuc hoi ca 2
+        "docs/assets/library/index.json", "game/chapters/chuong1.json",
+        "docs/game/du-lieu/chuong1.json"]
 _snap = _snap(_TEP)
 
 kq = _post_raw("/luu_loat", {"ds": [{"key": "divider-ink", "data": _b64(_png(1600, 160))}]})
