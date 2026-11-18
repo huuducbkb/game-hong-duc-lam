@@ -800,6 +800,23 @@
       "dung_o": [
         "c1_p09c"
       ]
+    },
+    "nv_tuyet_co_khe_uoc.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Đưa tay ra, ký khế ước với Tuyết Cơ (p10).",
+      "tags": [
+        "ký",
+        "khế",
+        "ước",
+        "đưa",
+        "tay",
+        "ra",
+        "với",
+        "tuyết"
+      ],
+      "dung_o": [
+        "c1_p10"
+      ]
     }
   }
 }
