@@ -528,6 +528,23 @@
       "dung_o": [
         "c1_p02"
       ]
+    },
+    "bc_san_tap_chen_ep.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Tân đệ tử bị gã to con chèn ép trước đám đông (p03).",
+      "tags": [
+        "bị",
+        "chèn",
+        "ép",
+        "tân",
+        "đệ",
+        "tử",
+        "gã",
+        "to"
+      ],
+      "dung_o": [
+        "c1_p03"
+      ]
     }
   }
 }
