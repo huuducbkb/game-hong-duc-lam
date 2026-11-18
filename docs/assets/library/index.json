@@ -681,6 +681,23 @@
       "dung_o": [
         "c1_p06"
       ]
+    },
+    "bc_vuon_thuoc_dem.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Trằn trọc rồi lén quay lại vườn thuốc đào lên (p06b).",
+      "tags": [
+        "chôn",
+        "trả",
+        "lại",
+        "đêm",
+        "trằn",
+        "trọc",
+        "rồi",
+        "lén"
+      ],
+      "dung_o": [
+        "c1_p06b"
+      ]
     }
   }
 }
