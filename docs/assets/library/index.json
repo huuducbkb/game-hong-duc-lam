@@ -783,6 +783,23 @@
       "dung_o": [
         "c1_p09b"
       ]
+    },
+    "nv_tuyet_co_do_du.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Do dự cân nhắc cái giá trước khi ký (p09c).",
+      "tags": [
+        "khoảnh",
+        "khắc",
+        "do",
+        "dự",
+        "cân",
+        "nhắc",
+        "cái",
+        "giá"
+      ],
+      "dung_o": [
+        "c1_p09c"
+      ]
     }
   }
 }
