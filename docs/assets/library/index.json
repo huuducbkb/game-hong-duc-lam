@@ -562,6 +562,23 @@
       "dung_o": [
         "c1_p03b"
       ]
+    },
+    "bc_san_tap_cai_lai.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Tân đệ tử cãi lại, bị tát ngã, không cúi đầu (p03c).",
+      "tags": [
+        "cãi",
+        "lại",
+        "tân",
+        "đệ",
+        "tử",
+        "bị",
+        "tát",
+        "ngã"
+      ],
+      "dung_o": [
+        "c1_p03c"
+      ]
     }
   }
 }
