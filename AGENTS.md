@@ -60,6 +60,14 @@ Người dùng **chỉ cần up ảnh** — không cần đặt tên, không c�
   thử lên main, ghi đè ảnh thật. Vì vậy `/luu_loat` phải opt-in và test phải sao lưu
   cả `docs/assets/library/index.json` + dữ liệu chương.)
 
+- **KHÔNG gửi `Authorization` khi tải ảnh từ CDN GitHub.** Ảnh đính kèm trong Issue nằm
+  trên `github.com/user-attachments/...` và `*.githubusercontent.com` — URL đã ký sẵn;
+  gửi kèm `Bearer <token>` sẽ bị trả **400 Bad Request**. Chỉ gửi token cho
+  `api.github.com`. (Sự cố đã gặp: `_tai` trong `tools/xu_ly_inbox.py` gửi token cho
+  MỌI link chứa chữ "github" → ảnh Issue tải thất bại, bot im lặng bỏ qua, báo
+  "Không tìm thấy ảnh nào" dù Issue có ảnh và workflow vẫn "success". Đã sửa: chỉ gửi
+  token cho `api.github.com`, và ghi log ra stderr khi tải thất bại thay vì nuốt lỗi.)
+
 - `assets/ui/` — 7 ảnh đã tối ưu (1.4MB). Khung/nền là **JPEG**; `avatar-ring.png` và
   `seal.png` là **PNG alpha** (đã tách nền: giấy sáng → trong suốt, mực → đậm).
 - `assets/ui-orig/` — ảnh gốc 18MB, **đã trong .gitignore**, chỉ dùng để xử lý lại.
