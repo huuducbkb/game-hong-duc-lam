@@ -715,6 +715,23 @@
       "dung_o": [
         "c1_p05b"
       ]
+    },
+    "bc_khe_nui_chon.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Lấp rêu chôn lại khối ngọc nơi khe núi (p05c).",
+      "tags": [
+        "chôn",
+        "trả",
+        "lại",
+        "lấp",
+        "rêu",
+        "khối",
+        "ngọc",
+        "nơi"
+      ],
+      "dung_o": [
+        "c1_p05c"
+      ]
     }
   }
 }
