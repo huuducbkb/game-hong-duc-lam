@@ -369,6 +369,16 @@ Các mô-đun:
 nhận diện ảnh bằng AI. Không có khoá thì vẫn chạy: đường "thư mục = mã ảnh" và "tên file
 chứa mã" vẫn chính xác 100%, còn lại báo cần người xác nhận.
 
+**Vì sao deploy Pages nằm trong `xuong-anh.yml`, không dựa vào `pages.yml`**: push bằng
+`GITHUB_TOKEN` của Action **không** kích hoạt workflow khác (chống đệ quy của GitHub). Nên
+khi bot commit ảnh, `pages.yml` (trigger `push` + `paths: docs/**`) sẽ **không** chạy →
+web không cập nhật. Vì vậy `xuong-anh.yml` tự gọi `deploy-pages` ở job `deploy`
+(dùng chung `concurrency: group: pages`). Bot commit kèm `[skip ci]` để tránh vòng lặp.
+
+**Ngoại lệ**: commit merge PR vào `main` do tài khoản người dùng thực hiện đôi khi cũng
+không kích hoạt `pages.yml`; nếu web chưa cập nhật, chạy tay:
+`curl -X POST -H "Authorization: Bearer $GITHUB_TOKEN" .../actions/workflows/pages.yml/dispatches -d '{"ref":"main"}'`.
+
 ## Bẫy môi trường khi chạy trong sandbox agent
 
 - **Đường dẫn repo**: `game/_test_api.py` và `_snap`/`_restore` dùng **đường dẫn cứng**
