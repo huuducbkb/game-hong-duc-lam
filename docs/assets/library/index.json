@@ -630,6 +630,23 @@
       "dung_o": [
         "c1_p04"
       ]
+    },
+    "bc_vuon_thuoc_hoi.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Hỏi thẳng Mạc Đại Phu thấy gì khác thường (p04a).",
+      "tags": [
+        "hỏi",
+        "thẳng",
+        "mạc",
+        "đại",
+        "phu",
+        "thấy",
+        "gì",
+        "khác"
+      ],
+      "dung_o": [
+        "c1_p04a"
+      ]
     }
   }
 }
