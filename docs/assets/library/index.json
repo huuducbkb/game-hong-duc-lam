@@ -412,6 +412,23 @@
       "dung_o": [
         "c1_d16"
       ]
+    },
+    "bc_quan_nuoc.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Quán nước đầu trấn nơi khách giang hồ tụ tập, nghe ngóng tin Dã Lang Bang (p05).",
+      "tags": [
+        "dò",
+        "tin",
+        "quán",
+        "nước",
+        "đầu",
+        "trấn",
+        "nơi",
+        "khách"
+      ],
+      "dung_o": [
+        "c1_p05"
+      ]
     }
   }
 }
