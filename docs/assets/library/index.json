@@ -902,6 +902,23 @@
       "dung_o": [
         "c1_p13"
       ]
+    },
+    "bc_cong_dong_doi_mat.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Chạy ngược dòng người, đối mặt địch nơi cổng vỡ (p14).",
+      "tags": [
+        "đối",
+        "mặt",
+        "địch",
+        "chạy",
+        "ngược",
+        "dòng",
+        "người",
+        "nơi"
+      ],
+      "dung_o": [
+        "c1_p14"
+      ]
     }
   }
 }
