@@ -885,6 +885,23 @@
       "dung_o": [
         "c1_p12"
       ]
+    },
+    "bc_dem_tap_kich.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Tù và vang, cổng đông bùng lửa, Dã Lang Bang tập kích (p13).",
+      "tags": [
+        "dã",
+        "lang",
+        "bang",
+        "tập",
+        "kích",
+        "tù",
+        "vang",
+        "cổng"
+      ],
+      "dung_o": [
+        "c1_p13"
+      ]
     }
   }
 }
