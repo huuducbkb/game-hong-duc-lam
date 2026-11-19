@@ -851,6 +851,23 @@
       "dung_o": [
         "c1_p11b"
       ]
+    },
+    "bc_tan_xa_suyt_lo.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Sư huynh kiểm tra ban đêm, suýt lộ tu vi (p11c).",
+      "tags": [
+        "suýt",
+        "bị",
+        "phát",
+        "hiện",
+        "sư",
+        "huynh",
+        "kiểm",
+        "tra"
+      ],
+      "dung_o": [
+        "c1_p11c"
+      ]
     }
   }
 }
