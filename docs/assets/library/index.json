@@ -936,6 +936,23 @@
       "dung_o": [
         "c1_p14b"
       ]
+    },
+    "bc_cong_dong_toan_luc.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Vận toàn lực ngọc cốt, tốc độ tăng vọt, bị nghi ngờ (p14c).",
+      "tags": [
+        "dùng",
+        "toàn",
+        "lực",
+        "ngọc",
+        "cốt",
+        "vận",
+        "tốc",
+        "độ"
+      ],
+      "dung_o": [
+        "c1_p14c"
+      ]
     }
   }
 }
