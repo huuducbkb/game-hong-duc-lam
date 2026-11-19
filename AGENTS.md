@@ -470,13 +470,31 @@ Trang `docs/xuong-video/index.html`, dựng bằng `python3 tools/build_xuong_vi
   - Prompt tiếng Anh phải **thuần Anh**: dùng `CAMERA_EN` để dịch trường chuyển động và
     `ten_en` cho tên cảnh. Chỉ tên riêng (Hồng Đức Tu Tiên Lộ, Phàm Nhân Tu Tiên) là tiếng Việt.
   - `GOI_Y_NHAC` là bộ ba `(mốc, ghi chú Việt cho người dùng, chỉ dẫn Anh cho AI tạo nhạc)`.
-- Ảnh tải lên `docs/assets/video/<tên file đúng như thẻ>`; trang tự báo đã có/còn thiếu.
+
+**Gửi ảnh từ web (không cần terminal)** — giống Xưởng ảnh:
+- Mỗi thẻ cảnh có ô `📷 Bấm vào đây để chọn ảnh` + nút `📤 Gửi ảnh này` + `🔄 Kiểm tra`.
+  Ảnh nén ngay trên máy (canvas, cạnh dài ≤1920) rồi PUT thẳng lên GitHub qua API.
+- Mục **📤 Gửi cả loạt ảnh** cho chọn nhiều ảnh; khớp cảnh theo **tên file**
+  (`canhTheoTen()` so `CANH[i].f` trước, rồi `includes(mã)`). Ảnh không khớp bị bỏ qua kèm gợi ý.
+- Token GitHub lưu ở `localStorage` khoá `xuong_video_gh_token` (tách khỏi `xuong_gh_token`
+  của Xưởng ảnh để hai trang không giẫm chân nhau).
+- **Đích PUT là `xuong-inbox/<mã>/<mã>.jpg`, KHÔNG phải `docs/assets/video/`** — cố ý:
+  chỉ push vào `xuong-inbox/**` mới kích hoạt `xuong-anh.yml`, mà workflow đó mới là thứ
+  chạy `xuong_tu_dong.py` (resize + đệm khung) rồi dựng lại trang. Đẩy thẳng vào
+  `docs/assets/video/` thì file lên nhưng thẻ cảnh **không** đổi trạng thái.
+- `CANH` trong JS sinh từ `_canh_json()` (`key`/`file`/`ten_en`); chuỗi `</` được thoát
+  thành `<\/` để không cắt sớm khối `<script>`.
 
 **Bẫy quan trọng — ảnh trailer vs ảnh game**: ảnh trailer đặt vào `xuong-inbox/` sẽ bị
 bộ nhận diện coi là asset game và có thể **ghi đè ảnh đang dùng trong game**. Đã chặn:
 `_la_anh_trailer()` trong `xuong_tu_dong.py` nhận diện mã `v01`…`v14` **trước** khi gọi AI,
 `nhan_dien()` gắn `cach="trailer"`, `luu_va_ghep()` lưu vào `VIDEO_DIR` rồi **bỏ qua** phần
-ghép chương và thư viện ảnh game. Ảnh trailer cũng được resize về đúng 1080×1920.
+ghép chương và thư viện ảnh game.
+
+**Resize ảnh trailer phải đệm khung, không ép phẳng**: `_luu_anh_trailer()` thu ảnh vừa
+khung 1080×1920 rồi **đệm hai bên bằng màu viền trung bình của chính ảnh** (`_mau_vien()`).
+Ép thẳng `im.resize((1080,1920))` sẽ kéo méo mặt nhân vật khi AI trả tỉ lệ khác 9:16.
+Đã đo: hình tròn 400px trong ảnh 4:3 vẫn tròn (tỉ lệ w/h = 1.000) sau khi xử lý.
 
 **Khoá AI**: cần secret repo `GEMINI_KEY` (Settings → Secrets and variables → Actions) để
 nhận diện ảnh bằng AI. Không có khoá thì vẫn chạy: đường "thư mục = mã ảnh" và "tên file

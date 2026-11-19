@@ -87,7 +87,11 @@ def _la_anh_trailer(ten: str, hint: str) -> dict | None:
 
 
 def _luu_anh_trailer(c: dict, data: bytes) -> str:
-    """Lưu ảnh trailer đúng tên file, nén về 1080x1920 nếu cần."""
+    """Lưu ảnh trailer đúng tên file, đưa về khung 1080x1920.
+
+    Giữ đúng tỉ lệ: vừa khung rồi đệm hai bên (hoặc trên dưới) bằng màu viền
+    trung bình của chính ảnh. KHÔNG ép phẳng về 1080x1920 vì sẽ kéo méo mặt.
+    """
     XV = _canh_video()
     os.makedirs(XV.VIDEO_DIR, exist_ok=True)
     dich = os.path.join(XV.VIDEO_DIR, c["file"])
@@ -97,13 +101,35 @@ def _luu_anh_trailer(c: dict, data: bytes) -> str:
         im = Image.open(io.BytesIO(data))
         if im.mode not in ("RGB", "L"):
             im = im.convert("RGB")
-        if im.size != XV.KHUNG:
-            im = im.resize(XV.KHUNG, Image.LANCZOS)
+        rong, cao = XV.KHUNG
+        if im.size != (rong, cao):
+            ti_le = min(rong / im.width, cao / im.height)
+            moi = (max(1, round(im.width * ti_le)), max(1, round(im.height * ti_le)))
+            im = im.resize(moi, Image.LANCZOS)
+            nen = _mau_vien(im)
+            khung = Image.new("RGB", (rong, cao), nen)
+            khung.paste(im, ((rong - moi[0]) // 2, (cao - moi[1]) // 2))
+            im = khung
         im.save(dich, "JPEG", quality=90, optimize=True)
     except Exception:  # noqa: BLE001 — Pillow lỗi thì ghi nguyên bản
         with open(dich, "wb") as f:
             f.write(data)
     return c["file"]
+
+
+def _mau_vien(im) -> tuple:
+    """Màu trung bình của 4 cạnh — dùng làm nền khi đệm khung."""
+    from PIL import ImageStat
+    rong, cao = im.size
+    dai = max(1, min(rong, cao) // 20)
+    vien = [im.crop((0, 0, rong, dai)), im.crop((0, cao - dai, rong, cao)),
+            im.crop((0, 0, dai, cao)), im.crop((rong - dai, 0, rong, cao))]
+    tong = [0, 0, 0]
+    for v in vien:
+        st = ImageStat.Stat(v)
+        for i in range(3):
+            tong[i] += st.mean[i]
+    return tuple(int(t / len(vien)) for t in tong)
 
 
 def nhan_dien(anh_list: list, env: dict, chi_con_thieu: bool = True) -> list:

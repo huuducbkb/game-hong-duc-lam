@@ -13,7 +13,11 @@
 1. Mỗi cảnh dán nguyên khối prompt vào công cụ tạo ảnh.
 2. Tỉ lệ **9:16 dọc (1080×1920)**. Trailer 16:9 thì đổi thành 1920×1080, nội dung prompt giữ nguyên.
 3. Mỗi cảnh tạo **3–4 biến thể**, chọn khung có chủ thể rõ và chiều sâu tốt.
-4. Dựng theo bảng timecode bên dưới.
+4. Gửi ảnh **ngay trên trang Xưởng video**
+   ([huuducbkb.github.io/game-hong-duc-lam/xuong-video](https://huuducbkb.github.io/game-hong-duc-lam/xuong-video/)):
+   bấm ô `📷 Bấm vào đây để chọn ảnh` trên thẻ cảnh rồi `📤 Gửi ảnh này` — không cần đặt tên,
+   không cần terminal. Hoặc dùng mục **Gửi cả loạt** và đặt tên file đúng như bảng cảnh.
+5. Dựng theo bảng timecode bên dưới.
 
 ---
 

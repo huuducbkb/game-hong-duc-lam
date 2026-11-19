@@ -14,6 +14,7 @@ Chạy: python3 tools/build_xuong_video.py
 from __future__ import annotations
 
 import html as H
+import json
 import os
 import sys
 
@@ -26,6 +27,32 @@ import xuong_video as V  # noqa: E402
 REPO = "huuducbkb/game-hong-duc-lam"
 OUT = os.path.join(ROOT, "docs", "xuong-video", "index.html")
 UPLOAD_URL = f"https://github.com/{REPO}/upload/main/docs/assets/video"
+
+
+def _o_gui(c: dict) -> str:
+    """Ô chọn + gửi ảnh cho một cảnh (giống Xưởng ảnh).
+
+    Ô là <label> bọc <input type=file> phủ toàn bộ → chạm là mở thư viện ảnh trên
+    iPad/iPhone. Ảnh được nén ngay trên máy rồi đẩy thẳng lên GitHub, không cần
+    mở Issue, không cần terminal.
+    """
+    k = c["key"]
+    return f"""
+  <div class="gui-o" data-key="{k}" data-file="{c['file']}">
+    <label class="gui-dan" data-key="{k}" tabindex="0"
+           title="Bấm để chọn ảnh trong thư viện ảnh, hoặc dán/kéo thả ảnh">
+      <input class="gui-file" type="file" accept="image/*">
+      <span class="gui-nhac">📷 Bấm vào đây để chọn ảnh</span>
+      <img class="gui-xem" alt="" hidden>
+    </label>
+    <div class="gui-hang">
+      <button class="gui-gui" type="button" disabled>📤 Gửi ảnh này</button>
+      <button class="gui-kt" type="button"
+              title="Xem ảnh đã lên trang chưa — không cần tải lại">🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" hidden></div>
+    <img class="gui-game" alt="" hidden>
+  </div>"""
 
 
 def _the_canh(c: dict) -> str:
@@ -68,6 +95,7 @@ def _the_canh(c: dict) -> str:
       <button class="cp" onclick="cpText('{aid}', this)">📋 Copy prompt chuyển động</button>
     </div>
   </details>
+  {_o_gui(c)}
 </article>"""
 
 
@@ -138,6 +166,14 @@ def _con_thieu() -> str:
             f"<tbody>{hang}</tbody></table>")
 
 
+def _canh_json() -> str:
+    """Danh sách cảnh cho JS: mã + tên file + tên, để khớp ảnh theo tên file."""
+    ds = [{"k": c["key"], "f": c["file"], "ten": c.get("ten_en") or c["ten"]}
+          for c in V.CANH_VIDEO]
+    # "</" phải thoát, nếu không thẻ </script> trong chuỗi sẽ cắt sớm khối JS.
+    return json.dumps(ds, ensure_ascii=False).replace("</", "<\\/")
+
+
 def build() -> str:
     tong = len(V.CANH_VIDEO)
     co = V.so_da_co()
@@ -155,6 +191,7 @@ def build() -> str:
             .replace("__PROMPT_TONG__", H.escape(V.build_gop_prompt_tat_ca()))
             .replace("__PROMPT_NHAC__", H.escape(V.prompt_nhac()))
             .replace("__KHOI__", khoi)
+            .replace("__CANH_JSON__", _canh_json())
             .replace("__UPLOAD__", UPLOAD_URL))
 
 
@@ -228,6 +265,34 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
   border-radius:9px;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer}
 .big{display:block;text-align:center;margin:10px 0;border-style:dashed}
 .steps li{margin:7px 0}
+.gui-o{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1726}
+.gui-dan{display:block;position:relative;border:2px dashed var(--line);border-radius:9px;
+  padding:18px 12px;text-align:center;color:var(--muted);cursor:pointer}
+.gui-dan:hover,.gui-dan.act{border-color:var(--jade);color:var(--jade)}
+.gui-file{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;
+  -webkit-appearance:none;font-size:0}
+.gui-nhac,.gui-xem{pointer-events:none}
+.gui-xem{max-width:100%;max-height:260px;border-radius:8px;display:block;margin:0 auto}
+.gui-gui{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);color:#3a2600}
+.gui-gui:disabled{opacity:.45;cursor:not-allowed}
+.gui-hang{display:flex;gap:8px;margin-top:8px}
+.gui-kt{flex:0 0 auto;background:#1d2b45;color:var(--jade);border:1px solid #4a628c;
+  font-size:13px;font-weight:600}
+.gui-kt:hover{background:#243757;border-color:var(--jade)}
+.gui-kt.dang{opacity:.6;cursor:wait}
+.gui-game{max-width:100%;max-height:280px;border-radius:8px;display:block;margin:8px auto 0;
+  border:1px solid var(--line)}
+.gui-tt{margin-top:7px;font-size:12.5px}
+.gui-tt .ok,.gui-tt .warn,.gui-tt .muted{display:block;padding:8px 10px;border-radius:8px}
+.gui-tt .ok{background:#12351f;color:#7fe0a8}
+.gui-tt .warn{background:#2a150d;color:#ffb98a}
+.gui-tt .muted{background:#0a1220;color:var(--muted)}
+.hang-loat{margin-top:10px}
+.hang-loat .gui-dan{padding:26px 12px}
+.lo-ds{margin:8px 0 0;font-size:12.5px;color:var(--muted)}
+.lo-ds div{padding:3px 0;border-bottom:1px solid #1a2740}
+.lo-ds .ok{color:#7fe0a8}
+.lo-ds .warn{color:#ffb98a}
 </style>
 </head>
 <body>
@@ -239,18 +304,54 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
 <h2>⚡ Cách làm</h2>
 <div class="card">
   <ol class="steps">
+    <li><b>Kết nối GitHub</b> (một lần): dán token ở mục <b>🔑 Kết nối GitHub</b> bên dưới.</li>
     <li><b>Vẽ ảnh</b>: bấm <b>📋 Copy prompt tổng</b> (một lần cho cả 14 ảnh) hoặc copy
         prompt từng cảnh. Dán vào AI tạo ảnh. <b>Tỉ lệ bắt buộc 9:16 dọc</b> — không phải 3:4.</li>
-    <li><b>Đặt tên file đúng như thẻ ghi</b> (<code>v01_pham_nhan.jpg</code>…) rồi tải lên thư mục
-        <code>docs/assets/video/</code>. Sai tên là hệ thống không nhận.</li>
+    <li><b>Gửi ảnh</b>: ngay trên mỗi thẻ cảnh có ô <b>📷 Bấm vào đây để chọn ảnh</b> —
+        chọn ảnh trong thư viện, bấm <b>📤 Gửi ảnh này</b>. Hệ thống nén ngay trên máy bạn
+        rồi tự đưa lên đúng tên file, <b>không cần đặt tên, không cần mở Issue</b>.</li>
     <li><b>Dựng trong CapCut</b>: theo bảng thời gian bên dưới — mỗi cảnh đúng số giây,
         camera theo cột "camera", chuyển cảnh theo cột "chuyển cảnh".</li>
     <li><b>Xuất file</b>: MP4, H.264, 1080×1920, 30fps, 8–10 Mbps, <b>dưới 15 MB</b>.</li>
   </ol>
-  <a class="dl big" href="__UPLOAD__" target="_blank">📤 Mở trang tải ảnh lên docs/assets/video/</a>
   <p class="muted" style="font-size:12.5px">Ảnh trailer <b>không dùng chung</b> với ảnh trong game.
   Ảnh game là thẻ 3:4 chừa chỗ cho chữ; ảnh trailer là khung 9:16 điện ảnh.
   Cắt ảnh game ra làm trailer sẽ mất bố cục và lộ khung.</p>
+</div>
+
+<h2>🔑 Kết nối GitHub</h2>
+<div class="card">
+  <p class="mota">Cần một lần duy nhất. Token chỉ lưu trong trình duyệt của bạn
+  (<code>localStorage</code>), không gửi đi đâu khác ngoài GitHub.</p>
+  <p class="mota">Tạo token: GitHub → <b>Settings → Developer settings → Personal access tokens
+  → Fine-grained tokens</b> → chọn repo <code>huuducbkb/game-hong-duc-lam</code> →
+  quyền <b>Contents: Read and write</b>.</p>
+  <input id="gh-token" type="password" placeholder="Dán token vào đây"
+         style="width:100%;font-size:14px;padding:11px;border-radius:9px;
+                border:1px solid var(--line);background:#0a1220;color:var(--ink)">
+  <div class="row">
+    <button class="cp" type="button" onclick="ghLuuToken()">💾 Lưu token</button>
+    <button class="dl" type="button" onclick="ghQuenToken()">🗑 Quên token</button>
+  </div>
+  <div class="gui-tt" id="gh-tt" hidden></div>
+</div>
+
+<h2>📤 Gửi cả loạt ảnh</h2>
+<div class="card">
+  <p class="mota">Chọn nhiều ảnh một lúc. Hệ thống lấy <b>tên file</b> để biết ảnh nào là cảnh nào —
+  nên đặt tên đúng như thẻ ghi (<code>v01_pham_nhan.jpg</code>…), hoặc đổi tên ngay trên
+  iPad trước khi chọn. Ảnh không khớp tên sẽ được báo lại để gửi riêng.</p>
+  <div class="gui-o hang-loat">
+    <label class="gui-dan" tabindex="0">
+      <input class="gui-file" id="lo-file" type="file" accept="image/*" multiple>
+      <span class="gui-nhac">📷 Bấm để chọn nhiều ảnh cùng lúc</span>
+    </label>
+    <div class="gui-hang">
+      <button class="gui-gui" type="button" id="lo-gui" disabled>📤 Gửi tất cả</button>
+    </div>
+    <div class="gui-tt" id="lo-tt" hidden></div>
+    <div class="lo-ds" id="lo-ds"></div>
+  </div>
 </div>
 
 <h2>🎯 Prompt TỔNG — dán 1 lần, vẽ cả 14 ảnh</h2>
@@ -309,6 +410,9 @@ __KHOI__
 </div>
 
 <script>
+/* ===== Danh sách cảnh (sinh từ Python, khớp đúng mã + tên file) ===== */
+const CANH = __CANH_JSON__;
+
 function cpText(id, btn){
   const ta=document.getElementById(id);
   if(!ta){return;}
@@ -336,6 +440,316 @@ function taiTxt(id, ten){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
+
+/* ================= Kết nối GitHub (token lưu trong máy) ================= */
+const GH_REPO='huuducbkb/game-hong-duc-lam';
+const GH_BRANCH='main';
+const GH_LS='xuong_video_gh_token';
+const VIDEO_DIR='docs/assets/video/';
+
+function ghToken(){ return localStorage.getItem(GH_LS)||''; }
+
+function ghHienTT(el, loai, html){
+  if(!el) return;
+  el.hidden=false;
+  el.innerHTML = `<span class="${loai}">${html}</span>`;
+}
+
+async function ghLuuToken(){
+  const inp=document.getElementById('gh-token');
+  const tt=document.getElementById('gh-tt');
+  const t=(inp.value||'').trim();
+  if(!t){ ghHienTT(tt,'warn','⚠️ Chưa dán token.'); return; }
+  ghHienTT(tt,'muted','Đang kiểm tra token…');
+  try{
+    const r=await fetch(`https://api.github.com/repos/${GH_REPO}`,{
+      headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}});
+    if(!r.ok){
+      ghHienTT(tt,'warn',`⚠️ Token không dùng được (HTTP ${r.status}). Kiểm tra lại quyền Contents: Read and write.`);
+      return;
+    }
+    const j=await r.json();
+    if(j.permissions && j.permissions.push === false){
+      ghHienTT(tt,'warn','⚠️ Token chưa có quyền ghi (cần Contents: Read and write). Tạo lại token rồi thử lại.');
+      return;
+    }
+    localStorage.setItem(GH_LS,t);
+    ghHienTT(tt,'ok',`✅ Đã kết nối <b>${j.full_name}</b>. Từ giờ chọn ảnh ở thẻ cảnh rồi bấm Gửi là xong.`);
+  }catch(e){ ghHienTT(tt,'warn',`⚠️ Lỗi kết nối: ${e}`); }
+}
+
+function ghQuenToken(){
+  localStorage.removeItem(GH_LS);
+  const inp=document.getElementById('gh-token'); if(inp) inp.value='';
+  ghHienTT(document.getElementById('gh-tt'),'muted','Đã quên token trong trình duyệt này.');
+}
+
+/* Nén ngay trên máy. Ảnh trailer cần dọc 9:16 nên giữ cạnh dài tối đa 1920.
+   Không cắt, không ép tỉ lệ — server đệm khung 1080x1920 để không méo mặt. */
+function ghNenAnh(file, maxCanh=1920, q=0.9){
+  return new Promise((res,rej)=>{
+    const url=URL.createObjectURL(file);
+    const im=new Image();
+    im.onload=()=>{
+      URL.revokeObjectURL(url);
+      let {width:w,height:h}=im;
+      const tiLe=Math.min(1, maxCanh/Math.max(w,h));
+      w=Math.round(w*tiLe); h=Math.round(h*tiLe);
+      const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+      const cx=cv.getContext('2d');
+      cx.drawImage(im,0,0,w,h);
+      cv.toBlob(b=>b?res({blob:b,duoi:'jpg'}):rej(new Error('nén lỗi')),'image/jpeg',q);
+    };
+    im.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error('không đọc được ảnh')); };
+    im.src=url;
+  });
+}
+
+function blobB64(blob){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(r.result.split(',')[1]);
+    r.onerror=()=>rej(new Error('đọc file lỗi'));
+    r.readAsDataURL(blob);
+  });
+}
+
+async function ghLaySha(duong){
+  const t=ghToken();
+  const r=await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${duong}?ref=${GH_BRANCH}`,
+    {headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}});
+  if(r.status===200){ const j=await r.json(); return j.sha||null; }
+  return null; // 404 = file chưa có
+}
+
+/* Đẩy ảnh lên xuong-inbox/<mã>/<mã>.jpg — thư mục con = mã cảnh, nên bot gán
+   thẳng không cần AI đoán. Đặt ở inbox (không phải docs/assets/video) là cố ý:
+   chỉ push vào xuong-inbox mới kích hoạt workflow dựng lại trang + cập nhật
+   trạng thái đã có/còn thiếu. */
+async function ghPutAnh(duong, b64){
+  const t=ghToken();
+  const body={message:`Xưởng video: thêm ảnh ${duong.split('/').slice(-2)[0]}`,
+              content:b64, branch:GH_BRANCH};
+  const sha=await ghLaySha(duong);
+  if(sha) body.sha=sha;
+  const r=await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${duong}`,{
+    method:'PUT',
+    headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json',
+             'Content-Type':'application/json'},
+    body:JSON.stringify(body)});
+  if(!r.ok){
+    let loi='';
+    try{ const j=await r.json(); loi=j.message||''; }catch(e){}
+    throw new Error(`HTTP ${r.status}${loi?' — '+loi:''}`);
+  }
+  return true;
+}
+
+/* ================= Ô chọn ảnh dưới mỗi cảnh ================= */
+let O_DANG_CHON=null;
+
+function datAnhVaoO(o, file){
+  if(!file || !file.type.startsWith('image/')) return;
+  const hop=o.parentElement;
+  const xem=o.querySelector('.gui-xem');
+  const nhac=o.querySelector('.gui-nhac');
+  const nut=hop.querySelector('.gui-gui');
+  const tt=hop.querySelector('.gui-tt');
+  o._file=file;
+  xem.src=URL.createObjectURL(file); xem.hidden=false;
+  if(nhac) nhac.hidden=true;
+  o.classList.add('act');
+  if(nut) nut.disabled=false;
+  if(tt){ tt.hidden=true; tt.innerHTML=''; }
+}
+
+async function kiemTraAnh(hop, imLang){
+  const tenFile=hop.dataset.file;
+  const tt=hop.querySelector('.gui-tt');
+  const nut=hop.querySelector('.gui-kt');
+  const im=hop.querySelector('.gui-game');
+  if(nut) nut.classList.add('dang');
+  if(!imLang) ghHienTT(tt,'muted','Đang kiểm tra trên GitHub…');
+  try{
+    const t=ghToken();
+    const r=await fetch(
+      `https://api.github.com/repos/${GH_REPO}/commits?path=${VIDEO_DIR}${tenFile}&per_page=1`,
+      {headers:t?{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}
+                :{'Accept':'application/vnd.github+json'}});
+    if(r.status===403 || r.status===429) throw new Error('GitHub tạm giới hạn lượt gọi — chờ chút rồi thử lại');
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    const ds=await r.json();
+    if(!Array.isArray(ds) || !ds.length){
+      im.hidden=true; im.removeAttribute('src');
+      ghHienTT(tt,'muted','⬜ Chưa có trên trang. Gửi ảnh rồi bấm 🔄 Kiểm tra lại (bot cần ~1–2 phút).');
+      return {co:false};
+    }
+    const sha=ds[0].sha;
+    im.src=`https://raw.githubusercontent.com/${GH_REPO}/${sha}/${VIDEO_DIR}${tenFile}`;
+    im.hidden=false;
+    const the=hop.closest('article');
+    if(the){
+      the.classList.add('done');
+      const nh=the.querySelector('header .badge');
+      if(nh){ nh.className='badge chac'; nh.textContent='✅ đã có'; }
+    }
+    const khi=new Date(ds[0].commit.author.date);
+    const gio=isNaN(khi)?ds[0].commit.author.date
+      :khi.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
+    ghHienTT(tt,'ok',`✅ Đã lên trang · ${gio} · <code>${sha.slice(0,7)}</code> — ảnh dưới là bản đang dùng.`);
+    return {co:true};
+  }catch(e){
+    ghHienTT(tt,'warn',`⚠️ Không kiểm tra được: ${e}`);
+    return {co:null};
+  }finally{
+    if(nut) nut.classList.remove('dang');
+  }
+}
+
+/* Sau khi gửi: tự dò vài lần, người dùng không phải bấm gì. */
+async function theoDoiAnh(hop){
+  const tt=hop.querySelector('.gui-tt');
+  for(let lan=1; lan<=10; lan++){
+    await new Promise(r=>setTimeout(r, 15000));
+    const kq=await kiemTraAnh(hop, true);
+    if(kq.co){ ghHienTT(tt,'ok','🎉 Ảnh đã lên trang! (xem ảnh dưới)'); return; }
+    if(kq.co===null) return;
+    if(lan<10) ghHienTT(tt,'muted',
+      `⏳ Bot đang xử lý… tự kiểm tra lại sau 15 giây (lần ${lan}/10). Cứ để trang mở.`);
+  }
+  ghHienTT(tt,'muted','⏳ Lâu hơn thường lệ. Bấm 🔄 Kiểm tra để thử lại.');
+}
+
+async function guiMotAnh(o, nut){
+  const key=o.dataset.key;
+  const tt=o.parentElement.querySelector('.gui-tt');
+  const file=o._file;
+  if(!ghToken()){
+    ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục <b>🔑 Kết nối GitHub</b> rồi thử lại.');
+    return;
+  }
+  if(!file){ ghHienTT(tt,'warn','⚠️ Chưa có ảnh. Bấm vào ô để chọn ảnh.'); return; }
+  nut.disabled=true;
+  ghHienTT(tt,'muted','Đang nén ảnh…');
+  try{
+    const {blob,duoi}=await ghNenAnh(file);
+    const b64=await blobB64(blob);
+    ghHienTT(tt,'muted',`Đang gửi ảnh (${Math.round(blob.size/1024)} KB)…`);
+    await ghPutAnh(`xuong-inbox/${key}/${key}.${duoi}`, b64);
+    ghHienTT(tt,'ok',`✅ Đã gửi. Bot sẽ tự đưa ảnh vào đúng cảnh — trang tự báo khi xong.`);
+    o.classList.remove('act');
+    o._file=null;
+    const xem=o.querySelector('.gui-xem'); if(xem){ xem.hidden=true; xem.removeAttribute('src'); }
+    const nhac=o.querySelector('.gui-nhac'); if(nhac) nhac.hidden=false;
+    const inp=o.parentElement.querySelector('input[type=file]'); if(inp) inp.value='';
+    O_DANG_CHON=null;
+    nut.disabled=true;
+    theoDoiAnh(o.parentElement);
+  }catch(e){
+    ghHienTT(tt,'warn',`⚠️ Không gửi được: ${e}`);
+    nut.disabled=false;
+  }
+}
+
+/* ================= Gửi cả loạt ================= */
+function canhTheoTen(ten){
+  const t=(ten||'').toLowerCase();
+  for(const c of CANH){
+    if(t===c.f.toLowerCase()) return c;
+  }
+  for(const c of CANH){
+    if(t.includes(c.k)) return c;
+  }
+  return null;
+}
+
+let LO_FILES=[];
+
+function khoiTaoLo(){
+  const inp=document.getElementById('lo-file');
+  const nut=document.getElementById('lo-gui');
+  const ds=document.getElementById('lo-ds');
+  const tt=document.getElementById('lo-tt');
+  if(!inp) return;
+  inp.addEventListener('change',()=>{
+    LO_FILES=[];
+    ds.innerHTML='';
+    for(const f of inp.files){
+      const c=canhTheoTen(f.name);
+      const d=document.createElement('div');
+      d.innerHTML = c
+        ? `<span class="ok">✅</span> ${f.name} → <code>${c.k}</code> ${c.ten?('· '+c.ten):''}`
+        : `<span class="warn">⚠️</span> ${f.name} — không khớp cảnh nào (đổi tên thành <code>v01_pham_nhan.jpg</code>…)`;
+      ds.appendChild(d);
+      LO_FILES.push({file:f, canh:c, hang:d});
+    }
+    const khop=LO_FILES.filter(x=>x.canh).length;
+    nut.disabled = khop===0;
+    nut.textContent = khop ? `📤 Gửi ${khop} ảnh khớp` : '📤 Gửi tất cả';
+    if(tt) tt.hidden=true;
+  });
+  nut.addEventListener('click', async ()=>{
+    if(!ghToken()){
+      ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục <b>🔑 Kết nối GitHub</b> rồi thử lại.');
+      return;
+    }
+    const dsKhop=LO_FILES.filter(x=>x.canh);
+    if(!dsKhop.length) return;
+    nut.disabled=true;
+    let ok=0, loi=0;
+    for(let i=0;i<dsKhop.length;i++){
+      const {file,canh,hang:d}=dsKhop[i];
+      ghHienTT(tt,'muted',`Đang gửi ${i+1}/${dsKhop.length}: <code>${canh.k}</code>…`);
+      try{
+        const {blob}=await ghNenAnh(file);
+        const b64=await blobB64(blob);
+        await ghPutAnh(`xuong-inbox/${canh.k}/${canh.k}.jpg`, b64);
+        ok++;
+        if(d) d.innerHTML=`<span class="ok">✅</span> ${file.name} → <code>${canh.k}</code> · đã gửi`;
+      }catch(e){
+        loi++;
+        if(d) d.innerHTML=`<span class="warn">⚠️</span> ${file.name} → <code>${canh.k}</code> · lỗi: ${e}`;
+      }
+    }
+    ghHienTT(tt, loi?'warn':'ok',
+      `${loi?'⚠️':'🎉'} Đã gửi ${ok} ảnh${loi?`, ${loi} ảnh lỗi`:''}. `+
+      `Bot cần ~1–2 phút để ghép. Mở thẻ cảnh bấm <b>🔄 Kiểm tra</b> để xem, hoặc tải lại trang sau 2 phút.`);
+    nut.disabled=false;
+  });
+}
+
+function khoiTaoO(){
+  document.querySelectorAll('.gui-dan').forEach(o=>{
+    const hop=o.parentElement;
+    const inp=o.querySelector('input[type=file]');
+    const nut=hop.querySelector('.gui-gui');
+    const kt=hop.querySelector('.gui-kt');
+    if(!o.dataset.key) return;   // ô gửi cả loạt xử lý riêng
+    o.addEventListener('click',()=>{ O_DANG_CHON=o; });
+    o.addEventListener('focus',()=>{ O_DANG_CHON=o; });
+    if(inp) inp.addEventListener('change',()=>{ if(inp.files[0]) datAnhVaoO(o,inp.files[0]); });
+    if(nut) nut.addEventListener('click',()=>guiMotAnh(o,nut));
+    if(kt) kt.addEventListener('click',()=>kiemTraAnh(hop, false));
+  });
+  document.addEventListener('paste',e=>{
+    const it=e.clipboardData&&e.clipboardData.items;
+    if(!it) return;
+    let f=null;
+    for(const x of it){ if(x.type.startsWith('image/')){ f=x.getAsFile(); break; } }
+    if(!f) return;
+    const o=O_DANG_CHON || document.querySelector('.gui-dan.act');
+    if(!o || !o.dataset.key) return;
+    e.preventDefault();
+    datAnhVaoO(o,f);
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const inp=document.getElementById('gh-token');
+  if(inp && ghToken()) inp.value=ghToken();
+  khoiTaoO();
+  khoiTaoLo();
+});
 </script>
 </body></html>
 """
