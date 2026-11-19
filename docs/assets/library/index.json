@@ -1072,6 +1072,23 @@
       "dung_o": [
         "c1_p18c"
       ]
+    },
+    "nv_han_lap_bau_nuoc.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Đưa bầu nước cho hắn; hắn nhớ mặt ta (p18d).",
+      "tags": [
+        "bầu",
+        "nước",
+        "đưa",
+        "cho",
+        "hắn",
+        "nhớ",
+        "mặt",
+        "ta"
+      ],
+      "dung_o": [
+        "c1_p18d"
+      ]
     }
   }
 }
