@@ -970,6 +970,23 @@
       "dung_o": [
         "c1_p14d"
       ]
+    },
+    "bc_cong_dong_hung_ba.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Quát lớn gọi tên Hùng Bá, khiến địch khựng lại (p14e).",
+      "tags": [
+        "gọi",
+        "tên",
+        "hùng",
+        "bá",
+        "quát",
+        "lớn",
+        "khiến",
+        "địch"
+      ],
+      "dung_o": [
+        "c1_p14e"
+      ]
     }
   }
 }
