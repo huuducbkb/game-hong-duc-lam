@@ -98,7 +98,7 @@ CANH_VIDEO = [
         "giay": 5,
         "chuyen_dong": "Zoom out rất chậm",
         "chuyen_canh": "Dissolve 0.6s",
-        "chu": "Có những người sinh ra đã là phàm nhân.",
+        "chu": "Phàm nhân sinh ra đã là phàm nhân.",
         "prompt": (
             "Cinematic wide establishing shot, vertical composition. Vast terraced rice paddies climbing "
             "the lower slopes of enormous mountains at first grey light. Thin water lies in the flooded "
@@ -120,7 +120,7 @@ CANH_VIDEO = [
         "giay": 4,
         "chuyen_dong": "Pan lên",
         "chuyen_canh": "Dissolve 0.6s",
-        "chu": "Và có những người… không chịu như vậy.",
+        "chu": "Kẻ không chịu như vậy… sẽ phải trả giá.",
         "prompt": (
             "Dramatic low-angle vertical shot, looking steeply upward. In the very bottom of the frame, seen "
             "from behind and slightly to one side, the small dark silhouette of a barefoot peasant boy in "
@@ -143,7 +143,7 @@ CANH_VIDEO = [
         "giay": 3,
         "chuyen_dong": "Zoom in mạnh",
         "chuyen_canh": "Cắt thẳng",
-        "chu": "",
+        "chu": "Một đêm, cả thế giới cũ tan thành mực.",
         "prompt": (
             "A surreal transitional image, vertical composition. A dense modern city skyline of glass towers "
             "is dissolving downward into wet black ink: the upper towers are still faintly legible as pale "
@@ -164,7 +164,7 @@ CANH_VIDEO = [
         "giay": 3,
         "chuyen_dong": "Zoom in rất chậm",
         "chuyen_canh": "Cắt thẳng",
-        "chu": "",
+        "chu": "Ta tỉnh dậy trong thân xác kẻ thấp nhất trấn này.",
         "prompt": (
             "Extreme close-up, vertical composition, seen from directly above. A single open hand lies "
             "palm-up on cold wet grey stone, fingers slightly curled and trembling. The hand is thin and "
@@ -210,7 +210,7 @@ CANH_VIDEO = [
         "giay": 5,
         "chuyen_dong": "Pan lên",
         "chuyen_canh": "Dissolve 0.5s",
-        "chu": "",
+        "chu": "Nơi này, mạng người rẻ hơn một viên đan.",
         "prompt": (
             "Vertical low-angle shot of the entrance to an ancient Chinese martial sect. A monumental stone "
             "stairway climbs steeply away from the viewer and out of the top of the frame, its steps worn "
@@ -233,7 +233,7 @@ CANH_VIDEO = [
         "giay": 5,
         "chuyen_dong": "Zoom in chậm",
         "chuyen_canh": "Dissolve 0.5s",
-        "chu": "",
+        "chu": "Ta không có linh căn. Nhưng ta có thứ đáng sợ hơn.",
         "prompt": (
             "Vertical composition, seen from slightly behind and to one side. A single figure in coarse grey "
             "robes sits cross-legged in meditation on a narrow rock ledge at the very edge of a precipice, "
@@ -279,7 +279,7 @@ CANH_VIDEO = [
         "giay": 5,
         "chuyen_dong": "Zoom in rất chậm",
         "chuyen_canh": "Dissolve 0.5s",
-        "chu": "",
+        "chu": "Trong khối ngọc này, có thứ đã ngủ ngàn năm.",
         "canon": "DV-1",
         "prompt": (
             "Vertical cinematic close shot, dramatic low light. {canon} "
@@ -323,7 +323,7 @@ CANH_VIDEO = [
         "giay": 5,
         "chuyen_dong": "Pan ngang phải",
         "chuyen_canh": "Dissolve 0.5s",
-        "chu": "Nó cũng không dành cho kẻ mạnh.",
+        "chu": "Cũng không dành cho kẻ mạnh.",
         "prompt": (
             "Dynamic vertical composition, sky filled with flying swords. Dozens of slender Chinese straight "
             "swords streak diagonally upward and across the frame in a loose swarm, each trailing a long thin "
@@ -347,7 +347,7 @@ CANH_VIDEO = [
         "giay": 5,
         "chuyen_dong": "Rung nhẹ",
         "chuyen_canh": "Cắt thẳng",
-        "chu": "",
+        "chu": "Chỉ dành cho kẻ dám phản bội chính mình.",
         "prompt": (
             "Vertical composition, a sect destroyed at night. The great pagoda and long galleries of an "
             "ancient Chinese immortal sect burn fiercely — tall vermilion and ember-orange flames leap from "
@@ -364,20 +364,31 @@ CANH_VIDEO = [
     },
     {
         "key": "v13", "phan": "ket",
-        "ten": "Hàn Lập",
-        "ten_en": "Han Li",
+        "ten": "Đối đầu — người chơi và Hàn Lập",
+        "ten_en": "Standoff — the player and Han Li",
         "file": "v13_han_lap.jpg",
         "giay": 7,
         "chuyen_dong": "Zoom in rất chậm",
         "chuyen_canh": "Dissolve 0.6s",
-        "chu": "Hàn Lập.",
-        "canon": "NV-4",
+        "chu": "Ta biết tương lai của ngươi. Và ta sẽ đổi nó.",
+        "canon": ["NV-1", "NV-4"],
         "prompt": (
-            "Cinematic vertical portrait, head and shoulders, facing the viewer directly. {canon} "
-            "He stands against a dark blurred background of mist and hillside at dusk, a faint cold rim light "
-            "along one side of his face and shoulder, the rest of his features in soft shadow. His gaze is "
-            "level and unblinking, straight into the camera. The lower third of the frame is empty dark ink "
-            "so a name can be placed beneath. Ordinary, unremarkable, and absolutely not to be underestimated."
+            "Cinematic vertical two-shot, a standoff between two young men on a dark hillside path at "
+            "dusk. They stand facing each other at a slight angle, roughly equal in the frame, a narrow "
+            "gap of empty dark paper between them — neither is dominant, and neither has drawn a weapon. "
+            "LEFT, seen in three-quarter profile turned toward the right: {canon0} "
+            "RIGHT, seen in three-quarter profile turned toward the left: {canon1} "
+            "Both are the same height and the same age, both thin, both plainly dressed and poor — the "
+            "mirror of each other. The left one's eyes are alert and calculating, the eyes of a man doing "
+            "arithmetic he does not intend to share. The right one's eyes are cold and unreadable, the eyes "
+            "of a man who has already decided something. Between them, at chest height, a faint pale mist "
+            "drifts and curls, the only bright thing in the frame. A cold pale rim light from above catches "
+            "one edge of each face and leaves the rest in deep shadow, so they are lit identically — two "
+            "men under the same sky, on opposite sides of a line neither has drawn yet. Behind them, "
+            "hillside rock and pine dissolve into black ink and empty paper. The lower third of the frame "
+            "is empty dark ink so a line of text can be placed beneath. Foreground: dark wet stone. Middle "
+            "ground: the two figures, sharp. Background: black ink and void. Quiet, tense, dangerous — the "
+            "moment two people recognise each other as the only real threat in the room."
         ),
     },
     {
@@ -449,10 +460,18 @@ def tong_giay() -> int:
 
 
 def prompt_canh(c: dict) -> str:
-    """Prompt đầy đủ của một cảnh: khối phong cách + phần mô tả riêng."""
+    """Prompt đầy đủ của một cảnh: khối phong cách + phần mô tả riêng.
+
+    Cảnh có hai nhân vật thì khai `canon` thành list và dùng `{canon0}`, `{canon1}`
+    trong `prompt` — mỗi người vẫn chép nguyên văn mô tả cố định của mình.
+    """
     than = c["prompt"]
-    if c.get("canon"):
-        than = than.replace("{canon}", _canon(c["canon"]))
+    ma = c.get("canon")
+    if isinstance(ma, str):
+        than = than.replace("{canon}", _canon(ma))
+    elif isinstance(ma, list):
+        for i, m in enumerate(ma):
+            than = than.replace("{canon%d}" % i, _canon(m))
     return f"{STYLE_VIDEO}\n\n{than}"
 
 

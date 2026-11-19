@@ -485,6 +485,27 @@ Trang `docs/xuong-video/index.html`, dựng bằng `python3 tools/build_xuong_vi
 - `CANH` trong JS sinh từ `_canh_json()` (`key`/`file`/`ten_en`); chuỗi `</` được thoát
   thành `<\/` để không cắt sớm khối `<script>`.
 
+**Chủ đề trailer — ĐỌC KỸ, dễ hiểu sai**: game là **đồng nhân Phàm Nhân Tu Tiên**, nhưng
+nhân vật chính là **người chơi (NV-1)**, KHÔNG phải Hàn Lập. Hàn Lập (NV-4) là **nhân vật
+thứ hai**, ngang tầm, và quan hệ của họ là **đối đầu / hảo hữu tuỳ lựa chọn của người chơi**
+(trong `chuong1.json`, người chơi bám theo Hàn Lập lên hậu sơn, và Hàn Lập nói *"Ta không
+giết ngươi, không phải đêm nay. Nhưng từ giờ, ta sẽ để mắt tới ngươi"*). Vì vậy:
+- Cảnh 1–4 dùng canon **NV-1** (người chơi), không phải Hàn Lập.
+- Cảnh 13 là **đối đầu hai người**, khai `"canon": ["NV-1", "NV-4"]` và dùng `{canon0}`,
+  `{canon1}` trong prompt — `prompt_canh()` thay từng cái một.
+- KHÔNG bao giờ để trailer chỉ có Hàn Lập: người xem sẽ tưởng game kể chuyện Hàn Lập.
+
+**Chữ trên hình là lớp ghép riêng, không nằm trong ảnh.** Mọi prompt đều cấm chữ
+(`no text, no letters`) vì AI vẽ chữ tiếng Việt sai dấu. Chữ lưu ở `CANH_VIDEO[i]["chu"]`,
+ghép ở CapCut, và `tools/dung_video_xem_truoc.py` vẽ bằng DejaVuSerif-Bold (đủ glyph tiếng Việt;
+`fc-list :lang=vi` để kiểm tra font khác).
+
+**Sinh ảnh bằng Gemini: model ảnh bị chặn ở free tier.** `gemini-3-pro-image`,
+`gemini-3.1-flash-image`, `gemini-2.5-flash-image` đều trả **429 với `limit: 0`** (không phải
+quota tạm thời — free tier không cấp quyền sinh ảnh), `gemini-3.8-flash` trả 503. Cả 4 khoá
+`geminikey`…`geminikey3` đều vậy. Muốn tự động sinh ảnh phải bật billing. Vì thế ảnh hiện do
+người dùng tạo bằng công cụ ngoài rồi úp qua Xưởng.
+
 **Bẫy quan trọng — ảnh trailer vs ảnh game**: ảnh trailer đặt vào `xuong-inbox/` sẽ bị
 bộ nhận diện coi là asset game và có thể **ghi đè ảnh đang dùng trong game**. Đã chặn:
 `_la_anh_trailer()` trong `xuong_tu_dong.py` nhận diện mã `v01`…`v14` **trước** khi gọi AI,

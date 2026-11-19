@@ -39,25 +39,27 @@
 
 ## Bảng cảnh
 
-| # | Thời lượng | Cảnh | Chuyển động CapCut |
-|---|---|---|---|
-| 1 | 0:00–0:05 | Phàm nhân — ruộng bậc thang dưới chân núi | Zoom out rất chậm |
-| 2 | 0:05–0:09 | Ngước nhìn đỉnh núi tiên | Pan lên |
-| 3 | 0:09–0:12 | Đô thị tan thành mực | Zoom in mạnh |
-| 4 | 0:12–0:15 | Thức tỉnh — bàn tay lạ | Cắt thẳng |
-| 5 | 0:15–0:23 | **Tiên giới — toàn cảnh** | Pan ngang phải, rất chậm |
-| 6 | 0:23–0:28 | Tông môn — bậc đá lên trời | Pan lên |
-| 7 | 0:28–0:33 | Tu luyện bên vực | Zoom in chậm |
-| 8 | 0:33–0:37 | Đột phá | Rung + zoom in |
-| 9 | 0:37–0:42 | Ngọc cốt phát sáng | Zoom in rất chậm |
-| 10 | 0:42–0:46 | Yêu thú trong sương | Pan ngang trái |
-| 11 | 0:46–0:51 | Vạn kiếm xuất không | Pan ngang phải |
-| 12 | 0:51–0:56 | Tông môn chìm trong lửa | Rung nhẹ |
-| 13 | 0:56–1:03 | Hàn Lập | Zoom in rất chậm |
-| 14 | 1:03–1:12 | Nền tiêu đề | Tĩnh |
+| # | Thời lượng | Cảnh | Chuyển động CapCut | Chữ trên hình |
+|---|---|---|---|---|
+| 1 | 0:00–0:05 | Phàm nhân — ruộng bậc thang | Zoom out rất chậm | Phàm nhân sinh ra đã là phàm nhân. |
+| 2 | 0:05–0:09 | Ngước nhìn đỉnh núi tiên | Pan lên | Kẻ không chịu như vậy… sẽ phải trả giá. |
+| 3 | 0:09–0:12 | Đô thị tan thành mực | Zoom in mạnh | Một đêm, cả thế giới cũ tan thành mực. |
+| 4 | 0:12–0:15 | Thức tỉnh — bàn tay lạ | Zoom in rất chậm | Ta tỉnh dậy trong thân xác kẻ thấp nhất trấn này. |
+| 5 | 0:15–0:23 | **Tiên giới — toàn cảnh** | Pan ngang phải, rất chậm (100% → 112%) | TU TIÊN |
+| 6 | 0:23–0:28 | Tông môn — bậc đá lên trời | Pan lên | Nơi này, mạng người rẻ hơn một viên đan. |
+| 7 | 0:28–0:33 | Tu luyện bên vực | Zoom in chậm | Ta không có linh căn. Nhưng ta có thứ đáng sợ hơn. |
+| 8 | 0:33–0:37 | Đột phá | Zoom in nhanh (100% → 118%) + shake nhẹ | Luyện Khí · Trúc Cơ · Kim Đan · Nguyên Anh |
+| 9 | 0:37–0:42 | Ngọc cốt phát sáng | Zoom in rất chậm | Trong khối ngọc này, có thứ đã ngủ ngàn năm. |
+| 10 | 0:42–0:46 | Yêu thú trong sương | Pan ngang trái | Thế giới này không dành cho kẻ yếu. |
+| 11 | 0:46–0:51 | Vạn kiếm xuất không | Pan ngang phải | Cũng không dành cho kẻ mạnh. |
+| 12 | 0:51–0:56 | Tông môn chìm trong lửa | Rung nhẹ | Chỉ dành cho kẻ dám phản bội chính mình. |
+| 13 | 0:56–1:03 | **Đối đầu — người chơi và Hàn Lập** | Zoom in rất chậm | Ta biết tương lai của ngươi. Và ta sẽ đổi nó. |
+| 14 | 1:03–1:12 | Nền tiêu đề | Tĩnh | HỒNG ĐỨC TU TIÊN LỘ / Nghịch chuyển càn khôn |
 
 Tổng **72 giây**.
 
+> **Chữ trên hình là chữ ghép ở CapCut, KHÔNG nằm trong ảnh.** Mọi prompt đều cấm chữ
+> (`no text, no letters`), nên ảnh phải sạch; chữ thêm sau ở lớp trên.
 ---
 
 ## Khối style dùng chung
