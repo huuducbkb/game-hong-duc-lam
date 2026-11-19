@@ -834,6 +834,23 @@
       "dung_o": [
         "c1_p10b"
       ]
+    },
+    "bc_tan_xa_kho_tu.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Đêm thứ hai, dẫn khí tán loạn, đau đớn (p11b).",
+      "tags": [
+        "khổ",
+        "tu",
+        "lần",
+        "thất",
+        "bại",
+        "đêm",
+        "thứ",
+        "hai"
+      ],
+      "dung_o": [
+        "c1_p11b"
+      ]
     }
   }
 }
