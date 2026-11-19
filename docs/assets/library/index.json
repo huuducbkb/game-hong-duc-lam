@@ -1038,6 +1038,23 @@
       "dung_o": [
         "c1_p18a"
       ]
+    },
+    "nv_han_lap_cuoi_tru.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Cười trừ chối quanh; hắn không tin một chữ (p18b).",
+      "tags": [
+        "lời",
+        "cười",
+        "trừ",
+        "chối",
+        "quanh",
+        "hắn",
+        "không",
+        "tin"
+      ],
+      "dung_o": [
+        "c1_p18b"
+      ]
     }
   }
 }
