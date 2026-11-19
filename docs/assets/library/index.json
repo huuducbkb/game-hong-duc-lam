@@ -953,6 +953,23 @@
       "dung_o": [
         "c1_p14c"
       ]
+    },
+    "bc_cong_dong_quyen.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Dùng Thất Huyền quyền đỡ đòn, phản kích (p14d).",
+      "tags": [
+        "thất",
+        "huyền",
+        "quyền",
+        "dùng",
+        "đỡ",
+        "đòn",
+        "phản",
+        "kích"
+      ],
+      "dung_o": [
+        "c1_p14d"
+      ]
     }
   }
 }
