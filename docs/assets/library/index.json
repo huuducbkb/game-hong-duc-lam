@@ -919,6 +919,23 @@
       "dung_o": [
         "c1_p14"
       ]
+    },
+    "bc_cong_dong_giau.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Chỉ dùng võ công phàm nhân, giấu tu vi (p14b).",
+      "tags": [
+        "giấu",
+        "thực",
+        "lực",
+        "chỉ",
+        "dùng",
+        "võ",
+        "công",
+        "phàm"
+      ],
+      "dung_o": [
+        "c1_p14b"
+      ]
     }
   }
 }
