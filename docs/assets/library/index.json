@@ -1004,6 +1004,23 @@
       "dung_o": [
         "c1_p15"
       ]
+    },
+    "nv_han_lap_gap.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Bám theo bóng người, chạm mặt Hàn Lập sau hậu sơn (p17).",
+      "tags": [
+        "sau",
+        "trận",
+        "bám",
+        "theo",
+        "bóng",
+        "người",
+        "chạm",
+        "mặt"
+      ],
+      "dung_o": [
+        "c1_p17"
+      ]
     }
   }
 }
