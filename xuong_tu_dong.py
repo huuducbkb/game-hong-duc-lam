@@ -20,9 +20,14 @@ import base64
 import json
 import os
 import re
+import sys
 
 import tools_server as TS
 from game import nhan_dien_anh as ND
+
+# tools/ chứa xuong_video.py và build_xuong_video.py — thêm vào path để import được
+# dù chạy từ gốc repo (GitHub Action chạy `python3 tools/xu_ly_inbox.py`).
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools"))
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -57,6 +62,50 @@ def _asset_theo_key(key: str):
     return next((a for a in TS.ASSETS if a["key"] == key), None)
 
 
+# --------------------------------------------------- ảnh TRAILER (Xưởng video)
+# Ảnh trailer dùng mã v01..v14 và lưu ở docs/assets/video/ — KHÔNG phải asset game.
+# Phải chặn trước khi nhận diện, nếu không AI sẽ gán nhầm sang asset game và
+# ghi đè ảnh đang dùng trong game.
+def _canh_video():
+    import xuong_video as XV
+    return XV
+
+
+def _la_anh_trailer(ten: str, hint: str) -> dict | None:
+    """Trả cảnh trailer nếu ảnh này thuộc Xưởng video, ngược lại None."""
+    try:
+        XV = _canh_video()
+    except Exception:  # noqa: BLE001 — thiếu module thì bỏ qua, giữ luồng cũ
+        return None
+    theo_key = {c["key"]: c for c in XV.CANH_VIDEO}
+    if hint in theo_key:
+        return theo_key[hint]
+    for k, c in theo_key.items():
+        if k in ten or c["file"] == ten:
+            return c
+    return None
+
+
+def _luu_anh_trailer(c: dict, data: bytes) -> str:
+    """Lưu ảnh trailer đúng tên file, nén về 1080x1920 nếu cần."""
+    XV = _canh_video()
+    os.makedirs(XV.VIDEO_DIR, exist_ok=True)
+    dich = os.path.join(XV.VIDEO_DIR, c["file"])
+    try:
+        from PIL import Image
+        import io
+        im = Image.open(io.BytesIO(data))
+        if im.mode not in ("RGB", "L"):
+            im = im.convert("RGB")
+        if im.size != XV.KHUNG:
+            im = im.resize(XV.KHUNG, Image.LANCZOS)
+        im.save(dich, "JPEG", quality=90, optimize=True)
+    except Exception:  # noqa: BLE001 — Pillow lỗi thì ghi nguyên bản
+        with open(dich, "wb") as f:
+            f.write(data)
+    return c["file"]
+
+
 def nhan_dien(anh_list: list, env: dict, chi_con_thieu: bool = True) -> list:
     """Nhận diện từng ảnh. Trả [{name, key, do_tin_cay, mo_ta, ly_do, kich_thuoc, cach, data}]."""
     ung_vien = asset_con_thieu() if chi_con_thieu else list(TS.ASSETS)
@@ -66,6 +115,15 @@ def nhan_dien(anh_list: list, env: dict, chi_con_thieu: bool = True) -> list:
         ten = os.path.basename(item.get("name", "") or "image")
         data = base64.b64decode(item.get("data", ""))
         hint = (item.get("hint_key") or "").strip()
+
+        # Ảnh trailer (v01..v14) — nhận thẳng, KHÔNG đưa cho AI đoán, để không
+        # bao giờ bị gán nhầm sang asset game rồi ghi đè ảnh trong game.
+        canh = _la_anh_trailer(ten, hint)
+        if canh:
+            kq.append({"name": ten, "data": data, "key": canh["key"], "do_tin_cay": 100,
+                       "cach": "trailer", "mo_ta": canh["ten"], "ly_do": "Ảnh trailer Xưởng video.",
+                       "kich_thuoc": ""})
+            continue
 
         # Có gợi ý key (thư mục đặt đúng tên key, hoặc dòng 'mã-ảnh' trong Issue)
         # → tin tuyệt đối.
@@ -195,6 +253,27 @@ def luu_va_ghep(ket_qua: list) -> dict:
     can_xac_nhan = []
     for r in ket_qua:
         key = r.get("key") or ""
+
+        # Ảnh trailer (v01..v14) đi đường riêng — lưu vào docs/assets/video/.
+        # Không được rơi vào nhánh asset game, tránh ghi đè ảnh đang dùng trong game.
+        if r.get("cach") == "trailer":
+            canh = _la_anh_trailer(os.path.basename(r.get("name") or ""), "")
+            if not canh:
+                canh = next((c for c in _canh_video().CANH_VIDEO if c["key"] == key), None)
+            if not canh:
+                bo_qua.append({"name": r.get("name"), "key": key, "ly_do": "Không khớp cảnh trailer"})
+                continue
+            data = r.get("data")
+            if isinstance(data, str):
+                data = base64.b64decode(data)
+            try:
+                ten_file = _luu_anh_trailer(canh, data)
+                da_luu.append({"name": r.get("name"), "key": canh["key"], "file": ten_file,
+                               "cach": "trailer", "do_tin_cay": 100})
+            except Exception as e:  # noqa: BLE001
+                bo_qua.append({"name": r.get("name"), "key": canh["key"], "ly_do": str(e)})
+            continue
+
         if not key or not _asset_theo_key(key):
             can_xac_nhan.append({"name": r.get("name"), "ly_do": r.get("ly_do") or "AI không chắc",
                                  "mo_ta": r.get("mo_ta") or "", "do_tin_cay": r.get("do_tin_cay", 0)})
@@ -216,24 +295,37 @@ def luu_va_ghep(ket_qua: list) -> dict:
         return {"da_luu": [], "can_xac_nhan": can_xac_nhan, "bo_qua": bo_qua,
                 "ghep": {}, "thong_diep": "Không có ảnh nào được lưu."}
 
+    # Ảnh trailer không có đoạn truyện và không thuộc thư viện ảnh game —
+    # tách ra để hai phần dưới chỉ xử lý ảnh game.
+    anh_game = [x for x in da_luu if x.get("cach") != "trailer"]
+    anh_trailer = [x for x in da_luu if x.get("cach") == "trailer"]
+
     # ghép vào dữ liệu chương (cả 2 bản)
     ghep = {}
-    for rel in CHUONG_FILES:
-        p, chuong = _nap_json(rel)
-        for x in da_luu:
-            gan = _gan_doan(chuong, x["key"], x["file"])
-            if gan:
-                ghep.setdefault(x["file"], gan)
-        _ghi_json(p, chuong)
+    if anh_game:
+        for rel in CHUONG_FILES:
+            p, chuong = _nap_json(rel)
+            for x in anh_game:
+                gan = _gan_doan(chuong, x["key"], x["file"])
+                if gan:
+                    ghep.setdefault(x["file"], gan)
+            _ghi_json(p, chuong)
 
-    # cập nhật thư viện
-    p, lib = _nap_json(LIB_FILE)
-    for x in da_luu:
-        _cap_nhat_thu_vien(lib, x["key"], x["file"], ghep.get(x["file"], []))
-    _ghi_json(p, lib)
+        # cập nhật thư viện
+        p, lib = _nap_json(LIB_FILE)
+        for x in anh_game:
+            _cap_nhat_thu_vien(lib, x["key"], x["file"], ghep.get(x["file"], []))
+        _ghi_json(p, lib)
 
+    if anh_trailer:
+        import build_xuong_video as BV
+        BV.build_va_ghi()
+
+    thong_diep = f"Đã lưu và ghép {len(anh_game)} ảnh game"
+    if anh_trailer:
+        thong_diep += f", {len(anh_trailer)} ảnh trailer"
     return {"da_luu": da_luu, "can_xac_nhan": can_xac_nhan, "bo_qua": bo_qua, "ghep": ghep,
-            "thong_diep": f"Đã lưu và ghép {len(da_luu)} ảnh."}
+            "thong_diep": thong_diep + "."}
 
 
 def xu_ly(anh_list: list, env: dict | None = None, chi_con_thieu: bool = True) -> dict:

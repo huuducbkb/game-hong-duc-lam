@@ -79,7 +79,9 @@ jobs:
           fi
 
       - name: Dựng lại Xưởng tĩnh (cập nhật trạng thái ảnh)
-        run: python3 tools/build_xuong.py
+        run: |
+          python3 tools/build_xuong.py
+          python3 tools/build_xuong_video.py
 
       - name: Commit + đẩy lên main
         id: commit

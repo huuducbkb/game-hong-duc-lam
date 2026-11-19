@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xưởng video — Hồng Đức Tu Tiên Lộ</title>
+<style>
+:root{--bg:#111a2b;--card:#182337;--ink:#e8e6df;--muted:#93a0b8;--gold:#ffd98a;
+  --jade:#6fe0c0;--line:#2b3b57;--seal:#a8352a}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);
+  color:var(--ink);margin:0 auto;padding:18px;max-width:760px;line-height:1.55;-webkit-text-size-adjust:100%}
+h1{font-size:20px;color:var(--gold);margin:6px 0 2px}
+h2{font-size:16px;color:var(--jade);margin:30px 0 6px;display:flex;flex-wrap:wrap;
+  gap:8px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:7px}
+p,li,td,th{font-size:13.5px;color:#cbd4e4}
+.muted{color:var(--muted)}
+code{background:#0a1220;padding:1px 6px;border-radius:4px;color:var(--jade);font-size:12px}
+a{color:var(--jade)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.dem{font-size:11px;color:var(--muted);background:#0a1220;padding:2px 8px;border-radius:99px}
+.mota{font-size:12.5px;color:var(--muted);margin:4px 0 10px}
+.ok{color:#7fe0a8}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.5px}
+.phan{margin:34px 0}
+.phan>h2{font-size:18px;color:var(--gold);border-bottom:2px solid var(--line);
+  padding-bottom:8px;margin-top:38px}
+.phan>.mota{font-size:13px;color:var(--muted);margin:6px 0 4px}
+details.gop,details.gop-phan,details.phu{margin:10px 0 16px;border:1px solid var(--line);
+  border-radius:10px;background:#0e1726;padding:10px 12px}
+details.gop summary,details.gop-phan summary,details.phu summary{color:var(--jade);font-size:13px;
+  font-weight:600;padding:2px 0;cursor:pointer}
+details.gop-phan{margin:14px 0 22px;background:#101c2e;border-color:#31456a}
+details.phu{margin:8px 0 0;background:#0b1420}
+.ds-anh{display:flex;flex-direction:column;gap:12px}
+.muc-luc{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:12px 14px;margin:14px 0}
+.ml-phan{margin:9px 0}
+.ml-ten{color:var(--gold);font-weight:600;font-size:13.5px;text-decoration:none}
+.ml-con{font-size:12.5px;margin:3px 0 0 4px;line-height:1.9}
+.ml-con a{color:#9fb2cf;text-decoration:none;border-bottom:1px dotted #3d5170}
+.ml-con a:hover{color:var(--jade)}
+.canh{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:13px;margin:12px 0;border-left:3px solid var(--jade)}
+.canh.done{border-left-color:#2f8f5a;opacity:.78}
+.canh header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.so{font-size:11px;color:#3a2600;background:var(--gold);padding:2px 7px;border-radius:99px;font-weight:700}
+.ratio{font-size:11px;color:var(--muted);background:#0a1220;padding:2px 8px;border-radius:99px}
+.badge{font-size:11px;padding:2px 8px;border-radius:99px}
+.badge.chac{background:#12351f;color:#7fe0a8}
+.badge.thieu{background:#2a150d;color:#ffb98a}
+.meta{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--muted);margin:8px 0}
+.meta .k,.chu .k{color:#7f8ca3}
+.chu{font-size:12.5px;margin:6px 0;color:#e4d9b8}
+.xem{width:100%;max-width:240px;display:block;margin:8px 0;border-radius:8px;
+  border:1px solid var(--line)}
+textarea{width:100%;font-size:12.5px;line-height:1.5;background:#0a1220;color:#dfe7f5;
+  border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical;
+  font-family:ui-monospace,Menlo,monospace}
+button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radius:9px;
+  padding:10px 14px;cursor:pointer}
+.row{display:flex;gap:8px;margin-top:8px}
+.cp{flex:1;background:linear-gradient(135deg,#f7b32b,#ffd166);color:#3a2600}
+.cp.done{background:#2f8f5a;color:#eafff3}
+.dl{background:#1d2b45;color:var(--gold);border:1px solid #4a628c;padding:10px 14px;
+  border-radius:9px;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer}
+.big{display:block;text-align:center;margin:10px 0;border-style:dashed}
+.steps li{margin:7px 0}
+</style>
+</head>
+<body>
+
+<h1>Xưởng video</h1>
+<p class="muted">Hồng Đức Tu Tiên Lộ · trailer intro <b>72 giây</b> (<b>1:12</b>) ·
+<b>14</b> cảnh · đã có <b>0</b>, còn thiếu <b>14</b>.</p>
+
+<h2>⚡ Cách làm</h2>
+<div class="card">
+  <ol class="steps">
+    <li><b>Vẽ ảnh</b>: bấm <b>📋 Copy prompt tổng</b> (một lần cho cả 14 ảnh) hoặc copy
+        prompt từng cảnh. Dán vào AI tạo ảnh. <b>Tỉ lệ bắt buộc 9:16 dọc</b> — không phải 3:4.</li>
+    <li><b>Đặt tên file đúng như thẻ ghi</b> (<code>v01_pham_nhan.jpg</code>…) rồi tải lên thư mục
+        <code>docs/assets/video/</code>. Sai tên là hệ thống không nhận.</li>
+    <li><b>Dựng trong CapCut</b>: theo bảng thời gian bên dưới — mỗi cảnh đúng số giây,
+        camera theo cột "camera", chuyển cảnh theo cột "chuyển cảnh".</li>
+    <li><b>Xuất file</b>: MP4, H.264, 1080×1920, 30fps, 8–10 Mbps, <b>dưới 15 MB</b>.</li>
+  </ol>
+  <a class="dl big" href="https://github.com/huuducbkb/game-hong-duc-lam/upload/main/docs/assets/video" target="_blank">📤 Mở trang tải ảnh lên docs/assets/video/</a>
+  <p class="muted" style="font-size:12.5px">Ảnh trailer <b>không dùng chung</b> với ảnh trong game.
+  Ảnh game là thẻ 3:4 chừa chỗ cho chữ; ảnh trailer là khung 9:16 điện ảnh.
+  Cắt ảnh game ra làm trailer sẽ mất bố cục và lộ khung.</p>
+</div>
+
+<h2>🎯 Prompt TỔNG — dán 1 lần, vẽ cả 14 ảnh</h2>
+<div class="card">
+  <p class="mota">Dán nguyên khối này vào AI chat. Nó vẽ lần lượt từng cảnh, đúng thứ tự video.
+  Nếu AI dừng giữa chừng, nhắn <b>"tiếp tục"</b> để lấy phần còn lại.</p>
+  <textarea readonly rows="14" id="tong-t">TASK: Create 14 images for the INTRO TRAILER of a Vietnamese cultivation game named &quot;Hồng Đức Tu Tiên Lộ&quot; — full 14-shot intro trailer.
+Produce the images ONE BY ONE, in the order below, each as a SEPARATE image. ALL images must be 9:16 vertical (1080×1920) — vertical, cinematic, full-frame.
+If you cannot finish them all in one reply, make as many as you can and then stop; I will reply &quot;tiếp tục&quot; to get the next batch.
+
+SHARED ART STYLE (apply to EVERY image): Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+LAYOUT RULE: these are cinematic trailer frames, NOT game scene cards. The subject must fill the frame with clear foreground, middle ground and background layers, strong contrast and directional light. Do not leave a large flat empty area for text — text is added later in the video editor.
+
+TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo in ANY image.
+
+1. v01_pham_nhan.jpg — 9:16 vertical (1080×1920) — Mortal — terraced fields (video 0:00–0:05, 5s, camera: very slow zoom out)
+   Cinematic wide establishing shot, vertical composition. Vast terraced rice paddies climbing the lower slopes of enormous mountains at first grey light. Thin water lies in the flooded terraces, catching pale cold sky in long silver bands that step up the hillside. In the lower third, tiny and insignificant, a single barefoot peasant child in coarse patched hemp carries two wooden water buckets on a shoulder pole along a narrow earth ridge, walking away from the viewer. Behind and above everything, the mountain slopes rise out of frame into pale mist and empty paper — the peaks are not visible, only the sense that they are impossibly high. A few thin strokes of bare winter trees at the field edges. Cold, quiet, poor, ordinary. The whole world is grey and small. Foreground: dark wet earth ridge, strong and detailed. Middle ground: the terraces stepping upward. Background: mist and empty paper. Deep atmospheric perspective.
+
+2. v02_nguoc_nhin.jpg — 9:16 vertical (1080×1920) — Looking up at the immortal peak (video 0:05–0:09, 4s, camera: slow tilt up)
+   Dramatic low-angle vertical shot, looking steeply upward. In the very bottom of the frame, seen from behind and slightly to one side, the small dark silhouette of a barefoot peasant boy in patched hemp clothing, head tilted back, gazing up. Above him the frame is almost entirely consumed by colossal mountain cliffs rising vertically out of sight, their bases dark and detailed with a few twisted pines clinging to the rock, their upper reaches dissolving into pale mist and bare paper so the peaks are never seen. Far up in the empty pale sky, tiny and faint, a few cranes fly in a loose line — the only hint that something lives above. The scale is overwhelming: the boy is less than a tenth of the frame height. Cold pale light from above, deep shadow at the cliff bases. Foreground: the boy&#x27;s shoulders and the back of his head, dark. Middle ground: sheer rock. Background: mist and emptiness. Small, awed, yearning — the moment a mortal first looks at the world of immortals.
+
+3. v03_do_thi_tan.jpg — 9:16 vertical (1080×1920) — The city dissolving into ink (video 0:09–0:12, 3s, camera: strong zoom in)
+   A surreal transitional image, vertical composition. A dense modern city skyline of glass towers is dissolving downward into wet black ink: the upper towers are still faintly legible as pale grey geometric shapes, but from the middle of the frame down they melt and run, bleeding into soft black wash and feathered ink edges that spread across the paper like water soaking upward. Street lights and window grids survive only as a few tiny cold blue-white points of light trapped in the dissolving ink. At the very bottom, the ink has pooled into a still dark surface. No people, no vehicles, no readable signs. The whole image reads as a world being erased and rewritten. Vertical motion: solid at top, liquid at bottom. High contrast, unsettling, quiet catastrophe.
+
+4. v04_thuc_tinh.jpg — 9:16 vertical (1080×1920) — Awakening — a stranger&#x27;s hand (video 0:12–0:15, 3s, camera: very slow zoom in)
+   Extreme close-up, vertical composition, seen from directly above. A single open hand lies palm-up on cold wet grey stone, fingers slightly curled and trembling. The hand is thin and underfed: sun-tanned skin, hard callouses across the palm and finger bases, cracked knuckles, dark-rimmed nails with dirt worked into the edges, a faint old scar across the back. A coarse frayed grey-brown hemp sleeve, far too large for the arm, bunches at the wrist. Beside the hand on the wet stone: a few grains of straw, a smear of mud, and a thin film of water reflecting pale cold light. Shallow depth of field — the fingertips are sharp, the edges of the frame fall away into soft dark ink shadow. No face, no body. Intimate, disorienting — a body recognised as not one&#x27;s own.
+
+5. v05_tien_gioi.jpg — 9:16 vertical (1080×1920) — Immortal realm — wide panorama (video 0:15–0:23, 8s, camera: very slow pan right, zooming from 100% to 112%)
+   Epic cinematic vertical panorama of an immortal mountain realm. Colossal stone peaks rise in layered ranks, the nearest dark and detailed, the furthest reduced to pale grey silhouettes that dissolve into empty paper at the top of the frame. A vast sea of cloud fills the valleys between the peaks, its surface catching pale cold light in long soft bands. On the shoulders of two or three of the great peaks perch ancient Chinese sect buildings — slender pagodas with upswept eaves, long covered galleries, stone platforms cut into the cliff face — all tiny against the mountains, connected by impossibly thin stone bridges spanning the cloud sea. Long white waterfalls plunge from the cliff edges and disappear into the mist below. A flock of cranes wheels slowly across the middle distance. A few twisted pines cling to the rock in the foreground, dark and sharp. Deep layered atmospheric perspective: near is black and detailed, far is pale and empty. Foreground: dark cliff edge and pine. Middle ground: cloud sea, bridges, sect buildings, waterfalls. Background: fading peaks and bare paper sky. Majestic, vast, silent, ancient. The world the mortal boy was looking at.
+
+6. v06_tong_mon.jpg — 9:16 vertical (1080×1920) — The sect — stairway to heaven (video 0:23–0:28, 5s, camera: slow tilt up)
+   Vertical low-angle shot of the entrance to an ancient Chinese martial sect. A monumental stone stairway climbs steeply away from the viewer and out of the top of the frame, its steps worn concave by centuries of feet. At the base, two massive stone pillars flank the first step, weathered and carved with faint cloud patterns, a great horizontal stone lintel resting across them. Long blue-grey banners hang from the pillars, their fabric hanging heavy and still. On both sides of the stairway, tall dark pines. Halfway up, small figures in pale robes climb the steps in a loose file, tiny and distant — disciples going up. High above, the top of the stairway is lost in pale mist, so the sect itself is never shown, only implied. Cold morning light slanting across the steps, long shadows between them. Foreground: worn stone steps, sharp and detailed. Middle ground: pillars, banners, pines, climbing figures. Background: mist and empty paper. Formal, imposing, a threshold that cannot be uncrossed.
+
+7. v07_tu_luyen.jpg — 9:16 vertical (1080×1920) — Cultivating at the precipice (video 0:28–0:33, 5s, camera: slow zoom in)
+   Vertical composition, seen from slightly behind and to one side. A single figure in coarse grey robes sits cross-legged in meditation on a narrow rock ledge at the very edge of a precipice, facing away from the viewer toward the void. His back is straight, hands resting on his knees, posture absolute stillness. Beyond the ledge, the world falls away into a vast sea of pale mist — no bottom visible, only empty paper fading downward. Around his shoulders and above his head, a slow spiral of pale blue-white mist and faint light motes turns in the air, the only motion in an otherwise still image, suggesting qi gathering. A thin cold dawn light from the left rim-lights his shoulders and the edge of the rock. A few dry grass blades at the ledge edge bend in a wind. Foreground: the seated figure and rock ledge, dark and sharp. Middle ground: the void of mist. Background: empty pale paper. Disciplined, solitary, patient. A mortal forcing himself to become something else.
+
+8. v08_dot_pha.jpg — 9:16 vertical (1080×1920) — Breakthrough (video 0:33–0:37, 4s, camera: fast zoom in from 100% to 118%, with a subtle shake)
+   A violent burst of released energy, vertical composition, centred. At the centre of the frame a seated meditating figure in coarse grey robes, seen from the front, is silhouetted inside an expanding sphere of pale jade-green and white light — his robe and hair blown outward by the force. The expanding wave of the breakthrough radiates outward as concentric rings of ink: sharp dark brush strokes near the centre, breaking into dry bristle fragments and spray at the edges, scattering across the paper like an explosion drawn in calligraphy. Loose gravel, leaves and dust are lifted off the ground and thrown outward in streaks. The ground beneath him is cracked in a radial pattern. Above, the sky is torn open with pale light. The jade-green glow is the only colour in an otherwise black and cream image. Foreground: cracked ground and flying debris. Middle ground: the figure in the light sphere. Background: radiating ink shockwave and pale sky. Explosive, triumphant, the instant a mortal ceases to be merely mortal.
+
+9. v09_ngoc_cot.jpg — 9:16 vertical (1080×1920) — The jade bone glowing (video 0:37–0:42, 5s, camera: very slow zoom in)
+   Vertical cinematic close shot, dramatic low light. A fist-sized chunk of pale, translucent jade shaped roughly like a bone or a hollow rib. Its surface is cold and smooth, but it grows warm when held. From within, a faint bluish light pulses like a slow heartbeat — sometimes showing a shadowy female figure inside. An aura of great age and sealed power. Sits in dark soil, half-buried, glowing faintly. The soil around it is wet and black, clods of earth casting long soft shadows in the cold halo of the stone. A few thin wisps of pale mist curl up from the soil around the stone and drift into the darkness. Tiny floating light motes hang in the air. Everything beyond the halo falls away into deep black ink shadow. Nothing else in the frame. Foreground: the jade and wet soil, sharply detailed. Background: pure dark ink. Ancient, sealed, waiting. Something alive inside something dead.
+
+10. v10_yeu_thu.jpg — 9:16 vertical (1080×1920) — Demon beast in the mist (video 0:42–0:46, 4s, camera: slow pan left)
+   Vertical composition, seen from the ground looking up into dense mist. A colossal demon beast emerges from the fog, only partly visible: an enormous horned head lowered toward the viewer, filling the upper half of the frame, its body lost entirely in mist so the scale is impossible to judge. The creature is rendered as heavy black ink masses with dry-brush fur texture, its hide suggesting thick coarse scales. Two huge eyes glow with a single cold amber-orange light — the only warm colour in the image — and a long slow breath of white vapour curls from its nostrils. Its horns are massive, ridged and dark. In the extreme lower foreground, tiny and insignificant, the dark silhouettes of two or three human figures in robes stand frozen, weapons half-raised, less than a twentieth of the frame height. Sparse twisted branches cross the corners of the frame. Foreground: tiny human figures, sharp black silhouettes. Middle ground: the vast head and glowing eyes. Background: solid pale mist and empty paper. Overwhelming, predatory, ancient. The world does not care that you are the protagonist.
+
+11. v11_van_kiem.jpg — 9:16 vertical (1080×1920) — Ten thousand swords (video 0:46–0:51, 5s, camera: slow pan right)
+   Dynamic vertical composition, sky filled with flying swords. Dozens of slender Chinese straight swords streak diagonally upward and across the frame in a loose swarm, each trailing a long thin line of pale cold light like a comet&#x27;s tail — the trails are drawn as sharp dry brush strokes, tapering and breaking into bristle fragments at their ends. The blades themselves are dark silhouettes with a thin bright edge catching light. They rise from a dark mountain ridge at the bottom of the frame and converge toward the upper right, where the light trails knot together into a bright pale knot before dispersing. In the lower foreground, the small dark figure of a swordsman in flowing robes stands on the ridge, one arm raised, commanding them. Thin cloud wisps torn apart by the passage of the blades. The sky is pale and open; the ridge and figure are deep black. Foreground: the summoning figure on the ridge, sharp black. Middle ground: the swarm of blades and their light trails. Background: pale open sky. Swift, overwhelming, beautiful and lethal.
+
+12. v12_chay.jpg — 9:16 vertical (1080×1920) — The sect burning (video 0:51–0:56, 5s, camera: subtle shake, no zoom)
+   Vertical composition, a sect destroyed at night. The great pagoda and long galleries of an ancient Chinese immortal sect burn fiercely — tall vermilion and ember-orange flames leap from the tiered roofs, the only strong colour in the image, everything else black ink and smoke. Thick black smoke boils upward and swallows the top of the frame. Burning debris and sparks drift across the middle distance. The stone stairway in the foreground is strewn with broken weapons, torn blue-grey banners and fallen bodies rendered only as dark shapes, no faces. A few small figures flee down the steps toward the viewer, suggested loosely by a few strokes. A great bronze bell has fallen from its frame and lies cracked on the ground. Cold moonlight cuts through the smoke in one pale shaft. Foreground: wreckage, fallen bell, fleeing figures. Middle ground: the burning sect. Background: smoke and dark. Catastrophic, tragic, total. The end of everything that was built.
+
+13. v13_han_lap.jpg — 9:16 vertical (1080×1920) — Han Li (video 0:56–1:03, 7s, camera: very slow zoom in)
+   Cinematic vertical portrait, head and shoulders, facing the viewer directly. A lean, gaunt youth of about 16–17, slightly undernourished. Long face, high cheekbones, sun-darkened skin. Dark eyes, sharp as a blade, cold at first glance — but hiding a deep weariness, the look of someone who has long concealed his true self. Black hair tied simply at the nape. Wearing coarse grey hemp robes of a low-ranking servant disciple, sleeves slightly worn. A plain cloth bag at his belt. Expression: quiet, guarded, reserved; rarely shows emotion. Ordinary in appearance, easy to overlook — but there is a quiet, unsettling weight behind his eyes. He stands against a dark blurred background of mist and hillside at dusk, a faint cold rim light along one side of his face and shoulder, the rest of his features in soft shadow. His gaze is level and unblinking, straight into the camera. The lower third of the frame is empty dark ink so a name can be placed beneath. Ordinary, unremarkable, and absolutely not to be underestimated.
+
+14. v14_nen_tieu_de.jpg — 9:16 vertical (1080×1920) — Title background (video 1:03–1:12, 9s, camera: completely static, no movement)
+   A nearly empty vertical sheet of rough handmade mulberry paper filling the frame, pale warm cream with visible fibre texture and faint uneven washes of pale sepia near the edges. A single long vertical brush stroke of black ink descends through the upper middle of the paper — thick and dark where the brush first touched down, thinning and breaking into dry bristle marks as it trails downward. Along the very bottom edge, a faint suggestion of mist-wrapped mountain ridges, no more than two or three soft grey strokes, almost invisible. The whole centre of the frame is bare, open, untouched paper — empty and light so a title can be placed on top. Low contrast, calm, quiet, generous negative space.
+</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('tong-t', this)">📋 Copy prompt tổng</button>
+    <button class="dl" onclick="taiTxt('tong-t', 'prompt-tong-trailer.txt')">⬇️ .txt</button>
+  </div>
+</div>
+
+<h2>🎵 Prompt nhạc nền</h2>
+<div class="card">
+  <p class="mota">Mô tả nhạc khớp đúng nhịp 72 giây của trailer. Dùng để tìm nhạc có sẵn
+  hoặc đưa cho công cụ tạo nhạc.</p>
+  <textarea readonly rows="12" id="nhac-t">TASK: Create a 72-second instrumental score for the intro trailer of &quot;Hồng Đức Tu Tiên Lộ&quot;, a Vietnamese cultivation (tu tiên) game set in the world of Phàm Nhân Tu Tiên.
+
+STYLE: traditional East Asian strings (guzheng, erhu, pipa) blended with dark ambient. No vocals, no lyrics. Restrained and ancient, never bombastic or modern.
+
+STRUCTURE — follow these timings exactly:
+  0:00–0:15 — near-silence, one very faint low drone
+  0:15 — sudden loud entry: frame drums and low strings
+  0:33 — building pulse, add a high string layer
+  0:44 — a deep distant beast growl buried under the music
+  0:51 — hard cut of all music for half a second — only fire, cracking wood, a falling bronze bell
+  0:56 — almost total silence, one sustained low note held through the portrait
+  1:03 — a distant bell, the score rises then fades under the title
+
+Dynamic shape: near-silence, then a sudden swell at 0:15, steady build to 0:51, a hard drop to almost nothing at 0:56, then a slow rise and fade under the title at 1:03.
+Total length: exactly 72 seconds.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('nhac-t', this)">📋 Copy prompt nhạc</button>
+    <button class="dl" onclick="taiTxt('nhac-t', 'prompt-nhac.txt')">⬇️ .txt</button>
+  </div>
+  <table><thead><tr><th>mốc</th><th>làm gì</th></tr></thead><tbody><tr><td><code>0:00–0:15</code></td><td>Gần như im. Chỉ một nốt trầm rất khẽ, để người xem chìm vào cái nghèo.</td></tr><tr><td><code>0:15</code></td><td>Nhạc vào mạnh đột ngột — trống da + dây trầm. Đây là cú nổ của cảnh tiên giới.</td></tr><tr><td><code>0:33</code></td><td>Nhịp dồn dần, thêm lớp dây cao.</td></tr><tr><td><code>0:44</code></td><td>Tiếng gầm trầm của yêu thú, rất xa, dưới nền nhạc.</td></tr><tr><td><code>0:51</code></td><td>Cắt sạch nhạc 0.5s — chỉ còn tiếng lửa cháy, gỗ nổ, chuông đồng rơi.</td></tr><tr><td><code>0:56</code></td><td>Gần như im hoàn toàn. Một nốt trầm giữ suốt cảnh Hàn Lập.</td></tr><tr><td><code>1:03</code></td><td>Chuông xa, nhạc dâng lên rồi tắt dần dưới tiêu đề.</td></tr></tbody></table>
+</div>
+
+<h2>🗺️ Mục lục</h2>
+<div class="muc-luc">
+
+<div class="ml-phan">
+  <a class="ml-ten" href="#phan-pham-nhan">🌾 Mở — Phàm nhân</a>
+  <div class="ml-con"><a href="#c-v01">Phàm nhân — ruộng bậc thang</a> · <a href="#c-v02">Ngước nhìn đỉnh núi tiên</a> · <a href="#c-v03">Đô thị tan thành mực</a> · <a href="#c-v04">Thức tỉnh — bàn tay lạ</a></div>
+</div>
+
+<div class="ml-phan">
+  <a class="ml-ten" href="#phan-tien-gioi">⛰️ Tiên giới</a>
+  <div class="ml-con"><a href="#c-v05">Tiên giới — toàn cảnh</a> · <a href="#c-v06">Tông môn — bậc đá lên trời</a> · <a href="#c-v07">Tu luyện bên vực</a></div>
+</div>
+
+<div class="ml-phan">
+  <a class="ml-ten" href="#phan-suc-manh">⚔️ Sức mạnh</a>
+  <div class="ml-con"><a href="#c-v08">Đột phá</a> · <a href="#c-v09">Ngọc cốt phát sáng</a> · <a href="#c-v10">Yêu thú trong sương</a> · <a href="#c-v11">Vạn kiếm xuất không</a></div>
+</div>
+
+<div class="ml-phan">
+  <a class="ml-ten" href="#phan-mat-mat">🔥 Mất mát</a>
+  <div class="ml-con"><a href="#c-v12">Tông môn chìm trong lửa</a></div>
+</div>
+
+<div class="ml-phan">
+  <a class="ml-ten" href="#phan-ket">🌅 Kết</a>
+  <div class="ml-con"><a href="#c-v13">Hàn Lập</a> · <a href="#c-v14">Nền tiêu đề</a></div>
+</div>
+</div>
+
+<h2>📋 Bảng dựng — thời gian từng cảnh</h2>
+<div class="card">
+  <p class="mota">Cộng lại đúng <b>72 giây</b>. Đây là bảng để dựng trong CapCut.</p>
+  <table><thead><tr><th>thời gian</th><th>dài</th><th>cảnh</th><th>camera</th></tr></thead><tbody><tr><td>0:00–0:05</td><td>5s</td><td><a href='#c-v01'>Phàm nhân — ruộng bậc thang</a></td><td class='muted'>Zoom out rất chậm</td></tr><tr><td>0:05–0:09</td><td>4s</td><td><a href='#c-v02'>Ngước nhìn đỉnh núi tiên</a></td><td class='muted'>Pan lên</td></tr><tr><td>0:09–0:12</td><td>3s</td><td><a href='#c-v03'>Đô thị tan thành mực</a></td><td class='muted'>Zoom in mạnh</td></tr><tr><td>0:12–0:15</td><td>3s</td><td><a href='#c-v04'>Thức tỉnh — bàn tay lạ</a></td><td class='muted'>Zoom in rất chậm</td></tr><tr><td>0:15–0:23</td><td>8s</td><td><a href='#c-v05'>Tiên giới — toàn cảnh</a></td><td class='muted'>Pan ngang phải, rất chậm (100% → 112%)</td></tr><tr><td>0:23–0:28</td><td>5s</td><td><a href='#c-v06'>Tông môn — bậc đá lên trời</a></td><td class='muted'>Pan lên</td></tr><tr><td>0:28–0:33</td><td>5s</td><td><a href='#c-v07'>Tu luyện bên vực</a></td><td class='muted'>Zoom in chậm</td></tr><tr><td>0:33–0:37</td><td>4s</td><td><a href='#c-v08'>Đột phá</a></td><td class='muted'>Zoom in nhanh (100% → 118%) + shake nhẹ</td></tr><tr><td>0:37–0:42</td><td>5s</td><td><a href='#c-v09'>Ngọc cốt phát sáng</a></td><td class='muted'>Zoom in rất chậm</td></tr><tr><td>0:42–0:46</td><td>4s</td><td><a href='#c-v10'>Yêu thú trong sương</a></td><td class='muted'>Pan ngang trái</td></tr><tr><td>0:46–0:51</td><td>5s</td><td><a href='#c-v11'>Vạn kiếm xuất không</a></td><td class='muted'>Pan ngang phải</td></tr><tr><td>0:51–0:56</td><td>5s</td><td><a href='#c-v12'>Tông môn chìm trong lửa</a></td><td class='muted'>Rung nhẹ</td></tr><tr><td>0:56–1:03</td><td>7s</td><td><a href='#c-v13'>Hàn Lập</a></td><td class='muted'>Zoom in rất chậm</td></tr><tr><td>1:03–1:12</td><td>9s</td><td><a href='#c-v14'>Nền tiêu đề</a></td><td class='muted'>Tĩnh</td></tr></tbody></table>
+</div>
+
+<h2>📥 Ảnh còn thiếu</h2>
+<div class="card">
+  <table><thead><tr><th>mốc</th><th>mã</th><th>cảnh</th><th>lưu là</th></tr></thead><tbody><tr><td>0:00</td><td><code>v01</code></td><td>Phàm nhân — ruộng bậc thang</td><td class='muted'><code>v01_pham_nhan.jpg</code></td></tr><tr><td>0:05</td><td><code>v02</code></td><td>Ngước nhìn đỉnh núi tiên</td><td class='muted'><code>v02_nguoc_nhin.jpg</code></td></tr><tr><td>0:09</td><td><code>v03</code></td><td>Đô thị tan thành mực</td><td class='muted'><code>v03_do_thi_tan.jpg</code></td></tr><tr><td>0:12</td><td><code>v04</code></td><td>Thức tỉnh — bàn tay lạ</td><td class='muted'><code>v04_thuc_tinh.jpg</code></td></tr><tr><td>0:15</td><td><code>v05</code></td><td>Tiên giới — toàn cảnh</td><td class='muted'><code>v05_tien_gioi.jpg</code></td></tr><tr><td>0:23</td><td><code>v06</code></td><td>Tông môn — bậc đá lên trời</td><td class='muted'><code>v06_tong_mon.jpg</code></td></tr><tr><td>0:28</td><td><code>v07</code></td><td>Tu luyện bên vực</td><td class='muted'><code>v07_tu_luyen.jpg</code></td></tr><tr><td>0:33</td><td><code>v08</code></td><td>Đột phá</td><td class='muted'><code>v08_dot_pha.jpg</code></td></tr><tr><td>0:37</td><td><code>v09</code></td><td>Ngọc cốt phát sáng</td><td class='muted'><code>v09_ngoc_cot.jpg</code></td></tr><tr><td>0:42</td><td><code>v10</code></td><td>Yêu thú trong sương</td><td class='muted'><code>v10_yeu_thu.jpg</code></td></tr><tr><td>0:46</td><td><code>v11</code></td><td>Vạn kiếm xuất không</td><td class='muted'><code>v11_van_kiem.jpg</code></td></tr><tr><td>0:51</td><td><code>v12</code></td><td>Tông môn chìm trong lửa</td><td class='muted'><code>v12_chay.jpg</code></td></tr><tr><td>0:56</td><td><code>v13</code></td><td>Hàn Lập</td><td class='muted'><code>v13_han_lap.jpg</code></td></tr><tr><td>1:03</td><td><code>v14</code></td><td>Nền tiêu đề</td><td class='muted'><code>v14_nen_tieu_de.jpg</code></td></tr></tbody></table>
+</div>
+
+<h2>🎨 Prompt theo phần · từng cảnh</h2>
+<p class="muted" style="font-size:12.5px">Mỗi phần có prompt gộp <b>toàn phần</b>; mỗi cảnh có prompt
+<b>riêng</b> kèm timecode, camera và chữ trên hình.</p>
+
+<section class="phan" id="phan-pham-nhan">
+  <h2>🌾 Mở — Phàm nhân
+    <span class="dem">0/4 đã có</span></h2>
+  <p class="mota">Cái nghèo, cái nhỏ bé, rồi cú giật xuyên không. Nhịp chậm, gần như không nhạc.</p>
+  <details class="gop-phan">
+    <summary>📦 Prompt vẽ TOÀN BỘ phần này (4 ảnh) — dán 1 lần cho cả phần</summary>
+    <textarea readonly rows="10" id="phan-pham-nhan-t">TASK: Create 4 images for the INTRO TRAILER of a Vietnamese cultivation game named &quot;Hồng Đức Tu Tiên Lộ&quot; — part: Mở — Phàm nhân.
+Produce the images ONE BY ONE, in the order below, each as a SEPARATE image. ALL images must be 9:16 vertical (1080×1920) — vertical, cinematic, full-frame.
+If you cannot finish them all in one reply, make as many as you can and then stop; I will reply &quot;tiếp tục&quot; to get the next batch.
+
+SHARED ART STYLE (apply to EVERY image): Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+LAYOUT RULE: these are cinematic trailer frames, NOT game scene cards. The subject must fill the frame with clear foreground, middle ground and background layers, strong contrast and directional light. Do not leave a large flat empty area for text — text is added later in the video editor.
+
+TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo in ANY image.
+
+1. v01_pham_nhan.jpg — 9:16 vertical (1080×1920) — Mortal — terraced fields (video 0:00–0:05, 5s, camera: very slow zoom out)
+   Cinematic wide establishing shot, vertical composition. Vast terraced rice paddies climbing the lower slopes of enormous mountains at first grey light. Thin water lies in the flooded terraces, catching pale cold sky in long silver bands that step up the hillside. In the lower third, tiny and insignificant, a single barefoot peasant child in coarse patched hemp carries two wooden water buckets on a shoulder pole along a narrow earth ridge, walking away from the viewer. Behind and above everything, the mountain slopes rise out of frame into pale mist and empty paper — the peaks are not visible, only the sense that they are impossibly high. A few thin strokes of bare winter trees at the field edges. Cold, quiet, poor, ordinary. The whole world is grey and small. Foreground: dark wet earth ridge, strong and detailed. Middle ground: the terraces stepping upward. Background: mist and empty paper. Deep atmospheric perspective.
+
+2. v02_nguoc_nhin.jpg — 9:16 vertical (1080×1920) — Looking up at the immortal peak (video 0:05–0:09, 4s, camera: slow tilt up)
+   Dramatic low-angle vertical shot, looking steeply upward. In the very bottom of the frame, seen from behind and slightly to one side, the small dark silhouette of a barefoot peasant boy in patched hemp clothing, head tilted back, gazing up. Above him the frame is almost entirely consumed by colossal mountain cliffs rising vertically out of sight, their bases dark and detailed with a few twisted pines clinging to the rock, their upper reaches dissolving into pale mist and bare paper so the peaks are never seen. Far up in the empty pale sky, tiny and faint, a few cranes fly in a loose line — the only hint that something lives above. The scale is overwhelming: the boy is less than a tenth of the frame height. Cold pale light from above, deep shadow at the cliff bases. Foreground: the boy&#x27;s shoulders and the back of his head, dark. Middle ground: sheer rock. Background: mist and emptiness. Small, awed, yearning — the moment a mortal first looks at the world of immortals.
+
+3. v03_do_thi_tan.jpg — 9:16 vertical (1080×1920) — The city dissolving into ink (video 0:09–0:12, 3s, camera: strong zoom in)
+   A surreal transitional image, vertical composition. A dense modern city skyline of glass towers is dissolving downward into wet black ink: the upper towers are still faintly legible as pale grey geometric shapes, but from the middle of the frame down they melt and run, bleeding into soft black wash and feathered ink edges that spread across the paper like water soaking upward. Street lights and window grids survive only as a few tiny cold blue-white points of light trapped in the dissolving ink. At the very bottom, the ink has pooled into a still dark surface. No people, no vehicles, no readable signs. The whole image reads as a world being erased and rewritten. Vertical motion: solid at top, liquid at bottom. High contrast, unsettling, quiet catastrophe.
+
+4. v04_thuc_tinh.jpg — 9:16 vertical (1080×1920) — Awakening — a stranger&#x27;s hand (video 0:12–0:15, 3s, camera: very slow zoom in)
+   Extreme close-up, vertical composition, seen from directly above. A single open hand lies palm-up on cold wet grey stone, fingers slightly curled and trembling. The hand is thin and underfed: sun-tanned skin, hard callouses across the palm and finger bases, cracked knuckles, dark-rimmed nails with dirt worked into the edges, a faint old scar across the back. A coarse frayed grey-brown hemp sleeve, far too large for the arm, bunches at the wrist. Beside the hand on the wet stone: a few grains of straw, a smear of mud, and a thin film of water reflecting pale cold light. Shallow depth of field — the fingertips are sharp, the edges of the frame fall away into soft dark ink shadow. No face, no body. Intimate, disorienting — a body recognised as not one&#x27;s own.
+</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('phan-pham-nhan-t', this)">📋 Copy prompt toàn phần</button>
+      <button class="dl" onclick="taiTxt('phan-pham-nhan-t', 'pham-nhan.txt')">⬇️ .txt</button>
+    </div>
+  </details>
+  <div class="ds-anh">
+<article class="canh" id="c-v01">
+  <header>
+    <span class="so">0:00–0:05</span>
+    <b>Phàm nhân — ruộng bậc thang</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">5s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v01</code></div>
+    <div><span class="k">lưu là</span> <code>v01_pham_nhan.jpg</code></div>
+    <div><span class="k">camera</span> Zoom out rất chậm</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.6s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> Có những người sinh ra đã là phàm nhân.</div>
+  
+  <textarea readonly rows="6" id="c-v01-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Cinematic wide establishing shot, vertical composition. Vast terraced rice paddies climbing the lower slopes of enormous mountains at first grey light. Thin water lies in the flooded terraces, catching pale cold sky in long silver bands that step up the hillside. In the lower third, tiny and insignificant, a single barefoot peasant child in coarse patched hemp carries two wooden water buckets on a shoulder pole along a narrow earth ridge, walking away from the viewer. Behind and above everything, the mountain slopes rise out of frame into pale mist and empty paper — the peaks are not visible, only the sense that they are impossibly high. A few thin strokes of bare winter trees at the field edges. Cold, quiet, poor, ordinary. The whole world is grey and small. Foreground: dark wet earth ridge, strong and detailed. Middle ground: the terraces stepping upward. Background: mist and empty paper. Deep atmospheric perspective.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v01-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v01-t', 'v01.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v01-a">Animate this still image into a 5-second cinematic shot. Camera movement: very slow zoom out. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v01-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v02">
+  <header>
+    <span class="so">0:05–0:09</span>
+    <b>Ngước nhìn đỉnh núi tiên</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">4s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v02</code></div>
+    <div><span class="k">lưu là</span> <code>v02_nguoc_nhin.jpg</code></div>
+    <div><span class="k">camera</span> Pan lên</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.6s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> Và có những người… không chịu như vậy.</div>
+  
+  <textarea readonly rows="6" id="c-v02-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Dramatic low-angle vertical shot, looking steeply upward. In the very bottom of the frame, seen from behind and slightly to one side, the small dark silhouette of a barefoot peasant boy in patched hemp clothing, head tilted back, gazing up. Above him the frame is almost entirely consumed by colossal mountain cliffs rising vertically out of sight, their bases dark and detailed with a few twisted pines clinging to the rock, their upper reaches dissolving into pale mist and bare paper so the peaks are never seen. Far up in the empty pale sky, tiny and faint, a few cranes fly in a loose line — the only hint that something lives above. The scale is overwhelming: the boy is less than a tenth of the frame height. Cold pale light from above, deep shadow at the cliff bases. Foreground: the boy&#x27;s shoulders and the back of his head, dark. Middle ground: sheer rock. Background: mist and emptiness. Small, awed, yearning — the moment a mortal first looks at the world of immortals.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v02-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v02-t', 'v02.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v02-a">Animate this still image into a 4-second cinematic shot. Camera movement: slow tilt up. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v02-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v03">
+  <header>
+    <span class="so">0:09–0:12</span>
+    <b>Đô thị tan thành mực</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v03</code></div>
+    <div><span class="k">lưu là</span> <code>v03_do_thi_tan.jpg</code></div>
+    <div><span class="k">camera</span> Zoom in mạnh</div>
+    <div><span class="k">chuyển cảnh</span> Cắt thẳng</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> —</div>
+  
+  <textarea readonly rows="6" id="c-v03-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+A surreal transitional image, vertical composition. A dense modern city skyline of glass towers is dissolving downward into wet black ink: the upper towers are still faintly legible as pale grey geometric shapes, but from the middle of the frame down they melt and run, bleeding into soft black wash and feathered ink edges that spread across the paper like water soaking upward. Street lights and window grids survive only as a few tiny cold blue-white points of light trapped in the dissolving ink. At the very bottom, the ink has pooled into a still dark surface. No people, no vehicles, no readable signs. The whole image reads as a world being erased and rewritten. Vertical motion: solid at top, liquid at bottom. High contrast, unsettling, quiet catastrophe.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v03-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v03-t', 'v03.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v03-a">Animate this still image into a 3-second cinematic shot. Camera movement: strong zoom in. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v03-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v04">
+  <header>
+    <span class="so">0:12–0:15</span>
+    <b>Thức tỉnh — bàn tay lạ</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">3s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v04</code></div>
+    <div><span class="k">lưu là</span> <code>v04_thuc_tinh.jpg</code></div>
+    <div><span class="k">camera</span> Zoom in rất chậm</div>
+    <div><span class="k">chuyển cảnh</span> Cắt thẳng</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> —</div>
+  
+  <textarea readonly rows="6" id="c-v04-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Extreme close-up, vertical composition, seen from directly above. A single open hand lies palm-up on cold wet grey stone, fingers slightly curled and trembling. The hand is thin and underfed: sun-tanned skin, hard callouses across the palm and finger bases, cracked knuckles, dark-rimmed nails with dirt worked into the edges, a faint old scar across the back. A coarse frayed grey-brown hemp sleeve, far too large for the arm, bunches at the wrist. Beside the hand on the wet stone: a few grains of straw, a smear of mud, and a thin film of water reflecting pale cold light. Shallow depth of field — the fingertips are sharp, the edges of the frame fall away into soft dark ink shadow. No face, no body. Intimate, disorienting — a body recognised as not one&#x27;s own.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v04-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v04-t', 'v04.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v04-a">Animate this still image into a 3-second cinematic shot. Camera movement: very slow zoom in. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v04-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article></div>
+</section>
+<section class="phan" id="phan-tien-gioi">
+  <h2>⛰️ Tiên giới
+    <span class="dem">0/3 đã có</span></h2>
+  <p class="mota">Thế giới tu tiên mở ra — cảnh lớn nhất của trailer, nhạc vào mạnh.</p>
+  <details class="gop-phan">
+    <summary>📦 Prompt vẽ TOÀN BỘ phần này (3 ảnh) — dán 1 lần cho cả phần</summary>
+    <textarea readonly rows="10" id="phan-tien-gioi-t">TASK: Create 3 images for the INTRO TRAILER of a Vietnamese cultivation game named &quot;Hồng Đức Tu Tiên Lộ&quot; — part: Tiên giới.
+Produce the images ONE BY ONE, in the order below, each as a SEPARATE image. ALL images must be 9:16 vertical (1080×1920) — vertical, cinematic, full-frame.
+If you cannot finish them all in one reply, make as many as you can and then stop; I will reply &quot;tiếp tục&quot; to get the next batch.
+
+SHARED ART STYLE (apply to EVERY image): Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+LAYOUT RULE: these are cinematic trailer frames, NOT game scene cards. The subject must fill the frame with clear foreground, middle ground and background layers, strong contrast and directional light. Do not leave a large flat empty area for text — text is added later in the video editor.
+
+TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo in ANY image.
+
+1. v05_tien_gioi.jpg — 9:16 vertical (1080×1920) — Immortal realm — wide panorama (video 0:15–0:23, 8s, camera: very slow pan right, zooming from 100% to 112%)
+   Epic cinematic vertical panorama of an immortal mountain realm. Colossal stone peaks rise in layered ranks, the nearest dark and detailed, the furthest reduced to pale grey silhouettes that dissolve into empty paper at the top of the frame. A vast sea of cloud fills the valleys between the peaks, its surface catching pale cold light in long soft bands. On the shoulders of two or three of the great peaks perch ancient Chinese sect buildings — slender pagodas with upswept eaves, long covered galleries, stone platforms cut into the cliff face — all tiny against the mountains, connected by impossibly thin stone bridges spanning the cloud sea. Long white waterfalls plunge from the cliff edges and disappear into the mist below. A flock of cranes wheels slowly across the middle distance. A few twisted pines cling to the rock in the foreground, dark and sharp. Deep layered atmospheric perspective: near is black and detailed, far is pale and empty. Foreground: dark cliff edge and pine. Middle ground: cloud sea, bridges, sect buildings, waterfalls. Background: fading peaks and bare paper sky. Majestic, vast, silent, ancient. The world the mortal boy was looking at.
+
+2. v06_tong_mon.jpg — 9:16 vertical (1080×1920) — The sect — stairway to heaven (video 0:23–0:28, 5s, camera: slow tilt up)
+   Vertical low-angle shot of the entrance to an ancient Chinese martial sect. A monumental stone stairway climbs steeply away from the viewer and out of the top of the frame, its steps worn concave by centuries of feet. At the base, two massive stone pillars flank the first step, weathered and carved with faint cloud patterns, a great horizontal stone lintel resting across them. Long blue-grey banners hang from the pillars, their fabric hanging heavy and still. On both sides of the stairway, tall dark pines. Halfway up, small figures in pale robes climb the steps in a loose file, tiny and distant — disciples going up. High above, the top of the stairway is lost in pale mist, so the sect itself is never shown, only implied. Cold morning light slanting across the steps, long shadows between them. Foreground: worn stone steps, sharp and detailed. Middle ground: pillars, banners, pines, climbing figures. Background: mist and empty paper. Formal, imposing, a threshold that cannot be uncrossed.
+
+3. v07_tu_luyen.jpg — 9:16 vertical (1080×1920) — Cultivating at the precipice (video 0:28–0:33, 5s, camera: slow zoom in)
+   Vertical composition, seen from slightly behind and to one side. A single figure in coarse grey robes sits cross-legged in meditation on a narrow rock ledge at the very edge of a precipice, facing away from the viewer toward the void. His back is straight, hands resting on his knees, posture absolute stillness. Beyond the ledge, the world falls away into a vast sea of pale mist — no bottom visible, only empty paper fading downward. Around his shoulders and above his head, a slow spiral of pale blue-white mist and faint light motes turns in the air, the only motion in an otherwise still image, suggesting qi gathering. A thin cold dawn light from the left rim-lights his shoulders and the edge of the rock. A few dry grass blades at the ledge edge bend in a wind. Foreground: the seated figure and rock ledge, dark and sharp. Middle ground: the void of mist. Background: empty pale paper. Disciplined, solitary, patient. A mortal forcing himself to become something else.
+</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('phan-tien-gioi-t', this)">📋 Copy prompt toàn phần</button>
+      <button class="dl" onclick="taiTxt('phan-tien-gioi-t', 'tien-gioi.txt')">⬇️ .txt</button>
+    </div>
+  </details>
+  <div class="ds-anh">
+<article class="canh" id="c-v05">
+  <header>
+    <span class="so">0:15–0:23</span>
+    <b>Tiên giới — toàn cảnh</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">8s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v05</code></div>
+    <div><span class="k">lưu là</span> <code>v05_tien_gioi.jpg</code></div>
+    <div><span class="k">camera</span> Pan ngang phải, rất chậm (100% → 112%)</div>
+    <div><span class="k">chuyển cảnh</span> Cắt thẳng / Fade to White 0.2s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> TU TIÊN</div>
+  
+  <textarea readonly rows="6" id="c-v05-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Epic cinematic vertical panorama of an immortal mountain realm. Colossal stone peaks rise in layered ranks, the nearest dark and detailed, the furthest reduced to pale grey silhouettes that dissolve into empty paper at the top of the frame. A vast sea of cloud fills the valleys between the peaks, its surface catching pale cold light in long soft bands. On the shoulders of two or three of the great peaks perch ancient Chinese sect buildings — slender pagodas with upswept eaves, long covered galleries, stone platforms cut into the cliff face — all tiny against the mountains, connected by impossibly thin stone bridges spanning the cloud sea. Long white waterfalls plunge from the cliff edges and disappear into the mist below. A flock of cranes wheels slowly across the middle distance. A few twisted pines cling to the rock in the foreground, dark and sharp. Deep layered atmospheric perspective: near is black and detailed, far is pale and empty. Foreground: dark cliff edge and pine. Middle ground: cloud sea, bridges, sect buildings, waterfalls. Background: fading peaks and bare paper sky. Majestic, vast, silent, ancient. The world the mortal boy was looking at.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v05-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v05-t', 'v05.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v05-a">Animate this still image into an 8-second cinematic shot. Camera movement: very slow pan right, zooming from 100% to 112%. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v05-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v06">
+  <header>
+    <span class="so">0:23–0:28</span>
+    <b>Tông môn — bậc đá lên trời</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">5s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v06</code></div>
+    <div><span class="k">lưu là</span> <code>v06_tong_mon.jpg</code></div>
+    <div><span class="k">camera</span> Pan lên</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.5s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> —</div>
+  
+  <textarea readonly rows="6" id="c-v06-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Vertical low-angle shot of the entrance to an ancient Chinese martial sect. A monumental stone stairway climbs steeply away from the viewer and out of the top of the frame, its steps worn concave by centuries of feet. At the base, two massive stone pillars flank the first step, weathered and carved with faint cloud patterns, a great horizontal stone lintel resting across them. Long blue-grey banners hang from the pillars, their fabric hanging heavy and still. On both sides of the stairway, tall dark pines. Halfway up, small figures in pale robes climb the steps in a loose file, tiny and distant — disciples going up. High above, the top of the stairway is lost in pale mist, so the sect itself is never shown, only implied. Cold morning light slanting across the steps, long shadows between them. Foreground: worn stone steps, sharp and detailed. Middle ground: pillars, banners, pines, climbing figures. Background: mist and empty paper. Formal, imposing, a threshold that cannot be uncrossed.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v06-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v06-t', 'v06.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v06-a">Animate this still image into a 5-second cinematic shot. Camera movement: slow tilt up. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v06-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v07">
+  <header>
+    <span class="so">0:28–0:33</span>
+    <b>Tu luyện bên vực</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">5s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v07</code></div>
+    <div><span class="k">lưu là</span> <code>v07_tu_luyen.jpg</code></div>
+    <div><span class="k">camera</span> Zoom in chậm</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.5s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> —</div>
+  
+  <textarea readonly rows="6" id="c-v07-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Vertical composition, seen from slightly behind and to one side. A single figure in coarse grey robes sits cross-legged in meditation on a narrow rock ledge at the very edge of a precipice, facing away from the viewer toward the void. His back is straight, hands resting on his knees, posture absolute stillness. Beyond the ledge, the world falls away into a vast sea of pale mist — no bottom visible, only empty paper fading downward. Around his shoulders and above his head, a slow spiral of pale blue-white mist and faint light motes turns in the air, the only motion in an otherwise still image, suggesting qi gathering. A thin cold dawn light from the left rim-lights his shoulders and the edge of the rock. A few dry grass blades at the ledge edge bend in a wind. Foreground: the seated figure and rock ledge, dark and sharp. Middle ground: the void of mist. Background: empty pale paper. Disciplined, solitary, patient. A mortal forcing himself to become something else.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v07-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v07-t', 'v07.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v07-a">Animate this still image into a 5-second cinematic shot. Camera movement: slow zoom in. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v07-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article></div>
+</section>
+<section class="phan" id="phan-suc-manh">
+  <h2>⚔️ Sức mạnh
+    <span class="dem">0/4 đã có</span></h2>
+  <p class="mota">Đột phá, ngọc cốt, yêu thú, vạn kiếm — nhịp dồn dần.</p>
+  <details class="gop-phan">
+    <summary>📦 Prompt vẽ TOÀN BỘ phần này (4 ảnh) — dán 1 lần cho cả phần</summary>
+    <textarea readonly rows="10" id="phan-suc-manh-t">TASK: Create 4 images for the INTRO TRAILER of a Vietnamese cultivation game named &quot;Hồng Đức Tu Tiên Lộ&quot; — part: Sức mạnh.
+Produce the images ONE BY ONE, in the order below, each as a SEPARATE image. ALL images must be 9:16 vertical (1080×1920) — vertical, cinematic, full-frame.
+If you cannot finish them all in one reply, make as many as you can and then stop; I will reply &quot;tiếp tục&quot; to get the next batch.
+
+SHARED ART STYLE (apply to EVERY image): Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+LAYOUT RULE: these are cinematic trailer frames, NOT game scene cards. The subject must fill the frame with clear foreground, middle ground and background layers, strong contrast and directional light. Do not leave a large flat empty area for text — text is added later in the video editor.
+
+TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo in ANY image.
+
+1. v08_dot_pha.jpg — 9:16 vertical (1080×1920) — Breakthrough (video 0:33–0:37, 4s, camera: fast zoom in from 100% to 118%, with a subtle shake)
+   A violent burst of released energy, vertical composition, centred. At the centre of the frame a seated meditating figure in coarse grey robes, seen from the front, is silhouetted inside an expanding sphere of pale jade-green and white light — his robe and hair blown outward by the force. The expanding wave of the breakthrough radiates outward as concentric rings of ink: sharp dark brush strokes near the centre, breaking into dry bristle fragments and spray at the edges, scattering across the paper like an explosion drawn in calligraphy. Loose gravel, leaves and dust are lifted off the ground and thrown outward in streaks. The ground beneath him is cracked in a radial pattern. Above, the sky is torn open with pale light. The jade-green glow is the only colour in an otherwise black and cream image. Foreground: cracked ground and flying debris. Middle ground: the figure in the light sphere. Background: radiating ink shockwave and pale sky. Explosive, triumphant, the instant a mortal ceases to be merely mortal.
+
+2. v09_ngoc_cot.jpg — 9:16 vertical (1080×1920) — The jade bone glowing (video 0:37–0:42, 5s, camera: very slow zoom in)
+   Vertical cinematic close shot, dramatic low light. A fist-sized chunk of pale, translucent jade shaped roughly like a bone or a hollow rib. Its surface is cold and smooth, but it grows warm when held. From within, a faint bluish light pulses like a slow heartbeat — sometimes showing a shadowy female figure inside. An aura of great age and sealed power. Sits in dark soil, half-buried, glowing faintly. The soil around it is wet and black, clods of earth casting long soft shadows in the cold halo of the stone. A few thin wisps of pale mist curl up from the soil around the stone and drift into the darkness. Tiny floating light motes hang in the air. Everything beyond the halo falls away into deep black ink shadow. Nothing else in the frame. Foreground: the jade and wet soil, sharply detailed. Background: pure dark ink. Ancient, sealed, waiting. Something alive inside something dead.
+
+3. v10_yeu_thu.jpg — 9:16 vertical (1080×1920) — Demon beast in the mist (video 0:42–0:46, 4s, camera: slow pan left)
+   Vertical composition, seen from the ground looking up into dense mist. A colossal demon beast emerges from the fog, only partly visible: an enormous horned head lowered toward the viewer, filling the upper half of the frame, its body lost entirely in mist so the scale is impossible to judge. The creature is rendered as heavy black ink masses with dry-brush fur texture, its hide suggesting thick coarse scales. Two huge eyes glow with a single cold amber-orange light — the only warm colour in the image — and a long slow breath of white vapour curls from its nostrils. Its horns are massive, ridged and dark. In the extreme lower foreground, tiny and insignificant, the dark silhouettes of two or three human figures in robes stand frozen, weapons half-raised, less than a twentieth of the frame height. Sparse twisted branches cross the corners of the frame. Foreground: tiny human figures, sharp black silhouettes. Middle ground: the vast head and glowing eyes. Background: solid pale mist and empty paper. Overwhelming, predatory, ancient. The world does not care that you are the protagonist.
+
+4. v11_van_kiem.jpg — 9:16 vertical (1080×1920) — Ten thousand swords (video 0:46–0:51, 5s, camera: slow pan right)
+   Dynamic vertical composition, sky filled with flying swords. Dozens of slender Chinese straight swords streak diagonally upward and across the frame in a loose swarm, each trailing a long thin line of pale cold light like a comet&#x27;s tail — the trails are drawn as sharp dry brush strokes, tapering and breaking into bristle fragments at their ends. The blades themselves are dark silhouettes with a thin bright edge catching light. They rise from a dark mountain ridge at the bottom of the frame and converge toward the upper right, where the light trails knot together into a bright pale knot before dispersing. In the lower foreground, the small dark figure of a swordsman in flowing robes stands on the ridge, one arm raised, commanding them. Thin cloud wisps torn apart by the passage of the blades. The sky is pale and open; the ridge and figure are deep black. Foreground: the summoning figure on the ridge, sharp black. Middle ground: the swarm of blades and their light trails. Background: pale open sky. Swift, overwhelming, beautiful and lethal.
+</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('phan-suc-manh-t', this)">📋 Copy prompt toàn phần</button>
+      <button class="dl" onclick="taiTxt('phan-suc-manh-t', 'suc-manh.txt')">⬇️ .txt</button>
+    </div>
+  </details>
+  <div class="ds-anh">
+<article class="canh" id="c-v08">
+  <header>
+    <span class="so">0:33–0:37</span>
+    <b>Đột phá</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">4s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v08</code></div>
+    <div><span class="k">lưu là</span> <code>v08_dot_pha.jpg</code></div>
+    <div><span class="k">camera</span> Zoom in nhanh (100% → 118%) + shake nhẹ</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.4s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> Luyện Khí · Trúc Cơ · Kim Đan · Nguyên Anh</div>
+  
+  <textarea readonly rows="6" id="c-v08-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+A violent burst of released energy, vertical composition, centred. At the centre of the frame a seated meditating figure in coarse grey robes, seen from the front, is silhouetted inside an expanding sphere of pale jade-green and white light — his robe and hair blown outward by the force. The expanding wave of the breakthrough radiates outward as concentric rings of ink: sharp dark brush strokes near the centre, breaking into dry bristle fragments and spray at the edges, scattering across the paper like an explosion drawn in calligraphy. Loose gravel, leaves and dust are lifted off the ground and thrown outward in streaks. The ground beneath him is cracked in a radial pattern. Above, the sky is torn open with pale light. The jade-green glow is the only colour in an otherwise black and cream image. Foreground: cracked ground and flying debris. Middle ground: the figure in the light sphere. Background: radiating ink shockwave and pale sky. Explosive, triumphant, the instant a mortal ceases to be merely mortal.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v08-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v08-t', 'v08.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v08-a">Animate this still image into a 4-second cinematic shot. Camera movement: fast zoom in from 100% to 118%, with a subtle shake. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v08-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v09">
+  <header>
+    <span class="so">0:37–0:42</span>
+    <b>Ngọc cốt phát sáng</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">5s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v09</code></div>
+    <div><span class="k">lưu là</span> <code>v09_ngoc_cot.jpg</code></div>
+    <div><span class="k">camera</span> Zoom in rất chậm</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.5s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> —</div>
+  
+  <textarea readonly rows="6" id="c-v09-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Vertical cinematic close shot, dramatic low light. A fist-sized chunk of pale, translucent jade shaped roughly like a bone or a hollow rib. Its surface is cold and smooth, but it grows warm when held. From within, a faint bluish light pulses like a slow heartbeat — sometimes showing a shadowy female figure inside. An aura of great age and sealed power. Sits in dark soil, half-buried, glowing faintly. The soil around it is wet and black, clods of earth casting long soft shadows in the cold halo of the stone. A few thin wisps of pale mist curl up from the soil around the stone and drift into the darkness. Tiny floating light motes hang in the air. Everything beyond the halo falls away into deep black ink shadow. Nothing else in the frame. Foreground: the jade and wet soil, sharply detailed. Background: pure dark ink. Ancient, sealed, waiting. Something alive inside something dead.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v09-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v09-t', 'v09.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v09-a">Animate this still image into a 5-second cinematic shot. Camera movement: very slow zoom in. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v09-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v10">
+  <header>
+    <span class="so">0:42–0:46</span>
+    <b>Yêu thú trong sương</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">4s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v10</code></div>
+    <div><span class="k">lưu là</span> <code>v10_yeu_thu.jpg</code></div>
+    <div><span class="k">camera</span> Pan ngang trái</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.5s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> Thế giới này không dành cho kẻ yếu.</div>
+  
+  <textarea readonly rows="6" id="c-v10-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Vertical composition, seen from the ground looking up into dense mist. A colossal demon beast emerges from the fog, only partly visible: an enormous horned head lowered toward the viewer, filling the upper half of the frame, its body lost entirely in mist so the scale is impossible to judge. The creature is rendered as heavy black ink masses with dry-brush fur texture, its hide suggesting thick coarse scales. Two huge eyes glow with a single cold amber-orange light — the only warm colour in the image — and a long slow breath of white vapour curls from its nostrils. Its horns are massive, ridged and dark. In the extreme lower foreground, tiny and insignificant, the dark silhouettes of two or three human figures in robes stand frozen, weapons half-raised, less than a twentieth of the frame height. Sparse twisted branches cross the corners of the frame. Foreground: tiny human figures, sharp black silhouettes. Middle ground: the vast head and glowing eyes. Background: solid pale mist and empty paper. Overwhelming, predatory, ancient. The world does not care that you are the protagonist.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v10-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v10-t', 'v10.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v10-a">Animate this still image into a 4-second cinematic shot. Camera movement: slow pan left. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v10-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v11">
+  <header>
+    <span class="so">0:46–0:51</span>
+    <b>Vạn kiếm xuất không</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">5s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v11</code></div>
+    <div><span class="k">lưu là</span> <code>v11_van_kiem.jpg</code></div>
+    <div><span class="k">camera</span> Pan ngang phải</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.5s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> Nó cũng không dành cho kẻ mạnh.</div>
+  
+  <textarea readonly rows="6" id="c-v11-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Dynamic vertical composition, sky filled with flying swords. Dozens of slender Chinese straight swords streak diagonally upward and across the frame in a loose swarm, each trailing a long thin line of pale cold light like a comet&#x27;s tail — the trails are drawn as sharp dry brush strokes, tapering and breaking into bristle fragments at their ends. The blades themselves are dark silhouettes with a thin bright edge catching light. They rise from a dark mountain ridge at the bottom of the frame and converge toward the upper right, where the light trails knot together into a bright pale knot before dispersing. In the lower foreground, the small dark figure of a swordsman in flowing robes stands on the ridge, one arm raised, commanding them. Thin cloud wisps torn apart by the passage of the blades. The sky is pale and open; the ridge and figure are deep black. Foreground: the summoning figure on the ridge, sharp black. Middle ground: the swarm of blades and their light trails. Background: pale open sky. Swift, overwhelming, beautiful and lethal.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v11-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v11-t', 'v11.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v11-a">Animate this still image into a 5-second cinematic shot. Camera movement: slow pan right. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v11-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article></div>
+</section>
+<section class="phan" id="phan-mat-mat">
+  <h2>🔥 Mất mát
+    <span class="dem">0/1 đã có</span></h2>
+  <p class="mota">Điểm tối nhất. Cắt sạch nhạc, chỉ còn tiếng lửa.</p>
+  <details class="gop-phan">
+    <summary>📦 Prompt vẽ TOÀN BỘ phần này (1 ảnh) — dán 1 lần cho cả phần</summary>
+    <textarea readonly rows="10" id="phan-mat-mat-t">TASK: Create 1 image for the INTRO TRAILER of a Vietnamese cultivation game named &quot;Hồng Đức Tu Tiên Lộ&quot; — part: Mất mát.
+Produce the images ONE BY ONE, in the order below, each as a SEPARATE image. ALL images must be 9:16 vertical (1080×1920) — vertical, cinematic, full-frame.
+If you cannot finish them all in one reply, make as many as you can and then stop; I will reply &quot;tiếp tục&quot; to get the next batch.
+
+SHARED ART STYLE (apply to EVERY image): Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+LAYOUT RULE: these are cinematic trailer frames, NOT game scene cards. The subject must fill the frame with clear foreground, middle ground and background layers, strong contrast and directional light. Do not leave a large flat empty area for text — text is added later in the video editor.
+
+TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo in ANY image.
+
+1. v12_chay.jpg — 9:16 vertical (1080×1920) — The sect burning (video 0:51–0:56, 5s, camera: subtle shake, no zoom)
+   Vertical composition, a sect destroyed at night. The great pagoda and long galleries of an ancient Chinese immortal sect burn fiercely — tall vermilion and ember-orange flames leap from the tiered roofs, the only strong colour in the image, everything else black ink and smoke. Thick black smoke boils upward and swallows the top of the frame. Burning debris and sparks drift across the middle distance. The stone stairway in the foreground is strewn with broken weapons, torn blue-grey banners and fallen bodies rendered only as dark shapes, no faces. A few small figures flee down the steps toward the viewer, suggested loosely by a few strokes. A great bronze bell has fallen from its frame and lies cracked on the ground. Cold moonlight cuts through the smoke in one pale shaft. Foreground: wreckage, fallen bell, fleeing figures. Middle ground: the burning sect. Background: smoke and dark. Catastrophic, tragic, total. The end of everything that was built.
+</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('phan-mat-mat-t', this)">📋 Copy prompt toàn phần</button>
+      <button class="dl" onclick="taiTxt('phan-mat-mat-t', 'mat-mat.txt')">⬇️ .txt</button>
+    </div>
+  </details>
+  <div class="ds-anh">
+<article class="canh" id="c-v12">
+  <header>
+    <span class="so">0:51–0:56</span>
+    <b>Tông môn chìm trong lửa</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">5s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v12</code></div>
+    <div><span class="k">lưu là</span> <code>v12_chay.jpg</code></div>
+    <div><span class="k">camera</span> Rung nhẹ</div>
+    <div><span class="k">chuyển cảnh</span> Cắt thẳng</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> —</div>
+  
+  <textarea readonly rows="6" id="c-v12-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Vertical composition, a sect destroyed at night. The great pagoda and long galleries of an ancient Chinese immortal sect burn fiercely — tall vermilion and ember-orange flames leap from the tiered roofs, the only strong colour in the image, everything else black ink and smoke. Thick black smoke boils upward and swallows the top of the frame. Burning debris and sparks drift across the middle distance. The stone stairway in the foreground is strewn with broken weapons, torn blue-grey banners and fallen bodies rendered only as dark shapes, no faces. A few small figures flee down the steps toward the viewer, suggested loosely by a few strokes. A great bronze bell has fallen from its frame and lies cracked on the ground. Cold moonlight cuts through the smoke in one pale shaft. Foreground: wreckage, fallen bell, fleeing figures. Middle ground: the burning sect. Background: smoke and dark. Catastrophic, tragic, total. The end of everything that was built.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v12-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v12-t', 'v12.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v12-a">Animate this still image into a 5-second cinematic shot. Camera movement: subtle shake, no zoom. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v12-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article></div>
+</section>
+<section class="phan" id="phan-ket">
+  <h2>🌅 Kết
+    <span class="dem">0/2 đã có</span></h2>
+  <p class="mota">Khoảng lặng trước tiêu đề, rồi tên game.</p>
+  <details class="gop-phan">
+    <summary>📦 Prompt vẽ TOÀN BỘ phần này (2 ảnh) — dán 1 lần cho cả phần</summary>
+    <textarea readonly rows="10" id="phan-ket-t">TASK: Create 2 images for the INTRO TRAILER of a Vietnamese cultivation game named &quot;Hồng Đức Tu Tiên Lộ&quot; — part: Kết.
+Produce the images ONE BY ONE, in the order below, each as a SEPARATE image. ALL images must be 9:16 vertical (1080×1920) — vertical, cinematic, full-frame.
+If you cannot finish them all in one reply, make as many as you can and then stop; I will reply &quot;tiếp tục&quot; to get the next batch.
+
+SHARED ART STYLE (apply to EVERY image): Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+LAYOUT RULE: these are cinematic trailer frames, NOT game scene cards. The subject must fill the frame with clear foreground, middle ground and background layers, strong contrast and directional light. Do not leave a large flat empty area for text — text is added later in the video editor.
+
+TEXT RULE: no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo in ANY image.
+
+1. v13_han_lap.jpg — 9:16 vertical (1080×1920) — Han Li (video 0:56–1:03, 7s, camera: very slow zoom in)
+   Cinematic vertical portrait, head and shoulders, facing the viewer directly. A lean, gaunt youth of about 16–17, slightly undernourished. Long face, high cheekbones, sun-darkened skin. Dark eyes, sharp as a blade, cold at first glance — but hiding a deep weariness, the look of someone who has long concealed his true self. Black hair tied simply at the nape. Wearing coarse grey hemp robes of a low-ranking servant disciple, sleeves slightly worn. A plain cloth bag at his belt. Expression: quiet, guarded, reserved; rarely shows emotion. Ordinary in appearance, easy to overlook — but there is a quiet, unsettling weight behind his eyes. He stands against a dark blurred background of mist and hillside at dusk, a faint cold rim light along one side of his face and shoulder, the rest of his features in soft shadow. His gaze is level and unblinking, straight into the camera. The lower third of the frame is empty dark ink so a name can be placed beneath. Ordinary, unremarkable, and absolutely not to be underestimated.
+
+2. v14_nen_tieu_de.jpg — 9:16 vertical (1080×1920) — Title background (video 1:03–1:12, 9s, camera: completely static, no movement)
+   A nearly empty vertical sheet of rough handmade mulberry paper filling the frame, pale warm cream with visible fibre texture and faint uneven washes of pale sepia near the edges. A single long vertical brush stroke of black ink descends through the upper middle of the paper — thick and dark where the brush first touched down, thinning and breaking into dry bristle marks as it trails downward. Along the very bottom edge, a faint suggestion of mist-wrapped mountain ridges, no more than two or three soft grey strokes, almost invisible. The whole centre of the frame is bare, open, untouched paper — empty and light so a title can be placed on top. Low contrast, calm, quiet, generous negative space.
+</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('phan-ket-t', this)">📋 Copy prompt toàn phần</button>
+      <button class="dl" onclick="taiTxt('phan-ket-t', 'ket.txt')">⬇️ .txt</button>
+    </div>
+  </details>
+  <div class="ds-anh">
+<article class="canh" id="c-v13">
+  <header>
+    <span class="so">0:56–1:03</span>
+    <b>Hàn Lập</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">7s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v13</code></div>
+    <div><span class="k">lưu là</span> <code>v13_han_lap.jpg</code></div>
+    <div><span class="k">camera</span> Zoom in rất chậm</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.6s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> Hàn Lập.</div>
+  
+  <textarea readonly rows="6" id="c-v13-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+Cinematic vertical portrait, head and shoulders, facing the viewer directly. A lean, gaunt youth of about 16–17, slightly undernourished. Long face, high cheekbones, sun-darkened skin. Dark eyes, sharp as a blade, cold at first glance — but hiding a deep weariness, the look of someone who has long concealed his true self. Black hair tied simply at the nape. Wearing coarse grey hemp robes of a low-ranking servant disciple, sleeves slightly worn. A plain cloth bag at his belt. Expression: quiet, guarded, reserved; rarely shows emotion. Ordinary in appearance, easy to overlook — but there is a quiet, unsettling weight behind his eyes. He stands against a dark blurred background of mist and hillside at dusk, a faint cold rim light along one side of his face and shoulder, the rest of his features in soft shadow. His gaze is level and unblinking, straight into the camera. The lower third of the frame is empty dark ink so a name can be placed beneath. Ordinary, unremarkable, and absolutely not to be underestimated.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v13-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v13-t', 'v13.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v13-a">Animate this still image into a 7-second cinematic shot. Camera movement: very slow zoom in. Very slow, smooth, constant motion — no cuts, no sudden changes. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw faces or clothing. Keep the paper texture and the empty negative space. Subtle life only: drifting mist, faint light motes, slow swaying branches, gentle ember flicker. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v13-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article>
+<article class="canh" id="c-v14">
+  <header>
+    <span class="so">1:03–1:12</span>
+    <b>Nền tiêu đề</b>
+    <span class='badge thieu'>⬜ còn thiếu</span>
+    <span class="ratio">9s</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">mã</span> <code>v14</code></div>
+    <div><span class="k">lưu là</span> <code>v14_nen_tieu_de.jpg</code></div>
+    <div><span class="k">camera</span> Tĩnh</div>
+    <div><span class="k">chuyển cảnh</span> Dissolve 0.8s</div>
+  </div>
+  <div class="chu"><span class="k">chữ trên hình</span> HỒNG ĐỨC TU TIÊN LỘ / Nghịch chuyển càn khôn</div>
+  
+  <textarea readonly rows="6" id="c-v14-t">Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+
+A nearly empty vertical sheet of rough handmade mulberry paper filling the frame, pale warm cream with visible fibre texture and faint uneven washes of pale sepia near the edges. A single long vertical brush stroke of black ink descends through the upper middle of the paper — thick and dark where the brush first touched down, thinning and breaking into dry bristle marks as it trails downward. Along the very bottom edge, a faint suggestion of mist-wrapped mountain ridges, no more than two or three soft grey strokes, almost invisible. The whole centre of the frame is bare, open, untouched paper — empty and light so a title can be placed on top. Low contrast, calm, quiet, generous negative space.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('c-v14-t', this)">📋 Copy prompt ảnh</button>
+    <button class="dl" onclick="taiTxt('c-v14-t', 'v14.txt')">⬇️ .txt</button>
+  </div>
+  <details class="phu">
+    <summary>🎬 Prompt chuyển động (nếu bạn dùng công cụ ảnh → video)</summary>
+    <textarea readonly rows="4" id="c-v14-a">Hold this still image for exactly 9 seconds with no camera movement at all. The frame stays locked. Only the faintest life is allowed: one slow curl of mist, a few drifting light motes. Nothing else moves. Preserve the ink-wash painting style exactly: do not add detail, do not change colours, do not redraw anything. Keep the paper texture and the empty negative space. No text, no letters, no watermark, no logo.</textarea>
+    <div class="row">
+      <button class="cp" onclick="cpText('c-v14-a', this)">📋 Copy prompt chuyển động</button>
+    </div>
+  </details>
+</article></div>
+</section>
+
+<h2>📌 Ghi chú dựng phim</h2>
+<div class="card">
+  <ul>
+    <li><b>Nhịp</b>: chậm ở 15 giây đầu, bùng ở cảnh tiên giới (0:15), lặng trước tiêu đề (0:56).</li>
+    <li><b>Cắt thẳng</b> ở các chỗ đánh dấu — đừng dùng dissolve hết, sẽ mất lực.</li>
+    <li><b>Ken Burns</b>: mỗi ảnh phóng 105–118% và dịch chậm. Ảnh đứng yên trông như slide.</li>
+    <li><b>Chữ</b>: font serif nét mảnh (Noto Serif, Playfair Display). Cỡ nhỏ, nhiều khoảng trống.</li>
+    <li><b>Bản quyền</b>: cuối video ghi <i>"Đồng nhân lấy bối cảnh Phàm Nhân Tu Tiên."</i></li>
+  </ul>
+</div>
+
+<script>
+function cpText(id, btn){
+  const ta=document.getElementById(id);
+  if(!ta){return;}
+  const val=(ta.value!==undefined?ta.value:ta.textContent)||'';
+  const nhan=btn.textContent;
+  const done=()=>{btn.classList.add('done');btn.textContent='✅ Đã copy';
+    setTimeout(()=>{btn.classList.remove('done');btn.textContent=nhan;},1600);};
+  const duPhong=()=>{
+    const tam=document.createElement('textarea');
+    tam.value=val; tam.style.position='fixed'; tam.style.top='-1000px'; tam.style.opacity='0';
+    document.body.appendChild(tam); tam.focus(); tam.select();
+    let ok=false; try{ok=document.execCommand('copy');}catch(e){}
+    tam.remove(); if(ok){done();}
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(val).then(done).catch(duPhong);
+  } else { duPhong(); }
+}
+function taiTxt(id, ten){
+  const el=document.getElementById(id);
+  const txt=(el.value!==undefined?el.value:el.textContent)||'';
+  const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=ten||'prompt.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+}
+</script>
+</body></html>

@@ -455,6 +455,29 @@ Các mô-đun:
 ảnh dùng chung ở đúng đoạn của nó (mỗi cảnh một ảnh riêng). Thêm ảnh mới thì thêm key vào
 `DOAN_CUA_ANH` + `NHOM_CANH` (thêm nhóm cảnh hoặc bỏ vào nhóm có sẵn).
 
+## Xưởng video (trailer intro)
+
+Trang `docs/xuong-video/index.html`, dựng bằng `python3 tools/build_xuong_video.py`
+(gọi được bằng hàm `build_va_ghi()`).
+
+- Dữ liệu: `CANH_VIDEO` trong `tools/xuong_video.py` — 14 cảnh `v01`…`v14`, tổng **72 giây**.
+  Timecode **tự tính** từ `giay` của từng cảnh (`moc_thoi_gian()`, `tong_giay()`, `mmss()`),
+  không hardcode — sửa độ dài một cảnh là cả bảng và prompt tổng tự cập nhật.
+- Ảnh trailer là khung **9:16 (1080×1920)**, KHÁC ảnh game (thẻ 3:4 chừa chỗ chữ).
+  Không dùng lại ảnh game làm trailer.
+- Prompt: từng cảnh (tiếng Anh + tiếng Việt), từng phần, **prompt tổng** (14 ảnh một lần),
+  prompt chuyển động cho công cụ image-to-video, và prompt nhạc 72 giây.
+  - Prompt tiếng Anh phải **thuần Anh**: dùng `CAMERA_EN` để dịch trường chuyển động và
+    `ten_en` cho tên cảnh. Chỉ tên riêng (Hồng Đức Tu Tiên Lộ, Phàm Nhân Tu Tiên) là tiếng Việt.
+  - `GOI_Y_NHAC` là bộ ba `(mốc, ghi chú Việt cho người dùng, chỉ dẫn Anh cho AI tạo nhạc)`.
+- Ảnh tải lên `docs/assets/video/<tên file đúng như thẻ>`; trang tự báo đã có/còn thiếu.
+
+**Bẫy quan trọng — ảnh trailer vs ảnh game**: ảnh trailer đặt vào `xuong-inbox/` sẽ bị
+bộ nhận diện coi là asset game và có thể **ghi đè ảnh đang dùng trong game**. Đã chặn:
+`_la_anh_trailer()` trong `xuong_tu_dong.py` nhận diện mã `v01`…`v14` **trước** khi gọi AI,
+`nhan_dien()` gắn `cach="trailer"`, `luu_va_ghep()` lưu vào `VIDEO_DIR` rồi **bỏ qua** phần
+ghép chương và thư viện ảnh game. Ảnh trailer cũng được resize về đúng 1080×1920.
+
 **Khoá AI**: cần secret repo `GEMINI_KEY` (Settings → Secrets and variables → Actions) để
 nhận diện ảnh bằng AI. Không có khoá thì vẫn chạy: đường "thư mục = mã ảnh" và "tên file
 chứa mã" vẫn chính xác 100%, còn lại báo cần người xác nhận.

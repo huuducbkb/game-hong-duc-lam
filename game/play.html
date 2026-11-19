@@ -223,6 +223,80 @@ body{
   .panel-story p{font-size:13.5px}
 }
 
+/* ---------- MÀN GIỚI THIỆU ---------- */
+.intro{position:fixed;inset:0;z-index:11;display:flex;align-items:center;justify-content:center;
+  padding:20px;overflow:hidden;
+  background:url("../assets/ui/bg-main.jpg") center/cover no-repeat}
+.intro::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 85% at 50% 38%,rgba(250,245,232,.90),rgba(240,232,213,.86) 55%,rgba(206,192,163,.92))}
+.intro.di{animation:inTroi 620ms ease-out both}
+@keyframes inTroi{from{opacity:0}to{opacity:1}}
+
+.intro .khung{position:relative;width:100%;max-width:460px;max-height:94vh;overflow-y:auto;
+  padding:30px 24px 26px;text-align:center;
+  background:rgba(255,253,246,.90);border:1px solid var(--edge);border-radius:18px;
+  box-shadow:0 18px 50px -18px rgba(40,34,26,.34),inset 0 1px 0 rgba(255,255,255,.7);
+  scrollbar-width:thin}
+
+/* con dấu son */
+.intro .an{position:relative;width:74px;height:74px;margin:0 auto 16px}
+.intro .an img{width:100%;height:100%;object-fit:contain;
+  filter:drop-shadow(0 3px 7px rgba(168,53,42,.28));animation:anHien 900ms cubic-bezier(.2,.8,.25,1) both}
+@keyframes anHien{from{opacity:0;transform:scale(.72) rotate(-9deg)}to{opacity:1;transform:none}}
+.intro .an::after{content:"";position:absolute;inset:-9px;border-radius:50%;
+  border:1px solid rgba(168,53,42,.22);animation:anSong 3.6s ease-in-out infinite}
+@keyframes anSong{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.6;transform:scale(1.07)}}
+
+.intro .tua{font-family:var(--brush);font-size:33px;line-height:1.18;margin:0 0 6px;
+  letter-spacing:1px;color:var(--ink);animation:len 800ms 90ms ease-out both}
+.intro .phu{font-size:10.5px;letter-spacing:3.4px;text-transform:uppercase;color:var(--seal);
+  margin-bottom:18px;animation:len 800ms 170ms ease-out both}
+@keyframes len{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+
+.intro .vach{display:flex;align-items:center;justify-content:center;gap:10px;
+  margin:0 auto 18px;max-width:260px;animation:len 800ms 240ms ease-out both}
+.intro .vach i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--edge),transparent)}
+.intro .vach span{font-size:9px;letter-spacing:2.6px;color:var(--ink-faint);text-transform:uppercase}
+
+.intro .loi{font-size:14.5px;line-height:1.78;color:var(--ink-soft);text-align:left;
+  animation:len 800ms 300ms ease-out both}
+.intro .loi p{margin:0 0 12px}
+.intro .loi p:last-child{margin-bottom:0}
+.intro .loi em{font-style:italic;color:var(--ink)}
+.intro .loi .he{display:block;font-size:12.5px;color:var(--seal);font-weight:600;
+  letter-spacing:.3px;margin:0 0 12px}
+
+.intro .nut{display:flex;flex-direction:column;gap:9px;margin-top:22px;
+  position:sticky;bottom:-26px;padding:14px 0 26px;
+  background:linear-gradient(180deg,rgba(255,253,246,0),rgba(255,253,246,.97) 34%);
+  animation:len 800ms 380ms ease-out both}
+.intro .nut .vao{width:100%;font-family:var(--serif);font-size:16.5px;font-weight:600;
+  color:#fdf9ef;background:var(--seal);border:0;border-radius:13px;padding:15px;
+  box-shadow:0 7px 18px -8px rgba(168,53,42,.75);cursor:pointer}
+.intro .nut .vao:active{transform:translateY(1px)}
+.intro .nut .bo{width:100%;font-family:var(--serif);font-size:12.5px;color:var(--ink-faint);
+  background:transparent;border:0;padding:7px;cursor:pointer;letter-spacing:.4px}
+.intro .nut .bo:hover{color:var(--ink-soft)}
+
+.intro .chan{font-size:10.5px;color:var(--ink-faint);margin-top:12px;line-height:1.55}
+
+@media (max-height:700px){
+  .intro .tua{font-size:26px;margin-bottom:4px}
+  .intro .phu{letter-spacing:2.6px;margin-bottom:12px}
+  .intro .vach{margin-bottom:12px}
+  .intro .loi{font-size:13px;line-height:1.66}
+  .intro .loi p{margin-bottom:9px}
+  .intro .an{width:54px;height:54px;margin-bottom:10px}
+  .intro .khung{padding:22px 20px 18px}
+  .intro .nut{margin-top:14px;padding:10px 0 18px;bottom:-18px}
+  .intro .nut .vao{padding:13px}
+  .intro .chan{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .intro,.intro .an img,.intro .an::after,.intro .tua,.intro .phu,.intro .vach,
+  .intro .loi,.intro .nut,.intro .chan{animation:none}
+}
+
 /* ---------- MÀN TẠO NHÂN VẬT ---------- */
 .setup{position:fixed;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;
   padding:20px;background:url("../assets/ui/bg-main.jpg") center/cover no-repeat}
@@ -272,6 +346,31 @@ body{
 </head>
 <body>
 <div class="bg"></div>
+
+<!-- MÀN GIỚI THIỆU -->
+<div class="intro" id="intro">
+  <div class="khung">
+    <div class="an"><img src="../assets/ui/seal.png" alt=""></div>
+    <h1 class="tua">Hồng Đức<br>Tu Tiên Lộ</h1>
+    <div class="phu">Nghịch chuyển càn khôn</div>
+
+    <div class="vach"><i></i><span>Chương I</span><i></i></div>
+
+    <div class="loi">
+      <p>Ngươi đang ngồi trước màn hình máy tính. Rồi tiếng còi xe ngoài cửa sổ tắt lịm.</p>
+      <p>Mở mắt ra, ngươi nằm giữa một góc chợ lạ. Tay chai sạn, áo vá chằng vá đụp — <em>thân thể này không phải của ngươi.</em></p>
+      <span class="he">👁️‍🗨️ 【 Hệ Thống · Nghịch Chuyển Càn Khôn 】 đã kích hoạt</span>
+      <p>Đây là Thất Huyền trấn, vài ngày trước khi Dã Lang Bang kéo tới. Không tông môn, không tu vi, không ai chống lưng. Chỉ có cái đầu của người thế kỷ hai mươi mốt.</p>
+      <p>Trong cơn loạn ấy, ngươi sẽ chạm mặt một tạp dịch đệ tử gầy gò, ít nói. Tên hắn là <em>Hàn Lập</em>.</p>
+    </div>
+
+    <div class="nut">
+      <button class="vao" id="introVao">Nhập vai</button>
+      <button class="bo" id="introBo">Bỏ qua giới thiệu</button>
+      <div class="chan">Đồng nhân lấy bối cảnh <i>Phàm Nhân Tu Tiên</i>.</div>
+    </div>
+  </div>
+</div>
 
 <!-- MÀN TẠO NHÂN VẬT -->
 <div class="setup" id="setup">
@@ -796,8 +895,20 @@ gan("#xoaAvatar", "onclick", () => {
 });
 napAvatar();
 
-// ---------------------------------------------------------- nạp phiên cũ
+// ---------------------------------------------------------- màn giới thiệu
+function dongIntro() {
+  const el = $("#intro");
+  if (!el || el.style.display === "none") return;
+  el.style.transition = "opacity 340ms ease";
+  el.style.opacity = "0";
+  setTimeout(() => { el.style.display = "none"; el.style.opacity = ""; el.style.transition = ""; }, 340);
+}
+
+// ---------------------------------------------------------- khởi động
 (async () => {
+  gan("#introVao", "onclick", () => { dongIntro(); const t = $("#ten"); if (t) t.focus(); });
+  gan("#introBo", "onclick", dongIntro);
+
   try {
     const ai = await goi("/api/ai");
     coAI = !!ai.ai_san_sang;
@@ -810,6 +921,7 @@ napAvatar();
 
   const kq = await goi("/api/state");
   if (kq.co_phien) {
+    dongIntro();
     $("#setup").style.display = "none";
     soBuocLui = kq.so_lui || 0;
     capNhatNutLui();
