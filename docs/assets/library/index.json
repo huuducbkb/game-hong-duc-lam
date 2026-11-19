@@ -987,6 +987,23 @@
       "dung_o": [
         "c1_p14e"
       ]
+    },
+    "bc_hoa_truong_cuu.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Lao vào lửa bẩy cột gỗ cứu đệ tử nhỏ (p15).",
+      "tags": [
+        "cứu",
+        "người",
+        "lao",
+        "vào",
+        "lửa",
+        "bẩy",
+        "cột",
+        "gỗ"
+      ],
+      "dung_o": [
+        "c1_p15"
+      ]
     }
   }
 }
