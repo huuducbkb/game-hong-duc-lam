@@ -817,6 +817,23 @@
       "dung_o": [
         "c1_p10"
       ]
+    },
+    "bc_tan_xa_song_tu.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Thổi tắt đèn, lần song tu đầu tiên (p10b).",
+      "tags": [
+        "đêm",
+        "lần",
+        "song",
+        "tu",
+        "đầu",
+        "tiên",
+        "thổi",
+        "tắt"
+      ],
+      "dung_o": [
+        "c1_p10b"
+      ]
     }
   }
 }
