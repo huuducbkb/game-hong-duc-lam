@@ -868,6 +868,23 @@
       "dung_o": [
         "c1_p11c"
       ]
+    },
+    "bc_tan_xa_dot_pha.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Nửa tháng khổ tu, đột phá Luyện Khí tầng hai (p12).",
+      "tags": [
+        "đột",
+        "phá",
+        "luyện",
+        "khí",
+        "tầng",
+        "hai",
+        "nửa",
+        "tháng"
+      ],
+      "dung_o": [
+        "c1_p12"
+      ]
     }
   }
 }
