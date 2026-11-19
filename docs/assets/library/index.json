@@ -1021,6 +1021,23 @@
       "dung_o": [
         "c1_p17"
       ]
+    },
+    "nv_han_lap_that.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Nói thật biết tương lai hắn; hắn cân nhắc giết ta (p18a).",
+      "tags": [
+        "lời",
+        "thành",
+        "thật",
+        "nói",
+        "biết",
+        "tương",
+        "lai",
+        "hắn"
+      ],
+      "dung_o": [
+        "c1_p18a"
+      ]
     }
   }
 }
