@@ -113,7 +113,11 @@ def san_sang() -> bool:
 
 
 def ke_lai(doan_ke: str, hanh_dong: str, thay_doi: str = "") -> str:
-    """AI kể lại đoạn theo hành động tự do của người chơi (giữ nguyên khung)."""
+    """AI kể lại đoạn theo hành động tự do của người chơi (giữ nguyên khung).
+
+    Bản AI viết hỏng (Hán-Việt rác, dính chữ, sai độ dài) → trả "" để nơi gọi
+    dùng lại văn bản gốc.
+    """
     env = load_env()
     phan_thay_doi = f"\nCÁC THAY ĐỔI ĐÃ ÁP DỤNG (phải khớp với truyện): {thay_doi}" if thay_doi else ""
     prompt = (
@@ -121,15 +125,23 @@ def ke_lai(doan_ke: str, hanh_dong: str, thay_doi: str = "") -> str:
         "Viết lại đoạn sau thật sinh động, có nội tâm, 3-5 câu, KHÔNG đổi sự kiện:\n\n"
         f"ĐOẠN GỐC:\n{doan_ke}\n\n"
         f"HÀNH ĐỘNG CỦA NGƯỜI CHƠI: {hanh_dong}{phan_thay_doi}\n\n"
+        "Dùng tiếng Việt thuần, KHÔNG chêm chữ Hán (dị hương, khứu đại, triệt ngộ…). "
         "Chỉ trả về đoạn kể, không giải thích."
     )
-    return _goi_gemini(env, prompt, max_token=500)
+    try:
+        moi = _goi_gemini(env, prompt, max_token=500).strip()
+    except Exception:  # noqa: BLE001 - AI lỗi → nơi gọi dùng bản gốc
+        return ""
+    dung, _ = van_ban_dung(moi, doan_ke)
+    return moi if dung else ""
 
 
 # --------------------------------------------------- kể lại đoạn theo văn phong
-# Danh sách tên riêng chuẩn — đưa vào prompt để AI không viết sai chính tả.
-TEN_RIENG = ["Hàn Lập", "Thất Huyền Môn", "Dã Lang Bang", "Lý Hổ",
-             "Tần Báo", "Thất Huyền trấn", "hắc quáng động"]
+# Tên riêng / thuật ngữ trong truyện — AI không được đổi (vd 'tân xá' → 'quán trọ').
+TEN_RIENG = ["Hàn Lập", "Thất Huyền Môn", "Thất Huyền quyền", "Thất Huyền trấn",
+             "Dã Lang Bang", "Lý Hổ", "Tần Báo", "Tuyết Cơ", "Mạc Đại Phu",
+             "Hùng Bá", "Hợp Hoan Tông", "tân xá", "ngọc cốt", "hậu sơn",
+             "hắc quáng động"]
 
 # Cache kết quả kể lại: khoá = (đoạn gốc, hành động). Trong RAM, mất khi tắt máy chủ.
 _cache_ke: dict = {}
@@ -138,6 +150,110 @@ CACHE_TOI_DA = 500
 
 def _khoa_cache(doan_ke: str, hanh_dong: str) -> tuple:
     return (doan_ke, hanh_dong)
+
+
+# ------------------------------------------- chặn AI viết hỏng (Hán-Việt rác)
+# Model hay "cổ phong hoá" quá tay: ghép chữ Hán nửa vời, dính chữ ("mộtỗ"),
+# sai ngữ pháp ("u lan chi khí ấy lại tùng hình nàng mà chí"), dùng từ sai
+# nghĩa ("mai táng" cho khối ngọc). Truyện gốc sạch nên lấy chính nó làm chuẩn.
+_NGUONG_TU_LA = 0.12        # gốc: 0.0% · bản AI hỏng: 12–45%
+_NGUONG_PHINH = 1.40        # dài hơn gốc quá mức = AI thêm câu
+_NGUONG_NGAN = 0.70         # ngắn hơn = AI tóm tắt, mất chi tiết truyện
+_KY_TU_RAC = set("øØæÆðÐþÞß")
+
+# Từ Hán-Việt rác đã gặp thật trong bản AI viết hỏng (xem lịch sử lỗi người chơi báo).
+_TU_RAC = (
+    "khứu đại", "dị hương", "triệt ngộ", "tùng hình", "nguyệt thăng", "u lan",
+    "tịch mịch", "tịch dương", "mai táng", "vị tằng", "phương tri", "hà xứ",
+    "nhi lai", "đồng thời khắc", "nhất lũ", "nhất vị", "nhất đạo", "chủng hoa",
+    "độc năng", "tị quan", "nhục thân chân thật", "mộc sàng", "bích quang",
+    "chân quang", "ôn nhuận", "hữu mạch", "thanh sở", "ma ty", "nguyệt hoa",
+    "lăng tại", "chí nghẹn", "thiên niên", "nhu như ti",
+)
+
+_vocab_chuan: set | None = None
+
+# Nhật ký các bản AI bị chặn — để xem lại vì sao, không hiện ra người chơi.
+_so_lan_chan: list = []
+
+
+def _kho_tu_chuan() -> set:
+    """Từ vựng lấy từ chính truyện trong repo — nguồn chuẩn, không cần file ngoài."""
+    global _vocab_chuan
+    if _vocab_chuan is not None:
+        return _vocab_chuan
+    import glob
+    import re as _re
+    tu: set = set()
+    goc = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    for f in glob.glob(os.path.join(goc, "game", "chapters", "*.json")):
+        try:
+            with open(f, encoding="utf-8") as fh:
+                data = json.load(fh)
+        except Exception:  # noqa: BLE001 - file hỏng thì bỏ qua
+            continue
+        for d in data.get("doan", []) or []:
+            for truong in ("ke", "boi_canh"):
+                tu |= set(_re.findall(r"[^\W\d_]+", (d.get(truong) or "").lower(),
+                                      _re.UNICODE))
+    _vocab_chuan = tu
+    return tu
+
+
+def _ty_le_tu_la(van_ban: str) -> float:
+    """Tỉ lệ từ không có trong truyện gốc. Cao = AI bịa chữ Hán."""
+    import re as _re
+    tu = _re.findall(r"[^\W\d_]+", (van_ban or "").lower(), _re.UNICODE)
+    if not tu:
+        return 0.0
+    chuan = _kho_tu_chuan()
+    if not chuan:                      # không đọc được truyện → không chặn
+        return 0.0
+    return sum(1 for w in tu if w not in chuan) / len(tu)
+
+
+def _co_chu_dinh(van_ban: str) -> bool:
+    """Chữ dính nhau — dấu hiệu AI nuốt mất khoảng trắng ('mộtỗ').
+
+    Chỉ báo khi từ đó KHÔNG có trong truyện gốc: 'chỗ', 'gỗ', 'vỗ' là từ thật.
+    """
+    import re as _re
+    chuan = _kho_tu_chuan()
+    for m in _re.finditer(r"[^\W\d_]{2,}ỗ\b", (van_ban or "").lower(), _re.UNICODE):
+        if m.group(0) not in chuan:
+            return True
+    return False
+
+
+def van_ban_dung(ban_ai: str, ban_goc: str) -> tuple[bool, str]:
+    """Bản AI có dùng được không. Trả (dùng_được, lý_do_từ_chối)."""
+    if not ban_ai or not ban_ai.strip():
+        return False, "AI trả về rỗng"
+    if any(c in _KY_TU_RAC for c in ban_ai):
+        return False, "có ký tự rác ngoài tiếng Việt"
+    thap = ban_ai.lower()
+    for tu in _TU_RAC:
+        if tu in thap:
+            return False, f"có từ Hán-Việt rác ({tu!r})"
+    if _co_chu_dinh(ban_ai):
+        return False, "có chữ dính nhau (vd 'mộtỗ')"
+    if not ban_ai.rstrip().endswith((".", "!", "?", "”", '"', "*", "…")):
+        return False, "câu bị cắt giữa chừng"
+    ty = _ty_le_tu_la(ban_ai)
+    if ty > _NGUONG_TU_LA:
+        return False, f"quá nhiều từ lạ ({ty:.0%})"
+    if ban_goc:
+        mat = [t for t in TEN_RIENG if t in ban_goc and t not in ban_ai]
+        if mat:
+            return False, f"đổi mất tên riêng ({', '.join(mat[:3])})"
+        if ban_goc.count("\n\n") and ban_ai.count("\n\n") < ban_goc.count("\n\n") - 1:
+            return False, "gộp mất dòng trống giữa các đoạn"
+        ti = len(ban_ai) / max(1, len(ban_goc))
+        if ti > _NGUONG_PHINH:
+            return False, f"dài hơn bản gốc {ti:.0%}"
+        if ti < _NGUONG_NGAN:
+            return False, f"ngắn hơn bản gốc {ti:.0%} (mất chi tiết)"
+    return True, ""
 
 
 def ke_lai_tien_hiep(doan_ke: str, boi_canh: str = "", hanh_dong: str = "") -> str:
@@ -154,38 +270,35 @@ def ke_lai_tien_hiep(doan_ke: str, boi_canh: str = "", hanh_dong: str = "") -> s
         return _cache_ke[khoa]
 
     env = load_env()
-    ten = ", ".join(TEN_RIENG)
     phan_boi_canh = f"\nBỐI CẢNH: {boi_canh}" if boi_canh else ""
     phan_hanh_dong = f"\nHÀNH ĐỘNG VỪA RỒI CỦA NGƯỜI CHƠI: {hanh_dong}" if hanh_dong else ""
-    gioi_han = int(len(doan_ke) * 1.2)
     prompt = (
-        "Bạn là biên tập viên văn tiên hiệp. Nhiệm vụ: ĐỔI TỪ NGỮ trong đoạn dưới "
-        "sang giọng cổ phong tiên hiệp. TUYỆT ĐỐI KHÔNG viết lại tự do.\n\n"
-        "CÁCH LÀM:\n"
-        "- Giữ nguyên TỪNG CÂU, giữ nguyên thứ tự câu, giữ nguyên số câu.\n"
-        "- Chỉ thay một số từ ngữ (thường → cổ phong). Ví dụ: 'im lặng'→'tịch mịch', "
-        "'chạy'→'phi thân', 'nghĩ'→'thầm nghĩ'.\n"
-        "- KHÔNG thêm câu mới. KHÔNG thêm sự việc mới. KHÔNG thêm nhân vật/địa danh.\n\n"
-        "VÍ DỤ:\n"
-        "GỐC: Ta ngồi xuống, im lặng hồi lâu.\n"
-        "ĐÚNG: Ta ngồi xuống, tịch mịch hồi lâu.\n"
-        "SAI: Ta ngồi xuống bên vách đá, im lặng hồi lâu, lòng dấy lên nỗi bất an.\n"
-        "(câu SAI thêm 'bên vách đá' và 'nỗi bất an' — KHÔNG được làm vậy)\n\n"
-        "QUY TẮC:\n"
-        "1. GIỮ NGUYÊN mọi sự kiện, nhân vật, địa điểm, vật phẩm, kết quả.\n"
-        "2. KHÔNG thêm bất kỳ chi tiết nào không có trong đoạn gốc.\n"
-        "3. Giữ nguyên giới tính và cách gọi nhân vật (hắn/ta/nó…).\n"
-        f"4. Tối đa {gioi_han} ký tự.\n"
-        "5. Viết đúng tên riêng: " + ten + ".\n"
-        "6. Giữ định dạng: dòng trống giữa các đoạn; nội tâm trong *…*.\n"
-        "7. Chỉ trả về đoạn đã sửa, không giải thích.\n\n"
+        "Bạn là người kể chuyện tiếng Việt. Kể lại đoạn dưới bằng TIẾNG VIỆT HIỆN ĐẠI, "
+        "trong sáng, dễ hiểu — vẫn giữ không khí kiếm hiệp.\n\n"
+        "GIỮ NGUYÊN:\n"
+        "- Ngôi thứ nhất 'ta' (KHÔNG đổi thành 'tôi', 'mình').\n"
+        "- Mọi sự việc, nhân vật, địa điểm, thứ tự câu. Không thêm, không bớt.\n"
+        "- Độ dài tương đương bản gốc (không tóm tắt).\n"
+        "- Giữ nguyên tên riêng, thuật ngữ: " + ", ".join(TEN_RIENG) + ".\n"
+        "- Nội tâm trong *…*, lời thoại trong “…” như bản gốc.\n"
+        "- Giữ đúng các đoạn: chỗ nào bản gốc có dòng trống thì giữ dòng trống.\n\n"
+        "TUYỆT ĐỐI KHÔNG dùng từ Hán-Việt cổ. Sai: 'tịch mịch', 'dị hương', 'khứu đại', "
+        "'triệt ngộ', 'nguyệt thăng', 'tùng hình', 'u lan', 'mai táng', 'vị tằng', "
+        "'phương tri', 'nhất lũ'. Đúng: 'im lặng', 'mùi lạ', 'mũi', 'hiểu ra', "
+        "'trăng lên', 'theo nàng mà tới', 'chưa từng', 'mới biết', 'một'.\n"
+        "- 'mai táng' chỉ dùng cho chôn người chết. Chôn đồ vật thì dùng 'chôn', 'vùi', 'lấp đất'.\n\n"
+        "Viết trọn câu, kết thúc bằng dấu chấm. Chỉ trả về đoạn kể, không giải thích.\n\n"
         f"ĐOẠN GỐC:\n{doan_ke}{phan_boi_canh}{phan_hanh_dong}"
     )
     try:
-        ket_qua = _goi_gemini(env, prompt, max_token=700).strip()
+        ket_qua = _goi_gemini(env, prompt, max_token=1600).strip()
     except Exception:  # noqa: BLE001 - AI lỗi → nơi gọi dùng văn bản gốc
         return ""
     if not ket_qua:
+        return ""
+    dung, ly_do = van_ban_dung(ket_qua, doan_ke)
+    if not dung:
+        _so_lan_chan.append((ly_do, ket_qua[:120]))
         return ""
     if len(_cache_ke) >= CACHE_TOI_DA:  # xoá bớt khi cache đầy
         for k in list(_cache_ke)[:100]:

@@ -114,11 +114,92 @@
   }
 
   // ------------------------------------------------------------ kể lại đoạn
-  const TEN_RIENG = ["Hàn Lập", "Thất Huyền Môn", "Dã Lang Bang", "Lý Hổ",
-    "Tần Báo", "Thất Huyền trấn", "hắc quáng động"];
+  const TEN_RIENG = ["Hàn Lập", "Thất Huyền Môn", "Thất Huyền quyền", "Thất Huyền trấn",
+    "Dã Lang Bang", "Lý Hổ", "Tần Báo", "Tuyết Cơ", "Mạc Đại Phu",
+    "Hùng Bá", "Hợp Hoan Tông", "tân xá", "ngọc cốt", "hậu sơn",
+    "hắc quáng động"];
 
   const _cache_ke = new Map();
   const CACHE_TOI_DA = 500;
+
+  // -------------------------------------------------- chặn AI viết hỏng
+  // Model hay "cổ phong hoá" quá tay: ghép chữ Hán nửa vời, dính chữ ("mộtỗ"),
+  // sai ngữ pháp, dùng từ sai nghĩa ("mai táng" cho khối ngọc). Truyện gốc
+  // sạch nên lấy chính nó làm chuẩn. Ngưỡng đo trên dữ liệu thật:
+  // bản gốc 0.0% từ lạ · bản AI hỏng 12–45%.
+  const NGUONG_TU_LA = 0.12;
+  const NGUONG_PHINH = 1.40;
+  const NGUONG_NGAN = 0.70;
+  const KY_TU_RAC = "øØæÆðÐþÞß";
+  const TU_RAC = [
+    "khứu đại", "dị hương", "triệt ngộ", "tùng hình", "nguyệt thăng", "u lan",
+    "tịch mịch", "tịch dương", "mai táng", "vị tằng", "phương tri", "hà xứ",
+    "nhi lai", "đồng thời khắc", "nhất lũ", "nhất vị", "nhất đạo", "chủng hoa",
+    "độc năng", "tị quan", "nhục thân chân thật", "mộc sàng", "bích quang",
+    "chân quang", "ôn nhuận", "hữu mạch", "thanh sở", "ma ty", "nguyệt hoa",
+    "lăng tại", "chí nghẹn", "thiên niên", "nhu như ti",
+  ];
+
+  let _kho_tu = null;
+  function _khoTuChuan() {
+    if (_kho_tu) return _kho_tu;
+    const tu = new Set();
+    const g = (typeof globalThis !== "undefined" ? globalThis : this);
+    // Truyện nạp bất đồng bộ vào Engine, nên lấy qua load_chuong() khi có.
+    let ds = (g.CHUONG_DU_LIEU && g.CHUONG_DU_LIEU.doan) || [];
+    if (!ds.length && g.Engine && g.Engine.load_chuong) {
+      try { ds = g.Engine.load_chuong(1).doan || []; } catch (e) { ds = []; }
+    }
+    for (const d of ds) {
+      for (const truong of ["ke", "boi_canh"]) {
+        for (const w of String(d[truong] || "").toLowerCase().match(/[^\W\d_]+/gu) || []) {
+          tu.add(w);
+        }
+      }
+    }
+    if (tu.size) _kho_tu = tu;
+    return tu;
+  }
+
+  function _tyLeTuLa(v) {
+    const tu = String(v || "").toLowerCase().match(/[^\W\d_]+/gu) || [];
+    if (!tu.length) return 0;
+    const chuan = _khoTuChuan();
+    if (!chuan.size) return 0;
+    let la = 0;
+    for (const w of tu) if (!chuan.has(w)) la++;
+    return la / tu.length;
+  }
+
+  function _coChuDinh(v) {
+    const chuan = _khoTuChuan();
+    const m = String(v || "").toLowerCase().match(/[^\W\d_]{2,}ỗ\b/gu) || [];
+    return m.some(w => !chuan.has(w));
+  }
+
+  function van_ban_dung(ban_ai, ban_goc) {
+    if (!ban_ai || !ban_ai.trim()) return [false, "AI trả về rỗng"];
+    for (const c of ban_ai) if (KY_TU_RAC.includes(c)) return [false, "có ký tự rác ngoài tiếng Việt"];
+    const thap = ban_ai.toLowerCase();
+    for (const tu of TU_RAC) {
+      if (thap.includes(tu)) return [false, `có từ Hán-Việt rác (${tu})`];
+    }
+    if (_coChuDinh(ban_ai)) return [false, "có chữ dính nhau (vd 'mộtỗ')"];
+    if (!/[.!?…”"*]\s*$/u.test(ban_ai)) return [false, "câu bị cắt giữa chừng"];
+    if (_tyLeTuLa(ban_ai) > NGUONG_TU_LA) return [false, `quá nhiều từ lạ (${(_tyLeTuLa(ban_ai) * 100).toFixed(0)}%)`];
+    if (ban_goc) {
+      const mat = TEN_RIENG.filter(t => ban_goc.includes(t) && !ban_ai.includes(t));
+      if (mat.length) return [false, `đổi mất tên riêng (${mat.slice(0, 3).join(", ")})`];
+      const dem = s => (s.match(/\n\n/g) || []).length;
+      if (dem(ban_goc) && dem(ban_ai) < dem(ban_goc) - 1) {
+        return [false, "gộp mất dòng trống giữa các đoạn"];
+      }
+      const ti = ban_ai.length / Math.max(1, ban_goc.length);
+      if (ti > NGUONG_PHINH) return [false, `dài hơn bản gốc ${(ti * 100).toFixed(0)}%`];
+      if (ti < NGUONG_NGAN) return [false, `ngắn hơn bản gốc ${(ti * 100).toFixed(0)}%`];
+    }
+    return [true, ""];
+  }
 
   async function ke_lai(doan_ke, hanh_dong, thay_doi) {
     thay_doi = thay_doi || "";
@@ -130,8 +211,13 @@
       "Viết lại đoạn sau thật sinh động, có nội tâm, 3-5 câu, KHÔNG đổi sự kiện:\n\n" +
       `ĐOẠN GỐC:\n${doan_ke}\n\n` +
       `HÀNH ĐỘNG CỦA NGƯỜI CHƠI: ${hanh_dong}${phan_thay_doi}\n\n` +
+      "Dùng tiếng Việt thuần, KHÔNG chêm chữ Hán (dị hương, khứu đại, triệt ngộ…). " +
       "Chỉ trả về đoạn kể, không giải thích.";
-    return _goi_gemini(prompt, 500);
+    let moi;
+    try { moi = (await _goi_gemini(prompt, 500)).trim(); }
+    catch (e) { return ""; }
+    const [dung] = van_ban_dung(moi, doan_ke);
+    return dung ? moi : "";
   }
 
   async function ke_lai_tien_hiep(doan_ke, boi_canh, hanh_dong) {
@@ -145,36 +231,35 @@
     const ten = TEN_RIENG.join(", ");
     const phan_boi_canh = boi_canh ? `\nBỐI CẢNH: ${boi_canh}` : "";
     const phan_hanh_dong = hanh_dong ? `\nHÀNH ĐỘNG VỪA RỒI CỦA NGƯỜI CHƠI: ${hanh_dong}` : "";
-    const gioi_han = Math.trunc(doan_ke.length * 1.2);
     const prompt =
-      "Bạn là biên tập viên văn tiên hiệp. Nhiệm vụ: ĐỔI TỪ NGỮ trong đoạn dưới " +
-      "sang giọng cổ phong tiên hiệp. TUYỆT ĐỐI KHÔNG viết lại tự do.\n\n" +
-      "CÁCH LÀM:\n" +
-      "- Giữ nguyên TỪNG CÂU, giữ nguyên thứ tự câu, giữ nguyên số câu.\n" +
-      "- Chỉ thay một số từ ngữ (thường → cổ phong). Ví dụ: 'im lặng'→'tịch mịch', " +
-      "'chạy'→'phi thân', 'nghĩ'→'thầm nghĩ'.\n" +
-      "- KHÔNG thêm câu mới. KHÔNG thêm sự việc mới. KHÔNG thêm nhân vật/địa danh.\n\n" +
-      "VÍ DỤ:\n" +
-      "GỐC: Ta ngồi xuống, im lặng hồi lâu.\n" +
-      "ĐÚNG: Ta ngồi xuống, tịch mịch hồi lâu.\n" +
-      "SAI: Ta ngồi xuống bên vách đá, im lặng hồi lâu, lòng dấy lên nỗi bất an.\n" +
-      "(câu SAI thêm 'bên vách đá' và 'nỗi bất an' — KHÔNG được làm vậy)\n\n" +
-      "QUY TẮC:\n" +
-      "1. GIỮ NGUYÊN mọi sự kiện, nhân vật, địa điểm, vật phẩm, kết quả.\n" +
-      "2. KHÔNG thêm bất kỳ chi tiết nào không có trong đoạn gốc.\n" +
-      "3. Giữ nguyên giới tính và cách gọi nhân vật (hắn/ta/nó…).\n" +
-      `4. Tối đa ${gioi_han} ký tự.\n` +
-      "5. Viết đúng tên riêng: " + ten + ".\n" +
-      "6. Giữ định dạng: dòng trống giữa các đoạn; nội tâm trong *…*.\n" +
-      "7. Chỉ trả về đoạn đã sửa, không giải thích.\n\n" +
+      "Bạn là người kể chuyện tiếng Việt. Kể lại đoạn dưới bằng TIẾNG VIỆT HIỆN ĐẠI, " +
+      "trong sáng, dễ hiểu — vẫn giữ không khí kiếm hiệp.\n\n" +
+      "GIỮ NGUYÊN:\n" +
+      "- Ngôi thứ nhất 'ta' (KHÔNG đổi thành 'tôi', 'mình').\n" +
+      "- Mọi sự việc, nhân vật, địa điểm, thứ tự câu. Không thêm, không bớt.\n" +
+      "- Độ dài tương đương bản gốc (không tóm tắt).\n" +
+      "- Giữ nguyên tên riêng, thuật ngữ: " + ten + ".\n" +
+      "- Nội tâm trong *…*, lời thoại trong “…” như bản gốc.\n" +
+      "- Giữ đúng các đoạn: chỗ nào bản gốc có dòng trống thì giữ dòng trống.\n\n" +
+      "TUYỆT ĐỐI KHÔNG dùng từ Hán-Việt cổ. Sai: 'tịch mịch', 'dị hương', 'khứu đại', " +
+      "'triệt ngộ', 'nguyệt thăng', 'tùng hình', 'u lan', 'mai táng', 'vị tằng', " +
+      "'phương tri', 'nhất lũ'. Đúng: 'im lặng', 'mùi lạ', 'mũi', 'hiểu ra', " +
+      "'trăng lên', 'theo nàng mà tới', 'chưa từng', 'mới biết', 'một'.\n" +
+      "- 'mai táng' chỉ dùng cho chôn người chết. Chôn đồ vật thì dùng 'chôn', 'vùi', 'lấp đất'.\n\n" +
+      "Viết trọn câu, kết thúc bằng dấu chấm. Chỉ trả về đoạn kể, không giải thích.\n\n" +
       `ĐOẠN GỐC:\n${doan_ke}${phan_boi_canh}${phan_hanh_dong}`;
     let ket_qua;
     try {
-      ket_qua = (await _goi_gemini(prompt, 700)).trim();
+      ket_qua = (await _goi_gemini(prompt, 1600)).trim();
     } catch (e) {
       return "";
     }
     if (!ket_qua) return "";
+    const [dung, ly_do] = van_ban_dung(ket_qua, doan_ke);
+    if (!dung) {
+      if (typeof console !== "undefined") console.warn("Chặn AI kể:", ly_do);
+      return "";
+    }
     if (_cache_ke.size >= CACHE_TOI_DA) {
       const bo = Array.from(_cache_ke.keys()).slice(0, 100);
       for (const k of bo) _cache_ke.delete(k);
@@ -271,6 +356,7 @@
     KHOA_KEY, MODEL_DU_PHONG,
     lay_key, dat_key, co_key,
     thu_ket_noi, san_sang, ke_lai, ke_lai_tien_hiep, nhan_dien, _tach_json,
+    van_ban_dung,
   };
 
   goc.AI = AI;

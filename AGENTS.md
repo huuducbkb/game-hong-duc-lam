@@ -182,6 +182,26 @@ Mỗi NPC có số hảo cảm **−100…+100**, 6 mức (`MUC_HAO_CAM` trong `
   Giới hạn: `sinh_luc −15..10`, `tu_vi 0..8`, `linh_thach −10..10`, `than_niem 0..2`,
   `hao_cam −10..10` (chỉ NPC đã gặp).
 
+### Chặn "AI kể" viết hỏng — BẮT BUỘC giữ
+
+Prompt kiểu "đổi sang giọng **cổ phong**" từng sinh chữ rác thật (người chơi báo):
+`mộtỗ`, `dị hương`, `khứu đại`, `triệt ngộ`, `u lan chi khí ấy lại tùng hình nàng mà chí`,
+và `mai táng` dùng sai (chôn khối ngọc, không phải chôn người). Truyện gốc **sạch 100%**,
+nên AI chỉ làm hỏng thêm.
+
+- Prompt hiện tại yêu cầu **tiếng Việt hiện đại, trong sáng**, cấm từ Hán-Việt cổ, giữ
+  ngôi "ta", giữ tên riêng, giữ dòng trống giữa các đoạn, viết trọn câu.
+- Hàm chặn `van_ban_dung(ban_ai, ban_goc) -> (dùng_được, lý_do)` có ở **cả hai bản**:
+  `game/ai.py` và `docs/game/ai.js`. Bản AI không đạt → trả `""` → nơi gọi dùng văn gốc.
+  Kiểm tra: ký tự rác, danh sách `TU_RAC`, chữ dính (`mộtỗ`), câu bị cắt, tỉ lệ từ lạ
+  >12%, mất tên riêng, gộp mất dòng trống, độ dài ngoài 70–140% bản gốc.
+- Kho từ chuẩn lấy từ chính truyện: Python đọc `game/chapters/*.json`; JS lấy qua
+  `Engine.load_chuong(1)` (truyện nạp bất đồng bộ, không có global sẵn).
+- Số đo hiệu chỉnh: bản gốc **0.0%** từ lạ · bản AI hỏng **12–45%**. Sau khi sửa prompt:
+  **0.0–0.8%**, 8/8 đoạn thử đạt, độ dài 100%, không mất tên riêng.
+- Sửa prompt/hàm chặn phải sửa **cả hai file** — `ai.js` là bản chạy thật trên GitHub Pages.
+
+
 Quy ước: font `Noto Serif` + `Ma Shan Zheng`; màu mực `#1b1915`, ấn son `#a8352a`;
 `panel-character.jpg` chỉ còn dùng cho khung (nếu cần), không còn khối thân phận ở màn chính.
 
