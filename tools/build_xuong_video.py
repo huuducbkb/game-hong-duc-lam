@@ -27,6 +27,7 @@ import xuong_video as V  # noqa: E402
 REPO = "huuducbkb/game-hong-duc-lam"
 OUT = os.path.join(ROOT, "docs", "xuong-video", "index.html")
 UPLOAD_URL = f"https://github.com/{REPO}/upload/main/docs/assets/video"
+XEM_TRUOC = os.path.join(ROOT, "docs", "xuong-video", "xem-truoc.mp4")
 
 
 def _o_gui(c: dict) -> str:
@@ -174,6 +175,31 @@ def _canh_json() -> str:
     return json.dumps(ds, ensure_ascii=False).replace("</", "<\\/")
 
 
+def _xem_truoc() -> str:
+    """Khối xem trước: video dựng tự động từ 14 ảnh, chỉ hiện khi đã có file."""
+    if not os.path.exists(XEM_TRUOC):
+        return ""
+    if not all(V.da_co(c) for c in V.CANH_VIDEO):
+        return ""
+    return f"""
+<h2>🎬 Xem trước</h2>
+<div class="card">
+  <p class="mota">Dựng tự động từ <b>14 ảnh</b> theo đúng timecode và chuyển động camera
+  trong bảng bên dưới — <b>{V.mmss(V.tong_giay())}</b>, 720×1280, chưa có nhạc.
+  Đây là bản nháp để bạn duyệt bố cục và nhịp; bản cuối dựng trong CapCut sẽ nét hơn
+  và có nhạc.</p>
+  <video controls playsinline preload="metadata" width="100%"
+         style="border-radius:10px;border:1px solid var(--line);display:block;background:#000">
+    <source src="xem-truoc.mp4" type="video/mp4">
+    Trình duyệt không phát được video. <a href="xem-truoc.mp4">Tải về</a>.
+  </video>
+  <div class="row">
+    <a class="dl" href="xem-truoc.mp4" download>⬇️ Tải video xem trước</a>
+  </div>
+</div>
+"""
+
+
 def build() -> str:
     tong = len(V.CANH_VIDEO)
     co = V.so_da_co()
@@ -192,6 +218,7 @@ def build() -> str:
             .replace("__PROMPT_NHAC__", H.escape(V.prompt_nhac()))
             .replace("__KHOI__", khoi)
             .replace("__CANH_JSON__", _canh_json())
+            .replace("__XEM_TRUOC__", _xem_truoc())
             .replace("__UPLOAD__", UPLOAD_URL))
 
 
@@ -300,6 +327,8 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
 <h1>Xưởng video</h1>
 <p class="muted">Hồng Đức Tu Tiên Lộ · trailer intro <b>__GIAY__ giây</b> (<b>__MMSS__</b>) ·
 <b>__TONG__</b> cảnh · đã có <b>__DA_CO__</b>, còn thiếu <b>__CON__</b>.</p>
+
+__XEM_TRUOC__
 
 <h2>⚡ Cách làm</h2>
 <div class="card">
