@@ -1055,6 +1055,23 @@
       "dung_o": [
         "c1_p18b"
       ]
+    },
+    "nv_han_lap_hoi_nguoc.jpg": {
+      "loai": "nhan_vat",
+      "mo_ta": "Hỏi ngược hắn giấu thứ gì; hắn khựng rồi cười lạnh (p18c).",
+      "tags": [
+        "hỏi",
+        "ngược",
+        "hắn",
+        "giấu",
+        "thứ",
+        "gì",
+        "khựng",
+        "rồi"
+      ],
+      "dung_o": [
+        "c1_p18c"
+      ]
     }
   }
 }
