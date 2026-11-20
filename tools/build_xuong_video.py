@@ -202,44 +202,37 @@ def _xem_truoc() -> str:
 
 
 def _up_video() -> str:
-    """Khối úp video intro đã dựng sẵn (từ CapCut) thẳng lên GitHub."""
+    """Ô kéo-thả video intro. Tự chia khúc nên không giới hạn dung lượng.
+
+    Trình duyệt chỉ gọi được api.github.com (uploads.github.com thiếu CORS), mà
+    mỗi lần PUT ở đó bị trần ~30 MB (đo thật: 29 MB qua, 42 MB → 422). Vì vậy
+    file được cắt thành nhiều mảnh ~8 MB, đẩy lần lượt vào xuong-video-inbox/,
+    rồi workflow `ghep-video.yml` ghép lại → nén → đưa vào game → xoá mảnh.
+    """
     co = os.path.exists(INTRO_MP4)
-    ten = "intro.mp4"
     if co:
         mb = os.path.getsize(INTRO_MP4) / 1024 / 1024
-        hien_tai = (f'<p class="mota">Đã có <b>{ten}</b> — '
-                    f'<b>{mb:.1f} MB</b>. Video này đang phát ở đầu game.</p>'
-                    f'<video controls playsinline preload="metadata" width="100%" '
-                    f'style="border-radius:10px;border:1px solid var(--line);display:block;'
-                    f'background:#000;max-width:340px">'
-                    f'<source src="../assets/video/{ten}" type="video/mp4"></video>')
+        hien_tai = (f'<div class="phim-xem"><video controls playsinline preload="metadata" '
+                    f'src="../assets/video/intro.mp4"></video></div>'
+                    f'<p class="mota">Đang phát bản <b>{mb:.1f} MB</b> ở đầu game. '
+                    f'Thả video mới vào ô dưới để thay.</p>')
     else:
-        hien_tai = ('<p class="mota">Chưa có video. Úp lên là game tự phát ở màn giới thiệu.</p>')
+        hien_tai = ('<p class="mota">Chưa có video. Thả vào là game tự phát ở màn '
+                    'giới thiệu.</p>')
     return f"""
-<h2>🎬 Video intro đã dựng</h2>
+<h2>🎬 Video intro</h2>
 <div class="card">
   {hien_tai}
-  <p class="mota">Xuất từ CapCut: <b>MP4 · H.264 · 1080×1920 · dưới 15 MB</b>.
-  Không cần đặt tên, không cần mở Issue — chọn file là xong.</p>
-  <p class="mota">Video <b>nặng hơn 30 MB</b> thì trang này không đẩy nổi (giới hạn GitHub,
-  đo thật: 29 MB qua, 42 MB bị từ chối). Cách khác: <b>kéo thả file vào Release</b> —
-  hệ thống tự tải về, nén xuống ~14 MB rồi đưa vào game.</p>
-  <div class="row">
-    <a class="dl" href="https://github.com/huuducbkb/game-hong-duc-lam/releases/new?tag=intro&title=Video+intro"
-       target="_blank" rel="noopener">🎬 Mở trang tạo Release</a>
-  </div>
-  <div class="gui-o" data-file="{ten}">
-    <label class="gui-dan" tabindex="0" title="Bấm để chọn video trong thư viện">
-      <input class="gui-file" type="file" accept="video/mp4,video/*" id="intro-file">
-      <span class="gui-nhac">🎬 Bấm vào đây để chọn video</span>
-      <video class="gui-xem" alt="" hidden muted playsinline
-             style="width:100%;border-radius:8px"></video>
-    </label>
-    <div class="gui-hang">
-      <button class="gui-gui" type="button" id="intro-gui" disabled>📤 Gửi video</button>
-    </div>
-    <div class="gui-tt" id="intro-tt" hidden></div>
-  </div>
+  <p class="mota">Xuất từ CapCut: <b>MP4 · H.264 · 1080×1920</b>. Dung lượng nào cũng
+  được — trang tự cắt nhỏ để đưa lên, máy chủ tự ghép lại và nén xuống ~14 MB cho nhẹ
+  khi người chơi mở game.</p>
+  <label class="tha" id="tha-o" tabindex="0">
+    <input type="file" id="intro-file" accept="video/mp4,video/quicktime,video/*">
+    <span class="tha-icon">🎬</span>
+    <span class="tha-chu">Thả video vào đây<br><small>hoặc bấm để chọn trong thư viện</small></span>
+  </label>
+  <div class="thanh" id="thanh" hidden><div class="thanh-ruot" id="thanh-ruot"></div></div>
+  <div class="gui-tt" id="intro-tt" hidden></div>
 </div>
 """
 
@@ -337,6 +330,20 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
   border-radius:9px;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer}
 .big{display:block;text-align:center;margin:10px 0;border-style:dashed}
 .steps li{margin:7px 0}
+.tha{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:12px;
+ padding:26px 14px;border:2px dashed var(--line);border-radius:12px;cursor:pointer;
+ background:#0e1726;text-align:center;transition:border-color .15s,background .15s}
+.tha:hover,.tha.hot{border-color:var(--jade);background:#101f33}
+.tha:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+.tha input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.tha-icon{font-size:26px;line-height:1}
+.tha-chu{font-size:14px;color:var(--jade)}
+.tha-chu small{color:var(--muted);font-size:12px}
+.thanh{margin-top:12px;height:8px;border-radius:99px;background:#0a1220;overflow:hidden}
+.thanh-ruot{height:100%;width:0;border-radius:99px;
+ background:linear-gradient(90deg,var(--jade),#7fe0a8);transition:width .25s}
+.phim-xem video{width:100%;max-width:300px;border-radius:10px;border:1px solid var(--line);
+ display:block;background:#000}
 .gui-o{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1726}
 .gui-dan{display:block;position:relative;border:2px dashed var(--line);border-radius:9px;
   padding:18px 12px;text-align:center;color:var(--muted);cursor:pointer}
@@ -623,53 +630,88 @@ async function ghPutAnh(duong, b64){
   return true;
 }
 
-/* ================= Úp video intro đã dựng ================= */
-/* Ngưỡng đo thật trên chính repo này (không phải tài liệu GitHub):
-   29.1 MB → qua; 42.5 MB → 422 "file is too large"; 61.6 MB → 504 timeout.
-   Đặt 30 MB để còn biên an toàn. File lớn hơn phải xuất lại từ CapCut.
-   Video KHÔNG nén được trên máy: trình duyệt không mã hoá lại được H.264. */
-const INTRO_MAX_MB = 30;
+/* ================= Video intro: kéo-thả, tự chia khúc ================= */
+/* Trình duyệt chỉ gọi được api.github.com — uploads.github.com (Release asset)
+   không trả header CORS, đã kiểm tra bằng preflight OPTIONS. Mà mỗi PUT ở
+   api.github.com bị trần ~30 MB (đo thật: 29.1 MB qua, 42.5 MB → 422 "too
+   large", 61.6 MB → 504). Nên file lớn được cắt thành mảnh 8 MB, đẩy vào
+   xuong-video-inbox/, workflow ghep-video.yml ghép lại rồi nén.
+   Mảnh 8 MB: base64 phình 1/3 → ~11 MB, dưới trần 30 MB rất xa. */
+const MANH_MB = 8;
+const INBOX = 'xuong-video-inbox';
 
-(function noiOFilm(){
+(function thaVideo(){
+  const o = document.getElementById('tha-o');
+  if(!o) return;
   const inp = document.getElementById('intro-file');
-  if(!inp) return;
-  const nut = document.getElementById('intro-gui');
-  const tt  = document.getElementById('intro-tt');
-  const xem = inp.closest('.gui-o').querySelector('.gui-xem');
-  let file = null;
+  const thanh = document.getElementById('thanh');
+  const ruot = document.getElementById('thanh-ruot');
+  const tt = document.getElementById('intro-tt');
+  let dangGui = false;
 
-  inp.addEventListener('change', ()=>{
-    file = inp.files && inp.files[0] || null;
-    if(!file) return;
-    const mb = file.size/1024/1024;
-    if(mb > INTRO_MAX_MB){
-      file = null; nut.disabled = true; xem.hidden = true;
-      ghHienTT(tt,'warn',`⚠️ Video ${mb.toFixed(1)} MB — quá lớn (tối đa 30 MB). Xuất lại từ CapCut ở 720p, hoặc nhờ tôi nén giúp.`);
-      return;
-    }
-    xem.src = URL.createObjectURL(file);
-    xem.hidden = false;
-    nut.disabled = false;
-    ghHienTT(tt,'muted',`Đã chọn: <b>${file.name}</b> — ${mb.toFixed(1)} MB. Bấm Gửi video.`);
-  });
+  function veThanh(p){
+    thanh.hidden = false;
+    ruot.style.width = Math.round(p*100) + '%';
+  }
 
-  nut.addEventListener('click', async ()=>{
-    if(!file) return;
+  async function gui(file){
+    if(dangGui) return;
     if(!ghToken()){
-      ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục <b>🔑 Kết nối GitHub</b> rồi thử lại.');
+      ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục <b>🔑 Kết nối GitHub</b> phía trên rồi thả lại.');
       return;
     }
-    nut.disabled = true;
-    ghHienTT(tt,'muted','Đang đưa video lên GitHub… video lớn nên có thể mất 1–2 phút, đừng đóng tab.');
+    dangGui = true;
+    const mb = file.size/1024/1024;
+    const duoi = (file.name.split('.').pop()||'mp4').toLowerCase();
+    // Mã lô = thời gian + ngẫu nhiên: nhiều lần thả không đè lên nhau.
+    const lo = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+    const co = Math.max(1, Math.ceil(file.size/(MANH_MB*1024*1024)));
     try{
-      const b64 = await blobB64(file);
-      await ghPutAnh(VIDEO_DIR + 'intro.mp4', b64);
-      ghHienTT(tt,'ok','✅ Đã gửi <b>intro.mp4</b>. GitHub Pages dựng lại trong ~1 phút, '
-                      + 'sau đó mở game là video tự phát ở màn giới thiệu.');
+      ghHienTT(tt,'muted',`Đang đưa lên: <b>${file.name}</b> — ${mb.toFixed(1)} MB, chia ${co} phần. Đừng đóng tab.`);
+      for(let k=0;k<co;k++){
+        const dau = k*MANH_MB*1024*1024;
+        const manh = file.slice(dau, Math.min(file.size, dau+MANH_MB*1024*1024));
+        const b64 = await blobB64(manh);
+        // Tên mảnh có số thứ tự 5 chữ số để ghép đúng thứ tự.
+        const ten = `${lo}-${String(k).padStart(5,'0')}.part`;
+        await ghPutAnh(`${INBOX}/${ten}`, b64);
+        veThanh((k+1)/co*0.9);
+        ghHienTT(tt,'muted',`Đang đưa lên: phần ${k+1}/${co} — ${Math.round((k+1)/co*100)}%. Đừng đóng tab.`);
+      }
+      // Mẩu tin cuối: báo tổng số mảnh + tên gốc. Workflow chỉ chạy khi thấy nó,
+      // nhờ vậy không ghép khi còn mảnh đang lên.
+      const tin = {lo, co, ten: file.name, duoi, bytes: file.size};
+      await ghPutAnh(`${INBOX}/${lo}.json`, await blobB64(
+        new Blob([JSON.stringify(tin)],{type:'application/json'})));
+      veThanh(1);
+      ghHienTT(tt,'ok',`✅ Đã đưa lên xong (${co} phần). Máy chủ đang ghép lại và nén — `
+        + `khoảng 2–3 phút nữa video mới hiện trong game. Theo dõi ở tab Actions nếu muốn.`);
     }catch(e){
-      ghHienTT(tt,'warn',`⚠️ Gửi lỗi: ${e}`);
-      nut.disabled = false;
+      ghHienTT(tt,'warn',`⚠️ Gửi lỗi: ${e}. Thả lại để thử lại từ đầu.`);
+      dangGui = false;
+      return;
     }
+    dangGui = false;
+  }
+
+  // Kéo thả
+  ['dragenter','dragover'].forEach(t=>o.addEventListener(t, e=>{
+    e.preventDefault(); o.classList.add('hot');
+  }));
+  ['dragleave','drop'].forEach(t=>o.addEventListener(t, e=>{
+    e.preventDefault(); o.classList.remove('hot');
+  }));
+  o.addEventListener('drop', e=>{
+    const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if(f) gui(f);
+  });
+  inp.addEventListener('change', ()=>{
+    const f = inp.files && inp.files[0];
+    if(f) gui(f);
+  });
+  // Bấm phím Enter/Space trên ô cũng mở hộp chọn file (bàn phím).
+  o.addEventListener('keydown', e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); inp.click(); }
   });
 })();
 

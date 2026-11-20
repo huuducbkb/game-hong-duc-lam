@@ -1,0 +1,119 @@
+name: Ghép video từ Xưởng
+
+# Trang Xưởng video cắt file thành mảnh 8 MB rồi đẩy vào xuong-video-inbox/
+# (trình duyệt chỉ gọi được api.github.com, mà mỗi PUT ở đó bị trần ~30 MB).
+# Workflow này ghép mảnh lại, nén, đưa vào game, xoá mảnh.
+#
+# Chỉ chạy khi thấy mẩu tin <lô>.json — trang đẩy nó SAU khi hết mảnh, nên
+# không bao giờ ghép một file còn thiếu phần.
+on:
+  push:
+    paths:
+      - 'xuong-video-inbox/*.json'
+  workflow_dispatch:
+    inputs:
+      muc_tieu_mb:
+        description: "Dung lượng mục tiêu (MB)"
+        default: "14"
+
+permissions:
+  contents: write
+  actions: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ghep-video
+  cancel-in-progress: false
+
+jobs:
+  ghep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cài ffmpeg
+        run: pip install --quiet imageio-ffmpeg
+
+      - name: Ghép mảnh
+        id: ghep
+        run: |
+          python3 - <<'PY'
+          import glob, json, os, sys
+
+          tin_ds = sorted(glob.glob('xuong-video-inbox/*.json'))
+          if not tin_ds:
+              print('Không có mẩu tin — bỏ qua.')
+              open(os.environ['GITHUB_OUTPUT'], 'a').write('co=0\n')
+              sys.exit(0)
+
+          # Mẩu tin mới nhất thắng: người dùng có thể thả nhiều lần.
+          tin = json.load(open(tin_ds[-1], encoding='utf-8'))
+          lo, co = tin['lo'], int(tin['co'])
+          manh = sorted(glob.glob(f'xuong-video-inbox/{lo}-*.part'))
+          print(f'lô {lo}: cần {co} mảnh, thấy {len(manh)}')
+          if len(manh) != co:
+              print(f'::error::Thiếu mảnh: cần {co}, thấy {len(manh)}.')
+              sys.exit(1)
+
+          ra = f"/tmp/goc.{tin.get('duoi', 'mp4')}"
+          with open(ra, 'wb') as f:
+              for m in manh:
+                  f.write(open(m, 'rb').read())
+          n = os.path.getsize(ra)
+          print(f'ghép xong: {n/1024/1024:.1f} MB (khai báo {tin.get("bytes")})')
+          if tin.get('bytes') and abs(n - int(tin['bytes'])) > 0:
+              print('::error::Kích thước ghép không khớp khai báo — file hỏng.')
+              sys.exit(1)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as o:
+              o.write(f'co=1\nfile={ra}\nlo={lo}\n')
+          PY
+
+      - name: Nén và đưa vào game
+        if: steps.ghep.outputs.co == '1'
+        run: |
+          python3 tools/nen_video.py "${{ steps.ghep.outputs.file }}" \
+            docs/assets/video/intro.mp4 \
+            --muc-tieu-mb "${{ github.event.inputs.muc_tieu_mb || 14 }}"
+          ls -la docs/assets/video/intro.mp4
+
+      - name: Ảnh bìa cho video
+        if: steps.ghep.outputs.co == '1'
+        run: |
+          FF=$(python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")
+          "$FF" -y -ss 2 -i docs/assets/video/intro.mp4 -frames:v 1 \
+            -vf "scale=720:-2" -q:v 4 docs/assets/video/intro-poster.jpg
+
+      - name: Dọn mảnh trong inbox
+        if: steps.ghep.outputs.co == '1'
+        run: |
+          # Xoá cả mảnh của lô này lẫn mẩu tin, để lần sau không ghép lại.
+          git rm -q -r --ignore-unmatch xuong-video-inbox || true
+
+      - name: Dựng lại Xưởng video
+        if: steps.ghep.outputs.co == '1'
+        run: python3 tools/build_xuong_video.py
+
+      - name: Commit + đẩy lên main
+        if: steps.ghep.outputs.co == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "xuong-video-bot"
+          git config user.email "xuong-video-bot@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Không có thay đổi."
+            exit 0
+          fi
+          git commit -q -m "Video intro: ghép từ Xưởng, nén và đưa vào game [skip ci]"
+          git push origin HEAD:main
+          # Push bằng GITHUB_TOKEN không kích hoạt workflow khác, nên phải gọi
+          # thẳng Pages. Chạy trên main mới qua được environment protection.
+          gh workflow run pages.yml --repo "${{ github.repository }}" --ref main
