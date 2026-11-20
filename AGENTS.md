@@ -5,6 +5,18 @@ Người chơi xuyên không vào thế giới đó, sống cùng thời Hàn L�
 
 Người dùng chỉ có **Safari (iPad/iPhone), KHÔNG có terminal** → mọi thứ phải qua giao diện web.
 
+## 📓 ĐỌC TRƯỚC KHI LÀM GÌ: `tai-lieu/NHAT-KY.md`
+
+**Mở khung chat mới thì đọc `tai-lieu/NHAT-KY.md` trước tiên.** Đó là nhật ký công việc:
+đã làm gì, đổi file nào, kiểm chứng bằng số đo nào, còn gì chưa xong. Người dùng làm việc
+qua nhiều phiên chat và chat cũ có thể lỗi — nhật ký là thứ giữ mạch công việc.
+
+**Sau mỗi việc xong, ghi thêm một mục vào đầu file đó** (mới nhất trên cùng), theo mẫu:
+ngày · người dùng yêu cầu gì · đã sửa file nào · **số đo kiểm chứng** · chưa làm gì.
+Đừng ghi "đã làm đẹp hơn" — ghi cái đo được.
+
+Ghi nhật ký **trước khi** báo xong cho người dùng, để lần sau không phải dựng lại từ chat.
+
 ## QUY TẮC BẮT BUỘC: dùng phương pháp PIC-IN-GAME
 
 **Mọi việc đụng đến thiết kế giao diện, tạo hình ảnh, hoặc video ngắn → PHẢI dùng
@@ -545,6 +557,21 @@ intro chạy toàn màn hình, hết phim tự sang màn chọn nhánh.
 - Phim có 3 đường thoát để không bao giờ kẹt: hết phim (`ended`), nút "Bỏ qua ▸", và
   `error`/quá 12 giây chưa phát được. Safari iPhone chặn tự phát có tiếng → tự tắt tiếng
   để phim vẫn chạy.
+
+**Màn chọn xuất thân (`.setup`)** — giao diện đã chốt theo "hướng C" (2026-11-20):
+thẻ ngang một cột, mỗi thẻ có **ảnh nền lấy từ chính đoạn mở đầu** của xuất thân đó
+(`bc_cho_01` cho tán tu, `bc_tan_xa_sang` cho môn phái), tên lớn font `--brush`, dấu ✓ đỏ
+khi chọn. Chọn thẻ thì **cả nền màn hình đổi ảnh** (`.nen-chon`, `opacity:.42`) và hiện
+**trích đoạn mở đầu thật** ở `#xtTrich` (câu đầu của `doan_dau`, cắt ~120 ký tự).
+Ô "xuất thân tự do" thu sau một link `#xtTuDo`, mở ra `#xtO`.
+
+- **Chỉ là giao diện.** Không đổi `Engine.*`, không đổi `xuat_than.json`, không đổi chỉ số.
+- **Đừng thêm chỉ số lên thẻ.** Cả 2 xuất thân đang cho chỉ số khởi đầu **giống hệt nhau**
+  (30 sinh lực · 12 tu vi · 3 bạc); hiện số riêng là **bịa**. Muốn khác nhau thì phải sửa
+  dữ liệu + engine, việc đó người dùng chưa cho phép.
+- Bản `game/` lấy ảnh/trích đoạn qua `fetch("/game/chapters/chuong1.json")` +
+  `fetch("/game/xuat_than.json")` — **đường dẫn phải có tiền tố `/game/`** vì
+  `game_server.py` phục vụ từ gốc repo, và `/api/xuat_than` **không** trả `doan_dau`.
 
 **Trang gốc `docs/index.html` KHÔNG còn là portal.** Người dùng đã yêu cầu bỏ hẳn giao
 diện portal (tiêu đề + mô tả game + thẻ "Xưởng video"), nên trang gốc giờ chỉ là một

@@ -338,6 +338,24 @@ body{
 .xt-o{display:none}
 .xt-o.mo{display:block}
 
+/* nền màn đổi theo xuất thân đang chọn */
+.setup .nen-chon{position:absolute;inset:0;background-position:center;background-size:cover;
+  opacity:0;transition:opacity .45s ease;filter:saturate(.85)}
+.setup .nen-chon.hien{opacity:.42}
+.setup .lop-phu{position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(246,240,226,.86),rgba(233,222,200,.78))}
+.setup::before{display:none}
+.setup .card{background:rgba(255,253,246,.9);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);
+  box-shadow:0 14px 40px rgba(40,34,26,.18)}
+/* trích đoạn mở đầu của xuất thân đang chọn */
+.xt-trich{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.6;
+  color:var(--ink-soft);font-style:italic;background:rgba(255,255,255,.55);
+  border-left:2px solid var(--seal)}
+.xt-trich:empty{display:none}
+@media (prefers-reduced-motion:reduce){
+  .setup .nen-chon,.xt-grid .xt-the,.xt-grid .xt-nen{transition:none}
+}
+
 /* ---------- Ô NHẬP TỰ DO ---------- */
 .freebar{display:flex;gap:7px;flex:0 0 auto;align-items:flex-end}
 .freebar input,.freebar textarea{flex:1 1 auto;min-width:0;font-family:var(--serif);font-size:14px;color:var(--ink);
@@ -553,6 +571,8 @@ body{
 
 <!-- MÀN TẠO NHÂN VẬT -->
 <div class="setup" id="setup">
+  <div class="nen-chon" id="nenChon"></div>
+  <div class="lop-phu"></div>
   <div class="card">
     <h2>Hồng Đức Tu Tiên Lộ</h2>
     <div class="cap">Nghịch chuyển càn khôn</div>
@@ -560,6 +580,7 @@ body{
     <input id="ten" maxlength="24" placeholder="Ví dụ: Hồng Đức" autocomplete="off">
     <label>Chọn xuất thân</label>
     <div class="xt-grid" id="xtGrid"></div>
+    <div class="xt-trich" id="xtTrich"></div>
     <button class="xt-tu-do" type="button" id="xtTuDo">Hoặc tự gõ xuất thân</button>
     <div class="xt-o" id="xtO">
       <label for="xuat">Xuất thân tự do (bỏ trống là “tán tu vô danh”)</label>
@@ -1024,6 +1045,28 @@ function anhXuatThan(ma) {
   } catch (e) { return ""; }
 }
 
+// Đổi nền màn và hiện trích đoạn mở đầu theo xuất thân đang chọn.
+function doiNenXuatThan(ma) {
+  const nen = $("#nenChon"), trich = $("#xtTrich");
+  if (!nen || !trich) return;
+  if (!ma) { nen.classList.remove("hien"); trich.textContent = ""; return; }
+  const anh = anhXuatThan(ma);
+  if (anh) { nen.style.backgroundImage = "url('" + anh + "')"; nen.classList.add("hien"); }
+  else { nen.classList.remove("hien"); }
+  trich.textContent = trichDoanDau(ma);
+}
+
+function trichDoanDau(ma) {
+  try {
+    const id = Engine.doan_dau_cua(ma);
+    const ch = Engine.load_chuong(1);
+    const d = id && ch && ch._theo_id ? ch._theo_id[id] : null;
+    const ke = (d && d.ke) || "";
+    const cau = ke.split(/(?<=[.!?…])\s+/)[0] || "";
+    return cau.length > 120 ? cau.slice(0, 118).trimEnd() + "…" : cau;
+  } catch (e) { return ""; }
+}
+
 function napXuatThan() {
   const hop = $("#xtGrid");
   if (!hop) return;
@@ -1042,6 +1085,7 @@ function napXuatThan() {
       nhomChon = (nhomChon === n.ma) ? "" : n.ma;
       [...hop.children].forEach(c => c.classList.toggle("chon", c.dataset.ma === nhomChon));
       if (nhomChon && n.mau) $("#xuat").value = n.mau;
+      doiNenXuatThan(nhomChon);
     };
     hop.appendChild(b);
   });
