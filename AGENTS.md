@@ -524,6 +524,19 @@ mỗi push sau lại fail lại).
 
 Đo thật end-to-end: 61.6 MB → 8 mảnh đẩy 25s → nén 13.8 MB trong 1m54s → HTTP 200.
 
+
+**Màn bìa trước khi vào game** — `play.html` có 3 lớp theo thứ tự: `.bia` (z-index 14)
+→ `.intro` (11) → `.setup` (9). Bìa là `div` nền ảnh (không phải `<img>`) nên file thiếu
+không hiện icon ảnh hỏng; CSS khai báo 2 lớp: `docs/assets/bia.jpg` (người dùng tự úp)
+rồi lùi về `assets/video/v14_nen_tieu_de.jpg`. Video intro chỉ tải **sau khi bấm nút**,
+người ghé xem không phải tải 14 MB.
+
+Nút bìa nối bằng **script riêng đặt ngay sau `</div>` của bìa**, không nằm trong script
+chính. Lý do: `engine.js`/`ai.js` lỗi là script chính chết ngay, nếu nút nối ở đó thì
+người chơi kẹt vĩnh viễn ở màn bìa. Đã test bằng cách cho cả hai file ném lỗi — nút vẫn chạy.
+
+Ảnh bìa do người dùng úp ở **Xưởng ảnh** (khối 🖼️ Ảnh bìa trang game): nén trên máy
+1440px/q0.86 rồi `PUT docs/assets/bia.jpg`.
 Phía game (`docs/game/play.html`): `noiVideoIntro()` gán `src` rồi **chỉ hiện khối video
 khi có sự kiện `loadedmetadata`**; `error` thì ẩn lại. Nhờ vậy chưa úp video thì màn giới
 thiệu vẫn y như cũ, không có khung đen rỗng. `dongIntro()` gọi `v.pause()` để tiếng không
