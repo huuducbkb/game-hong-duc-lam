@@ -641,6 +641,33 @@ Nút tắt tiếng có **hai chỗ**: `#nutTieng` trên thanh trên và `#setupT
 nhân vật (ở màn tạo nhân vật thanh trên bị lớp phủ che nên phải có nút riêng trong thẻ).
 Trạng thái nhớ ở `localStorage` khoá `hdttl_tieng`.
 
+**Mọi đường vào game đều phải đánh thức tiếng, không chỉ nút "Vào game".** Đây là gốc của
+lỗi "bấm lần đầu kêu, lần sau không". Có hai đường vào và chúng khác nhau:
+
+- Bấm "Vào game" ở bìa → có cú chạm → `moKhoaTieng()` chạy → tiếng sống.
+- Đang chơi dở mà tải lại trang → `docPhien()` → `vaoThangNhanh()`, **không có cú chạm nào**
+  → tiếng ngủ im. Đo được: `state = "suspended"`, bấm → tín hiệu 0.
+
+Nên `thucDayTieng()` được gắn vào `touchstart`/`click`/`visibilitychange` ở cấp `document`,
+gọi lại 60ms sau khi phim intro nhả phiên âm thanh, và đánh thức ngay ở cú chạm đầu khi khôi
+phục phiên.
+
+**iOS có ba trạng thái, không phải một.** `suspended` (bị ẩn), `interrupted` (cuộc gọi tới,
+app khác chiếm phiên âm thanh), `closed` (bị thu hồi khi chạy nền lâu). Chỉ `resume()` khi
+`suspended` thì hai trạng thái sau là **im vĩnh viễn**. Nay: `closed` thì dựng lại context
+(`taoCtxTieng`), còn mọi trạng thái khác `"running"` thì `resume()`.
+
+**Đang ngủ thì đừng bỏ tiếng, hãy phát sau khi tỉnh.** `resume().then(() => keTieng(loai))`.
+Bỏ tiếng thì cú chạm đầu sau khi mở lại trang mất âm — người chơi nghe ra là "bấm không kêu".
+
+**Cờ chặn bấm phải nhả trong `finally`.** `chon`, `tuDo`, `lui` bật `dangCho = true` rồi tắt ở
+cuối hàm; nếu `hienThi` ném lỗi thì cờ kẹt và **mọi lần bấm sau bị chặn từ đầu** — không kêu,
+không chuyển trang. Đã bọc `try/finally` cả ba.
+
+**Máy giả lập Linux không mô phỏng `interrupted`.** Đo được `suspended` và `closed`, còn
+`interrupted` phải xử lý theo tài liệu WebKit. Đừng kết luận "đã đúng trên iPhone" từ máy
+giả lập. Người dùng đã xác nhận bản sửa chạy đúng trên iPhone thật (2026-11-21).
+
 **Đừng đặt nút loa lên phim mở đầu.** Đã thử và người dùng báo nó che chữ trong phim; đã bỏ.
 
 ### Chiều cao khung: dùng `svh`, đừng dùng `vh`
