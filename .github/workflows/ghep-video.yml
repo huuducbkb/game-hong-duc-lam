@@ -75,6 +75,21 @@ jobs:
               o.write(f'co=1\nfile={ra}\nlo={lo}\n')
           PY
 
+      - name: Kiểm tra file ghép được
+        if: steps.ghep.outputs.co == '1'
+        run: |
+          # Chặn sớm nếu file hỏng: ffmpeg đọc không ra thông tin video.
+          python3 -c "
+          import imageio_ffmpeg, subprocess, sys
+          ff = imageio_ffmpeg.get_ffmpeg_exe()
+          r = subprocess.run([ff, '-hide_banner', '-i', '${{ steps.ghep.outputs.file }}'],
+                             capture_output=True, text=True)
+          if 'Duration' not in r.stderr:
+              print('::error::File ghép không phải video hợp lệ (có thể mảnh bị thiếu hoặc hỏng).')
+              sys.exit(1)
+          print('video hợp lệ')
+          "
+
       - name: Nén và đưa vào game
         if: steps.ghep.outputs.co == '1'
         run: |
@@ -90,18 +105,18 @@ jobs:
           "$FF" -y -ss 2 -i docs/assets/video/intro.mp4 -frames:v 1 \
             -vf "scale=720:-2" -q:v 4 docs/assets/video/intro-poster.jpg
 
-      - name: Dọn mảnh trong inbox
-        if: steps.ghep.outputs.co == '1'
-        run: |
-          # Xoá cả mảnh của lô này lẫn mẩu tin, để lần sau không ghép lại.
-          git rm -q -r --ignore-unmatch xuong-video-inbox || true
-
       - name: Dựng lại Xưởng video
         if: steps.ghep.outputs.co == '1'
         run: python3 tools/build_xuong_video.py
 
+      # Luôn dọn, kể cả khi nén hỏng: mẩu tin còn nằm trong inbox thì mỗi lần
+      # push sau lại kích hoạt ghép lại và fail lại — vòng lặp không dừng.
+      - name: Dọn mảnh trong inbox
+        if: always() && steps.ghep.outputs.co == '1'
+        run: git rm -q -r --ignore-unmatch xuong-video-inbox || true
+
       - name: Commit + đẩy lên main
-        if: steps.ghep.outputs.co == '1'
+        if: always() && steps.ghep.outputs.co == '1'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
