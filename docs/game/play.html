@@ -198,6 +198,69 @@ body{
   .panel-story p{font-size:13.5px}
 }
 
+/* ---------- MÀN BÌA ---------- */
+/* Ảnh nền dựng bằng thẻ div (không phải <img>) để nếu file thiếu thì nền vẫn
+   có màu giấy cũ, không hiện icon ảnh hỏng. */
+.bia{position:fixed;inset:0;z-index:14;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:#161310;cursor:pointer}
+.bia-anh{position:absolute;inset:0;
+  background:url("../assets/bia.jpg") center/cover no-repeat,
+             url("../assets/video/v14_nen_tieu_de.jpg") center/cover no-repeat;
+  transform:scale(1.04);animation:biaTroi 9s ease-out both}
+@keyframes biaTroi{from{transform:scale(1.12)}to{transform:scale(1.04)}}
+/* Lớp phủ tối: đảm bảo chữ trắng đọc được trên mọi vùng ảnh. */
+.bia-phu{position:absolute;inset:0;
+  background:radial-gradient(75% 55% at 50% 42%,rgba(10,8,6,.30),rgba(10,8,6,.72) 62%,rgba(8,6,5,.90)),
+             linear-gradient(180deg,rgba(10,8,6,.55),transparent 28%,transparent 62%,rgba(8,6,5,.88))}
+
+.bia-giua{position:relative;text-align:center;padding:24px;max-width:460px;
+  animation:len 900ms 120ms ease-out both}
+
+.bia-an{width:64px;height:64px;margin:0 auto 18px}
+.bia-an img{width:100%;height:100%;object-fit:contain;
+  filter:drop-shadow(0 3px 10px rgba(0,0,0,.6)) drop-shadow(0 0 14px rgba(168,53,42,.35))}
+
+.bia-tua{font-family:var(--brush);font-size:46px;line-height:1.14;margin:0 0 10px;
+  letter-spacing:1.5px;color:#f7f1e2;
+  text-shadow:0 2px 4px rgba(0,0,0,.75),0 0 30px rgba(168,53,42,.35)}
+.bia-phu-chu{font-size:11px;letter-spacing:4.4px;text-transform:uppercase;
+  color:#e8c9a0;margin-bottom:34px;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+
+/* Nút chữ triệt đỏ: viền son, chữ son, nền tối trong suốt. */
+.bia-vao{font-family:var(--brush);font-size:23px;letter-spacing:3px;
+  color:#ff6b57;background:rgba(20,10,8,.45);
+  border:2px solid #c0392b;border-radius:6px;
+  padding:14px 44px;cursor:pointer;
+  text-shadow:0 0 12px rgba(255,80,60,.55),0 2px 4px rgba(0,0,0,.8);
+  box-shadow:0 0 0 1px rgba(192,57,43,.25),0 0 22px -4px rgba(192,57,43,.55),
+             inset 0 0 22px -8px rgba(255,90,70,.5);
+  transition:color .18s,border-color .18s,box-shadow .18s,background .18s;
+  animation:nutTho 3.2s ease-in-out infinite}
+@keyframes nutTho{0%,100%{box-shadow:0 0 0 1px rgba(192,57,43,.25),0 0 22px -4px rgba(192,57,43,.55),inset 0 0 22px -8px rgba(255,90,70,.5)}
+ 50%{box-shadow:0 0 0 1px rgba(192,57,43,.45),0 0 34px -2px rgba(192,57,43,.8),inset 0 0 26px -6px rgba(255,90,70,.7)}}
+.bia-vao:hover,.bia-vao:focus-visible{color:#ff8a76;border-color:#e04a38;
+  background:rgba(60,14,10,.55);outline:none;
+  box-shadow:0 0 0 1px rgba(224,74,56,.5),0 0 40px 0 rgba(224,74,56,.75),
+             inset 0 0 26px -6px rgba(255,90,70,.7)}
+.bia-vao:active{transform:translateY(1px)}
+
+.bia-chan{font-size:10.5px;color:rgba(240,230,212,.62);margin-top:26px;
+  letter-spacing:.4px;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.bia-chan i{color:rgba(232,201,160,.85)}
+
+.bia.di{animation:biaTan 520ms ease-in both}
+@keyframes biaTan{from{opacity:1}to{opacity:0}}
+
+@media (max-width:400px){
+  .bia-tua{font-size:36px}
+  .bia-phu-chu{letter-spacing:3px;margin-bottom:26px}
+  .bia-vao{font-size:20px;padding:13px 34px}
+}
+@media (prefers-reduced-motion:reduce){
+  .bia-anh,.bia-giua,.bia-vao{animation:none}
+}
+
 /* ---------- MÀN GIỚI THIỆU ---------- */
 .intro{position:fixed;inset:0;z-index:11;display:flex;align-items:center;justify-content:center;
   padding:20px;overflow:hidden;
@@ -386,8 +449,54 @@ body{
 <body>
 <div class="bg"></div>
 
+<!-- MÀN BÌA -->
+<div class="bia" id="bia">
+  <div class="bia-anh" id="biaAnh"></div>
+  <div class="bia-phu"></div>
+  <div class="bia-giua">
+    <div class="bia-an"><img src="../assets/ui/seal.png" alt=""></div>
+    <h1 class="bia-tua">Hồng Đức<br>Tu Tiên Lộ</h1>
+    <div class="bia-phu-chu">Nghịch chuyển càn khôn</div>
+    <button class="bia-vao" type="button" id="biaVao">Vào game</button>
+    <div class="bia-chan">Đồng nhân lấy bối cảnh <i>Phàm Nhân Tu Tiên</i></div>
+  </div>
+</div>
+<script>
+/* Nối nút bìa ngay tại đây, không đợi script chính: nếu engine.js hay ai.js
+   lỗi thì script chính chết, nút sẽ không chạy và người chơi kẹt ở màn bìa. */
+(function(){
+  var daBam = false;
+  function vao(){
+    if (daBam) return;
+    daBam = true;
+    var bia = document.getElementById("bia"), intro = document.getElementById("intro");
+    if (!bia) return;
+    bia.classList.add("di");
+    var giam = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    var mo = function(){
+      bia.style.display = "none";
+      if (intro) intro.style.display = "";
+      if (typeof window.noiVideoIntro === "function") window.noiVideoIntro();
+    };
+    if (giam) mo(); else setTimeout(mo, 480);
+  }
+  window.vaoTuBia = vao;
+  document.addEventListener("DOMContentLoaded", function(){
+    var nut = document.getElementById("biaVao"), bia = document.getElementById("bia");
+    if (nut) nut.addEventListener("click", function(e){ e.stopPropagation(); vao(); });
+    if (bia) bia.addEventListener("click", vao);
+    document.addEventListener("keydown", function(e){
+      var b = document.getElementById("bia");
+      if (b && b.style.display !== "none" && !daBam && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault(); vao();
+      }
+    });
+  });
+})();
+</script>
+
 <!-- MÀN GIỚI THIỆU -->
-<div class="intro" id="intro">
+<div class="intro" id="intro" style="display:none">
   <div class="khung">
     <div class="phim" id="introPhim" hidden>
       <video id="introVideo" playsinline preload="metadata" controls
@@ -973,7 +1082,10 @@ async function luuKey() {
 // ---------------------------------------------------------- màn giới thiệu
 /* Video intro là tuỳ chọn: chỉ hiện khi file tải được thật. Nếu chưa úp hoặc
    mạng lỗi thì ẩn hẳn, màn giới thiệu giữ nguyên như cũ. */
+let daNoiVideo = false;
 function noiVideoIntro() {
+  if (daNoiVideo) return;
+  daNoiVideo = true;
   const hop = $("#introPhim"), v = $("#introVideo");
   if (!hop || !v) return;
   v.src = "../assets/video/intro.mp4";
@@ -1000,7 +1112,6 @@ function dongIntro() {
   // nút màn giới thiệu — nối trước khi tải dữ liệu để luôn dùng được
   gan("#introVao", "onclick", () => { dongIntro(); const t = $("#ten"); if (t) t.focus(); });
   gan("#introBo", "onclick", dongIntro);
-  noiVideoIntro();
   const nutKhoa = $("#introKey");
   if (nutKhoa) {
     if (AI.co_key()) nutKhoa.style.display = "none";

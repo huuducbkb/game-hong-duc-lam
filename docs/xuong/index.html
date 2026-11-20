@@ -73,6 +73,19 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
 .gui.thu-muc:hover{background:#352c48;border-color:#a68cf0;color:#efe6ff}
 .gui.thu-muc code{font-size:11.5px;color:#c9b6ff}
 .ket-noi{margin:12px 0}
+/* Ô chọn/kéo ảnh bìa */
+.tha-anh{display:flex;flex-direction:column;align-items:center;gap:7px;
+  padding:22px 14px;border:2px dashed #33415a;border-radius:12px;
+  background:#0e1726;cursor:pointer;text-align:center;
+  transition:border-color .15s,background .15s}
+.tha-anh:hover,.tha-anh.hot,.tha-anh:focus-visible{border-color:#3d9970;background:#101f33;outline:none}
+.tha-anh input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.tha-anh-icon{font-size:26px;line-height:1}
+.tha-anh-chu{font-size:14px;color:#7fe0a8}
+.tha-anh-chu small{display:block;color:#8b98ab;font-size:12px;margin-top:2px}
+.thanh{margin-top:10px;height:8px;border-radius:99px;background:#0a1220;overflow:hidden}
+.thanh-ruot{height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#3d9970,#7fe0a8);transition:width .25s}
 .ket-noi input{width:100%;font-size:13px;padding:9px 10px;border-radius:8px;
   border:1px solid var(--line);background:#0a1220;color:#dfe7f5;
   font-family:ui-monospace,Menlo,monospace}
@@ -168,6 +181,25 @@ summary{cursor:pointer;color:var(--jade);font-size:13.5px;padding:6px 0}
   </div>
 
   <a class="dl big" href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?template=gui-anh-xuong.md&labels=xuong-anh&title=%E1%BA%A2nh%20m%E1%BB%9Bi" target="_blank">💬 Hoặc mở Issue trống để dán ảnh (cách cũ)</a>
+
+  <div class="ket-noi" style="margin-top:14px">
+    <p class="mota" style="margin-bottom:8px"><b>🖼️ Ảnh bìa trang game</b> — tấm ảnh hiện ra đầu tiên
+    khi mở game, kèm nút <b>Vào game</b> màu đỏ. Ảnh dọc (dọc điện thoại) là đẹp nhất:
+    <b>1080 × 1920</b>. Chọn ảnh trong thư viện là xong, trang tự nén rồi đưa lên.</p>
+    <label class="tha-anh" id="bia-o" tabindex="0" for="bia-file">
+      <input type="file" id="bia-file" accept="image/*">
+      <span class="tha-anh-icon">🖼️</span>
+      <span class="tha-anh-chu">Chạm để chọn ảnh bìa<small>hoặc kéo ảnh vào đây</small></span>
+    </label>
+    <div class="thanh" id="bia-thanh" hidden><div class="thanh-ruot" id="bia-ruot"></div></div>
+    <div class="gui-tt" id="bia-tt" hidden></div>
+    <img id="bia-xem" alt="" hidden
+         style="width:100%;max-width:200px;margin-top:10px;border-radius:10px;display:block">
+    <p class="muted" style="font-size:12px;margin-top:8px">Ảnh đang dùng:
+      <a href="../assets/bia.jpg" target="_blank" id="bia-link">xem</a> ·
+      nếu chưa úp thì trang dùng ảnh nền có sẵn.</p>
+  </div>
+
   <details>
     <summary>Cách khác: tải ảnh lên thư mục (nếu bạn thích)</summary>
     <p class="muted" style="font-size:12.5px">Bấm nút dưới để mở trang upload của GitHub, kéo ảnh vào
@@ -3983,6 +4015,58 @@ async function ghPutAnh(duong, b64, thayThe){
   }
   return !!sha;
 }
+
+/* ================= Ảnh bìa trang game ================= */
+/* Nén ngay trên máy rồi đưa lên docs/assets/bia.jpg. Màn bìa trong play.html
+   đọc đúng đường dẫn này, thiếu file thì tự lùi về ảnh nền có sẵn. */
+(function oBia(){
+  const o=document.getElementById('bia-o');
+  if(!o) return;
+  const inp=document.getElementById('bia-file');
+  const thanh=document.getElementById('bia-thanh');
+  const ruot=document.getElementById('bia-ruot');
+  const tt=document.getElementById('bia-tt');
+  const xem=document.getElementById('bia-xem');
+  let dangGui=false;
+
+  async function gui(file){
+    if(dangGui) return;
+    if(!file || !file.type.startsWith('image/')){
+      ghHienTT(tt,'warn','⚠️ Chọn đúng file ảnh (JPG, PNG, HEIC…).'); return;
+    }
+    if(!ghToken()){
+      ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục <b>🔑 Kết nối GitHub</b> phía trên rồi thử lại.');
+      return;
+    }
+    dangGui=true;
+    thanh.hidden=false; ruot.style.width='12%';
+    try{
+      ghHienTT(tt,'muted','Đang nén ảnh trên máy…');
+      // 1440 đủ nét cho màn hình điện thoại, file nhỏ để mở game nhanh.
+      const {blob}=await ghNenAnh(file,1440,0.86);
+      ruot.style.width='55%';
+      ghHienTT(tt,'muted',`Đang đưa lên (${(blob.size/1024).toFixed(0)} KB)…`);
+      await ghPutAnh('docs/assets/bia.jpg', await blobB64(blob), true);
+      ruot.style.width='100%';
+      xem.src=URL.createObjectURL(blob); xem.hidden=false;
+      const url='../assets/bia.jpg';
+      const lk=document.getElementById('bia-link'); if(lk) lk.href=url;
+      ghHienTT(tt,'ok','✅ Đã đưa ảnh bìa lên. Chờ ~1–2 phút để trang cập nhật, rồi mở game xem.');
+    }catch(e){
+      ruot.style.width='0';
+      ghHienTT(tt,'warn',`⚠️ Lỗi: ${e.message||e}. Thử lại giúp ta.`);
+    }
+    dangGui=false;
+  }
+
+  ['dragenter','dragover'].forEach(t=>o.addEventListener(t,e=>{e.preventDefault();o.classList.add('hot');}));
+  ['dragleave','drop'].forEach(t=>o.addEventListener(t,e=>{e.preventDefault();o.classList.remove('hot');}));
+  o.addEventListener('drop',e=>{
+    const f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];
+    if(f) gui(f);
+  });
+  inp.addEventListener('change',()=>{ if(inp.files&&inp.files[0]) gui(inp.files[0]); });
+})();
 
 /* ================= Ô chọn ảnh dưới mỗi prompt ================= */
 /* Ô là <label> bọc <input type=file> phủ toàn ô → chạm là mở thư viện ảnh
