@@ -620,3 +620,24 @@ Lưu ý harness: iframe **phải cùng origin** với trang cần đo, nếu kh�
 `contentDocument = null`. Cách gọn: đặt file harness vào chính thư mục server phục vụ
 (ví dụ để tạm ở gốc dự án rồi mở qua `game_server.py`), dùng đường dẫn tương đối
 (`/game`). Nhớ xoá file harness sau khi đo.
+
+### Âm thanh: tự tạo bằng Web Audio, không thêm file
+
+Game dùng bốn tiếng ngắn (`bam`, `lat`, `lui`, `mo`) dựng bằng Web Audio ngay trong máy.
+**Đừng thêm file mp3/wav** trừ khi người dùng yêu cầu: repo không có file âm thanh nào,
+thêm vào là nặng thêm và vướng bản quyền.
+
+Ba điều dễ làm sai khi sửa `keTieng`:
+
+1. **Mọi thành phần phải đi qua bộ điều âm lượng.** Nếu nối tắt một nguồn vào bộ lọc thì
+   tín hiệu đi hai đường: bị nhân đôi (đỉnh > 1.0, nghe "bụp") và thành phần đó to hơn
+   mức đặt ra. Đã từng đo được 0.544 trong khi đặt `vol: 0.075`.
+2. **Nhiều tiếng chồng nhau sẽ vượt 1.0.** Bấm 10 lần sát nhau từng cho đỉnh 1.485. Phải
+   giữ `DynamicsCompressor` trước loa (`loaTieng`), đừng nối thẳng vào `destination`.
+3. **Đo bằng `OfflineAudioContext`, đừng đo qua `requestAnimationFrame`.** rAF trong
+   headless chỉ lấy được 5–6 mẫu, không đủ kết luận.
+
+Nút tắt tiếng có **ba chỗ** (`#nutTieng` trên thanh trên, `#phimTieng` trên phim mở đầu,
+`#setupTieng` trong thẻ tạo nhân vật) vì ở phim và màn tạo nhân vật, thanh trên bị lớp phủ
+che nên **không nút nào bấm được** — lỗi có sẵn từ trước, chưa sửa. Trạng thái nhớ ở
+`localStorage` khoá `hdttl_tieng`.
