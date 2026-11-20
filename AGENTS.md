@@ -525,223 +525,26 @@ mỗi push sau lại fail lại).
 Đo thật end-to-end: 61.6 MB → 8 mảnh đẩy 25s → nén 13.8 MB trong 1m54s → HTTP 200.
 
 
-**Màn bìa trước khi vào game** — `play.html` có 3 lớp theo thứ tự: `.bia` (z-index 14)
-→ `.intro` (11) → `.setup` (9). Bìa là `div` nền ảnh (không phải `<img>`) nên file thiếu
-không hiện icon ảnh hỏng; CSS khai báo 2 lớp: `docs/assets/bia.jpg` (người dùng tự úp)
-rồi lùi về `assets/video/v14_nen_tieu_de.jpg`. Video intro chỉ tải **sau khi bấm nút**,
-người ghé xem không phải tải 14 MB.
+**Ba màn vào game** — `play.html` đi theo thứ tự: `.bia` (z-index 14) → `.phim-intro` (11)
+→ `.setup` chọn nhánh chơi (9). Không còn màn chữ bản thảo riêng: bấm "Vào game" là phim
+intro chạy toàn màn hình, hết phim tự sang màn chọn nhánh.
 
-Nút bìa nối bằng **script riêng đặt ngay sau `</div>` của bìa**, không nằm trong script
-chính. Lý do: `engine.js`/`ai.js` lỗi là script chính chết ngay, nếu nút nối ở đó thì
-người chơi kẹt vĩnh viễn ở màn bìa. Đã test bằng cách cho cả hai file ném lỗi — nút vẫn chạy.
+- `.bia` là `div` nền ảnh (không phải `<img>`) nên file thiếu không hiện icon ảnh hỏng.
+  CSS khai 2 lớp: `docs/assets/bia.jpg` (người dùng tự úp ở Xưởng ảnh) rồi lùi về
+  `assets/video/v14_nen_tieu_de.jpg`.
+- Video **chỉ tải sau khi bấm nút** (`src` gán lúc đó), người ghé xem không phải tải 14 MB.
+- Toàn bộ đường đi bìa → phim → chọn nhánh nằm trong **một script riêng đặt ngay sau màn
+  bìa**, không nằm trong script chính. `engine.js`/`ai.js` lỗi là script chính chết; nếu
+  nút nối ở đó thì người chơi kẹt vĩnh viễn ở màn bìa. Đã test bằng cách cho cả hai file ném lỗi.
+- Script riêng tự đọc `localStorage["hdttl_phien"]`: đang chơi dở thì bỏ qua cả bìa lẫn
+  phim, vào thẳng truyện. Việc này **phải** kiểm tra trong script riêng, không đợi script
+  chính, cùng lý do trên.
+- Phim có 3 đường thoát để không bao giờ kẹt: hết phim (`ended`), nút "Bỏ qua ▸", và
+  `error`/quá 12 giây chưa phát được. Safari iPhone chặn tự phát có tiếng → tự tắt tiếng
+  để phim vẫn chạy.
 
-Ảnh bìa do người dùng úp ở **Xưởng ảnh** (khối 🖼️ Ảnh bìa trang game): nén trên máy
-1440px/q0.86 rồi `PUT docs/assets/bia.jpg`.
-Phía game (`docs/game/play.html`): `noiVideoIntro()` gán `src` rồi **chỉ hiện khối video
-khi có sự kiện `loadedmetadata`**; `error` thì ẩn lại. Nhờ vậy chưa úp video thì màn giới
-thiệu vẫn y như cũ, không có khung đen rỗng. `dongIntro()` gọi `v.pause()` để tiếng không
-chạy tiếp. `play()` có `.catch()` vì Safari chặn autoplay có âm thanh.
-
-**Bẫy quan trọng — ảnh trailer vs ảnh game**: ảnh trailer đặt vào `xuong-inbox/` sẽ bị
-bộ nhận diện coi là asset game và có thể **ghi đè ảnh đang dùng trong game**. Đã chặn:
-`_la_anh_trailer()` trong `xuong_tu_dong.py` nhận diện mã `v01`…`v14` **trước** khi gọi AI,
-`nhan_dien()` gắn `cach="trailer"`, `luu_va_ghep()` lưu vào `VIDEO_DIR` rồi **bỏ qua** phần
-ghép chương và thư viện ảnh game.
-
-**Resize ảnh trailer phải đệm khung, không ép phẳng**: `_luu_anh_trailer()` thu ảnh vừa
-khung 1080×1920 rồi **đệm hai bên bằng màu viền trung bình của chính ảnh** (`_mau_vien()`).
-Ép thẳng `im.resize((1080,1920))` sẽ kéo méo mặt nhân vật khi AI trả tỉ lệ khác 9:16.
-Đã đo: hình tròn 400px trong ảnh 4:3 vẫn tròn (tỉ lệ w/h = 1.000) sau khi xử lý.
-
-**Khoá AI**: cần secret repo `GEMINI_KEY` (Settings → Secrets and variables → Actions) để
-nhận diện ảnh bằng AI. Không có khoá thì vẫn chạy: đường "thư mục = mã ảnh" và "tên file
-chứa mã" vẫn chính xác 100%, còn lại báo cần người xác nhận.
-
-**Vì sao deploy Pages nằm trong `xuong-anh.yml`, không dựa vào `pages.yml`**: push bằng
-`GITHUB_TOKEN` của Action **không** kích hoạt workflow khác (chống đệ quy của GitHub). Nên
-khi bot commit ảnh, `pages.yml` (trigger `push` + `paths: docs/**`) sẽ **không** chạy →
-web không cập nhật. Vì vậy `xuong-anh.yml` tự gọi `deploy-pages` ở job `deploy`
-(dùng chung `concurrency: group: pages`). Bot commit kèm `[skip ci]` để tránh vòng lặp.
-
-**Ngoại lệ**: commit merge PR vào `main` do tài khoản người dùng thực hiện đôi khi cũng
-không kích hoạt `pages.yml`; nếu web chưa cập nhật, chạy tay:
-`curl -X POST -H "Authorization: Bearer $GITHUB_TOKEN" .../actions/workflows/pages.yml/dispatches -d '{"ref":"main"}'`.
-
-## Bẫy môi trường khi chạy trong sandbox agent
-
-- **Đường dẫn repo**: `game/_test_api.py` và `_snap`/`_restore` dùng **đường dẫn cứng**
-  `/workspace/game-hong-duc-lam`. Nếu repo được clone vào thư mục khác (vd `/workspace/project`),
-  phải tạo symlink trước khi chạy test API:
-  `ln -sfn /workspace/project /workspace/game-hong-duc-lam`
-- **Pillow**: test mục "Nén ảnh khi lưu" chỉ chạy khi có Pillow (`pip install Pillow`).
-- Test API **tự snapshot/restore** ảnh thật nó ghi đè (`_snap`/`_restore`), nhưng vẫn nên
-  so hash `assets/scene/bc_cho_01.jpg` trước/sau để chắc chắn ảnh thật không bị thay.
-- Server test cần chạy trước: `python3 game_server.py` (cổng 12001).
-
-## Ghép ảnh cảnh vào đoạn (việc thường làm)
-
-1. Đọc `use` của từng asset trong `tools_server.py` (mục `ASSETS`) → biết ảnh dùng ở đoạn nào.
-2. Ghi `hinh_anh.anh` trong **cả** `game/chapters/chuong1.json` **và**
-   `docs/game/du-lieu/chuong1.json`.
-3. Cập nhật `docs/assets/library/index.json`: thêm mục mới + sửa `dung_o` của ảnh cũ đã
-   nhường đoạn (nếu đoạn đó đổi sang ảnh mới).
-4. Chạy `node game/_test_engine.js` — test "đổi đoạn vẫn có ảnh" hard-code tên ảnh của
-   `c1_d02`; đổi ảnh `c1_d02` thì phải sửa kỳ vọng trong test.
-5. Commit → PR → bỏ draft (GraphQL) → merge-async → poll → kiểm tra HTTP 200 + dữ liệu thật.
-
-## Bản game JS trên GitHub Pages (đã phát hành)
-
-- **Repo**: `huuducbkb/game-hong-duc-lam` (public) — mọi thay đổi push thẳng vào `main`.
-- **Link chơi**: https://huuducbkb.github.io/game-hong-duc-lam/game/
-- Nguồn JS nằm ở `docs/game/`: `play.html` (giao diện), `engine.js` (dịch từ `game/engine.py`),
-  `ai.js` (dịch từ `game/ai.py`), `du-lieu/` (JSON dùng chung với bản Python).
-- Chạy **không cần server** — mở file là chơi. Key Gemini do người chơi tự nhập qua nút
-  **⚙️ Cài đặt**, lưu trong `localStorage` (`hdttl_gemini_key`). **Không nhúng key vào code.**
-- Trang `docs/index.html` (GitHub Pages) có nút "🎮 Chơi game".
-- **Bẫy cần nhớ**: công cụ trình duyệt tự động không gõ được vào ô `type="password"`;
-  muốn kiểm thử luồng key thì đặt thẳng vào `localStorage` hoặc dùng Node (mock `localStorage` + `fetch`).
-- Engine không dùng `random` → chơi lại cho kết quả y hệt (tất định).
-- Test: `node game/_test_engine.js` → 105/105; `python3 game/_test_api.py` → 161/161 (cần `game_server.py` đang chạy).
-
-### Túi đồ khởi đầu
-
-Nhân vật mới chỉ có **Bạc vụn ×3** (`bac: 3` + `tui_do`). Trước đây có thêm
-`Ngọc vụn bí ẩn ×1` — di chứng của bản thảo ngôi-thứ-hai cũ (mảnh ngọc dẫn
-xuyên không, xem `GOP-Y-BAN-THAO.md`). Chi tiết đó đã bỏ khỏi truyện nên món
-này không đoạn nào nhắc, không logic nào dùng → đã xóa khỏi `trang_thai_moi()`
-ở **cả** `game/engine.py` và `docs/game/engine.js` (giữ 2 bản khớp nhau).
-- Deploy tự động qua `.github/workflows/pages.yml` khi push lên `main` (đường dẫn `docs/**`).
-
-### Quy trình đưa thay đổi lên web (đã kiểm chứng 16/11)
-
-1. Sửa file → commit → `git push -u origin <nhánh>`.
-2. Mở PR (`create_pr`). ⚠️ **PR do `create_pr` tạo ra ở dạng DRAFT** → GitHub chặn merge
-   (`400 Pull request is in draft`). Phải bỏ draft trước:
-   ```bash
-   curl -s -X POST -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/json" \
-     https://api.github.com/graphql \
-     -d '{"query":"mutation { markPullRequestReadyForReview(input: {pullRequestId: \"<PR_NODE_ID>\"}) { pullRequest { isDraft } } }"}'
-   ```
-   (endpoint REST `POST /pulls/<n>/ready_for_review` trả **404** — dùng GraphQL.)
-3. Merge bằng API bất đồng bộ, rồi **poll** cho tới khi hết `pending`:
-   ```bash
-   curl -s -X PUT -H "Authorization: Bearer $GITHUB_TOKEN" \
-     https://api.github.com/repos/huuducbkb/game-hong-duc-lam/pulls/<n>/merge-async \
-     -d '{"merge_method":"squash","sha":"<HEAD_SHA>"}'
-   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-     https://api.github.com/repos/huuducbkb/game-hong-duc-lam/pulls/<n>/merge-async/<UUID>
-   ```
-4. Chờ workflow `Triển khai GitHub Pages` xong (~30–60 giây), rồi kiểm tra
-   `curl -s -o /dev/null -w '%{http_code}'` file trên `huuducbkb.github.io`.
-5. **Bẫy**: chưa merge thì web chính thức vẫn là bản cũ — file mới trả **404**, và
-   người dùng thấy "không hiện ảnh". Kiểm tra 404 trước khi nghi lỗi code.
-   Trình duyệt (Safari) nhớ bản cũ → bảo người dùng **làm mới trang** sau khi deploy.
-
-### Cơ duyên trong túi (đã chốt với người dùng)
-
-Cơ duyên (bảo vật gắn với nhân vật) là **linh hồn truyện** — mỗi nhánh xuất thân có
-một cơ duyên riêng (môn phái: Ngọc cốt; tán tu: Hồng Trần Kiếm Hạp). Giao diện:
-
-- Vật có cờ `co_duyen: true` **luôn xếp đầu** danh sách túi đồ.
-- **Viền gradient nhiều màu** chạy động (`.sys-row.co-duyen::before` + `@keyframes cdChay`).
-- **Bấm vào → hiện bảng thông tin** (`#coDuyen`): tên, `trang_thai`, `mo_ta`.
-- Dữ liệu món cơ duyên có thêm 2 trường: `co_duyen` (cờ) + `trang_thai` (chuỗi hiển thị,
-  ví dụ `"chưa khế ước"` → `"đã khế ước · đang hồi phục"`).
-
-**Cách đổi trạng thái cơ duyên:** dùng khoá hiệu ứng `doi_trang_thai` trong `hieu_ung`
-của lựa chọn — dạng `{"doi_trang_thai": {"Ngọc cốt bí ẩn": "đã khế ước · đang hồi phục"}}`.
-Engine tìm món theo **đúng tên** trong `tui_do` rồi ghi đè `trang_thai`. Hiện gán ở
-`c1_p09c` (lựa chọn "Ta ký"). **Sửa cả 2 engine** (`game/engine.py` + `docs/game/engine.js`)
-và **cả 2 file dữ liệu** (`game/chapters/chuong1.json` + `docs/game/du-lieu/chuong1.json`).
-
-**Đừng quên:** khi thêm món cơ duyên mới, phải có cả `co_duyen`, `trang_thai`, `mo_ta` —
-thiếu `trang_thai` thì bảng thông tin sẽ ẩn dòng trạng thái (không lỗi, chỉ thiếu thông tin).
-
-### Bài học: gắn sự kiện phải an toàn với null
-
-Lỗi "giao diện tè le" (nút Hệ Thống / tab / đổi ảnh không bấm được) do một dòng
-`$("#closeCaiDat").onclick = ...` trỏ tới phần tử **không tồn tại** → `TypeError` →
-**mọi dòng gắn sự kiện phía sau đều chết theo**. Vì vậy trong `play.html` dùng hàm
-`gan(sel, ev, fn)` (kiểm tra `null` trước khi gắn) cho các nút ở cấp cao nhất.
-
-Khi thêm nút/màn mới: **luôn kiểm tra `id` trong JS có tồn tại trong HTML**, và
-kiểm thử bằng chromium headless (dump-DOM + iframe tự bấm) trước khi đẩy lên.
-
-### Bẫy bố cục thanh trên (màn hẹp)
-
-Thanh trên (`header.topbar`) là flex 1 hàng. Trên iPhone (≤430px) nhồi nhiều nút sẽ
-bóp `.titles` xuống ~28px → chữ tiêu đề/phụ **wrap thành cột dọc**, thanh cao vọt lên
-146–163px. Cách xử lý: `@media (max-width:430px)` cho `.topbar{flex-wrap:wrap}`, cho
-tiêu đề chung hàng với avatar và các nút xuống hàng dưới trải đều; `.titles .sub` cần
-`white-space:nowrap;overflow:hidden;text-overflow:ellipsis`.
-
-### Cách tự kiểm thử giao diện (không cần server)
-
-`chromium --headless=new --no-sandbox --dump-dom` một trang harness tự tạo iframe
-`play.html` rồi tự bấm nút, in kết quả vào `<pre>` để đọc. Chạy server tĩnh tạm bằng
-`python3 -m http.server <cổng>` trỏ vào thư mục chứa bản cần đo.
-
-### Ảnh cảnh truyện (thư viện ảnh — đã chốt với người dùng)
-
-Ảnh lớn trên đầu khung truyện, **đổi theo mỗi đoạn** (kiểu visual novel). Đoạn nào
-chưa gắn ảnh thì khung ảnh **ẩn**, hiện nền giấy như cũ.
-
-- **Cách A (đang dùng):** mỗi đoạn ghi thẳng tên ảnh — `hinh_anh.anh` trong
-  `chuong1.json` (giữ nguyên `hinh_anh.tags` cũ). Không tốn token, không đoán sai.
-  Cách B (AI tự tra theo thuộc tính) để sau.
-- Thư viện: `docs/assets/library/index.json` (mô tả `loai`, `mo_ta`, `tags`, `dung_o`).
-  Ảnh để ở `assets/scene/` (bản Python) **và** `docs/assets/scene/` (bản Pages) — phải có **cả hai**.
-- Giao diện: `#sceneBox` + `#sceneImg` + `#sceneCap` (caption = `boi_canh`), bấm ảnh mở
-  phóng to `#sceneLb`; đóng bằng nút `#closeSceneLb` hoặc phím Escape.
-- **Khổ ảnh hiển thị: `.scene-box img` dùng `height:auto` (khung tự cao theo ảnh)** —
-  ảnh dọc hiện trọn vẹn. KHÔNG đặt `height:228px` + `object-fit:cover` (cắt mất 50–67%
-  ảnh dọc). Sửa ở **cả** `game/play.html` **và** `docs/game/play.html`.
-- Nạp ảnh: mở **Xưởng** (`python3 tools_server.py`, cổng 12001) → copy prompt → vẽ →
-  upload. Tên file phải bắt đầu `bc_` (bối cảnh) / `vt_` (vật phẩm) / `nv_` (nhân vật)
-  thì Xưởng tự lưu vào `assets/scene/` + `docs/assets/scene/`.
-- Xưởng cũng nằm trong `game_server.py` tại `/upload` (chỉ cần 1 server đang chạy). Hàm
-  lưu ảnh dùng chung: `tools_server.luu_anh(name, b64)`.
-- **Bẫy**: `game_server.py` phải định tuyến `/upload` **trước** khi đọc body JSON —
-  `_body_json()` đọc hết `Content-Length` nên đọc trước là body cạn, upload trả 400/500.
-- Prompt 4 ảnh thử nằm trong `tools_server.py` mục `ASSETS` (nhóm "Bối cảnh truyện").
-  Đã gắn 20 đoạn Chương 1 với 4 ảnh: `bc_cho_01.jpg`, `bc_tan_xa_dem.jpg`,
-  `vt_ngoc_cot.jpg`, `nv_tuyet_co.jpg`. Ưu tiên khi một đoạn khớp nhiều ảnh:
-  **nhân vật > vật phẩm > bối cảnh**.
-
-#### Nhận diện ảnh hàng loạt — không phải đặt tên file (đã chốt với người dùng)
-
-Người dùng vẽ nhiều ảnh trên iPad; tên file kiểu `IMG_4821.JPG` và **không phải đổi tên**.
-Xưởng tự đoán mỗi ảnh thuộc prompt nào rồi cho xác nhận. Mô-đun: `game/nhan_dien_anh.py`.
-
-Bốn lớp, xếp theo mức tăng độ đúng:
-1. **Lọc theo tỷ lệ** (thuần Python, đúng 100%, không tốn token): `kich_thuoc_anh()` đọc
-   header PNG/JPEG/GIF/WebP (không cần PIL); `loc_ung_vien()` loại asset sai tỷ lệ. Nếu chỉ
-   còn **1 ứng viên** → gán luôn, **không gọi AI**.
-2. **Đưa AI nguyên văn `prompt` tiếng Anh** (không chỉ tên ngắn) — khớp câu gốc đã dùng để vẽ.
-3. **Tả trước, chọn sau**: AI trả JSON `{mo_ta, key, do_tin_cay, ly_do}`, `temperature=0`,
-   `responseMimeType=application/json`.
-4. **Màn duyệt**: `do_tin_cay >= 80` (và có key) → `tu_dong=True`; dưới ngưỡng → hiện lưới
-   ảnh thu nhỏ + ô chọn prompt để người dùng xác nhận.
-
-API (cả `tools_server.py` lẫn `game_server.py`, định tuyến **trước** khi đọc body):
-- `POST /doan_anh` `{anh:[{name,data(b64)}]}` → `{ok, ket_qua:[{name,kich_thuoc,ung_vien,key,ten,file,do_tin_cay,mo_ta,ly_do,tu_dong}], loi}`
-- `POST /luu_loat` `{ds:[{key,data(b64)}]}` → `{ok, da_luu:[{key,file}], loi}` (lưu theo **key**, tự đặt tên file đúng)
-- Hàm dùng chung: `TS.xu_ly_nhan_dien(anh_list, env)`, `TS.xu_ly_luu_loat(ds)`, `TS.luu_theo_key(key, b64)`, `TS.con_thieu_anh()`.
-
-Giao diện Xưởng: khu **Duyệt ảnh** (`#review`/`#grid`) + `DANH_SACH` (danh sách asset cho ô chọn),
-nút **Lưu ảnh** (`#saveBtn` → `/luu_loat`); phần "Ảnh đã nhận" nhắc **còn thiếu mấy ảnh**.
-
-Lưu ý: model Gemini có thể bị khai tử/503 theo tài khoản — dùng danh sách dự phòng
-`MODEL_DU_PHONG` (hiện `gemini-flash-lite-latest` chạy tốt; `gemini-2.5-flash` đã 404).
-
-**Người dùng vẽ ảnh bằng Gemini chat bên ngoài** (không dùng API để vẽ; key Gemini chỉ dùng
-cho nhận diện). Nên Xưởng có khu **"🎨 Vẽ cả bộ bằng 1 prompt"**: `build_gop_prompt()` gộp
-cả 11 asset thành 1 prompt (chung phong cách + danh sách từng ảnh kèm tỷ lệ/tên file), hiện
-trong `#gop` + nút Copy + nút tải `.txt` (`taiPromptGop()`). `_prompt_than()` bỏ phần `STYLE`
-chung để không lặp. Prompt gộp nhắc AI vẽ lần lượt, hết lượt thì người dùng nhắn "tiếp tục".
-
-`STYLE` = `STYLE_GOC` + `NO_TEXT`. Ấn son dùng `STYLE_CHU` (= `STYLE_GOC` + cho phép đúng 2
-chữ Hán **洪德** trong dấu) — nếu để `NO_TEXT` thì AI vẽ ra con dấu trống.
+**Trang portal `docs/index.html`** chỉ còn nút chơi game và Xưởng video. Đã bỏ lối vào
+Bản thảo Chương 1 và Xưởng ảnh (thư mục vẫn còn, chỉ bỏ liên kết).
 
 ### HAI bản `play.html` phải đồng bộ giao diện
 
