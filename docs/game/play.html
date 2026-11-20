@@ -61,6 +61,10 @@ body{
   .titles{order:0;flex:1 1 auto;min-width:0}
   .topbar .sys-btn{order:1;flex:1 1 auto;padding:8px 6px;font-size:11.5px;white-space:nowrap}
 }
+/* nút loa: icon nhỏ, không co giãn, để 4 nút vẫn vừa một hàng ở màn 320px.
+   Giữ vùng chạm 44px cho dễ bấm trên điện thoại. */
+.topbar .sys-btn.tieng{flex:0 0 auto;padding:0;font-size:15px;line-height:1;
+  min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 
 /* ---------- KHUNG VẼ TAY ---------- */
 .frame{border-style:solid;border-color:transparent;background-color:transparent;position:relative}
@@ -268,6 +272,19 @@ body{
    Phim gốc 1080x1920 dọc: trên màn ngang sẽ cắt bớt trên/dưới, chấp nhận
    để phim tràn viền thay vì thu nhỏ giữa nền đen. */
 .phim-intro{position:fixed;inset:0;z-index:11;background:#000;overflow:hidden}
+/* Nút tiếng nổi trên phim: lúc phim đang chạy chính là lúc cần tắt nhất. */
+.phim-intro .tieng-noi{position:absolute;z-index:4;
+  left:max(14px,env(safe-area-inset-left));top:max(14px,env(safe-area-inset-top));
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;color:#f4ecd8;cursor:pointer;
+  background:rgba(0,0,0,.42);border:1px solid rgba(244,236,216,.34);border-radius:99px;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+/* Ở màn tạo nhân vật thanh trên bị lớp phủ che, nên đặt nút ngay trong thẻ:
+   góc trên phải là chỗ trống, không đè lên tiêu đề. */
+.setup .tieng-noi-trong{position:absolute;z-index:5;right:10px;top:10px;
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;line-height:1;color:var(--ink-soft);cursor:pointer;
+  background:rgba(255,255,255,.55);border:1px solid var(--edge);border-radius:99px}
 .phim-intro video{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center;background:#000;display:block}
 
@@ -303,7 +320,8 @@ body{
   display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
 /* thân thẻ cuộn riêng, để nút Bắt đầu luôn hiện ở đáy mà không đè nội dung */
 .setup .card-than{padding:22px 20px 4px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.setup h2{margin:0 0 4px;font-size:20px}
+/* chừa chỗ cho nút tiếng ở góc trên phải, để tiêu đề không chạy xuống dưới nút */
+.setup h2{margin:0 0 4px;font-size:20px;padding-right:46px}
 .setup .cap{font-size:10.5px;letter-spacing:2px;color:var(--seal);text-transform:uppercase;margin-bottom:16px}
 .setup label{display:block;font-size:11.5px;color:var(--ink-faint);letter-spacing:.6px;margin:12px 0 5px}
 .setup input,.setup textarea{width:100%;font-family:var(--serif);font-size:15px;color:var(--ink);
@@ -493,7 +511,7 @@ body{
 
     // Safari trên iPhone chặn tự phát có tiếng: thử phát, không được thì
     // tắt tiếng để phim vẫn chạy, người xem bật lại nếu muốn.
-    v.muted = false;
+    v.muted = !tiengBat;   // nếu người chơi đã tắt tiếng thì phim cũng im
     var p = v.play();
     if (p && p.catch) {
       p.catch(function(){
@@ -558,8 +576,8 @@ body{
     } catch (e) {}
 
     var nut = $("biaVao"), bia = $("bia");
-    if (nut) nut.addEventListener("click", function(e){ e.stopPropagation(); vao(); });
-    if (bia) bia.addEventListener("click", vao);
+    if (nut) nut.addEventListener("click", function(e){ e.stopPropagation(); moKhoaTieng(); vao(); });
+    if (bia) bia.addEventListener("click", function(){ moKhoaTieng(); vao(); });
 
     var thoi = $("phimThoi");
     if (thoi) thoi.addEventListener("click", function(e){ e.stopPropagation(); sangManNhanh(); });
@@ -579,6 +597,7 @@ body{
   <video id="introVideo" playsinline preload="none" webkit-playsinline
          poster="../assets/video/intro-poster.jpg"></video>
   <button class="thoi" type="button" id="phimThoi">Bỏ qua ▸</button>
+  <button class="tieng-noi" type="button" id="phimTieng" aria-label="Tắt tiếng">🔊</button>
   <div class="tien"><i id="phimTien"></i></div>
 </div>
 
@@ -587,6 +606,7 @@ body{
   <div class="nen-chon" id="nenChon"></div>
   <div class="lop-phu"></div>
   <div class="card">
+    <button class="tieng-noi-trong" type="button" id="setupTieng" aria-label="Tắt tiếng">🔊</button>
     <div class="card-than">
       <h2>Hồng Đức Tu Tiên Lộ</h2>
       <div class="cap">Nghịch chuyển càn khôn</div>
@@ -621,6 +641,7 @@ body{
     <button class="sys-btn" id="openSys">Hệ Thống</button>
     <button class="sys-btn" id="nutKeAI" title="Bật/tắt AI kể lại đoạn truyện">AI kể: Bật</button>
     <button class="sys-btn" id="openReset">Chơi lại</button>
+    <button class="sys-btn tieng" id="nutTieng" aria-label="Tắt tiếng">🔊</button>
   </header>
 
   <!-- bảng truyện -->
@@ -796,6 +817,135 @@ body{
 <script src="ai.js"></script>
 <script>
 const $ = s => document.querySelector(s);
+
+// ---------------------------------------------------------- âm thanh (tự tạo, không dùng file)
+// Tiếng bấm dựng bằng Web Audio: không tải file nào, không lo bản quyền,
+// không tốn dung lượng. iPhone chỉ cho phát sau một cú chạm, nên AudioContext
+// được mở khóa ở cú chạm đầu tiên (nút "Vào game").
+const KHOA_TIENG = "hdttl_tieng";
+let tiengBat = true;
+let ctxTieng = null;
+let loaTieng = null;    // đích nối chung (qua bộ nén nếu có)
+let daMoKhoa = false;
+
+function napTieng() {
+  try { tiengBat = localStorage.getItem(KHOA_TIENG) !== "0"; } catch (e) { tiengBat = true; }
+  capNhatNutTieng();
+}
+function capNhatNutTieng() {
+  // hai nút cùng trạng thái: trên thanh trên và nổi trên phim intro
+  for (const id of ["nutTieng", "phimTieng", "setupTieng"]) {
+    const b = document.getElementById(id);
+    if (!b) continue;
+    b.textContent = tiengBat ? "🔊" : "🔇";
+    b.setAttribute("aria-label", tiengBat ? "Tắt tiếng" : "Bật tiếng");
+    b.title = tiengBat ? "Đang bật tiếng — bấm để tắt" : "Đang tắt tiếng — bấm để bật";
+  }
+}
+function batTatTieng() {
+  tiengBat = !tiengBat;
+  try { localStorage.setItem(KHOA_TIENG, tiengBat ? "1" : "0"); } catch (e) {}
+  capNhatNutTieng();
+  if (tiengBat) { moKhoaTieng(); keTieng("bam"); }
+  // phim intro (nếu đang chạy) theo luôn trạng thái mới
+  const v = document.getElementById("introVideo");
+  if (v) v.muted = !tiengBat;
+}
+function ganNutTieng() {
+  const a = document.getElementById("nutTieng");
+  if (a) a.onclick = batTatTieng;
+  const b = document.getElementById("phimTieng");
+  if (b) b.onclick = batTatTieng;
+  const c = document.getElementById("setupTieng");
+  if (c) c.onclick = batTatTieng;
+}
+
+function moKhoaTieng() {
+  if (daMoKhoa) return;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return;
+  try { ctxTieng = new AC(); } catch (e) { return; }
+  daMoKhoa = true;
+  if (ctxTieng.state === "suspended") ctxTieng.resume().catch(() => {});
+  // Bấm nhanh liên tục thì nhiều tiếng chồng lên nhau và vượt 1.0 gây rè.
+  // Một bộ nén đặt trước loa giữ mức ra an toàn.
+  try {
+    const nen = ctxTieng.createDynamicsCompressor();
+    nen.threshold.value = -18;
+    nen.knee.value = 12;
+    nen.ratio.value = 12;
+    nen.attack.value = 0.002;
+    nen.release.value = 0.15;
+    nen.connect(ctxTieng.destination);
+    loaTieng = nen;
+  } catch (e) { loaTieng = ctxTieng.destination; }
+}
+
+// Dựng một tiếng ngắn từ dao động + nhiễu, tắt dần theo hàm mũ.
+function keTieng(loai) {
+  if (!tiengBat || !ctxTieng) return;
+  if (ctxTieng.state === "suspended") ctxTieng.resume().catch(() => {});
+  const t = ctxTieng.currentTime;
+  const ra = ctxTieng.createGain();
+  ra.connect(loaTieng || ctxTieng.destination);
+
+  const tieng = {
+    // tiếng "tách" rất ngắn khi bấm hành động
+    bam:    { f0: 880, f1: 520, dur: 0.075, vol: 0.16, loc: 3200 },
+    // lật giấy khi truyện sang trang: nhiễu lọc, không cao độ rõ
+    lat:    { f0: 1500, f1: 900, dur: 0.16, vol: 0.075, loc: 2400, nhieu: 0.75 },
+    // lùi hành động: trầm, đi xuống
+    lui:    { f0: 420, f1: 210, dur: 0.19, vol: 0.13, loc: 1600 },
+    // mở bảng Hệ Thống: trầm và dày hơn
+    mo:     { f0: 300, f1: 420, dur: 0.14, vol: 0.12, loc: 1200 },
+  }[loai];
+  if (!tieng) return;
+
+  // Một đường duy nhất cho mọi thành phần: nguồn -> bao âm lượng -> lọc -> ra.
+  // Mọi thứ phải đi qua bao âm lượng, nếu không sẽ có thành phần to hơn
+  // âm lượng đặt ra và nghe "bụp" ở đầu/cuối tiếng.
+  const loc = ctxTieng.createBiquadFilter();
+  loc.type = "lowpass";
+  loc.frequency.value = tieng.loc;
+  loc.connect(ra);
+
+  const g = ctxTieng.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(tieng.vol, t + 0.008);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + tieng.dur);
+  g.connect(loc);
+
+  const osc = ctxTieng.createOscillator();
+  osc.type = "triangle";
+  osc.frequency.setValueAtTime(tieng.f0, t);
+  osc.frequency.exponentialRampToValueAtTime(Math.max(40, tieng.f1), t + tieng.dur);
+  osc.connect(g);
+  osc.start(t);
+  osc.stop(t + tieng.dur + 0.02);
+
+  // thêm chút nhiễu cho tiếng "giấy" không bị khô
+  if (tieng.nhieu) {
+    const dai = Math.floor(ctxTieng.sampleRate * tieng.dur);
+    const dem = ctxTieng.createBuffer(1, dai, ctxTieng.sampleRate);
+    const d = dem.getChannelData(0);
+    const vao = Math.max(1, Math.floor(dai * 0.15));   // vào dần, tránh "tách" đầu
+    for (let i = 0; i < dai; i++) {
+      const bien = (i < vao ? i / vao : 1) * (1 - i / dai);
+      d[i] = (Math.random() * 2 - 1) * bien;
+    }
+    const nguon = ctxTieng.createBufferSource();
+    nguon.buffer = dem;
+    const gn = ctxTieng.createGain();
+    gn.gain.value = tieng.nhieu;
+    nguon.connect(gn);
+    gn.connect(g);            // qua bao âm lượng, không nối tắt ra lọc
+    nguon.start(t);
+    nguon.stop(t + tieng.dur);
+  }
+
+  osc.onended = () => { try { ra.disconnect(); } catch (e) {} };
+}
+
 let dangCho = false;
 let coAI = false;      // key Gemini nhập + gọi được
 let keAI = true;       // AI kể lại đoạn truyện; nhớ trong localStorage
@@ -877,6 +1027,7 @@ function hienThiAnh(kq) {
 }
 function hienThi(kq) {
   if (typeof xoaBaoDangKe === "function") xoaBaoDangKe();
+  if (kq && !kq.loi) keTieng("lat");
   if (kq.loi) {
     if (typeof boDanhDauChon === "function") boDanhDauChon();
     const sb = $("#setupLoi");
@@ -915,6 +1066,7 @@ function hienThi(kq) {
                   (lc.khoa ? ' <small style="color:var(--ink-faint)">(khoá)</small>' : "");
     b.onclick = () => {
       if (dangCho) return;
+      keTieng("bam");
       lucBamChon = performance.now();
       danhDauChon(b);
       chon(lc.chi_so);
@@ -1059,6 +1211,7 @@ function xoaBaoDangKe() {
 
 $("#nutLui").onclick = async () => {
   if (dangCho || lichSu.length <= 0 || !st) return;
+  keTieng("lui");
   dangCho = true;
   st = lichSu.pop();
   luuPhien();
@@ -1070,6 +1223,7 @@ $("#nutLui").onclick = async () => {
 };
 
 $("#openReset").onclick = () => {
+  keTieng("mo");
   if (!confirm("Chơi lại từ đầu? Tiến trình hiện tại sẽ bị xoá.")) return;
   xoaPhien();
   location.reload();
@@ -1169,6 +1323,8 @@ function napXuatThan() {
 $("#go").onclick = () => {
   const ten = $("#ten").value.trim();
   if (!ten) { $("#setupLoi").textContent = "Hãy nhập tên nhân vật"; return; }
+  moKhoaTieng();
+  keTieng("mo");
   $("#go").disabled = true;
   st = Engine.trang_thai_moi(ten, $("#xuat").value, nhomChon);
   lichSu = [];
@@ -1256,6 +1412,8 @@ async function luuKey() {
   }
 
   napNutKeAI();
+  napTieng();
+ganNutTieng();
   napXuatThan();
 
   // thử kết nối AI nếu đã có key
@@ -1290,7 +1448,7 @@ function gan(sel, ev, fn) {
   return el;
 }
 gan("#guiTuDo", "onclick", tuDo);
-gan("#nutKeAI", "onclick", doiKeAI);
+gan("#nutKeAI", "onclick", () => { keTieng("bam"); doiKeAI(); });
 gan("#openCaiDat", "onclick", moCaiDat);
 gan("#closeCaiDat", "onclick", dongCaiDat);
 gan("#closeCoDuyen", "onclick", dongCoDuyen);
@@ -1305,13 +1463,14 @@ oTuDo.onkeydown = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefaul
 
 // ---------------------------------------------------------- drawer + tab
 const drawer = $("#drawer"), scrim = $("#scrim");
-gan("#openSys", "onclick", () => { drawer.classList.add("on"); scrim.classList.add("on"); });
+gan("#openSys", "onclick", () => { keTieng("mo"); drawer.classList.add("on"); scrim.classList.add("on"); });
 const dong = () => { drawer.classList.remove("on"); scrim.classList.remove("on"); };
 gan("#closeSys", "onclick", dong);
 scrim.onclick = dong;
 document.addEventListener("keydown", e => { if (e.key === "Escape") { dong(); dongCaiDat(); dongCoDuyen(); dongAnhLon(); } });
 
 document.querySelectorAll("#tabsBar .tab").forEach(t => t.onclick = () => {
+  keTieng("bam");
   document.querySelectorAll("#tabsBar .tab").forEach(x => x.classList.remove("on"));
   document.querySelectorAll(".tabpane").forEach(p => p.classList.remove("on"));
   t.classList.add("on");

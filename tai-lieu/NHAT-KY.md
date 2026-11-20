@@ -10,6 +10,77 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Tầng 1 âm thanh: bốn tiếng, có nút tắt
+
+**Người dùng yêu cầu:** "làm tầng 1 theo đề xuất của bạn" — tức tầng đơn giản nhất trong
+ba tầng đã đề xuất: chỉ thêm tiếng cho thao tác, chưa làm nhạc nền.
+
+**Đã làm:** game từ chỗ **im ru hoàn toàn** giờ có bốn tiếng ngắn, dựng **ngay trong máy**
+bằng Web Audio, **không thêm file âm thanh nào** (repo vốn không có file âm thanh nào; thêm
+file là nặng thêm và vướng bản quyền).
+
+| Tiếng | Kêu khi |
+| --- | --- |
+| `bam` | Bấm một dòng hành động |
+| `lat` | Truyện sang trang mới |
+| `lui` | Lùi hành động |
+| `mo` | Mở Hệ Thống, Bắt đầu, Chơi lại, đổi tab |
+
+**Nút tắt tiếng ở ba chỗ** (vì ba chỗ đó người chơi ở lâu): trên thanh trên, nổi trên phim
+mở đầu, và trong thẻ tạo nhân vật. Trạng thái nhớ trong `localStorage` khoá `hdttl_tieng`.
+Phim mở đầu cũng theo trạng thái này (`v.muted = !tiengBat`).
+
+**Đã đổi file:** `game/play.html`, `docs/game/play.html` (thêm khối `napTieng` /
+`keTieng` / `batTatTieng` / `moKhoaTieng` ngay sau `const $ =`), `docs/nhap/am-thanh.html`,
+`docs/nhap/tieng-1..4.jpg`, `docs/nhap/index.html`.
+
+**Bốn lỗi tìm ra khi đo, đã sửa (đều là lỗi thật):**
+
+1. **Tín hiệu bị nhân đôi.** Dao động nối vào cả bộ lọc lẫn bộ điều âm lượng, nên đi hai
+   đường: đỉnh đo được **1.45** (mức tối đa là 1.0) và một đường không có bao âm lượng →
+   nghe "bụp". Đã nối lại một đường duy nhất.
+2. **Tiếng lật giấy to gấp bảy lần.** Phần nhiễu nối tắt vào bộ lọc, **vòng qua** bộ điều âm
+   lượng: đỉnh **0.544** trong khi đặt `vol: 0.075`. Đã cho nhiễu đi qua bộ điều âm lượng →
+   còn **0.078**.
+3. **Bấm nhanh thì rè.** 10 lần sát nhau → đỉnh **1.485**, 52 mẫu vượt 1.0. Đã thêm
+   `DynamicsCompressor` trước loa: 20 lần sát nhau vẫn chỉ **0.732**, 0 mẫu vượt.
+4. **Nút loa bị che ở hai màn.** Ở phim mở đầu và màn tạo nhân vật, thanh trên bị lớp phủ
+   che nên **không nút nào bấm được** — đo `elementFromPoint` cho cả `openSys`, `nutKeAI`,
+   `openReset` đều trả về phần tử khác. **Lỗi này có sẵn từ trước, không phải do lần này.**
+   Đã đặt nút loa nổi trên hai màn đó.
+
+**Kiểm chứng (số đo thật):**
+
+- Render lại từng tiếng bằng `OfflineAudioContext` để có số chính xác (đo qua
+  `requestAnimationFrame` chỉ được 5–6 mẫu, không đủ tin): đỉnh lần lượt
+  **0.149 / 0.078 / 0.122 / 0.111**, mẫu đầu và mẫu cuối đều **0**, **0** chỗ nhảy đột ngột
+  (không "bụp").
+- Bấm nhiều lần sát nhau: 1 lần **0.073**, 5 lần **0.326**, 10 lần **0.588**, 20 lần
+  **0.732** — không lần nào vượt 0.99.
+- Có tiếng thật khi bấm hành động: đo tín hiệu ra **1.1** trước khi sửa, sau khi sửa nằm
+  trong ngưỡng; tắt tiếng rồi bấm lại → **0 mẫu tín hiệu** (im hẳn).
+- `AudioContext` sau cú chạm đầu: `state = "running"`. Sau 4 lượt chơi + mở Hệ Thống +
+  đổi tab + lùi: vẫn `running`, **không lỗi JS** nào.
+- Bố cục thanh trên: iPhone SE (320) / iPhone 13 (390) / iPad Pro 11 (834) — nút loa
+  **44×44**, **không** nút nào chồng nút, **không** tràn ngang.
+- Nhớ lựa chọn: tắt → tải lại → vẫn tắt; bật → tải lại → vẫn bật.
+- Đo chồng chữ bằng `Range.getClientRects()` (hộp chữ thật, không phải hộp phần tử):
+  iPhone SE ban đầu nút đè chữ "Lộ" cuối tiêu đề → đã đệm phải tiêu đề `46px`, đo lại
+  **0 chỗ chồng** ở cả 3 máy.
+- Test cũ: `game/_test_api.py` **161 đạt, 0 hỏng**; `game/_test_engine.js` **124 đạt, 0 hỏng**.
+- Hai bản khớp nhau: khối module âm thanh **giống hệt từng ký tự**, số điểm gọi
+  `keTieng` khớp (bam 4, lat 1, lui 1, mo 3), ba nút tiếng có đủ ở cả hai bản.
+
+**Biết trước, chưa xử lý được:**
+
+- WebKit giả lập trên Linux **không** mô phỏng luật chặn tự phát tiếng của iPhone. Nên
+  không kết luận được gì về tự phát từ bài test này; đã thiết kế theo hướng chắc chắn:
+  **chỉ mở khóa ở cú chạm đầu tiên**, không dựa vào tự phát.
+- Nút loa dùng emoji 🔊/🔇. Trên iOS hiện đúng, nhưng nếu sau này muốn đồng bộ với nét
+  vẽ của game thì nên thay bằng hình vector.
+
+---
+
 ## 2026-11-21 (tiếp) · Dòng hành động sáng đỏ khi bấm
 
 **Người dùng yêu cầu:** "khi bấm vô lựa chọn hành động nào thì dòng chữ hành động đó

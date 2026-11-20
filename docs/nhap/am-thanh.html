@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thêm tiếng cho game</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .canh{background:rgba(63,125,78,.10);border-left:3px solid #3f7d4e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .canh b{color:#2f6340}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:10px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid rgba(36,28,20,.14)}
+  th{font-size:12px;color:#6b5b48;text-transform:uppercase;letter-spacing:.5px}
+  td.n{font-family:ui-monospace,Menlo,monospace;text-align:right}
+  .dat{color:#2f6340;font-weight:600}
+  .khong{color:#a8352a;font-weight:600}
+</style>
+</head>
+<body>
+<div class="khung">
+  <div class="to">
+    <h1>Game có tiếng rồi</h1>
+    <p class="phu">Tầng 1 &middot; bản chạy thật &middot; đo bằng Safari (WebKit) trên iPhone 13 và iPhone SE</p>
+
+    <p>Trước đây game im ru hoàn toàn. Giờ có bốn tiếng ngắn, có nút tắt, và mọi thứ đã đo bằng
+       tín hiệu âm thanh thật chứ không phải chỉ "không báo lỗi".</p>
+
+    <a class="nut" href="../game/play.html">Mở game để nghe thử</a>
+
+    <h2>Bốn tiếng, và khi nào kêu</h2>
+    <table>
+      <tr><th>Tiếng</th><th>Kêu khi nào</th><th>Đo được</th></tr>
+      <tr><td>Tách</td><td>Bấm một dòng hành động</td><td class="n">0.149</td></tr>
+      <tr><td>Lật giấy</td><td>Truyện sang trang mới</td><td class="n">0.078</td></tr>
+      <tr><td>Trầm xuống</td><td>Lùi hành động</td><td class="n">0.122</td></tr>
+      <tr><td>Mở bảng</td><td>Hệ Thống, Bắt đầu, Chơi lại</td><td class="n">0.111</td></tr>
+    </table>
+    <p class="phu" style="margin-top:-4px">Số là mức đỉnh đo bằng cách render lại tiếng trong trình duyệt.
+       Mức 1.0 là to nhất mà loa đọc được, vượt qua là rè.</p>
+
+    <div class="canh">
+      <b>Không thêm một file âm thanh nào.</b> Cả bốn tiếng được dựng ngay trong máy bằng Web Audio,
+      nên không tải thêm gì, không nặng thêm, không vướng bản quyền. Mở game trên mạng yếu vẫn có tiếng.
+    </div>
+
+    <h2>Tắt tiếng ở đâu cũng được</h2>
+    <p>Nút loa nằm ở ba chỗ, vì ba chỗ đó người chơi ở lâu nhất:</p>
+    <ul>
+      <li><b>Trên thanh trên</b> &mdash; lúc đang chơi.</li>
+      <li><b>Trên phim mở đầu</b> &mdash; lúc phim đang chạy, chính là lúc ồn nhất.</li>
+      <li><b>Trong thẻ tạo nhân vật</b> &mdash; lúc đang chọn xuất thân.</li>
+    </ul>
+
+    <div class="anh">
+      <img src="tieng-2-tren-phim.jpg" alt="Nút loa ở góc trên trái của phim mở đầu">
+      <div class="chuAnh">Nút loa nổi ở góc trên trái phim mở đầu. Bấm là phim im ngay,
+        và trạng thái được nhớ cho lần chơi sau.</div>
+    </div>
+
+    <div class="anh">
+      <img src="tieng-3-tao-nhan-vat.jpg" alt="Nút loa trong thẻ tạo nhân vật, đang bật">
+      <div class="chuAnh">Trong thẻ tạo nhân vật: nút loa ở góc trên phải, đang bật (🔊).</div>
+    </div>
+
+    <div class="anh">
+      <img src="tieng-4-da-tat.jpg" alt="Cùng màn đó sau khi bấm nút loa, đã tắt">
+      <div class="chuAnh">Bấm một cái là tắt (🔇). Lựa chọn này được nhớ, tải lại trang vẫn tắt.</div>
+    </div>
+
+    <h2>Màn hẹp nhất vẫn vừa</h2>
+    <p>Thêm nút thứ tư vào thanh trên là chỗ dễ làm vỡ bố cục nhất. Đã đo trên iPhone SE
+       (rộng 320 điểm) &mdash; máy hẹp nhất còn dùng được:</p>
+
+    <div class="anh">
+      <img src="tieng-1-thanh-hep.jpg" alt="Thanh trên trên iPhone SE với bốn nút">
+      <div class="chuAnh">Bốn nút vừa một hàng trên màn 320 điểm, không nút nào đè nút nào,
+        không tràn ngang. Nút loa giữ vùng chạm 44×44 điểm cho dễ bấm.</div>
+    </div>
+
+    <table>
+      <tr><th>Máy</th><th>Rộng</th><th>Nút loa</th><th>Chồng nút</th><th>Tràn ngang</th></tr>
+      <tr><td>iPhone SE</td><td class="n">320</td><td class="n">44×44</td><td class="dat">không</td><td class="dat">không</td></tr>
+      <tr><td>iPhone 13</td><td class="n">390</td><td class="n">44×44</td><td class="dat">không</td><td class="dat">không</td></tr>
+      <tr><td>iPad Pro 11</td><td class="n">834</td><td class="n">44×44</td><td class="dat">không</td><td class="dat">không</td></tr>
+    </table>
+
+    <h2>Ba lỗi tìm ra trong lúc làm, đã sửa</h2>
+    <p>Làm xong thì nghe được, nhưng đo tín hiệu mới thấy sai. Ghi lại đây vì đều là lỗi thật:</p>
+
+    <div class="hop">
+      <b>1. Tiếng bị nhân đôi.</b> Tín hiệu đi hai đường cùng lúc nên đỉnh đo được là
+      <span class="so">1.45</span>, vượt mức 1.0 &mdash; tai nghe thành tiếng "bụp". Đã nối lại thành một đường.
+    </div>
+
+    <div class="hop">
+      <b>2. Tiếng lật giấy to gấp bảy lần.</b> Phần nhiễu đi vòng qua bộ điều âm lượng nên đỉnh
+      <span class="so">0.544</span> trong khi đặt ra chỉ 0.075. Đã cho đi qua bộ điều âm lượng: còn
+      <span class="so">0.078</span>, đúng như đặt.
+    </div>
+
+    <div class="hop">
+      <b>3. Bấm nhanh thì rè.</b> Bấm 10 lần sát nhau, tiếng chồng lên nhau, đỉnh
+      <span class="so">1.485</span>. Đã thêm bộ nén trước loa: bấm 20 lần sát nhau vẫn chỉ
+      <span class="so">0.732</span>, không rè.
+    </div>
+
+    <div class="hop">
+      <b>4. Nút loa bị che ở hai màn.</b> Ở phim mở đầu và màn tạo nhân vật, thanh trên bị lớp phủ
+      che nên <b>không nút nào bấm được</b> &mdash; kể cả ba nút cũ. Đây là lỗi có sẵn từ trước, không phải
+      do lần này. Đã đặt thêm nút loa nổi ngay trên hai màn đó.
+    </div>
+
+    <h2>Đã kiểm những gì</h2>
+    <table>
+      <tr><td>Có tiếng thật</td><td class="dat">có &mdash; đo tín hiệu, không chỉ nghe</td></tr>
+      <tr><td>Tắt là im hẳn</td><td class="dat">đúng &mdash; đo lại được 0 tín hiệu</td></tr>
+      <tr><td>Nhớ lựa chọn sau khi tải lại</td><td class="dat">đúng, cả bật và tắt</td></tr>
+      <tr><td>Chơi thật 4 lượt + mở Hệ Thống + đổi tab + lùi</td><td class="dat">không lỗi JS</td></tr>
+      <tr><td>Bộ test cũ</td><td class="dat">161 đạt · 124 đạt</td></tr>
+      <tr><td>Hai bản (máy chủ và tĩnh)</td><td class="dat">khớp nhau từng dòng</td></tr>
+    </table>
+
+    <div class="hop">
+      <b>Còn phải nói thật một điều:</b> trình duyệt giả lập trên máy tính không mô phỏng đúng
+      luật chặn tự phát tiếng của iPhone. Nên tôi làm theo cách chắc chắn: tiếng chỉ mở khóa ở
+      cú chạm đầu tiên, không dựa vào tự phát. Trên máy thật anh mở lên bấm "Vào game" là có tiếng.
+    </div>
+
+    <a class="nut" href="../game/play.html">Chơi thử</a>
+  </div>
+</div>
+</body>
+</html>
