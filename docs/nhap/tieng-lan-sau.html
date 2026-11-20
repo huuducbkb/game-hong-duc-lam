@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sửa lỗi tiếng: bấm lần sau không kêu</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .canh{background:rgba(63,125,78,.10);border-left:3px solid #3f7d4e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .canh b{color:#2f6340}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:10px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid rgba(36,28,20,.14)}
+  th{font-size:12px;color:#6b5b48;text-transform:uppercase;letter-spacing:.5px}
+  td.n{font-family:ui-monospace,Menlo,monospace;text-align:right}
+  .dat{color:#2f6340;font-weight:600}
+  .hong{color:#a8352a;font-weight:600}
+</style>
+</head>
+<body>
+<div class="khung">
+  <div class="to">
+    <h1>Đã sửa: bấm lần sau không kêu</h1>
+    <p class="phu">Bản chạy thật &middot; đo tín hiệu âm thanh, không phải nghe đoán</p>
+
+    <a class="nut" href="../game/play.html">Mở game thử lại</a>
+
+    <p>Anh hỏi đúng chỗ. Tôi đo tín hiệu âm thanh thật ở từng lần bấm và tìm ra
+       <b>bốn lỗi</b>. Cái anh gặp là lỗi số 1.</p>
+
+    <h2>1. Tải lại trang khi đang chơi dở → cả phiên im</h2>
+    <div class="hop">
+      <b>Đây chính là lỗi anh gặp.</b> Khi đang chơi mà tải lại trang, game vào thẳng
+      truyện — đường vào này <b>không đi qua nút "Vào game"</b>. Mà tiếng chỉ được mở khóa
+      ở cú chạm vào nút đó. Nên cả phiên chơi tiếp theo <b>im hoàn toàn</b>.
+      <br><br>
+      Lần đầu anh bấm "Vào game" thì có mở khóa → kêu. Lần sau tải lại thì không → im.
+      Đúng như anh mô tả.
+    </div>
+    <p>Đo được: sau khi tải lại, trạng thái âm thanh là <code>suspended</code>, bấm vào
+       hành động → tín hiệu <span class="so hong">0</span>. Sau khi sửa:
+       <span class="so dat">0.223</span> — kêu.</p>
+
+    <h2>2. Tiếng bị bỏ khi âm thanh đang ngủ</h2>
+    <p>Ở bản sửa trước, tôi cho bỏ tiếng khi âm thanh chưa sẵn sàng. Hậu quả: cú chạm
+       <b>đầu tiên</b> sau khi mở lại trang mất tiếng, dù lệnh đánh thức vẫn chạy.
+       Đo được: lần bấm 1 tiếng bị bỏ, tới tiếng thứ hai (0.32 giây sau) mới kêu.
+       Người chơi nghe ra là "bấm không kêu".</p>
+    <div class="canh">
+      <b>Đã sửa:</b> đánh thức xong thì phát luôn, không bỏ tiếng nào.
+    </div>
+
+    <h2>3. iPhone có ba trạng thái, tôi mới xử lý một</h2>
+    <p>Âm thanh trên iPhone có thể bị đặt vào ba trạng thái: <code>suspended</code>,
+       <code>interrupted</code> (có cuộc gọi tới, hoặc video/ứng dụng khác giành loa), và
+       <code>closed</code> (bị thu hồi khi chạy nền lâu). Bản trước chỉ đánh thức khi
+       <code>suspended</code> — hai trường hợp còn lại là <b>im vĩnh viễn</b>.</p>
+    <p>Đo được: đóng hẳn âm thanh rồi bấm → trước khi sửa <span class="so hong">im mãi mãi</span>,
+       sau khi sửa <span class="so dat">tự dựng lại và kêu 0.337</span>.</p>
+
+    <h2>4. Một lỗi chặn bấm (không chỉ tiếng)</h2>
+    <div class="hop">
+      <b>Cờ "đang xử lý" có thể kẹt.</b> Khi bấm hành động, game bật cờ này để chặn bấm
+      trùng, rồi tắt ở cuối. Nhưng nếu giữa chừng có lỗi thì cờ <b>kẹt luôn ở trạng thái bật</b>
+      — và <b>mọi lần bấm sau bị chặn ngay từ đầu</b>: không kêu, không chuyển trang.
+      Đã bọc cả ba chỗ bằng cơ chế luôn nhả cờ dù có lỗi.
+    </div>
+
+    <h2>Số đo trên bản live</h2>
+    <table>
+      <tr><th>Trường hợp</th><th>Trước</th><th>Sau</th></tr>
+      <tr><td>6 lần bấm liên tiếp</td><td class="n">—</td><td class="n dat">6/6 kêu</td></tr>
+      <tr><td>Tải lại trang khi đang chơi</td><td class="n hong">0 (im)</td><td class="n dat">0.223 kêu</td></tr>
+      <tr><td>Bấm tiếp 3 lần sau đó</td><td class="n">—</td><td class="n dat">3/3 kêu</td></tr>
+      <tr><td>Đóng hẳn âm thanh rồi bấm</td><td class="n hong">im mãi</td><td class="n dat">0.337 kêu</td></tr>
+      <tr><td>Tắt tiếng</td><td class="n">—</td><td class="n dat">0, im đúng</td></tr>
+      <tr><td>Bật tiếng lại</td><td class="n">—</td><td class="n dat">0.337 kêu</td></tr>
+    </table>
+
+    <div class="canh">
+      <b>Không làm hỏng gì khác:</b> bộ test cũ vẫn <b>161 đạt</b> và <b>124 đạt</b>,
+      hai bản khớp nhau, không lỗi JS nào trong suốt bài đo.
+    </div>
+
+    <h2>Nói thật chỗ tôi chưa đo được</h2>
+    <div class="hop">
+      Máy giả lập trên máy tính <b>không mô phỏng</b> trạng thái <code>interrupted</code>
+      của iPhone. Tôi đã xử lý nó theo tài liệu và đo được hai trạng thái kia
+      (<code>suspended</code>, <code>closed</code>), nhưng <b>riêng <code>interrupted</code>
+      thì chưa đo trực tiếp được</b>.
+      <br><br>
+      Nếu trên máy thật vẫn còn im, anh cho tôi biết <b>lúc đó đang làm gì</b>:
+      có cuộc gọi tới, đang nghe nhạc, hay vừa chuyển qua app khác rồi quay lại?
+      Mỗi câu trả lời đó chỉ đúng một nguyên nhân, tôi sẽ đo tiếp đúng chỗ đó.
+    </div>
+
+    <a class="nut" href="../game/play.html">Thử lại</a>
+  </div>
+</div>
+</body>
+</html>
