@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đã sửa nút Bắt đầu</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5);margin-bottom:18px}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .canh{background:rgba(63,125,78,.10);border-left:3px solid #3f7d4e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .canh b{color:#2f6340}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:8px}
+  .cu{font-size:13.5px;color:#6b5b48}
+</style>
+</head>
+<body>
+<div class="khung">
+
+  <div class="to">
+    <h1>Đã sửa nút Bắt đầu</h1>
+    <p class="phu">Bản chạy thật trên GitHub Pages &middot; đo bằng Safari (WebKit)</p>
+
+    <p>Anh báo chọn xuất thân xong không bấm được "Bắt đầu". Tôi dựng lại đúng thao tác đó
+       và tìm ra: nút <b>không hỏng</b>, nó bị <b>đẩy ra ngoài màn hình</b>.</p>
+
+    <h2>Nguyên nhân</h2>
+    <p>Khi anh bấm chọn một xuất thân, khối <b>trích đoạn mở đầu</b> (58px) hiện ra ngay
+       dưới hai thẻ. Khối đó đẩy nút "Bắt đầu" xuống dưới.</p>
+
+    <div class="hop">
+      <b>Đo được:</b> trước khi chọn, nút ở <span class="so">y=593</span> — thấy được.
+      Sau khi chọn, nút ở <span class="so">y=795</span>, nhưng màn hình iPhone 13 chỉ cao
+      <span class="so">664</span>. Nút nằm <b>ngoài màn hình 131px</b>. Bấm vào chỗ đó là
+      bấm vào khoảng trống, không phải bấm vào nút.
+    </div>
+
+    <h2>Trước và sau</h2>
+    <div class="anh">
+      <img src="nut-1.jpg" alt="Nút Bắt đầu trước và sau khi sửa">
+      <div class="chuAnh">Trên: không thấy nút nào. Dưới: nút đỏ luôn nằm ở đáy thẻ.</div>
+    </div>
+
+    <h2>Cách sửa</h2>
+    <p>Tách thẻ làm hai phần: phần nội dung cuộn riêng, nút "Bắt đầu" đứng yên ở đáy thẻ.
+       Nội dung dài bao nhiêu thì cuộn bấy nhiêu, nút không bao giờ bị đẩy đi.</p>
+
+    <div class="canh">
+      <b>Không che nội dung:</b> tôi kiểm tra điểm ngay trên nút — nó vẫn là nội dung thật,
+      không bị nút đè lên. Cuộn được tới tận cuối thẻ.
+    </div>
+
+    <h2>Đã kiểm những gì</h2>
+    <p>Bấm thật vào nút trên từng thiết bị, rồi xem có vào được game không
+       (màn chọn phải ẩn đi và truyện phải hiện ra):</p>
+    <ul>
+      <li><b>iPhone 13</b> — bấm được, vào game, truyện 1512 ký tự, có lựa chọn.</li>
+      <li><b>iPhone SE</b> (màn nhỏ nhất) — bấm được, vào game.</li>
+      <li><b>iPad Pro 11</b> — bấm được, vào game.</li>
+      <li><b>Xoay ngang</b> iPhone 13 và iPad (màn chỉ cao 390px) — vẫn bấm được, vào game.</li>
+      <li>Mở cả ô <b>"tự gõ xuất thân"</b> (làm thẻ dài nhất) — vẫn bấm được.</li>
+      <li>Không lỗi JS ở trường hợp nào. Bộ test: <span class="so">124</span> và
+          <span class="so">161</span> đạt, <b>0 hỏng</b>.</li>
+      <li>Sửa cả hai bản: <code>game/play.html</code> và <code>docs/game/play.html</code>.</li>
+    </ul>
+
+    <h2>Nói thật một điều</h2>
+    <p>Lỗi này <b>không phải do lần sửa nền vuông trước đó</b>. Tôi đã lấy đúng bản code
+       trước khi tôi sửa và chạy lại: nút cũng ở <span class="so">y=795</span>, cũng ngoài
+       màn hình. Nó có từ lần làm màn chọn xuất thân (hiện trích đoạn mở đầu).</p>
+    <p>Nhưng lỗi thì vẫn là lỗi, và anh không vào được game — nên tôi sửa luôn.</p>
+
+    <a class="nut" href="../game/play.html">Vào game thử</a>
+
+    <p class="cu" style="margin-top:18px">
+      Nếu vẫn không bấm được, anh nói tôi biết anh dùng máy gì và đang ở màn nào —
+      tôi dựng lại đúng máy đó để tìm tiếp.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

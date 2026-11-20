@@ -10,6 +10,41 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Sửa nút "Bắt đầu" bị đẩy ra ngoài màn hình
+
+**Người dùng báo:** "sau khi sửa thì lỗi hiện tại tôi không thể bấm bắt đầu sau khi
+chọn xuất thân? tôi không thể vô game được".
+
+**Nguyên nhân:** nút **không hỏng**, nó bị **đẩy ra ngoài màn hình**. Chọn xuất thân
+làm hiện khối trích đoạn mở đầu (`.xt-trich`, cao 58px) ngay dưới hai thẻ, đẩy nút
+xuống. Đo trên iPhone 13: trước khi chọn nút ở **y=593** (thấy được), sau khi chọn
+nút ở **y=795** nhưng màn hình chỉ cao **664** → nút ngoài màn hình **131px**.
+Bấm vào chỗ đó là bấm khoảng trống.
+
+**Lỗi này KHÔNG do lần sửa nền vuông trước đó.** Đã lấy `git show 790d99c:docs/game/play.html`
+chạy lại: cũng y=795, cũng ngoài màn hình. Nó có từ commit `74d1e16` (hiện trích đoạn
+mở đầu khi chọn xuất thân).
+
+**Cách sửa:** tách thẻ làm hai phần — `.card-than` cuộn riêng (`overflow-y:auto`),
+nút `.go` là con trực tiếp của `.card` (flex, `flex:0 0 auto`) nên đứng yên ở đáy,
+không bị đẩy. Thẻ `max-height:92vh;overflow:hidden`.
+
+**Thử lần đầu thất bại (ghi lại để khỏi lặp):** dùng `position:sticky` cho nút thì
+nút hiện ra nhưng **đè lên nội dung** (`.xt-trich` và `.xt-tu-do` bị che). Đã bỏ,
+chuyển sang tách thân thẻ cuộn. Đo lại: phần tử ngay trên nút là `card`, không còn
+là nội dung bị che; cuộn được tới cuối thẻ.
+
+**Kiểm chứng (bấm thật rồi xem có vào game):**
+- iPhone 13: nút y=568 trong màn hình, bấm OK, vào game, truyện 1512 ký tự, 1 lựa chọn.
+- iPhone SE: y=476, OK, vào game.
+- iPad Pro 11: y=948, OK, vào game.
+- Xoay ngang iPhone 13 và iPad (màn cao 390px): y=305, OK, vào game.
+- Mở ô "tự gõ xuất thân" (thẻ dài nhất): OK, vào game.
+- Không lỗi JS ở cả 5 trường hợp. Test engine **124 đạt / 0 hỏng**, API **161 / 0**.
+
+**File đã sửa:** `game/play.html`, `docs/game/play.html` (cả hai khớp nhau).
+**Báo cáo:** `docs/nhap/nut-bat-dau.html` (ảnh `nut-1.jpg`).
+
 ## 2026-11-21 (tiếp) · Bỏ hộp giấy ở dòng hành động
 
 **Người dùng báo:** "chổ chọn hành động mỗi dòng hành động nó có 1 cái nền vuông…

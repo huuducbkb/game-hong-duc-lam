@@ -293,19 +293,23 @@ body{
 .setup{position:fixed;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;
   padding:20px;background:url("../assets/ui/bg-main.jpg") center/cover no-repeat}
 .setup::before{content:"";position:absolute;inset:0;background:rgba(246,240,226,.72)}
-.setup .card{position:relative;width:100%;max-width:420px;padding:22px 20px;
-  background:rgba(255,253,246,.86);border:1px solid var(--edge);border-radius:16px}
+.setup .card{position:relative;width:100%;max-width:420px;padding:0;
+  background:rgba(255,253,246,.86);border:1px solid var(--edge);border-radius:16px;
+  display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+/* thân thẻ cuộn riêng, để nút Bắt đầu luôn hiện ở đáy mà không đè nội dung */
+.setup .card-than{padding:22px 20px 4px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .setup h2{margin:0 0 4px;font-size:20px}
 .setup .cap{font-size:10.5px;letter-spacing:2px;color:var(--seal);text-transform:uppercase;margin-bottom:16px}
 .setup label{display:block;font-size:11.5px;color:var(--ink-faint);letter-spacing:.6px;margin:12px 0 5px}
 .setup input,.setup textarea{width:100%;font-family:var(--serif);font-size:15px;color:var(--ink);
   background:rgba(255,255,255,.7);border:1px solid var(--edge);border-radius:10px;padding:11px 12px}
 .setup textarea{min-height:64px;resize:vertical;line-height:1.5}
-.setup .go{width:100%;margin-top:18px;font-family:var(--serif);font-size:16px;font-weight:600;
-  color:#fdf9ef;background:var(--seal);border:0;border-radius:12px;padding:14px}
+.setup .go{flex:0 0 auto;width:calc(100% - 40px);margin:8px 20px 18px;
+  font-family:var(--serif);font-size:16px;font-weight:600;
+  color:#fdf9ef;background:var(--seal);border:0;border-radius:12px;padding:14px;
+  box-shadow:0 -10px 14px -10px rgba(40,34,26,.30)}
 .setup .go:disabled{opacity:.5}
 .setup .hint{font-size:11px;color:var(--ink-faint);margin-top:9px;line-height:1.5}
-.setup .card{max-height:92vh;overflow-y:auto}
 /* thẻ xuất thân: ảnh nền + tên lớn, xếp một cột cho dễ chạm trên điện thoại */
 .xt-grid{display:grid;gap:10px;margin-top:7px}
 .xt-grid .xt-the{position:relative;display:block;width:100%;height:148px;padding:0;overflow:hidden;
@@ -578,20 +582,22 @@ body{
   <div class="nen-chon" id="nenChon"></div>
   <div class="lop-phu"></div>
   <div class="card">
-    <h2>Hồng Đức Tu Tiên Lộ</h2>
-    <div class="cap">Nghịch chuyển càn khôn</div>
-    <label for="ten">Tên nhân vật</label>
-    <input id="ten" maxlength="24" placeholder="Ví dụ: Hồng Đức" autocomplete="off">
-    <label>Chọn xuất thân</label>
-    <div class="xt-grid" id="xtGrid"></div>
-    <div class="xt-trich" id="xtTrich"></div>
-    <button class="xt-tu-do" type="button" id="xtTuDo">Hoặc tự gõ xuất thân</button>
-    <div class="xt-o" id="xtO">
-      <label for="xuat">Xuất thân tự do (bỏ trống là “tán tu vô danh”)</label>
-      <textarea id="xuat" maxlength="4000" rows="3" placeholder="Ví dụ: tán tu nghèo, con nhà nông, dược đồng ở hiệu thuốc…"></textarea>
+    <div class="card-than">
+      <h2>Hồng Đức Tu Tiên Lộ</h2>
+      <div class="cap">Nghịch chuyển càn khôn</div>
+      <label for="ten">Tên nhân vật</label>
+      <input id="ten" maxlength="24" placeholder="Ví dụ: Hồng Đức" autocomplete="off">
+      <label>Chọn xuất thân</label>
+      <div class="xt-grid" id="xtGrid"></div>
+      <div class="xt-trich" id="xtTrich"></div>
+      <button class="xt-tu-do" type="button" id="xtTuDo">Hoặc tự gõ xuất thân</button>
+      <div class="xt-o" id="xtO">
+        <label for="xuat">Xuất thân tự do (bỏ trống là “tán tu vô danh”)</label>
+        <textarea id="xuat" maxlength="4000" rows="3" placeholder="Ví dụ: tán tu nghèo, con nhà nông, dược đồng ở hiệu thuốc…"></textarea>
+      </div>
+      <div class="hint" id="setupLoi"></div>
     </div>
     <button class="go" id="go">Bắt đầu</button>
-    <div class="hint" id="setupLoi"></div>
   </div>
 </div>
 
