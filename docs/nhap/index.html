@@ -1,43 +1,63 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ba hướng giao diện chọn xuất thân</title>
+<title>Báo cáo: giao diện chọn xuất thân</title>
 <style>
-body{margin:0;background:#efe7d4;color:#1b1915;
-  font-family:"Noto Serif","Times New Roman",serif;line-height:1.6}
-.wrap{max-width:760px;margin:0 auto;padding:26px 16px 60px}
-h1{font-size:20px;margin:0 0 6px}
-p.sub{font-size:13px;color:#6d6454;margin:0 0 26px}
-section{margin-bottom:38px}
-h2{font-size:15px;color:#a8352a;margin:0 0 4px;letter-spacing:.4px}
-.note{font-size:12.5px;color:#6d6454;margin:0 0 10px}
-img{width:100%;display:block;border-radius:12px;
-  box-shadow:0 6px 20px rgba(40,34,26,.16);border:1px solid rgba(40,34,26,.12)}
-.tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:99px;margin-left:6px;
-  background:rgba(168,53,42,.1);color:#a8352a;border:1px solid rgba(168,53,42,.25)}
+body{margin:0;background:#efe7d4;color:#1b1915;font-family:"Noto Serif","Times New Roman",serif;line-height:1.62}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:19px;margin:0 0 4px}
+.sub{font-size:12.5px;color:#6d6454;margin:0 0 22px}
+h2{font-size:14px;color:#a8352a;margin:26px 0 8px;letter-spacing:.3px}
+p,li{font-size:13.5px}
+ul{padding-left:20px;margin:6px 0}
+code{background:rgba(40,34,26,.07);padding:1px 5px;border-radius:4px;font-size:12px}
+.card{background:rgba(255,253,246,.8);border:1px solid rgba(40,34,26,.14);border-radius:12px;
+  padding:14px 16px;margin-bottom:12px}
+img{width:100%;display:block;border-radius:12px;border:1px solid rgba(40,34,26,.14);
+  box-shadow:0 6px 20px rgba(40,34,26,.14);margin:8px 0}
+.note{font-size:12px;color:#6d6454}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+td{padding:5px 4px;border-bottom:1px solid rgba(40,34,26,.1);vertical-align:top}
+td:first-child{color:#6d6454;width:42%}
 </style></head><body><div class="wrap">
-<h1>Ba hướng giao diện chọn xuất thân</h1>
-<p class="sub">Chụp trên khổ iPhone 390×844. Bấm vào ảnh để xem lớn.</p>
 
-<section>
-  <h2>Hướng A — thẻ dọc kiểu bìa sách</h2>
-  <p class="note">Thẻ cao 210px, ảnh tràn, tên lớn 30px. Có thêm dòng chỉ số riêng (Sinh lực, Bạc)
-     để lựa chọn có sức nặng. Nhược điểm: hai thẻ chiếm gần hết màn, phải cuộn mới tới nút Bắt đầu.</p>
-  <a href="hinh-A.png"><img src="hinh-A.png" alt="Hướng A"></a>
-</section>
+<h1>Báo cáo: giao diện chọn xuất thân</h1>
+<p class="sub">Hướng C · chụp từ bản đang chạy trên GitHub Pages, khổ iPhone 390×844</p>
 
-<section>
-  <h2>Hướng B — vuốt ngang như bộ bài</h2>
-  <p class="note">Hai thẻ nằm cạnh nhau, vuốt sang để xem. Cảm giác "bốc lá số" rõ.
-     Nhược điểm: người chơi có thể không biết phải vuốt, tưởng chỉ có một lựa chọn.</p>
-  <a href="hinh-B.png"><img src="hinh-B.png" alt="Hướng B"></a>
-</section>
+<div class="card">
+  <table>
+    <tr><td>Đã làm</td><td>Nền màn hình đổi ảnh theo xuất thân đang chọn + hiện câu mở đầu thật</td></tr>
+    <tr><td>Đụng vào game</td><td>Không. Chỉ HTML/CSS/JS của màn chọn</td></tr>
+    <tr><td>Chỉ số khởi đầu</td><td>Giữ nguyên (2 xuất thân vẫn giống hệt nhau)</td></tr>
+    <tr><td>Test</td><td>28 điểm giao diện · engine 105/105 · API 161/161</td></tr>
+  </table>
+</div>
 
-<section>
-  <h2>Hướng C — nền đổi theo xuất thân đang chọn <span class="tag">tôi khuyên</span></h2>
-  <p class="note">Giữ thẻ ngang như hiện tại, nhưng cả màn hình phía sau đổi ảnh theo xuất thân
-     đang chọn, và hiện một dòng trích đoạn mở đầu. Bố cục không đổi nên an toàn nhất,
-     mà cảm giác khác hẳn.</p>
-  <a href="hinh-C.png"><img src="hinh-C.png" alt="Hướng C"></a>
-</section>
+<h2>1. Chưa chọn gì</h2>
+<p class="note">Nền trơn, chưa có trích đoạn.</p>
+<img src="C-truoc.png" alt="Chưa chọn xuất thân">
+
+<h2>2. Chọn Tán tu / ăn mày</h2>
+<p class="note">Cả nền đổi sang ảnh góc chợ sớm, hiện câu mở đầu:
+“Ta mở mắt giữa một góc chợ, lưng tựa vào bức tường lạnh…”</p>
+<img src="C-tantu.png" alt="Chọn tán tu">
+
+<h2>3. Chọn Đệ tử môn phái</h2>
+<p class="note">Nền đổi sang tân xá buổi sáng, câu mở đầu đổi theo:
+“Ta choàng tỉnh trên một tấm phản gỗ cứng…”</p>
+<img src="C-monphai.png" alt="Chọn môn phái">
+
+<h2>Đo được gì</h2>
+<ul>
+  <li>So 2 ảnh chụp tán tu vs môn phái: <b>78%</b> điểm ảnh vùng mép trái đổi màu → nền đổi thật.</li>
+  <li>Trước khi chọn: <code>nenHien=false</code>, trích đoạn rỗng. Sau khi chọn: <code>opacity=0.42</code>.</li>
+  <li>Bỏ chọn thẻ: nền tắt, trích đoạn rỗng.</li>
+  <li>Không lỗi JS trên bản live.</li>
+</ul>
+
+<h2>Còn chưa làm</h2>
+<p class="note">Hai xuất thân vẫn cho chỉ số khởi đầu y hệt nhau (30 sinh lực · 12 tu vi · 3 bạc),
+chỉ đoạn mở đầu khác. Vì vậy thẻ <b>không</b> hiện chỉ số riêng — hiện số là bịa.
+Muốn khác nhau thì phải sửa dữ liệu + engine, việc đó cần bạn cho phép.</p>
+
 </div></body></html>
