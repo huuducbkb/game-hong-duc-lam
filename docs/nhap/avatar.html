@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đã sửa lỗi up ảnh đại diện</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5);margin-bottom:18px}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:8px}
+  .cu{font-size:13.5px;color:#6b5b48}
+  .ly{font-size:14px;margin:12px 0;padding-left:0;list-style:none}
+  .ly li{padding-left:30px;position:relative}
+  .ly li b{display:block;color:var(--son);font-size:14.5px}
+  .ly li span{position:absolute;left:0;top:1px;width:21px;height:21px;
+              background:var(--son);color:#fdf9ef;border-radius:50%;
+              font-size:12px;text-align:center;line-height:21px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="khung">
+
+  <div class="to">
+    <h1>Đã up được ảnh đại diện</h1>
+    <p class="phu">Bản chạy thật trên GitHub Pages &middot; đo bằng Safari (WebKit) ở khổ iPhone 13</p>
+
+    <p>Anh báo up ảnh vô không được. Tôi tái hiện được đúng lỗi đó, và lỗi
+       <b>không phải một</b> mà là <b>ba</b> chỗ khác nhau cộng lại. Giờ cả ba đã sửa xong.</p>
+
+    <div class="hop">
+      <b>Nếu anh chỉ muốn thử ngay:</b> mở game, vào tab <b>Nhân vật</b>,
+      chạm vào vòng tròn ảnh đại diện → chọn ảnh từ thư viện. Ảnh hiện ra ngay
+      và còn nguyên sau khi tải lại trang.
+    </div>
+
+    <h2>Ba lỗi, không phải một</h2>
+    <ul class="ly">
+      <li><span>1</span><b>Vòng trang trí che kín ảnh (nặng nhất)</b>
+        Ảnh vòng <code>avatar-ring.png</code> nằm đè lên ảnh đại diện, mà nó
+        <b>đục 100%</b> — không có một điểm trong suốt nào. Nên ảnh anh up
+        <i>vào được thật</i>, nhưng bị tờ giấy kem che mất, nhìn như không up được.
+        <br><span class="cu">Đo: <span class="so">0%</span> pixel trong suốt trên 512×512. Sau khi sửa:
+        <span class="so">85,6%</span> trong suốt, giữa vòng alpha = 0.</span></li>
+
+      <li><span>2</span><b>Chạm vào ảnh trong tab Nhân vật không có phản ứng</b>
+        Chỗ dễ thấy nhất lại không bấm được: nó chỉ là ảnh, không có nút, không có
+        ô chọn tệp, không có lệnh bấm nào. Trước đây chỉ up được qua ảnh nhỏ trên
+        thanh trên cùng hoặc nút nằm sâu trong hộp Cài đặt.
+        <br><span class="cu">Sau khi sửa: chạm vào là mở hộp chọn ảnh.</span></li>
+
+      <li><span>3</span><b>Lưu thất bại thì im lặng</b>
+        Khi bộ nhớ trình duyệt đầy (ảnh điện thoại thường rất nặng), ảnh hiện được
+        lúc đó nhưng <b>mất khi tải lại trang</b> — và không có câu nào báo cho anh biết.
+        <br><span class="cu">Sau khi sửa: hiện dòng chữ đỏ giải thích, và ảnh được nén
+        nhỏ dần để vừa bộ nhớ.</span></li>
+    </ul>
+
+    <h2>Trước và sau</h2>
+    <div class="anh">
+      <img src="avatar-1.jpg" alt="So sánh trước và sau khi sửa">
+      <div class="chuAnh">Cùng một ảnh, cùng một thao tác. Trên: ảnh đã up nhưng chỉ thấy tờ giấy.
+        Dưới: ảnh hiện rõ trong vòng.</div>
+    </div>
+
+    <div class="hop">
+      <b>Đo được, không phải cảm nhận:</b> đếm điểm ảnh mang màu của bức ảnh vừa up
+      trong vùng ảnh đại diện — trước khi sửa <span class="so">0/648</span>,
+      sau khi sửa <span class="so">158/648</span>.
+    </div>
+
+    <h2>Còn nguyên sau khi tải lại</h2>
+    <div class="anh">
+      <img src="avatar-2.jpg" alt="Ảnh vẫn còn sau khi tải lại trang">
+      <div class="chuAnh">Tải lại trang xong, ảnh đại diện vẫn còn — tức là đã lưu thật,
+        không chỉ hiện tạm.</div>
+    </div>
+
+    <h2>Đã kiểm những gì</h2>
+    <ul>
+      <li>Chạy trên <b>Safari thật</b> (WebKit), giả lập iPhone 13 và iPad Pro, cảm ứng thật —
+          không phải bấm chuột trên máy tính.</li>
+      <li>Up ảnh xong: cả ảnh ở tab Nhân vật và ảnh nhỏ trên thanh trên cùng đều đổi theo.</li>
+      <li>Ảnh chụp màn hình trước/sau <b>khác nhau thật</b> (trước khi sửa thì giống hệt nhau
+          — dấu hiệu ảnh không hề đổi).</li>
+      <li>Nút <b>Xoá ảnh</b> vẫn đúng: cả hai chỗ trở về ảnh mặc định.</li>
+      <li>Bộ kiểm thử của game: <span class="so">124</span> đạt và
+          <span class="so">161</span> đạt, <b>0 hỏng</b>.</li>
+    </ul>
+
+    <a class="nut" href="../game/play.html">Vào game thử ngay</a>
+
+    <p class="cu" style="margin-top:18px">
+      Cách thử: mở game → tab <b>Nhân vật</b> → chạm vòng tròn ảnh đại diện →
+      chọn ảnh trong thư viện. Nếu máy báo ảnh quá lớn, chọn ảnh nhỏ hơn
+      hoặc chụp lại ở chế độ thường.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
