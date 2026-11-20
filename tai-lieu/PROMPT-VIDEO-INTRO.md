@@ -464,39 +464,19 @@ Catastrophic, tragic, total. The end of everything that was built.
 
 ---
 
-## Cảnh 13 · Hàn Lập
+## Cảnh 13 · Đối đầu — người chơi và Hàn Lập
 
 **0:56–1:03** · 9:16 · Zoom in rất chậm
 
-> Mô tả NV-4 chép nguyên văn từ canon.
+> Hai nhân vật, **cả hai** chép nguyên văn từ canon: NV-1 (người chơi) bên trái,
+> NV-4 (Hàn Lập) bên phải. Không ai nổi trội — đây là đối đầu cân sức, không phải
+> cảnh khoe sức mạnh.
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
-an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
-and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
-cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
-never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
-IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
-no watermark, no logo, no UI labels.
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
 
-Cinematic vertical portrait, head and shoulders, facing the viewer directly. A lean, gaunt youth of
-about 16–17, slightly undernourished. Long face, high cheekbones, sun-darkened skin. Dark eyes, sharp
-as a blade, cold at first glance — but hiding a deep weariness, the look of someone who has long
-concealed his true self. Black hair tied simply at the nape. Wearing coarse grey hemp robes of a
-low-ranking servant disciple, sleeves slightly worn. A plain cloth bag at his belt. Expression: quiet,
-guarded, reserved; rarely shows emotion. Ordinary in appearance, easy to overlook — but there is a
-quiet, unsettling weight behind his eyes.
-He stands against a dark blurred background of mist and hillside at dusk, a faint cold rim light
-along one side of his face and shoulder, the rest of his features in soft shadow. His gaze is level
-and unblinking, straight into the camera. The lower third of the frame is empty dark ink so a name
-can be placed beneath.
-Ordinary, unremarkable, and absolutely not to be underestimated.
+Cinematic vertical two-shot, a standoff between two young men on a dark hillside path at dusk. They stand facing each other at a slight angle, roughly equal in the frame, a narrow gap of empty dark paper between them — neither is dominant, and neither has drawn a weapon. LEFT, seen in three-quarter profile turned toward the right: Vietnamese transmigrator reborn into the body of a poor young male drifter, around 16–17 years old. Thin build, slightly underfed. Short black hair, messy, tied back with a rough cord. Sun-tanned skin, sharp cheekbones. Dark, watchful eyes with a modern alertness in them. Wearing coarse, patched, frayed grey-brown hemp clothes that are too big, sleeves rolled up; rope belt. Hands calloused with black-rimmed nails. Expression: guarded, calculating, quietly defiant. No jewellery, no ornaments. RIGHT, seen in three-quarter profile turned toward the left: A lean, gaunt youth of about 16–17, slightly undernourished. Long face, high cheekbones, sun-darkened skin. Dark eyes, sharp as a blade, cold at first glance — but hiding a deep weariness, the look of someone who has long concealed his true self. Black hair tied simply at the nape. Wearing coarse grey hemp robes of a low-ranking servant disciple, sleeves slightly worn. A plain cloth bag at his belt. Expression: quiet, guarded, reserved; rarely shows emotion. Ordinary in appearance, easy to overlook — but there is a quiet, unsettling weight behind his eyes. Both are the same height and the same age, both thin, both plainly dressed and poor — the mirror of each other. The left one's eyes are alert and calculating, the eyes of a man doing arithmetic he does not intend to share. The right one's eyes are cold and unreadable, the eyes of a man who has already decided something. Between them, at chest height, a faint pale mist drifts and curls, the only bright thing in the frame. A cold pale rim light from above catches one edge of each face and leaves the rest in deep shadow, so they are lit identically — two men under the same sky, on opposite sides of a line neither has drawn yet. Behind them, hillside rock and pine dissolve into black ink and empty paper. The lower third of the frame is empty dark ink so a line of text can be placed beneath. Foreground: dark wet stone. Middle ground: the two figures, sharp. Background: black ink and void. Quiet, tense, dangerous — the moment two people recognise each other as the only real threat in the room.
 ```
-
----
 
 ## Cảnh 14 · Nền tiêu đề
 
@@ -522,6 +502,23 @@ the very bottom edge, a faint suggestion of mist-wrapped mountain ridges, no mor
 soft grey strokes, almost invisible. The whole centre of the frame is bare, open, untouched paper —
 empty and light so a title can be placed on top. Low contrast, calm, quiet, generous negative space.
 ```
+
+---
+
+## Úp video vào game
+
+Dựng xong trong CapCut thì úp thẳng từ điện thoại, **không cần máy tính**:
+
+1. Mở **Xưởng video** → `https://huuducbkb.github.io/game-hong-duc-lam/xuong-video/`
+2. Mục **🎬 Video intro đã dựng** → bấm ô chọn → chọn file MP4 trong thư viện.
+3. Bấm **📤 Gửi video**. Đợi 1–2 phút (video lớn nên lâu hơn ảnh), **đừng đóng tab**.
+4. Đợi ~1 phút cho GitHub Pages dựng lại → mở game, video tự phát ở màn giới thiệu.
+
+**Xuất từ CapCut:** MP4 · H.264 · 1080×1920 · 30fps · 8–10 Mbps · **dưới 15 MB**.
+Trang chặn file trên 40 MB (giới hạn API GitHub) và báo ngay nếu vượt.
+
+**Nếu chưa úp video**, màn giới thiệu vẫn hiện bình thường như cũ — không có khung đen rỗng.
+Video chỉ chiếm chỗ khi tải được thật.
 
 ---
 

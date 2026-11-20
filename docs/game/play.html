@@ -213,6 +213,16 @@ body{
   box-shadow:0 18px 50px -18px rgba(40,34,26,.34),inset 0 1px 0 rgba(255,255,255,.7);
   scrollbar-width:thin}
 
+/* Video intro: chỉ chiếm chỗ khi tải được, nên thiếu file thì màn giới thiệu
+   vẫn hiện đúng như cũ (không để lại khung đen rỗng). */
+.intro .phim{position:relative;margin:-8px -8px 16px;border-radius:12px;overflow:hidden;
+  background:#000;box-shadow:0 10px 26px -14px rgba(40,34,26,.5)}
+.intro .phim video{display:block;width:100%;max-height:52vh;background:#000}
+.intro .phim .thoi{position:absolute;right:8px;bottom:8px;z-index:2;
+  font-size:11px;letter-spacing:1.2px;padding:6px 10px;border-radius:99px;
+  background:rgba(12,10,8,.62);color:#f4efe2;border:1px solid rgba(244,239,226,.28);
+  font-family:var(--serif);cursor:pointer}
+
 /* con dấu son */
 .intro .an{position:relative;width:74px;height:74px;margin:0 auto 16px}
 .intro .an img{width:100%;height:100%;object-fit:contain;
@@ -379,6 +389,11 @@ body{
 <!-- MÀN GIỚI THIỆU -->
 <div class="intro" id="intro">
   <div class="khung">
+    <div class="phim" id="introPhim" hidden>
+      <video id="introVideo" playsinline preload="metadata" controls
+             poster="../assets/video/intro-poster.jpg"></video>
+      <button class="thoi" type="button" id="introThoi">Bỏ qua ▸</button>
+    </div>
     <div class="an"><img src="../assets/ui/seal.png" alt=""></div>
     <h1 class="tua">Hồng Đức<br>Tu Tiên Lộ</h1>
     <div class="phu">Nghịch chuyển càn khôn</div>
@@ -956,9 +971,25 @@ async function luuKey() {
 }
 
 // ---------------------------------------------------------- màn giới thiệu
+/* Video intro là tuỳ chọn: chỉ hiện khi file tải được thật. Nếu chưa úp hoặc
+   mạng lỗi thì ẩn hẳn, màn giới thiệu giữ nguyên như cũ. */
+function noiVideoIntro() {
+  const hop = $("#introPhim"), v = $("#introVideo");
+  if (!hop || !v) return;
+  v.src = "../assets/video/intro.mp4";
+  v.addEventListener("loadedmetadata", () => {
+    hop.hidden = false;
+    v.play().catch(() => {});   // Safari chặn autoplay có tiếng → để người dùng bấm
+  });
+  v.addEventListener("error", () => { hop.hidden = true; });
+  gan("#introThoi", "onclick", () => { v.pause(); dongIntro(); });
+}
+
 function dongIntro() {
   const el = $("#intro");
   if (!el || el.style.display === "none") return;
+  const v = $("#introVideo");
+  if (v) { v.pause(); }
   el.style.transition = "opacity 340ms ease";
   el.style.opacity = "0";
   setTimeout(() => { el.style.display = "none"; el.style.opacity = ""; el.style.transition = ""; }, 340);
@@ -969,6 +1000,7 @@ function dongIntro() {
   // nút màn giới thiệu — nối trước khi tải dữ liệu để luôn dùng được
   gan("#introVao", "onclick", () => { dongIntro(); const t = $("#ten"); if (t) t.focus(); });
   gan("#introBo", "onclick", dongIntro);
+  noiVideoIntro();
   const nutKhoa = $("#introKey");
   if (nutKhoa) {
     if (AI.co_key()) nutKhoa.style.display = "none";

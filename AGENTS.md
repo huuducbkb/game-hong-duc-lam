@@ -506,6 +506,17 @@ quota tạm thời — free tier không cấp quyền sinh ảnh), `gemini-3.8-f
 `geminikey`…`geminikey3` đều vậy. Muốn tự động sinh ảnh phải bật billing. Vì thế ảnh hiện do
 người dùng tạo bằng công cụ ngoài rồi úp qua Xưởng.
 
+**Úp video intro vào game**: trang Xưởng video có khối **🎬 Video intro đã dựng** —
+chọn file MP4 là đẩy thẳng lên `docs/assets/video/intro.mp4` qua GitHub contents API
+(không cần máy tính, không cần Issue). Giới hạn: chặn ở **40 MB** trong JS vì API GitHub
+nhận ~100 MB còn base64 phình 1/3. Video **không nén được trên máy** (trình duyệt không
+mã hoá lại H.264), nên phải chặn trước chứ không nén như ảnh.
+
+Phía game (`docs/game/play.html`): `noiVideoIntro()` gán `src` rồi **chỉ hiện khối video
+khi có sự kiện `loadedmetadata`**; `error` thì ẩn lại. Nhờ vậy chưa úp video thì màn giới
+thiệu vẫn y như cũ, không có khung đen rỗng. `dongIntro()` gọi `v.pause()` để tiếng không
+chạy tiếp. `play()` có `.catch()` vì Safari chặn autoplay có âm thanh.
+
 **Bẫy quan trọng — ảnh trailer vs ảnh game**: ảnh trailer đặt vào `xuong-inbox/` sẽ bị
 bộ nhận diện coi là asset game và có thể **ghi đè ảnh đang dùng trong game**. Đã chặn:
 `_la_anh_trailer()` trong `xuong_tu_dong.py` nhận diện mã `v01`…`v14` **trước** khi gọi AI,

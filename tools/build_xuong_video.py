@@ -28,6 +28,7 @@ REPO = "huuducbkb/game-hong-duc-lam"
 OUT = os.path.join(ROOT, "docs", "xuong-video", "index.html")
 UPLOAD_URL = f"https://github.com/{REPO}/upload/main/docs/assets/video"
 XEM_TRUOC = os.path.join(ROOT, "docs", "xuong-video", "xem-truoc.mp4")
+INTRO_MP4 = os.path.join(ROOT, "docs", "assets", "video", "intro.mp4")
 
 
 def _o_gui(c: dict) -> str:
@@ -200,6 +201,42 @@ def _xem_truoc() -> str:
 """
 
 
+def _up_video() -> str:
+    """Khối úp video intro đã dựng sẵn (từ CapCut) thẳng lên GitHub."""
+    co = os.path.exists(INTRO_MP4)
+    ten = "intro.mp4"
+    if co:
+        mb = os.path.getsize(INTRO_MP4) / 1024 / 1024
+        hien_tai = (f'<p class="mota">Đã có <b>{ten}</b> — '
+                    f'<b>{mb:.1f} MB</b>. Video này đang phát ở đầu game.</p>'
+                    f'<video controls playsinline preload="metadata" width="100%" '
+                    f'style="border-radius:10px;border:1px solid var(--line);display:block;'
+                    f'background:#000;max-width:340px">'
+                    f'<source src="../assets/video/{ten}" type="video/mp4"></video>')
+    else:
+        hien_tai = ('<p class="mota">Chưa có video. Úp lên là game tự phát ở màn giới thiệu.</p>')
+    return f"""
+<h2>🎬 Video intro đã dựng</h2>
+<div class="card">
+  {hien_tai}
+  <p class="mota">Xuất từ CapCut: <b>MP4 · H.264 · 1080×1920 · dưới 15 MB</b>.
+  Không cần đặt tên, không cần mở Issue — chọn file là xong.</p>
+  <div class="gui-o" data-file="{ten}">
+    <label class="gui-dan" tabindex="0" title="Bấm để chọn video trong thư viện">
+      <input class="gui-file" type="file" accept="video/mp4,video/*" id="intro-file">
+      <span class="gui-nhac">🎬 Bấm vào đây để chọn video</span>
+      <video class="gui-xem" alt="" hidden muted playsinline
+             style="width:100%;border-radius:8px"></video>
+    </label>
+    <div class="gui-hang">
+      <button class="gui-gui" type="button" id="intro-gui" disabled>📤 Gửi video</button>
+    </div>
+    <div class="gui-tt" id="intro-tt" hidden></div>
+  </div>
+</div>
+"""
+
+
 def build() -> str:
     tong = len(V.CANH_VIDEO)
     co = V.so_da_co()
@@ -219,7 +256,8 @@ def build() -> str:
             .replace("__KHOI__", khoi)
             .replace("__CANH_JSON__", _canh_json())
             .replace("__XEM_TRUOC__", _xem_truoc())
-            .replace("__UPLOAD__", UPLOAD_URL))
+            .replace("__UPLOAD__", UPLOAD_URL)
+            .replace("__UP_VIDEO__", _up_video()))
 
 
 TEMPLATE = """<!DOCTYPE html>
@@ -329,6 +367,8 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
 <b>__TONG__</b> cảnh · đã có <b>__DA_CO__</b>, còn thiếu <b>__CON__</b>.</p>
 
 __XEM_TRUOC__
+
+__UP_VIDEO__
 
 <h2>⚡ Cách làm</h2>
 <div class="card">
@@ -557,7 +597,9 @@ async function ghLaySha(duong){
    trạng thái đã có/còn thiếu. */
 async function ghPutAnh(duong, b64){
   const t=ghToken();
-  const body={message:`Xưởng video: thêm ảnh ${duong.split('/').slice(-2)[0]}`,
+  const laVideo=['.mp4','.webm','.mov'].some(d=>duong.toLowerCase().endsWith(d));
+  const body={message:laVideo?`Xưởng video: cập nhật ${duong.split('/').pop()}`
+                            :`Xưởng video: thêm ảnh ${duong.split('/').slice(-2)[0]}`,
               content:b64, branch:GH_BRANCH};
   const sha=await ghLaySha(duong);
   if(sha) body.sha=sha;
@@ -573,6 +615,55 @@ async function ghPutAnh(duong, b64){
   }
   return true;
 }
+
+/* ================= Úp video intro đã dựng ================= */
+/* Video KHÔNG nén trên máy được (trình duyệt không mã hoá lại H.264), nên phải
+   chặn file quá lớn trước khi gửi: GitHub contents API nhận tối đa ~100 MB, mà
+   base64 làm phình thêm 1/3 → chặn ở 40 MB để còn an toàn. */
+const INTRO_MAX_MB = 40;
+
+(function noiOFilm(){
+  const inp = document.getElementById('intro-file');
+  if(!inp) return;
+  const nut = document.getElementById('intro-gui');
+  const tt  = document.getElementById('intro-tt');
+  const xem = inp.closest('.gui-o').querySelector('.gui-xem');
+  let file = null;
+
+  inp.addEventListener('change', ()=>{
+    file = inp.files && inp.files[0] || null;
+    if(!file) return;
+    const mb = file.size/1024/1024;
+    if(mb > INTRO_MAX_MB){
+      file = null; nut.disabled = true; xem.hidden = true;
+      ghHienTT(tt,'warn',`⚠️ Video ${mb.toFixed(1)} MB — quá lớn. Xuất lại ở 8–10 Mbps cho dưới 15 MB.`);
+      return;
+    }
+    xem.src = URL.createObjectURL(file);
+    xem.hidden = false;
+    nut.disabled = false;
+    ghHienTT(tt,'muted',`Đã chọn: <b>${file.name}</b> — ${mb.toFixed(1)} MB. Bấm Gửi video.`);
+  });
+
+  nut.addEventListener('click', async ()=>{
+    if(!file) return;
+    if(!ghToken()){
+      ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục <b>🔑 Kết nối GitHub</b> rồi thử lại.');
+      return;
+    }
+    nut.disabled = true;
+    ghHienTT(tt,'muted','Đang đưa video lên GitHub… video lớn nên có thể mất 1–2 phút, đừng đóng tab.');
+    try{
+      const b64 = await blobB64(file);
+      await ghPutAnh(VIDEO_DIR + 'intro.mp4', b64);
+      ghHienTT(tt,'ok','✅ Đã gửi <b>intro.mp4</b>. GitHub Pages dựng lại trong ~1 phút, '
+                      + 'sau đó mở game là video tự phát ở màn giới thiệu.');
+    }catch(e){
+      ghHienTT(tt,'warn',`⚠️ Gửi lỗi: ${e}`);
+      nut.disabled = false;
+    }
+  });
+})();
 
 /* ================= Ô chọn ảnh dưới mỗi cảnh ================= */
 let O_DANG_CHON=null;
