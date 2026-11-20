@@ -68,7 +68,8 @@ body{
 .char-head{display:flex;align-items:center;gap:11px;margin-bottom:10px}
 .char-avatar{position:relative;width:50px;height:50px;flex:0 0 auto}
 .char-avatar .av{width:100%;height:100%;border-radius:50%;object-fit:cover;background:#d9cfb6;display:block}
-.char-avatar .rg{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px)}
+.char-avatar .rg{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);pointer-events:none}
+.char-avatar label{position:absolute;inset:0;cursor:pointer;z-index:2;border-radius:50%}
 .char-head .nm{font-size:14.5px;font-weight:600;line-height:1.2}
 .char-head .rl{font-size:10.5px;color:var(--seal);letter-spacing:1px;margin-top:1px}
 .seal-mini{width:22px;height:22px;margin-left:auto;background:url("../assets/ui/seal.png") center/contain no-repeat;opacity:.85;flex:0 0 auto}
@@ -640,6 +641,7 @@ body{
           <img class="av" id="charAv" alt=""
                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' fill='%23d9cfb6'/><text x='60' y='74' font-size='48' text-anchor='middle' fill='%238a7d63'>?</text></svg>">
           <img class="rg" src="../assets/ui/avatar-ring.png" alt="">
+          <label title="Đổi ảnh đại diện" aria-label="Đổi ảnh đại diện"><input type="file" accept="image/*" id="avatarInput3" hidden></label>
         </div>
         <div>
           <div class="nm" id="dTen">—</div>
@@ -647,6 +649,7 @@ body{
         </div>
         <div class="seal-mini"></div>
       </div>
+      <div class="note" id="loiAvatar" style="display:none;color:#a33;margin:-4px 0 8px"></div>
       <div class="dstat">
         <div class="top"><span class="k">Tu vi</span><span class="v" id="dTuVi">—</span></div>
         <div class="dbar"><i id="bTuVi" style="width:0%"></i></div>
@@ -1123,7 +1126,19 @@ function datAvatar(src) {
   if (a) a.src = src;
   if (c) c.src = src;
 }
-function luuAvatar(src) { try { localStorage.setItem(KHOA_AVATAR, src); } catch (e) {} }
+// Tra ve true neu luu duoc; false thi bao cho nguoi dung biet, khong im lang.
+function luuAvatar(src) {
+  try { localStorage.setItem(KHOA_AVATAR, src); return true; }
+  catch (e) {
+    const o = $("#loiAvatar");
+    if (o) {
+      o.textContent = "Ảnh quá lớn, trình duyệt không lưu được. Hãy chọn ảnh nhỏ hơn " +
+        "(hoặc ảnh chụp màn hình thay vì ảnh gốc). Ảnh vẫn hiện trong phiên này nhưng sẽ mất khi tải lại.";
+      o.style.display = "block";
+    }
+    return false;
+  }
+}
 function napAvatar() { try { const s = localStorage.getItem(KHOA_AVATAR); if (s) datAvatar(s); } catch (e) {} }
 function xuLyAvatar(f) {
   if (!f) return;
@@ -1132,13 +1147,22 @@ function xuLyAvatar(f) {
     const im = new Image();
     im.onload = () => {
       const max = 256, k = Math.min(1, max / Math.max(im.width, im.height));
+      // Thu nho + nen JPEG de vua localStorage (iPhone chup ra anh vai MB).
       const w = Math.round(im.width * k), h = Math.round(im.height * k);
       const cv = document.createElement("canvas");
       cv.width = w; cv.height = h;
       cv.getContext("2d").drawImage(im, 0, 0, w, h);
       let data;
-      try { data = cv.toDataURL("image/jpeg", 0.85); } catch (e) { data = r.result; }
-      datAvatar(data); luuAvatar(data);
+      try { data = cv.toDataURL("image/jpeg", 0.82); } catch (e) { data = r.result; }
+      // Neu van qua lon thi ha chat luong dan, tranh truong hop khong luu duoc.
+      let thu = 0.82;
+      while (data.length > 400 * 1024 && thu > 0.4) {
+        thu -= 0.12;
+        try { data = cv.toDataURL("image/jpeg", thu); } catch (e) { break; }
+      }
+      datAvatar(data);
+      const o = $("#loiAvatar"); if (o) o.style.display = "none";
+      luuAvatar(data);
     };
     im.onerror = () => { datAvatar(r.result); luuAvatar(r.result); };
     im.src = r.result;
@@ -1148,6 +1172,7 @@ function xuLyAvatar(f) {
 const AVATAR_MAC_DINH = ($("#avatarImg") || {}).src || "";
 gan("#avatarInput", "onchange", e => { const f = e.target.files[0]; if (f) xuLyAvatar(f); e.target.value = ""; });
 gan("#avatarInput2", "onchange", e => { const f = e.target.files[0]; if (f) xuLyAvatar(f); e.target.value = ""; });
+gan("#avatarInput3", "onchange", e => { const f = e.target.files[0]; if (f) xuLyAvatar(f); e.target.value = ""; });
 gan("#doiAvatar", "onclick", () => { const i = $("#avatarInput2") || $("#avatarInput"); if (i) i.click(); });
 gan("#xoaAvatar", "onclick", () => {
   try { localStorage.removeItem(KHOA_AVATAR); } catch (e) {}

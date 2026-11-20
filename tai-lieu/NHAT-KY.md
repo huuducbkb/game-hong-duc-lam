@@ -10,6 +10,59 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 · Sửa lỗi không up được ảnh đại diện
+
+**Người dùng báo:** "chổ avatar người chơi tôi up 1 tấm ảnh vô không đc".
+
+**Tái hiện được (WebKit = Safari, khổ iPhone 13 / iPad Pro, cả bản live):** đúng là hỏng,
+và hỏng vì **ba** nguyên nhân khác nhau, không phải một.
+
+**Nguyên nhân 1 — ảnh vòng trang trí đục che kín avatar (nặng nhất).**
+`assets/ui/avatar-ring.png` là PNG có kênh alpha nhưng **alpha = 255 ở mọi pixel**
+(đo: 0% pixel trong suốt trên 512×512). Ảnh này đè lên avatar qua `.ring`/`.rg`
+(`position:absolute;inset:-8px`), nên dù ảnh có up thành công thì người dùng
+**vẫn chỉ thấy tờ giấy kem** — tưởng là up không được.
+Sửa: tách nền theo độ sáng thật của ảnh (giấy kem ~232 → alpha 0, mực ~22 → alpha 255),
+cả hai bản `assets/ui/` và `docs/assets/ui/`. Đo lại: **85,6% trong suốt**, alpha giữa = 0,
+alpha ở vòng mực (bán kính 176/512) = 189.
+
+**Nguyên nhân 2 — avatar trong tab Nhân vật không bấm được.**
+`.char-avatar` chỉ có 2 thẻ `<img>`, **không** có `label`/`input`/`onclick` (đo:
+`coLabelBenTrong: false`, `coNutBam: "KHONG co onclick"`, `cursor: auto`).
+Chạm vào → không phản ứng gì. Trước đây chỉ up được qua avatar nhỏ trên thanh trên
+hoặc nút trong hộp Cài đặt, chỗ dễ tìm nhất thì lại chết.
+Sửa: thêm `<label>` bọc `<input type="file" id="avatarInput3">`, thêm CSS
+`.char-avatar label{position:absolute;inset:0;...}` và `pointer-events:none` cho `.rg`
+(để vòng không chặn cú chạm). Đo lại: chạm vào avatar tab Nhân vật → **mở được** hộp chọn ảnh.
+
+**Nguyên nhân 3 — lưu thất bại thì im lặng.**
+`luuAvatar()` bọc `try{}catch(e){}` rỗng. Khi localStorage đầy (`QuotaExceededError`),
+ảnh hiện trong phiên nhưng **mất khi tải lại**, người dùng không biết vì sao.
+Sửa: `luuAvatar()` trả `true/false`, hiện dòng chữ đỏ ở `#loiAvatar`; thêm vòng lặp
+hạ chất lượng JPEG (0,82 → 0,4) khi ảnh > 400KB để giảm khả năng chạm trần.
+Đo: làm đầy localStorage rồi up ảnh nhiễu → ô lỗi hiện `display:block` kèm câu giải thích.
+
+**Kiểm chứng (WebKit, giả lập iPhone 13 `390×664` + iPad Pro 11, cảm ứng thật):**
+- Trước khi sửa: chạm avatar tab Nhân vật → **không mở** hộp chọn ảnh.
+- Sau khi sửa: chạm → mở; chọn ảnh → `#charAv` và `#avatarImg` cùng đổi sang
+  `data:image/jpeg`, ảnh 256×192, lưu localStorage 1KB.
+- Ảnh chụp `.char-head` trước/sau khác nhau thật (`ImageChops.difference` bbox
+  `(2,3,152,153)`, trước đó là `None` — tức trước khi sửa ảnh **không hề đổi**).
+- Đo màu trong ảnh chụp: tâm avatar = màu ảnh gốc 100%, mực đen chỉ ở bán kính ≥ 28px
+  (mép ngoài) → vòng ôm quanh chứ không che.
+- Nút "Xoá ảnh" vẫn đúng: cả hai chỗ về lại ảnh mặc định, xoá khỏi localStorage.
+- Test: engine **124 đạt / 0 hỏng**, API **161 đạt / 0 hỏng**.
+
+**File đã đổi:** `assets/ui/avatar-ring.png`, `docs/assets/ui/avatar-ring.png`,
+`docs/game/play.html`, `game/play.html`.
+
+**Lưu ý cho sau:** `game/play.html` (bản chạy bằng `game_server.py`) là bản **cũ hơn**
+`docs/game/play.html` — nó **không có** hộp Cài đặt key AI, nên ô `#loiAvatar` phải đặt
+ở chỗ khác (dưới `.char-head`). Đừng giả định hai file giống nhau.
+
+**Còn để ngỏ:** `assets/ui/seal.png` cũng đục 100%, nhưng nó hiện thành khối vuông
+có nền giấy nên không che gì — chưa sửa, chỉ ghi lại.
+
 ## 2026-11-20 (tiếp) · Mỗi xuất thân có chỉ số khởi đầu riêng
 
 **Người dùng yêu cầu:** sau khi xem hướng C, thấy ghi chú "hai xuất thân vẫn cho chỉ số

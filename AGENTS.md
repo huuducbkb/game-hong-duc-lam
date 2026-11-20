@@ -29,10 +29,18 @@ Tóm tắt 5 bước: **① PROMPT** (viết prompt gửi AI ngoài) → **② N
 → **③ ĐO** (Pillow: độ dày viền, ruột sáng/tối, vị trí ấn son) → **④ GHÉP** (`border-image`
 + alpha key PNG) → **⑤ KIỂM CHỨNG** (chụp trình duyệt + bản đồ mật độ mực).
 
-Ba điều không bao giờ quên:
+Bốn điều không bao giờ quên:
 1. **Không** kéo giãn ảnh khung bằng `background-size:100% 100%` → méo nét vẽ.
 2. **Không** viết số CSS bằng cách đoán → đo bằng Pillow trước, đo lại sau khi resize.
 3. **Luôn** kiểm chứng bằng ảnh chụp trình duyệt, không tin CSS "trông có vẻ đúng".
+4. **PNG đè lên ảnh khác phải kiểm alpha thật**, đừng tin đuôi `.png`.
+   File có kênh alpha vẫn có thể **đục 100%** (alpha = 255 khắp nơi) và sẽ che kín
+   thứ nằm dưới. Đo trước khi dùng: `sum(1 for v in im.getchannel("A").get_flattened_data() if v < 30)`
+   — nếu ra 0 thì ảnh đang đục, phải tách nền. Đây đúng là lỗi từng làm người dùng
+   tưởng "up ảnh đại diện không được" (2026-11-21): vòng `avatar-ring.png` đục che mất ảnh.
+
+   Nền giấy trong bộ ảnh này là **kem ~232**, không phải trắng 255 — nên đừng dùng
+   ngưỡng trắng cứng. Công thức đúng: `alpha = (225 - do_sang) / (225 - 60)`, kẹp 0..255.
 
 ## Chạy máy chủ
 
