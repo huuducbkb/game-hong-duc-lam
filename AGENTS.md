@@ -506,11 +506,25 @@ quota tạm thời — free tier không cấp quyền sinh ảnh), `gemini-3.8-f
 `geminikey`…`geminikey3` đều vậy. Muốn tự động sinh ảnh phải bật billing. Vì thế ảnh hiện do
 người dùng tạo bằng công cụ ngoài rồi úp qua Xưởng.
 
-**Úp video intro vào game**: trang Xưởng video có khối **🎬 Video intro đã dựng** —
-chọn file MP4 là đẩy thẳng lên `docs/assets/video/intro.mp4` qua GitHub contents API
-(không cần máy tính, không cần Issue). Giới hạn: chặn ở **40 MB** trong JS vì API GitHub
-nhận ~100 MB còn base64 phình 1/3. Video **không nén được trên máy** (trình duyệt không
-mã hoá lại H.264), nên phải chặn trước chứ không nén như ảnh.
+**Úp video intro vào game** — hai đường, tuỳ dung lượng. Ngưỡng dưới đây **đo thật trên
+chính repo này**, không lấy từ tài liệu GitHub (tài liệu ghi 100 MB nhưng sai):
+
+| Dung lượng | Đường đi | Kết quả đo |
+|---|---|---|
+| ≤ 30 MB | nút trên trang Xưởng → contents API | 13.6 MB ✅, 29.1 MB ✅ (7s) |
+| > 30 MB | kéo thả vào GitHub Release → `nen-video.yml` | 42.5 MB ❌ 422 "too large", 61.6 MB ❌ 504 timeout qua API; qua Release ✅ 3s |
+
+`INTRO_MAX_MB = 30` trong `build_xuong_video.py`. Video **không nén được trên máy**
+(trình duyệt không mã hoá lại H.264) nên trang phải chặn, không nén như ảnh.
+
+**Đường cho video lớn**: `nen-video.yml` chạy khi có Release mới → `gh release download`
+→ `tools/nen_video.py` (ffmpeg 2 lượt, mục tiêu 14 MB, tự hạ 720p nếu bitrate < 1.2 Mbps)
+→ commit `docs/assets/video/intro.mp4` → deploy. Đo thật: **61.6 MB → 13.2 MB**, giữ
+1080×1920, tiếng còn nguyên (−24 dB), 2m34s.
+
+`uploads.github.com` (Releases API) **không trả header CORS** nên trình duyệt không gọi
+trực tiếp được — đã kiểm tra bằng preflight OPTIONS. Vì thế video lớn phải qua CI, không
+thể bằng JS trên trang.
 
 Phía game (`docs/game/play.html`): `noiVideoIntro()` gán `src` rồi **chỉ hiện khối video
 khi có sự kiện `loadedmetadata`**; `error` thì ẩn lại. Nhờ vậy chưa úp video thì màn giới

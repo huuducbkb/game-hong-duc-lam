@@ -53,8 +53,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Cài Pillow (nén ảnh)
-        run: pip install --quiet Pillow
+      - name: Cài Pillow (nén ảnh) và ffmpeg (nén video)
+        run: pip install --quiet Pillow imageio-ffmpeg
 
       - name: Thu thập nội dung Issue (nếu có)
         if: github.event_name == 'issues' || github.event_name == 'issue_comment'

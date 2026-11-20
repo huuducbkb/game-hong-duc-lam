@@ -1,0 +1,115 @@
+name: Nén video intro
+
+# Video xuất từ CapCut thường 40–90 MB. Trình duyệt không đẩy nổi cỡ đó qua
+# contents API (đo thật: 29 MB qua, 42 MB → 422 "too large", 61 MB → 504), và
+# uploads.github.com không trả CORS nên trang web không gọi trực tiếp được.
+# Đường còn lại: người dùng kéo thả file vào một Release (cho tới 2 GB), workflow
+# này tải về bằng token, nén xuống ~14 MB rồi commit — git push không bị trần đó.
+on:
+  release:
+    types: [published, edited]
+  workflow_dispatch:
+    inputs:
+      muc_tieu_mb:
+        description: "Dung lượng mục tiêu (MB)"
+        default: "14"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: nen-video
+  cancel-in-progress: false
+
+jobs:
+  nen:
+    runs-on: ubuntu-latest
+    outputs:
+      da_commit: ${{ steps.commit.outputs.da_commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cài ffmpeg
+        run: pip install --quiet imageio-ffmpeg
+
+      - name: Tải video từ Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/vao
+          # Release mới nhất — người dùng cứ tạo release mới cho mỗi bản video,
+          # không cần xoá release cũ (tag trùng sẽ bị GitHub từ chối).
+          gh release download \
+            --repo "${{ github.repository }}" \
+            --pattern '*.mp4' --pattern '*.mov' --pattern '*.webm' \
+            --dir /tmp/vao --clobber
+          ls -la /tmp/vao
+          FILE=$(find /tmp/vao -type f \( -name '*.mp4' -o -name '*.mov' -o -name '*.webm' \) | head -1)
+          if [ -z "$FILE" ]; then
+            echo "::error::Release mới nhất không có file video nào (.mp4/.mov/.webm)."
+            exit 1
+          fi
+          echo "FILE=$FILE" >> "$GITHUB_ENV"
+
+      - name: Nén
+        run: |
+          python3 tools/nen_video.py "$FILE" docs/assets/video/intro.mp4 \
+            --muc-tieu-mb "${{ github.event.inputs.muc_tieu_mb || 14 }}"
+          ls -la docs/assets/video/intro.mp4
+
+      - name: Ảnh bìa cho video (nếu chưa có)
+        run: |
+          FF=$(python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")
+          if [ ! -f docs/assets/video/intro-poster.jpg ]; then
+            "$FF" -y -ss 2 -i docs/assets/video/intro.mp4 -frames:v 1 \
+              -vf "scale=720:-2" -q:v 4 docs/assets/video/intro-poster.jpg
+            echo "đã tạo ảnh bìa"
+          fi
+
+      - name: Dựng lại Xưởng video
+        run: python3 tools/build_xuong_video.py
+
+      - name: Commit + đẩy lên main
+        id: commit
+        run: |
+          git config user.name "xuong-video-bot"
+          git config user.email "xuong-video-bot@users.noreply.github.com"
+          git add -A docs
+          if git diff --cached --quiet; then
+            echo "Không có thay đổi."
+          else
+            git commit -q -m "Video intro: nén và đưa vào game [skip ci]"
+            git push origin HEAD:main
+            echo "da_commit=1" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: nen
+    if: needs.nen.outputs.da_commit == '1'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deployment
+        uses: actions/deploy-pages@v4
