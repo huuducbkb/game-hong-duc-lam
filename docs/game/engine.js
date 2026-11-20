@@ -106,6 +106,32 @@
     return null;
   }
 
+  // Chỉ số khởi đầu dùng chung khi nhóm không khai `chi_so_dau` (vd nhóm ẩn).
+  const CHI_SO_DAU_MAC_DINH = {
+    bac: 3,
+    tu_vi: { hien: 12, max: 100 },
+    chi_so: {
+      sinh_luc: { hien: 30, max: 30 },
+      linh_luc: { hien: 10, max: 10 },
+      than_niem: 8,
+      tan_cong: 5,
+      phong_thu: 3,
+      chi_mang: 2,
+      bao_kich: 150,
+      xuyen_giap: 0,
+      toc_do: 10,
+    },
+    ky_nang: ["Hô hấp pháp", "Nhận biết linh khí"],
+  };
+
+  const _chep = (o) => JSON.parse(JSON.stringify(o));
+
+  // Chỉ số khởi đầu riêng của từng xuất thân (khai ở `chi_so_dau` trong JSON).
+  function chi_so_dau_cua(nhom) {
+    const n = load_xuat_than().nhom.find((x) => x.ma === nhom);
+    return (n && n.chi_so_dau) || CHI_SO_DAU_MAC_DINH;
+  }
+
   function trang_thai_moi(ten_nhan_vat, xuat_than, nhom) {
     ten_nhan_vat = ten_nhan_vat || "";
     xuat_than = xuat_than || "";
@@ -113,30 +139,22 @@
     if (!xuat_than.trim()) xuat_than = "tán tu vô danh";
     const hop_le = new Set(ds_xuat_than().map((n) => n.ma));
     if (!hop_le.has(nhom)) nhom = nhan_dien_xuat_than(xuat_than);
+    const dau = chi_so_dau_cua(nhom);
     return {
       ten_nhan_vat: ten_nhan_vat.trim() || "Vô Danh",
       xuat_than: xuat_than.trim(),
       nhom_xuat_than: nhom,
       canh_gioi: CANH_GIOI[0],
-      tu_vi: { hien: 12, max: 100 },
-      chi_so: {
-        sinh_luc: { hien: 30, max: 30 },
-        linh_luc: { hien: 10, max: 10 },
-        than_niem: 8,
-        tan_cong: 5,
-        phong_thu: 3,
-        chi_mang: 2,
-        bao_kich: 150,
-        xuyen_giap: 0,
-        toc_do: 10,
+      tu_vi: _chep(dau.tu_vi),
+      chi_so: Object.assign(_chep(dau.chi_so), {
         tan_cong_phep: _zero_he(),
         khang_phep: _zero_he(),
-      },
-      bac: 3,
+      }),
+      bac: dau.bac,
       tui_do: [
-        { ten: "Bạc vụn", so: 3, mo_ta: "Tiền tệ nơi phàm trần." },
+        { ten: "Bạc vụn", so: dau.bac, mo_ta: "Tiền tệ nơi phàm trần." },
       ],
-      ky_nang: ["Hô hấp pháp", "Nhận biết linh khí"],
+      ky_nang: dau.ky_nang.slice(),
       co_su_kien: [],
       npc: {},
       nhat_ky: [],
@@ -575,7 +593,7 @@
     HE_PHAP, CANH_GIOI, MUC_HAO_CAM,
     muc_hao_cam, _zero_he,
     napXuatThan, napChuong,
-    load_xuat_than, ds_xuat_than, nhan_dien_xuat_than, doan_dau_cua,
+    load_xuat_than, ds_xuat_than, nhan_dien_xuat_than, doan_dau_cua, chi_so_dau_cua,
     trang_thai_moi, load_chuong,
     bat_dau, goi_y_hien_tai, chon, hanh_dong_tu_do,
     luu, nap, ds_luu, xoa_luu, tom_tat,

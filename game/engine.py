@@ -100,6 +100,36 @@ def doan_dau_cua(nhom: str) -> str | None:
     return None
 
 
+# Chỉ số khởi đầu dùng chung khi nhóm không khai `chi_so_dau` (vd nhóm ẩn).
+CHI_SO_DAU_MAC_DINH = {
+    "bac": 3,
+    "tu_vi": {"hien": 12, "max": 100},
+    "chi_so": {
+        "sinh_luc": {"hien": 30, "max": 30},
+        "linh_luc": {"hien": 10, "max": 10},
+        "than_niem": 8,
+        "tan_cong": 5,
+        "phong_thu": 3,
+        "chi_mang": 2,
+        "bao_kich": 150,
+        "xuyen_giap": 0,
+        "toc_do": 10,
+    },
+    "ky_nang": ["Hô hấp pháp", "Nhận biết linh khí"],
+}
+
+
+def chi_so_dau_cua(nhom: str) -> dict:
+    """Chỉ số khởi đầu riêng của từng xuất thân (khai ở `chi_so_dau` trong JSON).
+
+    Thiếu thì dùng bảng mặc định — nhóm ẩn không khai, và dữ liệu cũ vẫn chạy.
+    """
+    for n in load_xuat_than()["nhom"]:
+        if n["ma"] == nhom and n.get("chi_so_dau"):
+            return n["chi_so_dau"]
+    return CHI_SO_DAU_MAC_DINH
+
+
 def trang_thai_moi(ten_nhan_vat: str, xuat_than: str = "", nhom: str = "") -> dict:
     """Tạo trạng thái nhân vật mới ở Luyện Khí tầng 1.
 
@@ -111,30 +141,24 @@ def trang_thai_moi(ten_nhan_vat: str, xuat_than: str = "", nhom: str = "") -> di
     hop_le = {n["ma"] for n in ds_xuat_than()}
     if nhom not in hop_le:
         nhom = nhan_dien_xuat_than(xuat_than)
+    dau = chi_so_dau_cua(nhom)
     return {
         "ten_nhan_vat": ten_nhan_vat.strip() or "Vô Danh",
         "xuat_than": xuat_than.strip(),
         "nhom_xuat_than": nhom,
         "canh_gioi": CANH_GIOI[0],
-        "tu_vi": {"hien": 12, "max": 100},
+        "tu_vi": dict(dau["tu_vi"]),
         "chi_so": {
-            "sinh_luc": {"hien": 30, "max": 30},
-            "linh_luc": {"hien": 10, "max": 10},
-            "than_niem": 8,
-            "tan_cong": 5,
-            "phong_thu": 3,
-            "chi_mang": 2,
-            "bao_kich": 150,
-            "xuyen_giap": 0,
-            "toc_do": 10,
+            **{k: dict(v) if isinstance(v, dict) else v
+               for k, v in dau["chi_so"].items()},
             "tan_cong_phep": _zero_he(),
             "khang_phep": _zero_he(),
         },
-        "bac": 3,
+        "bac": dau["bac"],
         "tui_do": [
-            {"ten": "Bạc vụn", "so": 3, "mo_ta": "Tiền tệ nơi phàm trần."},
+            {"ten": "Bạc vụn", "so": dau["bac"], "mo_ta": "Tiền tệ nơi phàm trần."},
         ],
-        "ky_nang": ["Hô hấp pháp", "Nhận biết linh khí"],
+        "ky_nang": list(dau["ky_nang"]),
         "co_su_kien": [],
         "npc": {},
         "nhat_ky": [],

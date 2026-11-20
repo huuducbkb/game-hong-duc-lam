@@ -333,7 +333,7 @@ body{
 .setup .card{max-height:92vh;overflow-y:auto}
 /* thẻ xuất thân: ảnh nền + tên lớn, xếp một cột cho dễ chạm trên điện thoại */
 .xt-grid{display:grid;gap:10px;margin-top:7px}
-.xt-grid .xt-the{position:relative;display:block;width:100%;height:126px;padding:0;overflow:hidden;
+.xt-grid .xt-the{position:relative;display:block;width:100%;height:148px;padding:0;overflow:hidden;
   font-family:var(--serif);text-align:left;cursor:pointer;
   border:1px solid var(--edge);border-radius:13px;background:#cfc4a9;
   transition:box-shadow .18s ease,transform .12s ease}
@@ -346,6 +346,10 @@ body{
   color:#fdf9ef;text-shadow:0 2px 9px rgba(0,0,0,.9)}
 .xt-grid .xt-mo{display:block;margin-top:5px;font-size:11.5px;line-height:1.45;
   color:rgba(253,249,239,.84);text-shadow:0 1px 7px rgba(0,0,0,.95)}
+/* dải chỉ số khởi đầu — số lấy từ chi_so_dau của API, không bịa */
+.xt-grid .xt-so{display:flex;flex-wrap:wrap;gap:4px 9px;margin-top:6px}
+.xt-grid .xt-so i{font-style:normal;font-size:10.5px;letter-spacing:.2px;
+  color:rgba(253,249,239,.92);background:rgba(19,15,10,.42);border-radius:5px;padding:1px 6px}
 .xt-grid .xt-dau{position:absolute;top:10px;right:10px;z-index:2;width:25px;height:25px;border-radius:50%;
   background:var(--seal);color:#fdf9ef;font-size:13px;line-height:25px;text-align:center;
   opacity:0;transform:scale(.6);transition:opacity .15s ease,transform .15s ease}
@@ -1020,6 +1024,24 @@ async function anhTheXuatThan(nhom) {
   return anh;
 }
 
+// Dải chỉ số khởi đầu — số do API trả, không viết cứng trong giao diện.
+function daiChiSo(d) {
+  if (!d) return "";
+  const cs = d.chi_so || {};
+  const muc = [
+    ["Sinh lực", cs.sinh_luc && cs.sinh_luc.max],
+    ["Tu vi", d.tu_vi && d.tu_vi.hien],
+    ["Công", cs.tan_cong],
+    ["Thủ", cs.phong_thu],
+    ["Tốc độ", cs.toc_do],
+    ["Bạc", d.bac],
+  ];
+  return '<span class="xt-so">' +
+    muc.filter(([, v]) => v !== undefined && v !== null)
+       .map(([k, v]) => "<i>" + k + " " + v + "</i>").join("") +
+    "</span>";
+}
+
 async function napXuatThan() {
   try {
     const r = await goi("/api/xuat_than");
@@ -1035,7 +1057,8 @@ async function napXuatThan() {
       b.innerHTML =
         '<span class="xt-nen"' + (anh[n.ma] ? ' style="background-image:url(\'' + anh[n.ma] + '\')"' : "") + '></span>' +
         '<span class="xt-chu"><span class="xt-ten">' + esc(n.ten) + "</span>" +
-        (n.mo_ta ? '<span class="xt-mo">' + esc(n.mo_ta) + "</span>" : "") + "</span>" +
+        (n.mo_ta ? '<span class="xt-mo">' + esc(n.mo_ta) + "</span>" : "") +
+        daiChiSo(n.chi_so_dau) + "</span>" +
         '<span class="xt-dau">\u2713</span>';
       b.onclick = () => {
         nhomChon = (nhomChon === n.ma) ? "" : n.ma;

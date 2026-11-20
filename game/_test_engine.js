@@ -53,11 +53,54 @@ check("doan_dau mon_phai", Engine.doan_dau_cua("mon_phai"), "c1_p01");
 
 console.log("\n=== B. Trạng thái mới ===");
 let st = mk("A", "tan_tu");
-check("bạc khởi đầu 3", st.bac, 3);
-check("sinh lực 30/30", [st.chi_so.sinh_luc.hien, st.chi_so.sinh_luc.max], [30, 30]);
-check("tu vi 12/100", [st.tu_vi.hien, st.tu_vi.max], [12, 100]);
+check("tán tu: bạc khởi đầu 3", st.bac, 3);
+check("tán tu: sinh lực 26/26", [st.chi_so.sinh_luc.hien, st.chi_so.sinh_luc.max], [26, 26]);
+check("tán tu: tu vi 12/100", [st.tu_vi.hien, st.tu_vi.max], [12, 100]);
+check("tán tu: tấn công 3", st.chi_so.tan_cong, 3);
+check("tán tu: bạc vụn trong túi khớp bạc", st.tui_do[0].so, 3);
+
+// --- chỉ số khởi đầu phải KHÁC nhau giữa hai xuất thân ---
+const mp = mk("MP", "mon_phai");
+check("môn phái: bạc khởi đầu 1", mp.bac, 1);
+check("môn phái: sinh lực 34/34", [mp.chi_so.sinh_luc.hien, mp.chi_so.sinh_luc.max], [34, 34]);
+check("môn phái: tu vi 10/100", [mp.tu_vi.hien, mp.tu_vi.max], [10, 100]);
+check("môn phái: tấn công 7", mp.chi_so.tan_cong, 7);
+check("môn phái: bạc vụn trong túi khớp bạc", mp.tui_do[0].so, 1);
+check("môn phái có võ công phàm nhân", mp.ky_nang.includes("Thất Huyền quyền nhập môn"), true);
+check("tán tu không có võ công", st.ky_nang.includes("Thất Huyền quyền nhập môn"), false);
+check("môn phái khỏe hơn tán tu",
+      mp.chi_so.sinh_luc.max > st.chi_so.sinh_luc.max, true);
+check("môn phái đánh mạnh hơn tán tu",
+      mp.chi_so.tan_cong > st.chi_so.tan_cong, true);
+check("tán tu tu vi khởi đầu cao hơn môn phái",
+      st.tu_vi.hien > mp.tu_vi.hien, true);
+check("chỉ số lấy từ dữ liệu, không hardcode",
+      Engine.chi_so_dau_cua("mon_phai").bac, 1);
+check("nhóm lạ dùng chỉ số mặc định",
+      Engine.chi_so_dau_cua("khong_co").bac, 3);
 check("cảnh giới Luyện Khí tầng 1", st.canh_gioi, "Luyện Khí tầng 1");
 check("nhóm lạ rơi về tan_tu", mk("B", "xyz").nhom_xuat_than, "tan_tu");
+
+// Cảnh giới cuối chương PHẢI khớp nguyên văn truyện, nếu không truyện nói một đằng
+// mà bảng chỉ số nói một nẻo. Tán tu: c1_d17 nói "Luyện Khí tầng ba".
+// Môn phái: c1_p12 nói "Luyện Khí tầng hai", c1_p19 vẫn "tầng hai".
+function diHet(nhom) {
+  const s = mk("H", nhom);
+  let r = Engine.bat_dau(s), buoc = 0, lo = {};
+  while (!r.ket_thuc && buoc < 60 && r.lua_chon && r.lua_chon.length) {
+    lo[r.doan_id] = s.canh_gioi;
+    r = Engine.chon(s, 0); buoc++;
+  }
+  lo[r.doan_id] = s.canh_gioi;
+  return { cuoi: r.doan_id, canh_gioi: s.canh_gioi, lo };
+}
+const hT = diHet("tan_tu");
+check("tán tu kết chương ở c1_d17", hT.cuoi, "c1_d17");
+check("tán tu kết Luyện Khí tầng 3 (đúng nguyên văn c1_d17)", hT.canh_gioi, "Luyện Khí tầng 3");
+const hM = diHet("mon_phai");
+check("môn phái kết chương ở c1_p19", hM.cuoi, "c1_p19");
+check("môn phái lên tầng hai ở c1_p12 (đúng nguyên văn)", hM.lo["c1_p12"], "Luyện Khí tầng 2");
+check("môn phái kết vẫn tầng hai (đúng nguyên văn c1_p19)", hM.canh_gioi, "Luyện Khí tầng 2");
 
 console.log("\n=== C. Nhánh TÁN TU — đường 1 (miếu hoang) ===");
 let o = mk("TT", "tan_tu");

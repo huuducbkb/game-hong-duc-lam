@@ -565,10 +565,16 @@ khi chọn. Chọn thẻ thì **cả nền màn hình đổi ảnh** (`.nen-chon
 **trích đoạn mở đầu thật** ở `#xtTrich` (câu đầu của `doan_dau`, cắt ~120 ký tự).
 Ô "xuất thân tự do" thu sau một link `#xtTuDo`, mở ra `#xtO`.
 
-- **Chỉ là giao diện.** Không đổi `Engine.*`, không đổi `xuat_than.json`, không đổi chỉ số.
-- **Đừng thêm chỉ số lên thẻ.** Cả 2 xuất thân đang cho chỉ số khởi đầu **giống hệt nhau**
-  (30 sinh lực · 12 tu vi · 3 bạc); hiện số riêng là **bịa**. Muốn khác nhau thì phải sửa
-  dữ liệu + engine, việc đó người dùng chưa cho phép.
+- Mỗi xuất thân **có chỉ số khởi đầu riêng** (từ 2026-11-20, người dùng đã cho phép sửa
+  dữ liệu + engine). Khai ở **`chi_so_dau`** trong `xuat_than.json`; engine đọc qua
+  `chi_so_dau_cua(nhom)`, thiếu thì rơi về `CHI_SO_DAU_MAC_DINH` (nhóm ẩn không khai).
+  `game_server.py` trả `chi_so_dau` trong `/api/xuat_than`; thẻ vẽ dải số bằng `daiChiSo()`.
+  Xem bảng số + lý do dẫn nguyên văn ở `tai-lieu/NHAT-KY.md`.
+- **Đổi số khởi đầu thì PHẢI mô phỏng lại cả 2 nhánh tới hết chương.** Tu vi khởi đầu
+  quyết định mốc lên tầng, mà nguyên văn đã chốt cảnh giới cuối chương: `c1_d17` nói tán tu
+  *"Luyện Khí tầng ba"*, `c1_p12` nói môn phái *"Luyện Khí tầng hai"* và `c1_p19` vẫn tầng
+  hai. Đặt sai (vd môn phái tu vi 8) là môn phái kết ở tầng 1 — truyện nói một đằng, bảng
+  chỉ số nói một nẻo. Test trong `game/_test_engine.js` khoá 5 mốc này.
 - Bản `game/` lấy ảnh/trích đoạn qua `fetch("/game/chapters/chuong1.json")` +
   `fetch("/game/xuat_than.json")` — **đường dẫn phải có tiền tố `/game/`** vì
   `game_server.py` phục vụ từ gốc repo, và `/api/xuat_than` **không** trả `doan_dau`.

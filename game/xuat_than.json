@@ -22,7 +22,36 @@
         "nô bộc",
         "tiện dân",
         "bần cùng"
-      ]
+      ],
+      "chi_so_dau": {
+        "ly_do": "Ăn mày ngoài chợ: không võ công, thân thể èo uột, nhưng quen chịu đói rét nên bền sức. Trong túi chỉ vài đồng bạc lẻ (nguyên văn c1_d01: “vài đồng bạc lẻ trong túi rách”).",
+        "bac": 3,
+        "tu_vi": {
+          "hien": 12,
+          "max": 100
+        },
+        "chi_so": {
+          "sinh_luc": {
+            "hien": 26,
+            "max": 26
+          },
+          "linh_luc": {
+            "hien": 10,
+            "max": 10
+          },
+          "than_niem": 8,
+          "tan_cong": 3,
+          "phong_thu": 2,
+          "chi_mang": 2,
+          "bao_kich": 150,
+          "xuyen_giap": 0,
+          "toc_do": 9
+        },
+        "ky_nang": [
+          "Hô hấp pháp",
+          "Nhận biết linh khí"
+        ]
+      }
     },
     {
       "ma": "mon_phai",
@@ -44,7 +73,36 @@
         "cống phẩm",
         "sư huynh",
         "sư môn"
-      ]
+      ],
+      "chi_so_dau": {
+        "ly_do": "Tân đệ tử Thất Huyền Môn: có võ công phàm nhân nên khỏe và đánh tốt hơn hẳn (nguyên văn c1_p01: “thân thủ hạng bét, chỉ hơn kẻ mới học võ chút đỉnh”), nhưng là kẻ mới nên cảm khí kém hơn. Trong môn không cần tiền mặt nên ít bạc hơn. Tu vi 10 để khớp nguyên văn: c1_p11 “chưa đủ phá ngưỡng”, c1_p12 lên tầng hai, c1_p19 vẫn tầng hai.",
+        "bac": 1,
+        "tu_vi": {
+          "hien": 10,
+          "max": 100
+        },
+        "chi_so": {
+          "sinh_luc": {
+            "hien": 34,
+            "max": 34
+          },
+          "linh_luc": {
+            "hien": 8,
+            "max": 8
+          },
+          "than_niem": 7,
+          "tan_cong": 7,
+          "phong_thu": 4,
+          "chi_mang": 2,
+          "bao_kich": 150,
+          "xuyen_giap": 0,
+          "toc_do": 11
+        },
+        "ky_nang": [
+          "Thất Huyền quyền nhập môn",
+          "Hô hấp pháp"
+        ]
+      }
     },
     {
       "ma": "tuyet_co",

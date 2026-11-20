@@ -10,6 +10,69 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-20 (tiếp) · Mỗi xuất thân có chỉ số khởi đầu riêng
+
+**Người dùng yêu cầu:** sau khi xem hướng C, thấy ghi chú "hai xuất thân vẫn cho chỉ số
+y hệt nhau" → nói **"có hãy làm đi"**, tức là cho phép sửa dữ liệu + engine để mỗi xuất
+thân có chỉ số riêng thật.
+
+**Đã làm:**
+
+- `xuat_than.json` (cả `docs/game/du-lieu/` và `game/`): thêm khối **`chi_so_dau`** cho
+  từng nhóm, gồm `ly_do` (giải thích vì sao số như vậy, **dẫn nguyên văn truyện**),
+  `bac`, `tu_vi`, `chi_so`, `ky_nang`. Nhóm ẩn `tuyet_co` **không** khai → rơi về mặc định.
+- `game/engine.py` + `docs/game/engine.js`: thêm `chi_so_dau_cua(nhom)` +
+  `CHI_SO_DAU_MAC_DINH`; `trang_thai_moi()` đọc từ đó thay vì số viết cứng.
+- `game_server.py`: `/api/xuat_than` trả thêm `chi_so_dau` để giao diện bản `game/` hiện số.
+- Hai `play.html`: thêm `daiChiSo()` vẽ dải số trên thẻ; thẻ tăng **126px → 148px**
+  (126px cũ làm dải số bị cắt 13px — đo mới thấy).
+
+**Số đã chốt và lý do (dựa trên nguyên văn, không tuỳ tiện):**
+
+| | Tán tu / ăn mày | Đệ tử môn phái |
+|---|---|---|
+| Sinh lực | 26 | 34 |
+| Tu vi khởi đầu | 12 | 10 |
+| Tấn công | 3 | 7 |
+| Phòng thủ | 2 | 4 |
+| Tốc độ | 9 | 11 |
+| Bạc | 3 | 1 |
+| Kỹ năng | Hô hấp pháp, Nhận biết linh khí | Thất Huyền quyền nhập môn, Hô hấp pháp |
+
+- Tán tu: `c1_d01` "vài đồng bạc lẻ trong túi rách" → **3 bạc**; `c1_d02` "không võ công"
+  → công/thủ thấp.
+- Môn phái: `c1_p01` "thân thủ hạng bét, chỉ hơn kẻ mới học võ chút đỉnh" → **có** võ công
+  nên công 7 > 3; ở trong môn không cần tiền mặt → **1 bạc**.
+
+**Ràng buộc quan trọng đã kiểm tra: cảnh giới cuối chương phải khớp nguyên văn.**
+Đây là chỗ dễ hỏng nhất, vì tu vi khởi đầu đổi là mốc lên tầng lệch theo.
+
+- `c1_d17` (tán tu) nói *"ngươi đã lên Luyện Khí tầng ba"* → phải kết ở **tầng 3**.
+- `c1_p12` (môn phái) nói *"Luyện Khí tầng hai"*, `c1_p19` nói *"đã lên Luyện Khí tầng hai"*
+  → phải lên tầng 2 ở `p12` và **giữ** tầng 2 tới hết chương.
+
+Lần đầu tôi đặt môn phái tu vi 8 → mô phỏng cho ra **tầng 1**, sai nguyên văn. Dò lại
+thấy **10** mới đúng (mô phỏng: `p12`=tầng 2, `p19`=tầng 2). Đã khoá bằng test.
+
+**Kiểm chứng (số đo):**
+
+- `game/_test_engine.js`: **124 đạt, 0 hỏng** (thêm 19 test: số từng nhóm, khác biệt giữa
+  hai nhóm, và 5 test khoá cảnh giới cuối chương khớp nguyên văn).
+- `game/_test_api.py`: **161 đạt, 0 hỏng**.
+- Trình duyệt thật (390×844, server 12001): thẻ hiện đúng
+  `Sinh lực 26 · Tu vi 12 · Công 3 · Thủ 2 · Tốc độ 9 · Bạc 3` (tán tu) và
+  `34 · 10 · 7 · 4 · 11 · 1` (môn phái). Vào game chọn môn phái, bảng Hệ Thống hiện
+  `Tu vi 10/100, Sinh lực 34/34, Công 7, Thủ 4, Tốc độ 11, Bạc 1 lượng` → khớp thẻ.
+- Đo tràn thẻ: trước khi tăng chiều cao, `.xt-so` thò ra ngoài đáy thẻ **13px**; sau khi
+  lên 148px thì đáy nội dung ở 135px, gọn trong thẻ. Không lỗi JS.
+- Tự gõ xuất thân vẫn nhận đúng: "ăn mày" → 26 sinh lực/3 bạc; "tạp dịch" → 34/1.
+
+**Chưa làm:** chưa cân lại độ khó chiến đấu theo bộ số mới (chương 1 hiện không có
+công thức so sánh công/thủ, chỉ trừ sinh lực theo kịch bản), nên đổi số **không** làm
+hỏng trận nào. Nếu sau này thêm chiến đấu theo chỉ số thì phải cân lại.
+
+---
+
 ## 2026-11-20 · Giao diện chọn xuất thân — hướng C
 
 **Người dùng yêu cầu:** màn chọn xuất thân "đơn điệu quá", xin đề xuất làm đẹp hơn.

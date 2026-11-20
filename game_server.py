@@ -155,7 +155,8 @@ class Handler(BaseHTTPRequestHandler):
         if path.startswith("/api/xuat_than"):
             return self._json({"nhom": [
                 {"ma": n["ma"], "ten": n["ten"], "mo_ta": n.get("mo_ta", ""),
-                 "mau": n.get("mau", "")}
+                 "mau": n.get("mau", ""),
+                 "chi_so_dau": E.chi_so_dau_cua(n["ma"])}
                 for n in E.ds_xuat_than()
             ]})
 
