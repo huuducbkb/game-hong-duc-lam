@@ -10,6 +10,57 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Sửa "bấm lần đầu kêu, lần sau không"
+
+**Người dùng báo:** "khó hiểu lần đầu bấm kêu lần sau không kêu nữa?"
+
+Đo được **ba lỗi thật** trong phần tiếng, cộng một lỗi chặn bấm:
+
+**1. Tải lại trang khi đang chơi dở → cả phiên im.** Đường vào này đi qua
+`docPhien()` → `vaoThangNhanh()`, **không** đi qua nút "Vào game" nên chưa có cú chạm nào
+mở khóa tiếng. Đo: sau khi tải lại, `ctxTieng.state = "suspended"`, bấm → tín hiệu **0**.
+Đây chính là hiện tượng người dùng gặp: lần đầu vào qua nút thì kêu, lần sau tải lại thì không.
+
+**2. `keTieng` bỏ tiếng khi context đang ngủ.** Trước đó tôi cho `keTieng` `return` luôn khi
+`state !== "running"`, nên cú chạm đầu tiên sau khi mở lại trang **mất tiếng** dù `resume()`
+vẫn chạy. Đo được: lần bấm 1 có `bam` bị bỏ (`state=suspended`), tới tiếng `lat` 320ms sau mới
+kêu. Sửa: `resume().then(() => keTieng(loai))` — đánh thức rồi phát, không bỏ.
+
+**3. Chỉ `resume()` khi `"suspended"`.** iOS còn hai trạng thái nữa: `"interrupted"` (cuộc gọi
+tới, video/ứng dụng khác chiếm phiên âm thanh) và `"closed"` (bị thu hồi khi chạy nền lâu).
+Đo: đóng hẳn context rồi bấm → trước khi sửa **im vĩnh viễn**; sau khi sửa **tự dựng lại và kêu
+0.337**. Nay `moKhoaTieng`/`keTieng` dựng lại context nếu `"closed"` và `resume()` cho mọi
+trạng thái khác `"running"`.
+
+**4. Cờ `dangCho` có thể kẹt `true`.** `chon`, `tuDo`, `lui` đặt `dangCho = true` rồi nhả ở
+cuối hàm; nếu `hienThi` ném lỗi thì cờ kẹt và **mọi lần bấm sau bị chặn ngay từ đầu** — không
+kêu, không chuyển trang. Đã bọc `try/finally` cả ba hàm.
+
+**Thêm:** `thucDayTieng()` gắn vào `touchstart`/`click`/`visibilitychange` để đánh thức tiếng
+ở mọi cú chạm; gọi lại 60ms sau khi phim intro nhả phiên âm thanh; và ở đường khôi phục phiên
+thì đánh thức ngay ở cú chạm đầu.
+
+**Kiểm chứng (đo tín hiệu thật qua analyser móc song song vào loa chung):**
+
+| Trường hợp | Trước | Sau |
+| --- | --- | --- |
+| 12 lần bấm liên tiếp | — | **12/12 kêu**, đỉnh 0.337 |
+| Đóng hẳn AudioContext rồi bấm | im vĩnh viễn | **tự dựng lại, kêu 0.337** |
+| Tải lại trang khi đang chơi dở | **0 (im)** | **0.227 kêu** |
+| Tắt tiếng | — | **0, im đúng** |
+| Bật lại | — | **0.337 kêu lại** |
+
+Test `_test_api.py` **161 đạt**, `_test_engine.js` **124 đạt**, hai bản khớp khối âm thanh
+từng ký tự, không lỗi JS.
+
+**File đã sửa:** `docs/game/play.html`, `game/play.html`.
+
+**Biết trước:** máy giả lập Linux không mô phỏng `"interrupted"` của iOS. Đã xử lý theo tài
+liệu WebKit và đo được phần `"closed"`/`"suspended"`; phần `"interrupted"` chưa đo trực tiếp
+được, nên nếu trên máy thật vẫn còn im thì cần biết lúc đó làm gì (nghe nhạc, có cuộc gọi...).
+
+---
+
 ## 2026-11-21 (tiếp) · Bỏ nút loa trên phim + sửa gốc lỗi nút "Bắt đầu"
 
 **Người dùng báo:** "trong video intro cái icon cái loa che mất chữ trong video nên bạn chỉ

@@ -475,6 +475,9 @@ body{
     var phim = $("phimIntro"), setup = $("setup");
     var v = $("introVideo");
     if (v) { try { v.pause(); } catch (e) {} }
+    // Phim vừa nhả phiên âm thanh: đánh thức lại tiếng game ngay, đừng đợi
+    // tới cú chạm sau (iOS ngắt AudioContext khi video chiếm loa).
+    if (typeof thucDayTieng === "function") setTimeout(thucDayTieng, 60);
     var mo = function(){
       if (phim) { phim.style.display = "none"; phim.classList.remove("di"); }
       if (setup) setup.style.display = "";
@@ -793,13 +796,16 @@ function ganNutTieng() {
   if (c) c.onclick = batTatTieng;
 }
 
-function moKhoaTieng() {
-  if (daMoKhoa) return;
+// iOS đặt AudioContext vào ba trạng thái cần đánh thức: "suspended" (bình thường
+// sau khi bị ẩn), "interrupted" (cuộc gọi tới, app khác chiếm phiên âm thanh) và
+// "closed" (bị thu hồi khi chạy nền lâu). Chỉ resume khi "suspended" thì hai
+// trường hợp sau sẽ im vĩnh viễn — đó là lỗi "bấm lần đầu kêu, lần sau không".
+function taoCtxTieng() {
   const AC = window.AudioContext || window.webkitAudioContext;
-  if (!AC) return;
-  try { ctxTieng = new AC(); } catch (e) { return; }
+  if (!AC) return false;
+  try { ctxTieng = new AC(); } catch (e) { return false; }
   daMoKhoa = true;
-  if (ctxTieng.state === "suspended") ctxTieng.resume().catch(() => {});
+  if (ctxTieng.state !== "running") ctxTieng.resume().catch(() => {});
   // Bấm nhanh liên tục thì nhiều tiếng chồng lên nhau và vượt 1.0 gây rè.
   // Một bộ nén đặt trước loa giữ mức ra an toàn.
   try {
@@ -812,12 +818,43 @@ function moKhoaTieng() {
     nen.connect(ctxTieng.destination);
     loaTieng = nen;
   } catch (e) { loaTieng = ctxTieng.destination; }
+  return true;
 }
+
+function moKhoaTieng() {
+  if (ctxTieng && ctxTieng.state === "closed") return taoCtxTieng();
+  if (daMoKhoa) {
+    if (ctxTieng && ctxTieng.state !== "running") ctxTieng.resume().catch(() => {});
+    return true;
+  }
+  return taoCtxTieng();
+}
+
+// Đánh thức context ở mọi cú chạm. iOS ngắt phiên âm thanh khi có cuộc gọi hoặc
+// khi video/ứng dụng khác chiếm loa; lúc đó resume() chỉ có tác dụng nếu được gọi
+// từ trong một cú chạm của người dùng. Không có chỗ này thì tiếng câm luôn.
+function thucDayTieng() {
+  if (!tiengBat) return;
+  if (!ctxTieng) { taoCtxTieng(); return; }
+  if (ctxTieng.state !== "running") ctxTieng.resume().catch(() => {});
+}
+document.addEventListener("touchstart", thucDayTieng, { passive: true });
+document.addEventListener("click", thucDayTieng, { passive: true });
+document.addEventListener("visibilitychange", () => { if (!document.hidden) thucDayTieng(); });
 
 // Dựng một tiếng ngắn từ dao động + nhiễu, tắt dần theo hàm mũ.
 function keTieng(loai) {
-  if (!tiengBat || !ctxTieng) return;
-  if (ctxTieng.state === "suspended") ctxTieng.resume().catch(() => {});
+  if (!tiengBat) return;
+  // Context bị đóng thì mọi tiếng sau đều câm, phải dựng lại trước khi phát.
+  if (!ctxTieng || ctxTieng.state === "closed") { if (!taoCtxTieng()) return; }
+  // Đang ngủ thì currentTime đứng yên, đặt lịch phát lúc này sẽ dồn tiếng lại và
+  // phát méo. Nhưng bỏ luôn thì cú chạm đầu sau khi mở lại trang mất tiếng — người
+  // chơi nghe ra là "bấm không kêu". Nên đánh thức rồi phát khi nó tỉnh.
+  if (ctxTieng.state !== "running") {
+    const c = ctxTieng;
+    c.resume().then(() => { if (tiengBat && ctxTieng === c) keTieng(loai); }).catch(() => {});
+    return;
+  }
   const t = ctxTieng.currentTime;
   const ra = ctxTieng.createGain();
   ra.connect(loaTieng || ctxTieng.destination);
@@ -1111,23 +1148,31 @@ function giuSangDo() {
 async function chon(chiSo) {
   if (dangCho) return;
   dangCho = true;
-  if (keAI && coAI) baoDangKe();
-  const kq = await goi("/api/chon", {chi_so: chiSo, ke_ai: keAI});
-  await giuSangDo();
-  hienThi(kq);
-  if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
-  dangCho = false;
+  // finally: nếu hiển thị ném lỗi mà cờ không được nhả, mọi lần bấm sau bị chặn
+  // ngay từ đầu — người chơi thấy "bấm không kêu, không chuyển trang" mà không rõ vì sao.
+  try {
+    if (keAI && coAI) baoDangKe();
+    const kq = await goi("/api/chon", {chi_so: chiSo, ke_ai: keAI});
+    await giuSangDo();
+    hienThi(kq);
+    if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
+  } finally {
+    dangCho = false;
+  }
 }
 async function tuDo() {
   const v = $("#tuDo").value.trim();
   if (!v || dangCho) return;
   dangCho = true;
-  $("#tuDo").value = "";
-  if (typeof coGian === "function") coGian();
-  const kq = await goi("/api/tu_do", {van_ban: v});
-  hienThi(kq);
-  if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
-  dangCho = false;
+  try {
+    $("#tuDo").value = "";
+    if (typeof coGian === "function") coGian();
+    const kq = await goi("/api/tu_do", {van_ban: v});
+    hienThi(kq);
+    if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
+  } finally {
+    dangCho = false;
+  }
 }
 
 // hiện ghi chú "Đang kể lại…" trong lúc chờ AI
@@ -1155,15 +1200,18 @@ gan("#nutLui", "onclick", async () => {
   if (dangCho || soBuocLui <= 0) return;
   keTieng("lui");
   dangCho = true;
-  const kq = await goi("/api/lui", {ke_ai: keAI});
-  if (kq.loi) {
-    soBuocLui = 0; capNhatNutLui();
-    $("#undoGhi").textContent = kq.loi;
-  } else {
-    soBuocLui--; capNhatNutLui();
-    hienThi(kq);
+  try {
+    const kq = await goi("/api/lui", {ke_ai: keAI});
+    if (kq.loi) {
+      soBuocLui = 0; capNhatNutLui();
+      $("#undoGhi").textContent = kq.loi;
+    } else {
+      soBuocLui--; capNhatNutLui();
+      hienThi(kq);
+    }
+  } finally {
+    dangCho = false;
   }
-  dangCho = false;
 });
 
 // chơi lại từ đầu (xoá phiên → về màn chọn xuất thân)
@@ -1393,6 +1441,12 @@ napAvatar();
     // Đang chơi dở: vào thẳng truyện, không bắt xem lại bìa/phim.
     if (window.vaoThangNhanh) window.vaoThangNhanh();
     $("#setup").style.display = "none";
+    // Đường vào này KHÔNG đi qua nút "Vào game" nên chưa có cú chạm nào mở khóa
+    // tiếng. Không đánh thức ở đây thì cả phiên chơi tiếp theo đều im.
+    if (tiengBat) {
+      ["touchstart", "click", "keydown"].forEach(ev =>
+        document.addEventListener(ev, thucDayTieng, { once: true, passive: true }));
+    }
     soBuocLui = kq.so_lui || 0;
     capNhatNutLui();
     const r = await goi("/api/doan" + (keAI ? "" : "?ke_ai=0"));
