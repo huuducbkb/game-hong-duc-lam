@@ -507,31 +507,21 @@ empty and light so a title can be placed on top. Low contrast, calm, quiet, gene
 
 ## Úp video vào game
 
-Tuỳ dung lượng file, chọn một trong hai cách.
-
-### Cách 1 — video nhẹ (dưới 30 MB): úp thẳng trên điện thoại
+Chỉ một cách, làm được trên điện thoại:
 
 1. Mở **Xưởng video** → https://huuducbkb.github.io/game-hong-duc-lam/xuong-video/
-2. Mục **🎬 Video intro đã dựng** → bấm ô chọn → chọn file MP4.
-3. Bấm **📤 Gửi video**, đợi 1–2 phút, **đừng đóng tab**.
-4. Đợi ~1 phút cho trang dựng lại → mở game, video tự phát.
+2. Mục **🎬 Video intro** → **thả file MP4 vào ô** (hoặc bấm ô để chọn trong thư viện)
+3. Đợi thanh tiến trình chạy hết. Video 60 MB chia 8 phần, mất khoảng 30 giây.
+4. Đợi 2–3 phút. Máy chủ tự ghép, nén xuống ~14 MB, đưa vào game, dựng lại trang.
+5. Mở game — video tự phát ở màn giới thiệu.
 
-### Cách 2 — video nặng (trên 30 MB): thả vào Release, máy tự nén
+**Dung lượng nào cũng được.** Trang tự cắt file thành mảnh 8 MB rồi đẩy lên,
+máy chủ ghép lại. Không cần vào GitHub, không cần tạo Release.
 
-Trang web **không đẩy nổi** file trên ~30 MB (giới hạn GitHub, đã đo thật:
-29 MB qua, 42 MB bị từ chối, 61 MB quá giờ). Cách này để máy chủ làm thay:
+Muốn xem tiến trình: tab **Actions** → workflow **Ghép video từ Xưởng**.
 
-1. Mở https://github.com/huuducbkb/game-hong-duc-lam/releases/new
-2. Ô **Choose a tag** → gõ `intro-v1` (lần sau `intro-v2`, `intro-v3`…)
-3. Ô **Release title** → gõ gì cũng được, ví dụ `Video intro`
-4. Kéo thả file MP4 vào ô **Attach binaries**
-5. Bấm **Publish release**
-6. Đợi ~3 phút. Máy tự tải về, nén, đưa vào game, dựng lại trang.
-
-Muốn xem tiến trình: tab **Actions** → workflow **Nén video intro**.
-
-**Kết quả đo thật của Cách 2:** file 61.6 MB → 13.2 MB, giữ 1080×1920, tiếng còn
-nguyên, mất 1m39s. Từ đó về sau bạn chỉ cần Cách 1 cho mọi bản nhẹ.
+**Đã đo thật:** file 61.6 MB → 8 mảnh, đẩy lên 25 giây → máy chủ ghép và nén
+thành 13.8 MB trong 1m54s → video HTTP 200 trên trang.
 
 **Xuất từ CapCut:** MP4 · H.264 · 1080×1920 · 30fps · 8–10 Mbps.
 
