@@ -507,18 +507,35 @@ empty and light so a title can be placed on top. Low contrast, calm, quiet, gene
 
 ## Úp video vào game
 
-Dựng xong trong CapCut thì úp thẳng từ điện thoại, **không cần máy tính**:
+Tuỳ dung lượng file, chọn một trong hai cách.
 
-1. Mở **Xưởng video** → `https://huuducbkb.github.io/game-hong-duc-lam/xuong-video/`
-2. Mục **🎬 Video intro đã dựng** → bấm ô chọn → chọn file MP4 trong thư viện.
-3. Bấm **📤 Gửi video**. Đợi 1–2 phút (video lớn nên lâu hơn ảnh), **đừng đóng tab**.
-4. Đợi ~1 phút cho GitHub Pages dựng lại → mở game, video tự phát ở màn giới thiệu.
+### Cách 1 — video nhẹ (dưới 30 MB): úp thẳng trên điện thoại
 
-**Xuất từ CapCut:** MP4 · H.264 · 1080×1920 · 30fps · 8–10 Mbps · **dưới 15 MB**.
-Trang chặn file trên 40 MB (giới hạn API GitHub) và báo ngay nếu vượt.
+1. Mở **Xưởng video** → https://huuducbkb.github.io/game-hong-duc-lam/xuong-video/
+2. Mục **🎬 Video intro đã dựng** → bấm ô chọn → chọn file MP4.
+3. Bấm **📤 Gửi video**, đợi 1–2 phút, **đừng đóng tab**.
+4. Đợi ~1 phút cho trang dựng lại → mở game, video tự phát.
 
-**Nếu chưa úp video**, màn giới thiệu vẫn hiện bình thường như cũ — không có khung đen rỗng.
-Video chỉ chiếm chỗ khi tải được thật.
+### Cách 2 — video nặng (trên 30 MB): thả vào Release, máy tự nén
+
+Trang web **không đẩy nổi** file trên ~30 MB (giới hạn GitHub, đã đo thật:
+29 MB qua, 42 MB bị từ chối, 61 MB quá giờ). Cách này để máy chủ làm thay:
+
+1. Mở https://github.com/huuducbkb/game-hong-duc-lam/releases/new
+2. Ô **Choose a tag** → gõ `intro-v1` (lần sau `intro-v2`, `intro-v3`…)
+3. Ô **Release title** → gõ gì cũng được, ví dụ `Video intro`
+4. Kéo thả file MP4 vào ô **Attach binaries**
+5. Bấm **Publish release**
+6. Đợi ~3 phút. Máy tự tải về, nén, đưa vào game, dựng lại trang.
+
+Muốn xem tiến trình: tab **Actions** → workflow **Nén video intro**.
+
+**Kết quả đo thật của Cách 2:** file 61.6 MB → 13.2 MB, giữ 1080×1920, tiếng còn
+nguyên, mất 1m39s. Từ đó về sau bạn chỉ cần Cách 1 cho mọi bản nhẹ.
+
+**Xuất từ CapCut:** MP4 · H.264 · 1080×1920 · 30fps · 8–10 Mbps.
+
+**Nếu chưa úp video**, màn giới thiệu vẫn hiện bình thường — không có khung đen rỗng.
 
 ---
 
