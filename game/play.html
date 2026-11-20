@@ -13,6 +13,7 @@
   --ink-soft:#3a342b;
   --ink-faint:#6d6454;
   --seal:#a8352a;
+  --seal-dam:#5e150f;   /* do rat dam: 4.60:1 tren nen toi nhat, 7.72:1 tren giay sang */
   --edge:rgba(40,34,26,.15);
   --serif:"Noto Serif","Times New Roman",serif;
   --brush:"Ma Shan Zheng",var(--serif);
@@ -123,11 +124,15 @@ body{
 .choice{
   font-family:var(--serif);font-size:13.5px;color:var(--ink);text-align:left;
   padding:9px 6px;min-height:44px;display:flex;align-items:center;gap:9px;
-  border:0;background:transparent;transition:transform .12s;
+  border:0;background:transparent;transition:transform .12s,color .2s ease;
   text-shadow:0 1px 0 rgba(255,253,246,.75);
 }
 .choice:active{transform:scale(.985);opacity:.72}
 .choice .idx{font-family:var(--brush);font-size:16px;color:var(--seal);flex:0 0 auto;width:15px}
+/* dòng vừa bấm: sáng đỏ tới khi truyện mới hiện ra, để người chơi biết đã bấm đúng */
+.choice.dang-chon{color:var(--seal-dam);
+  text-shadow:0 0 11px rgba(168,53,42,.6),0 0 3px rgba(168,53,42,.45)}
+.choice.dang-chon .idx{color:var(--seal-dam);text-shadow:0 0 9px rgba(168,53,42,.65)}
 
 /* ---------- LÙI HÀNH ĐỘNG ---------- */
 .undo-bar{flex:0 0 auto;display:flex;align-items:center;gap:9px;margin-top:2px}
@@ -815,6 +820,7 @@ function hienThiAnh(kq) {
 function hienThi(kq) {
   if (typeof xoaBaoDangKe === "function") xoaBaoDangKe();
   if (kq.loi) {
+    if (typeof boDanhDauChon === "function") boDanhDauChon();
     const sb = $("#setupLoi");
     const dangChoi = $("#setup") && $("#setup").style.display === "none";
     if (dangChoi) {
@@ -852,7 +858,12 @@ function hienThi(kq) {
     b.disabled = lc.khoa;
     b.innerHTML = '<span class="idx">' + (idx[lc.chi_so] || "•") + "</span> " + lc.chu +
                   (lc.khoa ? ' <small style="color:var(--ink-faint)">(khoá)</small>' : "");
-    b.onclick = () => chon(lc.chi_so);
+    b.onclick = () => {
+      if (dangCho) return;
+      lucBamChon = performance.now();
+      danhDauChon(b);
+      chon(lc.chi_so);
+    };
     nav.appendChild(b);
   });
   $("#freebar").style.display = (kq.cho_phep_tu_do && coAI) ? "flex" : "none";
@@ -923,11 +934,31 @@ function capNhatNutLui() {
   $("#undoGhi").textContent = soBuocLui > 0 ? ("còn " + soBuocLui + " bước") : "chưa có gì để lùi";
 }
 
+// sáng đỏ dòng vừa bấm cho tới khi truyện mới hiện ra (hienThi dựng lại danh sách)
+function danhDauChon(nut) {
+  const nav = $("#choices");
+  if (!nav) return;
+  [...nav.querySelectorAll(".choice")].forEach(x => x.classList.toggle("dang-chon", x === nut));
+}
+function boDanhDauChon() {
+  const nav = $("#choices");
+  if (nav) [...nav.querySelectorAll(".choice")].forEach(x => x.classList.remove("dang-chon"));
+}
+// Game trả lời gần như tức thì, nên nếu đổi màu rồi dựng lại ngay thì mắt không
+// kịp thấy đỏ. Giữ đỏ tối thiểu chừng này mili giây trước khi thay truyện.
+const SANG_DO_MS = 320;
+let lucBamChon = 0;
+function giuSangDo() {
+  const con = SANG_DO_MS - (performance.now() - lucBamChon);
+  return con > 0 ? new Promise(r => setTimeout(r, con)) : Promise.resolve();
+}
+
 async function chon(chiSo) {
   if (dangCho) return;
   dangCho = true;
   if (keAI && coAI) baoDangKe();
   const kq = await goi("/api/chon", {chi_so: chiSo, ke_ai: keAI});
+  await giuSangDo();
   hienThi(kq);
   if (!kq.loi) { soBuocLui++; capNhatNutLui(); }
   dangCho = false;

@@ -10,6 +10,39 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Dòng hành động sáng đỏ khi bấm
+
+**Người dùng yêu cầu:** "khi bấm vô lựa chọn hành động nào thì dòng chữ hành động đó
+sáng đỏ lên để người chơi biết là bấm vào đó".
+
+**Làm:** thêm class `.choice.dang-chon` (đỏ `--seal-dam` + quầng sáng đỏ), hàm
+`danhDauChon()` / `boDanhDauChon()`, gắn vào `onclick` của từng dòng. Chỉ dòng vừa bấm
+đổi màu; số 壹 貳 ở đầu dòng cũng đổi theo.
+
+**Vấp lần 1 — đổi màu mà không thấy gì:** game trả lời dưới 0.1 giây nên danh sách
+hành động được dựng lại trước khi mắt kịp thấy đỏ. Đo được **0 dòng đỏ**. Sửa: giữ đỏ
+tối thiểu `SANG_DO_MS = 320` rồi mới gọi `hienThi`. Đo lại: **1 dòng đỏ**, đúng dòng
+bấm, sau đó tự tắt. Tổng thời gian bấm → truyện mới: **328 ms** (thêm 320 ms, vẫn
+dưới 0.4 giây nên không thấy chậm).
+
+**Vấp lần 2 — màu đỏ không đọc được:** đỏ son gốc `#a8352a` chỉ đạt **2.28:1** trên
+nền thật. Lần đầu tôi chọn `#8a2a1e` tính trên giấy ra 5.05:1, nhưng **đo trên ảnh
+chụp thật** chỉ còn **3.01:1** — vì nền thật sau chữ tối hơn: **(165,151,124)**, không
+phải (213,196,167) như tôi lấy ở mép ảnh. Đổi sang `#5e150f`: đo trên ảnh thật
+**4.62:1**, đạt ngưỡng 4.5:1.
+- Vẫn ra đỏ chứ không thành nâu đen: điểm ảnh ngả đỏ trong vùng chữ **5.9% → 47.7%**.
+- Chữ vẫn sắc nét: p90 **7 → 6**.
+
+**Chống kẹt màu:** lỗi mạng → `boDanhDauChon()` ngay trong nhánh `kq.loi` (đã giả lập
+lỗi, đo được 0 dòng đỏ, có hiện thông báo lỗi). Đang tải mà bấm tiếp → `if (dangCho) return`
+trước khi đánh dấu.
+
+**Kiểm chứng:** bấm dòng thứ 2 trong 2 dòng → chỉ dòng thứ 2 đỏ, dòng đầu vẫn mực đen.
+Test engine **124 đạt / 0 hỏng**, API **161 / 0**. Hai bản `game/play.html` và
+`docs/game/play.html` khớp nhau, cú pháp JS qua `node --check`.
+
+**Báo cáo:** `docs/nhap/do-hanh-dong.html` (ảnh `do-1.jpg`).
+
 ## 2026-11-21 (tiếp) · Sửa nút "Bắt đầu" bị đẩy ra ngoài màn hình
 
 **Người dùng báo:** "sau khi sửa thì lỗi hiện tại tôi không thể bấm bắt đầu sau khi

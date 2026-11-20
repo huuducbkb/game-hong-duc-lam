@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dòng hành động sáng đỏ khi bấm</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .canh{background:rgba(63,125,78,.10);border-left:3px solid #3f7d4e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .canh b{color:#2f6340}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:10px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid rgba(36,28,20,.14)}
+  th{font-size:12px;color:#6b5b48;text-transform:uppercase;letter-spacing:.5px}
+  td.n{font-family:ui-monospace,Menlo,monospace;text-align:right}
+  .dat{color:#2f6340;font-weight:600}
+  .khong{color:#a8352a;font-weight:600}
+</style>
+</head>
+<body>
+<div class="khung">
+  <div class="to">
+    <h1>Bấm vào hành động nào thì dòng đó sáng đỏ</h1>
+    <p class="phu">Bản chạy thật &middot; đo bằng Safari (WebKit) trên iPhone 13</p>
+
+    <p>Anh muốn bấm vào dòng hành động nào thì dòng đó sáng đỏ lên để người chơi biết
+       mình bấm đúng. Đã làm xong.</p>
+
+    <div class="anh">
+      <img src="do-1.jpg" alt="Dòng hành động trước và trong khi bấm">
+      <div class="chuAnh">Trên: chưa bấm, chữ mực đen. Dưới: đang bấm, chỉ dòng vừa bấm
+        sáng đỏ, dòng còn lại vẫn mực đen.</div>
+    </div>
+
+    <h2>Làm thế nào</h2>
+    <ul>
+      <li>Bấm vào dòng nào thì <b>chỉ dòng đó</b> đổi sang đỏ đậm, kèm quầng sáng đỏ mờ.</li>
+      <li>Số 壹 貳 ở đầu dòng cũng đổi đỏ theo.</li>
+      <li>Đỏ giữ tới khi truyện mới hiện ra, rồi tự trở lại màu mực.</li>
+      <li>Nếu mạng lỗi thì <b>bỏ đỏ ngay</b> — không để dòng kẹt màu đỏ gây hiểu nhầm.</li>
+    </ul>
+
+    <h2>Một chỗ tôi phải sửa lại giữa đường</h2>
+    <p>Lần đầu tôi làm đổi màu ngay khi bấm. Chạy thử thì <b>không thấy đỏ đâu cả</b> —
+       vì game trả lời quá nhanh (dưới 0.1 giây), danh sách hành động được dựng lại
+       trước khi mắt kịp nhận ra màu. Đo được: <span class="so">0</span> dòng đỏ.</p>
+    <div class="hop">
+      <b>Đã sửa:</b> giữ đỏ tối thiểu <span class="so">320 ms</span> rồi mới thay truyện.
+      Đo lại: đúng <span class="so">1</span> dòng đỏ, đúng dòng vừa bấm, sau đó tự tắt.
+    </div>
+
+    <h2>Chọn màu đỏ: phải đọc được, không chỉ "đỏ"</h2>
+    <p>Đây là chỗ tôi đo nhiều nhất. Đỏ son của game (<code>#a8352a</code>) nhìn đẹp
+       nhưng <b>không đọc được</b> trên nền giấy. Tôi đo màu nền thật phía sau chữ
+       trên ảnh chụp: <span class="so">(165,151,124)</span> — tối hơn tôi tưởng.</p>
+
+    <table>
+      <tr><th>Màu đỏ</th><th style="text-align:right">Tương phản</th><th>Kết luận</th></tr>
+      <tr><td><code>#a8352a</code> đỏ son gốc</td><td class="n">2.28:1</td><td class="khong">Không đọc được</td></tr>
+      <tr><td><code>#8a2a1e</code> (lần thử 1)</td><td class="n">3.01:1</td><td class="khong">Vẫn chưa đủ</td></tr>
+      <tr><td><code>#5e150f</code> (đang dùng)</td><td class="n">4.62:1</td><td class="dat">Đạt</td></tr>
+    </table>
+
+    <p>Mức tối thiểu để đọc được là <b>4.5:1</b>. Con số <span class="so">4.62:1</span>
+       là đo trên ảnh chụp thật, không phải tính trên giấy.</p>
+
+    <div class="canh">
+      <b>Vẫn ra đỏ, không thành nâu đen:</b> đếm điểm ảnh ngả đỏ trong vùng chữ —
+      trước khi bấm <span class="so">5.9%</span>, khi bấm <span class="so">47.7%</span>.
+      Chữ vẫn sắc nét: độ sắc nét p90 chỉ giảm <span class="so">7 → 6</span>.
+    </div>
+
+    <h2>Đã kiểm những gì</h2>
+    <ul>
+      <li>Bấm dòng <b>thứ hai</b> trong 2 dòng: chỉ dòng thứ hai đỏ, dòng đầu vẫn mực đen.</li>
+      <li>Bấm xong chờ: đỏ tự tắt, truyện mới hiện, danh sách mới bình thường.</li>
+      <li>Giả lập lỗi mạng: đỏ được bỏ ngay, hiện thông báo lỗi, không kẹt màu.</li>
+      <li>Bấm liên tục khi đang tải: không đánh dấu nhầm dòng.</li>
+      <li>Không lỗi JS. Bộ test: <span class="so">124</span> và <span class="so">161</span> đạt, <b>0 hỏng</b>.</li>
+      <li>Sửa cả hai bản: <code>game/play.html</code> và <code>docs/game/play.html</code>.</li>
+    </ul>
+
+    <a class="nut" href="../game/play.html">Vào game thử</a>
+  </div>
+</div>
+</body>
+</html>
