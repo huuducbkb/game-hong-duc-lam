@@ -637,7 +637,21 @@ Ba điều dễ làm sai khi sửa `keTieng`:
 3. **Đo bằng `OfflineAudioContext`, đừng đo qua `requestAnimationFrame`.** rAF trong
    headless chỉ lấy được 5–6 mẫu, không đủ kết luận.
 
-Nút tắt tiếng có **ba chỗ** (`#nutTieng` trên thanh trên, `#phimTieng` trên phim mở đầu,
-`#setupTieng` trong thẻ tạo nhân vật) vì ở phim và màn tạo nhân vật, thanh trên bị lớp phủ
-che nên **không nút nào bấm được** — lỗi có sẵn từ trước, chưa sửa. Trạng thái nhớ ở
-`localStorage` khoá `hdttl_tieng`.
+Nút tắt tiếng có **hai chỗ**: `#nutTieng` trên thanh trên và `#setupTieng` trong thẻ tạo
+nhân vật (ở màn tạo nhân vật thanh trên bị lớp phủ che nên phải có nút riêng trong thẻ).
+Trạng thái nhớ ở `localStorage` khoá `hdttl_tieng`.
+
+**Đừng đặt nút loa lên phim mở đầu.** Đã thử và người dùng báo nó che chữ trong phim; đã bỏ.
+
+### Chiều cao khung: dùng `svh`, đừng dùng `vh`
+
+Trên iPhone, `vh` và khung `position:fixed; inset:0` được tính theo **màn hình đầy đủ** (kể cả
+phần thanh công cụ Safari che), nên nội dung ở đáy bị đẩy ra ngoài tầm nhìn. Đây chính là
+nguyên nhân nút "Bắt đầu" ở màn tạo nhân vật không bấm được — đã sửa hai lần mới đúng gốc.
+
+Dùng `height:100svh` cho khung và `max-height:calc(100svh - 40px)` cho thẻ, luôn kèm dòng
+`vh` phía trước làm dự phòng cho máy cũ.
+
+**Máy giả lập Linux không có thanh công cụ Safari nên KHÔNG tái hiện được lỗi này.**
+Muốn tái hiện phải ép khung cao hơn vùng nhìn thấy (ví dụ `#setup{height:844px}` với viewport
+390×664), rồi đo bằng `elementFromPoint` dọc theo nút xem bao nhiêu điểm bấm được.

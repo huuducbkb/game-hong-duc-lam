@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sửa nút loa trên phim và nút Bắt đầu</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .canh{background:rgba(63,125,78,.10);border-left:3px solid #3f7d4e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .canh b{color:#2f6340}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:10px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid rgba(36,28,20,.14)}
+  th{font-size:12px;color:#6b5b48;text-transform:uppercase;letter-spacing:.5px}
+  td.n{font-family:ui-monospace,Menlo,monospace;text-align:right}
+  .dat{color:#2f6340;font-weight:600}
+</style>
+</head>
+<body>
+<div class="khung">
+  <div class="to">
+    <h1>Đã sửa hai lỗi anh báo</h1>
+    <p class="phu">Bản chạy thật &middot; đo bằng Safari (WebKit)</p>
+
+    <a class="nut" href="../game/play.html">Mở game thử lại</a>
+
+    <h2>1. Bỏ nút loa trên phim mở đầu</h2>
+    <p>Đúng như anh nói: nút loa nằm đè lên chữ trong phim. Đã <b>bỏ hẳn</b> nút đó.
+       Hai chỗ còn lại giữ nguyên: nút trên thanh trên và nút trong thẻ tạo nhân vật.</p>
+
+    <div class="anh">
+      <img src="sua-1-phim.jpg" alt="Phim mở đầu, góc trên trái không còn nút loa">
+      <div class="chuAnh">Phim mở đầu giờ sạch: góc trên trái không còn nút loa,
+        chữ trong phim không bị che. Chỉ còn nút "Bỏ qua" ở góc phải.</div>
+    </div>
+
+    <table>
+      <tr><th>Nút loa</th><th>Trước</th><th>Sau</th></tr>
+      <tr><td>Trên phim mở đầu</td><td>có, đè lên chữ</td><td class="dat">đã bỏ</td></tr>
+      <tr><td>Trên thanh trên</td><td>có</td><td class="dat">giữ</td></tr>
+      <tr><td>Trong thẻ tạo nhân vật</td><td>có</td><td class="dat">giữ</td></tr>
+    </table>
+
+    <h2>2. Nút "Bắt đầu" bấm không được</h2>
+    <p>Tôi tái hiện được đúng lỗi, và tìm ra nguyên nhân thật. Lần trước sửa chưa đúng gốc
+       nên nó quay lại.</p>
+
+    <div class="hop">
+      <b>Nguyên nhân:</b> khung màn tạo nhân vật dùng <code>position:fixed; inset:0</code>
+      &mdash; trên iPhone, khung này được tính theo <b>chiều cao màn hình đầy đủ</b>
+      (kể cả phần thanh công cụ Safari che), chứ không phải phần đang nhìn thấy.
+      Vì vậy thẻ bị đẩy xuống, nút "Bắt đầu" nằm dưới đáy tầm nhìn.
+      Thẻ còn dùng <code>max-height:92vh</code> &mdash; cũng tính theo màn đầy đủ, nên cũng sai.
+    </div>
+
+    <p>Đo được cụ thể: trên iPhone 13, thẻ cao <span class="so">776</span> điểm trong khi
+       vùng nhìn thấy chỉ <span class="so">664</span>. Nút "Bắt đầu" bị cắt mất
+       <span class="so">37</span> điểm dưới đáy màn hình &mdash; chỉ một dải mỏng ở trên cùng
+       là bấm được, phần lớn nút nằm ngoài.</p>
+
+    <p>Trên iPhone SE (màn 500 điểm), nút ra <b>hoàn toàn ngoài màn hình</b>:
+       đo 13 điểm dọc theo nút thì <span class="so">0/13</span> điểm bấm được.</p>
+
+    <div class="canh">
+      <b>Đã sửa:</b> khung đặt <code>height:100svh</code> và thẻ đặt
+      <code>max-height:calc(100svh - 40px)</code>. <code>svh</code> là chiều cao vùng nhìn thấy
+      <b>khi thanh công cụ đang hiện</b> &mdash; trường hợp nhỏ nhất, nên luôn vừa, và không
+      giật khi thanh công cụ ẩn/hiện. Máy cũ không hiểu <code>svh</code> thì tự lùi về
+      <code>vh</code> như trước, không hỏng gì.
+    </div>
+
+    <div class="anh">
+      <img src="sua-2-nut-bat-dau.jpg" alt="Nút Bắt đầu nằm gọn trong màn hình iPhone SE">
+      <div class="chuAnh">iPhone SE, màn chỉ cao 500 điểm: sau khi chọn xuất thân, nút
+        "Bắt đầu" nằm gọn trong màn hình. Đo 13/13 điểm trên nút đều bấm được, và bấm thật
+        thì vào được game.</div>
+    </div>
+
+    <h2>Đã thử những cỡ màn nào</h2>
+    <p>Mỗi trường hợp đều bấm thật vào nút rồi kiểm xem có vào game không:</p>
+    <table>
+      <tr><th>Trường hợp</th><th>Nút trong màn</th><th>Điểm bấm được</th><th>Vào game</th></tr>
+      <tr><td>iPhone 13</td><td class="dat">có</td><td class="n">13/13</td><td class="dat">được</td></tr>
+      <tr><td>iPhone SE (màn 500)</td><td class="dat">có</td><td class="n">13/13</td><td class="dat">được</td></tr>
+      <tr><td>iPhone 13 xoay ngang (430)</td><td class="dat">có</td><td class="n">13/13</td><td class="dat">được</td></tr>
+      <tr><td>Màn ngang 390</td><td class="dat">có</td><td class="n">13/13</td><td class="dat">được</td></tr>
+      <tr><td>iPhone 15 Pro Max</td><td class="dat">có</td><td class="n">13/13</td><td class="dat">được</td></tr>
+      <tr><td>Màn rất thấp (600)</td><td class="dat">có</td><td class="n">13/13</td><td class="dat">được</td></tr>
+    </table>
+
+    <h2>Không làm hỏng gì khác</h2>
+    <table>
+      <tr><td>Bốn tiếng vẫn kêu</td><td class="dat">0.149 / 0.076 / 0.122 / 0.113</td></tr>
+      <tr><td>Tắt tiếng vẫn nhớ</td><td class="dat">đúng</td></tr>
+      <tr><td>Chơi 2 lượt liên tiếp</td><td class="dat">không lỗi JS</td></tr>
+      <tr><td>Bộ test cũ</td><td class="dat">161 đạt · 124 đạt</td></tr>
+      <tr><td>Hai bản (máy chủ và tĩnh)</td><td class="dat">khớp nhau</td></tr>
+    </table>
+
+    <div class="hop">
+      <b>Nói thật một điều:</b> máy giả lập trên máy tính không có thanh công cụ Safari,
+      nên nó <b>không</b> tự tái hiện được lỗi này. Tôi phải ép khung cao hơn vùng nhìn thấy
+      để tái hiện đúng hiện tượng, rồi mới sửa và đo lại. Nếu anh thử trên iPhone mà vẫn
+      không bấm được, anh nói tôi biết máy nào, màn cao bao nhiêu &mdash; tôi sẽ đo tiếp.
+    </div>
+
+    <a class="nut" href="../game/play.html">Thử lại</a>
+  </div>
+</div>
+</body>
+</html>

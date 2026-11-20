@@ -272,13 +272,6 @@ body{
    Phim gốc 1080x1920 dọc: trên màn ngang sẽ cắt bớt trên/dưới, chấp nhận
    để phim tràn viền thay vì thu nhỏ giữa nền đen. */
 .phim-intro{position:fixed;inset:0;z-index:11;background:#000;overflow:hidden}
-/* Nút tiếng nổi trên phim: lúc phim đang chạy chính là lúc cần tắt nhất. */
-.phim-intro .tieng-noi{position:absolute;z-index:4;
-  left:max(14px,env(safe-area-inset-left));top:max(14px,env(safe-area-inset-top));
-  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
-  font-size:17px;line-height:1;color:#f4ecd8;cursor:pointer;
-  background:rgba(0,0,0,.42);border:1px solid rgba(244,236,216,.34);border-radius:99px;
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 /* Ở màn tạo nhân vật thanh trên bị lớp phủ che, nên đặt nút ngay trong thẻ:
    góc trên phải là chỗ trống, không đè lên tiêu đề. */
 .setup .tieng-noi-trong{position:absolute;z-index:5;right:10px;top:10px;
@@ -312,12 +305,23 @@ body{
 }
 
 /* ---------- MÀN TẠO NHÂN VẬT ---------- */
-.setup{position:fixed;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;
-  padding:20px;background:url("../assets/ui/bg-main.jpg") center/cover no-repeat}
+.setup{position:fixed;left:0;right:0;top:0;z-index:9;display:flex;
+  align-items:center;justify-content:center;
+  padding:20px;background:url("../assets/ui/bg-main.jpg") center/cover no-repeat;
+  /* Trên iPhone, khung fixed tính theo màn hình đầy đủ (kể cả phần thanh công cụ
+     Safari che), nên thẻ bị đẩy xuống dưới tầm nhìn và nút Bắt đầu không bấm được.
+     Buộc khung đúng bằng vùng nhìn thấy nhỏ nhất. */
+  height:100vh;height:100svh}
 .setup::before{content:"";position:absolute;inset:0;background:rgba(246,240,226,.72)}
 .setup .card{position:relative;width:100%;max-width:420px;padding:0;
   background:rgba(255,253,246,.86);border:1px solid var(--edge);border-radius:16px;
-  display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+  display:flex;flex-direction:column;overflow:hidden;
+  /* svh = chiều cao vùng nhìn thấy KHI thanh công cụ đang hiện (trường hợp nhỏ nhất).
+     Dùng vh thì trên iPhone Safari tính theo màn hình đầy đủ, thẻ cao hơn vùng nhìn
+     thấy và nút Bắt đầu ở đáy bị cắt mất. Lấy trường hợp nhỏ nhất nên luôn vừa, và
+     không bị giật khi thanh công cụ ẩn/hiện. Máy cũ không hiểu svh thì lùi về vh.
+     Trừ 40px là hai lần đệm 20px của khung, để thẻ vừa khít cả khi màn rất thấp. */
+  max-height:calc(100vh - 40px);max-height:calc(100svh - 40px)}
 /* thân thẻ cuộn riêng, để nút Bắt đầu luôn hiện ở đáy mà không đè nội dung */
 .setup .card-than{padding:22px 20px 4px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 /* chừa chỗ cho nút tiếng ở góc trên phải, để tiêu đề không chạy xuống dưới nút */
@@ -597,7 +601,6 @@ body{
   <video id="introVideo" playsinline preload="none" webkit-playsinline
          poster="../assets/video/intro-poster.jpg"></video>
   <button class="thoi" type="button" id="phimThoi">Bỏ qua ▸</button>
-  <button class="tieng-noi" type="button" id="phimTieng" aria-label="Tắt tiếng">🔊</button>
   <div class="tien"><i id="phimTien"></i></div>
 </div>
 
@@ -834,7 +837,7 @@ function napTieng() {
 }
 function capNhatNutTieng() {
   // hai nút cùng trạng thái: trên thanh trên và nổi trên phim intro
-  for (const id of ["nutTieng", "phimTieng", "setupTieng"]) {
+  for (const id of ["nutTieng", "setupTieng"]) {
     const b = document.getElementById(id);
     if (!b) continue;
     b.textContent = tiengBat ? "🔊" : "🔇";
@@ -854,8 +857,6 @@ function batTatTieng() {
 function ganNutTieng() {
   const a = document.getElementById("nutTieng");
   if (a) a.onclick = batTatTieng;
-  const b = document.getElementById("phimTieng");
-  if (b) b.onclick = batTatTieng;
   const c = document.getElementById("setupTieng");
   if (c) c.onclick = batTatTieng;
 }

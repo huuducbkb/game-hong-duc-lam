@@ -10,6 +10,57 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Bỏ nút loa trên phim + sửa gốc lỗi nút "Bắt đầu"
+
+**Người dùng báo:** "trong video intro cái icon cái loa che mất chữ trong video nên bạn chỉ
+bỏ cái icon trong video intro là được còn những chổ khác cứ giữ" và "lỗi này là lỗi cũ bị lại
+ở trong giao diện xuất thân khi tôi chọn xuất thân xong bấm nút bắt đầu thì nó không bấm được".
+
+**1. Bỏ nút loa trên phim mở đầu.** Xoá hẳn markup `#phimTieng`, CSS `.phim-intro .tieng-noi`,
+và hai chỗ đăng ký trong `capNhatNutTieng()` / `ganNutTieng()`. Hai nút còn lại giữ nguyên
+(thanh trên, trong thẻ tạo nhân vật). Đo lại: `#phimIntro` chỉ còn **một** nút là `phimThoi`.
+
+**2. Nút "Bắt đầu" — tìm ra nguyên nhân GỐC, lần sửa trước chưa đúng gốc.**
+
+Nguyên nhân thật: khung `.setup` dùng `position:fixed; inset:0`. Trên iPhone, khung `fixed`
+được tính theo **chiều cao màn hình đầy đủ** (kể cả phần thanh công cụ Safari che), không
+phải phần đang nhìn thấy. Thẻ `.card` lại dùng `max-height:92vh` — cũng tính theo màn đầy đủ.
+Nên thẻ cao hơn vùng nhìn thấy và nút ở đáy bị đẩy ra ngoài.
+
+Số đo tái hiện (ép khung cao 776 như iPhone 13 thật, vùng nhìn thấy 664):
+thẻ cao **776**, nút ở `top=651..701`, bị cắt **37 điểm** dưới đáy; đo 13 điểm dọc nút chỉ
+**2/13** bấm được. Trên iPhone SE (nhìn thấy 500): nút ra **hoàn toàn ngoài màn**, **0/13** điểm.
+
+**Vì sao lần trước không bắt được:** máy giả lập trên Linux không có thanh công cụ Safari,
+nên `vh` = `svh` = chiều cao viewport, lỗi không xuất hiện. Lần này phải **ép** khung cao hơn
+vùng nhìn thấy mới tái hiện được.
+
+**Cách sửa:**
+- `.setup`: `height:100vh; height:100svh` (bỏ `inset:0`, dùng `left/right/top:0` + height).
+- `.setup .card`: `max-height:calc(100vh - 40px); max-height:calc(100svh - 40px)`.
+- `svh` = chiều cao vùng nhìn thấy **khi thanh công cụ đang hiện** (trường hợp nhỏ nhất) nên
+  luôn vừa, và không giật khi thanh công cụ ẩn/hiện. Máy cũ không hiểu `svh` thì lùi về `vh`.
+
+**Kiểm chứng (bấm thật rồi kiểm có vào game, cả 6 trường hợp đều ĐẠT):**
+
+| Trường hợp | Nút trong màn | Điểm bấm được | Vào game |
+| --- | --- | --- | --- |
+| iPhone 13 (664) | có | 13/13 | được |
+| iPhone SE (500) | có | 13/13 | được |
+| iPhone 13 xoay ngang (430) | có | 13/13 | được |
+| Màn ngang 390 | có | 13/13 | được |
+| iPhone 15 Pro Max (700) | có | 13/13 | được |
+| Màn rất thấp (600) | có | 13/13 | được |
+
+Không hỏng gì khác: bốn tiếng vẫn kêu **0.149 / 0.076 / 0.122 / 0.113**; tắt tiếng vẫn nhớ;
+chơi 2 lượt không lỗi JS; test `_test_api.py` **161 đạt** và `_test_engine.js` **124 đạt**;
+hai bản khớp nhau (`phimTieng` = 0 ở cả hai, `100svh` và `setupTieng`/`nutTieng` khớp).
+
+**File đã sửa:** `game/play.html`, `docs/game/play.html`, `docs/nhap/sua-loi.html`,
+`docs/nhap/sua-1-phim.jpg`, `docs/nhap/sua-2-nut-bat-dau.jpg`, `docs/nhap/index.html`.
+
+---
+
 ## 2026-11-21 (tiếp) · Tầng 1 âm thanh: bốn tiếng, có nút tắt
 
 **Người dùng yêu cầu:** "làm tầng 1 theo đề xuất của bạn" — tức tầng đơn giản nhất trong
