@@ -122,12 +122,11 @@ body{
 .choices{flex:0 0 auto;display:flex;flex-direction:column;gap:7px}
 .choice{
   font-family:var(--serif);font-size:13.5px;color:var(--ink);text-align:left;
-  padding:12px 16px;min-height:44px;display:flex;align-items:center;gap:9px;
-  border-style:solid;border-color:transparent;border-width:10px 10px;
-  border-image:url("../assets/ui/btn-choice.jpg") 67 42 73 41 fill / 11px 11px / 0 stretch;
-  background:transparent;transition:transform .12s;
+  padding:9px 6px;min-height:44px;display:flex;align-items:center;gap:9px;
+  border:0;background:transparent;transition:transform .12s;
+  text-shadow:0 1px 0 rgba(255,253,246,.75);
 }
-.choice:active{transform:scale(.985);filter:brightness(.95)}
+.choice:active{transform:scale(.985);opacity:.72}
 .choice .idx{font-family:var(--brush);font-size:16px;color:var(--seal);flex:0 0 auto;width:15px}
 
 /* ---------- LÙI HÀNH ĐỘNG ---------- */

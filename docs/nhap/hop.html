@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đã bỏ nền vuông ở dòng hành động</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5);margin-bottom:18px}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:8px}
+  .cu{font-size:13.5px;color:#6b5b48}
+</style>
+</head>
+<body>
+<div class="khung">
+
+  <div class="to">
+    <h1>Đã bỏ nền vuông ở dòng hành động</h1>
+    <p class="phu">Bản chạy thật trên GitHub Pages &middot; đo bằng Safari (WebKit) ở khổ iPhone 13</p>
+
+    <p>Anh nói đúng, mỗi dòng hành động bị đóng trong một cái <b>hộp giấy có viền mực</b>.
+       Nhìn nặng và thô. Tôi bỏ hẳn cái hộp đó, giờ chỉ còn dòng chữ.</p>
+
+    <h2>Trước và sau</h2>
+    <div class="anh">
+      <img src="hop-1.jpg" alt="Mỗi dòng hành động trước và sau khi bỏ hộp">
+      <div class="chuAnh">Trên: mỗi dòng có hộp giấy viền mực. Dưới: đã bỏ hộp, chỉ còn dòng chữ.</div>
+    </div>
+
+    <h2>Cái hộp đó là gì</h2>
+    <p>Nó không phải cái viền CSS thường, mà là một <b>ảnh giấy</b> được cắt thành 9 mảnh rồi
+       kéo giãn để lót kín cả viền lẫn ruột nút (<code>border-image ... fill</code>).
+       Vì lót cả ruột nên nó thành một ô giấy đặc, chứ không chỉ là đường kẻ.</p>
+
+    <div class="hop">
+      <b>Đo được:</b> trước khi sửa, 2 dòng hành động cho ra
+      <span class="so">11</span> đường kẻ ngang chạy gần hết chiều rộng.
+      Sau khi sửa: <span class="so">0</span>.
+    </div>
+
+    <h2>Đã nhỏ lại thật, không chỉ đổi màu</h2>
+    <p>Bỏ hộp thì nút cũng gọn lại theo, vì mất luôn 10px viền và phần đệm dày:</p>
+    <ul>
+      <li>Chiều cao mỗi dòng: <span class="so">62px</span> → <span class="so">44px</span>
+          (gọn hơn 29%)</li>
+      <li>Viền: <span class="so">10px</span> → <span class="so">0</span></li>
+      <li>Ảnh nền trong nút: có → <b>không</b></li>
+    </ul>
+
+    <div class="hop">
+      Vẫn giữ <b>44px</b> chiều cao chạm — đúng ngưỡng tối thiểu để ngón tay bấm chính xác
+      trên điện thoại. Nhỏ hơn nữa là bấm nhầm.
+    </div>
+
+    <h2>Chữ vẫn đọc được không</h2>
+    <p>Đây là chỗ tôi lo nhất, vì bỏ nền là chữ phải nằm trực tiếp trên ảnh nền. Tôi đo
+       độ đậm của nét chữ so với nền ngay cạnh nó:</p>
+
+    <div class="hop">
+      Nét chữ đậm <span class="so">100</span> trước, <span class="so">102</span> sau
+      (thang 0–255) — <b>không hề nhạt đi</b>. Tương phản tổng thể
+      <span class="so">12,3:1</span>, vượt xa mức cao nhất của chuẩn WCAG (7:1).
+      Tôi cũng thêm một bóng chữ mờ để chữ tách khỏi vân giấy.
+    </div>
+
+    <h2>Đã kiểm những gì</h2>
+    <ul>
+      <li>Safari thật (WebKit) ở cả <b>iPhone 13</b> và <b>iPad Pro</b>: không tràn ngang,
+          không lỗi JS.</li>
+      <li>Nút vẫn chạm được 44px; nút <b>Lùi hành động</b> bên dưới còn nguyên, không bị đè.</li>
+      <li>Chụp đúng màn có <b>2 dòng hành động</b> liền nhau để thấy rõ khoảng cách.</li>
+      <li>Bộ kiểm thử game: <span class="so">124</span> đạt và <span class="so">161</span> đạt,
+          <b>0 hỏng</b>.</li>
+      <li>Sửa cả hai bản: <code>game/play.html</code> và <code>docs/game/play.html</code>
+          (Pages chạy bản trong <code>docs/</code>).</li>
+    </ul>
+
+    <p class="cu">
+      Ảnh <code>btn-choice.jpg</code> tôi <b>không xoá</b> — vẫn còn trong kho ảnh và vẫn
+      dùng được ở chỗ khác (trang demo). Chỉ dòng hành động trong game là không dùng nữa.
+    </p>
+
+    <a class="nut" href="../game/play.html">Vào game xem</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -10,6 +10,39 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Bỏ hộp giấy ở dòng hành động
+
+**Người dùng báo:** "chổ chọn hành động mỗi dòng hành động nó có 1 cái nền vuông…
+làm cái nền đó trong suốt và thu nhỏ nó lại, tốt hơn là xoá được thì xoá luôn,
+nhìn nó mất thẩm mỹ".
+
+**Nó là gì:** không phải viền CSS thường mà là **ảnh giấy** `btn-choice.jpg` cắt 9 mảnh
+rồi lót bằng `border-image: … 67 42 73 41 fill / 11px 11px`. Chữ `fill` làm ảnh lót
+**cả ruột** nút, nên thành một ô giấy đặc chứ không chỉ là đường kẻ.
+
+**Sửa:** bỏ hẳn `border-image`, bỏ viền 10px, đệm `12px 16px` → `9px 6px`, thêm
+`text-shadow` mờ để chữ tách khỏi vân giấy. Sửa **cả hai** bản `game/play.html`
+và `docs/game/play.html` (Pages chạy bản trong `docs/`).
+
+**Đo trước/sau (WebKit, iPhone 13, màn 2 dòng hành động):**
+- Đường kẻ ngang chạy >60% chiều rộng: **11 → 0**.
+- Chiều cao mỗi dòng: **62px → 44px** (gọn 29%); viền **10px → 0**; ảnh nền trong nút: có → không.
+- Vẫn giữ **44px** chiều cao chạm (ngưỡng tối thiểu cho ngón tay).
+
+**Chữ có bị nhạt đi không:** đo độ đậm nét chữ so với nền ngay cạnh —
+p90 **100 → 102** (thang 0–255), tức **không nhạt**. Tương phản tổng **12,3:1**,
+vượt mức cao nhất WCAG (7:1).
+
+**Không vỡ chỗ khác:** iPhone 13 và iPad Pro 11 đều không tràn ngang, không lỗi JS;
+nút "Lùi hành động" (36px) vẫn còn và không bị đè. Test engine **124 đạt / 0 hỏng**,
+API **161 đạt / 0 hỏng**.
+
+**Không xoá ảnh:** `btn-choice.jpg` vẫn để trong kho, vẫn dùng ở `demo/hybrid*.html`.
+
+**File đã sửa:** `game/play.html`, `docs/game/play.html`.
+
+**Báo cáo:** `docs/nhap/hop.html` (ảnh so sánh `hop-1.jpg`).
+
 ## 2026-11-21 (tiếp) · Tách nền ấn son `seal.png`
 
 **Vì sao làm:** cùng loại lỗi với `avatar-ring.png` — ấn son cũng là PNG "có alpha"
