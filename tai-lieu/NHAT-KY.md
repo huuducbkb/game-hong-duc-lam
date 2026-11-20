@@ -63,6 +63,9 @@ hạ chất lượng JPEG (0,82 → 0,4) khi ảnh > 400KB để giảm khả n�
 **Còn để ngỏ:** `assets/ui/seal.png` cũng đục 100%, nhưng nó hiện thành khối vuông
 có nền giấy nên không che gì — chưa sửa, chỉ ghi lại.
 
+**Người dùng xác nhận (2026-11-21):** "đã ok rồi" — thử trên máy thật, up ảnh được.
+Việc này **đóng**, không cần mở lại.
+
 ## 2026-11-20 (tiếp) · Mỗi xuất thân có chỉ số khởi đầu riêng
 
 **Người dùng yêu cầu:** sau khi xem hướng C, thấy ghi chú "hai xuất thân vẫn cho chỉ số
