@@ -42,6 +42,17 @@ Bốn điều không bao giờ quên:
    Nền giấy trong bộ ảnh này là **kem ~232**, không phải trắng 255 — nên đừng dùng
    ngưỡng trắng cứng. Công thức đúng: `alpha = (225 - do_sang) / (225 - 60)`, kẹp 0..255.
 
+   **Ảnh mực ĐỎ (son, ấn, triện) thì tách theo độ đỏ, đừng tách theo độ sáng.**
+   Vân giấy có chỗ tối ngang mực nhạt nên tách theo độ sáng sẽ lọt lại ~30% nền.
+   Đo `do_do = r - max(g,b)`: giấy ~14–18, mực son ~65–149, hai nhóm tách rời hẳn.
+   Công thức: `alpha = (do_do - 25) / (70 - 25)`, kẹp 0..255.
+   Đã dùng cho `seal.png` (2026-11-21): 0% → 86,5% trong suốt, và so với ảnh gốc
+   chỉ lệch 0,04% pixel — tức tách nền không làm hỏng nét vẽ.
+
+   Cách kiểm sau khi tách: đặt bản tách lên đúng màu nền giấy rồi so với ảnh gốc
+   (`ImageChops.difference`). Lệch trung bình phải nhỏ (cỡ chục/255). Nếu lệch nhiều
+   là đã ăn mất nét hoặc còn sót nền.
+
 ## Chạy máy chủ
 
 ```bash

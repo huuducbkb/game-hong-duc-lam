@@ -10,6 +10,37 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Tách nền ấn son `seal.png`
+
+**Vì sao làm:** cùng loại lỗi với `avatar-ring.png` — ấn son cũng là PNG "có alpha"
+nhưng **đục 100%**, nên nó hiện thành **khối giấy kem vuông 22×22px** đè lên thẻ
+nhân vật. Người dùng đồng ý sửa luôn.
+
+**Đo bản cũ:** 0% pixel trong suốt trên 300×300; 4 góc đều là giấy kem
+(~232,216,184) chứ không trong suốt. Nền giấy có **độ đỏ** `r - max(g,b)` ≈ 14–18,
+mực son đỏ ≈ 65–149 — hai nhóm tách rời hẳn nên tách theo độ đỏ chính xác hơn
+tách theo độ sáng (cách cũ bị vân giấy lọt lại 30% nền).
+
+**Cách sửa:** `alpha = (do_do - 25) / (70 - 25)`, kẹp 0..255. Cắt sát viền theo
+alpha (khung thật 1,38 → 298,262), được **297×224**.
+
+**Đo bản mới:** **86,5% trong suốt**, 11,6% đặc; 4 góc alpha = 0; màu mực đặc
+trung bình (195, 87, 62) — đúng đỏ son.
+
+**Kiểm chứng không làm hỏng hình:** đặt bản tách lên nền giấy kem rồi so với ảnh gốc
+cùng khung — lệch trung bình **13,6/255 mỗi kênh**, chỉ **0,04%** pixel lệch > 40.
+Tức là tách nền gần như không đổi hình.
+
+**Kiểm chứng trong game thật** (WebKit, iPhone 13): `.seal-mini` hiện 22×22, ảnh tải
+được, không lỗi JS. So ảnh chụp trước/sau: **91,9%** pixel đổi — trước là khối giấy
+đặc, sau chỉ còn nét son, thấy được nền thẻ phía sau.
+
+**Test:** engine 124 đạt / 0 hỏng · API 161 đạt / 0 hỏng.
+
+**File đã sửa:** `assets/ui/seal.png`, `docs/assets/ui/seal.png`.
+
+**Báo cáo:** `docs/nhap/seal.html` (ảnh so sánh `seal-1.jpg`).
+
 ## 2026-11-21 · Sửa lỗi không up được ảnh đại diện
 
 **Người dùng báo:** "chổ avatar người chơi tôi up 1 tấm ảnh vô không đc".
