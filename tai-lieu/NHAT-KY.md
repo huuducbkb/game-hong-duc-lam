@@ -10,6 +10,35 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Phòng đo tiếng — trang đo trên iPhone thật
+
+Người dùng xác nhận hướng 1 (tiếng bấm) đã chạy đúng trên iPhone thật. Hướng 2 (tiếng lật
+trang khi truyện sang trang) đã có sẵn từ trước — `hienThi()` gọi `keTieng("lat")`.
+
+Chỗ còn mù: máy giả lập Linux **không mô phỏng** trạng thái `interrupted` của iOS. Nên làm
+`docs/phong-do/tieng.html` để người dùng tự đo trên máy thật.
+
+**Trang đo được:** trạng thái `AudioContext` theo thời gian (bắt `statechange`, `visibilitychange`,
+`pageshow`, `pagehide`, `freeze`, `resume`); mức đỉnh tín hiệu thật qua analyser móc **song song**
+vào loa chung (không cắt đường tiếng); số lần chạm có tiếng; nút thử `suspend` và `close`; xuất
+báo cáo dạng văn bản để copy gửi lại.
+
+**Bài đo bắt được lỗi trong chính thiết kế:** lúc vừa mở trang, WebKit báo `interrupted` —
+nhưng đó chỉ là "chưa có cú chạm nào", **không** phải bị ngắt phiên âm thanh. Bản đầu của trang
+ghi "CÓ XẢY RA interrupted" trong báo cáo, tức là báo động sai và làm người đọc đi sai hướng.
+Đã sửa: thêm cờ `daTungChay`, phân biệt `interrupted` **trước** khi mở khóa với `interrupted`
+**thật giữa chừng**; báo cáo chỉ báo động khi là loại thứ hai.
+
+**Số đo trên máy giả lập (WebKit, iPhone 13):** bốn tiếng đều kêu (bam 0.322, lat 0.178,
+lui 0.280, mo 0.254); 10/10 lần chạm có tiếng; sau `suspend` tự hồi phục (0.171); sau `close`
+tự dựng lại (0.148); cú chạm đầu sau khi tải lại trang vẫn kêu (0.235).
+
+**File mới:** `docs/phong-do/tieng.html` (trang đo), `docs/nhap/phong-do-tieng.html` (hướng dẫn
+kèm 3 ảnh chụp), ảnh `docs/nhap/pd-1-mo-trang.jpg`, `pd-3-muoi-lan.jpg`, `pd-4-bao-cao.jpg`.
+Test: **161 đạt**, **124 đạt**.
+
+---
+
 ## 2026-11-21 (tiếp) · Sửa "bấm lần đầu kêu, lần sau không"
 
 **Người dùng báo:** "khó hiểu lần đầu bấm kêu lần sau không kêu nữa?"

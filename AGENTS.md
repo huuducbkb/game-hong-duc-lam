@@ -664,6 +664,11 @@ Bỏ tiếng thì cú chạm đầu sau khi mở lại trang mất âm — ngư�
 cuối hàm; nếu `hienThi` ném lỗi thì cờ kẹt và **mọi lần bấm sau bị chặn từ đầu** — không kêu,
 không chuyển trang. Đã bọc `try/finally` cả ba.
 
+**WebKit báo `interrupted` cả khi CHƯA mở khóa.** Đừng đọc đó là "bị ngắt phiên âm thanh":
+đó chỉ là "chưa có cú chạm nào". Muốn biết có bị ngắt thật hay không thì phải biết context
+**đã từng chạy** chưa (theo dõi qua `statechange` khi thấy `running`). Trang `docs/phong-do/tieng.html`
+có cờ `daTungChay` để phân biệt; bản đầu không có cờ này nên báo cáo báo động sai.
+
 **Máy giả lập Linux không mô phỏng `interrupted`.** Đo được `suspended` và `closed`, còn
 `interrupted` phải xử lý theo tài liệu WebKit. Đừng kết luận "đã đúng trên iPhone" từ máy
 giả lập. Người dùng đã xác nhận bản sửa chạy đúng trên iPhone thật (2026-11-21).

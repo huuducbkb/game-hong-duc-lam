@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Phòng đo tiếng — Hồng Đức Tu Tiên Lộ</title>
+<style>
+:root{--bg:#111a2b;--card:#182337;--ink:#e8e6df;--muted:#93a0b8;--gold:#ffd98a;
+  --jade:#6fe0c0;--line:#2b3b57;--seal:#a8352a;--ok:#7fe0a8;--bad:#ff9a8a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);
+  color:var(--ink);margin:0 auto;padding:16px 14px 70px;max-width:680px;line-height:1.55;
+  -webkit-text-size-adjust:100%}
+h1{font-size:19px;color:var(--gold);margin:4px 0 3px}
+h2{font-size:15px;color:var(--jade);margin:26px 0 8px;border-bottom:1px solid var(--line);
+  padding-bottom:6px}
+p,li{font-size:13.5px;color:#cbd4e4;margin:8px 0}
+.muted{color:var(--muted);font-size:12.5px}
+code{background:#0a1220;padding:1px 5px;border-radius:4px;color:var(--jade);font-size:12px;
+  font-family:ui-monospace,Menlo,monospace}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;margin:11px 0}
+
+.st{display:flex;align-items:center;gap:11px;margin:2px 0 8px}
+.den{width:15px;height:15px;border-radius:50%;background:#555;flex:0 0 auto;
+  box-shadow:0 0 0 3px rgba(255,255,255,.05)}
+.den.running{background:#3fbf7f;box-shadow:0 0 12px #3fbf7f}
+.den.suspended{background:#e0a83f;box-shadow:0 0 12px #e0a83f}
+.den.interrupted{background:#e0663f;box-shadow:0 0 12px #e0663f}
+.den.closed{background:#a8352a;box-shadow:0 0 12px #a8352a}
+#ten{font-size:21px;font-weight:700;letter-spacing:.3px;font-family:ui-monospace,Menlo,monospace}
+#ten.running{color:var(--ok)} #ten.suspended{color:var(--gold)}
+#ten.interrupted{color:#ffb08a} #ten.closed{color:var(--bad)}
+#giaithich{font-size:12.5px;color:var(--muted);min-height:34px}
+
+button{font:inherit;border:1px solid var(--line);background:#0f1a2b;color:var(--ink);
+  border-radius:10px;padding:13px 12px;cursor:pointer;width:100%;font-size:14px;
+  font-weight:600;transition:.12s;text-align:center}
+button:active{transform:scale(.985);background:#16233a}
+button.chinh{background:var(--seal);border-color:#c04a38;color:#fff5ec;font-size:15.5px;
+  padding:15px;margin:12px 0}
+button.phu{font-size:13px;font-weight:500;color:#b9c6dc}
+button:disabled{opacity:.45}
+.luoi{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.luoi button{font-size:13px;padding:15px 6px}
+
+.muc{margin:11px 0 4px}
+.thanh{height:26px;background:#0a1220;border-radius:7px;overflow:hidden;position:relative;
+  border:1px solid var(--line)}
+.thanh i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#3fbf7f,#ffd98a,#e0663f);
+  transition:width .1s linear}
+.thanh span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-family:ui-monospace,Menlo,monospace;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.8)}
+
+.kq{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;
+  padding:7px 9px;border-radius:7px;margin:5px 0;background:#0e1726;
+  border-left:3px solid var(--line);font-family:ui-monospace,Menlo,monospace}
+.kq b{font-weight:700}
+.kq.ok{border-left-color:#3fbf7f} .kq.bad{border-left-color:#a8352a}
+.kq .ten2{color:#cfdaee}
+
+.nk{max-height:210px;overflow-y:auto;background:#0a1220;border:1px solid var(--line);
+  border-radius:8px;padding:8px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;
+  line-height:1.75;-webkit-overflow-scrolling:touch}
+.nk div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nk .t{color:#6b7c96}
+.nk .s-running{color:var(--ok)} .nk .s-suspended{color:var(--gold)}
+.nk .s-interrupted{color:#ffb08a} .nk .s-closed{color:var(--bad)}
+.nk .s-null{color:#6b7c96}
+.nk .k-ok{color:var(--ok)} .nk .k-bad{color:var(--bad)}
+.nk:empty::after{content:"(chưa có gì)";color:#4a5a72}
+
+textarea{width:100%;min-height:190px;font-size:11.5px;line-height:1.6;background:#0a1220;
+  color:#dfe7f5;border:1px solid var(--line);border-radius:8px;padding:10px;
+  font-family:ui-monospace,Menlo,monospace;resize:vertical;-webkit-text-size-adjust:100%}
+.bang{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.bang th,.bang td{text-align:left;padding:6px;border-bottom:1px solid var(--line)}
+.bang th{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.4px}
+.bang td.n{text-align:right;font-family:ui-monospace,Menlo,monospace}
+details{margin:9px 0;border:1px solid var(--line);border-radius:10px;background:#0e1726;
+  padding:10px 12px}
+summary{color:var(--jade);font-size:13px;font-weight:600;cursor:pointer}
+.canh{background:rgba(168,53,42,.10);border-left:3px solid var(--seal);border-radius:0 8px 8px 0;
+  padding:10px 12px;margin:11px 0;font-size:12.5px}
+.canh b{color:#ffb08a}
+.tot{background:rgba(63,191,127,.10);border-left:3px solid #3fbf7f;border-radius:0 8px 8px 0;
+  padding:10px 12px;margin:11px 0;font-size:12.5px}
+.tot b{color:var(--ok)}
+.banner{background:var(--seal);color:#fff5ec;border-radius:10px;padding:11px 13px;
+  margin:0 0 13px;font-size:13px;font-weight:600}
+</style>
+</head>
+<body>
+
+<h1>Phòng đo tiếng</h1>
+<p class="muted">Mở trên iPhone thật. Trang đo <b>trạng thái âm thanh</b> và <b>mức tiếng thật</b>,
+rồi xuất báo cáo để gửi lại. Dùng cùng công thức với game nên số đo chuyển được sang game.</p>
+
+<div id="banner"></div>
+
+<div class="card">
+  <div class="st">
+    <div class="den" id="den"></div>
+    <div id="ten">chưa tạo</div>
+  </div>
+  <div id="giaithich">Bấm nút bên dưới để tạo và mở khóa âm thanh.</div>
+</div>
+
+<button id="batdau" class="chinh">▶ Bắt đầu đo</button>
+
+<h2>1 · Đo bốn tiếng</h2>
+<p class="muted">Mỗi nút phát một tiếng và đo đỉnh tín hiệu. Có tiếng khi đỉnh &gt; 0.01.</p>
+<div class="luoi">
+  <button data-tieng="bam">tách <span class="muted">bam</span></button>
+  <button data-tieng="lat">lật giấy <span class="muted">lat</span></button>
+  <button data-tieng="lui">lùi <span class="muted">lui</span></button>
+  <button data-tieng="mo">mở bảng <span class="muted">mo</span></button>
+</div>
+<div class="muc">
+  <div class="thanh"><i id="thanh"></i><span id="thanhso">0.000</span></div>
+</div>
+<div id="kq4"></div>
+<button id="dohet" class="phu">Đo lại cả bốn tiếng một lượt</button>
+
+<h2>2 · Mười lần chạm liên tiếp</h2>
+<p class="muted">Kiểm tra lỗi cũ: bấm nhiều lần thì có im dần không.</p>
+<button id="do10" class="phu">Chạy 10 lần chạm liên tiếp</button>
+<div id="kq10"></div>
+
+<h2>3 · Tái hiện đúng lỗi đã gặp</h2>
+<p class="muted">Lỗi cũ: đang chơi mà tải lại trang thì cả phiên im. Trang này tái hiện đúng
+đường đó: nạp lại trang rồi đo <b>cú chạm đầu tiên</b>.</p>
+<button id="taitai" class="phu">① Chuẩn bị — rồi tôi tự tải lại trang</button>
+<div id="kqtailai"></div>
+
+<h2>4 · Thử sau khi bị ngắt</h2>
+<p class="muted">iPhone có ba trạng thái cần đánh thức. Thử từng cái xem có tự hồi phục.</p>
+<div class="luoi">
+  <button id="t-suspend" class="phu">Treo (suspend)</button>
+  <button id="t-close" class="phu">Thu hồi (close)</button>
+</div>
+<div id="kqngat"></div>
+<div class="canh">
+  <b>Trạng thái <code>interrupted</code> không giả lập được.</b> Nó chỉ xảy ra thật khi có
+  cuộc gọi tới, hoặc ứng dụng khác chiếm loa. Trang này <b>ghi lại nếu nó thật sự xảy ra</b> —
+  xem mục 5.
+</div>
+
+<h2>5 · Cách làm nó im trên máy thật</h2>
+<p>Bấm "Bắt đầu đo" trước, rồi làm lần lượt từng việc dưới đây. Sau mỗi việc, quay lại trang
+và bấm một tiếng. Việc nào làm tiếng im thì ghi lại số thứ tự.</p>
+<table class="bang">
+  <tr><th>#</th><th>Việc làm</th><th>Đo được gì</th></tr>
+  <tr><td class="n">1</td><td>Khoá màn hình 10 giây rồi mở lại</td><td>suspended?</td></tr>
+  <tr><td class="n">2</td><td>Vuốt về màn hình chính 30 giây rồi quay lại</td><td>closed?</td></tr>
+  <tr><td class="n">3</td><td>Mở app khác có tiếng (YouTube) rồi quay lại</td><td>interrupted?</td></tr>
+  <tr><td class="n">4</td><td>Nghe nhạc, rồi mở game</td><td>interrupted?</td></tr>
+  <tr><td class="n">5</td><td>Gọi cho chính mình hoặc có cuộc gọi tới</td><td>interrupted?</td></tr>
+  <tr><td class="n">6</td><td>Bật chế độ im lặng / rung</td><td>vẫn kêu?</td></tr>
+</table>
+
+<h2>6 · Nhật ký trạng thái</h2>
+<div class="nk" id="nktt"></div>
+
+<h2>7 · Nhật ký chạm</h2>
+<div class="nk" id="nkc"></div>
+
+<h2>8 · Báo cáo</h2>
+<p class="muted">Bấm copy rồi dán gửi lại. Không chứa thông tin cá nhân.</p>
+<textarea id="bc" readonly placeholder="Chưa có số đo. Bấm Bắt đầu đo trước."></textarea>
+<button id="copy" class="chinh">📋 Copy báo cáo</button>
+
+<details>
+  <summary>Trang này đo gì và không đo được gì</summary>
+  <p><b>Đo được:</b> trạng thái <code>AudioContext</code> thật theo thời gian, mức đỉnh tín hiệu
+  thật (qua analyser móc song song vào loa chung, không cắt đường tiếng), số lần chạm có tiếng.</p>
+  <p><b>Không đo được:</b> trạng thái <code>interrupted</code> không tạo ra được bằng code.
+  Nếu bảng trạng thái không bao giờ hiện chữ đó thì có nghĩa lỗi của anh <b>không</b> phải do
+  bị ngắt phiên âm thanh — đó cũng là thông tin có ích.</p>
+  <p><b>Một khác biệt với game:</b> trang này phát tiếng bằng cùng công thức, nhưng không có
+  video intro 14 MB. Nếu nghi video là nguyên nhân thì bấm "Bắt đầu đo", rồi mở
+  <a href="../game/play.html" style="color:var(--jade)">game</a> ở tab khác, xem phim, rồi quay
+  lại đây bấm tiếng.</p>
+</details>
+
+<script>
+"use strict";
+/* ---------------------------------------------------------------- trạng thái */
+let ctx = null, loa = null, an = null;
+// WebKit báo "interrupted" ngay khi vừa tạo context, trước cú chạm đầu tiên. Đó chỉ là
+// "chưa mở khóa", KHÔNG phải bị ngắt phiên âm thanh. Phải phân biệt, nếu không báo cáo
+// sẽ ghi "có interrupted" và làm người đọc đi sai hướng.
+let daTungChay = false;
+let batDauLuc = performance.now();
+const nkTrangThai = [];
+const nkCham = [];
+let lanDauSauTaiLai = localStorage.getItem("pd_tai_lai") === "1";
+
+const $ = (s) => document.querySelector(s);
+const giay = () => ((performance.now() - batDauLuc) / 1000).toFixed(2);
+const lam1 = (x) => Math.round(x * 1000) / 1000;
+
+const NGHIA = {
+  running: "Đang chạy — tiếng phát được.",
+  suspended: "Đang ngủ — iPhone tạm dừng. Cần một cú chạm để đánh thức.",
+  interrupted: "BỊ NGẮT — có cuộc gọi hoặc app khác chiếm loa. Đây là trạng thái khó nhất.",
+  closed: "ĐÃ THU HỒI — phải dựng lại bộ âm thanh mới. Bản game cũ im vĩnh viễn ở đây.",
+  "null": "Chưa tạo bộ âm thanh.",
+};
+
+function veTrangThai(state, ghi) {
+  const s = state || "null";
+  const chuaMoKhoa = (s === "interrupted" && !daTungChay);
+  $("#ten").textContent = s;
+  $("#ten").className = s;
+  $("#den").className = "den " + s;
+  $("#giaithich").textContent = chuaMoKhoa
+    ? "Chưa mở khóa — WebKit báo interrupted cho tới cú chạm đầu tiên. Đây KHÔNG phải bị ngắt."
+    : (NGHIA[s] || ("Trạng thái lạ: " + s));
+  nkTrangThai.push({ giay: giay(), state: s, chuaMoKhoa: chuaMoKhoa, ghi: ghi || "" });
+  const hop = $("#nktt");
+  const d = document.createElement("div");
+  const g = ghi ? " · " + ghi : "";
+  d.innerHTML = '<span class="t">' + giay() + 's</span> <span class="s-' + s + '">' +
+    s + "</span>" + g;
+  hop.appendChild(d);
+  hop.scrollTop = hop.scrollHeight;
+}
+
+/* ---------------------------------------------------------------- âm thanh */
+// Cùng công thức với game: nguồn -> bao âm lượng -> lọc -> ra, tất cả qua một
+// đường, và có bộ nén trước loa để nhiều tiếng chồng nhau không vượt 1.0.
+const TIENG = {
+  bam:  { f0: 880,  f1: 520, dur: 0.075, vol: 0.16,  loc: 3200 },
+  lat:  { f0: 1500, f1: 900, dur: 0.16,  vol: 0.075, loc: 2400, nhieu: 0.75 },
+  lui:  { f0: 420,  f1: 210, dur: 0.19,  vol: 0.13,  loc: 1600 },
+  mo:   { f0: 300,  f1: 420, dur: 0.14,  vol: 0.12,  loc: 1200 },
+};
+
+function taoCtx(ghi) {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) { veTrangThai("null", "trình duyệt không có AudioContext"); return false; }
+  try { ctx = new AC(); } catch (e) { veTrangThai("null", "tạo lỗi: " + e.message); return false; }
+  daTungChay = false;
+  ctx.addEventListener("statechange", () => {
+    if (ctx.state === "running") daTungChay = true;
+    veTrangThai(ctx.state, "statechange");
+  });
+  try {
+    const nen = ctx.createDynamicsCompressor();
+    nen.threshold.value = -18; nen.knee.value = 12; nen.ratio.value = 12;
+    nen.attack.value = 0.002; nen.release.value = 0.15;
+    nen.connect(ctx.destination);
+    loa = nen;
+  } catch (e) { loa = ctx.destination; }
+  // Móc song song để đo, KHÔNG nối tiếp — nối tiếp sẽ cắt đường tiếng.
+  an = ctx.createAnalyser();
+  an.fftSize = 2048;
+  loa.connect(an);
+  if (ctx.state !== "running") ctx.resume().catch(() => {});
+  veTrangThai(ctx.state, ghi || "vừa tạo");
+  return true;
+}
+
+function thucDay() {
+  if (!ctx || ctx.state === "closed") return;
+  if (ctx.state !== "running") ctx.resume().catch(() => {});
+}
+
+function ke(loai) {
+  const tieng = TIENG[loai];
+  if (!tieng) return;
+  if (!ctx || ctx.state === "closed") { if (!taoCtx("dựng lại vì đã thu hồi")) return; }
+  // Đang ngủ thì currentTime đứng yên, phát lúc này sẽ dồn tiếng. Đánh thức rồi phát.
+  if (ctx.state !== "running") {
+    const c = ctx;
+    c.resume().then(() => { if (ctx === c) ke(loai); }).catch(() => {});
+    return;
+  }
+  const t = ctx.currentTime;
+  const ra = ctx.createGain();
+  ra.connect(loa || ctx.destination);
+  const loc = ctx.createBiquadFilter();
+  loc.type = "lowpass"; loc.frequency.value = tieng.loc;
+  loc.connect(ra);
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(tieng.vol, t + 0.008);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + tieng.dur);
+  g.connect(loc);
+  const osc = ctx.createOscillator();
+  osc.type = "triangle";
+  osc.frequency.setValueAtTime(tieng.f0, t);
+  osc.frequency.exponentialRampToValueAtTime(tieng.f1, t + tieng.dur);
+  osc.connect(g);
+  osc.start(t);
+  osc.stop(t + tieng.dur + 0.02);
+  if (tieng.nhieu) {
+    const dai = Math.floor(ctx.sampleRate * tieng.dur);
+    const dem = ctx.createBuffer(1, dai, ctx.sampleRate);
+    const d = dem.getChannelData(0);
+    const vao = Math.max(1, Math.floor(dai * 0.15));
+    for (let i = 0; i < dai; i++) {
+      const bien = (i < vao ? i / vao : 1) * (1 - i / dai);
+      d[i] = (Math.random() * 2 - 1) * bien;
+    }
+    const nguon = ctx.createBufferSource();
+    nguon.buffer = dem;
+    const gn = ctx.createGain();
+    gn.gain.value = tieng.nhieu;
+    nguon.connect(gn); gn.connect(g);
+    nguon.start(t); nguon.stop(t + tieng.dur);
+  }
+  osc.onended = () => { try { ra.disconnect(); } catch (e) {} };
+}
+
+/* ---------------------------------------------------------------- đo */
+async function doDinh(ms) {
+  if (!an) return 0;
+  const dem = new Float32Array(an.fftSize);
+  let dinh = 0;
+  const dau = performance.now();
+  while (performance.now() - dau < (ms || 400)) {
+    an.getFloatTimeDomainData(dem);
+    for (let i = 0; i < dem.length; i++) {
+      const v = Math.abs(dem[i]);
+      if (v > dinh) dinh = v;
+    }
+    const phan = Math.min(100, (dinh / 0.5) * 100);
+    $("#thanh").style.width = phan + "%";
+    $("#thanhso").textContent = dinh.toFixed(3);
+    await new Promise((r) => requestAnimationFrame(r));
+  }
+  return lam1(dinh);
+}
+
+async function doMotTieng(ten, hienVao) {
+  const truoc = ctx ? ctx.state : "null";
+  const p = doDinh(400);
+  ke(ten);
+  const dinh = await p;
+  const sau = ctx ? ctx.state : "null";
+  const kq = { giay: giay(), ten, truoc, sau, dinh };
+  nkCham.push(kq);
+  if (hienVao !== false) veKQ("#kq4", kq);
+  veNKCham();
+  return kq;
+}
+
+function veKQ(noi, kq) {
+  const hop = $(noi);
+  const d = document.createElement("div");
+  const ok = kq.dinh > 0.01;
+  d.className = "kq " + (ok ? "ok" : "bad");
+  d.innerHTML = '<span class="ten2">' + kq.ten + '</span><span>' +
+    kq.dinh.toFixed(3) + " · " + (ok ? "KÊU" : "IM") + " · " + kq.truoc + "→" + kq.sau + "</span>";
+  hop.appendChild(d);
+}
+
+function veNKCham() {
+  const hop = $("#nkc");
+  hop.innerHTML = "";
+  nkCham.slice(-40).forEach((k) => {
+    const d = document.createElement("div");
+    const ok = k.dinh > 0.01;
+    d.innerHTML = '<span class="t">' + k.giay + 's</span> ' + k.ten + " " +
+      '<span class="k-' + (ok ? "ok" : "bad") + '">' + k.dinh.toFixed(3) + "</span> " +
+      '<span class="s-' + k.truoc + '">' + k.truoc + "</span>→" +
+      '<span class="s-' + k.sau + '">' + k.sau + "</span>";
+    hop.appendChild(d);
+  });
+  hop.scrollTop = hop.scrollHeight;
+}
+
+/* ---------------------------------------------------------------- báo cáo */
+function taoBaoCao() {
+  const ua = navigator.userAgent;
+  const iphone = /iPhone|iPad|iPod/.test(ua);
+  const coTieng = nkCham.filter((k) => k.dinh > 0.01).length;
+  const trangThaiDaGap = [...new Set(nkTrangThai.map((x) => x.state))];
+  const ngatThat = nkTrangThai.filter((x) => x.state === "interrupted" && !x.chuaMoKhoa);
+  const L = [];
+  L.push("=== PHÒNG ĐO TIẾNG — BÁO CÁO ===");
+  L.push("Lúc: " + new Date().toISOString());
+  L.push("Thiết bị: " + (iphone ? "iPhone/iPad (thật)" : "KHÔNG phải iPhone — số đo không dùng được"));
+  L.push("Trình duyệt: " + ua);
+  L.push("Màn hình: " + screen.width + "x" + screen.height +
+    " · DPR " + (window.devicePixelRatio || 1));
+  L.push("sampleRate: " + (ctx ? ctx.sampleRate : "chưa có") +
+    " · baseLatency: " + (ctx && ctx.baseLatency != null ? ctx.baseLatency : "?"));
+  L.push("");
+  L.push("--- TRẠNG THÁI ĐÃ GẶP ---");
+  L.push(trangThaiDaGap.join(", ") || "(chưa có)");
+  if (ngatThat.length) {
+    L.push(">>> CÓ " + ngatThat.length + " lần interrupted THẬT (sau khi đã chạy được): "
+      + ngatThat.map((x) => x.giay + "s").join(", ") + " — đây là manh mối chính.");
+  } else if (trangThaiDaGap.includes("interrupted")) {
+    L.push(">>> interrupted chỉ xuất hiện lúc CHƯA mở khóa (bình thường trên WebKit),");
+    L.push("    không có lần nào bị ngắt thật giữa chừng.");
+  } else {
+    L.push(">>> KHÔNG có interrupted trong suốt phiên đo.");
+  }
+  L.push("");
+  L.push("--- NHẬT KÝ TRẠNG THÁI (" + nkTrangThai.length + ") ---");
+  nkTrangThai.forEach((x) => L.push("  " + x.giay + "s  " + x.state +
+    (x.chuaMoKhoa ? " (chưa mở khóa)" : "") + (x.ghi ? "  · " + x.ghi : "")));
+  L.push("");
+  L.push("--- NHẬT KÝ CHẠM (" + nkCham.length + ", có tiếng " + coTieng + ") ---");
+  nkCham.forEach((k) => L.push("  " + k.giay + "s  " + k.ten + "  đỉnh=" + k.dinh.toFixed(3) +
+    "  " + k.truoc + "→" + k.sau + "  " + (k.dinh > 0.01 ? "KÊU" : "IM")));
+  L.push("");
+  const im = nkCham.filter((k) => k.dinh <= 0.01);
+  L.push("--- KẾT LUẬN ---");
+  if (!nkCham.length) L.push("Chưa đo lần nào.");
+  else if (!im.length) L.push("Tất cả " + nkCham.length + " lần chạm đều có tiếng. Không tái hiện được lỗi.");
+  else {
+    L.push("Có " + im.length + "/" + nkCham.length + " lần IM. Chi tiết:");
+    im.slice(0, 12).forEach((k) => L.push("  - " + k.ten + " lúc " + k.giay + "s, trạng thái lúc đó: " + k.truoc));
+  }
+  return L.join("\n");
+}
+
+function capNhatBaoCao() {
+  $("#bc").value = nkCham.length || nkTrangThai.length ? taoBaoCao() : "";
+}
+
+/* ---------------------------------------------------------------- gắn nút */
+$("#batdau").addEventListener("click", () => {
+  if (!ctx || ctx.state === "closed") taoCtx("bấm Bắt đầu đo");
+  else { thucDay(); veTrangThai(ctx.state, "bấm Bắt đầu đo"); }
+  $("#batdau").textContent = "✓ Đã mở khóa — bấm các nút bên dưới";
+  capNhatBaoCao();
+});
+
+document.querySelectorAll("[data-tieng]").forEach((b) => {
+  b.addEventListener("click", async () => {
+    if (!ctx || ctx.state === "closed") { if (!taoCtx("tự tạo khi bấm tiếng")) return; }
+    $("#kq4").innerHTML = "";
+    await doMotTieng(b.dataset.tieng);
+    capNhatBaoCao();
+  });
+});
+
+$("#dohet").addEventListener("click", async () => {
+  if (!ctx || ctx.state === "closed") { if (!taoCtx("đo cả bốn")) return; }
+  $("#kq4").innerHTML = "";
+  for (const t of ["bam", "lat", "lui", "mo"]) {
+    await doMotTieng(t);
+    await new Promise((r) => setTimeout(r, 260));
+  }
+  capNhatBaoCao();
+});
+
+$("#do10").addEventListener("click", async () => {
+  if (!ctx || ctx.state === "closed") { if (!taoCtx("chạy 10 lần")) return; }
+  $("#kq10").innerHTML = "";
+  let keu = 0;
+  for (let i = 1; i <= 10; i++) {
+    const kq = await doMotTieng("bam", false);
+    if (kq.dinh > 0.01) keu++;
+    veKQ("#kq10", kq);
+    await new Promise((r) => setTimeout(r, 190));
+  }
+  const d = document.createElement("div");
+  d.className = "kq " + (keu === 10 ? "ok" : "bad");
+  d.innerHTML = "<b>" + keu + "/10 lần có tiếng</b>";
+  $("#kq10").appendChild(d);
+  capNhatBaoCao();
+});
+
+$("#taitai").addEventListener("click", () => {
+  localStorage.setItem("pd_tai_lai", "1");
+  location.reload();
+});
+
+$("#t-suspend").addEventListener("click", async () => {
+  if (!ctx) return;
+  await ctx.suspend().catch(() => {});
+  await new Promise((r) => setTimeout(r, 400));
+  $("#kqngat").innerHTML = "";
+  const kq = await doMotTieng("bam");
+  const d = document.createElement("div");
+  d.className = "kq " + (kq.dinh > 0.01 ? "ok" : "bad");
+  d.innerHTML = "sau suspend: " + kq.dinh.toFixed(3) + " · " +
+    (kq.dinh > 0.01 ? "tự hồi phục" : "KHÔNG hồi phục");
+  $("#kqngat").appendChild(d);
+  capNhatBaoCao();
+});
+
+$("#t-close").addEventListener("click", async () => {
+  if (!ctx) return;
+  await ctx.close().catch(() => {});
+  await new Promise((r) => setTimeout(r, 400));
+  $("#kqngat").innerHTML = "";
+  const kq = await doMotTieng("bam");
+  const d = document.createElement("div");
+  d.className = "kq " + (kq.dinh > 0.01 ? "ok" : "bad");
+  d.innerHTML = "sau close: " + kq.dinh.toFixed(3) + " · " +
+    (kq.dinh > 0.01 ? "tự dựng lại được" : "KHÔNG dựng lại được");
+  $("#kqngat").appendChild(d);
+  capNhatBaoCao();
+});
+
+$("#copy").addEventListener("click", async () => {
+  const t = taoBaoCao();
+  $("#bc").value = t;
+  try {
+    await navigator.clipboard.writeText(t);
+    $("#copy").textContent = "✓ Đã copy — dán gửi lại";
+  } catch (e) {
+    $("#bc").focus(); $("#bc").select();
+    $("#copy").textContent = "Chọn hết rồi copy thủ công (trình duyệt chặn)";
+  }
+  setTimeout(() => { $("#copy").textContent = "📋 Copy báo cáo"; }, 3200);
+});
+
+/* ---------------------------------------------------------------- theo dõi */
+document.addEventListener("visibilitychange", () => {
+  veTrangThai(ctx ? ctx.state : "null",
+    document.hidden ? "trang bị ẩn" : "quay lại trang");
+  thucDay();
+  capNhatBaoCao();
+});
+window.addEventListener("pageshow", () => {
+  veTrangThai(ctx ? ctx.state : "null", "pageshow");
+  capNhatBaoCao();
+});
+window.addEventListener("pagehide", () => veTrangThai(ctx ? ctx.state : "null", "pagehide"));
+document.addEventListener("freeze", () => veTrangThai(ctx ? ctx.state : "null", "freeze"));
+document.addEventListener("resume", () => { veTrangThai(ctx ? ctx.state : "null", "resume"); thucDay(); });
+
+document.addEventListener("touchstart", thucDay, { passive: true });
+document.addEventListener("click", thucDay, { passive: true });
+
+/* ---------------------------------------------------------------- vào trang */
+(function khoiTao() {
+  if (lanDauSauTaiLai) {
+    localStorage.removeItem("pd_tai_lai");
+    $("#banner").innerHTML = '<div class="banner">Đang ở chế độ tái hiện: trang vừa được ' +
+      'tải lại. Bấm nút "Bắt đầu đo" rồi bấm một tiếng — đó chính là cú chạm đầu tiên ' +
+      'sau khi tải lại, đúng lúc lỗi cũ xảy ra.</div>';
+  }
+  taoCtx("tạo lúc mở trang");
+  capNhatBaoCao();
+})();
+</script>
+</body>
+</html>
