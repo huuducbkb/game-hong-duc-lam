@@ -7,7 +7,9 @@ name: Nén video intro
 # này tải về bằng token, nén xuống ~14 MB rồi commit — git push không bị trần đó.
 on:
   release:
-    types: [published, edited]
+    # CHI 'published'. 'edited' cung ban ra khi sua release -> chay 2 lan,
+    # 2 commit trung (da gap that: 902baa0 + 2fe0b89).
+    types: [published]
   workflow_dispatch:
     inputs:
       muc_tieu_mb:
@@ -26,8 +28,6 @@ concurrency:
 jobs:
   nen:
     runs-on: ubuntu-latest
-    outputs:
-      da_commit: ${{ steps.commit.outputs.da_commit }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -78,7 +78,6 @@ jobs:
         run: python3 tools/build_xuong_video.py
 
       - name: Commit + đẩy lên main
-        id: commit
         run: |
           git config user.name "xuong-video-bot"
           git config user.email "xuong-video-bot@users.noreply.github.com"
@@ -88,28 +87,8 @@ jobs:
           else
             git commit -q -m "Video intro: nén và đưa vào game [skip ci]"
             git push origin HEAD:main
-            echo "da_commit=1" >> "$GITHUB_OUTPUT"
           fi
 
-  deploy:
-    needs: nen
-    if: needs.nen.outputs.da_commit == '1'
-    runs-on: ubuntu-latest
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-      - id: deployment
-        uses: actions/deploy-pages@v4
+# Không tự deploy ở đây: job chạy trên ref của release tag, mà environment
+# github-pages chỉ cho branch main deploy ("Tag ... is not allowed"). Bot push
+# xong thì workflow "Triển khai GitHub Pages" (trigger push vào docs/**) tự lo.
