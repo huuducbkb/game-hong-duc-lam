@@ -287,17 +287,12 @@ body{
 }
 
 /* ---------- MÀN PHIM INTRO ---------- */
-/* Video chạy toàn màn hình, hết phim tự sang màn chọn nhánh. Không có màn
-   chữ bản thảo riêng nữa. */
-.phim-intro{position:fixed;inset:0;z-index:11;background:#000;
-  display:flex;align-items:center;justify-content:center;overflow:hidden}
-.phim-intro video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
-/* Nền mờ phía sau: video dọc trên màn ngang sẽ có hai dải đen, lấp bằng chính
-   khung hình phóng to làm mờ cho đỡ trống. */
-.phim-intro .nen-mo{position:absolute;inset:-40px;z-index:0;
-  background:#000 center/cover no-repeat;filter:blur(34px) brightness(.42);
-  transform:scale(1.1)}
-.phim-intro video{position:relative;z-index:1}
+/* Phim phủ KÍN màn hình (object-fit:cover), không còn dải đen hai bên.
+   Phim gốc 1080x1920 dọc: trên màn ngang sẽ cắt bớt trên/dưới, chấp nhận
+   để phim tràn viền thay vì thu nhỏ giữa nền đen. */
+.phim-intro{position:fixed;inset:0;z-index:11;background:#000;overflow:hidden}
+.phim-intro video{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;background:#000;display:block}
 
 /* Nút bỏ qua: luôn thấy, chạm là sang màn chọn nhánh ngay. */
 .phim-intro .thoi{position:absolute;right:max(14px,env(safe-area-inset-right));
@@ -314,18 +309,11 @@ body{
 .phim-intro .tien i{display:block;height:100%;width:0;
   background:linear-gradient(90deg,#c0392b,#ff6b57);transition:width .2s linear}
 
-/* Chưa có video (chưa úp) thì hiện tấm bìa làm nền, kèm nút vào ngay —
-   không để người chơi nhìn màn đen. */
-.phim-intro .cho{position:absolute;inset:0;z-index:2;
-  display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
-.phim-intro .cho p{font-family:var(--serif);font-size:13.5px;line-height:1.8;
-  color:rgba(244,239,226,.9);max-width:340px;margin:0}
-
 .phim-intro.di{animation:phimTan 460ms ease-in both}
 @keyframes phimTan{from{opacity:1}to{opacity:0}}
 
 @media (prefers-reduced-motion:reduce){
-  .phim-intro,.phim-intro .nen-mo{animation:none}
+  .phim-intro{animation:none}
   .phim-intro .tien i{transition:none}
 }
 
@@ -394,14 +382,10 @@ body{
 
 <!-- MÀN PHIM INTRO -->
 <div class="phim-intro" id="phimIntro" style="display:none">
-  <div class="nen-mo" id="phimNen"></div>
   <video id="introVideo" playsinline preload="none" webkit-playsinline
          poster="../assets/video/intro-poster.jpg"></video>
   <button class="thoi" type="button" id="phimThoi">Bỏ qua ▸</button>
   <div class="tien"><i id="phimTien"></i></div>
-  <div class="cho" id="phimCho" hidden>
-    <p>Chưa có video intro.<br>Chạm <b>Bỏ qua ▸</b> để vào chọn nhánh chơi.</p>
-  </div>
 </div>
 
 <script>
@@ -431,7 +415,7 @@ body{
   }
 
   function chayPhim(){
-    var phim = $("phimIntro"), v = $("introVideo"), cho = $("phimCho");
+    var phim = $("phimIntro"), v = $("introVideo");
     if (!phim) return;
     phim.style.display = "";
     if (!v) { sangManNhanh(); return; }
@@ -469,7 +453,6 @@ body{
       v.addEventListener("timeupdate", nhac);
       v.addEventListener("loadedmetadata", nhac);
     }
-    if (cho) cho.hidden = true;
   }
 
   function vao(){
