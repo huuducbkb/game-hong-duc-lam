@@ -529,6 +529,9 @@ mỗi push sau lại fail lại).
 → `.setup` chọn nhánh chơi (9). Không còn màn chữ bản thảo riêng: bấm "Vào game" là phim
 intro chạy toàn màn hình, hết phim tự sang màn chọn nhánh.
 
+- Phim dùng `object-fit:cover` để **phủ kín** màn hình. Phim gốc 1080x1920 (dọc), nên
+  trên màn ngang nó bị cắt trên/dưới — cố ý, để không có dải đen hai bên. Đừng đổi lại
+  thành `contain`: người dùng đã yêu cầu rõ phim phải tràn viền.
 - `.bia` là `div` nền ảnh (không phải `<img>`) nên file thiếu không hiện icon ảnh hỏng.
   CSS khai 2 lớp: `docs/assets/bia.jpg` (người dùng tự úp ở Xưởng ảnh) rồi lùi về
   `assets/video/v14_nen_tieu_de.jpg`.
