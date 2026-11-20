@@ -546,8 +546,14 @@ intro chạy toàn màn hình, hết phim tự sang màn chọn nhánh.
   `error`/quá 12 giây chưa phát được. Safari iPhone chặn tự phát có tiếng → tự tắt tiếng
   để phim vẫn chạy.
 
-**Trang portal `docs/index.html`** chỉ còn nút chơi game và Xưởng video. Đã bỏ lối vào
-Bản thảo Chương 1 và Xưởng ảnh (thư mục vẫn còn, chỉ bỏ liên kết).
+**Trang gốc `docs/index.html` KHÔNG còn là portal.** Người dùng đã yêu cầu bỏ hẳn giao
+diện portal (tiêu đề + mô tả game + thẻ "Xưởng video"), nên trang gốc giờ chỉ là một
+redirect `<meta refresh>` sang `game/play.html`. Không thêm lại menu, không thêm thẻ giới
+thiệu. Mở link gốc là vào thẳng game.
+
+Các thư mục `docs/xuong/`, `docs/xuong-video/`, `docs/luu-tru/ban-thao/` **vẫn còn** trong
+repo và vẫn truy cập được bằng URL trực tiếp, chỉ không còn liên kết từ đâu tới. Đừng xoá
+trừ khi người dùng nói rõ — họ còn dùng Xưởng video để dựng trailer.
 
 ### HAI bản `play.html` phải đồng bộ giao diện
 
