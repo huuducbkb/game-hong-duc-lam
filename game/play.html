@@ -331,14 +331,36 @@ body{
 .setup .go:disabled{opacity:.5}
 .setup .hint{font-size:11px;color:var(--ink-faint);margin-top:9px;line-height:1.5}
 .setup .card{max-height:92vh;overflow-y:auto}
-.xt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:2px}
-.xt-grid button{font-family:var(--serif);font-size:12.5px;color:var(--ink-soft);text-align:left;
-  background:rgba(255,255,255,.7);border:1px solid var(--edge);border-radius:10px;padding:9px 10px;line-height:1.35}
-.xt-grid button.chon{border-color:var(--seal);background:rgba(168,53,42,.09);color:var(--seal);font-weight:600}
-.xt-grid button small{display:block;font-size:10.5px;color:var(--ink-faint);margin-top:2px;font-weight:400}
-.xt-grid button.chon small{color:var(--seal);opacity:.8}
-.setup .hoac{font-size:10.5px;letter-spacing:1.5px;color:var(--ink-faint);text-transform:uppercase;
-  text-align:center;margin:14px 0 0}
+/* thẻ xuất thân: ảnh nền + tên lớn, xếp một cột cho dễ chạm trên điện thoại */
+.xt-grid{display:grid;gap:10px;margin-top:7px}
+.xt-grid .xt-the{position:relative;display:block;width:100%;height:126px;padding:0;overflow:hidden;
+  font-family:var(--serif);text-align:left;cursor:pointer;
+  border:1px solid var(--edge);border-radius:13px;background:#cfc4a9;
+  transition:box-shadow .18s ease,transform .12s ease}
+.xt-grid .xt-nen{position:absolute;inset:0;background-position:center;background-size:cover;
+  transform:scale(1.03);transition:transform .4s ease}
+.xt-grid .xt-the::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(95deg,rgba(19,15,10,.88) 0%,rgba(19,15,10,.66) 54%,rgba(19,15,10,.20) 100%)}
+.xt-grid .xt-chu{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:12px 14px}
+.xt-grid .xt-ten{display:block;font-family:var(--brush);font-size:24px;line-height:1.18;
+  color:#fdf9ef;text-shadow:0 2px 9px rgba(0,0,0,.9)}
+.xt-grid .xt-mo{display:block;margin-top:5px;font-size:11.5px;line-height:1.45;
+  color:rgba(253,249,239,.84);text-shadow:0 1px 7px rgba(0,0,0,.95)}
+.xt-grid .xt-dau{position:absolute;top:10px;right:10px;z-index:2;width:25px;height:25px;border-radius:50%;
+  background:var(--seal);color:#fdf9ef;font-size:13px;line-height:25px;text-align:center;
+  opacity:0;transform:scale(.6);transition:opacity .15s ease,transform .15s ease}
+.xt-grid .xt-the.chon{border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(168,53,42,.45),0 9px 24px rgba(40,34,26,.26)}
+.xt-grid .xt-the.chon .xt-nen{transform:scale(1.1)}
+.xt-grid .xt-the.chon .xt-dau{opacity:1;transform:scale(1)}
+.xt-grid .xt-the:active{transform:scale(.985)}
+/* ô tự gõ: thu lại sau một link, để hai thẻ là lựa chọn chính */
+.xt-tu-do{display:block;width:100%;margin-top:12px;padding:8px 0;border:0;background:transparent;
+  font-family:var(--serif);font-size:12px;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--ink-faint);cursor:pointer}
+.xt-tu-do:active{color:var(--seal)}
+.xt-o{display:none}
+.xt-o.mo{display:block}
 
 /* ---------- Ô NHẬP TỰ DO ---------- */
 .freebar{display:flex;gap:7px;flex:0 0 auto;align-items:flex-end}
@@ -511,11 +533,13 @@ body{
     <div class="cap">Nghịch chuyển càn khôn</div>
     <label for="ten">Tên nhân vật</label>
     <input id="ten" maxlength="24" placeholder="Ví dụ: Hồng Đức" autocomplete="off">
-    <label>Chọn xuất thân <span style="color:var(--ink-faint)">(mỗi xuất thân một câu chuyện riêng)</span></label>
+    <label>Chọn xuất thân</label>
     <div class="xt-grid" id="xtGrid"></div>
-    <div class="hoac">hoặc tự gõ</div>
-    <label for="xuat">Xuất thân tự do (bỏ trống là “tán tu vô danh”)</label>
-    <textarea id="xuat" maxlength="4000" rows="4" placeholder="Ví dụ: tán tu nghèo, con nhà nông, dược đồng ở hiệu thuốc…"></textarea>
+    <button class="xt-tu-do" type="button" id="xtTuDo">Hoặc tự gõ xuất thân</button>
+    <div class="xt-o" id="xtO">
+      <label for="xuat">Xuất thân tự do (bỏ trống là “tán tu vô danh”)</label>
+      <textarea id="xuat" maxlength="4000" rows="3" placeholder="Ví dụ: tán tu nghèo, con nhà nông, dược đồng ở hiệu thuốc…"></textarea>
+    </div>
     <button class="go" id="go">Bắt đầu</button>
     <div class="hint" id="setupLoi"></div>
   </div>
@@ -934,17 +958,39 @@ capNhatNutLui();
 // ---------------------------------------------------------- tạo nhân vật
 let nhomChon = "";        // mã nhóm xuất thân đang chọn (nút), "" = tự gõ
 
+// Ảnh nền thẻ lấy từ đoạn mở đầu của chính xuất thân đó.
+async function anhTheXuatThan(nhom) {
+  const anh = {};
+  try {
+    const ch = await fetch("/chapters/chuong1.json").then(x => x.json());
+    const theoId = {};
+    (ch.doan || []).forEach(d => { theoId[d.id] = d; });
+    nhom.forEach(n => {
+      const d = n.doan_dau ? theoId[n.doan_dau] : null;
+      const ten = d && d.hinh_anh && d.hinh_anh.anh;
+      if (ten) anh[n.ma] = "../assets/scene/" + ten;
+    });
+  } catch (e) {}
+  return anh;
+}
+
 async function napXuatThan() {
   try {
     const r = await goi("/api/xuat_than");
     const hop = $("#xtGrid");
     if (!hop || !r.nhom) return;
+    const anh = await anhTheXuatThan(r.nhom);
     hop.innerHTML = "";
     r.nhom.forEach(n => {
       const b = document.createElement("button");
       b.type = "button";
+      b.className = "xt-the";
       b.dataset.ma = n.ma;
-      b.innerHTML = esc(n.ten) + (n.mo_ta ? "<small>" + esc(n.mo_ta) + "</small>" : "");
+      b.innerHTML =
+        '<span class="xt-nen"' + (anh[n.ma] ? ' style="background-image:url(\'' + anh[n.ma] + '\')"' : "") + '></span>' +
+        '<span class="xt-chu"><span class="xt-ten">' + esc(n.ten) + "</span>" +
+        (n.mo_ta ? '<span class="xt-mo">' + esc(n.mo_ta) + "</span>" : "") + "</span>" +
+        '<span class="xt-dau">\u2713</span>';
       b.onclick = () => {
         nhomChon = (nhomChon === n.ma) ? "" : n.ma;
         [...hop.children].forEach(c => c.classList.toggle("chon", c.dataset.ma === nhomChon));
@@ -962,6 +1008,18 @@ gan("#go", "onclick", async () => {
   hienThi(await goi("/api/new", {ten, xuat_than: $("#xuat").value, nhom: nhomChon, ke_ai: keAI}));
   $("#go").disabled = false;
 });
+// Link "tự gõ": mở ô nhập, và khi đang mở thì chọn thẻ sẽ đóng lại.
+gan("#xtTuDo", "onclick", () => {
+  const o = $("#xtO");
+  if (!o) return;
+  o.classList.toggle("mo");
+  if (o.classList.contains("mo")) { const t = $("#xuat"); if (t) t.focus(); }
+});
+(() => {
+  const hop = $("#xtGrid"), o = $("#xtO");
+  if (hop && o) hop.addEventListener("click", () => o.classList.add("mo"));
+})();
+
 napXuatThan();
 gan("#guiTuDo", "onclick", tuDo);
 gan("#nutKeAI", "onclick", doiKeAI);
