@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mỗi xuất thân một chỉ số riêng</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5);margin-bottom:18px}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+  th,td{padding:8px 6px;text-align:left;border-bottom:1px solid rgba(36,28,20,.14)}
+  th{font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:#7a6852;font-weight:600}
+  td:not(:first-child),th:not(:first-child){text-align:right}
+  tr.moi td{background:rgba(168,130,60,.13)}
+  .manh{font-size:12px;color:#7a6852;font-weight:400;display:block;text-transform:none;letter-spacing:0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:6px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:8px}
+  .cu{font-size:13.5px;color:#6b5b48}
+</style>
+</head>
+<body>
+<div class="khung">
+
+  <div class="to">
+    <h1>Mỗi xuất thân đã có chỉ số riêng</h1>
+    <p class="phu">Bản chạy thật trên GitHub Pages &middot; đo bằng trình duyệt ở khổ điện thoại 390&times;844</p>
+
+    <p>Trước đây chọn <b>tán tu</b> hay <b>đệ tử môn phái</b> đều ra một bộ số y hệt nhau
+       (30 sinh lực &middot; 12 tu vi &middot; 3 bạc). Giờ hai lối vào khác nhau thật.</p>
+
+    <h2>Số của từng xuất thân</h2>
+    <table>
+      <thead>
+        <tr><th>Chỉ số</th><th>Tán tu / ăn mày</th><th>Đệ tử môn phái</th></tr>
+      </thead>
+      <tbody>
+        <tr class="moi"><td>Sinh lực</td><td class="so">26</td><td class="so">34</td></tr>
+        <tr class="moi"><td>Tu vi khởi đầu</td><td class="so">12</td><td class="so">10</td></tr>
+        <tr><td>Tấn công</td><td class="so">3</td><td class="so">7</td></tr>
+        <tr><td>Phòng thủ</td><td class="so">2</td><td class="so">4</td></tr>
+        <tr><td>Tốc độ</td><td class="so">9</td><td class="so">11</td></tr>
+        <tr><td>Bạc</td><td class="so">3</td><td class="so">1</td></tr>
+        <tr><td>Kỹ năng<span class="manh">lúc mới vào</span></td>
+            <td>Hô hấp pháp<br>Nhận biết linh khí</td>
+            <td>Thất Huyền quyền nhập môn<br>Hô hấp pháp</td></tr>
+      </tbody>
+    </table>
+
+    <div class="hop">
+      <b>Vì sao số như vậy &mdash; lấy từ chính truyện, không tự bịa:</b>
+      <ul style="margin:8px 0 0">
+        <li>Tán tu: đoạn mở đầu nói túi chỉ có <i>&ldquo;vài đồng bạc lẻ trong túi rách&rdquo;</i>
+            &rarr; 3 bạc; thân phận <i>&ldquo;không võ công&rdquo;</i> &rarr; công/thủ thấp.</li>
+        <li>Môn phái: <i>&ldquo;thân thủ hạng bét, chỉ hơn kẻ mới học võ chút đỉnh&rdquo;</i>
+            &rarr; <b>có</b> võ công phàm nhân nên công 7 so với 3; sống trong môn không cần
+            tiền mặt &rarr; 1 bạc.</li>
+      </ul>
+    </div>
+
+    <h2>Ảnh chụp bản thật</h2>
+
+    <div class="anh">
+      <img src="chi-so-1.jpg" alt="Màn chọn xuất thân, thẻ tán tu đang chọn">
+      <div class="chuAnh">Thẻ tán tu: Sinh lực 26 &middot; Tu vi 12 &middot; Công 3 &middot; Thủ 2 &middot; Tốc độ 9 &middot; Bạc 3</div>
+    </div>
+
+    <div class="anh">
+      <img src="chi-so-2.jpg" alt="Chọn thẻ đệ tử môn phái, nền đổi sang tân xá">
+      <div class="chuAnh">Bấm thẻ môn phái: nền đổi sang tân xá, số đổi thành 34 &middot; 10 &middot; 7 &middot; 4 &middot; 11 &middot; 1</div>
+    </div>
+
+    <h2>Một chỗ dễ hỏng đã kiểm tra</h2>
+    <p>Đổi tu vi khởi đầu là đổi luôn <b>mốc lên tầng</b>. Mà truyện đã chốt cảnh giới cuối
+       chương, nên nếu đặt số ẩu thì bảng chỉ số sẽ nói ngược lại lời truyện.</p>
+    <ul>
+      <li>Tán tu &mdash; cuối chương truyện nói <i>&ldquo;Luyện Khí tầng ba&rdquo;</i>
+          &rarr; phải kết ở <b>tầng 3</b>. Đúng.</li>
+      <li>Môn phái &mdash; truyện nói lên <b>tầng hai</b> ở đoạn giữa, cuối chương vẫn tầng hai. Đúng.</li>
+    </ul>
+    <div class="hop">
+      Lần đầu tôi đặt môn phái tu vi <b>8</b>, mô phỏng ra <b>tầng 1</b> &mdash; sai truyện.
+      Dò lại thì <b>10</b> mới đúng. Đã viết test khoá lại 5 mốc này để sau không sửa hỏng.
+    </div>
+
+    <h2>Kiểm chứng</h2>
+    <ul>
+      <li>Test engine: <b>124 đạt, 0 hỏng</b> (thêm 19 test mới).</li>
+      <li>Test API: <b>161 đạt, 0 hỏng</b>.</li>
+      <li>Bản live: thẻ hiện đúng số; vào game bảng Hệ Thống hiện
+          <code>Tu vi 10/100 &middot; Sinh lực 34/34 &middot; Công 7 &middot; Thủ 4 &middot; Tốc độ 11 &middot; Bạc 1 lượng</code>
+          &mdash; khớp với thẻ. Không lỗi JS.</li>
+      <li>Dải số từng bị cắt mất 13px vì thẻ cao cố định 126px; đã nâng lên 148px, đo lại
+          đáy nội dung ở 135px là gọn.</li>
+    </ul>
+
+    <p class="cu">Ghi chú: lượt deploy đầu bị GitHub lỗi hạ tầng
+       (<i>&ldquo;Fetching artifact metadata failed&rdquo;</i>), không phải lỗi code;
+       chạy lại thì lên bản mới.</p>
+
+    <a class="nut" href="https://huuducbkb.github.io/game-hong-duc-lam/game/play.html">Mở game để thử</a>
+  </div>
+
+</div>
+</body>
+</html>
