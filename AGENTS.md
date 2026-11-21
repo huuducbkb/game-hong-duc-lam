@@ -621,11 +621,22 @@ Lưu ý harness: iframe **phải cùng origin** với trang cần đo, nếu kh�
 (ví dụ để tạm ở gốc dự án rồi mở qua `game_server.py`), dùng đường dẫn tương đối
 (`/game`). Nhớ xoá file harness sau khi đo.
 
-### Âm thanh: tự tạo bằng Web Audio, không thêm file
+### Âm thanh: tổng hợp trong máy, có thể thay bằng bản ghi thật
 
 Game dùng bốn tiếng ngắn (`bam`, `lat`, `lui`, `mo`) dựng bằng Web Audio ngay trong máy.
-**Đừng thêm file mp3/wav** trừ khi người dùng yêu cầu: repo không có file âm thanh nào,
-thêm vào là nặng thêm và vướng bản quyền.
+**Đừng thêm file mp3/wav vào repo** trừ khi người dùng yêu cầu. Repo vẫn không chứa file
+âm thanh nào — xem mục dưới.
+
+**Ngoại lệ có kiểm soát: Xưởng âm thanh.** Người dùng tự tạo bản ghi rồi tải lên qua
+`docs/xuong-am/`. File đi vào `xuong-am-inbox/<mã>/` rồi workflow `xuong-am.yml` nén
+về mp3 96 kbps, cân âm lượng −23 LUFS, đặt vào `docs/assets/am/<mã>.mp3`. Game đọc
+`docs/assets/am/danh-sach.json`: nhóm nào có trong đó thì phát file, không có thì dùng
+tiếng tổng hợp. **Không bao giờ im.** Đừng tự tay commit mp3 vào `assets/am/` — hãy đi
+qua xưởng, để còn cân âm lượng.
+
+Chín nhóm tiếng và prompt tạo nằm ở `game/du_lieu_am.py`; sửa prompt thì sửa ở đó rồi
+chạy `python3 game/tao_xuong_am.py`. Nhóm tiếng suy ra từ tên file ảnh cảnh
+(`nhomCanh`), nên 68 ảnh chỉ cần 9 file tiếng.
 
 Ba điều dễ làm sai khi sửa `keTieng`:
 

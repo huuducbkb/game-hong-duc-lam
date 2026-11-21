@@ -1521,10 +1521,83 @@ const SU_KIEN = {
 };
 
 // Dựng một lớp cảnh: gain chung + lớp nền (nếu có) + các sự kiện tự hẹn giờ.
+// Nhóm nào đã có bản ghi thật do người chơi tải lên (docs/assets/am/<ma>.mp3).
+// Đọc một lần từ danh-sach.json; chưa tải xong thì dùng tiếng tổng hợp.
+let amThat = null;
+let dangNapAmThat = null;
+
+function napAmThat() {
+  if (amThat) return Promise.resolve(amThat);
+  if (dangNapAmThat) return dangNapAmThat;
+  dangNapAmThat = fetch("../assets/am/danh-sach.json", { cache: "no-store" })
+    .then(r => (r.ok ? r.json() : {}))
+    .then(j => {
+      amThat = (j && typeof j === "object") ? j : {};
+      return amThat;
+    })
+    .catch(() => { amThat = {}; return amThat; });
+  return dangNapAmThat;
+}
+
+// Đệm file đã giải mã, để quay lại cảnh cũ không phải tải lại.
+const demAmThat = {};
+
+function phatFileThat(ma, g, muc) {
+  const ds = amThat || {};
+  if (!ds[ma]) return null;
+  const ten = (ds[ma] && ds[ma].file) || (ma + ".mp3");
+  const khoa = ma;
+  let tat = false;
+  const lop = {
+    g: g, nguonFile: null, mucGoc: muc, laFile: true,
+    dung: () => {
+      tat = true;
+      try { if (lop.nguonFile) lop.nguonFile.stop(); } catch (e) {}
+      try { g.disconnect(); } catch (e) {}
+    },
+  };
+  const noi = () => {
+    if (tat) return;
+    const buf = demAmThat[khoa];
+    if (!buf) return;
+    const nguon = ctxTieng.createBufferSource();
+    nguon.buffer = buf;
+    nguon.loop = true;
+    nguon.connect(g);
+    nguon.start();
+    lop.nguonFile = nguon;
+  };
+  if (demAmThat[khoa]) { noi(); return lop; }
+  fetch("../assets/am/" + ten)
+    .then(r => (r.ok ? r.arrayBuffer() : Promise.reject(new Error("HTTP " + r.status))))
+    .then(ab => new Promise((res, rej) => ctxTieng.decodeAudioData(ab, res, rej)))
+    .then(buf => {
+      demAmThat[khoa] = buf;
+      // Cảnh có thể đã đổi trong lúc tải; chỉ phát nếu lớp này còn là lớp đang chạy.
+      if (canhDangChay === lop) noi();
+    })
+    .catch(() => {
+      // File hỏng hoặc mất mạng: rơi về tiếng tổng hợp thay vì im.
+      if (canhDangChay === lop) {
+        delete amThat[ma];
+        const im = document.getElementById("sceneImg");
+        canhLoai = "";
+        if (im && im.getAttribute("src")) doiCanhTieng(im.getAttribute("src"));
+      }
+    });
+  return lop;
+}
+
 function taoCanh(loai, muc) {
   const g = ctxTieng.createGain();
   g.gain.value = 0.0001;
   g.connect(loaTieng || ctxTieng.destination);
+
+  // Có bản ghi thật thì dùng, không thì tổng hợp. Bản ghi thật đã được workflow
+  // cân âm lượng về -23 LUFS nên chỉ cần nhân hệ số trim của cảnh.
+  const file = phatFileThat(loai, g, muc);
+  if (file) return file;
+
   const hen = [];
   let tat = false;
   const nen = taoNen(loai, g, muc * 0.055);
@@ -2114,7 +2187,10 @@ async function luuKey() {
   napNutKeAI();
   napTieng();
   napCanh();
-ganNutTieng();
+  // Không chờ: nếu chưa tải xong thì cảnh đầu dùng tiếng tổng hợp, xong sẽ tự
+  // dùng bản ghi thật ở lần đổi cảnh sau.
+  napAmThat();
+  ganNutTieng();
 ganNutCanh();
   napXuatThan();
 

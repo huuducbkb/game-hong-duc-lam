@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xưởng âm thanh — Hồng Đức Tu Tiên Lộ</title>
+<style>
+:root{--bg:#111a2b;--card:#182337;--ink:#e8e6df;--muted:#93a0b8;--gold:#ffd98a;
+  --jade:#6fe0c0;--line:#2b3b57;--seal:#a8352a;--warn:#ffb98a}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);
+  color:var(--ink);margin:0 auto;padding:18px;max-width:760px;line-height:1.55;
+  -webkit-text-size-adjust:100%}
+h1{font-size:20px;color:var(--gold);margin:6px 0 2px}
+h2{font-size:16px;color:var(--jade);margin:30px 0 6px;display:flex;flex-wrap:wrap;
+  gap:8px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:7px}
+p,li,td,th{font-size:13.5px;color:#cbd4e4}
+.muted{color:var(--muted)}
+code{background:#0a1220;padding:1px 6px;border-radius:4px;color:var(--jade);font-size:12px}
+a{color:var(--jade)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.mota{font-size:12.5px;color:var(--muted);margin:4px 0 10px}
+.ok{color:#7fe0a8} .warn{color:var(--warn)}
+.canh{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:13px;margin:12px 0;border-left:3px solid var(--jade)}
+.canh.done{border-left-color:#2f8f5a}
+.canh header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.so{font-size:11px;color:#3a2600;background:var(--gold);padding:2px 7px;
+  border-radius:99px;font-weight:700}
+.badge{font-size:11px;padding:2px 8px;border-radius:99px}
+.badge.chac{background:#12351f;color:#7fe0a8}
+.badge.thieu{background:#2a150d;color:var(--warn)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--muted);margin:8px 0}
+.meta .k{color:#7f8ca3}
+.nhan{display:block;font-size:12px;color:var(--muted);margin:12px 0 5px;font-weight:600}
+textarea{width:100%;font-size:12.5px;line-height:1.5;background:#0a1220;color:#dfe7f5;
+  border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical;
+  font-family:ui-monospace,Menlo,monospace}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+button{font:inherit;font-size:12.5px;padding:7px 12px;border-radius:8px;cursor:pointer;
+  background:#1d2c44;color:var(--ink);border:1px solid var(--line)}
+button:active{transform:translateY(1px)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.phu{background:transparent}
+.cp{background:#243a2c;border-color:#2f6b4f;color:#a9f0c4}
+.dl{background:transparent}
+.nghe{margin:4px 0 0}
+.nghe audio{width:100%;margin-top:6px}
+.chua{font-size:12.5px;color:var(--muted)}
+.gui input[type=file]{width:100%;font-size:12px;color:var(--muted);
+  background:#0a1220;border:1px dashed var(--line);border-radius:8px;padding:9px}
+.gui-tt{font-size:12.5px;margin-top:8px;min-height:1em}
+.gui-kt.dang{opacity:.6}
+.tom-tat{background:#0e1726;border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+  margin:12px 0;font-size:13px}
+.tom-tat b{color:var(--gold)}
+.ml{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.ml a{font-size:12px;background:#0e1726;border:1px solid var(--line);border-radius:99px;
+  padding:3px 10px;text-decoration:none;color:#9fb2cf}
+.gh{background:#0e1726;border:1px solid #31456a;border-radius:10px;padding:12px 14px;margin:12px 0}
+.gh input{width:100%;font-size:12.5px;background:#0a1220;color:#dfe7f5;
+  border:1px solid var(--line);border-radius:8px;padding:9px;margin:6px 0}
+.gh-tt{font-size:12.5px;margin-top:6px}
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<h1>Xưởng âm thanh</h1>
+<p class="muted">Tiếng nền cho từng cảnh. Chọn cảnh, copy prompt, tạo tiếng bằng công cụ anh
+   thích, rồi tải lên đây — game tự dùng bản của anh.</p>
+
+<div class="tom-tat">
+  <b>9 nhóm tiếng.</b> Mỗi cảnh trong game thuộc một nhóm, nên chỉ cần 9 file là phủ
+  hết. Chưa tải lên nhóm nào thì game vẫn dùng tiếng tổng hợp sẵn trong máy — không bao giờ
+  im.
+  <div class="ml">
+    <a href="#c-cho">Chợ</a><a href="#c-tran">Trận chiến</a><a href="#c-nui">Núi</a><a href="#c-san">Sân tập</a><a href="#c-vuon">Vườn thuốc</a><a href="#c-mieu">Miếu</a><a href="#c-dem">Đêm</a><a href="#c-lang">Làng</a><a href="#c-tinh">Tĩnh</a>
+  </div>
+</div>
+
+<h2>Cách làm</h2>
+<div class="card">
+  <ol style="margin:0;padding-left:20px">
+    <li>Chọn cảnh ở dưới, bấm <b>📋 Copy prompt</b>.</li>
+    <li>Dán vào công cụ sinh âm thanh. Nên chọn <b>30 giây</b>, có chế độ
+        <b>loop / seamless</b> nếu công cụ có.</li>
+    <li>Nghe lại. Ưng thì tải file về máy.</li>
+    <li>Quay lại đây, chọn file ở ô <b>Tải lên bản của anh</b>, bấm <b>📤 Gửi</b>.</li>
+    <li>Chờ 1–2 phút, bấm <b>🔄 Kiểm tra lại</b>. Hiện <b>✅ đã có</b> là game đã dùng.</li>
+  </ol>
+  <p class="muted" style="margin:10px 0 0">
+    Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>.
+    File lớn cứ để nguyên, hệ thống tự nén về mp3 96 kbps và cân âm lượng.
+  </p>
+</div>
+
+<h2>🔑 Kết nối GitHub</h2>
+<div class="gh">
+  <p class="muted" style="margin:0 0 6px">
+    Cần một token có quyền <b>Contents: Read and write</b> trên repo này. Token chỉ lưu
+    trong trình duyệt của anh, không gửi đi đâu khác.
+  </p>
+  <input type="password" id="gh-token" placeholder="ghp_… hoặc github_pat_…" autocomplete="off">
+  <div class="row">
+    <button onclick="ghLuuToken()">Lưu token</button>
+    <button class="phu" onclick="ghQuenToken()">Quên token</button>
+  </div>
+  <div class="gh-tt" id="gh-tt" hidden></div>
+</div>
+
+<h2>Các nhóm tiếng</h2>
+
+<article class="canh" id="c-cho" data-ma="cho" data-file="cho.mp3">
+  <header>
+    <span class="so">1</span>
+    <b>Chợ</b>
+    <code>cho</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/cho.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh chợ trong game (bc_cho_01…03)</div>
+  </div>
+  <p class="mota">Chợ đông người giữa ban ngày: người bán rao hàng, người mua trả giá, bước chân qua lại, mâm nồi kim loại chạm nhau. Không có nhạc.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-cho">Field recording of a busy open-air street market in a small East Asian town at midday. Continuous ambient bed of many people moving and talking at medium distance: overlapping voices in an unintelligible tonal language, never a single clear speaker close to the microphone. A vendor calls out a long rising-then-falling sales chant every few seconds. Behind it: sandals and bare feet on packed earth and stone, wooden stalls creaking, metal pots and ladles knocking together, a knife on a cutting board, coins dropping, cloth bags rustling, occasional distant laughter and a child. Dense, lively, warm, human. Stereo, natural perspective, mid-side detail. No music, no instruments, no singing, no radio, no crowd cheering, no traffic, no engine, no birds dominating, no rain. Loopable: the level and character at the very start must match the very end so it can repeat seamlessly. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-cho', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-cho', 'cho.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="cho.mp3" data-ma="cho">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tran" data-ma="tran" data-file="tran.mp3">
+  <header>
+    <span class="so">2</span>
+    <b>Trận chiến</b>
+    <code>tran</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tran.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh giao chiến (bc_tran_lua…)</div>
+  </div>
+  <p class="mota">Trận đánh bằng vũ khí lạnh: thép chạm thép, tiếng hô, đấm, thở dốc. Không có nhạc.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-tran">Close combat with cold weapons in an open courtyard: steel blade striking steel blade, dull wooden impacts of a body hitting the ground, leather and cloth shifting with fast movement, boots scuffing on stone, short sharp shouts and battle cries from men, heavy breathing and grunts of effort. Impacts are irregular and unpredictable, with short silences between them. Distant sounds of a larger skirmish in the background. No music, no orchestra, no drums, no gunshots, no explosions, no fire, no screaming in pain, no gore. Stereo, natural perspective, dry with a little stone courtyard reverb. Loopable: start and end level must match. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-tran', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-tran', 'tran.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="tran.mp3" data-ma="tran">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-nui" data-ma="nui" data-file="nui.mp3">
+  <header>
+    <span class="so">3</span>
+    <b>Núi</b>
+    <code>nui</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/nui.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh đường mòn, khe núi (bc_duong_mon_nui, bc_khe_nui…)</div>
+  </div>
+  <p class="mota">Gió núi cao thổi qua khe đá, chim rừng xa, thỉnh thoảng đá nhỏ lăn. Rộng và trống trải.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-nui">High mountain pass at dawn, recorded from a narrow rocky trail. Wind moves through a stone gap with a low hollow whistle that swells and fades slowly in long irregular gusts. A few small forest birds call far away with long silences between calls. Very faint distant water in a ravine below. Occasional tiny pebbles shifting and rolling on rock. Vast, empty, cold, quiet. No music, no voices, no human activity, no traffic, no aircraft, no thunder, no rain. Stereo, wide natural perspective with long reverb tails. Loopable: start and end level must match. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-nui', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-nui', 'nui.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="nui.mp3" data-ma="nui">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-san" data-ma="san" data-file="san.mp3">
+  <header>
+    <span class="so">4</span>
+    <b>Sân tập</b>
+    <code>san</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/san.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh luyện võ (bc_san_tap, bc_san_sau…)</div>
+  </div>
+  <p class="mota">Sân luyện võ: đấm vào bao cát theo nhịp, chân đạp đất, thở dốc, thầy đếm nhịp. Không có nhạc.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-san">A martial arts training yard in the early morning. Rhythmic heavy impacts of fists and shins striking a hanging sandbag, roughly one every one to two seconds, with the bag&#x27;s rope creaking after each hit. Bare feet and cloth shoes pivoting and stamping on packed earth. A man breathing hard with each strike. Occasionally a teacher&#x27;s voice counting cadence in a calm, unintelligible tonal language, at medium distance. A wooden dummy rattling. Disciplined, physical, repetitive but never mechanical. No music, no drums, no crowd, no cheering, no shouting in pain. Stereo, natural outdoor perspective. Loopable: start and end level must match. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-san', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-san', 'san.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="san.mp3" data-ma="san">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-vuon" data-ma="vuon" data-file="vuon.mp3">
+  <header>
+    <span class="so">5</span>
+    <b>Vườn thuốc</b>
+    <code>vuon</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/vuon.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh vườn thảo dược (bc_vuon_thuoc…)</div>
+  </div>
+  <p class="mota">Vườn cây thuốc buổi sáng: chim hót gần, lá xào xạc, ong bay, nước nhỏ giọt. Dịu và thưa.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-vuon">A herb garden in the early morning, recorded close to the plants. Several small birds singing nearby at different distances, with clear individual calls and long pauses between them. A light breeze moving through dense leaves with a soft dry rustle that rises and falls. A few bees passing close to the microphone with a brief doppler buzz. Water dripping slowly from a bamboo pipe into a clay jar. Calm, green, alive but sparse. No music, no voices, no traffic, no dogs, no insects swarming loudly, no rain. Stereo, intimate natural perspective. Loopable: start and end level must match. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-vuon', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-vuon', 'vuon.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="vuon.mp3" data-ma="vuon">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-mieu" data-ma="mieu" data-file="mieu.mp3">
+  <header>
+    <span class="so">6</span>
+    <b>Miếu</b>
+    <code>mieu</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/mieu.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh miếu, chùa (bc_mieu…)</div>
+  </div>
+  <p class="mota">Miếu cổ vắng: chuông chùa xa ngân dài, gió nhẹ, chim thưa, không gian rộng. Rất tĩnh.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-mieu">An old empty shrine in a mountain valley, recorded in the courtyard. A distant temple bronze bell is struck once every twenty to thirty seconds, its long inharmonic partials decaying for many seconds and beating slowly against each other. Very soft wind moving through old wooden eaves and stone. A few birds far away with long silences. Occasional creak of dry timber. Enormous quiet, wide reverberant space, deeply still and slightly sacred. No music, no chanting, no voices, no gongs in rhythm, no drums, no crowd, no traffic. Stereo, long natural reverb tail. Loopable: start and end level must match. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-mieu', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-mieu', 'mieu.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="mieu.mp3" data-ma="mieu">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-dem" data-ma="dem" data-file="dem.mp3">
+  <header>
+    <span class="so">7</span>
+    <b>Đêm</b>
+    <code>dem</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/dem.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh ban đêm, tập kích (bc_dem_tap_kich, bc_khe_nui_dem…)</div>
+  </div>
+  <p class="mota">Đêm ngoài trời: dế kêu dày, thỉnh thoảng chó sủa xa, gió nhẹ. Tối và tĩnh.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-dem">Night in open countryside, recorded from a quiet spot. A dense field of crickets and cicadas pulsing in slow overlapping rhythms, with individual insects distinguishable against the mass. A dog barks far away, once, then again after a long pause. Very light wind in dry grass. Now and then a single frog. No music, no voices, no owls screaming, no traffic, no aircraft, no rain, no thunder. Dark, wide, slightly lonely. Stereo, natural perspective. Loopable: start and end level must match. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-dem', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-dem', 'dem.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="dem.mp3" data-ma="dem">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-lang" data-ma="lang" data-file="lang.mp3">
+  <header>
+    <span class="so">8</span>
+    <b>Làng</b>
+    <code>lang</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/lang.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh làng, xóm, cổng cộng đồng (bc_tan_xa, bc_cong_dong…)</div>
+  </div>
+  <p class="mota">Làng quê ban ngày: gà, chó sủa xa, người nói chuyện trong nhà, chim, gió. Ấm và thưa.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-lang">A small farming village in daytime, recorded from a lane between houses. Chickens scratching and clucking nearby. A dog barking in the middle distance, answered by another much further away. Two or three people talking unhurriedly inside a house, muffled and unintelligible, with long pauses. A few birds. Light wind in bamboo and thatch. Somewhere a wooden door and a bucket. Warm, ordinary, unhurried, sparse. No music, no radio, no television, no traffic, no engines, no crowd, no market bustle. Stereo, natural perspective. Loopable: start and end level must match. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-lang', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-lang', 'lang.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="lang.mp3" data-ma="lang">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tinh" data-ma="tinh" data-file="tinh.mp3">
+  <header>
+    <span class="so">9</span>
+    <b>Tĩnh</b>
+    <code>tinh</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tinh.mp3</code></div>
+    <div><span class="k">dùng ở</span> Cảnh yên ắng, trong nhà, lúc thiền (các cảnh còn lại)</div>
+  </div>
+  <p class="mota">Yên tĩnh gần như tuyệt đối: phòng trống, hơi thở của không gian, thỉnh thoảng một tiếng rất xa.</p>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
+  <textarea readonly rows="9" id="p-tinh">Almost silence inside an old empty room with stone walls and a wooden floor. A very faint low room tone, barely audible. Once or twice, the muffled sound of something happening far outside: a distant door, a single footstep, a bird. Nothing else. The impression of a large still space, not of a recording that failed. No music, no voices, no hum of electricity, no air-conditioning, no wind, no hiss, no tape noise. Stereo, natural perspective. Loopable: start and end level must match. Duration 30 seconds.
+
+Do not add any music, melody, chord, drum, singing or instrumental sound of any kind. Do not add narration or intelligible speech. Do not add sound effects that are not listed. Keep it a natural field recording, not a sound-design montage. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
+  <div class="row">
+    <button class="cp" onclick="cpText('p-tinh', this)">📋 Copy prompt</button>
+    <button class="dl" onclick="taiTxt('p-tinh', 'tinh.txt')">⬇️ .txt</button>
+  </div>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+  </div>
+
+  <label class="nhan">Tải lên bản của anh</label>
+  <div class="gui" data-gui data-file="tinh.mp3" data-ma="tinh">
+    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <div class="row">
+      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
+      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<footer>
+  Trang này sinh tự động từ <code>game/du_lieu_am.py</code>.<br>
+  Tiếng do AI tạo (OpenHands) soạn prompt; bản ghi là do anh tạo và tải lên.
+</footer>
+
+/* ================= tiện ích ================= */
+function cpText(id, btn){
+  const t = document.getElementById(id);
+  if(!t) return;
+  const chu = t.value;
+  const xong = () => {
+    const cu = btn.textContent;
+    btn.textContent = '✅ Đã copy';
+    setTimeout(() => btn.textContent = cu, 1600);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(chu).then(xong).catch(() => chon(t, xong));
+  } else chon(t, xong);
+}
+function chon(t, xong){
+  t.removeAttribute('readonly'); t.select(); t.setSelectionRange(0, 999999);
+  try{ document.execCommand('copy'); xong(); }catch(e){}
+  t.setAttribute('readonly','');
+}
+function taiTxt(id, ten){
+  const t = document.getElementById(id);
+  if(!t) return;
+  const b = new Blob([t.value], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(b); a.download = ten; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+
+/* ================= GitHub ================= */
+const GH_REPO = 'huuducbkb/game-hong-duc-lam';
+const GH_BRANCH = 'main';
+const GH_LS = 'xuong_am_gh_token';
+const AM_DIR = 'assets/am/';
+const INBOX = 'xuong-am-inbox';
+
+function ghToken(){ return localStorage.getItem(GH_LS) || ''; }
+
+function ghHienTT(el, loai, html){
+  if(!el) return;
+  el.hidden = false;
+  el.innerHTML = `<span class="${loai}">${html}</span>`;
+}
+
+async function ghLuuToken(){
+  const inp = document.getElementById('gh-token');
+  const tt = document.getElementById('gh-tt');
+  const t = (inp.value || '').trim();
+  if(!t){ ghHienTT(tt,'warn','⚠️ Chưa dán token.'); return; }
+  ghHienTT(tt,'muted','Đang kiểm tra token…');
+  try{
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}`, {
+      headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}});
+    if(!r.ok){
+      ghHienTT(tt,'warn',`⚠️ Token không dùng được (HTTP ${r.status}). Kiểm tra quyền Contents: Read and write.`);
+      return;
+    }
+    const j = await r.json();
+    if(j.permissions && j.permissions.push === false){
+      ghHienTT(tt,'warn','⚠️ Token chưa có quyền ghi (cần Contents: Read and write).');
+      return;
+    }
+    localStorage.setItem(GH_LS, t);
+    ghHienTT(tt,'ok',`✅ Đã kết nối <b>${j.full_name}</b>.`);
+  }catch(e){ ghHienTT(tt,'warn',`⚠️ Lỗi kết nối: ${e}`); }
+}
+
+function ghQuenToken(){
+  localStorage.removeItem(GH_LS);
+  const i = document.getElementById('gh-token'); if(i) i.value = '';
+  ghHienTT(document.getElementById('gh-tt'),'muted','Đã quên token trong trình duyệt này.');
+}
+
+function blobB64(blob){
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result.split(',')[1]);
+    r.onerror = () => rej(new Error('đọc file lỗi'));
+    r.readAsDataURL(blob);
+  });
+}
+
+async function ghLaySha(duong){
+  const r = await fetch(
+    `https://api.github.com/repos/${GH_REPO}/contents/${duong}?ref=${GH_BRANCH}`,
+    {headers:{'Authorization':`Bearer ${ghToken()}`,'Accept':'application/vnd.github+json'}});
+  if(r.status === 200){ const j = await r.json(); return j.sha || null; }
+  return null;
+}
+
+/* Đẩy file lên xuong-am-inbox/<ma>/<file> — thư mục con = mã nhóm, nên workflow
+   gán thẳng không cần đoán. Đặt ở inbox (không phải docs/assets/am) là cố ý:
+   chỉ push vào inbox mới kích hoạt workflow nén + cập nhật trạng thái. */
+async function ghPutFile(duong, b64){
+  const body = {message:`Xưởng âm thanh: thêm ${duong.split('/').slice(-2)[0]}`,
+                 content:b64, branch:GH_BRANCH};
+  const sha = await ghLaySha(duong);
+  if(sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${duong}`, {
+    method:'PUT',
+    headers:{'Authorization':`Bearer ${ghToken()}`,'Accept':'application/vnd.github+json',
+             'Content-Type':'application/json'},
+    body:JSON.stringify(body)});
+  if(!r.ok){
+    let loi = '';
+    try{ const j = await r.json(); loi = j.message || ''; }catch(e){}
+    throw new Error(`HTTP ${r.status}${loi?' — '+loi:''}`);
+  }
+  return true;
+}
+
+/* ================= kiểm tra / gửi ================= */
+async function kiemTraMot(hop){
+  const file = hop.dataset.file;
+  const ma = hop.dataset.ma;
+  const tt = hop.querySelector('[data-tt]');
+  const nut = hop.querySelector('[data-kiem]');
+  const oNghe = hop.closest('article').querySelector('[data-nghe]');
+  const audio = oNghe.querySelector('[data-audio]');
+  const chua = oNghe.querySelector('[data-chua]');
+  if(nut) nut.classList.add('dang');
+  try{
+    const t = ghToken();
+    const r = await fetch(
+      `https://api.github.com/repos/${GH_REPO}/commits?path=${AM_DIR}${file}&per_page=1`,
+      {headers:t ? {'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}
+                  : {'Accept':'application/vnd.github+json'}});
+    if(r.status === 403 || r.status === 429)
+      throw new Error('GitHub tạm giới hạn lượt gọi — chờ chút rồi thử lại');
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    const ds = await r.json();
+    if(!Array.isArray(ds) || !ds.length){
+      audio.hidden = true; audio.removeAttribute('src');
+      chua.hidden = false;
+      ghHienTT(tt,'muted','⬜ Chưa có trên trang. Gửi file rồi bấm 🔄 Kiểm tra lại (bot cần ~1–2 phút).');
+      return {co:false};
+    }
+    const sha = ds[0].sha;
+    audio.src = `https://raw.githubusercontent.com/${GH_REPO}/${sha}/${AM_DIR}${file}`;
+    audio.hidden = false;
+    chua.hidden = true;
+    const the = hop.closest('article');
+    if(the){
+      the.classList.add('done');
+      const nh = the.querySelector('[data-badge]');
+      if(nh){ nh.className = 'badge chac'; nh.textContent = '✅ đã có'; }
+    }
+    const khi = new Date(ds[0].commit.author.date);
+    const gio = isNaN(khi) ? ds[0].commit.author.date
+      : khi.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
+    ghHienTT(tt,'ok',`✅ Đã lên trang · ${gio} · <code>${sha.slice(0,7)}</code>`);
+    return {co:true};
+  }catch(e){
+    ghHienTT(tt,'warn',`⚠️ Không kiểm tra được: ${e}`);
+    return {co:null};
+  }finally{
+    if(nut) nut.classList.remove('dang');
+  }
+}
+
+async function theoDoi(hop){
+  const tt = hop.querySelector('[data-tt]');
+  for(let lan = 1; lan <= 10; lan++){
+    await new Promise(r => setTimeout(r, 15000));
+    const kq = await kiemTraMot(hop);
+    if(kq.co){ ghHienTT(tt,'ok','🎉 Tiếng đã lên trang!'); return; }
+    if(kq.co === null) return;
+    if(lan < 10) ghHienTT(tt,'muted',
+      `⏳ Bot đang xử lý… tự kiểm tra lại sau 15 giây (lần ${lan}/10). Cứ để trang mở.`);
+  }
+  ghHienTT(tt,'muted','⏳ Lâu hơn thường lệ. Bấm 🔄 Kiểm tra để thử lại.');
+}
+
+async function guiMot(hop){
+  const file = hop.dataset.file;
+  const ma = hop.dataset.ma;
+  const inp = hop.querySelector('[data-chon]');
+  const tt = hop.querySelector('[data-tt]');
+  const nut = hop.querySelector('[data-gui-kt]');
+  if(!ghToken()){
+    ghHienTT(tt,'warn','⚠️ Chưa kết nối GitHub. Dán token ở mục 🔑 phía trên rồi thử lại.');
+    return;
+  }
+  if(!inp.files || !inp.files.length){
+    ghHienTT(tt,'warn','⚠️ Chưa chọn file. Bấm ô chọn file phía trên.');
+    return;
+  }
+  const f = inp.files[0];
+  const mb = f.size / 1024 / 1024;
+  if(mb > 24){
+    ghHienTT(tt,'warn',`⚠️ File ${mb.toFixed(1)} MB quá lớn để gửi thẳng (trần 24 MB). `
+      + 'Nén lại thành mp3 96 kbps rồi gửi lại — 30 giây ở mức đó chỉ khoảng 0.4 MB.');
+    return;
+  }
+  nut.disabled = true;
+  ghHienTT(tt,'muted',`Đang gửi <b>${f.name}</b> — ${mb.toFixed(1)} MB… Đừng đóng tab.`);
+  try{
+    const b64 = await blobB64(f);
+    await ghPutFile(`${INBOX}/${ma}/${file}`, b64);
+    ghHienTT(tt,'ok','📤 Đã gửi. Bot sẽ nén và cập nhật trong 1–2 phút — tự kiểm tra nhé.');
+    theoDoi(hop);
+  }catch(e){
+    ghHienTT(tt,'warn',`⚠️ Gửi lỗi: ${e}`);
+  }finally{
+    nut.disabled = false;
+  }
+}
+
+/* ================= nối sự kiện + kiểm lúc mở ================= */
+document.querySelectorAll('[data-gui]').forEach(hop => {
+  const nut = hop.querySelector('[data-gui-kt]');
+  const kiem = hop.querySelector('[data-kiem]');
+  const inp = hop.querySelector('[data-chon]');
+  if(nut) nut.addEventListener('click', () => guiMot(hop));
+  if(kiem) kiem.addEventListener('click', () => kiemTraMot(hop));
+  if(inp) inp.addEventListener('change', () => {
+    const tt = hop.querySelector('[data-tt]');
+    const f = inp.files && inp.files[0];
+    if(f) ghHienTT(tt,'muted',
+      `Đã chọn <code>${f.name}</code> — ${(f.size/1024/1024).toFixed(1)} MB. Bấm 📤 Gửi bản này.`);
+  });
+  kiemTraMot(hop);
+});
+
+</body>
+</html>

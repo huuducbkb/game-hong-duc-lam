@@ -1,0 +1,89 @@
+name: Xưởng âm thanh — nén và ghép tiếng cảnh
+
+# Nhận file tiếng từ 2 nguồn rồi nén, cân âm lượng, đưa vào docs/assets/am/.
+#   1. File trong xuong-am-inbox/<mã>/<tên>  (xưởng âm thanh đẩy lên)
+#   2. Thả file thẳng vào thư mục xuong-am-inbox/ ở gốc repo
+#
+# Push bằng GITHUB_TOKEN không kích hoạt workflow khác, nên deploy Pages được
+# gộp ngay trong job "deploy" ở cuối.
+on:
+  push:
+    branches: [main]
+    paths: ["xuong-am-inbox/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: xuong-am
+  cancel-in-progress: false
+
+jobs:
+  xu-ly:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cài ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Nén và chuẩn hoá
+        run: |
+          set -u
+          mkdir -p docs/assets/am assets/am
+          shopt -s nullglob
+          so=0
+          for f in xuong-am-inbox/*/*; do
+            [ -f "$f" ] || continue
+            ma="$(basename "$(dirname "$f")")"
+            duoi="${f##*.}"
+            duoi="$(echo "$duoi" | tr 'A-Z' 'a-z')"
+            case "$duoi" in
+              mp3|wav|m4a|aac|ogg|opus|flac|aiff|aif) ;;
+              *) echo "bỏ qua (không phải âm thanh): $f"; continue ;;
+            esac
+            ra="docs/assets/am/${ma}.mp3"
+            echo "→ $f  ⇒  $ra"
+            # loudnorm 2 lượt: đo trước rồi áp. Một lượt chỉ đúng khi file ngắn.
+            ffmpeg -hide_banner -loglevel error -y -i "$f" \
+              -af "loudnorm=I=-23:TP=-2:LRA=11" \
+              -ac 2 -ar 44100 -c:a libmp3lame -b:a 96k "$ra" || {
+                echo "LỖI: không chuyển được $f"; continue; }
+            cp "$ra" "assets/am/${ma}.mp3"
+            so=$((so+1))
+          done
+          echo "đã xử lý $so file"
+          if [ "$so" -eq 0 ]; then echo "không có file nào"; fi
+
+      - name: Ghi danh sách
+        run: python3 game/ghi_danh_sach_am.py
+
+      - name: Dọn hộp nhận
+        run: |
+          git rm -r --quiet --ignore-unmatch xuong-am-inbox/* || true
+          mkdir -p xuong-am-inbox && touch xuong-am-inbox/.gitkeep
+
+      - name: Commit
+        run: |
+          git config user.name "xuong-am-bot"
+          git config user.email "xuong-am-bot@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "không có thay đổi"
+          else
+            git commit -m "Xưởng âm thanh: nén và ghép tiếng cảnh"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deployment
+        uses: actions/deploy-pages@v4
