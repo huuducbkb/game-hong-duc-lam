@@ -94,7 +94,32 @@ không biết nghe có hay không — cái đó phải do người dùng quyết
    cũ** để chứng minh phép thử thật sự bắt được lỗi: 0 → 0.107 và 0 → 0.10. Nếu bản cũ
    không hỏng thì phép thử của tôi vô dụng, không phải code đã đúng.
 
-5. **Đừng tin `confirm()` khi test bằng Playwright.** Playwright tự huỷ hộp thoại, nên nút "Chơi
+5. **"Tiếng chợ" mà tôi làm ra là tiếng rè dò đài.** Người dùng phản hồi đúng: "nghe giống
+   tiếng rè rè dò đài", và hỏi sao không có tiếng người qua lại, tiếng rao bán hàng. Lỗi gốc:
+   tôi lấy **nhiễu lọc qua bandpass** rồi đổi tần số theo cảnh, và gọi đó là gió/chợ/chuông.
+
+   **Nhiễu lọc không bao giờ thành tiếng người.** Nhiễu là tín hiệu không cấu trúc; tai nhận
+   ra nơi chốn qua **sự kiện rời rạc có cấu trúc**: nhịp âm tiết, đường cao độ của giọng, bước
+   chân, kim loại chạm. Đổi tần số lọc chỉ đổi màu "xì xì", không đổi nghĩa.
+
+   Đã làm lại bằng **tổng hợp formant**: sóng răng cưa (dây thanh) qua 3 bandpass ở tần số
+   formant nguyên âm, cộng LFO rung giọng, cộng đường bao từng âm tiết. Rao hàng khác nói
+   chuyện ở **đường cao độ: lên nửa đầu, xuống nửa sau**. Nhiễu chỉ còn làm nền ở nơi tiếng
+   thật cũng là nhiễu, và phải có LFO làm "thở".
+
+   Đo lại bằng hai chỉ số đúng: **số sự kiện/8 giây** (đếm khung RMS vọt lên rồi xuống) và
+   **độ nhấp nhô** (độ lệch chuẩn / trung bình). Nhiễu đều → nhấp nhô thấp = rè.
+
+   **Lỗi phụ tìm ra khi đo:** một âm tiết giọng người có 69% năng lượng **dưới 700 Hz** —
+   dải loa điện thoại không phát được — nên dù formant đúng, tai vẫn chỉ nghe phần đuôi.
+   Sửa: highpass 620 Hz + cho F2/F3 to hơn F1 → 30% lên 56% năng lượng trong dải phát được.
+   Chuông chùa tương tự: gốc 196 Hz → 520 Hz, hài 2–3 to hơn hài 1 → 67% xuống 3%.
+
+   **Bài học: đổi tham số của một chất liệu sai không bao giờ ra chất liệu đúng.** Và khi
+   người dùng nói "nghe giống X", phải kiểm **cấu trúc thời gian** của tín hiệu, không chỉ
+   mức và phổ.
+
+6. **Đừng tin `confirm()` khi test bằng Playwright.** Playwright tự huỷ hộp thoại, nên nút "Chơi
    lại" chưa hề chạy; mức 0.126 tôi đo được là tiếng `mo` của chính cú bấm, không phải lỗi game.
    Phải đăng ký `page.on("dialog", d => d.accept())`.
 
