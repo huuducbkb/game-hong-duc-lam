@@ -206,17 +206,50 @@ async function guiMot(hop){
 }
 
 /* ================= nối sự kiện + kiểm lúc mở ================= */
+function chonFile(hop, f){
+  const tt = hop.querySelector('[data-tt]');
+  const nut = hop.querySelector('[data-gui-kt]');
+  const vung = hop.querySelector('.tha-am');
+  const chu = hop.querySelector('.tha-am-chu');
+  const thanh = hop.querySelector('[data-thanh]');
+  const ruot = hop.querySelector('[data-ruot]');
+  if(!f){
+    if(nut) nut.disabled = true;
+    if(vung) vung.classList.remove('co-file');
+    if(chu) chu.innerHTML = 'Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small>';
+    if(thanh) thanh.hidden = true;
+    return;
+  }
+  const mb = f.size / 1024 / 1024;
+  if(nut) nut.disabled = false;
+  if(vung) vung.classList.add('co-file');
+  if(chu) chu.innerHTML = `${f.name}<small>${mb.toFixed(1)} MB — bấm 📤 Gửi tiếng này</small>`;
+  if(thanh){ thanh.hidden = true; if(ruot) ruot.style.width = '0%'; }
+  if(tt) ghHienTT(tt,'muted','Đã chọn file. Bấm 📤 Gửi tiếng này.');
+}
+
 document.querySelectorAll('[data-gui]').forEach(hop => {
   const nut = hop.querySelector('[data-gui-kt]');
   const kiem = hop.querySelector('[data-kiem]');
   const inp = hop.querySelector('[data-chon]');
   if(nut) nut.addEventListener('click', () => guiMot(hop));
   if(kiem) kiem.addEventListener('click', () => kiemTraMot(hop));
-  if(inp) inp.addEventListener('change', () => {
-    const tt = hop.querySelector('[data-tt]');
-    const f = inp.files && inp.files[0];
-    if(f) ghHienTT(tt,'muted',
-      `Đã chọn <code>${f.name}</code> — ${(f.size/1024/1024).toFixed(1)} MB. Bấm 📤 Gửi bản này.`);
-  });
+  if(inp){
+    inp.addEventListener('change', () => chonFile(hop, inp.files && inp.files[0]));
+    // kéo-thả chỉ có ý nghĩa trên máy tính, nhưng thêm cũng không hại
+    const vung = hop.querySelector('.tha-am');
+    if(vung){
+      vung.addEventListener('dragover', e => { e.preventDefault(); vung.classList.add('co-file'); });
+      vung.addEventListener('dragleave', () => {
+        if(!inp.files || !inp.files.length) vung.classList.remove('co-file'); });
+      vung.addEventListener('drop', e => {
+        e.preventDefault();
+        if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length){
+          inp.files = e.dataTransfer.files;
+          chonFile(hop, e.dataTransfer.files[0]);
+        }
+      });
+    }
+  }
   kiemTraMot(hop);
 });

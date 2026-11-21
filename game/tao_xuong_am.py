@@ -53,15 +53,20 @@ def the_canh(n, i):
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này.</span>
+    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
   </div>
 
-  <label class="nhan">Tải lên bản của anh</label>
   <div class="gui" data-gui data-file="{n['file']}" data-ma="{ma}">
-    <input type="file" accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/*" data-chon>
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
     <div class="row">
-      <button class="gui-kt" data-gui-kt>📤 Gửi bản này</button>
-      <button class="gui-kt phu" data-kiem>🔄 Kiểm tra lại</button>
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
     </div>
     <div class="gui-tt" data-tt hidden></div>
   </div>
@@ -125,8 +130,17 @@ button.phu{{background:transparent}}
 .nghe{{margin:4px 0 0}}
 .nghe audio{{width:100%;margin-top:6px}}
 .chua{{font-size:12.5px;color:var(--muted)}}
-.gui input[type=file]{{width:100%;font-size:12px;color:var(--muted);
-  background:#0a1220;border:1px dashed var(--line);border-radius:8px;padding:9px}}
+.tha-am{{display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:#0a1220;border:1px dashed #3d5170;border-radius:10px;padding:18px 12px;
+  cursor:pointer;text-align:center;margin-top:4px}}
+.tha-am:active{{background:#0d1826}}
+.tha-am input[type=file]{{display:none}}
+.tha-am-icon{{font-size:24px;line-height:1}}
+.tha-am-chu{{font-size:13px;color:#cbd4e4}}
+.tha-am-chu small{{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}}
+.tha-am.co-file{{border-color:var(--jade);border-style:solid;background:#0d1f1a}}
+.thanh{{height:6px;background:#0a1220;border-radius:99px;overflow:hidden;margin-top:8px}}
+.thanh-ruot{{height:100%;width:0;background:var(--jade);transition:width .2s}}
 .gui-tt{{font-size:12.5px;margin-top:8px;min-height:1em}}
 .gui-kt.dang{{opacity:.6}}
 .tom-tat{{background:#0e1726;border:1px solid var(--line);border-radius:12px;padding:12px 14px;
@@ -139,8 +153,10 @@ button.phu{{background:transparent}}
 .gh input{{width:100%;font-size:12.5px;background:#0a1220;color:#dfe7f5;
   border:1px solid var(--line);border-radius:8px;padding:9px;margin:6px 0}}
 .gh-tt{{font-size:12.5px;margin-top:6px}}
-.gh summary{{cursor:pointer;color:var(--jade);font-weight:600}}
-details.gh[open] summary{{margin-bottom:8px}}
+.ket-noi{{background:#0e1726;border:1px solid #31456a;border-radius:12px;
+  padding:14px;margin:14px 0}}
+.ket-noi input{{width:100%;font-size:12.5px;background:#0a1220;color:#dfe7f5;
+  border:1px solid var(--line);border-radius:8px;padding:9px;margin:6px 0}}
 footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   font-size:12px;color:var(--muted)}}
 </style>
@@ -162,48 +178,46 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 
 <h2>Cách làm</h2>
 <div class="card">
-  <p style="margin:0 0 8px"><b>Cách 1 — dán vào Issue (không cần token, làm trên điện thoại được)</b></p>
   <ol style="margin:0;padding-left:20px">
     <li>Chọn cảnh ở dưới, bấm <b>📋 Copy prompt</b>.</li>
     <li>Dán vào công cụ sinh âm thanh. Nên chọn <b>30 giây</b>, có chế độ
         <b>loop / seamless</b> nếu công cụ có.</li>
     <li>Nghe lại. Ưng thì tải file về máy.</li>
-    <li>Mở <a href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new"
-        target="_blank">trang tạo Issue</a>, <b>kéo file tiếng vào ô nội dung</b>,
-        viết mã nhóm ở dòng ngay trên file (ví dụ <code>cho</code>), rồi
-        <b>Submit new issue</b>.</li>
-    <li>Gắn nhãn <code>xuong-am</code> cho Issue. Bot trả lời trong Issue khi xong.</li>
-  </ol>
-  <p style="margin:14px 0 8px"><b>Cách 2 — gửi thẳng từ trang này (cần token, tiện trên máy tính)</b></p>
-  <ol style="margin:0;padding-left:20px">
-    <li>Chọn file ở ô <b>Tải lên bản của anh</b> trong thẻ cảnh, bấm <b>📤 Gửi</b>.</li>
-    <li>Chờ 1–2 phút, bấm <b>🔄 Kiểm tra lại</b>. Hiện <b>✅ đã có</b> là game đã dùng.</li>
+    <li>Quay lại đây, <b>chọn file ngay dưới prompt</b> của đúng cảnh đó, bấm
+        <b>📤 Gửi tiếng này</b>. Trang nén rồi tự đưa lên GitHub.</li>
+    <li>Trang tự báo khi bot ghép xong và hiện ô nghe thử. Muốn xem lại thì bấm
+        <b>🔄 Kiểm tra</b> trên thẻ — không cần tải lại trang.</li>
   </ol>
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
     <code>flac</code>. File lớn cứ để nguyên, hệ thống tự nén về mp3 96 kbps và cân âm
-    lượng về −23 LUFS.
+    lượng về −18 LUFS.
+  </p>
+</div>
+
+<div class="ket-noi">
+  <p class="mota" style="margin-bottom:6px"><b>🔑 Kết nối GitHub (làm 1 lần)</b> — cần để trang
+  tự đưa tiếng lên thay anh. Dán token vào đây; token chỉ lưu trong trình duyệt này
+  (<code>localStorage</code>), không gửi đi đâu ngoài GitHub.</p>
+  <input id="gh-token" type="password" autocomplete="off" spellcheck="false"
+         placeholder="github_pat_… hoặc ghp_… (quyền: Contents = Read and write)">
+  <div class="row">
+    <button type="button" onclick="ghLuuToken()">💾 Lưu &amp; kiểm tra</button>
+    <button type="button" class="phu" onclick="ghQuenToken()">🗑️ Quên token</button>
+    <a class="dl" style="text-decoration:none;padding:7px 12px;border:1px solid var(--line);border-radius:8px"
+       target="_blank"
+       href="https://github.com/settings/personal-access-tokens/new?name=xuong-am&amp;description=Ti%E1%BA%BFng%20c%E1%BA%A3nh%20cho%20game&amp;contents=write">🔗 Tạo token (quyền Contents: Read and write)</a>
+  </div>
+  <div class="gui-tt" id="gh-tt" hidden></div>
+  <p class="muted" style="font-size:12px;margin:8px 0 0">
+    Chưa muốn dùng token? Vẫn còn
+    <a href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new?labels=xuong-am&amp;title=Ti%E1%BA%BFng%20c%E1%BA%A3nh%20m%E1%BB%9Bi"
+       target="_blank">cách mở Issue rồi kéo file vào</a> — không cần token.
   </p>
 </div>
 
 <h2>Các nhóm tiếng</h2>
 {ds}
-
-<details class="gh" style="margin-top:24px">
-  <summary style="cursor:pointer;color:var(--jade);font-weight:600">
-    🔑 Kết nối GitHub (chỉ cần cho Cách 2)
-  </summary>
-  <p class="muted" style="margin:8px 0 6px">
-    Token cần quyền <b>Contents: Read and write</b> trên repo này. Token chỉ lưu trong
-    trình duyệt của anh, không gửi đi đâu khác. Không có token vẫn dùng được Cách 1.
-  </p>
-  <input type="password" id="gh-token" placeholder="ghp_… hoặc github_pat_…" autocomplete="off">
-  <div class="row">
-    <button onclick="ghLuuToken()">Lưu token</button>
-    <button class="phu" onclick="ghQuenToken()">Quên token</button>
-  </div>
-  <div class="gh-tt" id="gh-tt" hidden></div>
-</details>
 
 <footer>
   Trang này sinh tự động từ <code>game/du_lieu_am.py</code>.<br>
