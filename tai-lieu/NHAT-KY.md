@@ -10,6 +10,46 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-21 (tiếp) · Hướng 3 — tiếng theo cảnh
+
+Người dùng chọn hướng 3 thay vì nhạc nền. Lý do đúng: nhạc nền vướng **nguồn nhạc** (đang đăng
+công khai trên Pages), còn tiếng cảnh sinh bằng sóng âm trong máy nên không có file để truy
+nguyên.
+
+**68 cảnh chia chín nhóm** theo nghĩa (đọc tên ảnh, không chia máy móc): chợ (3), trận (3),
+núi (3), sân tập (6), vườn thuốc (5), miếu (2), đêm (3), làng (11), tĩnh (còn lại). Ảnh nhân
+vật/vật (26) không phải nơi chốn → không cắt nền, chỉ thêm một nốt trầm ngắn.
+
+**Kỹ thuật:** nhiễu nâu lặp vòng (buffer 2 giây, `loop = true`) lọc bandpass, mỗi nhóm một tâm
+tần và Q riêng; chỗ nối đầu-cuối trộn 0.2 giây để không "cạch" khi lặp. Thêm lớp "thưa": chuông
+chùa, dế, gió qua khe, lá động, tiếng xa — hẹn giờ ngẫu nhiên.
+
+**Ba lỗi tự tìm ra khi đo:**
+
+1. `nhomCanh` không khớp vì `src` là đường dẫn đầy đủ (`../assets/scene/bc_cho_01.jpg`) chứ
+   không phải tên file trần → cảnh im hoàn toàn. Đo được `nhom=""`, đỉnh 0. Sửa: lấy
+   `split("/").pop()` trước khi so tiền tố.
+2. Cắt tiếng nền khi hiện ảnh nhân vật → tiếng tụt về 0 đúng lúc đang đọc. Đang đứng giữa chợ
+   mà nhìn cận mặt nhân vật thì tiếng chợ vẫn phải còn. Sửa: giữ nền, chỉ thêm điểm nhấn.
+3. Đặt nút lên thanh trên làm thanh cao thêm **52px** ở màn 320px, khung truyện còn 238px. Game
+   đọc chữ nên đây là hồi quy thật. Chuyển nút vào bảng Hệ Thống (tab Nhân vật).
+
+**Số đo (analyser song song, WebKit iPhone 13):** nền chín nhóm 0.023–0.043; tiếng bấm 0.333;
+bấm 8 lần chồng lên nền 0.349 (không vượt 1.0); tắt phông cảnh → 0; tắt tiếng chính → phông
+cảnh im theo; bốn tiếng cũ không đổi.
+
+**Mặc định TẮT.** Người chơi phải tự bật trong bảng Hệ Thống. Lý do: tiếng nền là lựa chọn,
+bật sẵn thì ai không thích phải đi tìm nút tắt.
+
+**Giới hạn đã nói rõ với người dùng:** tôi đo được mức tín hiệu nhưng **không nghe được**, nên
+không biết nghe có hay không — cái đó phải do người dùng quyết.
+
+**File:** `docs/nhap/tieng-theo-canh.html` (báo cáo), ảnh `canh-1-tat.jpg`, `canh-2-bat.jpg`,
+`canh-3-trong-game.jpg`. Test: 124 đạt; API 160 đạt/1 hỏng — test "ảnh lưu ra nhẹ hơn ảnh gốc"
+hỏng do Pillow 13 nén tốt hơn, **đã xác nhận có từ trước** bằng cách stash thay đổi và chạy lại.
+
+---
+
 ## 2026-11-21 (tiếp) · Phòng đo tiếng — trang đo trên iPhone thật
 
 Người dùng xác nhận hướng 1 (tiếng bấm) đã chạy đúng trên iPhone thật. Hướng 2 (tiếng lật

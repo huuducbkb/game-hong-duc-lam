@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tiếng theo cảnh — hướng 3</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .canh{background:rgba(63,125,78,.10);border-left:3px solid #3f7d4e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .canh b{color:#2f6340}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul,ol{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:10px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid rgba(36,28,20,.14)}
+  th{font-size:12px;color:#6b5b48;text-transform:uppercase;letter-spacing:.5px}
+  td.n{font-family:ui-monospace,Menlo,monospace;text-align:right;white-space:nowrap}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+</style>
+</head>
+<body>
+<div class="khung">
+  <div class="to">
+    <h1>Tiếng theo cảnh — hướng 3</h1>
+    <p class="phu">Mỗi bối cảnh có tiếng nền riêng, dựng bằng code, không thêm file nào</p>
+
+    <a class="nut" href="../game/play.html">Vào game nghe thử</a>
+
+    <h2>Vì sao chọn cách này thay vì nhạc nền</h2>
+    <p>Anh đang đăng công khai trên GitHub Pages. Nhạc nền vướng chỗ <b>nguồn nhạc</b>: lấy
+       nhạc không rõ nguồn là rủi ro thật. Còn tiếng theo cảnh thì không có vấn đề đó, vì
+       <b>sinh ra bằng sóng âm ngay trong máy</b> — không có file nào để truy nguyên.</p>
+    <p>Nó cũng hợp với game chữ hơn. Nhạc nền dở hoặc lặp một đoạn ngắn sẽ khiến người chơi
+       tắt tiếng sau vài phút — rồi mất luôn tiếng bấm vừa sửa xong. Tiếng cảnh thì thưa và
+       nhẹ, nghe như tiếng phòng, không tranh chỗ với chữ đang đọc.</p>
+
+    <h2>68 cảnh chia chín nhóm</h2>
+    <p>Tôi đọc tên 68 ảnh và chia theo nghĩa, không chia máy móc:</p>
+    <table>
+      <tr><th>Nhóm</th><th>Tiếng</th><th>Cảnh</th></tr>
+      <tr><td>chợ</td><td>nhiễu dày, âm sắc cao</td><td class="n">3</td></tr>
+      <tr><td>trận</td><td>nhiễu mạnh, dồn dập</td><td class="n">3</td></tr>
+      <tr><td>núi</td><td>gió lọc, thỉnh thoảng gió qua khe đá</td><td class="n">3</td></tr>
+      <tr><td>sân tập</td><td>nhiễu vừa, khô</td><td class="n">6</td></tr>
+      <tr><td>vườn thuốc</td><td>lá động, thưa</td><td class="n">5</td></tr>
+      <tr><td>miếu</td><td>trầm, chuông chùa xa</td><td class="n">2</td></tr>
+      <tr><td>đêm</td><td>trầm, tiếng dế</td><td class="n">3</td></tr>
+      <tr><td>làng</td><td>rất nhẹ, tiếng xa</td><td class="n">11</td></tr>
+      <tr><td>tĩnh</td><td>gần như im</td><td class="n">còn lại</td></tr>
+    </table>
+    <p>Ảnh nhân vật và vật (26 ảnh) không phải nơi chốn — chúng là cận cảnh giữa chừng. Nên
+       chúng không cắt tiếng nền đang chạy, chỉ thêm <b>một nốt trầm ngắn</b> làm điểm nhấn.</p>
+
+    <div class="hop">
+      <b>Đây là lỗi tôi tự tìm ra khi đo.</b> Bản đầu cắt tiếng nền khi hiện ảnh nhân vật. Đo
+      thấy tiếng tụt về 0 đúng lúc đang đọc. Thực tế đang đứng giữa chợ mà nhìn cận mặt nhân
+      vật thì tiếng chợ vẫn phải còn. Đã sửa: giữ nền, chỉ thêm nốt điểm nhấn.
+    </div>
+
+    <h2>Mặc định TẮT, và đây là lý do</h2>
+    <p>Tiếng nền là thứ người chơi phải tự chọn. Bật sẵn thì ai không thích cũng phải đi tìm
+       nút tắt, và trên iPhone tiếng tự phát còn bị chặn cho tới khi có cú chạm.</p>
+    <p>Nút nằm trong <b>bảng Hệ Thống, tab Nhân vật</b>:</p>
+
+    <div class="anh">
+      <img src="canh-1-tat.jpg" alt="Nút tiếng phông cảnh đang tắt">
+      <div class="chuAnh">Mặc định tắt: nút ghi rõ "Đang tắt", biểu tượng 🚫</div>
+    </div>
+    <div class="anh">
+      <img src="canh-2-bat.jpg" alt="Nút tiếng phông cảnh đang bật">
+      <div class="chuAnh">Sau khi bấm: "Đang bật — tiếng nền đổi theo từng cảnh", biểu tượng 🏞</div>
+    </div>
+
+    <div class="hop">
+      <b>Tôi đã thử đặt nút lên thanh trên và phải bỏ.</b> Đo trên màn 320px: thanh trên cao
+      thêm 52px, khung truyện chỉ còn 238px. Game đọc chữ — mất 52px là hồi quy thật. Nên nút
+      chuyển vào bảng Hệ Thống, thanh trên giữ nguyên như cũ.
+    </div>
+
+    <h2>Số đo</h2>
+    <p>Đo bằng analyser móc song song vào loa chung, trên WebKit giả lập iPhone 13:</p>
+    <table>
+      <tr><th>Phép đo</th><th>Kết quả</th></tr>
+      <tr><td>Tiếng nền chín nhóm</td><td class="n">0.023 – 0.043</td></tr>
+      <tr><td>Tiếng bấm (để so)</td><td class="n">0.333</td></tr>
+      <tr><td>Bấm 8 lần chồng lên nền</td><td class="n">0.349 — không vượt 1.0</td></tr>
+      <tr><td>Tắt phông cảnh</td><td class="n">im hẳn (0)</td></tr>
+      <tr><td>Tắt tiếng chính</td><td class="n">phông cảnh im theo (0)</td></tr>
+      <tr><td>Bốn tiếng cũ</td><td class="n">vẫn kêu, không đổi</td></tr>
+    </table>
+
+    <div class="canh">
+      <b>Tiếng bấm to gấp khoảng 10 lần tiếng nền.</b> Đó là chủ ý: nền phải nghe thấy nhưng
+      không được lấn tiếng thao tác. Đo được khi bấm chồng lên nền: 0.349 so với nền 0.034.
+    </div>
+
+    <div class="anh">
+      <img src="canh-3-trong-game.jpg" alt="Trong game khi đang bật phông cảnh">
+      <div class="chuAnh">Trong game — tiếng nền chạy theo cảnh đang hiện</div>
+    </div>
+
+    <h2>Một chỗ tôi muốn nói thẳng</h2>
+    <p>Tôi <b>không nghe được</b> những tiếng này. Tôi chỉ đo được mức tín hiệu. Nên tôi biết
+       chúng có phát, đúng mức, không méo, không vượt 1.0 — nhưng tôi không biết chúng
+       <b>nghe có hay không</b>.</p>
+    <p>Cái đó phải do anh quyết. Nếu nghe như tiếng ồn vô nghĩa, hoặc khó chịu, nói tôi biết
+       nhóm nào — tôi chỉnh âm sắc hoặc bỏ hẳn nhóm đó. Nếu thấy hay thì giữ nguyên.</p>
+
+    <h2>Nếu muốn tinh chỉnh</h2>
+    <ul>
+      <li><b>Nhóm nào ồn quá</b> — sửa số trong bảng <code>muc</code> của <code>doiCanhTieng</code></li>
+      <li><b>Muốn thêm tiếng cho một cảnh cụ thể</b> — thêm tên vào nhánh trong <code>nhomCanh</code></li>
+      <li><b>Không thích tiếng thưa</b> (chuông, dế) — xoá nhóm đó khỏi bảng trong <code>taoThua</code></li>
+    </ul>
+
+    <a class="nut" href="../game/play.html">Vào game nghe thử</a>
+    <p class="phu" style="margin-top:12px">Bật bằng: bảng Hệ Thống → tab Nhân vật → "Tiếng phông cảnh".</p>
+  </div>
+</div>
+</body>
+</html>

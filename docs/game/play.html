@@ -65,6 +65,13 @@ body{
    Giữ vùng chạm 44px cho dễ bấm trên điện thoại. */
 .topbar .sys-btn.tieng{flex:0 0 auto;padding:0;font-size:15px;line-height:1;
   min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+/* nút phông cảnh: nằm trong bảng Hệ Thống, không chiếm chỗ khung truyện */
+.nut-canh{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  width:100%;margin-top:9px;padding:11px 12px;font-family:var(--serif);font-size:13px;
+  color:var(--ink);background:rgba(255,255,255,.28);border:1px solid var(--edge);
+  border-radius:9px;text-align:left}
+.nut-canh .tt{font-size:11.5px;color:var(--ink-faint);margin-top:2px}
+.nut-canh .ic{font-size:17px;flex:0 0 auto}
 
 /* ---------- KHUNG VẼ TAY ---------- */
 .frame{border-style:solid;border-color:transparent;background-color:transparent;position:relative}
@@ -699,6 +706,15 @@ body{
   <!-- TAB: NHÂN VẬT -->
   <section class="tabpane on" data-pane="nhanvat">
     <div class="sys-card">
+      <button class="nut-canh" type="button" id="nutCanh" aria-label="Bật tiếng phông cảnh">
+        <span>
+          <span>Tiếng phông cảnh</span>
+          <span class="tt" id="canhMoTa">Đang tắt — tiếng gió, chợ, chuông xa theo từng cảnh</span>
+        </span>
+        <span class="ic" id="canhIcon">🚫</span>
+      </button>
+    </div>
+    <div class="sys-card">
       <div class="char-head">
         <div class="char-avatar">
           <img class="av" id="charAv" alt=""
@@ -853,6 +869,12 @@ function batTatTieng() {
   try { localStorage.setItem(KHOA_TIENG, tiengBat ? "1" : "0"); } catch (e) {}
   capNhatNutTieng();
   if (tiengBat) { moKhoaTieng(); keTieng("bam"); }
+  // Tắt tiếng chính thì phông cảnh cũng phải im, nếu không người chơi tưởng nút hỏng.
+  if (!tiengBat) { if (typeof dungCanh === "function") dungCanh(); }
+  else if (typeof doiCanhTieng === "function") {
+    const im = document.getElementById("sceneImg");
+    if (im && im.getAttribute("src")) { canhLoai = ""; doiCanhTieng(im.getAttribute("src")); }
+  }
   // phim intro (nếu đang chạy) theo luôn trạng thái mới
   const v = document.getElementById("introVideo");
   if (v) v.muted = !tiengBat;
@@ -904,7 +926,16 @@ function moKhoaTieng() {
 function thucDayTieng() {
   if (!tiengBat) return;
   if (!ctxTieng) { taoCtxTieng(); return; }
-  if (ctxTieng.state !== "running") ctxTieng.resume().catch(() => {});
+  if (ctxTieng.state !== "running") {
+    ctxTieng.resume().then(() => {
+      // Phông cảnh bị cắt khi context ngủ; tỉnh dậy phải dựng lại, nếu không
+      // người chơi thấy cảnh mới mà im.
+      if (canhBat && !canhDangChay && typeof doiCanhTieng === "function") {
+        const im = document.getElementById("sceneImg");
+        if (im && im.getAttribute("src")) { canhLoai = ""; doiCanhTieng(im.getAttribute("src")); }
+      }
+    }).catch(() => {});
+  }
 }
 document.addEventListener("touchstart", thucDayTieng, { passive: true });
 document.addEventListener("click", thucDayTieng, { passive: true });
@@ -936,6 +967,8 @@ function keTieng(loai) {
     lui:    { f0: 420, f1: 210, dur: 0.19, vol: 0.13, loc: 1600 },
     // mở bảng Hệ Thống: trầm và dày hơn
     mo:     { f0: 300, f1: 420, dur: 0.14, vol: 0.12, loc: 1200 },
+    // điểm nhấn khi hiện ảnh nhân vật / vật: một nốt trầm ngắn, khác hẳn tiếng bấm
+    diem:   { f0: 520, f1: 260, dur: 0.42, vol: 0.075, loc: 1100 },
   }[loai];
   if (!tieng) return;
 
@@ -982,6 +1015,187 @@ function keTieng(loai) {
   }
 
   osc.onended = () => { try { ra.disconnect(); } catch (e) {} };
+}
+
+// ---------------------------------------------------- âm thanh theo cảnh
+// Mỗi bối cảnh (bc_*) có một lớp tiếng nền riêng, dựng bằng Web Audio nên không
+// thêm file nào. Chia theo nhóm cho có nghĩa: trong nhà thì tĩnh, ngoài trời thì
+// có gió, chợ thì ồn, trận đánh thì dày. Nhân vật (nv_*) và vật (vt_*) dùng tiếng
+// "điểm nhấn" ngắn thay vì nền liên tục, vì chúng là ảnh cận cảnh chứ không phải nơi chốn.
+const KHOA_CANH = "hdttl_canhtien";
+let canhBat = false;          // mặc định tắt: người chơi phải tự bật
+let canhDangChay = null;      // lớp nền đang phát
+let canhLoai = "";            // nhóm của cảnh hiện tại
+
+function napCanh() {
+  try { canhBat = localStorage.getItem(KHOA_CANH) === "1"; } catch (e) { canhBat = false; }
+  capNhatNutCanh();
+}
+function capNhatNutCanh() {
+  const b = document.getElementById("nutCanh");
+  if (!b) return;
+  b.setAttribute("aria-label", canhBat ? "Tắt tiếng phông cảnh" : "Bật tiếng phông cảnh");
+  b.title = canhBat ? "Tiếng phông cảnh đang bật — bấm để tắt" : "Tiếng phông cảnh đang tắt — bấm để bật";
+  const ic = document.getElementById("canhIcon");
+  if (ic) ic.textContent = canhBat ? "🏞" : "🚫";
+  const mt = document.getElementById("canhMoTa");
+  if (mt) mt.textContent = canhBat
+    ? "Đang bật — tiếng nền đổi theo từng cảnh"
+    : "Đang tắt — tiếng gió, chợ, chuông xa theo từng cảnh";
+}
+
+// Đọc tên ảnh -> nhóm tiếng. Trả về "" nếu không có tiếng riêng.
+function nhomCanh(ten) {
+  if (!ten) return "";
+  // `ten` có thể là tên file trần ("bc_cho_01.jpg") hoặc đường dẫn đầy đủ
+  // ("../assets/scene/bc_cho_01.jpg") tuỳ chỗ gọi. Chỉ lấy phần tên file, nếu
+  // không sẽ không khớp tiền tố "bc_" và cảnh im.
+  const t = String(ten).split("/").pop().replace(/\.[a-z0-9]+$/i, "");
+  if (t.startsWith("nv_") || t.startsWith("vt_")) return "diem";  // điểm nhấn ngắn
+  if (!t.startsWith("bc_")) return "";
+  if (t.includes("cho")) return "cho";
+  if (t.includes("tran_lua")) return "tran";
+  if (t.includes("khe_nui") || t.includes("duong_mon_nui")) return "nui";
+  if (t.includes("san_tap") || t.includes("san_sau")) return "san";
+  if (t.includes("vuon_thuoc")) return "vuon";
+  if (t.includes("mieu")) return "mieu";
+  if (t.includes("dem") || t.includes("tap_kich")) return "dem";
+  if (t.includes("tan_xa") || t.includes("tan_hoang") || t.includes("binh_minh")
+      || t.includes("quan_nuoc") || t.includes("cong_dong") || t.includes("doat_hop")
+      || t.includes("tu_khiem") || t.includes("hoa_truong_cuu")) return "lang";
+  return "tinh";
+}
+
+// Nhiễu lọc: nền của gió, lá, nước. Khác `keTieng` ở chỗ chạy LẶP LIÊN TỤC
+// bằng buffer 2 giây lặp vòng, nên không tốn CPU mỗi khung hình.
+function taoNhieuLap(loai, muc) {
+  const sr = ctxTieng.sampleRate;
+  const dai = Math.floor(sr * 2);
+  const dem = ctxTieng.createBuffer(1, dai, sr);
+  const d = dem.getChannelData(0);
+  // Nhiễu nâu (tích luỹ) nghe tự nhiên hơn nhiễu trắng cho gió và nước.
+  let truoc = 0;
+  for (let i = 0; i < dai; i++) {
+    const trang = Math.random() * 2 - 1;
+    truoc = (truoc + 0.02 * trang) / 1.02;
+    d[i] = truoc * 3.5;
+  }
+  // Nối đầu-cuối cho khỏi "cạch" ở chỗ lặp: trộn 0.2 giây cuối vào đầu.
+  const noi = Math.floor(sr * 0.2);
+  for (let i = 0; i < noi; i++) {
+    const k = i / noi;
+    d[i] = d[i] * k + d[dai - noi + i] * (1 - k);
+  }
+  const nguon = ctxTieng.createBufferSource();
+  nguon.buffer = dem;
+  nguon.loop = true;
+  const loc = ctxTieng.createBiquadFilter();
+  loc.type = "bandpass";
+  const tam = { cho: 900, tran: 700, nui: 420, san: 600, vuon: 520, mieu: 300,
+                dem: 260, lang: 380, tinh: 340 }[loai] || 400;
+  loc.frequency.value = tam;
+  loc.Q.value = { cho: 0.7, tran: 1.1, nui: 0.6, san: 0.9, vuon: 0.8, mieu: 0.5,
+                  dem: 0.5, lang: 0.6, tinh: 0.6 }[loai] || 0.7;
+  const g = ctxTieng.createGain();
+  g.gain.value = 0.0001;
+  nguon.connect(loc);
+  loc.connect(g);
+  g.connect(loaTieng || ctxTieng.destination);
+  nguon.start();
+  return { nguon, g, muc };
+}
+
+// Tiếng nền thưa: một nốt trầm thỉnh thoảng vang lên (chuông xa, dế, nước nhỏ giọt).
+function taoThua(loai) {
+  const cauHinh = {
+    mieu: { f: 196, moi: 5200, dur: 1.6, vol: 0.05 },   // chuông chùa xa
+    dem:  { f: 1400, moi: 2600, dur: 0.09, vol: 0.030 }, // dế
+    nui:  { f: 880, moi: 7000, dur: 0.5, vol: 0.026 },  // gió qua khe đá
+    vuon: { f: 660, moi: 4200, dur: 0.3, vol: 0.028 },  // lá động
+    lang: { f: 300, moi: 9000, dur: 1.2, vol: 0.030 },  // tiếng xa
+  }[loai];
+  if (!cauHinh) return null;
+  const hen = { id: null, tat: false };
+  const phat = () => {
+    if (hen.tat || !ctxTieng || ctxTieng.state !== "running") return;
+    const t = ctxTieng.currentTime;
+    const g = ctxTieng.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(cauHinh.vol, t + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + cauHinh.dur);
+    const loc = ctxTieng.createBiquadFilter();
+    loc.type = "lowpass";
+    loc.frequency.value = 2200;
+    loc.connect(g);
+    g.connect(loaTieng || ctxTieng.destination);
+    const o = ctxTieng.createOscillator();
+    o.type = "sine";
+    o.frequency.value = cauHinh.f;
+    o.connect(loc);
+    o.start(t);
+    o.stop(t + cauHinh.dur + 0.05);
+    o.onended = () => { try { g.disconnect(); } catch (e) {} };
+    hen.id = setTimeout(phat, cauHinh.moi * (0.7 + Math.random() * 0.6));
+  };
+  hen.id = setTimeout(phat, 400 + Math.random() * 800);
+  return hen;
+}
+
+function dungCanh() {
+  if (canhDangChay) {
+    try { canhDangChay.nguon.stop(); } catch (e) {}
+    try { canhDangChay.g.disconnect(); } catch (e) {}
+    if (canhDangChay.thua) { canhDangChay.thua.tat = true; clearTimeout(canhDangChay.thua.id); }
+    canhDangChay = null;
+  }
+}
+
+// Phát tiếng cho cảnh vừa hiện. `ten` là tên file ảnh, ví dụ "bc_cho_01.jpg".
+function doiCanhTieng(ten) {
+  if (!canhBat) return;
+  const nhom = nhomCanh(ten);
+  if (nhom === canhLoai) return;      // cùng cảnh thì để chạy tiếp, đừng cắt
+  // Ảnh nhân vật / vật là cận cảnh giữa chừng, không phải nơi chốn mới: giữ
+  // nguyên tiếng nền đang chạy, chỉ thêm một nốt điểm nhấn. Cắt nền ở đây sẽ
+  // nghe như tiếng bị hỏng đúng lúc đang đọc.
+  if (nhom === "diem") {
+    if (!ctxTieng || ctxTieng.state === "closed") { if (!taoCtxTieng()) return; }
+    if (ctxTieng.state !== "running") return;
+    keTieng("diem");
+    return;
+  }
+  dungCanh();
+  canhLoai = nhom;
+  if (!nhom) return;
+  if (!ctxTieng || ctxTieng.state === "closed") { if (!taoCtxTieng()) return; }
+  if (ctxTieng.state !== "running") return;   // sẽ phát khi context tỉnh dậy
+  const muc = { cho: 0.045, tran: 0.055, nui: 0.040, san: 0.034, vuon: 0.032,
+                mieu: 0.030, dem: 0.030, lang: 0.026, tinh: 0.024 }[nhom] || 0.03;
+  const lop = taoNhieuLap(nhom, muc);
+  const t = ctxTieng.currentTime;
+  lop.g.gain.setValueAtTime(0.0001, t);
+  lop.g.gain.exponentialRampToValueAtTime(muc, t + 1.2);   // vào dần cho êm
+  lop.thua = taoThua(nhom);
+  canhDangChay = lop;
+}
+
+function batTatCanh() {
+  canhBat = !canhBat;
+  try { localStorage.setItem(KHOA_CANH, canhBat ? "1" : "0"); } catch (e) {}
+  capNhatNutCanh();
+  if (canhBat) {
+    moKhoaTieng();
+    const img = document.getElementById("sceneImg");
+    canhLoai = "";
+    if (img && img.getAttribute("src")) doiCanhTieng(img.getAttribute("src"));
+  } else {
+    dungCanh();
+    canhLoai = "";
+  }
+}
+function ganNutCanh() {
+  const b = document.getElementById("nutCanh");
+  if (b) b.onclick = batTatCanh;
 }
 
 let dangCho = false;
@@ -1062,6 +1276,7 @@ function hienThiAnh(kq) {
   img.src = "../assets/scene/" + ten;
   box.className = "scene-box on";
   cap.textContent = kq.boi_canh || "";
+  if (typeof doiCanhTieng === "function") doiCanhTieng(ten);
 }
 function hienThi(kq) {
   if (typeof xoaBaoDangKe === "function") xoaBaoDangKe();
@@ -1462,7 +1677,9 @@ async function luuKey() {
 
   napNutKeAI();
   napTieng();
+  napCanh();
 ganNutTieng();
+ganNutCanh();
   napXuatThan();
 
   // thử kết nối AI nếu đã có key

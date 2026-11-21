@@ -664,6 +664,23 @@ Bỏ tiếng thì cú chạm đầu sau khi mở lại trang mất âm — ngư�
 cuối hàm; nếu `hienThi` ném lỗi thì cờ kẹt và **mọi lần bấm sau bị chặn từ đầu** — không kêu,
 không chuyển trang. Đã bọc `try/finally` cả ba.
 
+### Tiếng theo cảnh: nhiễu nâu lặp vòng, mặc định tắt
+
+68 ảnh chia chín nhóm trong `nhomCanh()`; mỗi nhóm một lớp nhiễu nâu lặp (buffer 2 giây,
+`loop = true`) lọc bandpass, thêm lớp "thưa" hẹn giờ ngẫu nhiên (chuông, dế, gió).
+
+Bốn điều dễ làm sai:
+
+1. **`src` của ảnh là đường dẫn đầy đủ, không phải tên file.** Phải `split("/").pop()` trước khi
+   so tiền tố `bc_`, nếu không `nhomCanh` trả `""` và cảnh im hoàn toàn.
+2. **Ảnh nhân vật/vật (`nv_*`, `vt_*`) không được cắt tiếng nền.** Chúng là cận cảnh giữa
+   chừng, không phải nơi chốn mới. Cắt nền ở đó nghe như tiếng hỏng đúng lúc đang đọc.
+3. **Đừng đặt nút mới lên thanh trên.** Đo trên màn 320px: thêm một nút làm thanh cao thêm
+   52px, khung truyện còn 238px. Game đọc chữ nên đây là hồi quy thật. Nút phụ để trong bảng
+   Hệ Thống.
+4. **Tiếng nền phải nhỏ hơn tiếng thao tác khoảng 10 lần.** Đo được: nền 0.023–0.043, tiếng bấm
+   0.333. Nếu để nền to hơn thì người chơi tắt tiếng và mất luôn tiếng bấm.
+
 **WebKit báo `interrupted` cả khi CHƯA mở khóa.** Đừng đọc đó là "bị ngắt phiên âm thanh":
 đó chỉ là "chưa có cú chạm nào". Muốn biết có bị ngắt thật hay không thì phải biết context
 **đã từng chạy** chưa (theo dõi qua `statechange` khi thấy `running`). Trang `docs/phong-do/tieng.html`
