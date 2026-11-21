@@ -65,6 +65,14 @@ body{
    Giữ vùng chạm 44px cho dễ bấm trên điện thoại. */
 .topbar .sys-btn.tieng{flex:0 0 auto;padding:0;font-size:15px;line-height:1;
   min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+/* thanh chỉnh âm lượng phông cảnh: để người chơi tự chọn vì mỗi loa một khác */
+.canh-am{display:flex;align-items:center;gap:9px;margin-top:9px;padding:0 2px;flex-wrap:wrap}
+.canh-am label{font-size:11.5px;color:var(--ink-faint);flex:0 0 auto}
+.canh-am input[type=range]{flex:1 1 100%;order:3;min-width:0;height:32px;
+  accent-color:var(--seal);margin:0}
+.canh-am .so{font-size:11.5px;color:var(--ink);flex:0 0 auto;min-width:38px;text-align:right;
+  font-variant-numeric:tabular-nums}
+
 /* nút phông cảnh: nằm trong bảng Hệ Thống, không chiếm chỗ khung truyện */
 .nut-canh{display:flex;align-items:center;justify-content:space-between;gap:10px;
   width:100%;margin-top:9px;padding:11px 12px;font-family:var(--serif);font-size:13px;
@@ -713,6 +721,12 @@ body{
         </span>
         <span class="ic" id="canhIcon">🚫</span>
       </button>
+      <div class="canh-am" id="canhAm">
+        <label for="canhVol">Âm lượng phông cảnh</label>
+        <input type="range" id="canhVol" min="0" max="150" step="5" value="100"
+               aria-label="Âm lượng tiếng phông cảnh">
+        <span class="so" id="canhVolSo">100%</span>
+      </div>
     </div>
     <div class="sys-card">
       <div class="char-head">
@@ -1023,13 +1037,42 @@ function keTieng(loai) {
 // có gió, chợ thì ồn, trận đánh thì dày. Nhân vật (nv_*) và vật (vt_*) dùng tiếng
 // "điểm nhấn" ngắn thay vì nền liên tục, vì chúng là ảnh cận cảnh chứ không phải nơi chốn.
 const KHOA_CANH = "hdttl_canhtien";
+const KHOA_VOL = "hdttl_canhvol";
+let canhVol = 1;              // hệ số nhân, người chơi tự chỉnh
 let canhBat = false;          // mặc định tắt: người chơi phải tự bật
 let canhDangChay = null;      // lớp nền đang phát
 let canhLoai = "";            // nhóm của cảnh hiện tại
 
 function napCanh() {
   try { canhBat = localStorage.getItem(KHOA_CANH) === "1"; } catch (e) { canhBat = false; }
+  try {
+    const v = parseInt(localStorage.getItem(KHOA_VOL), 10);
+    if (Number.isFinite(v) && v >= 0 && v <= 150) canhVol = v / 100;
+  } catch (e) { canhVol = 1; }
   capNhatNutCanh();
+  capNhatThanhAm();
+}
+
+function capNhatThanhAm() {
+  const s = document.getElementById("canhVol");
+  const n = document.getElementById("canhVolSo");
+  if (s) s.value = String(Math.round(canhVol * 100));
+  if (n) n.textContent = Math.round(canhVol * 100) + "%";
+}
+
+// Đổi âm lượng giữa chừng: chỉnh thẳng gain của lớp đang chạy, không cắt rồi
+// dựng lại — cắt đi dựng lại sẽ nghe thấy một khoảng lặng.
+function datAmLuongCanh(v) {
+  canhVol = Math.max(0, Math.min(1.5, v));
+  try { localStorage.setItem(KHOA_VOL, String(Math.round(canhVol * 100))); } catch (e) {}
+  capNhatThanhAm();
+  if (canhDangChay && ctxTieng && ctxTieng.state === "running") {
+    const t = ctxTieng.currentTime;
+    const dich = Math.max(0.0001, (canhDangChay.mucGoc || 0) * canhVol);
+    canhDangChay.g.gain.cancelScheduledValues(t);
+    canhDangChay.g.gain.setValueAtTime(Math.max(0.0001, canhDangChay.g.gain.value), t);
+    canhDangChay.g.gain.exponentialRampToValueAtTime(dich, t + 0.25);
+  }
 }
 function capNhatNutCanh() {
   const b = document.getElementById("nutCanh");
@@ -1073,12 +1116,21 @@ function taoNhieuLap(loai, muc) {
   const dai = Math.floor(sr * 2);
   const dem = ctxTieng.createBuffer(1, dai, sr);
   const d = dem.getChannelData(0);
-  // Nhiễu nâu (tích luỹ) nghe tự nhiên hơn nhiễu trắng cho gió và nước.
-  let truoc = 0;
+  // Nhiễu hồng (1/f), KHÔNG phải nhiễu nâu (1/f²). Đo trên loa điện thoại: nhiễu
+  // nâu dồn ~70% năng lượng xuống dưới 300 Hz, mà loa điện thoại cắt dưới ~700 Hz
+  // — nên bản dùng nhiễu nâu gần như câm dù mức trong máy vẫn có. Nhiễu hồng giữ
+  // được chất tự nhiên mà vẫn có năng lượng ở dải trung để loa phát ra được.
+  let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
   for (let i = 0; i < dai; i++) {
-    const trang = Math.random() * 2 - 1;
-    truoc = (truoc + 0.02 * trang) / 1.02;
-    d[i] = truoc * 3.5;
+    const w = Math.random() * 2 - 1;
+    b0 = 0.99886 * b0 + w * 0.0555179;
+    b1 = 0.99332 * b1 + w * 0.0750759;
+    b2 = 0.96900 * b2 + w * 0.1538520;
+    b3 = 0.86650 * b3 + w * 0.3104856;
+    b4 = 0.55000 * b4 + w * 0.5329522;
+    b5 = -0.7616 * b5 - w * 0.0168980;
+    d[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + w * 0.5362) * 0.11;
+    b6 = w * 0.115926;
   }
   // Nối đầu-cuối cho khỏi "cạch" ở chỗ lặp: trộn 0.2 giây cuối vào đầu.
   const noi = Math.floor(sr * 0.2);
@@ -1089,16 +1141,24 @@ function taoNhieuLap(loai, muc) {
   const nguon = ctxTieng.createBufferSource();
   nguon.buffer = dem;
   nguon.loop = true;
+  // Cắt dải trầm mà loa điện thoại không phát được: nó chỉ ăn headroom.
+  const cat = ctxTieng.createBiquadFilter();
+  cat.type = "highpass";
+  cat.frequency.value = 400;
+  cat.Q.value = 0.7;
   const loc = ctxTieng.createBiquadFilter();
   loc.type = "bandpass";
-  const tam = { cho: 900, tran: 700, nui: 420, san: 600, vuon: 520, mieu: 300,
-                dem: 260, lang: 380, tinh: 340 }[loai] || 400;
+  // Tâm dải đặt trong vùng loa điện thoại phát được (700–3000 Hz). Khác biệt giữa
+  // các cảnh đến từ tâm dải + Q + lớp thưa, không phải từ tần số rất thấp.
+  const tam = { cho: 1500, tran: 1200, nui: 950, san: 1100, vuon: 1000, mieu: 820,
+                dem: 850, lang: 950, tinh: 900 }[loai] || 950;
   loc.frequency.value = tam;
-  loc.Q.value = { cho: 0.7, tran: 1.1, nui: 0.6, san: 0.9, vuon: 0.8, mieu: 0.5,
-                  dem: 0.5, lang: 0.6, tinh: 0.6 }[loai] || 0.7;
+  loc.Q.value = { cho: 0.8, tran: 1.2, nui: 0.7, san: 1.0, vuon: 0.9, mieu: 0.6,
+                  dem: 0.7, lang: 0.7, tinh: 0.7 }[loai] || 0.8;
   const g = ctxTieng.createGain();
   g.gain.value = 0.0001;
-  nguon.connect(loc);
+  nguon.connect(cat);
+  cat.connect(loc);
   loc.connect(g);
   g.connect(loaTieng || ctxTieng.destination);
   nguon.start();
@@ -1108,11 +1168,11 @@ function taoNhieuLap(loai, muc) {
 // Tiếng nền thưa: một nốt trầm thỉnh thoảng vang lên (chuông xa, dế, nước nhỏ giọt).
 function taoThua(loai) {
   const cauHinh = {
-    mieu: { f: 196, moi: 5200, dur: 1.6, vol: 0.05 },   // chuông chùa xa
-    dem:  { f: 1400, moi: 2600, dur: 0.09, vol: 0.030 }, // dế
-    nui:  { f: 880, moi: 7000, dur: 0.5, vol: 0.026 },  // gió qua khe đá
-    vuon: { f: 660, moi: 4200, dur: 0.3, vol: 0.028 },  // lá động
-    lang: { f: 300, moi: 9000, dur: 1.2, vol: 0.030 },  // tiếng xa
+    mieu: { f: 620, moi: 5200, dur: 1.6, vol: 0.20 },   // chuông chùa xa
+    dem:  { f: 2600, moi: 2600, dur: 0.09, vol: 0.14 }, // dế
+    nui:  { f: 1600, moi: 7000, dur: 0.5, vol: 0.12 },  // gió qua khe đá
+    vuon: { f: 1300, moi: 4200, dur: 0.3, vol: 0.13 },  // lá động
+    lang: { f: 780, moi: 9000, dur: 1.2, vol: 0.14 },   // tiếng xa
   }[loai];
   if (!cauHinh) return null;
   const hen = { id: null, tat: false };
@@ -1121,7 +1181,7 @@ function taoThua(loai) {
     const t = ctxTieng.currentTime;
     const g = ctxTieng.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(cauHinh.vol, t + 0.05);
+    g.gain.exponentialRampToValueAtTime(Math.max(0.0001, cauHinh.vol * canhVol), t + 0.05);
     g.gain.exponentialRampToValueAtTime(0.0001, t + cauHinh.dur);
     const loc = ctxTieng.createBiquadFilter();
     loc.type = "lowpass";
@@ -1169,12 +1229,17 @@ function doiCanhTieng(ten) {
   if (!nhom) return;
   if (!ctxTieng || ctxTieng.state === "closed") { if (!taoCtxTieng()) return; }
   if (ctxTieng.state !== "running") return;   // sẽ phát khi context tỉnh dậy
-  const muc = { cho: 0.045, tran: 0.055, nui: 0.040, san: 0.034, vuon: 0.032,
-                mieu: 0.030, dem: 0.030, lang: 0.026, tinh: 0.024 }[nhom] || 0.03;
+  // Mức đặt để NGHE ĐƯỢC trên loa điện thoại ở mức âm lượng bình thường, không
+  // phải để "có tín hiệu trong máy". Bản trước đặt 0.024–0.055 và đo ra -39…-50
+  // dBFS sau loa điện thoại — người dùng báo không nghe thấy gì, đúng như vậy.
+  const muc = { cho: 0.145, tran: 0.160, nui: 0.115, san: 0.125, vuon: 0.115,
+                mieu: 0.105, dem: 0.105, lang: 0.095, tinh: 0.075 }[nhom] || 0.105;
   const lop = taoNhieuLap(nhom, muc);
+  lop.mucGoc = muc;
   const t = ctxTieng.currentTime;
+  const dich = Math.max(0.0001, muc * canhVol);
   lop.g.gain.setValueAtTime(0.0001, t);
-  lop.g.gain.exponentialRampToValueAtTime(muc, t + 1.2);   // vào dần cho êm
+  lop.g.gain.exponentialRampToValueAtTime(dich, t + 1.2);   // vào dần cho êm
   lop.thua = taoThua(nhom);
   canhDangChay = lop;
 }
@@ -1196,6 +1261,10 @@ function batTatCanh() {
 function ganNutCanh() {
   const b = document.getElementById("nutCanh");
   if (b) b.onclick = batTatCanh;
+  const s = document.getElementById("canhVol");
+  if (s) {
+    s.oninput = () => datAmLuongCanh(parseInt(s.value, 10) / 100);
+  }
 }
 
 let dangCho = false;

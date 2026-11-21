@@ -112,15 +112,19 @@
     <p>Đo bằng analyser móc song song vào loa chung, trên WebKit giả lập iPhone 13:</p>
     <table>
       <tr><th>Phép đo</th><th>Kết quả</th></tr>
-      <tr><td>Tiếng nền chín nhóm</td><td class="n">0.023 – 0.043</td></tr>
-      <tr><td>Tiếng bấm (để so)</td><td class="n">0.333</td></tr>
-      <tr><td>Bấm 8 lần chồng lên nền</td><td class="n">0.349 — không vượt 1.0</td></tr>
-      <tr><td>Tắt phông cảnh</td><td class="n">im hẳn (0)</td></tr>
-      <tr><td>Tắt tiếng chính</td><td class="n">phông cảnh im theo (0)</td></tr>
+      <tr><td>Tiếng nền, 100%</td><td class="n">−31 đến −37 dBFS</td></tr>
+      <tr><td>Thanh trượt 50%</td><td class="n">−37.8 dBFS</td></tr>
+      <tr><td>Thanh trượt 150%</td><td class="n">−28.4 dBFS</td></tr>
+      <tr><td>Thanh trượt 0%</td><td class="n">im hẳn</td></tr>
+      <tr><td>Năng lượng ở 700–2000 Hz</td><td class="n">42–81% (loa điện thoại phát được)</td></tr>
+      <tr><td>Bấm 8 lần ở mức 150%</td><td class="n">đỉnh 0.40 — không vỡ tiếng</td></tr>
+      <tr><td>Tắt phông cảnh</td><td class="n">im hẳn</td></tr>
+      <tr><td>Tắt tiếng chính</td><td class="n">phông cảnh im theo</td></tr>
       <tr><td>Bốn tiếng cũ</td><td class="n">vẫn kêu, không đổi</td></tr>
       <tr><td>Đi qua 6 cảnh — số nhóm khác nhau</td><td class="n">4 (tiếng có đổi)</td></tr>
-      <tr><td>Tải lại trang khi đang bật</td><td class="n">chờ (0), chạm 1 cái → 0.035</td></tr>
+      <tr><td>Tải lại trang khi đang bật</td><td class="n">chờ, chạm 1 cái là chạy</td></tr>
       <tr><td>Chơi lại</td><td class="n">dọn sạch, về màn tạo nhân vật</td></tr>
+      <tr><td>Lưu âm lượng qua tải lại</td><td class="n">đúng (70% còn 70%)</td></tr>
     </table>
 
     <div class="canh">
@@ -129,20 +133,48 @@
     </div>
 
     <div class="anh">
-      <img src="canh-3-trong-game.jpg" alt="Trong game khi đang bật phông cảnh">
+      <img src="canh-2-bat.jpg" alt="Trong game khi đang bật phông cảnh">
       <div class="chuAnh">Trong game — tiếng nền chạy theo cảnh đang hiện</div>
     </div>
 
+    <h2>Vì sao bản đầu anh không nghe thấy gì</h2>
+    <p>Anh báo không nghe được. Tôi đo lại và tìm ra <b>hai lỗi cộng lại</b>:</p>
+    <p><b>Một: quá nhỏ.</b> Bản đầu đặt mức để "có tín hiệu trong máy", không phải để
+       nghe trên loa điện thoại. Đo ra −39 đến −50 dBFS sau loa — gần như im lặng.</p>
+    <p><b>Hai: sai dải tần.</b> Tôi dùng nhiễu nâu, dồn khoảng 70% năng lượng xuống
+       dưới 300 Hz. Loa điện thoại cắt dưới khoảng 700 Hz. Nên phần lớn tiếng tôi tạo ra
+       <b>không thể phát ra khỏi loa</b> — nó chỉ tồn tại trong dây.</p>
+    <div class="hop">
+      <b>Đây là chỗ tôi sai về cách kiểm.</b> Tôi đo đỉnh tín hiệu, thấy có số, báo "có nền".
+      Đúng về mặt số nhưng vô nghĩa về mặt nghe. Một phép đo âm thanh phải trả lời được
+      "qua loa này có ra tiếng không", không chỉ "trong máy có dao động không".
+    </div>
+    <p><b>Đã sửa:</b> đổi sang nhiễu hồng (giữ chất tự nhiên nhưng có năng lượng ở dải
+       trung), dời tâm dải vào vùng 800–1500 Hz, cắt bỏ phần dưới 400 Hz vì nó chỉ ăn
+       headroom mà không ra được loa, và nâng mức lên khoảng 8 lần.</p>
+
+    <h2>Tự chỉnh âm lượng</h2>
+    <p>Vì mỗi loa một khác, và tôi <b>không nghe được</b> trên máy anh, tôi thêm thanh
+       trượt để anh tự chọn. Mức lưu lại cho lần chơi sau.</p>
+    <div class="anh">
+      <img src="canh-3-am-luong.jpg" alt="Thanh chỉnh âm lượng phông cảnh ở 150%">
+      <div class="chuAnh">Kéo thanh trượt để chỉnh. 0% là tắt hẳn, 150% là to nhất.</div>
+    </div>
+    <p>Nếu ở 150% vẫn chưa đủ to, nói tôi biết — tôi nâng mức gốc lên nữa. Nếu thấy
+       ồn quá thì kéo xuống, hoặc tắt hẳn bằng nút phía trên.</p>
+
     <h2>Một chỗ tôi muốn nói thẳng</h2>
     <p>Tôi <b>không nghe được</b> những tiếng này. Tôi chỉ đo được mức tín hiệu. Nên tôi biết
-       chúng có phát, đúng mức, không méo, không vượt 1.0 — nhưng tôi không biết chúng
-       <b>nghe có hay không</b>.</p>
+       chúng có phát, đúng mức, không méo, không vỡ tiếng — nhưng tôi không biết chúng
+       <b>nghe có hay không</b>, và cũng không biết trên loa máy anh <b>có đủ to không</b>.
+       Đó là lý do có thanh trượt: phần đó anh quyết, không phải tôi.</p>
     <p>Cái đó phải do anh quyết. Nếu nghe như tiếng ồn vô nghĩa, hoặc khó chịu, nói tôi biết
        nhóm nào — tôi chỉnh âm sắc hoặc bỏ hẳn nhóm đó. Nếu thấy hay thì giữ nguyên.</p>
 
     <h2>Nếu muốn tinh chỉnh</h2>
     <ul>
-      <li><b>Nhóm nào ồn quá</b> — sửa số trong bảng <code>muc</code> của <code>doiCanhTieng</code></li>
+      <li><b>Nhóm nào ồn quá</b> — kéo thanh trượt xuống, hoặc sửa số trong bảng
+          <code>muc</code> của <code>doiCanhTieng</code></li>
       <li><b>Muốn thêm tiếng cho một cảnh cụ thể</b> — thêm tên vào nhánh trong <code>nhomCanh</code></li>
       <li><b>Không thích tiếng thưa</b> (chuông, dế) — xoá nhóm đó khỏi bảng trong <code>taoThua</code></li>
     </ul>
