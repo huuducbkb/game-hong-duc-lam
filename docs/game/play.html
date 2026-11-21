@@ -913,12 +913,16 @@ function taoCtxTieng() {
   // Bấm nhanh liên tục thì nhiều tiếng chồng lên nhau và vượt 1.0 gây rè.
   // Một bộ nén đặt trước loa giữ mức ra an toàn.
   try {
+    // Đây là bộ HẠN CHẾ ĐỈNH, không phải bộ nén. Để threshold -18/ratio 12 như
+    // bản trước thì mỗi tiếng nhói to (kim loại ở cảnh trận) ghì cả hỗn hợp
+    // xuống, kéo luôn lớp nền theo: đo được cảnh trận im lặng 48% thời gian dù
+    // nền của nó chạy liên tục. Chỉ chạm tới khi gần đỉnh 0 dBFS.
     const nen = ctxTieng.createDynamicsCompressor();
-    nen.threshold.value = -18;
-    nen.knee.value = 12;
-    nen.ratio.value = 12;
-    nen.attack.value = 0.002;
-    nen.release.value = 0.15;
+    nen.threshold.value = -6;
+    nen.knee.value = 4;
+    nen.ratio.value = 10;
+    nen.attack.value = 0.003;
+    nen.release.value = 0.12;
     nen.connect(ctxTieng.destination);
     loaTieng = nen;
   } catch (e) { loaTieng = ctxTieng.destination; }
@@ -1412,6 +1416,13 @@ function tiengDap(t, dich, opt) {
 // "thở" — để nguyên một dải nhiễu đều chính là tiếng rè dò đài.
 function taoNen(loai, dich, am) {
   const cauHinh = {
+    // Chợ và trận PHẢI có nền: đo được trước khi thêm là im lặng 92% và 78% thời
+    // gian, vì hai cảnh này chỉ có vài tiếng nhói rời rạc. Người dùng báo "quá
+    // khó nghe" đúng là vì thế, không phải vì âm lượng nhỏ.
+    // `sau` là độ sâu nhịp "thở" của lớp nền. Để 0.30/0.45 thì nền tụt xuống
+    // gần 0 ở đáy nhịp, đo được im lặng 16–29% thời gian. Hạ xuống 0.12/0.15.
+    cho:  { tam: 950,  Q: 0.55, tho: 0.09, sau: 0.12 },
+    tran: { tam: 480,  Q: 0.5, tho: 0.11, sau: 0.15 },
     mieu: { tam: 800,  Q: 0.5, tho: 0.06, sau: 0.18 },
     san:  { tam: 1000, Q: 0.6, tho: 0.08, sau: 0.20 },
     nui:  { tam: 700,  Q: 0.7, tho: 0.13, sau: 0.55 },
@@ -1591,16 +1602,43 @@ function phatFileThat(ma, g, muc) {
 function taoCanh(loai, muc) {
   const g = ctxTieng.createGain();
   g.gain.value = 0.0001;
-  g.connect(loaTieng || ctxTieng.destination);
-
-  // Có bản ghi thật thì dùng, không thì tổng hợp. Bản ghi thật đã được workflow
-  // cân âm lượng về -23 LUFS nên chỉ cần nhân hệ số trim của cảnh.
+  // Bộ hạn chế đỉnh riêng của cảnh, đặt SAU gain của cảnh. Không có nó thì nâng
+  // âm lượng lên mức nghe được sẽ đỉnh vượt 1.0 và rè — đo được crest 25 dB,
+  // tức là gần như im rồi thỉnh thoảng nhói.
+  // Bản ghi thật đã được bot cân về -18.5 LUFS nên đi thẳng ra loa, KHÔNG qua
+  // bộ nén + bù mức bên dưới: bù 2.2 lần sẽ làm nó to gấp đôi và rè.
   const file = phatFileThat(loai, g, muc);
-  if (file) return file;
+  if (file) {
+    g.connect(loaTieng || ctxTieng.destination);
+    return file;
+  }
+
+  // Nén nhẹ + bù mức cho tiếng TỔNG HỢP. Nó có crest 20–23 dB: nền liên tục
+  // cộng thỉnh thoảng một tiếng nhói. Không nén thì phải nhân 15–20 lần mới
+  // nghe được, và đỉnh vượt 1.0 gây rè (đo được 267.000 mẫu bị cắt). Nén đưa
+  // crest về 15 dB nên nghe đều mà đỉnh vẫn dưới 1.0.
+  let nut = g;
+  try {
+    const nen = ctxTieng.createDynamicsCompressor();
+    nen.threshold.value = -28;
+    nen.knee.value = 10;
+    nen.ratio.value = 3;
+    nen.attack.value = 0.006;
+    nen.release.value = 0.25;
+    const bu = ctxTieng.createGain();
+    bu.gain.value = 2.2;
+    g.connect(nen);
+    nen.connect(bu);
+    nut = bu;
+  } catch (e) {}
+  nut.connect(loaTieng || ctxTieng.destination);
 
   const hen = [];
   let tat = false;
-  const nen = taoNen(loai, g, muc * 0.055);
+  // Chợ và trận là cảnh ồn liên tục: nền phải là tiếng chính, không phải tiếng
+  // phụ. Đo được trước khi tăng là nhỏ hơn cảnh khác 9 dB.
+  const HE_SO_NEN = { cho: 2.6, tran: 3.4 };
+  const nen = taoNen(loai, g, muc * 0.055 * (HE_SO_NEN[loai] || 1));
   const ds = SU_KIEN[loai] || [];
   let dauTien = true;
   const dat = (sk) => {
@@ -1674,8 +1712,16 @@ function doiCanhTieng(ten) {
   // dBFS sau loa điện thoại — người dùng báo không nghe thấy gì, đúng như vậy.
   // Đây là hệ số trim của cảnh, KHÔNG phải biên độ tuyệt đối: biên độ từng
   // tiếng nằm trong SU_KIEN. Chợ và trận đông nên để nhỉnh hơn cảnh tĩnh.
-  const muc = { cho: 1.0, tran: 1.1, nui: 0.9, san: 1.0, vuon: 0.9,
-                mieu: 0.95, dem: 0.9, lang: 0.85, tinh: 0.7 }[nhom] || 0.9;
+  // Hai đường tín hiệu cần hai mức khác nhau, không dùng chung được:
+  //  - Bản ghi thật đã được bot cân về -18.5 LUFS, nên trim phải quanh 1.0.
+  //  - Tiếng tổng hợp đo ra -40…-50 LUFS, phải nhân 10–13 mới nghe được.
+  // Bản trước dùng chung một bảng 0.7–1.1 nên tiếng tổng hợp gần như im.
+  // Đo RMS và đỉnh từng cảnh ở mức 1.0 trong 30 giây, rồi lấy hệ số bù: đặt
+  // theo RMS cho đều tai, nhưng chặn lại nếu đỉnh vượt 0.90. Không đoán số.
+  const mucTongHop = { cho: 1.176, tran: 1.082, nui: 1.896, san: 2.073, vuon: 1.801, mieu: 2.012, dem: 1.777, lang: 1.813, tinh: 1.739 }[nhom] || 1.9;
+  const mucFile = { cho: 1.0, tran: 1.1, nui: 0.9, san: 1.0, vuon: 0.9,
+                    mieu: 0.95, dem: 0.9, lang: 0.85, tinh: 0.7 }[nhom] || 0.9;
+  const muc = (amThat && amThat[nhom]) ? mucFile : mucTongHop;
   const lop = taoCanh(nhom, muc);
   const t = ctxTieng.currentTime;
   const dich = Math.max(0.0001, muc * canhVol);
