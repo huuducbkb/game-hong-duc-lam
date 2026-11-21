@@ -1,12 +1,19 @@
 name: Xưởng âm thanh — nén và ghép tiếng cảnh
 
-# Nhận file tiếng từ 2 nguồn rồi nén, cân âm lượng, đưa vào docs/assets/am/.
-#   1. File trong xuong-am-inbox/<mã>/<tên>  (xưởng âm thanh đẩy lên)
-#   2. Thả file thẳng vào thư mục xuong-am-inbox/ ở gốc repo
+# Ba nguồn, chọn cái nào cũng được:
+#   1. Issue có nhãn "xuong-am" — kéo file tiếng vào ô nội dung. KHÔNG CẦN TOKEN,
+#      làm được trên điện thoại. Đây là đường chính.
+#   2. xuong-am-inbox/<mã>/  — thả file vào thư mục con mang mã nhóm.
+#   3. Trang Xưởng (docs/xuong-am) đẩy file vào xuong-am-inbox/<mã>/ — cần token,
+#      tiện khi dùng máy tính.
 #
-# Push bằng GITHUB_TOKEN không kích hoạt workflow khác, nên deploy Pages được
-# gộp ngay trong job "deploy" ở cuối.
+# Push bằng GITHUB_TOKEN không kích hoạt workflow khác, nên deploy Pages được gộp
+# ngay trong job "deploy" ở cuối.
 on:
+  issues:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
   push:
     branches: [main]
     paths: ["xuong-am-inbox/**"]
@@ -14,6 +21,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pages: write
   id-token: write
 
@@ -23,62 +31,120 @@ concurrency:
 
 jobs:
   xu-ly:
-    if: github.actor != 'github-actions[bot]'
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      (github.event_name == 'workflow_dispatch' ||
+       github.event_name == 'push' ||
+       (github.event_name == 'issues' &&
+        (contains(github.event.issue.labels.*.name, 'xuong-am') ||
+         contains(github.event.issue.body, 'user-attachments'))) ||
+       (github.event_name == 'issue_comment' &&
+        contains(github.event.comment.body, 'user-attachments')))
     runs-on: ubuntu-latest
+    outputs:
+      da_commit: ${{ steps.commit.outputs.da_commit }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
       - name: Cài ffmpeg
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
 
-      - name: Nén và chuẩn hoá
+      - name: Thu thập nội dung Issue (nếu có)
+        if: github.event_name == 'issues' || github.event_name == 'issue_comment'
+        env:
+          BODY: ${{ github.event.issue.body }}
+          COMMENT: ${{ github.event.comment.body }}
         run: |
-          set -u
-          mkdir -p docs/assets/am assets/am
-          shopt -s nullglob
-          so=0
-          for f in xuong-am-inbox/*/*; do
-            [ -f "$f" ] || continue
-            ma="$(basename "$(dirname "$f")")"
-            duoi="${f##*.}"
-            duoi="$(echo "$duoi" | tr 'A-Z' 'a-z')"
-            case "$duoi" in
-              mp3|wav|m4a|aac|ogg|opus|flac|aiff|aif) ;;
-              *) echo "bỏ qua (không phải âm thanh): $f"; continue ;;
-            esac
-            ra="docs/assets/am/${ma}.mp3"
-            echo "→ $f  ⇒  $ra"
-            # loudnorm 2 lượt: đo trước rồi áp. Một lượt chỉ đúng khi file ngắn.
-            ffmpeg -hide_banner -loglevel error -y -i "$f" \
-              -af "loudnorm=I=-23:TP=-2:LRA=11" \
-              -ac 2 -ar 44100 -c:a libmp3lame -b:a 96k "$ra" || {
-                echo "LỖI: không chuyển được $f"; continue; }
-            cp "$ra" "assets/am/${ma}.mp3"
-            so=$((so+1))
-          done
-          echo "đã xử lý $so file"
-          if [ "$so" -eq 0 ]; then echo "không có file nào"; fi
+          printf '%s\n\n%s\n' "$BODY" "$COMMENT" > /tmp/issue-am.md
+          wc -c /tmp/issue-am.md
+
+      - name: Xử lý tiếng (Issue hoặc inbox)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          if [ -s /tmp/issue-am.md ] && grep -qE 'https?://[^ ]*(user-attachments|githubusercontent)' /tmp/issue-am.md; then
+            echo "Nguồn: file trong Issue"
+            python3 tools/xu_ly_am.py --urls-file /tmp/issue-am.md --report /tmp/bao-cao-am.json || true
+          else
+            echo "Nguồn: thư mục xuong-am-inbox"
+            python3 tools/xu_ly_am.py --inbox xuong-am-inbox --report /tmp/bao-cao-am.json || true
+          fi
 
       - name: Ghi danh sách
         run: python3 game/ghi_danh_sach_am.py
 
       - name: Dọn hộp nhận
         run: |
-          git rm -r --quiet --ignore-unmatch xuong-am-inbox/* || true
-          mkdir -p xuong-am-inbox && touch xuong-am-inbox/.gitkeep
+          # Chỉ xoá file âm thanh đã xử lý. README và .gitkeep phải giữ lại.
+          find xuong-am-inbox -type f ! -name 'README.md' ! -name '.gitkeep' -delete 2>/dev/null || true
+          find xuong-am-inbox -mindepth 1 -type d -empty -delete 2>/dev/null || true
+          touch xuong-am-inbox/.gitkeep
 
       - name: Commit
+        id: commit
         run: |
           git config user.name "xuong-am-bot"
           git config user.email "xuong-am-bot@users.noreply.github.com"
           git add -A
           if git diff --cached --quiet; then
-            echo "không có thay đổi"
+            echo "Không có thay đổi."
           else
-            git commit -m "Xưởng âm thanh: nén và ghép tiếng cảnh"
+            SO=$(python3 -c "import json;print(len(json.load(open('/tmp/bao-cao-am.json')).get('da_luu',[])))" 2>/dev/null || echo "?")
+            git commit -q -m "Xưởng âm thanh: ghép ${SO} tiếng cảnh"
             git push
+            echo "da_commit=1" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Báo lại trong Issue
+        if: >-
+          (github.event_name == 'issues' || github.event_name == 'issue_comment') &&
+          steps.commit.outputs.da_commit == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SO_ISSUE: ${{ github.event.issue.number }}
+        run: |
+          python3 - <<'PY' > /tmp/comment-am.md
+          import json
+          d = json.load(open('/tmp/bao-cao-am.json'))
+          ra = ["## ✅ Đã nhận tiếng", ""]
+          if d.get("da_luu"):
+              for x in d["da_luu"]:
+                  ra.append(f"- `{x['ma']}` → `{x['file']}`")
+          if d.get("chua_ro"):
+              ra += ["", "## ⚠️ Chưa rõ nhóm tiếng", ""]
+              for x in d["chua_ro"]:
+                  ra.append(f"- {x['url']} — {x['ly_do']}")
+              ra += ["", "Đổi tên file cho có mã nhóm rồi gửi lại, "
+                         "hoặc viết mã nhóm ở dòng ngay trên link."]
+          if d.get("loi"):
+              ra += ["", "## ❌ Lỗi", ""]
+              for x in d["loi"]:
+                  ra.append(f"- {x}")
+          ra += ["", "_Do AI tạo (OpenHands) nhân danh chủ repo._"]
+          print("\n".join(ra))
+          PY
+          gh issue comment "$SO_ISSUE" --body-file /tmp/comment-am.md
+
+  deploy:
+    needs: xu-ly
+    if: needs.xu-ly.outputs.da_commit == '1'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/configure-pages@v5
         with:
           enablement: true

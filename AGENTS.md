@@ -628,8 +628,8 @@ Game dùng bốn tiếng ngắn (`bam`, `lat`, `lui`, `mo`) dựng bằng Web Au
 âm thanh nào — xem mục dưới.
 
 **Ngoại lệ có kiểm soát: Xưởng âm thanh.** Người dùng tự tạo bản ghi rồi tải lên qua
-`docs/xuong-am/`. File đi vào `xuong-am-inbox/<mã>/` rồi workflow `xuong-am.yml` nén
-về mp3 96 kbps, cân âm lượng −23 LUFS, đặt vào `docs/assets/am/<mã>.mp3`. Game đọc
+`docs/xuong-am/` hoặc kéo file vào một Issue có nhãn `xuong-am`. Workflow `xuong-am.yml`
+nén về mp3 96 kbps, cân âm lượng −18 LUFS, đặt vào `docs/assets/am/<mã>.mp3`. Game đọc
 `docs/assets/am/danh-sach.json`: nhóm nào có trong đó thì phát file, không có thì dùng
 tiếng tổng hợp. **Không bao giờ im.** Đừng tự tay commit mp3 vào `assets/am/` — hãy đi
 qua xưởng, để còn cân âm lượng.
@@ -637,6 +637,22 @@ qua xưởng, để còn cân âm lượng.
 Chín nhóm tiếng và prompt tạo nằm ở `game/du_lieu_am.py`; sửa prompt thì sửa ở đó rồi
 chạy `python3 game/tao_xuong_am.py`. Nhóm tiếng suy ra từ tên file ảnh cảnh
 (`nhomCanh`), nên 68 ảnh chỉ cần 9 file tiếng.
+
+Bốn điều đã trả giá để biết, đừng làm lại:
+
+1. **Đường chính phải là Issue, không phải token.** Người dùng chỉ có điện thoại; bắt
+   tạo personal access token rồi dán vào trang là quá khó. Kéo file vào Issue GitHub
+   thì không cần token và làm được trên iPhone. Trang xưởng có nút gửi trực tiếp,
+   nhưng đó là đường phụ.
+2. **`loudnorm` một lượt đo sai trên file ngắn.** Đặt `I=-23` mà đo lại ra −24.3 dBTP
+   (nhỏ hơn cả đỉnh mục tiêu). Phải đo trước bằng `print_format=json` rồi áp
+   `measured_I/measured_TP/measured_LRA/measured_thresh`. Đã sửa trong `tools/xu_ly_am.py`.
+3. **Mục tiêu −18 LUFS, không phải −23.** −23 là chuẩn phát thanh cho nghe bằng tai
+   nghe; tiếng nền phát qua loa điện thoại ở mức đó nghe như không có.
+4. **Sinh trang HTML thì phải kiểm thẻ `<script>` còn hay không.** Đã từng ghép JS vào
+   template mà quên bọc `<script>`: hàm `ghLuuToken` có trong file nhưng trình duyệt coi
+   là văn bản, bấm nút không làm gì và chỉ báo `Can't find variable`. Kiểm bằng
+   `grep -c "<script"` và thử bấm nút thật, đừng chỉ `node --check`.
 
 Ba điều dễ làm sai khi sửa `keTieng`:
 

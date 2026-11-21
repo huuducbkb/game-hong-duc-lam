@@ -139,6 +139,8 @@ button.phu{{background:transparent}}
 .gh input{{width:100%;font-size:12.5px;background:#0a1220;color:#dfe7f5;
   border:1px solid var(--line);border-radius:8px;padding:9px;margin:6px 0}}
 .gh-tt{{font-size:12.5px;margin-top:6px}}
+.gh summary{{cursor:pointer;color:var(--jade);font-weight:600}}
+details.gh[open] summary{{margin-bottom:8px}}
 footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   font-size:12px;color:var(--muted)}}
 </style>
@@ -160,25 +162,40 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 
 <h2>Cách làm</h2>
 <div class="card">
+  <p style="margin:0 0 8px"><b>Cách 1 — dán vào Issue (không cần token, làm trên điện thoại được)</b></p>
   <ol style="margin:0;padding-left:20px">
     <li>Chọn cảnh ở dưới, bấm <b>📋 Copy prompt</b>.</li>
     <li>Dán vào công cụ sinh âm thanh. Nên chọn <b>30 giây</b>, có chế độ
         <b>loop / seamless</b> nếu công cụ có.</li>
     <li>Nghe lại. Ưng thì tải file về máy.</li>
-    <li>Quay lại đây, chọn file ở ô <b>Tải lên bản của anh</b>, bấm <b>📤 Gửi</b>.</li>
+    <li>Mở <a href="https://github.com/huuducbkb/game-hong-duc-lam/issues/new"
+        target="_blank">trang tạo Issue</a>, <b>kéo file tiếng vào ô nội dung</b>,
+        viết mã nhóm ở dòng ngay trên file (ví dụ <code>cho</code>), rồi
+        <b>Submit new issue</b>.</li>
+    <li>Gắn nhãn <code>xuong-am</code> cho Issue. Bot trả lời trong Issue khi xong.</li>
+  </ol>
+  <p style="margin:14px 0 8px"><b>Cách 2 — gửi thẳng từ trang này (cần token, tiện trên máy tính)</b></p>
+  <ol style="margin:0;padding-left:20px">
+    <li>Chọn file ở ô <b>Tải lên bản của anh</b> trong thẻ cảnh, bấm <b>📤 Gửi</b>.</li>
     <li>Chờ 1–2 phút, bấm <b>🔄 Kiểm tra lại</b>. Hiện <b>✅ đã có</b> là game đã dùng.</li>
   </ol>
   <p class="muted" style="margin:10px 0 0">
-    Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>.
-    File lớn cứ để nguyên, hệ thống tự nén về mp3 96 kbps và cân âm lượng.
+    Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
+    <code>flac</code>. File lớn cứ để nguyên, hệ thống tự nén về mp3 96 kbps và cân âm
+    lượng về −23 LUFS.
   </p>
 </div>
 
-<h2>🔑 Kết nối GitHub</h2>
-<div class="gh">
-  <p class="muted" style="margin:0 0 6px">
-    Cần một token có quyền <b>Contents: Read and write</b> trên repo này. Token chỉ lưu
-    trong trình duyệt của anh, không gửi đi đâu khác.
+<h2>Các nhóm tiếng</h2>
+{ds}
+
+<details class="gh" style="margin-top:24px">
+  <summary style="cursor:pointer;color:var(--jade);font-weight:600">
+    🔑 Kết nối GitHub (chỉ cần cho Cách 2)
+  </summary>
+  <p class="muted" style="margin:8px 0 6px">
+    Token cần quyền <b>Contents: Read and write</b> trên repo này. Token chỉ lưu trong
+    trình duyệt của anh, không gửi đi đâu khác. Không có token vẫn dùng được Cách 1.
   </p>
   <input type="password" id="gh-token" placeholder="ghp_… hoặc github_pat_…" autocomplete="off">
   <div class="row">
@@ -186,17 +203,16 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
     <button class="phu" onclick="ghQuenToken()">Quên token</button>
   </div>
   <div class="gh-tt" id="gh-tt" hidden></div>
-</div>
-
-<h2>Các nhóm tiếng</h2>
-{ds}
+</details>
 
 <footer>
   Trang này sinh tự động từ <code>game/du_lieu_am.py</code>.<br>
   Tiếng do AI tạo (OpenHands) soạn prompt; bản ghi là do anh tạo và tải lên.
 </footer>
 
+<script>
 {js}
+</script>
 </body>
 </html>
 """
