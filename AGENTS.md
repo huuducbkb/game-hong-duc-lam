@@ -621,6 +621,37 @@ Lưu ý harness: iframe **phải cùng origin** với trang cần đo, nếu kh�
 (ví dụ để tạm ở gốc dự án rồi mở qua `game_server.py`), dùng đường dẫn tương đối
 (`/game`). Nhớ xoá file harness sau khi đo.
 
+### Âm thanh cảnh: PHẢI có cao độ, không được là nhiễu lọc
+
+**Bài học đắt nhất về âm thanh.** Ba vòng sửa liên tiếp tôi đo crest, LUFS, cắt đỉnh,
+limiter — đều đạt, mà người dùng vẫn bảo "đây là âm thanh game à?". Đo đúng nhưng
+**sai hướng thiết kế**: tôi tối ưu chất lượng của một thứ vốn không phải nhạc.
+
+Tiếng cảnh cũ là **nhiễu hồng lọc bandpass + vài tiếng ngẫu nhiên**. Đo được:
+
+- độ phẳng phổ **0,738** (1,0 = nhiễu trắng) — không có cao độ
+- nền nhiễu chiếm **70–88%** năng lượng ở cả 9 cảnh; sự kiện chỉ 12–30%
+- các hàm "tiếng người" (`raoHang`, `noiChuyen`, `damDong`) dùng 5–7 lần
+  `Math.random`, **0 dao động** — tức là nhiễu, không phải âm có cao độ
+
+Tai nghe ra "radio không bắt được đài", và người dùng nói đúng.
+
+**Cách kiểm trước khi tin là xong:** đo độ tuần hoàn (autocorrelation) và độ phẳng
+phổ. Nhạc thật cho R ≈ 1,0; nhiễu trắng cho R ≈ 0,02. Đừng chỉ đo to/nhỏ.
+
+**Bản đúng hiện tại** (`BAN_NHAC` + `bufDay/bufSao/bufTrong/bufChieng/bufBau`):
+
+- thang **ngũ cung** `[0,2,4,7,9]`, mỗi cảnh một nốt gốc riêng (D3…E4)
+- **đàn tranh = Karplus-Strong**: nhiễu chỉ để kích dây, cao độ do vòng lặp trễ tạo ra
+- dựng sẵn buffer một lần cho mỗi cao độ rồi `start()` đúng lúc — tổng hợp bằng
+  oscillator cả chuỗi dài thì nặng và lệch nhịp
+- kết quả đo: 45/45 nốt đúng, lệch tối đa **16 cent**; R = 1,000 (đàn tranh), 0,968 (sáo)
+
+**Hiệu chuẩn âm lượng phải lặp, không được tính một lần.** Bù tuyến tính một lượt
+cho ra chênh 9,3 dB và 14 mẫu chạm limiter, vì đỉnh và RMS không tỉ lệ với nhau khi
+đổi gain có limiter phía sau. Dùng vòng lặp 6 lần (`g = g * DICH/rms`, chặn đỉnh)
+→ hội tụ chênh **1,4–1,6 dB**, 0 mẫu cắt, 0 lần limiter can thiệp.
+
 ### Âm thanh: tổng hợp trong máy, có thể thay bằng bản ghi thật
 
 Game dùng bốn tiếng ngắn (`bam`, `lat`, `lui`, `mo`) dựng bằng Web Audio ngay trong máy.

@@ -1626,152 +1626,196 @@ function buaRen(t, dich, opt) {
 // Mỗi cảnh có HAI lớp: `gio` (gió/nhiễu lọc băng hẹp) và `tram` (ầm trầm rất
 // thấp). Thiếu lớp trầm thì nền nghe mỏng và chói — đo được trước khi thêm:
 // năng lượng dưới 250 Hz chỉ 1–4%, trọng tâm phổ 2.3–3.3 kHz.
-function taoNen(loai, dich, am) {
-  const cauHinh = {
-    cho:  { tam: 780,  Q: 0.5,  tho: 0.10, sau: 0.30, tram: 0.55, gio: 1.0 },
-    tran: { tam: 420,  Q: 0.45, tho: 0.13, sau: 0.35, tram: 0.95, gio: 1.0 },
-    nui:  { tam: 620,  Q: 0.55, tho: 0.16, sau: 0.45, tram: 0.45, gio: 1.3 },
-    san:  { tam: 820,  Q: 0.5,  tho: 0.11, sau: 0.30, tram: 0.40, gio: 1.5 },
-    vuon: { tam: 950,  Q: 0.55, tho: 0.14, sau: 0.35, tram: 0.25, gio: 1.4 },
-    mieu: { tam: 700,  Q: 0.5,  tho: 0.09, sau: 0.25, tram: 0.60, gio: 1.1 },
-    dem:  { tam: 480,  Q: 0.5,  tho: 0.12, sau: 0.30, tram: 0.70, gio: 0.9 },
-    lang: { tam: 560,  Q: 0.55, tho: 0.11, sau: 0.30, tram: 0.50, gio: 1.2 },
-    tinh: { tam: 640,  Q: 0.5,  tho: 0.08, sau: 0.20, tram: 0.30, gio: 1.5 },
-  }[loai];
-  if (!cauHinh) return null;
-  const sr = ctxTieng.sampleRate;
-  const n = Math.floor(sr * 3);
-  const dem = ctxTieng.createBuffer(1, n, sr);
-  const d = dem.getChannelData(0);
-  let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
-  for (let i = 0; i < n; i++) {
-    const w = Math.random() * 2 - 1;
-    b0 = 0.99886 * b0 + w * 0.0555179;
-    b1 = 0.99332 * b1 + w * 0.0750759;
-    b2 = 0.96900 * b2 + w * 0.1538520;
-    b3 = 0.86650 * b3 + w * 0.3104856;
-    b4 = 0.55000 * b4 + w * 0.5329522;
-    b5 = -0.7616 * b5 - w * 0.0168980;
-    d[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + w * 0.5362) * 0.11;
-    b6 = w * 0.115926;
-  }
-  const noi = Math.floor(sr * 0.3);
-  for (let i = 0; i < noi; i++) {
-    const k = i / noi;
-    d[i] = d[i] * k + d[n - noi + i] * (1 - k);
-  }
-  const nguon = ctxTieng.createBufferSource();
-  nguon.buffer = dem;
-  nguon.loop = true;
-
-  // Lớp gió: băng hẹp quanh `tam`, "thở" bằng LFO.
-  const loc = ctxTieng.createBiquadFilter();
-  loc.type = "bandpass";
-  loc.frequency.value = cauHinh.tam;
-  loc.Q.value = cauHinh.Q;
-  const gGio = ctxTieng.createGain();
-  gGio.gain.value = am * cauHinh.gio;
-  const lfo = ctxTieng.createOscillator();
-  lfo.frequency.value = cauHinh.tho;
-  const lg = ctxTieng.createGain();
-  lg.gain.value = am * cauHinh.gio * cauHinh.sau;
-  lfo.connect(lg);
-  lg.connect(gGio.gain);
-  nguon.connect(loc);
-  loc.connect(gGio);
-  gGio.connect(dich);
-
-  // Lớp trầm: cùng nguồn nhiễu nhưng lọc thấp, cho phần "thân" mà tai nghe
-  // thành không gian chứ không thành tiếng rè.
-  const locTram = ctxTieng.createBiquadFilter();
-  locTram.type = "lowpass";
-  locTram.frequency.value = 180;
-  locTram.Q.value = 0.8;
-  const gTram = ctxTieng.createGain();
-  gTram.gain.value = am * cauHinh.tram * 1.5;
-  nguon.connect(locTram);
-  locTram.connect(gTram);
-  gTram.connect(dich);
-
-  nguon.start();
-  lfo.start();
-  return {
-    dung: () => {
-      try { nguon.stop(); } catch (e) {}
-      try { lfo.stop(); } catch (e) {}
-      try { gGio.disconnect(); gTram.disconnect(); } catch (e) {}
-    },
-  };
-}
-
-// Bảng sự kiện theo cảnh. `moi` là khoảng cách (ms) giữa hai lần, ngẫu nhiên
-// trong khoảng đó — nhịp không đều mới ra tự nhiên.
+// ===== NHẠC CẢNH: ngũ cung, nhạc cụ tổng hợp =====
+// Bản trước là nhiễu lọc (spectral flatness 0.74, nền nhiễu chiếm 70-88% năng
+// lượng) nên tai nghe ra "radio không bắt được đài", không ra âm thanh game.
+// Bản này có cao độ thật: mỗi nốt là một dao động có tần số xác định, nên
+// flatness xuống thấp và tai nghe ra nhạc.
 //
-// Mỗi cảnh phải có BỘ TIẾNG RIÊNG, không cảnh nào trùng cảnh nào:
-//   chợ   — rao bán + đám đông + bước chân + kim loại (quang gánh)
-//   trận  — trống trận + kim loại + đấm + hô
-//   núi   — gió + chim + bước chân xa
-//   sân   — đấm bao cát đều nhịp + đếm + gỗ
-//   vườn  — chim + côn trùng + gió nhẹ
-//   miếu  — chuông + tụng kinh + chim
-//   đêm   — dế + ếch + chó xa
-//   làng  — gà gáy + chó sủa + nói chuyện xa
-//   tỉnh  — rất ít: gió nhẹ + thỉnh thoảng một tiếng xa
-const SU_KIEN = {
-  cho: [
-    { moi: [2600, 5200],  lam: (t, d) => raoHang(t, d, { f0: 190 + Math.random() * 60, am: 0.10 }) },
-    { moi: [1100, 2600],  lam: (t, d) => damDong(t, d, { f0: 155, am: 0.030 }) },
-    { moi: [900, 2200],   lam: (t, d) => buocChan(t, d, { am: 0.055 }) },
-    { moi: [4200, 9000],  lam: (t, d) => kimLoai(t, d, { am: 0.030 }) },
-  ],
-  tran: [
-    { moi: [1400, 2800],  lam: (t, d) => trongTran(t, d, { am: 0.16 }) },
-    { moi: [1100, 2600],  lam: (t, d) => kimLoai(t, d, { am: 0.075 }) },
-    { moi: [1600, 3600],  lam: (t, d) => tiengDap(t, d, { am: 0.07 }) },
-    { moi: [2200, 4600],  lam: (t, d) => noiChuyen(t, d, { f0: 118 + Math.random() * 40, am: 0.05, soAm: 2 }) },
-  ],
-  nui: [
-    { moi: [2200, 5200],  lam: (t, d) => chimHot(t, d, { am: 0.045 }) },
-    { moi: [6000, 13000], lam: (t, d) => buocChan(t, d, { am: 0.022 }) },
-    { moi: [4000, 9000],  lam: (t, d) => daLan(t, d, { am: 0.055 }) },
-  ],
-  san: [
-    { moi: [900, 1250],   lam: (t, d) => tiengDap(t, d, { am: 0.050 }) },
-    { moi: [1700, 3000],  lam: (t, d) => goTre(t, d, { am: 0.035 }) },
-    { moi: [2400, 4200],  lam: (t, d) => noiChuyen(t, d, { f0: 135 + Math.random() * 40, am: 0.05, soAm: 2 }) },
-  ],
-  vuon: [
-    { moi: [1600, 3600],  lam: (t, d) => chimHot(t, d, { am: 0.05 }) },
-    { moi: [2200, 5000],  lam: (t, d) => conTrung(t, d, { am: 0.022 }) },
-    { moi: [4200, 9000],  lam: (t, d) => buocChan(t, d, { am: 0.018 }) },
-  ],
-  mieu: [
-    { moi: [5200, 10000], lam: (t, d) => chuongChua(t, d, { am: 0.018 }) },
-    { moi: [3600, 8000],  lam: (t, d) => tungKinh(t, d, { am: 0.020 }) },
-    { moi: [6000, 12000], lam: (t, d) => chimHot(t, d, { am: 0.025 }) },
-  ],
-  dem: [
-    { moi: [700, 1500],   lam: (t, d) => deKeu(t, d, { am: 0.040 }) },
-    { moi: [1800, 4200],  lam: (t, d) => deRong(t, d, { am: 0.045 }) },
-    { moi: [8000, 16000], lam: (t, d) => choSua(t, d, { am: 0.028 }) },
-  ],
-  lang: [
-    { moi: [6000, 12000], lam: (t, d) => gaGay(t, d, { am: 0.045 }) },
-    { moi: [3200, 7000],  lam: (t, d) => choSua(t, d, { am: 0.040 }) },
-    { moi: [2200, 5000],  lam: (t, d) => noiChuyen(t, d, { f0: 160 + Math.random() * 50, am: 0.022, soAm: 3 }) },
-    { moi: [3000, 7000],  lam: (t, d) => chimHot(t, d, { am: 0.030 }) },
-  ],
-  // Tỉnh lỵ thanh vắng: KHÔNG dùng chim + bước chân như núi, vì đo được hai
-  // cảnh gần như y hệt nhau. Đặc trưng thị trấn là tiếng người nói xa, một
-  // tiếng chuông trấn, và rất ít sự kiện — vắng hơn hẳn các cảnh khác.
-  tinh: [
-    { moi: [4200, 9000],  lam: (t, d) => noiChuyen(t, d, { f0: 145 + Math.random() * 35, am: 0.020, soAm: 4 }) },
-    { moi: [8000, 15000], lam: (t, d) => chuongChua(t, d, { am: 0.022 }) },
-    { moi: [5000, 11000], lam: (t, d) => buaRen(t, d, { am: 0.009 }) },
-  ],
+// Thang ngũ cung Việt/Trung: cung thương (D), giốc (E), chủy (G), vũ (A), cung (C).
+// Chỉ 5 nốt nên giai điệu tự nhiên ra chất cổ trang, không cần cố.
+
+const BAN_NHAC = {
+  // CHỢ: đông, nhịp nhanh, đàn tranh dày + trống nhỏ + chiêng điểm. Âm giai D.
+  cho: {
+    nhip: 0.34, giaiDieu: [0, 2, 4, 2, 3, 4, 2, 0, 4, 3, 2, 4, 0, 2],
+    goc: "D4", quang: 3, trong: 0.55, chien: 0.18, sao: 0.10, bau: 0.0,
+  },
+  // TRẬN: nhịp gấp, trống lớn dồn, chiêng nhiều, đàn tranh dứt khoát. Âm giai D thấp.
+  // Trống ở đây là trống LỚN (78 Hz, ngân dài) chồng lên đàn tranh dày nên dễ
+  // vượt đỉnh: đo được 1.019 và 8 mẫu bị cắt. Hạ `trong` xuống để đỉnh dưới 0.8.
+  tran: {
+    nhip: 0.22, giaiDieu: [0, 0, 3, 0, 4, 3, 0, 2, 0, 0, 3, 4, 0, 3],
+    goc: "D3", quang: 2, trong: 0.62, chien: 0.35, sao: 0.05, bau: 0.0,
+  },
+  // NÚI: chậm, sáo là chính, đàn tranh thưa, rất ít trống. Âm giai A thấp.
+  nui: {
+    nhip: 0.95, giaiDieu: [0, 3, 2, 4, 3, 2, 0, 2, 3, 4, 2, 0, 3, 2],
+    goc: "A3", quang: 4, trong: 0.0, chien: 0.12, sao: 0.55, bau: 0.10,
+  },
+  // SÂN TẬP: đều nhịp như đếm, trống đều, đàn tranh dứt khoát. Âm giai D.
+  san: {
+    nhip: 0.30, giaiDieu: [0, 0, 2, 2, 4, 4, 3, 3, 2, 2, 0, 0, 4, 2],
+    goc: "D4", quang: 2, trong: 0.85, chien: 0.08, sao: 0.0, bau: 0.0,
+  },
+  // VƯỜN: nhẹ, sáo cao + đàn tranh thưa, không trống. Âm giai E cao.
+  vuon: {
+    nhip: 0.62, giaiDieu: [0, 2, 3, 4, 3, 2, 4, 3, 0, 2, 4, 2, 3, 4],
+    goc: "E4", quang: 4, trong: 0.0, chien: 0.05, sao: 0.50, bau: 0.08,
+  },
+  // MIẾU: trang nghiêm, chiêng vang, đàn tranh chậm, có đàn bầu ngân. Âm giai G thấp.
+  mieu: {
+    nhip: 1.15, giaiDieu: [0, 2, 4, 2, 0, 3, 2, 4, 2, 0, 2, 3, 2, 0],
+    goc: "G3", quang: 3, trong: 0.12, chien: 0.55, sao: 0.22, bau: 0.30,
+  },
+  // ĐÊM: rất chậm, thưa, đàn bầu ngân là chính. Âm giai A thấp.
+  dem: {
+    nhip: 1.35, giaiDieu: [0, 2, 0, 3, 2, 0, 2, 4, 3, 2, 0, 2, 0, 3],
+    goc: "A3", quang: 2, trong: 0.0, chien: 0.10, sao: 0.18, bau: 0.55,
+  },
+  // LÀNG: ấm, nhịp vừa, đàn tranh + sáo nhẹ + trống thưa. Âm giai C.
+  lang: {
+    nhip: 0.55, giaiDieu: [0, 3, 4, 3, 2, 0, 2, 3, 4, 2, 3, 0, 4, 3],
+    goc: "C4", quang: 3, trong: 0.30, chien: 0.10, sao: 0.28, bau: 0.10,
+  },
+  // TỈNH LỴ: thanh vắng, nhịp chậm rãi, đàn tranh thưa + chiêng xa. Âm giai G.
+  tinh: {
+    nhip: 1.05, giaiDieu: [0, 2, 3, 0, 2, 4, 3, 2, 0, 2, 0, 3, 2, 4],
+    goc: "G3", quang: 2, trong: 0.10, chien: 0.30, sao: 0.20, bau: 0.25,
+  },
 };
 
-// Dựng một lớp cảnh: gain chung + lớp nền (nếu có) + các sự kiện tự hẹn giờ.
+// Ngũ cung theo cung bậc nửa cung tính từ nốt gốc: 0, 2, 4, 7, 9 (D E G A C).
+const NGU_CUNG = [0, 2, 4, 7, 9];
+
+function hz(ten) {
+  const tenNot = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+  const m = /^([A-G]#?)(-?\d)$/.exec(ten);
+  if (!m) return 440;
+  const nua = tenNot.indexOf(m[1]) + (parseInt(m[2], 10) + 1) * 12;
+  return 440 * Math.pow(2, (nua - 69) / 12);
+}
+
+function taoBuf(giay) {
+  const sr = ctxTieng.sampleRate;
+  return ctxTieng.createBuffer(1, Math.max(1, Math.floor(sr * giay)), sr);
+}
+
+// ĐÀN TRANH: Karplus-Strong. Nguồn là nhiễu rất ngắn (chỉ để kích dây), phần
+// ngân là vòng lặp làm trễ có lọc thông thấp — chính vòng lặp tạo cao độ, nên
+// tai nghe ra dây đàn chứ không ra nhiễu. Đây là điểm khác gốc so với bản trước.
+function bufDay(f0, giay) {
+  const sr = ctxTieng.sampleRate;
+  const n = Math.floor(sr * giay);
+  const buf = taoBuf(giay);
+  const d = buf.getChannelData(0);
+  const N = Math.max(2, Math.round(sr / f0));
+  const day = new Float32Array(N);
+  let truoc = 0;
+  for (let i = 0; i < N; i++) { truoc = truoc * 0.6 + (Math.random() * 2 - 1) * 0.4; day[i] = truoc; }
+  let k = 0;
+  const tat = 0.9965;   // càng gần 1 ngân càng lâu
+  for (let i = 0; i < n; i++) {
+    const v = day[k];
+    const ke = day[(k + 1) % N];
+    d[i] = v;
+    day[k] = (v + ke) * 0.5 * tat;   // lọc thông thấp trong vòng lặp = dây tắt dần
+    k = (k + 1) % N;
+  }
+  return buf;
+}
+
+// SÁO: sin + hài bậc 2 nhẹ, có rung nhẹ và vào dần (thổi), ra dần.
+function bufSao(f0, giay) {
+  const sr = ctxTieng.sampleRate;
+  const n = Math.floor(sr * giay);
+  const buf = taoBuf(giay);
+  const d = buf.getChannelData(0);
+  const vao = Math.min(n * 0.18, sr * 0.12);
+  for (let i = 0; i < n; i++) {
+    const t = i / sr;
+    const rung = 1 + 0.004 * Math.sin(2 * Math.PI * 5.2 * t);
+    const hop = 0.72 * Math.sin(2 * Math.PI * f0 * rung * t)
+              + 0.20 * Math.sin(2 * Math.PI * f0 * 2 * rung * t)
+              + 0.06 * Math.sin(2 * Math.PI * f0 * 3 * rung * t);
+    // Bao: vào dần, giữ, ra dần
+    const bao = (i < vao ? i / vao : 1) * Math.pow(1 - i / n, 1.6);
+    d[i] = hop * bao;
+  }
+  return buf;
+}
+
+// TRỐNG: cao độ trượt xuống nhanh (đặc trưng mặt trống) + một tiếng "bộp" ngắn.
+function bufTrong(f0, giay) {
+  const sr = ctxTieng.sampleRate;
+  const n = Math.floor(sr * giay);
+  const buf = taoBuf(giay);
+  const d = buf.getChannelData(0);
+  let pha = 0;
+  for (let i = 0; i < n; i++) {
+    const t = i / sr;
+    const f = f0 * (1 + 0.9 * Math.exp(-t * 26));      // trượt xuống
+    pha += 2 * Math.PI * f / sr;
+    const than = Math.sin(pha) * Math.exp(-t * 7.5);
+    const bop = (Math.random() * 2 - 1) * Math.exp(-t * 90) * 0.35;
+    d[i] = (than + bop) * Math.min(1, t * 900);
+  }
+  return buf;
+}
+
+// CHIÊNG: nhiều hài không nguyên (đặc trưng đồng), ngân dài.
+function bufChieng(f0, giay) {
+  const sr = ctxTieng.sampleRate;
+  const n = Math.floor(sr * giay);
+  const buf = taoBuf(giay);
+  const d = buf.getChannelData(0);
+  const hai = [1, 2.02, 2.98, 4.05, 5.42, 6.8];
+  const bien = [1, 0.55, 0.42, 0.26, 0.16, 0.09];
+  for (let i = 0; i < n; i++) {
+    const t = i / sr;
+    let v = 0;
+    for (let k = 0; k < hai.length; k++) {
+      v += bien[k] * Math.sin(2 * Math.PI * f0 * hai[k] * t) * Math.exp(-t * (1.1 + k * 0.85));
+    }
+    d[i] = v * 0.34 * Math.min(1, t * 700);
+  }
+  return buf;
+}
+
+// ĐÀN BẦU: một dây, ngân dài, rung sâu — dùng cho cảnh tĩnh.
+function bufBau(f0, giay) {
+  const sr = ctxTieng.sampleRate;
+  const n = Math.floor(sr * giay);
+  const buf = taoBuf(giay);
+  const d = buf.getChannelData(0);
+  let pha = 0;
+  for (let i = 0; i < n; i++) {
+    const t = i / sr;
+    const rung = 1 + 0.012 * Math.sin(2 * Math.PI * 4.6 * t) * Math.exp(-t * 1.1);
+    pha += 2 * Math.PI * f0 * rung / sr;
+    const v = Math.sin(pha) + 0.30 * Math.sin(2 * pha) + 0.10 * Math.sin(3 * pha);
+    d[i] = v * Math.exp(-t * 1.5) * 0.5 * Math.min(1, t * 500);
+  }
+  return buf;
+}
+
+function phatBuf(buf, dich, luc, am, tatDan) {
+  if (!buf) return;
+  const nguon = ctxTieng.createBufferSource();
+  nguon.buffer = buf;
+  const g = ctxTieng.createGain();
+  g.gain.value = am;
+  if (tatDan) {
+    g.gain.setValueAtTime(am, luc);
+    g.gain.exponentialRampToValueAtTime(0.0001, luc + tatDan);
+  }
+  nguon.connect(g);
+  g.connect(dich);
+  nguon.start(luc);
+  nguon.stop(luc + buf.duration + 0.05);
+  return nguon;
+}
+
 // Nhóm nào đã có bản ghi thật do người chơi tải lên (docs/assets/am/<ma>.mp3).
 // Đọc một lần từ danh-sach.json; chưa tải xong thì dùng tiếng tổng hợp.
 let amThat = null;
@@ -1839,26 +1883,21 @@ function phatFileThat(ma, g, muc) {
   return lop;
 }
 
+
+// Dựng một lớp cảnh: gain chung + hạn chế đỉnh + bản nhạc hẹn giờ.
 function taoCanh(loai, muc) {
   const g = ctxTieng.createGain();
   g.gain.value = 0.0001;
-  // Bộ hạn chế đỉnh riêng của cảnh, đặt SAU gain của cảnh. Không có nó thì nâng
-  // âm lượng lên mức nghe được sẽ đỉnh vượt 1.0 và rè — đo được crest 25 dB,
-  // tức là gần như im rồi thỉnh thoảng nhói.
-  // Bản ghi thật đã được bot cân về -18.5 LUFS nên đi thẳng ra loa, KHÔNG qua
-  // bộ nén + bù mức bên dưới: bù 2.2 lần sẽ làm nó to gấp đôi và rè.
+
+  // Bản ghi thật (nếu người chơi đã tải lên) đi thẳng ra loa, không qua hạn chế:
+  // nó đã được cân sẵn về -18.5 LUFS.
   const file = phatFileThat(loai, g, muc);
   if (file) {
     g.connect(loaTieng || ctxTieng.destination);
     return file;
   }
 
-  // KHÔNG dùng bộ nén cho tiếng tổng hợp. Bản trước đặt nén -28/ratio 3 + bù
-  // 2.2 lần, và vì nén là phi tuyến nên đổi hệ số trim lại đổi luôn mức nén:
-  // đo được cùng một cấu hình mà lần ra -22.8 dBFS, lần ra -13.9. Không thể
-  // hiệu chuẩn. Giờ đường này tuyến tính, chỉ có bộ hạn chế đỉnh ở cuối.
-  // Mức từng cảnh đã tính sẵn để đỉnh không vượt 0.85 nên bộ hạn chế gần như
-  // không bao giờ chạm tới.
+  // Nhạc tổng hợp: tuyến tính, chỉ có bộ hạn chế đỉnh ở cuối làm lưới an toàn.
   let nut = g;
   try {
     const han = ctxTieng.createDynamicsCompressor();
@@ -1872,39 +1911,73 @@ function taoCanh(loai, muc) {
   } catch (e) {}
   nut.connect(loaTieng || ctxTieng.destination);
 
+  const ban = BAN_NHAC[loai];
   const hen = [];
   let tat = false;
-  // Chợ và trận là cảnh ồn liên tục: nền phải là tiếng chính, không phải tiếng
-  // phụ. Đo được trước khi tăng là nhỏ hơn cảnh khác 9 dB.
-  const HE_SO_NEN = { cho: 2.6, tran: 3.4 };
-  // KHÔNG nhân `muc` vào đây: `g.gain` đã bằng `muc` rồi, nhân thêm là nhân
-  // hai lần. Đo được: cảnh tỉnh (muc 13.48) có nền to gấp 13 lần, đỉnh 1.42 và
-  // 18.000 mẫu bị cắt — chính là tiếng rè người dùng nghe thấy.
-  const nen = taoNen(loai, g, 0.135 * (HE_SO_NEN[loai] || 1));
-  const ds = SU_KIEN[loai] || [];
-  let dauTien = true;
-  const dat = (sk) => {
-    if (tat) return;
-    // Lần đầu rút ngắn còn 0.4–1.4 giây: vào cảnh mà im vài giây thì người chơi
-    // tưởng tiếng hỏng, dù chờ đúng nhịp mới là tự nhiên.
-    const tre = dauTien ? 400 + Math.random() * 1000
-                        : sk.moi[0] + Math.random() * (sk.moi[1] - sk.moi[0]);
-    hen.push(setTimeout(() => {
-      if (tat) return;
-      if (ctxTieng && ctxTieng.state === "running") {
-        try { sk.lam(ctxTieng.currentTime + 0.03, g); } catch (e) {}
-      }
-      dat(sk);
-    }, tre));
+  if (!ban) return { g, mucGoc: muc, dung: () => {} };
+
+  const gocHz = hz(ban.goc);
+  const not = [];
+  for (let q = -1; q <= 1; q++) {
+    for (let k = 0; k < NGU_CUNG.length; k++) {
+      not.push(gocHz * Math.pow(2, (NGU_CUNG[k] + 12 * q) / 12));
+    }
+  }
+
+  // Dựng sẵn toàn bộ âm sắc MỘT LẦN cho mỗi cao độ, rồi phát lại bằng
+  // BufferSource. Tổng hợp cả chuỗi dài bằng oscillator thì nặng và lệch nhịp;
+  // dựng sẵn thì mỗi nốt chỉ là một lần start() đúng lúc.
+  const san = { day: new Map(), sao: new Map(), trong: new Map(), chien: new Map(), bau: new Map() };
+  const lay = (loai2, f, giay, tao) => {
+    const khoa = f.toFixed(1) + "|" + giay;
+    let b = san[loai2].get(khoa);
+    if (!b) { b = tao(f, giay); san[loai2].set(khoa, b); }
+    return b;
   };
-  ds.forEach(dat);
+
+  // Lịch: mỗi phách một nốt đàn tranh theo `giaiDieu`, lặp lại tới hết 10 giây.
+  // Trống và chiêng đánh theo chu kỳ riêng để không trùng nhịp đàn.
+  const bat = ctxTieng.currentTime + 0.06;
+  let i = 0;
+  for (let t = 0; t < GIAY_CANH - 0.2; t += ban.nhip, i++) {
+    const chiSo = ban.giaiDieu[i % ban.giaiDieu.length];
+    const quang = Math.floor(i / ban.giaiDieu.length) % ban.quang;
+    const f = not[Math.min(not.length - 1, chiSo + quang * 5)];
+    const luc = bat + t;
+
+    // Đàn tranh: mỗi phách một nốt, nốt đầu chu kỳ mạnh hơn.
+    const manh = (i % ban.giaiDieu.length === 0) ? 1.25 : 1.0;
+    phatBuf(lay("day", f, 1.5, bufDay), g, luc, 0.42 * manh);
+
+    // Sáo: nốt dài, thưa hơn đàn (mỗi 4 phách), chỉ cảnh có `sao` > 0.
+    if (ban.sao > 0 && i % 4 === 0) {
+      phatBuf(lay("sao", f * 2, 1.6, bufSao), g, luc, 0.30 * ban.sao);
+    }
+
+    // Trống: nhịp riêng (mỗi 2 phách), cảnh có trống.
+    if (ban.trong > 0 && i % 2 === 0) {
+      const manh2 = (i % 4 === 0) ? 1.0 : 0.62;
+      phatBuf(lay("trong", 78, 0.6, bufTrong), g, luc, 0.55 * ban.trong * manh2);
+    }
+
+    // Chiêng: rất thưa (mỗi 8 phách).
+    if (ban.chien > 0 && i % 8 === 0) {
+      phatBuf(lay("chien", gocHz / 2, 3.2, bufChieng), g, luc, 0.42 * ban.chien);
+    }
+
+    // Đàn bầu: mỗi 6 phách, ngân dài.
+    if (ban.bau > 0 && i % 6 === 0) {
+      phatBuf(lay("bau", f / 2, 2.4, bufBau), g, luc, 0.36 * ban.bau);
+    }
+  }
+
   return {
-    g: g, mucGoc: muc, nen: nen,
+    g, mucGoc: muc,
     dung: () => {
       tat = true;
-      for (let i = 0; i < hen.length; i++) clearTimeout(hen[i]);
-      if (nen) nen.dung();
+      hen.forEach(h => clearTimeout(h));
       try { g.disconnect(); } catch (e) {}
+      try { nut.disconnect(); } catch (e) {}
     },
   };
 }
@@ -1955,24 +2028,13 @@ function doiCanhTieng(ten) {
     return;
   }
   canhLoai = nhom;
-  // Mức đặt để NGHE ĐƯỢC trên loa điện thoại ở mức âm lượng bình thường, không
-  // phải để "có tín hiệu trong máy". Bản trước đặt 0.024–0.055 và đo ra -39…-50
-  // dBFS sau loa điện thoại — người dùng báo không nghe thấy gì, đúng như vậy.
-  // Đây là hệ số trim của cảnh, KHÔNG phải biên độ tuyệt đối: biên độ từng
-  // tiếng nằm trong SU_KIEN. Chợ và trận đông nên để nhỉnh hơn cảnh tĩnh.
-  // Trim chọn bằng cách quét 6/9/12/15 rồi đo LUFS, không đoán. Ở mức 12 cảnh
-  // chợ ra -19.1 LUFS, trận -18.9, tỉnh -17.9, đỉnh đều dưới -0.5 dBTP nên
-  // không rè. Bản cũ để 0.7–1.1 và đo ra -40…-50 LUFS: nhỏ hơn file thật 30 dB,
-  // người dùng nghe không ra gì là đúng.
-  // Đo RMS trên đường ra thật trong game (không phải render offline) rồi cân:
-  // chợ/trận cần nhỉnh hơn vì nền nhiễu của chúng bị lọc hẹp, còn núi/miếu đã
-  // đủ to. Mục tiêu các cảnh chênh nhau dưới 3 dB.
-  // Hai đường tín hiệu cần hai mức khác nhau, không dùng chung được:
-  //  - Bản ghi thật đã được bot cân về -18.5 LUFS, nên trim phải quanh 1.0.
-  //  - Tiếng tổng hợp đo ra -40…-50 LUFS, phải nhân 10–13 mới nghe được.
-  // Đo RMS và đỉnh từng cảnh ở mức 1.0 trong 30 giây, rồi lấy hệ số bù: đặt
-  // theo RMS cho đều tai, nhưng chặn lại nếu đỉnh vượt 0.90. Không đoán số.
-  const mucTongHop = { cho: 1.98, tran: 1.14, nui: 5.62, san: 5.05, vuon: 5.95, mieu: 4.98, dem: 5.01, lang: 5.63, tinh: 5.4 }[nhom] || 12;
+  // Hệ số trim của cảnh, KHÔNG phải biên độ tuyệt đối: biên độ từng nốt nằm
+  // trong taoCanh. Hai đường tín hiệu cần hai mức khác nhau:
+  //  - Bản ghi thật đã được bot cân về -18.5 LUFS, nên trim quanh 1.0.
+  //  - Nhạc tổng hợp phải nhân thêm mới nghe được trên loa điện thoại.
+  // Số dưới đây đo lại sau khi đổi sang nhạc có cao độ, không dùng lại số của
+  // bản nhiễu cũ (bản đó có crest khác hẳn nên hệ số bù cũng khác).
+  const mucTongHop = { cho: 1.04, tran: 0.632, nui: 1.461, san: 0.769, vuon: 1.436, mieu: 1.636, dem: 1.715, lang: 1.226, tinh: 1.574 }[nhom] || 1.0;
   const mucFile = { cho: 1.0, tran: 1.1, nui: 0.9, san: 1.0, vuon: 0.9,
                     mieu: 0.95, dem: 0.9, lang: 0.85, tinh: 0.7 }[nhom] || 0.9;
   const muc = (amThat && amThat[nhom]) ? mucFile : mucTongHop;
