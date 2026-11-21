@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phân tích tiếng chợ anh tải lên</title>
+<style>
+  :root{--nen:#f6f3ec;--chu:#2b2620;--mo:#6b6259;--vien:#ded6c8;
+        --do:#a8352a;--xanh:#2f6b5e;--vang:#b8862b}
+  *{box-sizing:border-box}
+  body{margin:0;padding:20px 16px 60px;background:var(--nen);color:var(--chu);
+       font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+       -webkit-text-size-adjust:100%}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:25px;line-height:1.28;margin:0 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--mo);font-size:14px;margin:0 0 22px}
+  h2{font-size:18px;margin:30px 0 10px;padding-top:16px;border-top:1px solid var(--vien)}
+  h2:first-of-type{border-top:0;padding-top:0}
+  p{margin:0 0 12px}
+  .card{background:#fffdf9;border:1px solid var(--vien);border-radius:12px;
+        padding:16px 18px;margin:0 0 14px}
+  .card.kq{border-left:4px solid var(--do)}
+  .card.ok{border-left:4px solid var(--xanh)}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 0}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid #eee7db;vertical-align:top}
+  th{font-weight:600;color:var(--mo);font-size:13px;text-transform:none}
+  td.so{font-variant-numeric:tabular-nums;white-space:nowrap;font-family:ui-monospace,monospace;font-size:13.5px}
+  tr:last-child td{border-bottom:0}
+  code{background:#efe9dd;padding:1px 5px;border-radius:4px;font-size:13.5px;
+       font-family:ui-monospace,monospace}
+  img{width:100%;border-radius:10px;display:block;margin:10px 0 6px}
+  .note{font-size:13.5px;color:var(--mo);margin:6px 0 0}
+  .tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:20px;
+       background:#efe9dd;color:var(--mo);margin:0 6px 6px 0}
+  .tag.do{background:#f7e2df;color:var(--do)}
+  .tag.xanh{background:#e0efe9;color:var(--xanh)}
+  ul{margin:8px 0 12px;padding-left:22px}
+  li{margin:0 0 7px}
+  a{color:var(--do)}
+  .big{font-size:20px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Tiếng chợ anh tải lên — phân tích</h1>
+<p class="sub">File <code>assets/am/cho.mp3</code> · 6,06 giây · 96 kbps · 44,1 kHz stereo</p>
+
+<div class="card kq">
+  <p class="big" style="margin:0 0 8px">Kết luận ngắn</p>
+  <p style="margin:0">File này <b>không phải nhạc game</b>. Nó là <b>bản ghi thực địa</b>
+  đã bị lọc mất hai đầu tần số — nghe như radio. Có <b>0,4 giây lặng câm</b> ở đầu và
+  <b>kết thúc đột ngột</b> đang lúc to nhất.</p>
+</div>
+
+<h2>1. Nhìn thấy ngay</h2>
+<img src="pho-cho.jpg" alt="Phổ tần số và dạng sóng của file chợ">
+<p class="note">Trên: phổ tần số theo thời gian (sáng = to). Dưới: dạng sóng.</p>
+<ul>
+  <li>Vạch đỏ bên trái: <b>0,4 giây lặng tuyệt đối</b> — không một tiếng nào.</li>
+  <li>Hai vạch vàng: <b>90% năng lượng</b> nằm gọn giữa 300 và 2000 Hz.</li>
+  <li>Phần trên 5 kHz gần như <b>trống</b> — mất hết độ "sáng" và không khí.</li>
+  <li>Dạng sóng cuối file <b>to nhất</b> rồi cắt ngang — không có kết.</li>
+</ul>
+
+<h2>2. Số đo</h2>
+<table>
+  <tr><th>Chỉ số</th><th>Đo được</th><th>Nghĩa</th></tr>
+  <tr><td>Dải tần chứa 90% năng lượng</td><td class="so">300–2000 Hz</td>
+      <td>Đúng dải giọng nói qua điện thoại</td></tr>
+  <tr><td>Năng lượng dưới 120 Hz</td><td class="so">0,7%</td>
+      <td>Không có trầm — thiếu "sức nặng"</td></tr>
+  <tr><td>Năng lượng trên 5 kHz</td><td class="so">0,6%</td>
+      <td>Không có không khí, không có chi tiết</td></tr>
+  <tr><td>−10 dB tại</td><td class="so">1669 Hz</td>
+      <td>Cao độ tụt rất sớm</td></tr>
+  <tr><td>Năng lượng dải tiếng nói 300–3400 Hz</td><td class="so">91,9%</td>
+      <td>Gần như toàn bộ là giọng/tiếng người</td></tr>
+  <tr><td>Độ phẳng phổ</td><td class="so">0,49</td>
+      <td>1,0 = nhiễu trắng; 0,49 = hỗn hợp, không có cao độ rõ</td></tr>
+  <tr><td>Cao độ cơ bản</td><td class="so">78–501 Hz</td>
+      <td>Trôi liên tục, không đứng yên → <b>không phải nhạc cụ</b></td></tr>
+  <tr><td>Lặng đầu</td><td class="so">0,4 s</td>
+      <td>Âm tuyệt đối (−180 dB)</td></tr>
+  <tr><td>Kết thúc</td><td class="so">−14 dB</td>
+      <td>To nhất ở cuối rồi cắt — không fade</td></tr>
+  <tr><td>Tương quan stereo</td><td class="so">0,58–0,91</td>
+      <td>Có stereo thật, không phải mono nhân đôi</td></tr>
+</table>
+
+<h2>3. Ba dấu hiệu chứng minh là bản ghi thực địa</h2>
+
+<div class="card">
+  <p style="margin:0 0 6px"><span class="tag do">1</span> <b>Không có cao độ ổn định</b></p>
+  <p style="margin:0">Tôi dò cao độ mỗi 0,1 giây. Nó nhảy loạn: 165 → 78 → 185 → 424 →
+  238 → 412 → 277 Hz… Nhạc cụ thì cao độ <b>đứng yên hoặc đi theo giai điệu</b>.
+  Nhảy như vậy là <b>giọng người nói</b> hoặc tiếng ồn.</p>
+</div>
+
+<div class="card">
+  <p style="margin:0 0 6px"><span class="tag do">2</span> <b>Bị cắt hai đầu tần số</b></p>
+  <p style="margin:0">Không có gì dưới 120 Hz, không có gì trên 5 kHz. Đó là dấu hiệu
+  của file đã qua <b>lọc</b> — hoặc do nguồn phát, hoặc do công cụ nén. Bản ghi thật
+  ngoài trời luôn có gió trầm và tiếng lách cách cao.</p>
+</div>
+
+<div class="card">
+  <p style="margin:0 0 6px"><span class="tag do">3</span> <b>Không lặp lại</b></p>
+  <p style="margin:0">Tôi so 17 cặp khối liền nhau: tương quan gần <b>0</b>. Nghĩa là
+  không có đoạn nào lặp. Đây là <b>một đoạn ghi liên tục</b>, không phải clip ghép
+  vòng. Muốn dùng làm nền game thì phải cắt và nối lại.</p>
+</div>
+
+<h2>4. Vì sao nghe như radio</h2>
+<p>Ba thứ cộng lại:</p>
+<ul>
+  <li><b>Cắt tần số</b> — chỉ còn dải giọng nói, đúng như radio AM</li>
+  <li><b>Nền ồn liên tục</b> — luôn có tiếng rì rầm phía sau, không có khoảng lặng</li>
+  <li><b>Không có nhạc cụ</b> — không cao độ, không nhịp, không hòa âm</li>
+</ul>
+<p>Tai người nhận ra ngay "đây là micro đặt ở đâu đó", chứ không phải "đây là cảnh
+trong game".</p>
+
+<h2>5. Tôi đã làm gì</h2>
+<div class="card ok">
+  <p style="margin:0 0 8px"><b>Giữ nội dung, đổi cách diễn đạt.</b></p>
+  <p style="margin:0">Prompt mới vẫn tả <b>chợ sớm Thất Huyền trấn</b> — đúng cảnh
+  <code>c1_y03</code> trong truyện, nơi người ta bàn tán chuyện Dã Lang Bang. Nhưng
+  tả bằng <b>nhạc cụ và lớp</b>, không tả bằng "tiếng ồn hiện trường".</p>
+</div>
+<p>Thêm vào <code>CHUNG</code> một câu chống đúng lỗi của file này:</p>
+<div class="card">
+  <p style="margin:0;font-size:14.5px">“Full-range mix with real low end (the music
+  must have weight below 120 Hz) and air above 5 kHz — <b>do not band-limit it to the
+  telephone band</b>.”</p>
+</div>
+<p class="note">Câu này bắt công cụ phải làm đủ trầm và đủ cao — đúng hai thứ file
+anh tải lên bị thiếu.</p>
+
+<h2>6. Chín cảnh, nhịp riêng</h2>
+<table>
+  <tr><th>Cảnh</th><th>Nhịp</th><th>Ơ nhịp</th><th>Dài</th></tr>
+  <tr><td>Chợ sớm</td><td class="so">96</td><td class="so">4</td><td class="so">10,00 s</td></tr>
+  <tr><td>Trận chiến</td><td class="so">120</td><td class="so">5</td><td class="so">10,00 s</td></tr>
+  <tr><td>Núi</td><td class="so">48</td><td class="so">2</td><td class="so">10,00 s</td></tr>
+  <tr><td>Sân tập</td><td class="so">96</td><td class="so">4</td><td class="so">10,00 s</td></tr>
+  <tr><td>Vườn thuốc</td><td class="so">72</td><td class="so">3</td><td class="so">10,00 s</td></tr>
+  <tr><td>Miếu</td><td class="so">48</td><td class="so">2</td><td class="so">10,00 s</td></tr>
+  <tr><td>Đêm</td><td class="so">72</td><td class="so">3</td><td class="so">10,00 s</td></tr>
+  <tr><td>Làng</td><td class="so">96</td><td class="so">4</td><td class="so">10,00 s</td></tr>
+  <tr><td>Tĩnh</td><td class="so">48</td><td class="so">2</td><td class="so">10,00 s</td></tr>
+</table>
+<p class="note">Cảnh đông nhịp nhanh, cảnh thưa nhịp chậm. Tất cả chia chẵn 10,00 giây
+nên vòng lặp khít đúng ô nhịp.</p>
+
+<h2>7. Anh làm gì tiếp</h2>
+<div class="card">
+  <p style="margin:0 0 10px"><a href="../xuong-am/" style="font-size:16px;font-weight:600">
+  → Mở Xưởng âm thanh, copy prompt mới</a></p>
+  <p style="margin:0">Chọn cảnh <b>Chợ sớm</b>, bấm Copy, dán vào công cụ sinh âm
+  thanh, chọn <b>10 giây</b>.</p>
+</div>
+<p><b>Nếu công cụ vẫn cho ra file nghe như radio</b>, gửi tôi file mới — tôi đo lại
+và biết ngay nó thiếu gì. Mỗi lần đo mất khoảng một phút.</p>
+<p class="note">Lưu ý: tôi không nghe được âm thanh. Mọi kết luận trên đây là từ
+<b>số đo</b> — phổ, cao độ, đường bao, tương quan. Số đo chỉ ra rất rõ bản chất file,
+nhưng không thay được tai anh.</p>
+
+</div>
+</body>
+</html>
