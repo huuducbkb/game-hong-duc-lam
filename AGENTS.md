@@ -621,6 +621,29 @@ Lưu ý harness: iframe **phải cùng origin** với trang cần đo, nếu kh�
 (ví dụ để tạm ở gốc dự án rồi mở qua `game_server.py`), dùng đường dẫn tương đối
 (`/game`). Nhớ xoá file harness sau khi đo.
 
+### Trạng thái lưu trong localStorage phải KHÔI PHỤC lên giao diện
+
+Token Xưởng âm thanh lưu đúng vào `localStorage` và việc gửi file vẫn chạy, nhưng
+**giao diện không khôi phục khi tải lại**: ô `<input type="password">` luôn trống
+(trình duyệt không điền lại), không có dòng nào báo "đã kết nối". Người dùng tưởng
+mất token và dán lại mỗi lần — mất công mà không cần thiết.
+
+Quy tắc: **mọi thứ lưu vào `localStorage` phải có hàm khôi phục chạy lúc tải trang**,
+và phải hiện trạng thái cho người dùng thấy. Đừng chỉ đọc nó lúc dùng.
+
+Đã sửa bằng `ghKhoiPhuc()` (gọi ở cuối `<script>`):
+
+- kiểm tra lại token với GitHub rồi hiện "✅ Đã kết nối … — không cần dán lại"
+- đổi `placeholder` thành "Đã lưu token — để trống nếu không đổi"
+- **không xoá token khi mất mạng** — chỉ báo chưa kiểm tra được
+- token hết hạn (401) thì báo rõ và hướng dẫn dán token mới
+- `ghLuuToken()` dùng `|| ghToken()`: bấm Lưu khi ô trống thì kiểm tra lại token cũ,
+  không báo oan "chưa dán token"
+
+Đã đo 7 tình huống bằng trình duyệt thật (có chặn `api.github.com` để giả lập):
+chưa có token, vừa lưu, tải lại trang, bấm Lưu khi ô trống, token hết hạn, mất mạng,
+bấm Quên token. Cả 7 đúng.
+
 ### Âm thanh cảnh: PHẢI có cao độ, không được là nhiễu lọc
 
 **Bài học đắt nhất về âm thanh.** Ba vòng sửa liên tiếp tôi đo crest, LUFS, cắt đỉnh,

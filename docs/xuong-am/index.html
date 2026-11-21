@@ -583,7 +583,9 @@ function ghHienTT(el, loai, html){
 async function ghLuuToken(){
   const inp = document.getElementById('gh-token');
   const tt = document.getElementById('gh-tt');
-  const t = (inp.value || '').trim();
+  // Ô token luôn trống sau khi tải lại (trình duyệt xoá ô password), nên nếu
+  // người dùng bấm Lưu mà không dán gì thì kiểm tra lại token đã lưu.
+  const t = (inp.value || '').trim() || ghToken();
   if(!t){ ghHienTT(tt,'warn','⚠️ Chưa dán token.'); return; }
   ghHienTT(tt,'muted','Đang kiểm tra token…');
   try{
@@ -767,6 +769,38 @@ function chonFile(hop, f){
   if(tt) ghHienTT(tt,'muted','Đã chọn file. Bấm 📤 Gửi tiếng này.');
 }
 
+// Khôi phục trạng thái kết nối sau khi tải lại trang. Không có hàm này thì
+// token vẫn nằm trong localStorage và việc gửi file vẫn chạy, nhưng ô token
+// trống trơn nên người dùng tưởng đã mất và dán lại mỗi lần.
+async function ghKhoiPhuc(){
+  const inp = document.getElementById('gh-token');
+  const tt = document.getElementById('gh-tt');
+  const t = ghToken();
+  if(!t) return;
+  if(inp) inp.placeholder = 'Đã lưu token — để trống nếu không đổi';
+  ghHienTT(tt,'muted','Đang kiểm tra token đã lưu…');
+  try{
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}`, {
+      headers:{'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}});
+    if(!r.ok){
+      ghHienTT(tt,'warn',`⚠️ Token đã lưu nhưng không dùng được (HTTP ${r.status}). `
+        + 'Dán token mới rồi bấm Lưu, hoặc bấm Quên token.');
+      return;
+    }
+    const j = await r.json();
+    if(j.permissions && j.permissions.push === false){
+      ghHienTT(tt,'warn','⚠️ Token đã lưu nhưng thiếu quyền ghi (cần Contents: Read and write).');
+      return;
+    }
+    ghHienTT(tt,'ok',`✅ Đã kết nối <b>${j.full_name}</b> — token lưu trong trình duyệt này, không cần dán lại.`);
+  }catch(e){
+    // Mất mạng hoặc GitHub bị chặn: không xoá token, vì nó vẫn có thể dùng được.
+    ghHienTT(tt,'warn','⚠️ Token vẫn đang lưu trong trình duyệt này, nhưng chưa '
+      + 'kiểm tra được vì không gọi được GitHub. Cứ thử gửi file; nếu lỗi thì '
+      + 'kiểm tra mạng rồi tải lại trang.');
+  }
+}
+
 document.querySelectorAll('[data-gui]').forEach(hop => {
   const nut = hop.querySelector('[data-gui-kt]');
   const kiem = hop.querySelector('[data-kiem]');
@@ -792,6 +826,8 @@ document.querySelectorAll('[data-gui]').forEach(hop => {
   }
   kiemTraMot(hop);
 });
+
+ghKhoiPhuc();
 
 </script>
 </body>
