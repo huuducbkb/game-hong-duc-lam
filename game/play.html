@@ -1867,7 +1867,7 @@ function phatFileThat(ma, g, muc) {
     .then(r => (r.ok ? r.arrayBuffer() : Promise.reject(new Error("HTTP " + r.status))))
     .then(ab => new Promise((res, rej) => ctxTieng.decodeAudioData(ab, res, rej)))
     .then(buf => {
-      demAmThat[khoa] = buf;
+      demAmThat[khoa] = lamVongKhit(buf);
       // Cảnh có thể đã đổi trong lúc tải; chỉ phát nếu lớp này còn là lớp đang chạy.
       if (canhDangChay === lop) noi();
     })
@@ -1883,6 +1883,53 @@ function phatFileThat(ma, g, muc) {
   return lop;
 }
 
+
+// Cắt lặng ở hai đầu rồi nối vòng bằng crossfade.
+// File người dùng tải lên thường có lặng ở đầu và kết thúc giữa tiếng; phát
+// thẳng với loop=true thì mỗi vòng nghe một khoảng câm rồi tiếng cụt.
+function lamVongKhit(buf) {
+  const sr = buf.sampleRate;
+  const n = buf.length;
+  if (!n || n < sr * 0.4) return buf;
+
+  const NGUONG = 0.002;          // dưới mức này coi là lặng
+  const cua = Math.max(1, Math.round(sr * 0.01));
+  const doManh = (i) => {
+    let s = 0;
+    for (let k = i; k < i + cua && k < n; k++) s += buf.getChannelData(0)[k] * buf.getChannelData(0)[k];
+    return Math.sqrt(s / cua);
+  };
+
+  // Bỏ lặng ở đầu, nhưng giữ lại tối đa 20ms để không cắt vào tiếng.
+  let dau = 0;
+  const tranDau = Math.min(n - 1, Math.round(sr * 2));
+  while (dau < tranDau && doManh(dau) < NGUONG) dau += cua;
+  dau = Math.max(0, dau - Math.round(sr * 0.02));
+
+  let cuoi = n - cua;
+  const tranCuoi = Math.max(0, n - Math.round(sr * 2));
+  while (cuoi > tranCuoi && doManh(cuoi) < NGUONG) cuoi -= cua;
+  cuoi = Math.min(n, cuoi + cua + Math.round(sr * 0.02));
+
+  const dai = cuoi - dau;
+  if (dai < sr * 0.3) return buf;
+
+  // Crossfade: phần đuôi chồng lên phần đầu để chỗ nối không bị giật.
+  const F = Math.min(Math.round(sr * 0.08), Math.floor(dai / 4));
+  const ra = ctxTieng.createBuffer(buf.numberOfChannels, dai - F, sr);
+  for (let ch = 0; ch < buf.numberOfChannels; ch++) {
+    const vao = buf.getChannelData(ch);
+    const raCh = ra.getChannelData(ch);
+    const goc = dai - F;
+    for (let i = 0; i < goc; i++) {
+      const x = i / F;
+      raCh[i] = i < F
+        ? vao[dau + i] * x + vao[dau + goc + i] * (1 - x)
+        : vao[dau + i];
+    }
+  }
+  return ra;
+}
 
 // Dựng một lớp cảnh: gain chung + hạn chế đỉnh + bản nhạc hẹn giờ.
 function taoCanh(loai, muc) {

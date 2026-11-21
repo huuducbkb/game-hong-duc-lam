@@ -12,7 +12,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from du_lieu_am import NHOM, CHUNG
+from du_lieu_am import NHOM, CHUNG, prompt_day_du
 
 GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RA = os.path.join(GOC, "docs", "xuong-am", "index.html")
@@ -28,7 +28,7 @@ def esc(s):
 
 def the_canh(n, i):
     ma = n["ma"]
-    prompt = n["prompt"].strip() + "\n\n" + CHUNG
+    prompt = prompt_day_du(n)
     return f"""
 <article class="canh" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}">
   <header>
@@ -180,8 +180,9 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 <div class="card">
   <ol style="margin:0;padding-left:20px">
     <li>Chọn cảnh ở dưới, bấm <b>📋 Copy prompt</b>.</li>
-    <li>Dán vào công cụ sinh âm thanh. Nên chọn <b>30 giây</b>, có chế độ
-        <b>loop / seamless</b> nếu công cụ có.</li>
+    <li>Dán vào công cụ sinh âm thanh. Chọn <b>10 giây</b> — đúng bằng độ dài
+        mỗi cảnh trong game, nên không phải cắt. Bật <b>loop / seamless</b> nếu
+        công cụ có.</li>
     <li>Nghe lại. Ưng thì tải file về máy.</li>
     <li>Quay lại đây, <b>chọn file ngay dưới prompt</b> của đúng cảnh đó, bấm
         <b>📤 Gửi tiếng này</b>. Trang tự đưa file lên GitHub.</li>

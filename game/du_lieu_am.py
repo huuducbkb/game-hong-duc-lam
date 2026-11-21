@@ -2,29 +2,34 @@
 
 Một nguồn duy nhất: xưởng HTML sinh từ đây, workflow cũng đọc từ đây.
 Sửa prompt thì sửa ở đây rồi chạy `python3 game/tao_xuong_am.py`.
+
+Prompt viết cho âm thanh game: 10 giây, có nhạc và nhạc cụ, KHÔNG phải bản ghi
+thực địa. Bản ghi thực địa nghe như radio hoặc như micro đặt giữa chợ thật —
+người chơi đã chê đúng như vậy.
 """
+
+# Đuôi chung cho mọi prompt: 10 giây, loop khít, không fade.
+DUOI = ("Seamless 10-second loop, no fade in and no fade out. Stereo. "
+        "Duration exactly 10 seconds.")
+
 NHOM = [
     {
         "ma": "cho",
         "ten": "Chợ",
         "dung": "Cảnh chợ trong game (bc_cho_01…03)",
         "file": "cho.mp3",
-        "mota": "Chợ đông người giữa ban ngày: người bán rao hàng, người mua trả giá, "
-                "bước chân qua lại, mâm nồi kim loại chạm nhau. Không có nhạc.",
+        "mota": "Chợ đông: nền đàn tranh ngũ cung, nhịp gỗ nhẹ, tiếng đám đông mờ. "
+                "Dạng nhạc nền game, không phải bản ghi thực địa.",
         "prompt": (
-            "Field recording of a busy open-air street market in a small East Asian town "
-            "at midday. Continuous ambient bed of many people moving and talking at "
-            "medium distance: overlapping voices in an unintelligible tonal language, "
-            "never a single clear speaker close to the microphone. A vendor calls out a "
-            "long rising-then-falling sales chant every few seconds. Behind it: sandals "
-            "and bare feet on packed earth and stone, wooden stalls creaking, metal "
-            "pots and ladles knocking together, a knife on a cutting board, coins "
-            "dropping, cloth bags rustling, occasional distant laughter and a child. "
-            "Dense, lively, warm, human. Stereo, natural perspective, mid-side detail. "
-            "No music, no instruments, no singing, no radio, no crowd cheering, no "
-            "traffic, no engine, no birds dominating, no rain. Loopable: the level and "
-            "character at the very start must match the very end so it can repeat "
-            "seamlessly. Duration 30 seconds."
+            "Game ambience loop for a busy market scene in a Vietnamese historical "
+            "RPG. This is designed game audio, layered and stylized — NOT a field "
+            "recording and NOT a radio broadcast. Layers: a soft bed of indistinct "
+            "crowd murmur with no clear words, a light wooden percussion pulse at a "
+            "walking tempo, a repeating plucked dan tranh figure in a Vietnamese "
+            "pentatonic mode, and a small metal bowl accent every few beats. Warm, "
+            "lively, mid-forward, slightly stylized. Clean and close, no room "
+            "recording feel. No intelligible speech, no narration, no radio voice, no "
+            "lo-fi texture, no tape hiss, no vinyl crackle, no static."
         ),
     },
     {
@@ -32,19 +37,18 @@ NHOM = [
         "ten": "Trận chiến",
         "dung": "Cảnh giao chiến (bc_tran_lua…)",
         "file": "tran.mp3",
-        "mota": "Trận đánh bằng vũ khí lạnh: thép chạm thép, tiếng hô, đấm, thở dốc. "
-                "Không có nhạc.",
+        "mota": "Trận đánh: trống trận dồn, chiêng trầm, đàn tranh dứt khoát, tiếng "
+                "thép chạm thép làm nhịp. Dạng nhạc nền game.",
         "prompt": (
-            "Close combat with cold weapons in an open courtyard: steel blade striking "
-            "steel blade, dull wooden impacts of a body hitting the ground, leather and "
-            "cloth shifting with fast movement, boots scuffing on stone, short sharp "
-            "shouts and battle cries from men, heavy breathing and grunts of effort. "
-            "Impacts are irregular and unpredictable, with short silences between them. "
-            "Distant sounds of a larger skirmish in the background. No music, no "
-            "orchestra, no drums, no gunshots, no explosions, no fire, no screaming in "
-            "pain, no gore. Stereo, natural perspective, dry with a little stone "
-            "courtyard reverb. Loopable: start and end level must match. Duration 30 "
-            "seconds."
+            "Game combat ambience loop for a cold-weapon battle in a Vietnamese "
+            "historical RPG. This is designed game audio, layered and stylized — NOT a "
+            "field recording. Layers: war drums (trong tran) in a driving repeating "
+            "pattern, a low chieng gong swell that rises and falls, short staccato dan "
+            "tranh plucks on the off-beats, and steel-on-steel hits used as rhythmic "
+            "accents rather than realistic events. Tense, martial, driving, cinematic "
+            "but restrained. Clean studio sound, not a live recording. No gunshots, no "
+            "explosions, no screaming in pain, no gore, no intelligible speech, no "
+            "narration, no lo-fi texture, no tape hiss, no static."
         ),
     },
     {
@@ -52,17 +56,17 @@ NHOM = [
         "ten": "Núi",
         "dung": "Cảnh đường mòn, khe núi (bc_duong_mon_nui, bc_khe_nui…)",
         "file": "nui.mp3",
-        "mota": "Gió núi cao thổi qua khe đá, chim rừng xa, thỉnh thoảng đá nhỏ lăn. "
+        "mota": "Núi cao: sáo trúc lơ lửng trên nền trầm giữ, gió làm lớp đệm. "
                 "Rộng và trống trải.",
         "prompt": (
-            "High mountain pass at dawn, recorded from a narrow rocky trail. Wind moves "
-            "through a stone gap with a low hollow whistle that swells and fades slowly "
-            "in long irregular gusts. A few small forest birds call far away with long "
-            "silences between calls. Very faint distant water in a ravine below. "
-            "Occasional tiny pebbles shifting and rolling on rock. Vast, empty, cold, "
-            "quiet. No music, no voices, no human activity, no traffic, no aircraft, no "
-            "thunder, no rain. Stereo, wide natural perspective with long reverb tails. "
-            "Loopable: start and end level must match. Duration 30 seconds."
+            "Game ambience loop for a high mountain pass in a Vietnamese historical "
+            "RPG. This is designed game audio, layered and stylized — NOT a field "
+            "recording. Layers: a sustained low drone pad as the floor of the mix, a "
+            "sparse bamboo flute (sao) melody in a Vietnamese pentatonic mode floating "
+            "above it with long rests, and a filtered wind layer used as a soft pad "
+            "rather than a realistic gust. Vast, cold, open, contemplative. Clean and "
+            "wide, with a long synthetic reverb tail. No voices, no narration, no "
+            "birdsong detail, no lo-fi texture, no tape hiss, no static."
         ),
     },
     {
@@ -70,18 +74,18 @@ NHOM = [
         "ten": "Sân tập",
         "dung": "Cảnh luyện võ (bc_san_tap, bc_san_sau…)",
         "file": "san.mp3",
-        "mota": "Sân luyện võ: đấm vào bao cát theo nhịp, chân đạp đất, thở dốc, "
-                "thầy đếm nhịp. Không có nhạc.",
+        "mota": "Sân luyện võ: trống giữ nhịp đều, đàn tranh gọn, hơi thở làm lớp nền. "
+                "Dạng nhạc nền game.",
         "prompt": (
-            "A martial arts training yard in the early morning. Rhythmic heavy impacts of "
-            "fists and shins striking a hanging sandbag, roughly one every one to two "
-            "seconds, with the bag's rope creaking after each hit. Bare feet and cloth "
-            "shoes pivoting and stamping on packed earth. A man breathing hard with each "
-            "strike. Occasionally a teacher's voice counting cadence in a calm, "
-            "unintelligible tonal language, at medium distance. A wooden dummy rattling. "
-            "Disciplined, physical, repetitive but never mechanical. No music, no drums, "
-            "no crowd, no cheering, no shouting in pain. Stereo, natural outdoor "
-            "perspective. Loopable: start and end level must match. Duration 30 seconds."
+            "Game ambience loop for a martial arts training yard in a Vietnamese "
+            "historical RPG. This is designed game audio, layered and stylized — NOT a "
+            "field recording. Layers: a steady drum (trong) keeping tempo like a "
+            "metronome for practice, tight dan tranh plucks landing on the beat, a "
+            "soft breath-like noise layer used as texture, and a wooden clapper "
+            "accent. Disciplined, physical, repetitive, hypnotic. Clean studio sound, "
+            "not a live recording. No crowd, no cheering, no shouting in pain, no "
+            "intelligible speech, no narration, no lo-fi texture, no tape hiss, no "
+            "static."
         ),
     },
     {
@@ -89,18 +93,16 @@ NHOM = [
         "ten": "Vườn thuốc",
         "dung": "Cảnh vườn thảo dược (bc_vuon_thuoc…)",
         "file": "vuon.mp3",
-        "mota": "Vườn cây thuốc buổi sáng: chim hót gần, lá xào xạc, ong bay, "
-                "nước nhỏ giọt. Dịu và thưa.",
+        "mota": "Vườn thuốc: sáo cao, đàn tranh thưa, lớp đệm lá nhẹ. Dịu và thưa.",
         "prompt": (
-            "A herb garden in the early morning, recorded close to the plants. Several "
-            "small birds singing nearby at different distances, with clear individual "
-            "calls and long pauses between them. A light breeze moving through dense "
-            "leaves with a soft dry rustle that rises and falls. A few bees passing close "
-            "to the microphone with a brief doppler buzz. Water dripping slowly from a "
-            "bamboo pipe into a clay jar. Calm, green, alive but sparse. No music, no "
-            "voices, no traffic, no dogs, no insects swarming loudly, no rain. Stereo, "
-            "intimate natural perspective. Loopable: start and end level must match. "
-            "Duration 30 seconds."
+            "Game ambience loop for a herb garden in a Vietnamese historical RPG. "
+            "This is designed game audio, layered and stylized — NOT a field recording. "
+            "Layers: a high bamboo flute (sao) playing a short gentle pentatonic "
+            "phrase, sparse plucked dan tranh notes with long gaps, and a soft "
+            "filtered leaf-rustle pad underneath. A single water-drop accent as a "
+            "texture. Calm, green, airy, unhurried. Clean and intimate, with a light "
+            "synthetic reverb. No voices, no narration, no bees or insects detail, no "
+            "lo-fi texture, no tape hiss, no static."
         ),
     },
     {
@@ -108,18 +110,17 @@ NHOM = [
         "ten": "Miếu",
         "dung": "Cảnh miếu, chùa (bc_mieu…)",
         "file": "mieu.mp3",
-        "mota": "Miếu cổ vắng: chuông chùa xa ngân dài, gió nhẹ, chim thưa, "
-                "không gian rộng. Rất tĩnh.",
+        "mota": "Miếu cổ: chiêng ngân dài, nền trầm giữ, đàn bầu thỉnh thoảng. "
+                "Rất tĩnh và thiêng.",
         "prompt": (
-            "An old empty shrine in a mountain valley, recorded in the courtyard. A "
-            "distant temple bronze bell is struck once every twenty to thirty seconds, "
-            "its long inharmonic partials decaying for many seconds and beating slowly "
-            "against each other. Very soft wind moving through old wooden eaves and "
-            "stone. A few birds far away with long silences. Occasional creak of dry "
-            "timber. Enormous quiet, wide reverberant space, deeply still and slightly "
-            "sacred. No music, no chanting, no voices, no gongs in rhythm, no drums, no "
-            "crowd, no traffic. Stereo, long natural reverb tail. Loopable: start and "
-            "end level must match. Duration 30 seconds."
+            "Game ambience loop for an old mountain shrine in a Vietnamese historical "
+            "RPG. This is designed game audio, layered and stylized — NOT a field "
+            "recording. Layers: a bronze chieng gong struck once, its long inharmonic "
+            "partials decaying and beating slowly, a sustained low drone underneath, "
+            "and a single dan bau note bending gently. Enormous quiet, wide "
+            "reverberant space, sacred and still. Clean and deep, with a long "
+            "synthetic reverb tail. No chanting, no voices, no narration, no lo-fi "
+            "texture, no tape hiss, no static."
         ),
     },
     {
@@ -127,16 +128,17 @@ NHOM = [
         "ten": "Đêm",
         "dung": "Cảnh ban đêm, tập kích (bc_dem_tap_kich, bc_khe_nui_dem…)",
         "file": "dem.mp3",
-        "mota": "Đêm ngoài trời: dế kêu dày, thỉnh thoảng chó sủa xa, gió nhẹ. "
+        "mota": "Đêm: đàn bầu ngân là chính, nền trầm, tiếng côn trùng cách điệu. "
                 "Tối và tĩnh.",
         "prompt": (
-            "Night in open countryside, recorded from a quiet spot. A dense field of "
-            "crickets and cicadas pulsing in slow overlapping rhythms, with individual "
-            "insects distinguishable against the mass. A dog barks far away, once, then "
-            "again after a long pause. Very light wind in dry grass. Now and then a "
-            "single frog. No music, no voices, no owls screaming, no traffic, no "
-            "aircraft, no rain, no thunder. Dark, wide, slightly lonely. Stereo, natural "
-            "perspective. Loopable: start and end level must match. Duration 30 seconds."
+            "Game ambience loop for a night scene in open countryside in a Vietnamese "
+            "historical RPG. This is designed game audio, layered and stylized — NOT a "
+            "field recording. Layers: a slow dan bau melody with its characteristic "
+            "pitch bend as the leading voice, a deep sustained drone beneath it, and a "
+            "stylized high shimmer suggesting distant insects — synthesized, not "
+            "sampled. Dark, wide, lonely, suspended. Clean and spacious, with a long "
+            "synthetic reverb. No dogs, no voices, no narration, no lo-fi texture, no "
+            "tape hiss, no static."
         ),
     },
     {
@@ -144,18 +146,18 @@ NHOM = [
         "ten": "Làng",
         "dung": "Cảnh làng, xóm, cổng cộng đồng (bc_tan_xa, bc_cong_dong…)",
         "file": "lang.mp3",
-        "mota": "Làng quê ban ngày: gà, chó sủa xa, người nói chuyện trong nhà, "
-                "chim, gió. Ấm và thưa.",
+        "mota": "Làng quê: đàn tranh ấm, sáo nhẹ, trống thưa, tiếng người mờ. "
+                "Ấm và thưa.",
         "prompt": (
-            "A small farming village in daytime, recorded from a lane between houses. "
-            "Chickens scratching and clucking nearby. A dog barking in the middle "
-            "distance, answered by another much further away. Two or three people "
-            "talking unhurriedly inside a house, muffled and unintelligible, with long "
-            "pauses. A few birds. Light wind in bamboo and thatch. Somewhere a wooden "
-            "door and a bucket. Warm, ordinary, unhurried, sparse. No music, no radio, "
-            "no television, no traffic, no engines, no crowd, no market bustle. Stereo, "
-            "natural perspective. Loopable: start and end level must match. Duration 30 "
-            "seconds."
+            "Game ambience loop for a small farming village in a Vietnamese "
+            "historical RPG. This is designed game audio, layered and stylized — NOT a "
+            "field recording. Layers: a warm dan tranh figure in a pentatonic mode as "
+            "the main voice, a soft bamboo flute answering it, a sparse drum (trong) "
+            "marking the phrase, and a very low bed of indistinct murmuring voices "
+            "with no clear words. Warm, ordinary, unhurried, homely. Clean and close, "
+            "with a light synthetic reverb. No intelligible speech, no narration, no "
+            "radio voice, no television, no traffic, no lo-fi texture, no tape hiss, "
+            "no static."
         ),
     },
     {
@@ -163,24 +165,33 @@ NHOM = [
         "ten": "Tĩnh",
         "dung": "Cảnh yên ắng, trong nhà, lúc thiền (các cảnh còn lại)",
         "file": "tinh.mp3",
-        "mota": "Yên tĩnh gần như tuyệt đối: phòng trống, hơi thở của không gian, "
-                "thỉnh thoảng một tiếng rất xa.",
+        "mota": "Yên ắng: nền trầm rất nhẹ, thỉnh thoảng một tiếng chuông xa. "
+                "Không phải im lặng hỏng file.",
         "prompt": (
-            "Almost silence inside an old empty room with stone walls and a wooden floor. "
-            "A very faint low room tone, barely audible. Once or twice, the muffled sound "
-            "of something happening far outside: a distant door, a single footstep, a "
-            "bird. Nothing else. The impression of a large still space, not of a "
-            "recording that failed. No music, no voices, no hum of electricity, no "
-            "air-conditioning, no wind, no hiss, no tape noise. Stereo, natural "
-            "perspective. Loopable: start and end level must match. Duration 30 seconds."
+            "Game ambience loop for a quiet interior in a Vietnamese historical RPG. "
+            "This is designed game audio, layered and stylized — NOT a field recording. "
+            "Layers: a very soft low drone as a bed, barely audible, and one distant "
+            "bell tone decaying across the loop. The impression of a large still space "
+            "that is deliberately quiet — not a recording that failed. Clean, "
+            "intentional, minimal. No voices, no narration, no electrical hum, no "
+            "air-conditioning, no wind, no lo-fi texture, no tape hiss, no static."
         ),
     },
 ]
 
 # Quy ước chung dán vào cuối mọi prompt
 CHUNG = (
-    "Do not add any music, melody, chord, drum, singing or instrumental sound of any "
-    "kind. Do not add narration or intelligible speech. Do not add sound effects that "
-    "are not listed. Keep it a natural field recording, not a sound-design montage. "
-    "No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS."
+    "Style: this is game audio, not a field recording and not a radio broadcast. "
+    "Designed, layered, clean and stylized, the way a game soundtrack or ambience "
+    "bed sounds — not a microphone in a real place. Use Vietnamese instruments "
+    "(dan tranh, sao, trong, chieng, dan bau) and a pentatonic mode where the prompt "
+    "asks for them. No intelligible speech, no narration, no radio voice, no DJ. "
+    "No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning "
+    "noise. No clipping, no distortion, no sudden loud peaks. Peak level below "
+    "-3 dBFS."
 )
+
+
+def prompt_day_du(n):
+    """Prompt hoàn chỉnh: thân + đuôi 10 giây + quy ước chung."""
+    return n["prompt"].strip() + " " + DUOI + "\n\n" + CHUNG

@@ -621,6 +621,41 @@ Lưu ý harness: iframe **phải cùng origin** với trang cần đo, nếu kh�
 (ví dụ để tạm ở gốc dự án rồi mở qua `game_server.py`), dùng đường dẫn tương đối
 (`/game`). Nhớ xoá file harness sau khi đo.
 
+### Prompt tiếng cảnh: phải là ÂM THANH GAME, không phải bản ghi thực địa
+
+Prompt cũ mở đầu bằng "Field recording of…" và cấm nhạc/nhạc cụ. Kết quả: file
+nghe như radio hoặc như micro đặt giữa chợ thật — người chơi chê đúng. Âm thanh
+game là **thiết kế có lớp**: nhạc cụ (đàn tranh, sáo, trống, chiêng, đàn bầu),
+thang ngũ cung, nền đệm, sạch và cách điệu. Không phải bản ghi hiện trường.
+
+Quy tắc khi viết prompt trong `game/du_lieu_am.py`:
+
+- mở đầu bằng "Game ambience loop for …", nói rõ **NOT a field recording**
+- liệt kê từng **lớp** (layer): nhạc cụ nào, làm gì, nền đệm là gì
+- **10 giây**, không phải 30 — đúng bằng `GIAY_CANH` trong game
+- cấm: lời nói hiểu được, giọng đọc, giọng radio, lo-fi, hiss băng, static
+- `DUOI` giữ phần 10 giây/loop; `CHUNG` giữ quy ước chung. Đừng lặp lại
+  hai lần trong cùng một prompt.
+
+### File tiếng tải lên phải được nối vòng, không phát thẳng
+
+`cho.mp3` có **0,3 giây lặng câm ở đầu** và kết thúc giữa tiếng. Code cũ đặt
+`nguon.loop = true` nên mỗi vòng nghe một khoảng câm rồi tiếng cụt. Đã sửa bằng
+`lamVongKhit()` trong `play.html` (cả hai bản): cắt lặng hai đầu, rồi crossfade
+80ms chồng đuôi lên đầu.
+
+Đo được: bước nhảy tại chỗ nối từ **giật** thành **0,6 lần mức trung bình**
+(mượt hơn cả tiếng bình thường trong file); chênh âm lượng hai đầu 2,2 dB; file
+6,06s → 5,7s. Không có hàm này thì **mọi file anh tải lên đều bị lỗi này**, vì
+công cụ sinh âm thanh luôn thêm lặng ở đầu.
+
+### Sửa mã sinh trang thì phải sửa ở NGUỒN, không chỉ file sinh ra
+
+`docs/xuong-am/index.html` là **file sinh ra** từ `game/tao_xuong_am.py` +
+`game/xuong_am.js`. Sửa thẳng file sinh ra rồi chạy lại script là **mất sạch**.
+Đã từng mất bản sửa token vì lý do này. Sửa JS ở `game/xuong_am.js`, sửa HTML ở
+`game/tao_xuong_am.py`, rồi chạy `python3 game/tao_xuong_am.py`.
+
 ### Trạng thái lưu trong localStorage phải KHÔI PHỤC lên giao diện
 
 Token Xưởng âm thanh lưu đúng vào `localStorage` và việc gửi file vẫn chạy, nhưng
