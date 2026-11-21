@@ -79,7 +79,22 @@ không biết nghe có hay không — cái đó phải do người dùng quyết
    **Bài học: đo đỉnh tín hiệu không nói được gì về việc tai người có nghe thấy hay không.**
    Phải đo RMS và phải đo qua bộ lọc của loa đích.
 
-4. **Đừng tin `confirm()` khi test bằng Playwright.** Playwright tự huỷ hộp thoại, nên nút "Chơi
+4. **Bật phông cảnh lên thì cả tiếng bấm lẫn tiếng nền đều câm.** Người dùng báo đúng
+   triệu chứng này. Tìm ra **ba** lỗi, cùng một dạng: *thoát sớm rồi không ai gọi lại*.
+   - `doiCanhTieng` gọi `resume()` (bất đồng bộ) rồi `return` ngay vì `state !== "running"`.
+     `resume()` xong thì không ai dựng lại lớp nền.
+   - `thucDayTieng` chỉ dựng lại nền **bên trong** nhánh `state !== "running"`. Nền chết
+     trong lúc context vẫn `"running"` thì không có gì chữa — mọi cú chạm sau đều vô ích.
+   - `if (nhom === canhLoai) return;` chặn trước khi biết chắc đã phát được, vì `canhLoai`
+     được gán **trước** khi kiểm tra context.
+
+   **Bài học quan trọng nhất về cách kiểm:** WebKit headless **không tái hiện** được lỗi
+   này — mọi thứ vẫn kêu. Tôi phải chủ động tạo đúng điều kiện (`ctxTieng.suspend()`, hoặc
+   `nguon.stop()` để làm chết lớp nền) rồi mới thấy. Và phải chạy **cùng phép thử trên bản
+   cũ** để chứng minh phép thử thật sự bắt được lỗi: 0 → 0.107 và 0 → 0.10. Nếu bản cũ
+   không hỏng thì phép thử của tôi vô dụng, không phải code đã đúng.
+
+5. **Đừng tin `confirm()` khi test bằng Playwright.** Playwright tự huỷ hộp thoại, nên nút "Chơi
    lại" chưa hề chạy; mức 0.126 tôi đo được là tiếng `mo` của chính cú bấm, không phải lỗi game.
    Phải đăng ký `page.on("dialog", d => d.accept())`.
 

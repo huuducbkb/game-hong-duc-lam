@@ -712,6 +712,18 @@ Bốn lỗi dưới đây đều lọt qua lần kiểm đầu vì phép thử q
 - **Âm lượng do người dùng quyết, không do agent đoán.** Mỗi loa một khác và agent không
   nghe được. Khi không thể tự kiểm bằng tai, **thêm thanh chỉnh âm lượng** thay vì đoán
   một con số rồi tuyên bố "đã đủ to".
+- **Web Audio: `resume()` là bất đồng bộ — không được `return` sau khi gọi nó.** Đây là
+  nguồn của hai lỗi "bật lên thì câm" trong game:
+  - `doiCanhTieng` kiểm `state !== "running"` rồi `return`, trong khi `resume()` vẫn đang
+    chạy. `resume()` xong thì không ai gọi lại → im vĩnh viễn. Phải `.then(() => gọi lại)`.
+  - `thucDayTieng` chỉ dựng lại lớp nền **bên trong** nhánh `state !== "running"`. Nếu lớp
+    nền chết trong lúc context vẫn `"running"`, không có gì chữa. Phải kiểm tra "đáng lẽ
+    phải đang chạy mà không chạy" ở **mọi** cú chạm.
+  - Đừng chặn bằng `if (nhom === canhLoai) return;` khi `canhLoai` được gán **trước** khi
+    biết chắc đã phát được. Chỉ bỏ qua khi **đang thực sự có lớp chạy**.
+  Cách chứng minh: chạy **cùng một phép thử** trên bản cũ và bản mới. Nếu bản cũ không
+  hỏng thì phép thử chưa chạm tới lỗi. Cả hai lỗi trên đều được chứng minh đúng cách đó
+  (0 → 0.107 và 0 → 0.10).
 
 **WebKit báo `interrupted` cả khi CHƯA mở khóa.** Đừng đọc đó là "bị ngắt phiên âm thanh":
 đó chỉ là "chưa có cú chạm nào". Muốn biết có bị ngắt thật hay không thì phải biết context
