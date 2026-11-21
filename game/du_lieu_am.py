@@ -8,9 +8,33 @@ thực địa. Bản ghi thực địa nghe như radio hoặc như micro đặt 
 người chơi đã chê đúng như vậy.
 """
 
-# Đuôi chung cho mọi prompt: 10 giây, loop khít, không fade.
-DUOI = ("Seamless 10-second loop, no fade in and no fade out. Stereo. "
-        "Duration exactly 10 seconds.")
+# Đuôi chung cho mọi prompt: 10 giây, nhạc LẶP LẠI bên trong, không mở đầu/kết.
+#
+# Chỉ ghi chữ "loop" là không đủ: công cụ sinh âm thanh vẫn tạo ra bản 10 giây
+# có mở đầu rồi kết thúc, hết là hết. Phải nói rõ nhịp độ và số ô nhịp để 10
+# giây chia chẵn, và nói rõ mẫu nhạc phải lặp lại ngay bên trong.
+# 10 giây chia chẵn. Một ô 4/4 dài 4*60/nhip giây, nên số ô = nhip/24.
+# Chỉ những nhịp là bội của 24 mới chia chẵn 10 giây:
+#   48 BPM -> 2 ô (5,0 s/ô)   canh thua: nui, mieu, tinh
+#   72 BPM -> 3 ô (3,33 s/ô)  canh vua: vuon, dem
+#   96 BPM -> 4 ô (2,5 s/ô)   canh dong: cho, san, lang
+#  120 BPM -> 5 ô (2,0 s/ô)   canh gap: tran
+NHIP_MAC_DINH = (96, 4)
+
+
+def duoi(nhip=96, o_nhip=4):
+    giay = o_nhip * 4 * 60 / nhip
+    assert abs(giay - 10) < 0.01, f"{nhip} BPM x {o_nhip} o = {giay:.2f}s, khong phai 10s"
+    return (
+        f"Structure: steady {nhip} BPM in 4/4, {o_nhip} bars long, so the ten "
+        "seconds land exactly on the bar line. The musical pattern must repeat at "
+        "least twice inside these ten seconds - this is a bed that keeps going, not "
+        "a piece that starts and ends. No intro, no outro, no build-up, no final "
+        "chord, no resolution, no fade in, no fade out: the first beat and the last "
+        "beat are the same point in the cycle, so the file repeats forever without "
+        "a seam. If the scene has no drums, keep the same grid internally so the "
+        "phrase still repeats on the bar. Stereo. Duration exactly 10 seconds."
+    )
 
 NHOM = [
     {
@@ -53,6 +77,7 @@ NHOM = [
     },
     {
         "ma": "nui",
+        "nhip": (48, 2),
         "ten": "Núi",
         "dung": "Cảnh đường mòn, khe núi (bc_duong_mon_nui, bc_khe_nui…)",
         "file": "nui.mp3",
@@ -90,6 +115,7 @@ NHOM = [
     },
     {
         "ma": "vuon",
+        "nhip": (72, 3),
         "ten": "Vườn thuốc",
         "dung": "Cảnh vườn thảo dược (bc_vuon_thuoc…)",
         "file": "vuon.mp3",
@@ -107,6 +133,7 @@ NHOM = [
     },
     {
         "ma": "mieu",
+        "nhip": (48, 2),
         "ten": "Miếu",
         "dung": "Cảnh miếu, chùa (bc_mieu…)",
         "file": "mieu.mp3",
@@ -125,6 +152,7 @@ NHOM = [
     },
     {
         "ma": "dem",
+        "nhip": (72, 3),
         "ten": "Đêm",
         "dung": "Cảnh ban đêm, tập kích (bc_dem_tap_kich, bc_khe_nui_dem…)",
         "file": "dem.mp3",
@@ -162,6 +190,7 @@ NHOM = [
     },
     {
         "ma": "tinh",
+        "nhip": (48, 2),
         "ten": "Tĩnh",
         "dung": "Cảnh yên ắng, trong nhà, lúc thiền (các cảnh còn lại)",
         "file": "tinh.mp3",
@@ -188,10 +217,11 @@ CHUNG = (
     "asks for them. No intelligible speech, no narration, no radio voice, no DJ. "
     "No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning "
     "noise. No clipping, no distortion, no sudden loud peaks. Peak level below "
-    "-3 dBFS."
+    "-3 dBFS. Loopable bed, not a finished track: no intro, no ending, no fade."
 )
 
 
 def prompt_day_du(n):
     """Prompt hoàn chỉnh: thân + đuôi 10 giây + quy ước chung."""
-    return n["prompt"].strip() + " " + DUOI + "\n\n" + CHUNG
+    nhip, o_nhip = n.get("nhip", NHIP_MAC_DINH)
+    return n["prompt"].strip() + " " + duoi(nhip, o_nhip) + "\n\n" + CHUNG

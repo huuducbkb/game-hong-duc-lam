@@ -637,6 +637,25 @@ Quy tắc khi viết prompt trong `game/du_lieu_am.py`:
 - `DUOI` giữ phần 10 giây/loop; `CHUNG` giữ quy ước chung. Đừng lặp lại
   hai lần trong cùng một prompt.
 
+### Prompt phải nói RÕ nhạc lặp lại, không chỉ ghi chữ "loop"
+
+Ghi "seamless 10-second loop" là **chưa đủ**: công cụ sinh âm thanh vẫn trả về
+một bản 10 giây **có mở đầu và có kết thúc** — hết là hết, không lặp. Phải nói
+cả ba điều:
+
+1. **Nhịp và số ô nhịp** sao cho chia chẵn 10 giây. Một ô 4/4 dài `4*60/nhịp`
+   giây, nên số ô = `nhịp/24`. Chỉ nhịp bội của 24 mới chẵn:
+   48 BPM → 2 ô, 72 BPM → 3 ô, 96 BPM → 4 ô, 120 BPM → 5 ô.
+2. **"The musical pattern must repeat at least twice inside these ten seconds"**
+   — nói thẳng là nền chạy tiếp, không phải bản nhạc có đầu có cuối.
+3. **"No intro, no outro, no build-up, no final chord, no resolution"** — cấm
+   mọi dấu hiệu kết thúc. Câu chốt: "the first beat and the last beat are the
+   same point in the cycle".
+
+Cảnh thưa (núi, miếu, tĩnh) dùng 48 BPM × 2 ô; cảnh vừa (vườn, đêm) 72 × 3;
+cảnh đông (chợ, sân, làng) 96 × 4. `duoi(nhịp, ô)` trong `game/du_lieu_am.py`
+có `assert` chặn mọi tổ hợp không ra đúng 10,00 giây — đừng bỏ assert đó.
+
 ### File tiếng tải lên phải được nối vòng, không phát thẳng
 
 `cho.mp3` có **0,3 giây lặng câm ở đầu** và kết thúc giữa tiếng. Code cũ đặt
