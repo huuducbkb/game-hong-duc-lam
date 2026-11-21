@@ -2035,7 +2035,10 @@ function doiCanhTieng(ten) {
   // Số dưới đây đo lại sau khi đổi sang nhạc có cao độ, không dùng lại số của
   // bản nhiễu cũ (bản đó có crest khác hẳn nên hệ số bù cũng khác).
   const mucTongHop = { cho: 1.04, tran: 0.632, nui: 1.461, san: 0.769, vuon: 1.436, mieu: 1.636, dem: 1.715, lang: 1.226, tinh: 1.574 }[nhom] || 1.0;
-  const mucFile = { cho: 1.0, tran: 1.1, nui: 0.9, san: 1.0, vuon: 0.9,
+  // `cho` là bản ghi thật đầu tiên. Đo được nó nhỏ hơn nhạc tổng hợp 3,3 dB
+  // (-23,3 so với -20,0 dBFS) nên trim phải lớn hơn 1 mới đều tai. Đỉnh file
+  // chỉ 0,556 nên nhân 1,45 vẫn còn dư 0,81 — không cắt.
+  const mucFile = { cho: 1.45, tran: 1.1, nui: 0.9, san: 1.0, vuon: 0.9,
                     mieu: 0.95, dem: 0.9, lang: 0.85, tinh: 0.7 }[nhom] || 0.9;
   const muc = (amThat && amThat[nhom]) ? mucFile : mucTongHop;
   const lop = taoCanh(nhom, muc);
