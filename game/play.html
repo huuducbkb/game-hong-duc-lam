@@ -872,15 +872,20 @@ function moKhoaTieng() {
 function thucDayTieng() {
   if (!tiengBat) return;
   if (!ctxTieng) { taoCtxTieng(); return; }
+  // Dựng lại phông cảnh nếu đáng lẽ phải đang chạy mà không chạy — kiểm tra này
+  // phải làm ở MỌI cú chạm, không chỉ khi context đang ngủ. Bản trước chỉ dựng
+  // lại bên trong nhánh `state !== "running"`, nên nếu nền chết trong lúc context
+  // vẫn "running" thì không có gì chữa: người chơi bật phông cảnh, thấy im, và
+  // mọi cú chạm sau đều không làm nó sống lại.
+  const canDungLai = () => {
+    if (!canhBat || canhDangChay || typeof doiCanhTieng !== "function") return;
+    const im = document.getElementById("sceneImg");
+    if (im && im.getAttribute("src")) { canhLoai = ""; doiCanhTieng(im.getAttribute("src")); }
+  };
   if (ctxTieng.state !== "running") {
-    ctxTieng.resume().then(() => {
-      // Phông cảnh bị cắt khi context ngủ; tỉnh dậy phải dựng lại, nếu không
-      // người chơi thấy cảnh mới mà im.
-      if (canhBat && !canhDangChay && typeof doiCanhTieng === "function") {
-        const im = document.getElementById("sceneImg");
-        if (im && im.getAttribute("src")) { canhLoai = ""; doiCanhTieng(im.getAttribute("src")); }
-      }
-    }).catch(() => {});
+    ctxTieng.resume().then(canDungLai).catch(() => {});
+  } else {
+    canDungLai();
   }
 }
 document.addEventListener("touchstart", thucDayTieng, { passive: true });
@@ -1146,7 +1151,11 @@ function dungCanh() {
 function doiCanhTieng(ten) {
   if (!canhBat) return;
   const nhom = nhomCanh(ten);
-  if (nhom === canhLoai) return;      // cùng cảnh thì để chạy tiếp, đừng cắt
+  // Chỉ bỏ qua khi ĐANG THỰC SỰ phát đúng nhóm này. Bản trước chỉ so `canhLoai`,
+  // mà `canhLoai` được gán TRƯỚC khi kiểm tra context đã tỉnh chưa. Nếu lần gọi
+  // đầu rơi vào lúc context còn ngủ, nhóm đã bị gán nhưng không có lớp nào phát;
+  // mọi lần gọi sau đều return sớm ở đây nên cảnh im vĩnh viễn.
+  if (nhom === canhLoai && canhDangChay) return;
   // Ảnh nhân vật / vật là cận cảnh giữa chừng, không phải nơi chốn mới: giữ
   // nguyên tiếng nền đang chạy, chỉ thêm một nốt điểm nhấn. Cắt nền ở đây sẽ
   // nghe như tiếng bị hỏng đúng lúc đang đọc.
@@ -1157,10 +1166,20 @@ function doiCanhTieng(ten) {
     return;
   }
   dungCanh();
-  canhLoai = nhom;
-  if (!nhom) return;
+  if (!nhom) { canhLoai = ""; return; }
   if (!ctxTieng || ctxTieng.state === "closed") { if (!taoCtxTieng()) return; }
-  if (ctxTieng.state !== "running") return;   // sẽ phát khi context tỉnh dậy
+  // Context chưa tỉnh: resume() là bất đồng bộ nên KHÔNG được thoát ở đây. Bản
+  // trước thoát luôn và không ai gọi lại — `resume()` xong thì đã muộn, còn
+  // `thucDayTieng` thấy state đã "running" nên cũng không dựng lại. Kết quả: bật
+  // phông cảnh mà im vĩnh viễn. Giờ chờ tỉnh rồi tự gọi lại.
+  if (ctxTieng.state !== "running") {
+    const c = ctxTieng;
+    c.resume().then(() => {
+      if (canhBat && ctxTieng === c && !canhDangChay) doiCanhTieng(ten);
+    }).catch(() => {});
+    return;
+  }
+  canhLoai = nhom;
   // Mức đặt để NGHE ĐƯỢC trên loa điện thoại ở mức âm lượng bình thường, không
   // phải để "có tín hiệu trong máy". Bản trước đặt 0.024–0.055 và đo ra -39…-50
   // dBFS sau loa điện thoại — người dùng báo không nghe thấy gì, đúng như vậy.
