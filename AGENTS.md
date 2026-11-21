@@ -736,6 +736,22 @@ Bốn lỗi dưới đây đều lọt qua lần kiểm đầu vì phép thử q
   Phép thử đúng: đo RMS từng khung (không cộng dồn), bỏ qua giai đoạn vào dần, và **đo cả
   trước lẫn sau một highpass 700 Hz** để biết bao nhiêu năng lượng thực sự ra loa. Đích:
   −30 dBFS sau lọc, ≥40% năng lượng trong dải 700–2000 Hz.
+- **"Rè" gần như luôn là bộ hạn chế/nén đang phải ghì, không phải lỗi dải tần.** Đo cảnh
+  chợ: trọng tâm phổ 2683 Hz, 25% năng lượng ở 2–6 kHz — tôi sửa dải tần (thêm trầm, hạ
+  formant) nhưng người dùng vẫn báo rè. Nguyên nhân thật: **crest 15–25 dB** (RMS −34 dBFS
+  mà đỉnh 0.115) nên muốn nghe được phải nâng 13–22×, đẩy đỉnh lên **1.9**, và bộ hạn chế
+  phải ghì **5,7 dB**. Ghì 5,7 dB là biến dạng phi tuyến — tai nghe thành rè. Cách chữa
+  đúng là **hạ crest tại nguồn** (nâng lớp nền, hạ tiếng nhói) chứ không phải nới ngưỡng
+  hạn chế. Sau khi sửa: crest 5,8–11,9 dB, và **kiểm bằng phép thử "bộ hạn chế có can thiệp
+  không"** — render với `g.gain = muc` nối thẳng vào destination, đo đỉnh; nếu đỉnh < 0.841
+  (−1.5 dBFS) thì hạn chế không chạm. Đích: **0/9 cảnh**. Con số này quan trọng hơn mọi
+  phép đo phổ, vì nó chứng minh tín hiệu đi qua hoàn toàn tuyến tính.
+- **Đo crest phải dùng NHIỀU lần render và lấy đỉnh lớn nhất.** Sự kiện cảnh đặt ngẫu nhiên
+  nên một lần render 20 giây có thể bỏ sót đỉnh. Đo 5 lần rồi lấy max: cảnh sân ra 0.132
+  một lần nhưng đỉnh thật khi nhân mức là 1.92. Đo một lần sẽ kết luận sai là "không bị ghì".
+- **Script đo phải ĐỌC hằng số từ file, không hardcode.** Tôi sửa `0.055 → 0.135` trong
+  `play.html` rồi chạy lại test thấy số y nguyên — vì test ghi cứng `0.055`. Mất một vòng
+  lặp. Đọc bằng regex từ chính file đang test, hoặc truyền vào qua `page.evaluate`.
 - **Âm lượng do người dùng quyết, không do agent đoán.** Mỗi loa một khác và agent không
   nghe được. Khi không thể tự kiểm bằng tai, **thêm thanh chỉnh âm lượng** thay vì đoán
   một con số rồi tuyên bố "đã đủ to".
