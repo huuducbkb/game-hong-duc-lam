@@ -26,6 +26,21 @@ td:first-child{color:#6d6454;width:42%}
 
 <div class="card">
   <p style="margin:0 0 8px"><a href="xuong-am/" style="font-size:15px;font-weight:600;color:#a8352a;text-decoration:none">
+    → Xưởng âm thanh: prompt 10 giây, dạng nhạc game</a></p>
+  <p class="note" style="margin:0">Prompt cũ mở đầu bằng <code>Field recording of…</code> và
+    cấm nhạc lẫn nhạc cụ — nên file nghe như radio hoặc như micro đặt giữa chợ thật.
+    Viết lại cả 9 prompt: nói rõ <b>KHÔNG phải bản ghi thực địa</b>, liệt kê từng lớp
+    (đàn tranh, sáo, trống, chiêng, đàn bầu, nền đệm), thang ngũ cung, đúng
+    <b>10 giây</b> — khớp độ dài cảnh trong game.</p>
+  <p class="note" style="margin:8px 0 0">Sửa thêm lỗi nối vòng: <code>cho.mp3</code> có
+    0,3 giây lặng câm ở đầu và kết thúc giữa tiếng, mà game đặt <code>loop=true</code>
+    nên mỗi vòng nghe một khoảng câm rồi tiếng cụt. Giờ cắt lặng hai đầu rồi crossfade
+    80 ms. Lỗi này ảnh hưởng <b>mọi file anh tải lên</b>.</p>
+  <p style="margin:10px 0 0"><img src="xuong-prompt-moi.jpg" alt="Thẻ cảnh chợ với prompt mới" style="width:100%;border-radius:10px;display:block"></p>
+</div>
+
+<div class="card">
+  <p style="margin:0 0 8px"><a href="xuong-am/" style="font-size:15px;font-weight:600;color:#a8352a;text-decoration:none">
     → Xưởng âm thanh: token không còn mất khi tải lại</a></p>
   <p class="note" style="margin:0">Token <b>không hề mất</b> — nó vẫn nằm trong
     <code>localStorage</code> và việc gửi file vẫn chạy. Lỗi là trang không khôi phục
