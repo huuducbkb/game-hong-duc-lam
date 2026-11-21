@@ -698,6 +698,20 @@ Bốn lỗi dưới đây đều lọt qua lần kiểm đầu vì phép thử q
   gọi hàm trực tiếp thì đúng, gọi qua server thì sai.
 - **Playwright tự huỷ `confirm()`/`alert()`.** Nút có `confirm()` sẽ không chạy; đăng ký
   `page.on("dialog", d => d.accept())` trước. Nếu không, tiếng đo được là tiếng của chính cú bấm.
+- **Đo âm thanh phải đo bằng RMS qua bộ lọc của loa đích, không đo đỉnh tín hiệu trong máy.**
+  Bản tiếng phông cảnh đầu tiên đo đỉnh 0.023–0.043 và tôi báo "có nền" — người dùng báo
+  **không nghe thấy gì**, và đúng là không nghe được: đo RMS sau khi lọc như loa điện thoại
+  (highpass 700 Hz) ra −39…−50 dBFS, gần như im lặng. Hai lỗi cộng lại:
+  - **Quá nhỏ.** Đặt mức để "có số trong máy" chứ không phải để nghe trên loa.
+  - **Sai dải tần.** Nhiễu nâu (1/f²) dồn ~70% năng lượng dưới 300 Hz; loa điện thoại cắt
+    dưới ~700 Hz, nên phần lớn tiếng **không ra khỏi loa**. Dùng **nhiễu hồng (1/f)**, đặt
+    tâm dải trong 800–1500 Hz, và highpass 400 Hz để bỏ phần không phát được.
+  Phép thử đúng: đo RMS từng khung (không cộng dồn), bỏ qua giai đoạn vào dần, và **đo cả
+  trước lẫn sau một highpass 700 Hz** để biết bao nhiêu năng lượng thực sự ra loa. Đích:
+  −30 dBFS sau lọc, ≥40% năng lượng trong dải 700–2000 Hz.
+- **Âm lượng do người dùng quyết, không do agent đoán.** Mỗi loa một khác và agent không
+  nghe được. Khi không thể tự kiểm bằng tai, **thêm thanh chỉnh âm lượng** thay vì đoán
+  một con số rồi tuyên bố "đã đủ to".
 
 **WebKit báo `interrupted` cả khi CHƯA mở khóa.** Đừng đọc đó là "bị ngắt phiên âm thanh":
 đó chỉ là "chưa có cú chạm nào". Muốn biết có bị ngắt thật hay không thì phải biết context

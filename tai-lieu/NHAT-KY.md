@@ -67,7 +67,19 @@ không biết nghe có hay không — cái đó phải do người dùng quyết
    chẩn đoán, **phải khởi động lại tiến trình sau khi cài thư viện** — tiến trình cũ giữ
    `sys.modules` cũ.
 
-3. **Đừng tin `confirm()` khi test bằng Playwright.** Playwright tự huỷ hộp thoại, nên nút "Chơi
+3. **Tiếng phông cảnh đặt quá nhỏ VÀ sai dải tần — người dùng không nghe được gì.** Tôi đo
+   đỉnh tín hiệu 0.023–0.043 và báo "có nền", nhưng đo RMS sau khi lọc như loa điện thoại
+   (highpass 700 Hz) ra −39…−50 dBFS: gần như im lặng. Nguyên nhân kép: (a) mức đặt để "có
+   số trong máy", không phải để nghe trên loa; (b) nhiễu nâu dồn ~70% năng lượng dưới 300 Hz,
+   mà loa điện thoại cắt dưới ~700 Hz — phần lớn tiếng **không ra khỏi loa**. Sửa: nhiễu hồng
+   (1/f), tâm dải 800–1500 Hz, highpass 400 Hz, nâng mức ~8 lần. Giờ −31…−37 dBFS, 42–81%
+   năng lượng ở 700–2000 Hz. Thêm thanh trượt âm lượng 0–150% vì tôi không nghe được trên
+   máy người dùng — phần đó để họ quyết.
+
+   **Bài học: đo đỉnh tín hiệu không nói được gì về việc tai người có nghe thấy hay không.**
+   Phải đo RMS và phải đo qua bộ lọc của loa đích.
+
+4. **Đừng tin `confirm()` khi test bằng Playwright.** Playwright tự huỷ hộp thoại, nên nút "Chơi
    lại" chưa hề chạy; mức 0.126 tôi đo được là tiếng `mo` của chính cú bấm, không phải lỗi game.
    Phải đăng ký `page.on("dialog", d => d.accept())`.
 
