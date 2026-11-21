@@ -45,8 +45,31 @@ bật sẵn thì ai không thích phải đi tìm nút tắt.
 không biết nghe có hay không — cái đó phải do người dùng quyết.
 
 **File:** `docs/nhap/tieng-theo-canh.html` (báo cáo), ảnh `canh-1-tat.jpg`, `canh-2-bat.jpg`,
-`canh-3-trong-game.jpg`. Test: 124 đạt; API 160 đạt/1 hỏng — test "ảnh lưu ra nhẹ hơn ảnh gốc"
-hỏng do Pillow 13 nén tốt hơn, **đã xác nhận có từ trước** bằng cách stash thay đổi và chạy lại.
+`canh-3-trong-game.jpg`. Test: 124 đạt; API 161 đạt/0 hỏng.
+
+**Ba chỗ tôi nói sai, kiểm lại mới thấy:**
+
+1. **Bản `game/play.html` thiếu dòng gọi `doiCanhTieng(ten)` trong `hienThiAnh`.** Lần đầu tôi
+   thử bản đó, thấy tiếng nền chạy nên kết luận đã đúng — nhưng tiếng đang chạy là tiếng của
+   cảnh **đầu**, không đổi khi sang cảnh mới. Đo lại bằng cách đếm số nhóm khác nhau qua sáu
+   cảnh mới thấy: chỉ 1 nhóm. Đã thêm dòng gọi; giờ cả hai bản đều đổi đúng (4 nhóm qua 6 cảnh).
+   **Bài học: "có tiếng" không bằng "tiếng đổi đúng".** Phải kiểm hành vi theo thời gian, không
+   chỉ kiểm có tín hiệu.
+2. **Test "ảnh lưu ra nhẹ hơn ảnh gốc" hỏng, tôi đổ cho Pillow 13 nén tốt hơn — sai.** Đo trực
+   tiếp mới thấy file lưu ra **đúng bằng kích thước PNG gốc**, tức khâu nén thất bại và rơi vào
+   nhánh dự phòng, ghi thẳng PNG vào file `.jpg`. Nguyên nhân thật: **tiến trình `game_server.py`
+   đang chạy được khởi động từ trước khi cài Pillow**, nên `import PIL` trong tiến trình đó thất
+   bại và mọi ảnh lưu ra đều là PNG đội lốt `.jpg`. Khởi động lại server: nén đúng 3.2MB → 665KB,
+   đầu file `ffd8ff`. Test xanh 161/161.
+
+   **Bài học: `catch Exception` nuốt lỗi biến lỗi nặng thành lỗi im lặng.** Nhánh dự phòng ghi
+   nguyên bản là đúng ý đồ, nhưng không để lại dấu vết nào nên không ai biết nén đã hỏng. Và khi
+   chẩn đoán, **phải khởi động lại tiến trình sau khi cài thư viện** — tiến trình cũ giữ
+   `sys.modules` cũ.
+
+3. **Đừng tin `confirm()` khi test bằng Playwright.** Playwright tự huỷ hộp thoại, nên nút "Chơi
+   lại" chưa hề chạy; mức 0.126 tôi đo được là tiếng `mo` của chính cú bấm, không phải lỗi game.
+   Phải đăng ký `page.on("dialog", d => d.accept())`.
 
 ---
 

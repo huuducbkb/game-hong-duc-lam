@@ -681,6 +681,24 @@ Bốn điều dễ làm sai:
 4. **Tiếng nền phải nhỏ hơn tiếng thao tác khoảng 10 lần.** Đo được: nền 0.023–0.043, tiếng bấm
    0.333. Nếu để nền to hơn thì người chơi tắt tiếng và mất luôn tiếng bấm.
 
+### Kiểm hành vi, không chỉ kiểm "có tín hiệu"
+
+Bốn lỗi dưới đây đều lọt qua lần kiểm đầu vì phép thử quá yếu. Ghi lại để không lặp:
+
+- **"Có tiếng" không bằng "tiếng đổi đúng".** Bản `game/play.html` từng thiếu `doiCanhTieng(ten)`
+  trong `hienThiAnh`; tiếng nền vẫn kêu vì đó là tiếng của cảnh đầu, nhưng không bao giờ đổi.
+  Phép thử đúng: **đi qua ≥6 cảnh và đếm số nhóm khác nhau** — phải > 1. Một lần đo tín hiệu
+  duy nhất không phân biệt được "đang chạy" với "đang đứng yên".
+- **`catch Exception` nuốt lỗi thành lỗi im lặng.** Nhánh dự phòng của khâu nén ảnh ghi nguyên
+  bản khi Pillow lỗi, không để lại dấu vết — nên PNG đội lốt `.jpg` mà không ai biết. Khi một
+  phép thử về "kích thước/kết quả phải khác đi" hỏng, **kiểm byte đầu file và kích thước thật**,
+  đừng suy đoán nguyên nhân.
+- **Khởi động lại tiến trình server sau khi cài thư viện Python.** Tiến trình cũ giữ
+  `sys.modules` cũ, nên `import PIL` vẫn thất bại dù `pip install` đã xong. Triệu chứng dễ nhầm:
+  gọi hàm trực tiếp thì đúng, gọi qua server thì sai.
+- **Playwright tự huỷ `confirm()`/`alert()`.** Nút có `confirm()` sẽ không chạy; đăng ký
+  `page.on("dialog", d => d.accept())` trước. Nếu không, tiếng đo được là tiếng của chính cú bấm.
+
 **WebKit báo `interrupted` cả khi CHƯA mở khóa.** Đừng đọc đó là "bị ngắt phiên âm thanh":
 đó chỉ là "chưa có cú chạm nào". Muốn biết có bị ngắt thật hay không thì phải biết context
 **đã từng chạy** chưa (theo dõi qua `statechange` khi thấy `running`). Trang `docs/phong-do/tieng.html`

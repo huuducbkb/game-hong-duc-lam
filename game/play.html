@@ -1222,6 +1222,7 @@ function hienThiAnh(kq) {
   img.src = "../assets/scene/" + ten;
   box.className = "scene-box on";
   cap.textContent = kq.boi_canh || "";
+  if (typeof doiCanhTieng === "function") doiCanhTieng(ten);
 }
 function hienThi(kq) {
   if (typeof xoaBaoDangKe === "function") xoaBaoDangKe();
