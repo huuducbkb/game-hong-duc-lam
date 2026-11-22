@@ -209,7 +209,7 @@ async function guiMot(hop){
   const mb = f.size / 1024 / 1024;
   if(mb > 24){
     ghHienTT(tt,'warn',`⚠️ File ${mb.toFixed(1)} MB quá lớn để gửi thẳng (trần 24 MB). `
-      + 'Nén lại thành mp3 96 kbps rồi gửi lại — 30 giây ở mức đó chỉ khoảng 0.4 MB.');
+      + 'Nén lại thành mp3 96 kbps rồi gửi lại — 12 giây ở mức đó chỉ khoảng 0.2 MB.');
     return;
   }
   nut.disabled = true;

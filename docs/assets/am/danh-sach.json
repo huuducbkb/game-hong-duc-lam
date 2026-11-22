@@ -1,6 +1,6 @@
 {
   "cho": {
-    "bytes": 375825,
+    "bytes": 159844,
     "file": "cho.mp3"
   },
   "cho_01": {
@@ -12,15 +12,15 @@
     "file": "cho_03.mp3"
   },
   "nui": {
-    "bytes": 375851,
+    "bytes": 159870,
     "file": "nui.mp3"
   },
   "san": {
-    "bytes": 310983,
+    "bytes": 159890,
     "file": "san.mp3"
   },
   "tran": {
-    "bytes": 375873,
+    "bytes": 159892,
     "file": "tran.mp3"
   }
 }

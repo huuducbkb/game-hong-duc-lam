@@ -253,7 +253,7 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
         mới ra; tiếng Việt gần như không có.</li>
     <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
-    <li>Bot tự lấy <b>30 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
+    <li>Bot tự lấy <b>12 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
   </ol>
 
   <div class="card" style="background:#0e1726;margin:14px 0 0;padding:12px">
@@ -267,16 +267,16 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   </div>
 
   <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
-    <p style="margin:0;font-size:12.5px"><b>Về 30 giây:</b> file anh gửi dài bao nhiêu
-    cũng được, hệ thống <b>tự cắt 30 giây đầu</b>. Cảnh trong game chỉ 10 giây nên 30
-    giây là quá đủ, và file nhỏ thì tải nhanh trên điện thoại. File ngắn hơn 30 giây
-    thì giữ nguyên, không cắt.</p>
+    <p style="margin:0;font-size:12.5px"><b>Về 12 giây:</b> file anh gửi dài bao nhiêu
+    cũng được, hệ thống <b>tự cắt 12 giây đầu</b>. Cảnh trong game chỉ 10 giây, nên 12
+    giây là dư một chút để vòng lặp không chạm mép file. File ngắn hơn 12 giây thì giữ
+    nguyên, không cắt.</p>
   </div>
 
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
     <code>flac</code>. Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
-    gửi, bot tự lấy 30 giây đầu, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
+    gửi, bot tự lấy 12 giây đầu, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
   </p>
 </div>
 

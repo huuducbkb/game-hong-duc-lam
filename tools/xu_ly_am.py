@@ -94,9 +94,9 @@ def ma_tu_dong_truoc(text: str, url: str):
     return None
 
 
-# Chỉ lấy 30 giây đầu. Nguồn thư viện thường dài 2 phút; cảnh trong game chỉ
-# 10 giây nên 30 giây là quá đủ, và giữ file nhỏ để tải nhanh trên điện thoại.
-GIAY_LAY = 30
+# Chỉ lấy 12 giây đầu. Cảnh trong game chỉ 10 giây, nên 12 giây là dư một chút
+# để vòng lặp không chạm mép file. File nhỏ thì tải nhanh trên điện thoại.
+GIAY_LAY = 12
 
 MUC_LUFS = -18  # tiếng nền phát qua loa điện thoại; -23 (chuẩn phát thanh) nghe quá nhỏ
 DINH_TP = -2
@@ -117,27 +117,51 @@ def do_am_thanh(src: str):
     return float(j["input_i"]), float(j["input_tp"]), j
 
 
-def chuyen(src: str, ma: str) -> str:
-    """Chuẩn hoá về mp3 96 kbps, cân âm lượng, đỉnh dưới −2 dB.
+# Mã hoá MP3 tạo đỉnh vượt giữa mẫu: PCM đã hạn chế đúng −2 dBTP mà file mp3
+# đo lại vẫn lên −1,1 dBTP (đã gặp thật ở "san"). Vì vậy hạn chế đỉnh xuống
+# thấp hơn mục tiêu một chút, rồi đo lại file đã mã hoá và hạ thêm nếu vẫn vượt.
+DINH_MARGIN = 0.5     # dB dự phòng cho đỉnh vượt do mã hoá
 
-    loudnorm một lượt đo sai trên file ngắn (đã đo thật: đặt −23 LUFS nhưng ra
-    −24.3 dBTP, tức là nhỏ hơn cả mục tiêu). Phải đo trước rồi áp số đo được.
-    """
-    ra = os.path.join(DICH[0], f"{ma}.mp3")
-    os.makedirs(DICH[0], exist_ok=True)
-    _, _, j = do_am_thanh(src)
-    loc = (
-        f"loudnorm=I={MUC_LUFS}:TP={DINH_TP}:LRA=11"
-        f":measured_I={j['input_i']}:measured_TP={j['input_tp']}"
-        f":measured_LRA={j['input_lra']}:measured_thresh={j['input_thresh']}"
-        f":offset={j['target_offset']}:linear=true"
-    )
+
+def _ma_hoa(src: str, ra: str, loc: str, them: str = "") -> None:
+    if them:
+        loc = loc + "," + them
     subprocess.run(
         ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
          "-t", str(GIAY_LAY), "-i", src,
          "-af", loc, "-ac", "2", "-ar", "44100",
          "-c:a", "libmp3lame", "-b:a", "96k", ra],
         check=True)
+
+
+def chuyen(src: str, ma: str) -> str:
+    """Chuẩn hoá về mp3 96 kbps, cân âm lượng, đỉnh dưới −2 dB.
+
+    loudnorm một lượt đo sai trên file ngắn (đã đo thật: đặt −23 LUFS nhưng ra
+    −24.3 dBTP, tức là nhỏ hơn cả mục tiêu). Phải đo trước rồi áp số đo được.
+
+    Sau khi mã hoá phải đo lại: loudnorm chỉ hạn chế đỉnh trên PCM, còn MP3 tạo
+    thêm đỉnh vượt giữa mẫu. Vượt thì hạ thêm đúng phần dư rồi mã hoá lại.
+    """
+    ra = os.path.join(DICH[0], f"{ma}.mp3")
+    os.makedirs(DICH[0], exist_ok=True)
+    _, _, j = do_am_thanh(src)
+    dinh = DINH_TP - DINH_MARGIN
+    loc = (
+        f"loudnorm=I={MUC_LUFS}:TP={dinh}:LRA=11"
+        f":measured_I={j['input_i']}:measured_TP={j['input_tp']}"
+        f":measured_LRA={j['input_lra']}:measured_thresh={j['input_thresh']}"
+        f":offset={j['target_offset']}:linear=true"
+    )
+    _ma_hoa(src, ra, loc)
+    # Đo lại file đã mã hoá. Còn vượt thì hạ đúng phần dư; lặp tối đa 2 lần để
+    # không rơi vào vòng lặp vô hạn nếu file có đỉnh kỳ dị.
+    for _ in range(2):
+        _, tp, _ = do_am_thanh(ra)
+        du = DINH_TP - tp
+        if du >= 0:
+            break
+        _ma_hoa(src, ra, loc, f"volume={du:.2f}dB")
     for d in DICH[1:]:
         os.makedirs(d, exist_ok=True)
         with open(ra, "rb") as f, open(os.path.join(d, f"{ma}.mp3"), "wb") as g:
