@@ -934,8 +934,20 @@ Mỗi cảnh trong `game/prompt_am.py` có một prompt. Nguyên tắc: mở đ�
 cùng là chợ mà chợ sớm thì đứng giữa đám đông, chợ chiều thì ngồi một mình ở rìa — hai prompt
 khác hẳn, không dùng chung một file ambience.
 
-**Luôn ghi `Vietnamese`** ở mọi cảnh có giọng nói. Không ghi thì công cụ ra tiếng Anh. Và luôn
-có `no music` — đây là tiếng không gian, không phải nhạc nền game.
+Luôn có `no music` — đây là tiếng không gian, không phải nhạc nền game. Không cần ghi
+`Vietnamese` nữa: đã bỏ hết lời nói nên không còn gì để công cụ đọc thành tiếng Anh.
+
+**Không lời nói — chỉ âm không lời.** Prompt KHÔNG được có ai nói câu nào, không
+tiếng đọc, không "shouting in Vietnamese", không "voices talking". Tiếng người chỉ
+được là âm không lời: thở, thở dốc, hừ, rên, huýt gió, la, khóc. Mọi prompt mở đầu
+bằng `no speech`. Lý do: lời nói biến cảnh thành phim truyền thanh, và kéo theo
+chuyện phải chọn đúng tiếng Việt cho từng câu — việc mà công cụ tạo tiếng làm sai.
+
+**Ba lớp khoảng cách, và tiếng phải đổi chất.** Mỗi prompt phải có (1) sát tai —
+tiếng của chính người chơi và thứ ngay cạnh, (2) vài mét, (3) xa. Nhưng gần/xa thôi
+chưa đủ: phải nói rõ tiếng ĐỔI thế nào khi đi qua không gian đó — tường đá dội lại,
+ngõ hẹp dội nhanh và cứng, phòng kín đè tiếng xuống quanh đầu, ngoài trời thì tiếng
+rơi xuống là mất. Đó mới là thứ làm tai nghe ra chiều sâu.
 
 **Trần 450 ký tự.** Ô prompt của ElevenLabs Sound Effects chỉ nhận 450 ký tự —
 dài hơn thì trang báo lỗi và không cho tạo, không phải lỗi nội dung. Prompt cũ dài
@@ -947,9 +959,8 @@ sweeping through air, boots hammering stone) thay vì tả mức độ dữ dộ
 bộ lọc, vừa ra tiếng đúng hơn.
 
 **Không kèm lời thoại.** Người dùng đã bỏ yêu cầu đó — chỉ cần tiếng nền. Đừng thêm lại
-`LOI`, đừng chèn câu tiếng Việt cụ thể trong ngoặc kép vào prompt: công cụ không nói được câu
-có nghĩa, và prompt chỉ cần tả *loại* giọng (ví dụ "a porter shouting angrily in Vietnamese"),
-không cần nội dung câu.
+`LOI`, đừng chèn câu tiếng Việt cụ thể trong ngoặc kép vào prompt. Sau này bỏ luôn cả
+tiếng nói: xem quy tắc "Không lời nói" ở trên.
 
 Trước đây tôi đã bỏ prompt vì lý do sai: tôi cho là không công cụ nào tạo được ambience từ
 prompt. Thực ra vấn đề là prompt cũ tả nhạc, không tả không gian.
