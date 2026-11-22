@@ -899,3 +899,30 @@ Dùng `height:100svh` cho khung và `max-height:calc(100svh - 40px)` cho thẻ, 
 **Máy giả lập Linux không có thanh công cụ Safari nên KHÔNG tái hiện được lỗi này.**
 Muốn tái hiện phải ép khung cao hơn vùng nhìn thấy (ví dụ `#setup{height:844px}` với viewport
 390×664), rồi đo bằng `elementFromPoint` dọc theo nút xem bao nhiêu điểm bấm được.
+
+### Xưởng âm thanh: nhận video, chỉ lấy tiếng
+
+Ô chọn file nhận cả video. Trình duyệt giải mã video bằng `decodeAudioData`, lấy 12 giây
+đầu, nén mp3 rồi mới gửi — **video không bao giờ được tải lên**. Đây là yêu cầu của người
+dùng: video ~10 MB nằm vĩnh viễn trong lịch sử git, kể cả khi bot xoá file ở commit sau.
+
+**Đừng gửi WAV.** WAV 12 giây là 2 MB, base64 thành 2,7 MB, nhân 43 cảnh là 29 MB lịch sử
+git. `lamejs` (nhúng ở `docs/xuong-am/lamejs.js`, 168 KB, LGPL-3.0) nén ngay trong trình
+duyệt còn 95–141 KB mỗi đoạn. Đổi 168 KB lấy 21 MB. Xem `docs/xuong-am/lamejs.NOTICE.txt`
+— LGPL bắt buộc ghi công và nạp thư viện thành tệp riêng, đừng trộn vào mã trang.
+
+**Không dùng `MediaRecorder`.** WebKit — Safari trên iPhone/iPad — không có API đó. Đã đo.
+
+Nhận diện video theo **đuôi file**, không theo MIME: iPhone hay để `type` trống.
+
+Đo trên WebKit với iPad (2026-11-22): mp4 H.264, mov HEVC (`hvc1`, định dạng iPhone quay
+mặc định) và video 20 giây đều ra đúng số giây — 8,07 / 10,06 / 12,07. Qua bot: 12,00 s,
+−18,45 LUFS. Video 5,4 MB bị chặn đúng trần; video không tiếng báo lỗi, không gửi file rỗng.
+
+**Cẩn thận khi test trên trang live:** file test đặt trong `docs/` phải push và deploy xong
+mới tải được. Lần đầu tôi trỏ vào file chưa deploy, nhận 404, rồi kết luận sai là HEVC
+không đọc được. Muốn thử nhanh thì chạy `python3 -m http.server --directory docs`.
+
+**`npm install` trong repo này rất nguy hiểm.** Không có `package.json` được theo dõi, nên
+npm tạo file mới và **xoá sạch `node_modules`** — mất Playwright. Dùng
+`npm install --no-save <gói>` hoặc `npm pack` ra `/tmp` rồi chép tay.
