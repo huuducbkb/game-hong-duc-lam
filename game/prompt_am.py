@@ -17,9 +17,7 @@ Ba quy tắc lặp lại trong mọi prompt:
 
 Phần lớn cảnh có người nói thì cố ý KHÔNG rõ chữ — người chơi đứng xa, hoặc
 đang nghe lén, hoặc giữa chợ ồn. Chữ nghĩa rõ ràng sẽ thành phim truyền thanh,
-không còn là không gian. Những cảnh cần rõ chữ thì để riêng ở `LOI` bên dưới,
-kèm lời thoại tiếng Việt lấy từ chính truyện, để anh đọc bằng máy đọc tiếng
-Việt rồi trộn vào.
+không còn là không gian. Không có lời thoại kèm theo: chỉ cần tiếng nền.
 """
 
 PROMPT = {
@@ -28,7 +26,7 @@ PROMPT = {
         "Vietnamese-language ambience, no music, no narration. The player is "
         "lying on the ground in a corner of a crowded morning market, so every "
         "sound arrives low, near ear level. Close and loud: a porter shouting "
-        "'Tránh ra! Tránh ra!' in Vietnamese as he shoves past, wooden cart "
+        "angrily in Vietnamese as he shoves past, wooden cart "
         "wheels creaking over packed earth, baskets and clay jars knocking "
         "together, a vendor calling prices in Vietnamese, coins counted into a "
         "palm. Behind that: overlapping haggling in Vietnamese, a horse snorting "
@@ -393,58 +391,4 @@ PROMPT = {
         "the air like pressure. Nothing happens for long stretches. This silence is "
         "deliberate, not a broken file. Loops seamlessly over ten seconds."
     ),
-}
-
-
-# Lời thoại tiếng Việt cho những cảnh mà giọng nói phải RÕ CHỮ.
-#
-# Vì sao cần riêng: công cụ tạo tiếng bằng prompt không nói được câu tiếng Việt
-# có nghĩa — nó chỉ ra âm thanh giống giọng người. Muốn có chữ thật thì phải
-# đọc bằng máy đọc tiếng Việt (hoặc thu giọng thật) rồi trộn vào bản ambience.
-# Lời dưới đây lấy nguyên văn từ truyện, không tự đặt thêm.
-LOI = {
-    "cho_02": [
-        ("lão ăn mày què", "Mấy ngày nữa Dã Lang Bang đánh tới. Ta nghe đám buôn "
-                           "nói vậy. Chúng dòm ngó Thất Huyền Môn mấy tháng rồi."),
-        ("gã ăn mày trẻ", "Đánh nhau thì ăn mày như ta chết trước. Mà biết đâu, "
-                          "loạn lạc lại có đồ nhặt."),
-        ("lão ăn mày què", "Nghe nói sau núi có cái miếu hoang. Trong đó có một "
-                           "cái hộp kiếm cũ. Ai chạm vào đều phát bệnh, có kẻ chết luôn."),
-    ],
-    "quan_nuoc": [
-        ("gã râu quai nón", "Dã Lang Bang dạo này động tĩnh lạ lắm. Chúng kéo tới "
-                            "mấy trăm người, dòm ngó Thất Huyền Môn suốt mấy tháng rồi. "
-                            "Cầm đầu là Hùng Bá — tay đao nặng trịch, nổi tiếng tàn độc."),
-        ("kẻ ngồi cạnh", "Suỵt! Nói bậy mất mạng như chơi."),
-    ],
-    "vuon_thuoc_hoi": [
-        ("người chơi", "Tiền bối thấy ở vãn bối… điều gì khác thường?"),
-        ("Mạc Đại Phu", "Ta làm y mấy chục năm. Người bị thương thì ta nhìn ra ngay. "
-                        "Nhưng ngươi… không giống kẻ bị thương."),
-    ],
-    "vuon_thuoc_ngoc": [
-        ("Mạc Đại Phu", "Ngươi tới đây tự nguyện à? Không ai dẫn tới sao?"),
-        ("người chơi", "Vãn bối tự tới dự tuyển. Không có người thân."),
-        ("Mạc Đại Phu", "Chỗ đó có mấy luống cỏ dại, ngươi nhổ giúp ta. "
-                        "Tay chân lanh lẹ chút."),
-    ],
-    "san_tap_chen_ep": [
-        ("gã to con", "Nhìn kìa, tên tân đệ tử! Đánh côn mà như búa đập ruồi. "
-                      "Môn ta năm nay tuyển được cái thứ gì vậy?"),
-        ("gã to con", "Nghe cho rõ. Mấy ngày tới động thủ với Dã Lang Bang, "
-                      "ngươi cứ nấp sau lưng ta."),
-    ],
-    "san_tap_cai_lai": [
-        ("người chơi", "Ta không núp sau lưng ai cả."),
-        ("gã to con", "Láo!"),
-        ("gã to con", "Tân đệ tử mà dám cãi! Để xem ngươi trụ được mấy ngày."),
-    ],
-    "cong_dong_hung_ba": [
-        ("người chơi", "Hùng Bá! Ngươi núp đâu? Để đàn em chết thay, "
-                       "còn ngươi trốn sau lưng chúng à?"),
-        ("giọng khàn từ xa", "Ai dám gọi tên ta?"),
-    ],
-    "hoa_truong_cuu": [
-        ("đứa bé", "Sư huynh… cảm ơn…"),
-    ],
 }

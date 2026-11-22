@@ -937,9 +937,10 @@ khác hẳn, không dùng chung một file ambience.
 **Luôn ghi `Vietnamese`** ở mọi cảnh có giọng nói. Không ghi thì công cụ ra tiếng Anh. Và luôn
 có `no music` — đây là tiếng không gian, không phải nhạc nền game.
 
-**Tám cảnh cần rõ chữ** thì có lời thoại tiếng Việt trong `LOI`, lấy nguyên văn từ truyện.
-Prompt không nói được câu tiếng Việt có nghĩa — nó chỉ ra giọng giống người. Phần này phải đọc
-bằng máy đọc tiếng Việt rồi trộn lên, đừng hứa công cụ làm được.
+**Không kèm lời thoại.** Người dùng đã bỏ yêu cầu đó — chỉ cần tiếng nền. Đừng thêm lại
+`LOI`, đừng chèn câu tiếng Việt cụ thể trong ngoặc kép vào prompt: công cụ không nói được câu
+có nghĩa, và prompt chỉ cần tả *loại* giọng (ví dụ "a porter shouting angrily in Vietnamese"),
+không cần nội dung câu.
 
 Trước đây tôi đã bỏ prompt vì lý do sai: tôi cho là không công cụ nào tạo được ambience từ
 prompt. Thực ra vấn đề là prompt cũ tả nhạc, không tả không gian.
