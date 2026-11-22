@@ -1,0 +1,30 @@
+lamejs.js — thư viện nén MP3 chạy trong trình duyệt
+=====================================================
+
+Tệp: docs/xuong-am/lamejs.js
+Gói: @breezystack/lamejs 1.2.7 (bản đóng gói lại của lamejs)
+Tác giả gốc: LAME project — https://lame.sourceforge.io/
+Giấy phép: LGPL-3.0 — https://www.gnu.org/licenses/lgpl-3.0.html
+
+Dùng để làm gì
+--------------
+Trang Xưởng âm thanh cho phép chọn video rồi chỉ gửi phần tiếng. Trình duyệt
+giải mã video, lấy 12 giây đầu, rồi nén thành mp3 ngay trên máy người dùng
+trước khi gửi. Nhờ vậy video không bao giờ được tải lên máy chủ.
+
+Vì sao không dùng MediaRecorder
+-------------------------------
+WebKit — nhân trình duyệt của Safari trên iPhone/iPad — không có API đó.
+lamejs là cách duy nhất nén được mp3 trên Safari.
+
+Điều kiện LGPL
+--------------
+1. Thư viện được nạp thành tệp riêng (lamejs.js), không trộn vào mã của trang.
+   Mã của trang nằm ở game/xuong_am.js, không chứa mã của LAME.
+2. Tệp này ghi công LAME và dẫn link tới lame.sourceforge.io.
+3. Không sửa đổi thư viện: lamejs.js là bản gốc lấy từ gói npm, giữ nguyên.
+
+Thay thư viện
+-------------
+Nếu cần bản khác, tải gói @breezystack/lamejs rồi chép đè dist/lamejs.iife.js
+vào docs/xuong-am/lamejs.js. Trang chỉ dùng lamejs.Mp3Encoder.
