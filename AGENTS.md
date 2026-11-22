@@ -937,6 +937,15 @@ khác hẳn, không dùng chung một file ambience.
 **Luôn ghi `Vietnamese`** ở mọi cảnh có giọng nói. Không ghi thì công cụ ra tiếng Anh. Và luôn
 có `no music` — đây là tiếng không gian, không phải nhạc nền game.
 
+**Trần 450 ký tự.** Ô prompt của ElevenLabs Sound Effects chỉ nhận 450 ký tự —
+dài hơn thì trang báo lỗi và không cho tạo, không phải lỗi nội dung. Prompt cũ dài
+508 ký tự nên bị chặn. Mọi prompt phải dưới 450; trang Xưởng có bộ đếm để thấy ngay.
+
+**Tránh chữ dễ bị bộ lọc chặn:** không tả thương tích, không tả xác, không lồng
+tiếng trẻ con, không dùng "violent", "dead", "weeping". Tả ĐỘNG TÁC cụ thể (a blade
+sweeping through air, boots hammering stone) thay vì tả mức độ dữ dội — vừa dễ qua
+bộ lọc, vừa ra tiếng đúng hơn.
+
 **Không kèm lời thoại.** Người dùng đã bỏ yêu cầu đó — chỉ cần tiếng nền. Đừng thêm lại
 `LOI`, đừng chèn câu tiếng Việt cụ thể trong ngoặc kép vào prompt: công cụ không nói được câu
 có nghĩa, và prompt chỉ cần tả *loại* giọng (ví dụ "a porter shouting angrily in Vietnamese"),

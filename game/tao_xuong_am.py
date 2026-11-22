@@ -49,11 +49,15 @@ def khoi_prompt(n):
         return ""
     nut = (f'<button type="button" class="cp" '
            f'onclick="cpChu(this,{esc(repr(p))})">📋 Chép prompt</button>')
+    n_ky = len(p)
+    dem = (f'<span class="dem-ky{" qua" if n_ky > 450 else ""}">'
+           f'{n_ky}/450 ký tự</span>')
     return f"""<label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-{ma}">{esc(p)}</div>
-<div class="row">{nut}</div>
+<div class="row">{nut}{dem}</div>
 <p class="mota" style="margin:6px 0 0">Prompt viết theo góc người chơi: đứng ở đâu,
-nghe gì trước, nghe gì sau. Có sẵn "no music" và yêu cầu lặp 10 giây.</p>"""
+nghe gì trước, nghe gì sau. Có sẵn "no music" và yêu cầu lặp 10 giây. Ô prompt của
+ElevenLabs chỉ nhận 450 ký tự — quá thì trang báo lỗi, không cho tạo.</p>"""
 
 
 def the_canh(n, i):
@@ -191,6 +195,9 @@ button.phu{{background:transparent}}
 .cp{{background:#243a2c;border-color:#2f6b4f;color:#a9f0c4}}
 .dl{{background:transparent}}
 .nghe{{margin:4px 0 0}}
+.dem-ky{{font-size:11.5px;color:var(--muted);margin-left:auto;align-self:center;
+  font-variant-numeric:tabular-nums}}
+.dem-ky.qua{{color:#ff9a8a;font-weight:600}}
 .prompt{{background:#0a1220;border:1px solid var(--line);border-radius:8px;padding:10px;
   font-size:12.5px;line-height:1.6;color:#dfe7f5;white-space:pre-wrap;
   font-family:ui-monospace,Menlo,monospace;-webkit-user-select:text;user-select:text}}
