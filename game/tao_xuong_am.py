@@ -13,6 +13,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from du_lieu_am import CANH, NHOM, TEN_NHOM, canh_theo_nhom
+from prompt_am import LOI, PROMPT
 
 GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RA = os.path.join(GOC, "docs", "xuong-am", "index.html")
@@ -38,6 +39,35 @@ def da_co():
 
 def esc(s):
     return html.escape(str(s), quote=True)
+
+
+def khoi_prompt(n):
+    """Khối prompt tạo tiếng + lời thoại tiếng Việt (nếu cảnh cần rõ chữ)."""
+    ma = n["ma"]
+    p = PROMPT.get(ma)
+    if not p:
+        return ""
+    nut = (f'<button type="button" class="cp" '
+           f'onclick="cpChu(this,{esc(repr(p))})">📋 Chép prompt</button>')
+    ra = [f"""<label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-{ma}">{esc(p)}</div>
+<div class="row">{nut}</div>
+<p class="mota" style="margin:6px 0 0">Prompt viết theo góc người chơi: đứng ở đâu,
+nghe gì trước, nghe gì sau. Có sẵn "no music" và yêu cầu lặp 10 giây.</p>"""]
+
+    loi = LOI.get(ma)
+    if loi:
+        dong = []
+        for ai, chu in loi:
+            nut_loi = (f'<button type="button" class="tk" '
+                       f'onclick="cpChu(this,{esc(repr(chu))})">{esc(chu)}</button>')
+            dong.append(f'<div class="loi"><b>{esc(ai)}:</b> {nut_loi}</div>')
+        ra.append(f"""<label class="nhan">Lời thoại tiếng Việt — đọc rồi trộn vào</label>
+<div class="loi-hop">{"".join(dong)}</div>
+<p class="mota" style="margin:6px 0 0">Prompt không nói được câu tiếng Việt có nghĩa,
+chỉ ra giọng giống người. Cảnh này cần rõ chữ nên phải đọc bằng máy đọc tiếng Việt
+(hoặc thu giọng thật) rồi trộn lên bản ambience ở trên. Lời lấy nguyên văn từ truyện.</p>""")
+    return "\n".join(ra)
 
 
 def the_canh(n, i):
@@ -69,6 +99,8 @@ def the_canh(n, i):
   <div class="meta">
     <div><span class="k">lưu là</span> <code>{DUONG}{esc(n['file'])}</code></div>
   </div>
+
+  {khoi_prompt(n)}
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -173,6 +205,12 @@ button.phu{{background:transparent}}
 .cp{{background:#243a2c;border-color:#2f6b4f;color:#a9f0c4}}
 .dl{{background:transparent}}
 .nghe{{margin:4px 0 0}}
+.prompt{{background:#0a1220;border:1px solid var(--line);border-radius:8px;padding:10px;
+  font-size:12.5px;line-height:1.6;color:#dfe7f5;white-space:pre-wrap;
+  font-family:ui-monospace,Menlo,monospace;-webkit-user-select:text;user-select:text}}
+.loi-hop{{background:#0a1220;border:1px solid var(--line);border-radius:8px;padding:8px 10px}}
+.loi{{font-size:12.5px;margin:6px 0;line-height:1.5}}
+.loi b{{color:var(--gold);font-size:12px}}
 .nghe audio{{width:100%;margin-top:6px}}
 .chua{{font-size:12.5px;color:var(--muted)}}
 .tha-am{{display:flex;flex-direction:column;align-items:center;gap:4px;
