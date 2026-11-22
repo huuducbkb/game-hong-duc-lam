@@ -168,41 +168,58 @@ No melody, no musical instruments, no chords, no drum beat.”</p>
 <p class="note">Cảnh đông nhịp nhanh, cảnh thưa nhịp chậm. Tất cả chia chẵn 10,00 giây
 nên vòng lặp khít đúng ô nhịp.</p>
 
-<h2>7. Ảnh cảnh trong xưởng</h2>
+<h2>7. Đổi sang mỗi cảnh một file</h2>
 <div class="card ok">
-  <p style="margin:0 0 8px"><b>Mỗi cảnh giờ có ảnh thật trong game.</b></p>
-  <p style="margin:0">Mở xưởng, mỗi thẻ cảnh hiện lưới ảnh — đó là những cảnh thật sẽ
-  phát tiếng anh tải lên. Nhìn ảnh là biết tiếng đó dùng cho ngữ cảnh nào.</p>
+  <p style="margin:0 0 8px"><b>Anh đúng — gom nhóm thì tiếng không khớp ảnh.</b></p>
+  <p style="margin:0">Bản trước tôi gom 9 nhóm, nên một file phải gánh nhiều ngữ cảnh:
+  tiếng "chợ sớm lúc sạp còn đang dựng" bị dùng luôn cho "góc chợ chiều mòn mỏi".
+  Nghe là thấy sai.</p>
 </div>
-<table>
-  <tr><th>Cảnh</th><th>Số ảnh</th><th>Ví dụ cảnh thật</th></tr>
-  <tr><td>Chợ sớm</td><td class="so">3</td><td>Chợ sớm Thất Huyền trấn</td></tr>
-  <tr><td>Trận chiến</td><td class="so">9</td><td>Dã Lang Bang tập kích</td></tr>
-  <tr><td>Núi</td><td class="so">3</td><td>Đường mòn lên núi — chạng vạng</td></tr>
-  <tr><td>Sân tập</td><td class="so">6</td><td>Sân tập Thất Huyền Môn — giữa ngày</td></tr>
-  <tr><td>Vườn thuốc</td><td class="so">5</td><td>Vườn thuốc phía sau môn</td></tr>
-  <tr><td>Miếu</td><td class="so">4</td><td>Ngoài miếu — quan sát</td></tr>
-  <tr><td>Đêm</td><td class="so">2</td><td>Tân xá — tu luyện đêm đầu</td></tr>
-  <tr><td>Làng</td><td class="so">10</td><td>Sau trận — giữa đống đổ nát</td></tr>
-  <tr><td>Tĩnh</td><td class="so">1</td><td>Đột phá Luyện Khí</td></tr>
-</table>
-<p class="note">Tổng 43 ảnh. Bấm ảnh để xem bản to 900px. Tôi tạo thêm bản thu nhỏ
-300px (18KB thay vì 170KB) để trang tải nhanh trên điện thoại.</p>
+<p>Giờ <b>43 cảnh, 43 file riêng</b>. Mỗi ảnh trong game là một cảnh, có tiếng riêng
+và từ khoá riêng.</p>
 
-<div class="card" style="border-left:4px solid #a8352a">
-  <p style="margin:0 0 8px"><b>Đồng thời sửa một lỗi gán cảnh</b></p>
-  <p style="margin:0 0 8px">Khi lập danh sách ảnh tôi phát hiện code cũ gán nhầm
-  nhóm. Hàm tìm nhóm dùng <code>includes("cho")</code>, nên hai cảnh
-  <code>bc_khe_nui_chon</code> và <code>bc_san_sau_chon_lai</code> — cả hai là
-  <b>chôn trả lại</b> ban đêm — cũng khớp chữ "cho" trong "chôn", và phát
-  <b>tiếng chợ đông người</b>.</p>
-  <p style="margin:0 0 8px">Đã sửa thành khớp cả từ. Sửa thêm ba nhóm nữa:</p>
-  <ul style="margin:0">
-    <li>Cổng đông (đối mặt địch) và hỏa trường (cháy) → nhóm <b>trận chiến</b>,
-        không phải làng</li>
-    <li>Đoạt hộp và tu luyện kiếm đạo (trong miếu hoang) → nhóm <b>miếu</b></li>
-  </ul>
+<table>
+  <tr><th>Nhóm</th><th>Số cảnh</th><th>Ví dụ hai cảnh khác nhau</th></tr>
+  <tr><td>Chợ</td><td class="so">3</td><td>Chợ sớm lúc dựng sạp · Góc chợ chiều mòn mỏi</td></tr>
+  <tr><td>Trận chiến</td><td class="so">9</td><td>Cổng vỡ · Đối mặt địch (gần như im)</td></tr>
+  <tr><td>Núi</td><td class="so">3</td><td>Đường mòn chạng vạng · Đào đất trong khe đêm</td></tr>
+  <tr><td>Sân tập</td><td class="so">6</td><td>Sân đông giữa ngày · Luyện lén trong đêm</td></tr>
+  <tr><td>Vườn thuốc</td><td class="so">5</td><td>Vườn sáng có ong · Vườn đêm đào đất</td></tr>
+  <tr><td>Miếu</td><td class="so">4</td><td>Ngoài miếu quan sát · Luyện kiếm trong miếu</td></tr>
+  <tr><td>Đêm</td><td class="so">2</td><td>Tân xá yên · Đêm bị tập kích</td></tr>
+  <tr><td>Làng</td><td class="so">10</td><td>Quán nước đông · Suýt bị phát hiện</td></tr>
+  <tr><td>Tĩnh</td><td class="so">1</td><td>Phòng kín cố ý im</td></tr>
+</table>
+
+<h2>8. Hai bộ từ khoá cho mỗi cảnh</h2>
+<p>Anh nói không tìm được web hay app nào tạo âm thanh từ prompt — nên tôi
+<b>gỡ hết prompt</b>. Thay bằng hai bộ từ khoá, phục vụ hai việc khác nhau:</p>
+<div class="card">
+  <p style="margin:0 0 10px"><b>Từ khoá tìm</b> — dán vào ô tìm của thư viện âm thanh
+  (Freesound, Pixabay, YouTube). Đây là thứ người ta đặt tên cho file.</p>
+  <p style="margin:0 0 10px;font-size:12.5px;color:#93a0b8">Cảnh chợ sớm:
+  <code>morning market ambience</code> · <code>market opening early morning</code>
+  · <code>empty market stalls setting up</code></p>
+  <p style="margin:0 0 10px"><b>Từ khoá mô tả</b> — dán vào Google khi muốn hiểu tiếng
+  đó gọi là gì, hoặc tìm nguồn ở chỗ khác.</p>
+  <p style="margin:0;font-size:12.5px;color:#93a0b8">Cùng cảnh đó:
+  <code>sparse market early morning ambience</code> ·
+  <code>wooden stalls being set up sound</code> ·
+  <code>quiet market before crowds</code></p>
 </div>
+<p class="note">Tổng 129 cụm tìm + 129 cụm mô tả. Bấm là copy.</p>
+
+<h2>9. Ảnh và trạng thái từng cảnh</h2>
+<p>Mỗi thẻ có ảnh thật của cảnh đó, tên cảnh trong truyện, và ghi rõ đang dùng tiếng
+gì:</p>
+<ul>
+  <li><b>✅ Đã có tiếng riêng</b> — dùng đúng file của cảnh đó</li>
+  <li><b>🟡 Dùng tạm file nhóm</b> — chưa có file riêng, đang mượn file nhóm cũ</li>
+  <li><b>⬜ Dùng tiếng tổng hợp</b> — chưa có gì</li>
+</ul>
+<p>Hiện tại: <b>21 cảnh dùng tạm file nhóm</b> (chợ/núi/sân/trận), <b>22 cảnh dùng
+tiếng tổng hợp</b>. Bốn file nhóm anh đã tải lên vẫn dùng được làm đường lùi, không
+bỏ phí — cảnh nào chưa có file riêng thì vẫn nghe được tiếng thật cùng loại.</p>
 
 <h2>8. Anh làm gì tiếp</h2>
 <div class="card">

@@ -22,9 +22,9 @@ import urllib.request
 
 GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(GOC, "game"))
-from du_lieu_am import NHOM  # noqa: E402
+from du_lieu_am import CANH, THEO_MA  # noqa: E402
 
-MA = [n["ma"] for n in NHOM]
+MA = [c["ma"] for c in CANH]
 DICH = [os.path.join(GOC, "docs", "assets", "am"), os.path.join(GOC, "assets", "am")]
 DUOI_AM = ("mp3", "wav", "m4a", "aac", "ogg", "opus", "flac", "aiff", "aif", "mp4")
 TIMEOUT = 120
@@ -59,10 +59,15 @@ def tach_url(text: str) -> list:
     return ra
 
 
+# Mã cảnh dài trước: "cho_01" phải khớp trước "cho", nếu không file
+# "cho_01.mp3" sẽ bị nhận thành nhóm cũ "cho".
+MA_DAI_TRUOC = sorted(MA, key=len, reverse=True)
+
+
 def ma_tu_ten(ten: str):
     t = os.path.basename(ten).lower()
     t = re.sub(r"\.[a-z0-9]+$", "", t)
-    for m in MA:
+    for m in MA_DAI_TRUOC:
         if re.search(r"(^|[^a-z])" + re.escape(m) + r"([^a-z]|$)", t):
             return m
     return None
@@ -85,7 +90,7 @@ def ma_tu_dong_truoc(text: str, url: str):
             return None
         s = ds[j].strip().strip("*_`#> -")
         s = re.sub(r"^(mã|ma|code)\s*[:：]\s*", "", s, flags=re.I).strip()
-        return s.lower() if s.lower() in MA else None
+        return s.lower() if s.lower() in THEO_MA else None
     return None
 
 
@@ -151,7 +156,7 @@ def xu_ly(text: str, nguon: str, bao_cao: dict) -> None:
         if not ma and len(urls) == 1 and len(nhac) == 1:
             ma = nhac[0]
         if not ma:
-            bao_cao["chua_ro"].append({"url": u, "ly_do": "không đoán được nhóm tiếng"})
+            bao_cao["chua_ro"].append({"url": u, "ly_do": "không đoán được cảnh"})
             continue
         tam = f"/tmp/am-{i}"
         try:

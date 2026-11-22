@@ -63,6 +63,12 @@ button.phu{background:transparent}
 .tom-tat{background:#0e1726;border:1px solid var(--line);border-radius:12px;padding:12px 14px;
   margin:12px 0;font-size:13px}
 .tom-tat b{color:var(--gold)}
+.anh-mot{margin:10px 0 0;cursor:pointer}
+.anh-mot img{width:100%;max-width:300px;aspect-ratio:3/4;object-fit:cover;
+  border-radius:9px;display:block;border:1px solid var(--line);background:#0a1220}
+.anh-mot figcaption{font-size:10.5px;color:var(--muted);margin-top:3px}
+.dem{font-size:11.5px;color:var(--muted);font-weight:400}
+.tk.mo{background:#131f2e;border-color:#3a4d66;color:#a8bdd6}
 .luoi-anh{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:2px 0 0}
 .luoi-anh figure{margin:0;cursor:pointer}
 .luoi-anh img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:7px;
@@ -102,46 +108,43 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
    thích, rồi tải lên đây — game tự dùng bản của anh.</p>
 
 <div class="tom-tat">
-  <b>9 nhóm tiếng.</b> Mỗi cảnh trong game thuộc một nhóm, nên chỉ cần 9 file là phủ
-  hết. Chưa tải lên nhóm nào thì game vẫn dùng tiếng tổng hợp sẵn trong máy — không bao giờ
-  im.
+  <b>43 cảnh, mỗi cảnh một file riêng.</b> Mỗi ảnh trong game là một cảnh, có tiếng
+  riêng và từ khoá riêng. Cảnh nào chưa có file thì game dùng tiếng tổng hợp — không bao
+  giờ im.
   <div class="ml">
-    <a href="#c-cho">Chợ sớm</a><a href="#c-tran">Trận chiến</a><a href="#c-nui">Núi</a><a href="#c-san">Sân tập</a><a href="#c-vuon">Vườn thuốc</a><a href="#c-mieu">Miếu</a><a href="#c-dem">Đêm</a><a href="#c-lang">Làng</a><a href="#c-tinh">Tĩnh</a>
+    <a href="#n-cho">Chợ</a><a href="#n-tran">Trận chiến</a><a href="#n-nui">Núi</a><a href="#n-san">Sân tập</a><a href="#n-vuon">Vườn thuốc</a><a href="#n-mieu">Miếu</a><a href="#n-dem">Đêm</a><a href="#n-lang">Làng</a><a href="#n-tinh">Tĩnh</a>
   </div>
 </div>
 
 <h2>Cách làm</h2>
 <div class="card">
-  <p style="margin:0 0 10px"><b>Cách 1 — anh có sẵn file từ thư viện âm thanh</b></p>
-  <ol style="margin:0 0 16px;padding-left:20px">
-    <li>Bấm một <b>từ khoá tiếng Anh</b> dưới mỗi cảnh để copy.</li>
-    <li>Dán vào ô tìm kiếm của thư viện (Freesound, Pixabay, YouTube…). Tìm bằng
-        tiếng Anh mới ra; tiếng Việt gần như không có.</li>
+  <ol style="margin:0;padding-left:20px">
+    <li>Nhìn <b>ảnh</b> ở mỗi cảnh để chắc đúng ngữ cảnh anh cần.</li>
+    <li>Bấm một <b>từ khoá</b> để copy.</li>
+    <li>Dán vào ô tìm của thư viện (Freesound, Pixabay, YouTube…). Tìm bằng tiếng Anh
+        mới ra; tiếng Việt gần như không có.</li>
     <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
     <li>Bot tự lấy <b>30 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
   </ol>
 
-  <p style="margin:0 0 10px"><b>Cách 2 — anh muốn tự tạo bằng AI</b></p>
-  <ol style="margin:0;padding-left:20px">
-    <li>Bấm <b>📋 Copy prompt</b> của cảnh đó.</li>
-    <li>Dán vào công cụ sinh âm thanh, chọn <b>10 giây</b>, bật <b>loop</b> nếu có.</li>
-    <li>Tải file về rồi gửi lên như cách 1.</li>
-  </ol>
-
   <div class="card" style="background:#0e1726;margin:14px 0 0;padding:12px">
+    <p style="margin:0 0 8px;font-size:12.5px"><b>Hai bộ từ khoá khác nhau:</b></p>
+    <ul style="margin:0;padding-left:18px;font-size:12.5px">
+      <li><b>Từ khoá tìm</b> — để tìm file trên thư viện. Đây là thứ người ta đặt tên
+          cho file âm thanh.</li>
+      <li><b>Từ khoá mô tả</b> — để dán vào Google khi muốn hiểu tiếng đó gọi là gì,
+          hoặc tìm nguồn ở chỗ khác.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
     <p style="margin:0;font-size:12.5px"><b>Về 30 giây:</b> file anh gửi dài bao nhiêu
     cũng được, hệ thống <b>tự cắt 30 giây đầu</b>. Cảnh trong game chỉ 10 giây nên 30
     giây là quá đủ, và file nhỏ thì tải nhanh trên điện thoại. File ngắn hơn 30 giây
     thì giữ nguyên, không cắt.</p>
   </div>
 
-  <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
-    <p style="margin:0;font-size:12.5px"><b>Về thể loại:</b> đây là <b>âm thanh môi
-    trường</b> (ambience) — tiếng của nơi chốn. <b>Không phải nhạc</b>: không giai
-    điệu, không nhạc cụ, không trống, không hòa âm. Nhạc nền lặp 10 giây thì người
-    chơi nhận ra máy đang lặp; tiếng môi trường thì lặp mà không lộ.</p>
-  </div>
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
     <code>flac</code>. Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
@@ -170,50 +173,47 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   </p>
 </div>
 
-<h2>Các nhóm tiếng</h2>
+<h2 id="n-cho">Chợ<span class="dem">3 cảnh</span></h2>
 
-<article class="canh" id="c-cho" data-ma="cho" data-file="cho.mp3">
+<article class="canh" id="c-cho_01" data-ma="cho_01" data-file="cho_01.mp3">
   <header>
     <span class="so">1</span>
-    <b>Chợ sớm</b>
-    <code>cho</code>
+    <b>Chợ sớm Thất Huyền trấn</b>
+    <code>cho_01</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_cho_01.jpg" alt="Chợ sớm Thất Huyền trấn">
+    <figcaption>bc_cho_01.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Chợ lúc sạp còn đang dựng: gỗ kéo trên đất, sọt và hũ đặt xuống, bước chân thưa, bàn tán rất khẽ. Chưa đông, chưa có tiếng rao.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/cho.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/cho_01.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cho_01.jpg" alt="Chợ sớm Thất Huyền trấn"><figcaption>Chợ sớm Thất Huyền trấn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cho_02.jpg" alt="Ngõ nhỏ sau chợ — lời đồn"><figcaption>Ngõ nhỏ sau chợ — lời đồn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cho_03.jpg" alt="Góc chợ — một ngày mòn mỏi"><figcaption>Góc chợ — một ngày mòn mỏi</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Chợ sớm: người dựng sạp, hàng hóa đặt xuống, bàn tán xa, tiếng bước chân trên đất. Không nhạc.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-cho">Ambience of a small market square in a Vietnamese town at first light, when the stalls are only just opening. The square is not full yet: a few vendors are setting up, so the sound is sparse and cool. Close and clear: wooden trestles being dragged and set down, baskets and clay jars knocking together, crates of produce thumping onto boards, footsteps on packed earth, cloth awnings being shaken out, and a soft morning breeze moving through the square. Somewhere further back, a low murmur of voices - no words you can make out, just the texture of people talking quietly while they work. A rooster far away. Everything is small, ordinary, unhurried. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-cho', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-cho', 'cho.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;morning market ambience&#x27;)">morning market ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;vietnamese market crowd&#x27;)">vietnamese market crowd</button><button type="button" class="tk" onclick="cpChu(this,&#x27;small town market early morning&#x27;)">small town market early morning</button><button type="button" class="tk" onclick="cpChu(this,&#x27;market stall chatter&#x27;)">market stall chatter</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;morning market ambience&#x27;)">morning market ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;market opening early morning&#x27;)">market opening early morning</button><button type="button" class="tk" onclick="cpChu(this,&#x27;empty market stalls setting up&#x27;)">empty market stalls setting up</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;sparse market early morning ambience&#x27;)">sparse market early morning ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;wooden stalls being set up sound&#x27;)">wooden stalls being set up sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet market before crowds&#x27;)">quiet market before crowds</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm cho.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="cho.mp3" data-ma="cho">
+  <div class="gui" data-gui data-file="cho_01.mp3" data-ma="cho_01">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
@@ -229,48 +229,45 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </div>
 </article>
 
-<article class="canh" id="c-tran" data-ma="tran" data-file="tran.mp3">
+<article class="canh" id="c-cho_02" data-ma="cho_02" data-file="cho_02.mp3">
   <header>
     <span class="so">2</span>
-    <b>Trận chiến</b>
-    <code>tran</code>
+    <b>Ngõ nhỏ sau chợ — lời đồn</b>
+    <code>cho_02</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_cho_02.jpg" alt="Ngõ nhỏ sau chợ — lời đồn">
+    <figcaption>bc_cho_02.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Ngõ hẹp sau chợ: tiếng vọng sát vách, bước chân gần, giọng nói nhỏ ngay sau bức tường, đồ đạc khua trong sân. Chen chúc, kín, không thoáng.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/tran.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/cho_02.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tran_lua.jpg" alt="Dã Lang Bang tập kích"><figcaption>Dã Lang Bang tập kích</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tran_lua_2.jpg" alt="Xuống trấn — cứu dân"><figcaption>Xuống trấn — cứu dân</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tran_lua_3.jpg" alt="Thất Huyền Môn — cổng vỡ"><figcaption>Thất Huyền Môn — cổng vỡ</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_doi_mat.jpg" alt="Cổng đông — đối mặt địch"><figcaption>Cổng đông — đối mặt địch</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_giau.jpg" alt="Cổng đông — giấu thực lực"><figcaption>Cổng đông — giấu thực lực</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_toan_luc.jpg" alt="Cổng đông — dùng toàn lực"><figcaption>Cổng đông — dùng toàn lực</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_quyen.jpg" alt="Cổng đông — Thất Huyền quyền"><figcaption>Cổng đông — Thất Huyền quyền</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_hung_ba.jpg" alt="Cổng đông — gọi tên Hùng Bá"><figcaption>Cổng đông — gọi tên Hùng Bá</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_hoa_truong_cuu.jpg" alt="Hỏa trường — cứu người"><figcaption>Hỏa trường — cứu người</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Trận đánh: thép chạm thép, đất đá, gỗ vỡ, hơi thở nặng, tiếng hét xa không rõ chữ. Không nhạc.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-tran">Ambience of a cold-weapon battle, heard from just behind the front line. No music and no rhythm - the sound is chaotic and uneven, the way a real fight sounds. Close: boots slipping on mud and gravel, breath coming hard, cloth and leather moving fast, steel meeting steel in irregular clangs, wooden shafts knocking, a shield taking a hit. Around it: bodies colliding, something wooden splintering, debris falling. Further off: a shapeless roar of many voices, distant shouting that never resolves into words, and the low rumble of a large crowd in motion. No single event is louder than the rest; it is a wall of confused, physical noise. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-tran', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-tran', 'tran.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;battlefield ambience&#x27;)">battlefield ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;medieval battle crowd distant&#x27;)">medieval battle crowd distant</button><button type="button" class="tk" onclick="cpChu(this,&#x27;sword clash ambience&#x27;)">sword clash ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;war chaos ambience&#x27;)">war chaos ambience</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;narrow alley ambience&#x27;)">narrow alley ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;market back alley sound&#x27;)">market back alley sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;close alleyway footsteps&#x27;)">close alleyway footsteps</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;tight alley reverb ambience&#x27;)">tight alley reverb ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;narrow lane background voices&#x27;)">narrow lane background voices</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;alley behind market ambience&#x27;)">alley behind market ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm cho.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="tran.mp3" data-ma="tran">
+  <div class="gui" data-gui data-file="cho_02.mp3" data-ma="cho_02">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
@@ -286,48 +283,45 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </div>
 </article>
 
-<article class="canh" id="c-nui" data-ma="nui" data-file="nui.mp3">
+<article class="canh" id="c-cho_03" data-ma="cho_03" data-file="cho_03.mp3">
   <header>
     <span class="so">3</span>
-    <b>Núi</b>
-    <code>nui</code>
+    <b>Góc chợ — một ngày mòn mỏi</b>
+    <code>cho_03</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_cho_03.jpg" alt="Góc chợ — một ngày mòn mỏi">
+    <figcaption>bc_cho_03.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Chợ lúc chiều muộn, đã thưa: người dọn hàng, thùng gỗ đậy lại, bước chân mệt, tiếng nói rời rạc. Không còn huyên náo, chỉ còn mệt.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/nui.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/cho_03.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_duong_mon_nui.jpg" alt="Đường mòn lên núi — chạng vạng"><figcaption>Đường mòn lên núi — chạng vạng</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_khe_nui_dem.jpg" alt="Hậu sơn — khe núi đêm, theo lời đồn"><figcaption>Hậu sơn — khe núi đêm, theo lời đồn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_khe_nui_chon.jpg" alt="Hậu sơn — chôn trả lại"><figcaption>Hậu sơn — chôn trả lại</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Núi cao: gió qua đá và cỏ, âm vực rộng, rất ít sinh vật. Không nhạc.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-nui">Ambience high on a mountain pass. The dominant sound is wind: a wide, cold wind that moves across bare rock and dry grass, sometimes whistling thin through a gap in the stone, sometimes dropping to a low steady rush with real weight in the low end. It is not a gentle breeze - it has size. Beneath it, an enormous sense of open space and height, almost no reverb because there is nothing nearby to reflect from. A single distant bird call, twice, and then nothing. Very sparse. No other living thing, no water, no people. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-nui', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-nui', 'nui.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;mountain wind ambience&#x27;)">mountain wind ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;high altitude wind&#x27;)">high altitude wind</button><button type="button" class="tk" onclick="cpChu(this,&#x27;mountain pass wind&#x27;)">mountain pass wind</button><button type="button" class="tk" onclick="cpChu(this,&#x27;cold mountain ambience&#x27;)">cold mountain ambience</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;late afternoon market ambience&#x27;)">late afternoon market ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;market winding down evening&#x27;)">market winding down evening</button><button type="button" class="tk" onclick="cpChu(this,&#x27;crowd thinning ambience&#x27;)">crowd thinning ambience</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;tired market end of day ambience&#x27;)">tired market end of day ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;market packing up sound&#x27;)">market packing up sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;evening market sparse crowd&#x27;)">evening market sparse crowd</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm cho.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="nui.mp3" data-ma="nui">
+  <div class="gui" data-gui data-file="cho_03.mp3" data-ma="cho_03">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
@@ -342,49 +336,47 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
     <div class="gui-tt" data-tt hidden></div>
   </div>
 </article>
+<h2 id="n-tran">Trận chiến<span class="dem">9 cảnh</span></h2>
 
-<article class="canh" id="c-san" data-ma="san" data-file="san.mp3">
+<article class="canh" id="c-tran_lua" data-ma="tran_lua" data-file="tran_lua.mp3">
   <header>
     <span class="so">4</span>
-    <b>Sân tập</b>
-    <code>san</code>
+    <b>Dã Lang Bang tập kích</b>
+    <code>tran_lua</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tran_lua.jpg" alt="Dã Lang Bang tập kích">
+    <figcaption>bc_tran_lua.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Tập kích bất ngờ: hỗn loạn bùng lên, lửa cháy, tiếng hét không rõ chữ, đồ vật vỡ, chạy loạn. Chưa thành trận đánh — còn là hoảng loạn.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/san.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/tran_lua.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_tap_ngay.jpg" alt="Sân tập Thất Huyền Môn — giữa ngày"><figcaption>Sân tập Thất Huyền Môn — giữa ngày</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_tap_chen_ep.jpg" alt="Sân tập — bị chèn ép"><figcaption>Sân tập — bị chèn ép</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_sau_luyen_dem.jpg" alt="Tân xá — luyện lén trong đêm"><figcaption>Tân xá — luyện lén trong đêm</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_tap_cai_lai.jpg" alt="Sân tập — cãi lại"><figcaption>Sân tập — cãi lại</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_sau_anh_sang.jpg" alt="Sân sau — đêm, dưới gốc cổ thụ"><figcaption>Sân sau — đêm, dưới gốc cổ thụ</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_sau_chon_lai.jpg" alt="Sân sau — chôn trả lại"><figcaption>Sân sau — chôn trả lại</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Sân tập: chân trần trên nền đất nện, quần áo vải, hơi thở, một tiếng đáp tay xa. Không nhạc.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-san">Ambience of an empty martial arts training courtyard in the cool of the morning. Close: bare feet and cloth shoes moving on packed earth, the soft scuff and pivot of someone shifting weight, loose cotton trousers snapping as they move, controlled breathing, an occasional sharp exhale. The courtyard has a little natural echo off a low wall. Somewhere behind, a broom sweeping stone, and once, faintly, the flat sound of a hand striking a padded surface. No voices, no counting, no shouting, no music. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-san', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-san', 'san.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;martial arts training ambience&#x27;)">martial arts training ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;courtyard footsteps ambience&#x27;)">courtyard footsteps ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;wooden floor movement&#x27;)">wooden floor movement</button><button type="button" class="tk" onclick="cpChu(this,&#x27;training hall ambience&#x27;)">training hall ambience</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;raid attack ambience&#x27;)">raid attack ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;burning village attack&#x27;)">burning village attack</button><button type="button" class="tk" onclick="cpChu(this,&#x27;chaos attack night&#x27;)">chaos attack night</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;sudden attack chaos ambience&#x27;)">sudden attack chaos ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;fire and screaming distant&#x27;)">fire and screaming distant</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;raid panic soundscape&#x27;)">raid panic soundscape</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="san.mp3" data-ma="san">
+  <div class="gui" data-gui data-file="tran_lua.mp3" data-ma="tran_lua">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
@@ -400,48 +392,45 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </div>
 </article>
 
-<article class="canh" id="c-vuon" data-ma="vuon" data-file="vuon.mp3">
+<article class="canh" id="c-tran_lua_2" data-ma="tran_lua_2" data-file="tran_lua_2.mp3">
   <header>
     <span class="so">5</span>
-    <b>Vườn thuốc</b>
-    <code>vuon</code>
+    <b>Xuống trấn — cứu dân</b>
+    <code>tran_lua_2</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tran_lua_2.jpg" alt="Xuống trấn — cứu dân">
+    <figcaption>bc_tran_lua_2.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Chạy xuống trấn giữa lửa: cháy gần, gỗ nổ, người gọi nhau, bước chân dồn trên đá. Chen giữa đám đông đang tháo chạy.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/vuon.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/tran_lua_2.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_gap.jpg" alt="Vườn thuốc phía sau môn"><figcaption>Vườn thuốc phía sau môn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_hoi.jpg" alt="Vườn thuốc — hỏi thẳng"><figcaption>Vườn thuốc — hỏi thẳng</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_im.jpg" alt="Vườn thuốc — im lặng"><figcaption>Vườn thuốc — im lặng</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_ngoc.jpg" alt="Vườn thuốc — Mạc Đại Phu và khối ngọc"><figcaption>Vườn thuốc — Mạc Đại Phu và khối ngọc</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_dem.jpg" alt="Vườn thuốc — chôn trả lại"><figcaption>Vườn thuốc — chôn trả lại</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Vườn thuốc: lá cọ nhau, côn trùng nhỏ, chim xa, tay hái lá. Không nhạc.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-vuon">Ambience of a small walled herb garden in the morning. Close: leaves and stems brushing against each other in a light breeze, a hand parting foliage and snapping a stem, the soft rustle of a bundle of cut plants being laid down. Small life everywhere but never loud: a few bees working close by, a thin thread of insects in the background, one bird calling from a wall and answering from further off. Warm, enclosed, still air. No water, no voices, no music. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-vuon', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-vuon', 'vuon.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;herb garden ambience&#x27;)">herb garden ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;garden birds insects ambience&#x27;)">garden birds insects ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;leaves rustling ambience&#x27;)">leaves rustling ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet garden morning&#x27;)">quiet garden morning</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;rescue amid fire ambience&#x27;)">rescue amid fire ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;burning street ambience&#x27;)">burning street ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;emergency crowd fire&#x27;)">emergency crowd fire</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;fire rescue background sound&#x27;)">fire rescue background sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;burning town street ambience&#x27;)">burning town street ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;people fleeing fire sound&#x27;)">people fleeing fire sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="vuon.mp3" data-ma="vuon">
+  <div class="gui" data-gui data-file="tran_lua_2.mp3" data-ma="tran_lua_2">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
@@ -457,48 +446,45 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </div>
 </article>
 
-<article class="canh" id="c-mieu" data-ma="mieu" data-file="mieu.mp3">
+<article class="canh" id="c-tran_lua_3" data-ma="tran_lua_3" data-file="tran_lua_3.mp3">
   <header>
     <span class="so">6</span>
-    <b>Miếu</b>
-    <code>mieu</code>
+    <b>Thất Huyền Môn — cổng vỡ</b>
+    <code>tran_lua_3</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tran_lua_3.jpg" alt="Thất Huyền Môn — cổng vỡ">
+    <figcaption>bc_tran_lua_3.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Cổng gỗ vỡ: tiếng gỗ lớn gãy, bản lề bật, đám đông tràn qua. Nặng, chát, có lực va đập thật.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/mieu.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/tran_lua_3.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_mieu_hoang.jpg" alt="Ngoài miếu — quan sát"><figcaption>Ngoài miếu — quan sát</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_mieu_trong.jpg" alt="Trong miếu — xác người còn ấm"><figcaption>Trong miếu — xác người còn ấm</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_doat_hop.jpg" alt="Đoạt hộp — Đỗ Tam phản phệ"><figcaption>Đoạt hộp — Đỗ Tam phản phệ</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tu_khiem.jpg" alt="Tu luyện kiếm đạo — đêm đầu"><figcaption>Tu luyện kiếm đạo — đêm đầu</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Miếu cổ: phòng đá rỗng, tiếng vọng dài, gió lùa, một tiếng chuông đồng xa. Không nhạc, không tụng kinh.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-mieu">Room tone of an old stone shrine, empty and cold. The space is large and hard: a long natural reverb tail on everything, so even small sounds hang in the air. Close: a faint draught moving through the doorway, dust and grit shifting, a dry wooden beam creaking once as it settles. Somewhere far outside, a single small bronze bell is struck and allowed to die away completely. Nothing else happens. It is not silent - the room itself has a low, wide presence - but there is no activity in it. No chanting, no voices, no music. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-mieu', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-mieu', 'mieu.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;temple ambience&#x27;)">temple ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;empty shrine room tone&#x27;)">empty shrine room tone</button><button type="button" class="tk" onclick="cpChu(this,&#x27;stone hall reverb ambience&#x27;)">stone hall reverb ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet temple interior&#x27;)">quiet temple interior</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;gate breaking battle ambience&#x27;)">gate breaking battle ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;wooden gate smash sound&#x27;)">wooden gate smash sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;siege breach ambience&#x27;)">siege breach ambience</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;heavy gate crashing sound&#x27;)">heavy gate crashing sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;fortified gate breaking ambience&#x27;)">fortified gate breaking ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;battle at gate soundscape&#x27;)">battle at gate soundscape</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="mieu.mp3" data-ma="mieu">
+  <div class="gui" data-gui data-file="tran_lua_3.mp3" data-ma="tran_lua_3">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
@@ -514,48 +500,45 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </div>
 </article>
 
-<article class="canh" id="c-dem" data-ma="dem" data-file="dem.mp3">
+<article class="canh" id="c-cong_dong_doi_mat" data-ma="cong_dong_doi_mat" data-file="cong_dong_doi_mat.mp3">
   <header>
     <span class="so">7</span>
-    <b>Đêm</b>
-    <code>dem</code>
+    <b>Cổng đông — đối mặt địch</b>
+    <code>cong_dong_doi_mat</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_cong_dong_doi_mat.jpg" alt="Cổng đông — đối mặt địch">
+    <figcaption>bc_cong_dong_doi_mat.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đối mặt trước khi đánh: căng, gần như im, chỉ có gió, thở, và tiếng vải áo khẽ động. Chưa có tiếng thép — chính cái im mới là căng.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/dem.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/cong_dong_doi_mat.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_dem.jpg" alt="Tân xá — tu luyện đêm đầu"><figcaption>Tân xá — tu luyện đêm đầu</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_dem_tap_kich.jpg" alt="Đêm cuối — Dã Lang Bang tập kích"><figcaption>Đêm cuối — Dã Lang Bang tập kích</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Đêm đồng quê: dế và côn trùng dày, gió nhẹ, chó sủa rất xa. Không nhạc.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-dem">Ambience of open countryside at night. The air is full of insects - crickets and cicadas layering over each other in slow, uneven waves, close and then further away, never in time with anything. Underneath, a very low steady night air moving across fields. Once, a dog barks far off and stops. Once, dry grass shifts as something small moves through it. Dark, wide, empty. No voices, no music, no engine. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-dem', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-dem', 'dem.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;night countryside ambience&#x27;)">night countryside ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;crickets night field&#x27;)">crickets night field</button><button type="button" class="tk" onclick="cpChu(this,&#x27;night insects distant dog&#x27;)">night insects distant dog</button><button type="button" class="tk" onclick="cpChu(this,&#x27;rural night ambience&#x27;)">rural night ambience</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;standoff tension ambience&#x27;)">standoff tension ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;facing enemy silence&#x27;)">facing enemy silence</button><button type="button" class="tk" onclick="cpChu(this,&#x27;western gate confrontation&#x27;)">western gate confrontation</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;tense standoff quiet ambience&#x27;)">tense standoff quiet ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;before fight tension sound&#x27;)">before fight tension sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;two sides facing ambience&#x27;)">two sides facing ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="dem.mp3" data-ma="dem">
+  <div class="gui" data-gui data-file="cong_dong_doi_mat.mp3" data-ma="cong_dong_doi_mat">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
@@ -571,48 +554,45 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </div>
 </article>
 
-<article class="canh" id="c-lang" data-ma="lang" data-file="lang.mp3">
+<article class="canh" id="c-cong_dong_giau" data-ma="cong_dong_giau" data-file="cong_dong_giau.mp3">
   <header>
     <span class="so">8</span>
-    <b>Làng</b>
-    <code>lang</code>
+    <b>Cổng đông — giấu thực lực</b>
+    <code>cong_dong_giau</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_cong_dong_giau.jpg" alt="Cổng đông — giấu thực lực">
+    <figcaption>bc_cong_dong_giau.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Giấu lực: tiếng đánh bị nén lại, hơi thở giữ, bước chân chậm và chắc. Không bùng nổ, nhưng nặng.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/lang.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/cong_dong_giau.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_hoang.jpg" alt="Sau trận — giữa đống đổ nát"><figcaption>Sau trận — giữa đống đổ nát</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_binh_minh.jpg" alt="Kết chương — bình minh Thất Huyền trấn"><figcaption>Kết chương — bình minh Thất Huyền trấn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_sang.jpg" alt="Tân xá Thất Huyền Môn — sáng"><figcaption>Tân xá Thất Huyền Môn — sáng</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_quan_nuoc.jpg" alt="Quán nước đầu trấn — dò tin"><figcaption>Quán nước đầu trấn — dò tin</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_song_tu.jpg" alt="Tân xá — đêm, lần song tu đầu tiên"><figcaption>Tân xá — đêm, lần song tu đầu tiên</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_kho_tu.jpg" alt="Tân xá — khổ tu, lần thất bại"><figcaption>Tân xá — khổ tu, lần thất bại</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_suyt_lo.jpg" alt="Tân xá — suýt bị phát hiện"><figcaption>Tân xá — suýt bị phát hiện</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_dot_pha.jpg" alt="Tân xá — đột phá Luyện Khí tầng hai"><figcaption>Tân xá — đột phá Luyện Khí tầng hai</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_mon_phai_tan_hoang.jpg" alt="Sau trận — giữa đống đổ nát"><figcaption>Sau trận — giữa đống đổ nát</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_binh_minh_ngoc_cot.jpg" alt="Kết chương — bình minh Thất Huyền Môn"><figcaption>Kết chương — bình minh Thất Huyền Môn</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Làng quê: sinh hoạt thường ngày, gà, chó, tiếng người xa không rõ chữ, treo gió. Không nhạc.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-lang">Ambience of a small farming village in the middle of an ordinary day. Layered and unremarkable: a few chickens scratching and clucking close by, a dog barking once somewhere down the lane, bamboo and thatch moving in a light wind, a wooden door opening, water being poured into a clay pot. Further back, a loose bed of village activity - indistinct voices talking at normal volume, a child, something being carried, a cart wheel on packed earth. Nothing is foreground, nothing is a story; it is simply a place where people live. No words you can make out, no music. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-lang', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-lang', 'lang.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;village ambience&#x27;)">village ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;rural village daytime&#x27;)">rural village daytime</button><button type="button" class="tk" onclick="cpChu(this,&#x27;small village people distant&#x27;)">small village people distant</button><button type="button" class="tk" onclick="cpChu(this,&#x27;countryside village life&#x27;)">countryside village life</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;held breath tension ambience&#x27;)">held breath tension ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;restrained fight ambience&#x27;)">restrained fight ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet defensive stance&#x27;)">quiet defensive stance</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;suppressed tension ambience&#x27;)">suppressed tension ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;controlled breathing fight sound&#x27;)">controlled breathing fight sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;holding back ambience&#x27;)">holding back ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="lang.mp3" data-ma="lang">
+  <div class="gui" data-gui data-file="cong_dong_giau.mp3" data-ma="cong_dong_giau">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
@@ -628,48 +608,1888 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </div>
 </article>
 
-<article class="canh" id="c-tinh" data-ma="tinh" data-file="tinh.mp3">
+<article class="canh" id="c-cong_dong_toan_luc" data-ma="cong_dong_toan_luc" data-file="cong_dong_toan_luc.mp3">
   <header>
     <span class="so">9</span>
-    <b>Tĩnh</b>
-    <code>tinh</code>
+    <b>Cổng đông — dùng toàn lực</b>
+    <code>cong_dong_toan_luc</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_cong_dong_toan_luc.jpg" alt="Cổng đông — dùng toàn lực">
+    <figcaption>bc_cong_dong_toan_luc.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Toàn lực: va đập mạnh, gió bị xé, đất bật, hơi thở bung ra. To nhất trong nhóm cổng đông.</p>
   <div class="meta">
-    <div><span class="k">lưu là</span> <code>assets/am/tinh.mp3</code></div>
+    <div><span class="k">lưu là</span> <code>assets/am/cong_dong_toan_luc.mp3</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_dot_pha.jpg" alt="Đột phá Luyện Khí"><figcaption>Đột phá Luyện Khí</figcaption></figure>
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">Yên ắng: phòng kín, tiếng vọng nhỏ, gỗ kêu, gió ngoài cửa sổ. Không nhạc. Không phải file hỏng.</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-tinh">Room tone of a quiet interior - a small wooden room with a shuttered window. Almost nothing happens, and that is the point: this is the sound of a room that is deliberately still, not a recording that failed. Close: the very low presence of an enclosed space, a wooden floorboard settling, a shutter moving a fraction against its frame, a faint breeze passing outside the wall. One small object is set down on wood and the sound dies. No voices, no music, no electrical hum, no air conditioning, no clock. Seamless ten-second loop that repeats without a seam: no fade in, no fade out, no intro, no ending, no build-up, no resolution. The texture must sit at a steady level for the whole ten seconds - it is a bed that keeps going, not a clip that starts and stops. Stereo. Duration exactly 10 seconds.
-
-This is an ambience soundscape, NOT music. No melody, no musical instruments, no chords, no harmony, no drum beat, no rhythmic pulse, no bassline, no singing, no humming, no soundtrack. Nothing in this file should have a tune. What fills the ten seconds is the sound of the place itself: air, materials, water, weather, small living things, distant indistinct activity. Naturalistic, believable, unremarkable - the sound of somewhere rather than the sound of a song. Recorded close and clean with real depth: full low end below 120 Hz where the scene has weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or like a telephone or a radio. No intelligible speech, no narration, no voice-over, no radio host, no DJ. No lo-fi texture, no tape hiss, no vinyl crackle, no static, no radio tuning noise. No clipping, no distortion, no sudden loud peaks. Peak level below -3 dBFS.</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-tinh', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-tinh', 'tinh.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;quiet room tone&#x27;)">quiet room tone</button><button type="button" class="tk" onclick="cpChu(this,&#x27;interior room ambience&#x27;)">interior room ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;silent room atmosphere&#x27;)">silent room atmosphere</button><button type="button" class="tk" onclick="cpChu(this,&#x27;empty house room tone&#x27;)">empty house room tone</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;full power strike ambience&#x27;)">full power strike ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;explosive impact fight sound&#x27;)">explosive impact fight sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;all out attack ambience&#x27;)">all out attack ambience</button>
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;powerful impact ambience&#x27;)">powerful impact ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;full force martial exchange&#x27;)">full force martial exchange</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;explosive clash soundscape&#x27;)">explosive clash soundscape</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
   </div>
 
-  <div class="gui" data-gui data-file="tinh.mp3" data-ma="tinh">
+  <div class="gui" data-gui data-file="cong_dong_toan_luc.mp3" data-ma="cong_dong_toan_luc">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-cong_dong_quyen" data-ma="cong_dong_quyen" data-file="cong_dong_quyen.mp3">
+  <header>
+    <span class="so">10</span>
+    <b>Cổng đông — Thất Huyền quyền</b>
+    <code>cong_dong_quyen</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_cong_dong_quyen.jpg" alt="Cổng đông — Thất Huyền quyền">
+    <figcaption>bc_cong_dong_quyen.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đánh tay gần: quyền chạm quyền, tay áo phần phật, bước xoay trên đá, hơi thở đều. Gần và khô, không có nhạc.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/cong_dong_quyen.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;martial arts fist exchange ambience&#x27;)">martial arts fist exchange ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;punch impact ambience&#x27;)">punch impact ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;close combat sound&#x27;)">close combat sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;fist strike impact sound&#x27;)">fist strike impact sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;close quarters combat ambience&#x27;)">close quarters combat ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;martial exchange soundscape&#x27;)">martial exchange soundscape</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="cong_dong_quyen.mp3" data-ma="cong_dong_quyen">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-cong_dong_hung_ba" data-ma="cong_dong_hung_ba" data-file="cong_dong_hung_ba.mp3">
+  <header>
+    <span class="so">11</span>
+    <b>Cổng đông — gọi tên Hùng Bá</b>
+    <code>cong_dong_hung_ba</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_cong_dong_hung_ba.jpg" alt="Cổng đông — gọi tên Hùng Bá">
+    <figcaption>bc_cong_dong_hung_ba.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Một tiếng gọi vang lên giữa sân: mọi thứ khựng lại, chỉ còn tiếng vọng và gió. Có giọng người nhưng không rõ chữ.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/cong_dong_hung_ba.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;shout across courtyard ambience&#x27;)">shout across courtyard ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;voice calling out echo&#x27;)">voice calling out echo</button><button type="button" class="tk" onclick="cpChu(this,&#x27;sudden halt ambience&#x27;)">sudden halt ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;single shout echo courtyard&#x27;)">single shout echo courtyard</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;challenge shout ambience&#x27;)">challenge shout ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;everything stops sound&#x27;)">everything stops sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="cong_dong_hung_ba.mp3" data-ma="cong_dong_hung_ba">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-hoa_truong_cuu" data-ma="hoa_truong_cuu" data-file="hoa_truong_cuu.mp3">
+  <header>
+    <span class="so">12</span>
+    <b>Hỏa trường — cứu người</b>
+    <code>hoa_truong_cuu</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_hoa_truong_cuu.jpg" alt="Hỏa trường — cứu người">
+    <figcaption>bc_hoa_truong_cuu.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Giữa đám cháy: lửa nổ lách tách, gỗ cháy sụp, khói, bước chân vội trên tro. Lửa là chính, người ở phía sau.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/hoa_truong_cuu.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;fire scene rescue ambience&#x27;)">fire scene rescue ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;burning debris crackle&#x27;)">burning debris crackle</button><button type="button" class="tk" onclick="cpChu(this,&#x27;smoke fire crackle sound&#x27;)">smoke fire crackle sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;fire crackling close ambience&#x27;)">fire crackling close ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;burning wood debris sound&#x27;)">burning wood debris sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;rescue in smoke ambience&#x27;)">rescue in smoke ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm tran.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="hoa_truong_cuu.mp3" data-ma="hoa_truong_cuu">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+<h2 id="n-nui">Núi<span class="dem">3 cảnh</span></h2>
+
+<article class="canh" id="c-duong_mon_nui" data-ma="duong_mon_nui" data-file="duong_mon_nui.mp3">
+  <header>
+    <span class="so">13</span>
+    <b>Đường mòn lên núi — chạng vạng</b>
+    <code>duong_mon_nui</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_duong_mon_nui.jpg" alt="Đường mòn lên núi — chạng vạng">
+    <figcaption>bc_duong_mon_nui.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đường mòn chạng vạng: gió qua đá và cỏ khô, bước chân trên sỏi, không gian rộng. Chưa tối hẳn, còn tiếng chim xa.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/duong_mon_nui.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;mountain trail dusk ambience&#x27;)">mountain trail dusk ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;mountain path wind ambience&#x27;)">mountain path wind ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;hiking trail evening sound&#x27;)">hiking trail evening sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;dusk mountain trail ambience&#x27;)">dusk mountain trail ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;wind on mountain path&#x27;)">wind on mountain path</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;evening mountain walk soundscape&#x27;)">evening mountain walk soundscape</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm nui.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="duong_mon_nui.mp3" data-ma="duong_mon_nui">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-khe_nui_dem" data-ma="khe_nui_dem" data-file="khe_nui_dem.mp3">
+  <header>
+    <span class="so">14</span>
+    <b>Hậu sơn — khe núi đêm</b>
+    <code>khe_nui_dem</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_khe_nui_dem.jpg" alt="Hậu sơn — khe núi đêm">
+    <figcaption>bc_khe_nui_dem.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Khe núi ban đêm: gió dồn trong khe hẹp, vọng lại, côn trùng thưa, lạnh. Hẹp hơn đường mòn, có tiếng vọng.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/khe_nui_dem.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;mountain ravine night ambience&#x27;)">mountain ravine night ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;narrow canyon wind night&#x27;)">narrow canyon wind night</button><button type="button" class="tk" onclick="cpChu(this,&#x27;night mountain gorge sound&#x27;)">night mountain gorge sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;night ravine wind ambience&#x27;)">night ravine wind ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;canyon echo night sound&#x27;)">canyon echo night sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;cold mountain night ambience&#x27;)">cold mountain night ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm nui.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="khe_nui_dem.mp3" data-ma="khe_nui_dem">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-khe_nui_chon" data-ma="khe_nui_chon" data-file="khe_nui_chon.mp3">
+  <header>
+    <span class="so">15</span>
+    <b>Hậu sơn — chôn trả lại</b>
+    <code>khe_nui_chon</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_khe_nui_chon.jpg" alt="Hậu sơn — chôn trả lại">
+    <figcaption>bc_khe_nui_chon.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đào đất ban đêm trong khe núi: xẻng lưỡi vào đất, sỏi rời, hơi thở nặng, gió khe núi phía sau. Việc nặng, làm lặng lẽ.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/khe_nui_chon.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;digging soil night ambience&#x27;)">digging soil night ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;shovel dirt quiet night&#x27;)">shovel dirt quiet night</button><button type="button" class="tk" onclick="cpChu(this,&#x27;burying ground night sound&#x27;)">burying ground night sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;digging in earth sound&#x27;)">digging in earth sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;soil shovel night ambience&#x27;)">soil shovel night ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet burial ground ambience&#x27;)">quiet burial ground ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm nui.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="khe_nui_chon.mp3" data-ma="khe_nui_chon">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+<h2 id="n-san">Sân tập<span class="dem">6 cảnh</span></h2>
+
+<article class="canh" id="c-san_tap_ngay" data-ma="san_tap_ngay" data-file="san_tap_ngay.mp3">
+  <header>
+    <span class="so">16</span>
+    <b>Sân tập Thất Huyền Môn — giữa ngày</b>
+    <code>san_tap_ngay</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_san_tap_ngay.jpg" alt="Sân tập Thất Huyền Môn — giữa ngày">
+    <figcaption>bc_san_tap_ngay.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Sân tập giữa ngày, đông: nhiều người cùng luyện, chân trên đất nện, vải áo phần phật, tiếng đếm nhịp xa. Đều và có nhịp của buổi tập.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/san_tap_ngay.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;training courtyard day ambience&#x27;)">training courtyard day ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;martial arts practice ambience&#x27;)">martial arts practice ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;many students training sound&#x27;)">many students training sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;busy training yard ambience&#x27;)">busy training yard ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;group martial practice sound&#x27;)">group martial practice sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;daytime courtyard activity&#x27;)">daytime courtyard activity</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm san.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="san_tap_ngay.mp3" data-ma="san_tap_ngay">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-san_tap_chen_ep" data-ma="san_tap_chen_ep" data-file="san_tap_chen_ep.mp3">
+  <header>
+    <span class="so">17</span>
+    <b>Sân tập — bị chèn ép</b>
+    <code>san_tap_chen_ep</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_san_tap_chen_ep.jpg" alt="Sân tập — bị chèn ép">
+    <figcaption>bc_san_tap_chen_ep.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Bị vây giữa sân: tiếng cười khẽ, bàn tán chế giễu ở phía sau, bước chân vòng quanh. Không ai nói to, nhưng không thân thiện.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/san_tap_chen_ep.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;tense courtyard ambience&#x27;)">tense courtyard ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;crowd mocking ambience&#x27;)">crowd mocking ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;hostile crowd murmur&#x27;)">hostile crowd murmur</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;hostile crowd murmur ambience&#x27;)">hostile crowd murmur ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;tense training yard sound&#x27;)">tense training yard sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;uncomfortable crowd ambience&#x27;)">uncomfortable crowd ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm san.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="san_tap_chen_ep.mp3" data-ma="san_tap_chen_ep">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-san_tap_cai_lai" data-ma="san_tap_cai_lai" data-file="san_tap_cai_lai.mp3">
+  <header>
+    <span class="so">18</span>
+    <b>Sân tập — cãi lại</b>
+    <code>san_tap_cai_lai</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_san_tap_cai_lai.jpg" alt="Sân tập — cãi lại">
+    <figcaption>bc_san_tap_cai_lai.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Cãi lại: giọng bật lên giữa sân, rồi im phăng phắc, rồi xì xào. Có giọng người nhưng không rõ chữ.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/san_tap_cai_lai.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;argument courtyard ambience&#x27;)">argument courtyard ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;raised voices argument sound&#x27;)">raised voices argument sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;confrontation crowd ambience&#x27;)">confrontation crowd ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;angry voices argument ambience&#x27;)">angry voices argument ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;sudden silence after shout&#x27;)">sudden silence after shout</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;tense confrontation sound&#x27;)">tense confrontation sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm san.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="san_tap_cai_lai.mp3" data-ma="san_tap_cai_lai">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-san_sau_luyen_dem" data-ma="san_sau_luyen_dem" data-file="san_sau_luyen_dem.mp3">
+  <header>
+    <span class="so">19</span>
+    <b>Tân xá — luyện lén trong đêm</b>
+    <code>san_sau_luyen_dem</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_san_sau_luyen_dem.jpg" alt="Tân xá — luyện lén trong đêm">
+    <figcaption>bc_san_sau_luyen_dem.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Luyện lén ban đêm: rất ít tiếng, chân trần trên đất, hơi thở nén, vải khẽ động. Phải giữ im nên mọi thứ đều nhỏ.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/san_sau_luyen_dem.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;night training alone ambience&#x27;)">night training alone ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night practice sound&#x27;)">quiet night practice sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;solo martial practice night&#x27;)">solo martial practice night</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;secret night training ambience&#x27;)">secret night training ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet courtyard night sound&#x27;)">quiet courtyard night sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;lone practice at night&#x27;)">lone practice at night</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm san.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="san_sau_luyen_dem.mp3" data-ma="san_sau_luyen_dem">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-san_sau_anh_sang" data-ma="san_sau_anh_sang" data-file="san_sau_anh_sang.mp3">
+  <header>
+    <span class="so">20</span>
+    <b>Sân sau — đêm, dưới gốc cổ thụ</b>
+    <code>san_sau_anh_sang</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_san_sau_anh_sang.jpg" alt="Sân sau — đêm, dưới gốc cổ thụ">
+    <figcaption>bc_san_sau_anh_sang.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Dưới gốc cổ thụ ban đêm: lá trên cao xào xạc, thân cây khẽ kêu, côn trùng thưa, không gian tĩnh.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/san_sau_anh_sang.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;night tree wind ambience&#x27;)">night tree wind ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;old tree leaves night&#x27;)">old tree leaves night</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet garden night ambience&#x27;)">quiet garden night ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;large tree wind night ambience&#x27;)">large tree wind night ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;leaves overhead night sound&#x27;)">leaves overhead night sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still night garden ambience&#x27;)">still night garden ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm san.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="san_sau_anh_sang.mp3" data-ma="san_sau_anh_sang">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-san_sau_chon_lai" data-ma="san_sau_chon_lai" data-file="san_sau_chon_lai.mp3">
+  <header>
+    <span class="so">21</span>
+    <b>Sân sau — chôn trả lại</b>
+    <code>san_sau_chon_lai</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_san_sau_chon_lai.jpg" alt="Sân sau — chôn trả lại">
+    <figcaption>bc_san_sau_chon_lai.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đào đất trong sân sau ban đêm: xẻng vào đất mềm, đất rơi, thở nặng, lá cây phía trên. Kín đáo, phải làm nhanh.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/san_sau_chon_lai.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;digging soil night garden ambience&#x27;)">digging soil night garden ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;shovel earth quiet sound&#x27;)">shovel earth quiet sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;burying backyard night&#x27;)">burying backyard night</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;digging garden soil sound&#x27;)">digging garden soil sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet night digging ambience&#x27;)">quiet night digging ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;earth shovel night sound&#x27;)">earth shovel night sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm san.mp3. Gửi file ở dưới để thay.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="san_sau_chon_lai.mp3" data-ma="san_sau_chon_lai">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+<h2 id="n-vuon">Vườn thuốc<span class="dem">5 cảnh</span></h2>
+
+<article class="canh" id="c-vuon_thuoc_gap" data-ma="vuon_thuoc_gap" data-file="vuon_thuoc_gap.mp3">
+  <header>
+    <span class="so">22</span>
+    <b>Vườn thuốc phía sau môn</b>
+    <code>vuon_thuoc_gap</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_gap.jpg" alt="Vườn thuốc phía sau môn">
+    <figcaption>bc_vuon_thuoc_gap.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Vườn thuốc buổi sáng: lá cọ nhau trong gió nhẹ, ong gần, côn trùng thưa, một con chim từ trên tường đáp lại. Ấm, kín, không người.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_gap.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;herb garden ambience&#x27;)">herb garden ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;medicinal garden morning sound&#x27;)">medicinal garden morning sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;garden leaves insects ambience&#x27;)">garden leaves insects ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;herb garden morning ambience&#x27;)">herb garden morning ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;leaves rustle garden sound&#x27;)">leaves rustle garden sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet walled garden ambience&#x27;)">quiet walled garden ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="vuon_thuoc_gap.mp3" data-ma="vuon_thuoc_gap">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-vuon_thuoc_hoi" data-ma="vuon_thuoc_hoi" data-file="vuon_thuoc_hoi.mp3">
+  <header>
+    <span class="so">23</span>
+    <b>Vườn thuốc — hỏi thẳng</b>
+    <code>vuon_thuoc_hoi</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_hoi.jpg" alt="Vườn thuốc — hỏi thẳng">
+    <figcaption>bc_vuon_thuoc_hoi.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Hỏi thẳng trong vườn: hai giọng nói thấp, ngắt quãng, lá vẫn cọ phía sau. Không rõ chữ, nhưng nghe ra là đang gặng.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_hoi.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;garden conversation ambience&#x27;)">garden conversation ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;two people talking garden&#x27;)">two people talking garden</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet garden voices&#x27;)">quiet garden voices</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;low voices garden ambience&#x27;)">low voices garden ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;tense conversation outdoor sound&#x27;)">tense conversation outdoor sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;garden background voices&#x27;)">garden background voices</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="vuon_thuoc_hoi.mp3" data-ma="vuon_thuoc_hoi">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-vuon_thuoc_im" data-ma="vuon_thuoc_im" data-file="vuon_thuoc_im.mp3">
+  <header>
+    <span class="so">24</span>
+    <b>Vườn thuốc — im lặng</b>
+    <code>vuon_thuoc_im</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_im.jpg" alt="Vườn thuốc — im lặng">
+    <figcaption>bc_vuon_thuoc_im.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Im lặng trong vườn: chỉ còn lá, gió, côn trùng rất xa. Không giọng người. Cái im này là cố ý, không phải file hỏng.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_im.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;silent garden ambience&#x27;)">silent garden ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;still herb garden sound&#x27;)">still herb garden sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet garden no voices&#x27;)">quiet garden no voices</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;very quiet garden ambience&#x27;)">very quiet garden ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still air garden sound&#x27;)">still air garden sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;silent outdoor ambience&#x27;)">silent outdoor ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="vuon_thuoc_im.mp3" data-ma="vuon_thuoc_im">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-vuon_thuoc_ngoc" data-ma="vuon_thuoc_ngoc" data-file="vuon_thuoc_ngoc.mp3">
+  <header>
+    <span class="so">25</span>
+    <b>Vườn thuốc — Mạc Đại Phu và khối ngọc</b>
+    <code>vuon_thuoc_ngoc</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_ngoc.jpg" alt="Vườn thuốc — Mạc Đại Phu và khối ngọc">
+    <figcaption>bc_vuon_thuoc_ngoc.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Trong vườn, có người đang cầm một vật nặng: đá hoặc ngọc đặt xuống gỗ, vải bọc mở ra, lá vẫn động phía sau. Trầm và kín.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_ngoc.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;garden with object handling ambience&#x27;)">garden with object handling ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;stone object set down sound&#x27;)">stone object set down sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet garden handling&#x27;)">quiet garden handling</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;handling stone object ambience&#x27;)">handling stone object ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet garden with voices&#x27;)">quiet garden with voices</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;something placed on wood sound&#x27;)">something placed on wood sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="vuon_thuoc_ngoc.mp3" data-ma="vuon_thuoc_ngoc">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-vuon_thuoc_dem" data-ma="vuon_thuoc_dem" data-file="vuon_thuoc_dem.mp3">
+  <header>
+    <span class="so">26</span>
+    <b>Vườn thuốc — chôn trả lại</b>
+    <code>vuon_thuoc_dem</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_dem.jpg" alt="Vườn thuốc — chôn trả lại">
+    <figcaption>bc_vuon_thuoc_dem.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đào đất trong vườn thuốc ban đêm: đất mềm hơn sân sau, rễ cây đứt, lá bị gạt sang, thở nén. Làm lặng lẽ giữa luống thuốc.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_dem.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;night garden digging ambience&#x27;)">night garden digging ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;soil digging night sound&#x27;)">soil digging night sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet garden night work&#x27;)">quiet garden night work</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;night digging garden ambience&#x27;)">night digging garden ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;dirt shovel quiet night&#x27;)">dirt shovel quiet night</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;garden at night ambience&#x27;)">garden at night ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="vuon_thuoc_dem.mp3" data-ma="vuon_thuoc_dem">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+<h2 id="n-mieu">Miếu<span class="dem">4 cảnh</span></h2>
+
+<article class="canh" id="c-mieu_hoang" data-ma="mieu_hoang" data-file="mieu_hoang.mp3">
+  <header>
+    <span class="so">27</span>
+    <b>Ngoài miếu — quan sát</b>
+    <code>mieu_hoang</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_mieu_hoang.jpg" alt="Ngoài miếu — quan sát">
+    <figcaption>bc_mieu_hoang.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Ngoài miếu hoang: gió lùa qua tường vỡ, côn trùng đêm, không gian trống. Đứng ngoài quan sát, chưa vào trong.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/mieu_hoang.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;ruined shrine exterior ambience&#x27;)">ruined shrine exterior ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;abandoned temple outside sound&#x27;)">abandoned temple outside sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;night shrine approach&#x27;)">night shrine approach</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;approaching ruined shrine ambience&#x27;)">approaching ruined shrine ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;abandoned building exterior sound&#x27;)">abandoned building exterior sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet night approach ambience&#x27;)">quiet night approach ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="mieu_hoang.mp3" data-ma="mieu_hoang">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-mieu_trong" data-ma="mieu_trong" data-file="mieu_trong.mp3">
+  <header>
+    <span class="so">28</span>
+    <b>Trong miếu — xác người còn ấm</b>
+    <code>mieu_trong</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_mieu_trong.jpg" alt="Trong miếu — xác người còn ấm">
+    <figcaption>bc_mieu_trong.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Trong miếu đá: vọng dài, lạnh, gió qua cửa, bụi rơi. Rất ít tiếng nhưng không im — chính căn phòng có tiếng của nó.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/mieu_trong.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;empty stone shrine interior ambience&#x27;)">empty stone shrine interior ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;temple room tone reverb&#x27;)">temple room tone reverb</button><button type="button" class="tk" onclick="cpChu(this,&#x27;cold stone hall sound&#x27;)">cold stone hall sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;stone room reverb ambience&#x27;)">stone room reverb ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;empty shrine interior room tone&#x27;)">empty shrine interior room tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;cold stone hall reverb&#x27;)">cold stone hall reverb</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="mieu_trong.mp3" data-ma="mieu_trong">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-doat_hop" data-ma="doat_hop" data-file="doat_hop.mp3">
+  <header>
+    <span class="so">29</span>
+    <b>Đoạt hộp — Đỗ Tam phản phệ</b>
+    <code>doat_hop</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_doat_hop.jpg" alt="Đoạt hộp — Đỗ Tam phản phệ">
+    <figcaption>bc_doat_hop.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Giằng co trong miếu: chân trượt trên đá, va đập, một tiếng sụp xuống, rồi vọng trong phòng đá. Ngắn và dữ.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/doat_hop.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;struggle inside temple ambience&#x27;)">struggle inside temple ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;scuffle stone floor sound&#x27;)">scuffle stone floor sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;sudden collapse ambience&#x27;)">sudden collapse ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;struggle and impact ambience&#x27;)">struggle and impact ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;stone floor scuffle sound&#x27;)">stone floor scuffle sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;sudden body fall ambience&#x27;)">sudden body fall ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="doat_hop.mp3" data-ma="doat_hop">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tu_khiem" data-ma="tu_khiem" data-file="tu_khiem.mp3">
+  <header>
+    <span class="so">30</span>
+    <b>Tu luyện kiếm đạo — đêm đầu</b>
+    <code>tu_khiem</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tu_khiem.jpg" alt="Tu luyện kiếm đạo — đêm đầu">
+    <figcaption>bc_tu_khiem.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Luyện kiếm trong miếu đêm: lưỡi kiếm xé không khí, kim loại khẽ rít, bước chân xoay trên đá, hơi thở đều. Sắc và lạnh.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tu_khiem.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;sword practice night ambience&#x27;)">sword practice night ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;blade moving air sound&#x27;)">blade moving air sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night sword training&#x27;)">quiet night sword training</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;sword swishing air ambience&#x27;)">sword swishing air ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;metal blade night practice&#x27;)">metal blade night practice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet sword handling sound&#x27;)">quiet sword handling sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tu_khiem.mp3" data-ma="tu_khiem">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+<h2 id="n-dem">Đêm<span class="dem">2 cảnh</span></h2>
+
+<article class="canh" id="c-tan_xa_dem" data-ma="tan_xa_dem" data-file="tan_xa_dem.mp3">
+  <header>
+    <span class="so">31</span>
+    <b>Tân xá — tu luyện đêm đầu</b>
+    <code>tan_xa_dem</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tan_xa_dem.jpg" alt="Tân xá — tu luyện đêm đầu">
+    <figcaption>bc_tan_xa_dem.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đêm trong tân xá: côn trùng ngoài cửa sổ, giường gỗ khẽ kêu, hơi thở đều, không gian chật. Yên nhưng không im.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tan_xa_dem.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;night room cultivation ambience&#x27;)">night room cultivation ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night dormitory sound&#x27;)">quiet night dormitory sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;night insects interior&#x27;)">night insects interior</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet night interior ambience&#x27;)">quiet night interior ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;night dormitory room tone&#x27;)">night dormitory room tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;crickets outside window night&#x27;)">crickets outside window night</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tan_xa_dem.mp3" data-ma="tan_xa_dem">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-dem_tap_kich" data-ma="dem_tap_kich" data-file="dem_tap_kich.mp3">
+  <header>
+    <span class="so">32</span>
+    <b>Đêm cuối — Dã Lang Bang tập kích</b>
+    <code>dem_tap_kich</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_dem_tap_kich.jpg" alt="Đêm cuối — Dã Lang Bang tập kích">
+    <figcaption>bc_dem_tap_kich.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đêm bị tập kích: từ im lặng bùng thành hỗn loạn, lửa, hét xa, chạy. Nửa đầu là đêm, nửa sau là loạn.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/dem_tap_kich.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;night raid attack ambience&#x27;)">night raid attack ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;night attack chaos sound&#x27;)">night attack chaos sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;sudden night assault&#x27;)">sudden night assault</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;night attack chaos ambience&#x27;)">night attack chaos ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;distant screams fire night&#x27;)">distant screams fire night</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;sudden assault at night sound&#x27;)">sudden assault at night sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="dem_tap_kich.mp3" data-ma="dem_tap_kich">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+<h2 id="n-lang">Làng<span class="dem">10 cảnh</span></h2>
+
+<article class="canh" id="c-tan_hoang" data-ma="tan_hoang" data-file="tan_hoang.mp3">
+  <header>
+    <span class="so">33</span>
+    <b>Sau trận — giữa đống đổ nát</b>
+    <code>tan_hoang</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tan_hoang.jpg" alt="Sau trận — giữa đống đổ nát">
+    <figcaption>bc_tan_hoang.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Sau trận, giữa đống đổ nát: lửa còn âm ỉ, gỗ cháy khẽ nổ, gió qua tường sập, không còn ai. Trống và nặng.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tan_hoang.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;aftermath ruins ambience&#x27;)">aftermath ruins ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;post battle destruction sound&#x27;)">post battle destruction sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;burned ruins quiet&#x27;)">burned ruins quiet</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;burnt ruins ambience&#x27;)">burnt ruins ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;aftermath destruction quiet sound&#x27;)">aftermath destruction quiet sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;smouldering debris ambience&#x27;)">smouldering debris ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tan_hoang.mp3" data-ma="tan_hoang">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-binh_minh" data-ma="binh_minh" data-file="binh_minh.mp3">
+  <header>
+    <span class="so">34</span>
+    <b>Kết chương — bình minh Thất Huyền trấn</b>
+    <code>binh_minh</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_binh_minh.jpg" alt="Kết chương — bình minh Thất Huyền trấn">
+    <figcaption>bc_binh_minh.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Bình minh trên trấn: chim sớm, gà xa, gió nhẹ, rất ít người đã dậy. Nhẹ và sạch, sau những gì vừa xảy ra.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/binh_minh.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;dawn town ambience&#x27;)">dawn town ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;early morning village sunrise sound&#x27;)">early morning village sunrise sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet dawn birds&#x27;)">quiet dawn birds</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;dawn ambience with birds&#x27;)">dawn ambience with birds</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;sunrise quiet town sound&#x27;)">sunrise quiet town sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;early morning calm ambience&#x27;)">early morning calm ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="binh_minh.mp3" data-ma="binh_minh">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tan_xa_sang" data-ma="tan_xa_sang" data-file="tan_xa_sang.mp3">
+  <header>
+    <span class="so">35</span>
+    <b>Tân xá Thất Huyền Môn — sáng</b>
+    <code>tan_xa_sang</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tan_xa_sang.jpg" alt="Tân xá Thất Huyền Môn — sáng">
+    <figcaption>bc_tan_xa_sang.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Tân xá buổi sáng: người dậy, cửa mở, nước đổ, bước chân ra sân, nói chuyện thường ngày. Đời thường, không có gì đặc biệt.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tan_xa_sang.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;dormitory morning ambience&#x27;)">dormitory morning ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;morning courtyard activity sound&#x27;)">morning courtyard activity sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;students waking morning&#x27;)">students waking morning</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;morning dormitory ambience&#x27;)">morning dormitory ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;people waking up sound&#x27;)">people waking up sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;morning activity courtyard&#x27;)">morning activity courtyard</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tan_xa_sang.mp3" data-ma="tan_xa_sang">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-quan_nuoc" data-ma="quan_nuoc" data-file="quan_nuoc.mp3">
+  <header>
+    <span class="so">36</span>
+    <b>Quán nước đầu trấn — dò tin</b>
+    <code>quan_nuoc</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_quan_nuoc.jpg" alt="Quán nước đầu trấn — dò tin">
+    <figcaption>bc_quan_nuoc.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Quán nước: chén đặt xuống, nước rót, nhiều giọng nói chồng lên, tiếng cười thưa. Không rõ chữ — chỉ là chỗ đông người.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/quan_nuoc.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;tea house ambience&#x27;)">tea house ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;tavern chatter ambience&#x27;)">tavern chatter ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;busy tea stall sound&#x27;)">busy tea stall sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;tea house background chatter&#x27;)">tea house background chatter</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;tavern murmur ambience&#x27;)">tavern murmur ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;cups and voices ambience&#x27;)">cups and voices ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="quan_nuoc.mp3" data-ma="quan_nuoc">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tan_xa_song_tu" data-ma="tan_xa_song_tu" data-file="tan_xa_song_tu.mp3">
+  <header>
+    <span class="so">37</span>
+    <b>Tân xá — đêm, lần song tu đầu tiên</b>
+    <code>tan_xa_song_tu</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tan_xa_song_tu.jpg" alt="Tân xá — đêm, lần song tu đầu tiên">
+    <figcaption>bc_tan_xa_song_tu.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đêm trong phòng: rất tĩnh, hơi thở, vải khẽ động, côn trùng xa. Kín và riêng tư, không có gì ồn.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tan_xa_song_tu.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night room ambience&#x27;)">quiet night room ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;night interior breathing sound&#x27;)">night interior breathing sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;still night dormitory&#x27;)">still night dormitory</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet night room tone&#x27;)">quiet night room tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;soft night interior ambience&#x27;)">soft night interior ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;night stillness sound&#x27;)">night stillness sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tan_xa_song_tu.mp3" data-ma="tan_xa_song_tu">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tan_xa_kho_tu" data-ma="tan_xa_kho_tu" data-file="tan_xa_kho_tu.mp3">
+  <header>
+    <span class="so">38</span>
+    <b>Tân xá — khổ tu, lần thất bại</b>
+    <code>tan_xa_kho_tu</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tan_xa_kho_tu.jpg" alt="Tân xá — khổ tu, lần thất bại">
+    <figcaption>bc_tan_xa_kho_tu.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Khổ tu thất bại: hơi thở mệt và gấp, rồi thở dài, im. Có cái nặng trong phòng, không phải tiếng động lớn.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tan_xa_kho_tu.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;night exhausted breathing ambience&#x27;)">night exhausted breathing ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet room tired sound&#x27;)">quiet room tired sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;frustrated night silence&#x27;)">frustrated night silence</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;heavy breathing quiet room&#x27;)">heavy breathing quiet room</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;exhausted night ambience&#x27;)">exhausted night ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;frustration silent room sound&#x27;)">frustration silent room sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tan_xa_kho_tu.mp3" data-ma="tan_xa_kho_tu">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tan_xa_suyt_lo" data-ma="tan_xa_suyt_lo" data-file="tan_xa_suyt_lo.mp3">
+  <header>
+    <span class="so">39</span>
+    <b>Tân xá — suýt bị phát hiện</b>
+    <code>tan_xa_suyt_lo</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tan_xa_suyt_lo.jpg" alt="Tân xá — suýt bị phát hiện">
+    <figcaption>bc_tan_xa_suyt_lo.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Suýt bị phát hiện: nín thở, bước chân người khác tới gần rồi đi qua, im lại. Căng, không có tiếng lớn.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tan_xa_suyt_lo.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;held breath tension room ambience&#x27;)">held breath tension room ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;someone approaching quiet&#x27;)">someone approaching quiet</button><button type="button" class="tk" onclick="cpChu(this,&#x27;near discovery tension&#x27;)">near discovery tension</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;tense held breath ambience&#x27;)">tense held breath ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;footsteps approaching quiet room&#x27;)">footsteps approaching quiet room</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;near miss tension sound&#x27;)">near miss tension sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tan_xa_suyt_lo.mp3" data-ma="tan_xa_suyt_lo">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tan_xa_dot_pha" data-ma="tan_xa_dot_pha" data-file="tan_xa_dot_pha.mp3">
+  <header>
+    <span class="so">40</span>
+    <b>Tân xá — đột phá Luyện Khí tầng hai</b>
+    <code>tan_xa_dot_pha</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_tan_xa_dot_pha.jpg" alt="Tân xá — đột phá Luyện Khí tầng hai">
+    <figcaption>bc_tan_xa_dot_pha.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đột phá: một luồng trầm dâng lên rồi lắng xuống, không khí rung nhẹ, rồi trở lại tĩnh. Không phải nhạc — là rung của không gian.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tan_xa_dot_pha.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;energy surge ambience&#x27;)">energy surge ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;breakthrough moment sound&#x27;)">breakthrough moment sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;low rumble rising ambience&#x27;)">low rumble rising ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;rising energy rumble ambience&#x27;)">rising energy rumble ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;breakthrough surge sound&#x27;)">breakthrough surge sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;deep hum building ambience&#x27;)">deep hum building ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tan_xa_dot_pha.mp3" data-ma="tan_xa_dot_pha">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-mon_phai_tan_hoang" data-ma="mon_phai_tan_hoang" data-file="mon_phai_tan_hoang.mp3">
+  <header>
+    <span class="so">41</span>
+    <b>Sau trận — giữa đống đổ nát</b>
+    <code>mon_phai_tan_hoang</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_mon_phai_tan_hoang.jpg" alt="Sau trận — giữa đống đổ nát">
+    <figcaption>bc_mon_phai_tan_hoang.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đống đổ nát của môn phái: tường sập, gỗ gãy còn rơi lả tả, gió lùa qua khoảng trống, không người. Rộng và trống hơn sân sau.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/mon_phai_tan_hoang.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;sect ruins aftermath ambience&#x27;)">sect ruins aftermath ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;destroyed courtyard quiet&#x27;)">destroyed courtyard quiet</button><button type="button" class="tk" onclick="cpChu(this,&#x27;post battle rubble sound&#x27;)">post battle rubble sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;destroyed building ambience&#x27;)">destroyed building ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;rubble and wind ambience&#x27;)">rubble and wind ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet ruins aftermath sound&#x27;)">quiet ruins aftermath sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="mon_phai_tan_hoang.mp3" data-ma="mon_phai_tan_hoang">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-binh_minh_ngoc_cot" data-ma="binh_minh_ngoc_cot" data-file="binh_minh_ngoc_cot.mp3">
+  <header>
+    <span class="so">42</span>
+    <b>Kết chương — bình minh Thất Huyền Môn</b>
+    <code>binh_minh_ngoc_cot</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_binh_minh_ngoc_cot.jpg" alt="Kết chương — bình minh Thất Huyền Môn">
+    <figcaption>bc_binh_minh_ngoc_cot.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Bình minh ở cổng môn: gió núi nhẹ, chim sớm, chuông rất xa, sân còn vắng. Sạch và cao, khác bình minh dưới trấn.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/binh_minh_ngoc_cot.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;dawn temple courtyard ambience&#x27;)">dawn temple courtyard ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;sunrise mountain gate sound&#x27;)">sunrise mountain gate sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;early morning quiet sect&#x27;)">early morning quiet sect</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;dawn courtyard ambience&#x27;)">dawn courtyard ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;sunrise quiet mountain air&#x27;)">sunrise quiet mountain air</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;early morning stillness sound&#x27;)">early morning stillness sound</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="binh_minh_ngoc_cot.mp3" data-ma="binh_minh_ngoc_cot">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+<h2 id="n-tinh">Tĩnh<span class="dem">1 cảnh</span></h2>
+
+<article class="canh" id="c-dot_pha" data-ma="dot_pha" data-file="dot_pha.mp3">
+  <header>
+    <span class="so">43</span>
+    <b>Đột phá Luyện Khí</b>
+    <code>dot_pha</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/bc_dot_pha.jpg" alt="Đột phá Luyện Khí">
+    <figcaption>bc_dot_pha.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Yên ắng trong phòng kín: gỗ khẽ kêu, cửa sổ động rất nhẹ, không khí có trọng lượng. Không phải file hỏng — là phòng cố ý im.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/dot_pha.mp3</code></div>
+  </div>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;quiet room tone ambience&#x27;)">quiet room tone ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;still interior room sound&#x27;)">still interior room sound</button><button type="button" class="tk" onclick="cpChu(this,&#x27;silent meditation ambience&#x27;)">silent meditation ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;very quiet room tone&#x27;)">very quiet room tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;silent interior ambience&#x27;)">silent interior ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;stillness with low presence&#x27;)">stillness with low presence</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="dot_pha.mp3" data-ma="dot_pha">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">

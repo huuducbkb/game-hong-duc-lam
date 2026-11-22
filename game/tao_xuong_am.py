@@ -12,7 +12,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from du_lieu_am import NHOM, CHUNG, prompt_day_du
+from du_lieu_am import CANH, NHOM, TEN_NHOM, canh_theo_nhom
 
 GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RA = os.path.join(GOC, "docs", "xuong-am", "index.html")
@@ -24,13 +24,33 @@ DUONG = "assets/am/"
 ANH = "/assets/scene/nho/"
 
 
+def da_co():
+    """Mã cảnh/nhóm đã có file tiếng trên đĩa, đọc từ danh-sach.json."""
+    import json
+    p = os.path.join(GOC, "docs", "assets", "am", "danh-sach.json")
+    if not os.path.isfile(p):
+        return set()
+    try:
+        return set(json.load(io.open(p, encoding="utf-8")))
+    except Exception:  # noqa: BLE001 - file hỏng thì coi như chưa có gì
+        return set()
+
+
 def esc(s):
     return html.escape(str(s), quote=True)
 
 
 def the_canh(n, i):
     ma = n["ma"]
-    prompt = prompt_day_du(n)
+    anh = n["anh"]
+    co = da_co()
+    if ma in co:
+        trang_thai = "✅ Đã có tiếng riêng cho cảnh này."
+    elif n["nhom"] in co:
+        trang_thai = (f"🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm "
+                      f"{n['nhom']}.mp3. Gửi file ở dưới để thay.")
+    else:
+        trang_thai = "⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp."
     return f"""
 <article class="canh" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}">
   <header>
@@ -39,39 +59,35 @@ def the_canh(n, i):
     <code>{ma}</code>
     <span class="badge thieu" data-badge>⬜ chưa có</span>
   </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="..{ANH}{esc(anh)}" alt="{esc(n['ten'])}">
+    <figcaption>{esc(anh)} — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">{esc(n['mota'])}</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>{DUONG}{esc(n['file'])}</code></div>
   </div>
 
-  <label class="nhan">Cảnh này trông thế nào trong game</label>
-  <div class="luoi-anh">
-    {"".join(
-      f'<figure onclick="xemAnh(this)"><img loading="lazy" src="..{ANH}{esc(f)}" alt="{esc(bc)}">'
-      f'<figcaption>{esc(bc)}</figcaption></figure>'
-      for f, bc in n.get("anh", []))}
-  </div>
-  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
-     đúng ở những cảnh này.</p>
-  <p class="mota">{esc(n['mota'])}</p>
-
-  <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
-  <textarea readonly rows="9" id="p-{ma}">{esc(prompt)}</textarea>
-  <div class="row">
-    <button class="cp" onclick="cpText('p-{ma}', this)">📋 Copy prompt</button>
-    <button class="dl" onclick="taiTxt('p-{ma}', '{ma}.txt')">⬇️ .txt</button>
-  </div>
-
-  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    {"".join(f'<button type="button" class="tk" onclick="cpChu(this,{esc(repr(k))})">{esc(k)}</button>' for k in n["tu_khoa"])}
+    {"".join(f'<button type="button" class="tk" onclick="cpChu(this,{esc(repr(k))})">{esc(k)}</button>' for k in n["tim"])}
   </div>
-  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
-     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    {"".join(f'<button type="button" class="tk mo" onclick="cpChu(this,{esc(repr(k))})">{esc(k)}</button>' for k in n["mo_ta"])}
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
-    <span class="chua" data-chua>⬜ Chưa có tiếng cho cảnh này — game đang dùng tiếng tổng hợp.</span>
+    <span class="chua" data-chua>{esc(trang_thai)}</span>
   </div>
 
   <div class="gui" data-gui data-file="{n['file']}" data-ma="{ma}">
@@ -92,8 +108,19 @@ def the_canh(n, i):
 
 
 def sinh():
-    ds = "\n".join(the_canh(n, i + 1) for i, n in enumerate(NHOM))
-    so = len(NHOM)
+    dem = 0
+    phan = []
+    for ma_nhom, ten_nhom in NHOM:
+        ds_nhom = canh_theo_nhom(ma_nhom)
+        if not ds_nhom:
+            continue
+        phan.append(f'<h2 id="n-{ma_nhom}">{esc(ten_nhom)}'
+                    f'<span class="dem">{len(ds_nhom)} cảnh</span></h2>')
+        for n in ds_nhom:
+            dem += 1
+            phan.append(the_canh(n, dem))
+    ds = "\n".join(phan)
+    so = len(CANH)
 
     js = io.open(JS, encoding="utf-8").read()
     js = (js.replace("__REPO__", "huuducbkb/game-hong-duc-lam")
@@ -164,6 +191,12 @@ button.phu{{background:transparent}}
 .tom-tat{{background:#0e1726;border:1px solid var(--line);border-radius:12px;padding:12px 14px;
   margin:12px 0;font-size:13px}}
 .tom-tat b{{color:var(--gold)}}
+.anh-mot{{margin:10px 0 0;cursor:pointer}}
+.anh-mot img{{width:100%;max-width:300px;aspect-ratio:3/4;object-fit:cover;
+  border-radius:9px;display:block;border:1px solid var(--line);background:#0a1220}}
+.anh-mot figcaption{{font-size:10.5px;color:var(--muted);margin-top:3px}}
+.dem{{font-size:11.5px;color:var(--muted);font-weight:400}}
+.tk.mo{{background:#131f2e;border-color:#3a4d66;color:#a8bdd6}}
 .luoi-anh{{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:2px 0 0}}
 .luoi-anh figure{{margin:0;cursor:pointer}}
 .luoi-anh img{{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:7px;
@@ -203,46 +236,43 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
    thích, rồi tải lên đây — game tự dùng bản của anh.</p>
 
 <div class="tom-tat">
-  <b>{so} nhóm tiếng.</b> Mỗi cảnh trong game thuộc một nhóm, nên chỉ cần {so} file là phủ
-  hết. Chưa tải lên nhóm nào thì game vẫn dùng tiếng tổng hợp sẵn trong máy — không bao giờ
-  im.
+  <b>{so} cảnh, mỗi cảnh một file riêng.</b> Mỗi ảnh trong game là một cảnh, có tiếng
+  riêng và từ khoá riêng. Cảnh nào chưa có file thì game dùng tiếng tổng hợp — không bao
+  giờ im.
   <div class="ml">
-    {"".join(f'<a href="#c-{n["ma"]}">{esc(n["ten"])}</a>' for n in NHOM)}
+    {"".join(f'<a href="#n-{ma}">{esc(ten)}</a>' for ma, ten in NHOM if canh_theo_nhom(ma))}
   </div>
 </div>
 
 <h2>Cách làm</h2>
 <div class="card">
-  <p style="margin:0 0 10px"><b>Cách 1 — anh có sẵn file từ thư viện âm thanh</b></p>
-  <ol style="margin:0 0 16px;padding-left:20px">
-    <li>Bấm một <b>từ khoá tiếng Anh</b> dưới mỗi cảnh để copy.</li>
-    <li>Dán vào ô tìm kiếm của thư viện (Freesound, Pixabay, YouTube…). Tìm bằng
-        tiếng Anh mới ra; tiếng Việt gần như không có.</li>
+  <ol style="margin:0;padding-left:20px">
+    <li>Nhìn <b>ảnh</b> ở mỗi cảnh để chắc đúng ngữ cảnh anh cần.</li>
+    <li>Bấm một <b>từ khoá</b> để copy.</li>
+    <li>Dán vào ô tìm của thư viện (Freesound, Pixabay, YouTube…). Tìm bằng tiếng Anh
+        mới ra; tiếng Việt gần như không có.</li>
     <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
     <li>Bot tự lấy <b>30 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
   </ol>
 
-  <p style="margin:0 0 10px"><b>Cách 2 — anh muốn tự tạo bằng AI</b></p>
-  <ol style="margin:0;padding-left:20px">
-    <li>Bấm <b>📋 Copy prompt</b> của cảnh đó.</li>
-    <li>Dán vào công cụ sinh âm thanh, chọn <b>10 giây</b>, bật <b>loop</b> nếu có.</li>
-    <li>Tải file về rồi gửi lên như cách 1.</li>
-  </ol>
-
   <div class="card" style="background:#0e1726;margin:14px 0 0;padding:12px">
+    <p style="margin:0 0 8px;font-size:12.5px"><b>Hai bộ từ khoá khác nhau:</b></p>
+    <ul style="margin:0;padding-left:18px;font-size:12.5px">
+      <li><b>Từ khoá tìm</b> — để tìm file trên thư viện. Đây là thứ người ta đặt tên
+          cho file âm thanh.</li>
+      <li><b>Từ khoá mô tả</b> — để dán vào Google khi muốn hiểu tiếng đó gọi là gì,
+          hoặc tìm nguồn ở chỗ khác.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
     <p style="margin:0;font-size:12.5px"><b>Về 30 giây:</b> file anh gửi dài bao nhiêu
     cũng được, hệ thống <b>tự cắt 30 giây đầu</b>. Cảnh trong game chỉ 10 giây nên 30
     giây là quá đủ, và file nhỏ thì tải nhanh trên điện thoại. File ngắn hơn 30 giây
     thì giữ nguyên, không cắt.</p>
   </div>
 
-  <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
-    <p style="margin:0;font-size:12.5px"><b>Về thể loại:</b> đây là <b>âm thanh môi
-    trường</b> (ambience) — tiếng của nơi chốn. <b>Không phải nhạc</b>: không giai
-    điệu, không nhạc cụ, không trống, không hòa âm. Nhạc nền lặp 10 giây thì người
-    chơi nhận ra máy đang lặp; tiếng môi trường thì lặp mà không lộ.</p>
-  </div>
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
     <code>flac</code>. Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
@@ -271,7 +301,6 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   </p>
 </div>
 
-<h2>Các nhóm tiếng</h2>
 {ds}
 
 <footer>

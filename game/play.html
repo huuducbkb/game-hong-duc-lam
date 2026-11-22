@@ -1878,7 +1878,8 @@ function phatFileThat(ma, g, muc) {
       if (canhDangChay === lop) noi();
     })
     .catch(() => {
-      // File hỏng hoặc mất mạng: rơi về tiếng tổng hợp thay vì im.
+      // File hỏng hoặc mất mạng: rơi về tiếng tổng hợp thay vì im. Xoá khỏi danh
+      // sách để lần sau không thử lại file hỏng đó.
       if (canhDangChay === lop) {
         delete amThat[ma];
         const im = document.getElementById("sceneImg");
@@ -1938,13 +1939,23 @@ function lamVongKhit(buf) {
 }
 
 // Dựng một lớp cảnh: gain chung + hạn chế đỉnh + bản nhạc hẹn giờ.
-function taoCanh(loai, muc) {
+// Mã cảnh của một ảnh: "bc_cho_02.jpg" -> "cho_02". Ảnh nhân vật/vật (nv_, vt_)
+// và ảnh lạ trả về "" để không đụng vào tiếng nền đang chạy.
+function maCanhTuAnh(ten) {
+  const t = String(ten || "").split("/").pop().replace(/\.[a-z0-9]+$/i, "");
+  if (!t.startsWith("bc_")) return "";
+  return t.slice(3);
+}
+
+// `khoaFile`: mã cảnh nếu cảnh có file riêng, hoặc mã nhóm nếu chỉ có file nhóm,
+// hoặc null nếu chưa có gì và phải dùng tiếng tổng hợp.
+function taoCanh(loai, muc, khoaFile) {
   const g = ctxTieng.createGain();
   g.gain.value = 0.0001;
 
   // Bản ghi thật (nếu người chơi đã tải lên) đi thẳng ra loa, không qua hạn chế:
-  // nó đã được cân sẵn về -18.5 LUFS.
-  const file = phatFileThat(loai, g, muc);
+  // nó đã được cân sẵn về -18 LUFS.
+  const file = khoaFile ? phatFileThat(khoaFile, g, muc) : null;
   if (file) {
     g.connect(loaTieng || ctxTieng.destination);
     return file;
@@ -2081,20 +2092,23 @@ function doiCanhTieng(ten) {
     return;
   }
   canhLoai = nhom;
-  // Hệ số trim của cảnh, KHÔNG phải biên độ tuyệt đối: biên độ từng nốt nằm
-  // trong taoCanh. Hai đường tín hiệu cần hai mức khác nhau:
-  //  - Bản ghi thật đã được bot cân về -18.5 LUFS, nên trim quanh 1.0.
+  // Tiếng riêng của từng cảnh. Mã cảnh chính là tên ảnh bỏ "bc_" và đuôi file,
+  // nên "bc_cho_02.jpg" -> "cho_02". Có file riêng thì dùng; chưa có thì lùi về
+  // file nhóm cũ (cho/tran/nui/san) nếu nhóm đó đã có; cuối cùng mới tổng hợp.
+  const maCanh = maCanhTuAnh(ten);
+  const coFileCanh = !!(maCanh && amThat && amThat[maCanh]);
+  const coFileNhom = !!(amThat && amThat[nhom]);
+  const khoaFile = coFileCanh ? maCanh : (coFileNhom ? nhom : null);
+  // Hai đường tín hiệu cần hai mức khác nhau:
+  //  - Bản ghi thật đã được bot cân về -18 LUFS, nên trim quanh 1.0. Số cũ dưới
+  //    đây đo trên bản ghi đầu tiên (nhỏ hơn nhạc tổng hợp 3,3 dB), giữ lại cho
+  //    file nhóm cũ.
   //  - Nhạc tổng hợp phải nhân thêm mới nghe được trên loa điện thoại.
-  // Số dưới đây đo lại sau khi đổi sang nhạc có cao độ, không dùng lại số của
-  // bản nhiễu cũ (bản đó có crest khác hẳn nên hệ số bù cũng khác).
   const mucTongHop = { cho: 1.04, tran: 0.632, nui: 1.461, san: 0.769, vuon: 1.436, mieu: 1.636, dem: 1.715, lang: 1.226, tinh: 1.574 }[nhom] || 1.0;
-  // `cho` là bản ghi thật đầu tiên. Đo được nó nhỏ hơn nhạc tổng hợp 3,3 dB
-  // (-23,3 so với -20,0 dBFS) nên trim phải lớn hơn 1 mới đều tai. Đỉnh file
-  // chỉ 0,556 nên nhân 1,45 vẫn còn dư 0,81 — không cắt.
-  const mucFile = { cho: 1.45, tran: 1.1, nui: 0.9, san: 1.0, vuon: 0.9,
-                    mieu: 0.95, dem: 0.9, lang: 0.85, tinh: 0.7 }[nhom] || 0.9;
-  const muc = (amThat && amThat[nhom]) ? mucFile : mucTongHop;
-  const lop = taoCanh(nhom, muc);
+  const mucFileNhom = { cho: 1.45, tran: 1.1, nui: 0.9, san: 1.0, vuon: 0.9,
+                        mieu: 0.95, dem: 0.9, lang: 0.85, tinh: 0.7 }[nhom] || 0.9;
+  const muc = coFileCanh ? 1.0 : (coFileNhom ? mucFileNhom : mucTongHop);
+  const lop = taoCanh(nhom, muc, khoaFile);
   const t = ctxTieng.currentTime;
   const dich = Math.max(0.0001, muc * canhVol);
   lop.g.gain.setValueAtTime(0.0001, t);
