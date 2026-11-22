@@ -255,9 +255,10 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
     <li>Bot tự lấy <b>12 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
     <li><b>Gửi được cả video.</b> Chọn video (mp4, mov, webm…) là trình duyệt tự trích
-    tiếng ngay trên máy anh rồi chỉ gửi đoạn tiếng — <b>video không được tải lên</b>,
-    nên không nằm trong repo. Video dưới <b>5 MB</b>; lớn hơn thì giải mã trên điện
-    thoại rất chậm, cắt bớt trước.</li>
+    tiếng, nén thành mp3 ngay trên máy anh rồi chỉ gửi đoạn mp3 đó —
+    <b>video không được tải lên</b>, nên không nằm trong repo. Video dưới <b>5 MB</b>;
+    lớn hơn thì giải mã trên điện thoại rất chậm, cắt bớt trước. Video không có tiếng
+    thì báo lỗi ngay, không gửi file rỗng.</li>
   </ol>
 
   <div class="card" style="background:#0e1726;margin:14px 0 0;padding:12px">
@@ -319,6 +320,7 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="chu" id="xem-anh-chu"></div>
 </div>
 
+<script src="lamejs.js"></script>
 <script>
 function xemAnh(fig){{
   const img = fig.querySelector('img');

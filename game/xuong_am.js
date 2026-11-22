@@ -121,31 +121,46 @@ function laVideo(f){
   return /^video\//.test(f.type || '');
 }
 
-/* Ghi AudioBuffer thành WAV 16-bit. Tự viết thay vì dùng lamejs: không phải
-   nạp thêm thư viện ngoài, và bot đằng nào cũng nén lại nên chất lượng không
-   mất thêm. */
-function wavTuBuffer(buf){
+/* Nén AudioBuffer thành mp3 bằng lamejs (nhúng sẵn ở lamejs.js). Gửi mp3 thay
+   vì WAV là cố ý: WAV 12 giây là 2 MB, base64 thành 2,7 MB, và mọi file đẩy
+   vào inbox đều nằm vĩnh viễn trong lịch sử git. 43 cảnh như vậy là 29 MB;
+   mp3 96 kbps chỉ 8 MB. Hạ xuống 22 kHz mono vì tiếng môi trường không có
+   thông tin gì ở tần số cao, mà bot cũng nén về 96 kbps.
+   WebKit không có MediaRecorder nên không dùng cách đó được. */
+function mp3TuBuffer(buf){
+  if(typeof lamejs === 'undefined'){
+    throw new Error('Thiếu bộ nén mp3. Tải lại trang rồi thử lại.');
+  }
+  const sr = 22050;
   const kenh = Math.min(2, buf.numberOfChannels);
-  const n = buf.length;
-  const dai = 44 + n * kenh * 2;
-  const dv = new DataView(new ArrayBuffer(dai));
-  const ghi = (o, s) => { for(let i=0;i<s.length;i++) dv.setUint8(o+i, s.charCodeAt(i)); };
-  ghi(0,'RIFF'); dv.setUint32(4, dai-8, true); ghi(8,'WAVE');
-  ghi(12,'fmt '); dv.setUint32(16,16,true); dv.setUint16(20,1,true);
-  dv.setUint16(22,kenh,true); dv.setUint32(24,buf.sampleRate,true);
-  dv.setUint32(28,buf.sampleRate*kenh*2,true); dv.setUint16(32,kenh*2,true);
-  dv.setUint16(34,16,true); ghi(36,'data'); dv.setUint32(40,n*kenh*2,true);
+  // Trộn về mono: tiếng môi trường không cần stereo, mà mono rẻ hơn một nửa.
+  const n = Math.max(1, Math.round(buf.length * sr / buf.sampleRate));
+  const pcm = new Int16Array(n);
   const duLieu = [];
   for(let c=0;c<kenh;c++) duLieu.push(buf.getChannelData(c));
-  let o = 44;
+  const buoc = buf.sampleRate / sr;
   for(let i=0;i<n;i++){
+    const viTri = i * buoc;
+    const j = Math.floor(viTri);
+    const le = viTri - j;
+    let v = 0;
     for(let c=0;c<kenh;c++){
-      let v = Math.max(-1, Math.min(1, duLieu[c][i]));
-      dv.setInt16(o, v < 0 ? v*0x8000 : v*0x7fff, true);
-      o += 2;
+      const a = duLieu[c][j] || 0;
+      const b = duLieu[c][j+1] !== undefined ? duLieu[c][j+1] : a;
+      v += a + (b - a) * le;
     }
+    v = Math.max(-1, Math.min(1, v / kenh));
+    pcm[i] = v < 0 ? v * 0x8000 : v * 0x7fff;
   }
-  return new Blob([dv], {type:'audio/wav'});
+  const enc = new lamejs.Mp3Encoder(1, sr, 96);
+  const phan = [];
+  for(let i=0;i<n;i+=1152){
+    const ra = enc.encodeBuffer(pcm.subarray(i, Math.min(i+1152, n)));
+    if(ra.length) phan.push(new Int8Array(ra));
+  }
+  const cuoi = enc.flush();
+  if(cuoi.length) phan.push(new Int8Array(cuoi));
+  return new Blob(phan, {type:'audio/mpeg'});
 }
 
 /* Trả về {blob, ten, giay}. Chỉ lấy GIAY_LAY giây đầu, đúng như bot vẫn làm. */
@@ -167,8 +182,8 @@ async function tiengTuVideo(f, giayLay){
   for(let c=0;c<buf.numberOfChannels;c++){
     cat.copyToChannel(buf.getChannelData(c).subarray(0, can), c);
   }
-  const ten = (f.name || 'video').replace(/\.[^.]+$/, '') + '.wav';
-  return {blob: wavTuBuffer(cat), ten, giay: can / buf.sampleRate};
+  const ten = (f.name || 'video').replace(/\.[^.]+$/, '') + '.mp3';
+  return {blob: mp3TuBuffer(cat), ten, giay: can / buf.sampleRate};
 }
 
 async function ghLaySha(duong){
@@ -292,7 +307,7 @@ async function guiMot(hop){
         + 'chỉ đoạn tiếng được gửi đi.');
       const t = await tiengTuVideo(f, GIAY_LAY);
       gui = new File([t.blob], t.ten, {type:'audio/wav'});
-      tenGui = `${ma}.wav`;
+      tenGui = `${ma}.mp3`;
       ghHienTT(tt,'muted',`Đã trích ${t.giay.toFixed(1)} giây tiếng. Đang gửi…`);
     }
     const mb = gui.size / 1024 / 1024;
