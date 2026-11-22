@@ -926,3 +926,24 @@ không đọc được. Muốn thử nhanh thì chạy `python3 -m http.server -
 **`npm install` trong repo này rất nguy hiểm.** Không có `package.json` được theo dõi, nên
 npm tạo file mới và **xoá sạch `node_modules`** — mất Playwright. Dùng
 `npm install --no-save <gói>` hoặc `npm pack` ra `/tmp` rồi chép tay.
+
+### Prompt tiếng theo cảnh: tả không gian, không tả nhạc
+
+Mỗi cảnh trong `game/prompt_am.py` có một prompt. Nguyên tắc: mở đầu bằng **chỗ người chơi
+đứng** và khoảng cách tới nguồn tiếng, rồi mới tới các lớp tiếng. Đây là khác biệt cốt lõi:
+cùng là chợ mà chợ sớm thì đứng giữa đám đông, chợ chiều thì ngồi một mình ở rìa — hai prompt
+khác hẳn, không dùng chung một file ambience.
+
+**Luôn ghi `Vietnamese`** ở mọi cảnh có giọng nói. Không ghi thì công cụ ra tiếng Anh. Và luôn
+có `no music` — đây là tiếng không gian, không phải nhạc nền game.
+
+**Tám cảnh cần rõ chữ** thì có lời thoại tiếng Việt trong `LOI`, lấy nguyên văn từ truyện.
+Prompt không nói được câu tiếng Việt có nghĩa — nó chỉ ra giọng giống người. Phần này phải đọc
+bằng máy đọc tiếng Việt rồi trộn lên, đừng hứa công cụ làm được.
+
+Trước đây tôi đã bỏ prompt vì lý do sai: tôi cho là không công cụ nào tạo được ambience từ
+prompt. Thực ra vấn đề là prompt cũ tả nhạc, không tả không gian.
+
+**Playwright có thể mất trình duyệt** (cache trống). Cài lại bằng
+`npx playwright install-deps webkit` rồi `npx playwright install webkit`. Bước `-deps` cần
+quyền root và chạy lâu, nên đặt chạy nền.
