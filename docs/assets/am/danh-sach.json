@@ -26,5 +26,9 @@
   "tran_lua": {
     "bytes": 120729,
     "file": "tran_lua.mp3"
+  },
+  "tran_lua_2": {
+    "bytes": 120729,
+    "file": "tran_lua_2.mp3"
   }
 }
