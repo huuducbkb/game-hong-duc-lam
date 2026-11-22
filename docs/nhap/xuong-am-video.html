@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gửi video vào Xưởng âm thanh</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .canh{background:rgba(63,125,78,.10);border-left:3px solid #3f7d4e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .canh b{color:#2f6340}
+  .anh{margin:14px 0}
+  .anh img{width:100%;border-radius:10px;display:block;
+           box-shadow:0 4px 18px rgba(0,0,0,.35);border:1px solid rgba(36,28,20,.18)}
+  .chuAnh{font-size:12px;color:#7a6852;text-align:center;margin-top:7px}
+  ul{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:10px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid rgba(36,28,20,.14)}
+  th{font-size:12px;color:#6b5b48;text-transform:uppercase;letter-spacing:.5px}
+  td.n{font-family:ui-monospace,Menlo,monospace;text-align:right}
+  .dat{color:#2f6340;font-weight:600}
+</style>
+</head>
+<body>
+<div class="khung">
+  <div class="to">
+    <h1>Gửi video, chỉ lấy tiếng</h1>
+    <p class="phu">Xưởng âm thanh &middot; đã chạy thật trên trang live &middot; đo bằng Safari (WebKit) trên iPad</p>
+
+    <p>Anh muốn dán video vào ô chọn file mà không phải tách tiếng trước. Giờ làm được:
+       chọn video là xong, <b>video không được tải lên</b> — chỉ đoạn tiếng đi vào repo.</p>
+
+    <a class="nut" href="../xuong-am/">Mở Xưởng âm thanh</a>
+
+    <h2>Vì sao không tải video lên</h2>
+    <p>Đẩy video vào repo thì nó nằm vĩnh viễn trong lịch sử git. Bot xoá file ở lần chạy sau
+       cũng không gỡ được — commit cũ vẫn còn đó, và mỗi lần clone là mỗi lần tải lại.
+       Một video 10 MB là 10 MB mãi mãi.</p>
+    <p>Nên cách làm là: trình duyệt trên máy anh tự đọc luồng tiếng trong video, lấy 12 giây đầu,
+       nén thành mp3, rồi mới gửi. Máy chủ chỉ nhận đoạn mp3 vài chục KB.</p>
+
+    <div class="canh">
+      <b>Đã đo:</b> không có một request nào chứa đuôi <code>.mp4</code> hay <code>.mov</code>
+      đi lên GitHub. Chỉ có <code>cho_01.mp3</code>, 118 KB.
+    </div>
+
+    <h2>Kết quả đo</h2>
+    <table>
+      <tr><th>Thử</th><th class="n">Vào</th><th class="n">Ra</th></tr>
+      <tr><td>Video mp4 8 giây</td><td class="n">8 s</td><td class="n">8,07 s &middot; 95 KB</td></tr>
+      <tr><td>Video mov HEVC 10 giây</td><td class="n">10 s</td><td class="n">10,06 s &middot; 118 KB</td></tr>
+      <tr><td>Video 20 giây</td><td class="n">20 s</td><td class="n">12,07 s &middot; 141 KB</td></tr>
+      <tr><td>Video 5,4 MB</td><td class="n">&mdash;</td><td class="n">bị chặn, báo rõ</td></tr>
+      <tr><td>Video không có tiếng</td><td class="n">&mdash;</td><td class="n">báo lỗi, không gửi</td></tr>
+    </table>
+    <p>Đưa file mp3 đó qua bot: ra <span class="so">12,00 s</span>,
+       <span class="so">&minus;18,45 LUFS</span> — đúng như mọi file anh tự gửi.</p>
+
+    <div class="anh">
+      <img src="xuong-am-huong-dan.jpg" alt="Trang Xưởng âm thanh sau khi chọn video">
+      <div class="chuAnh">Chọn video xong, trang báo rõ: video sẽ chỉ lấy tiếng</div>
+    </div>
+
+    <h2>Dung lượng: đổi sang mp3 để khỏi phình repo</h2>
+    <p>Bản đầu tôi trích ra WAV. WAV 12 giây là 2 MB, gửi dưới dạng base64 thành 2,7 MB —
+       mỗi cảnh. Với 43 cảnh là 29 MB nằm vĩnh viễn trong lịch sử git. Không đúng ý anh
+       "chỉ vài KB".</p>
+    <p>Giờ nén mp3 ngay trong trình duyệt trước khi gửi: <b>95&ndash;141 KB</b> mỗi đoạn.
+       Cùng 43 cảnh còn <b>8 MB</b>.</p>
+    <p>Để làm được việc đó phải nhúng thêm một thư viện nén mp3 (168 KB, một lần).
+       Đổi 168 KB lấy 21 MB — đáng.</p>
+
+    <div class="hop">
+      <b>Vì sao phải dùng thư viện:</b> cách thông thường để ghi âm trong trình duyệt là
+      <code>MediaRecorder</code>, nhưng Safari trên iPhone/iPad không có API đó. Đã kiểm tra
+      và xác nhận thiếu.
+    </div>
+
+    <h2>Hai đường gửi đều nhận video</h2>
+    <ul>
+      <li><b>Trang Xưởng</b> — chọn video, trình duyệt trích tiếng. Đường này không tải video lên.</li>
+      <li><b>Issue hoặc thả file vào <code>xuong-am-inbox/</code></b> — bot nhận thêm
+          <code>mov</code>, <code>m4v</code>, <code>webm</code>, <code>mkv</code>,
+          <code>avi</code>, <code>3gp</code>, <code>mpg</code>, <code>wmv</code>.</li>
+    </ul>
+    <p>Đường thứ hai thì file gốc vẫn nằm trong git một thời gian, nên với video lớn
+       anh dùng trang Xưởng thì sạch hơn.</p>
+
+    <h2>Một chỗ tôi làm chưa đúng, đã sửa</h2>
+    <p>Lần thử đầu, tôi tưởng định dạng HEVC của iPhone không đọc được, vì thử trên trang live
+       thì lỗi. Thực ra lỗi là do tôi trỏ vào file test không tồn tại trên trang live — tải về
+       nhận 404. Thử lại trên máy chủ nội bộ thì HEVC đọc được bình thường, cả trên WebKit
+       lẫn Chromium. Đã kiểm tra lại và xác nhận.</p>
+
+    <h2>Còn lại</h2>
+    <ul>
+      <li>Video dưới 5 MB. Lớn hơn thì giải mã trên điện thoại rất chậm — cắt bớt trước.</li>
+      <li>Tiếng lấy 12 giây đầu, giống hệt đường gửi mp3 thường.</li>
+      <li>Bot vẫn là bên nén cuối cùng và cân âm lượng, nên chất lượng không khác gì.</li>
+    </ul>
+
+    <p style="font-size:13px;color:#7a6852;margin-top:24px">
+      Nén mp3 dùng <a href="../xuong-am/lamejs.NOTICE.txt">lamejs</a> (LAME, LGPL-3.0).
+    </p>
+  </div>
+</div>
+</body>
+</html>
