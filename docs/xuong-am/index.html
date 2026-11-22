@@ -63,6 +63,18 @@ button.phu{background:transparent}
 .tom-tat{background:#0e1726;border:1px solid var(--line);border-radius:12px;padding:12px 14px;
   margin:12px 0;font-size:13px}
 .tom-tat b{color:var(--gold)}
+.luoi-anh{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:2px 0 0}
+.luoi-anh figure{margin:0;cursor:pointer}
+.luoi-anh img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:7px;
+  display:block;border:1px solid var(--line);background:#0a1220}
+.luoi-anh figcaption{font-size:10.5px;color:var(--muted);line-height:1.3;margin-top:3px}
+.xem-anh{position:fixed;inset:0;z-index:50;display:none;align-items:center;
+  justify-content:center;padding:16px;background:rgba(6,10,18,.94)}
+.xem-anh.mo{display:flex}
+.xem-anh img{max-width:100%;max-height:82vh;border-radius:10px}
+.xem-anh .nen{position:absolute;inset:0}
+.xem-anh .chu{position:absolute;bottom:14px;left:0;right:0;text-align:center;
+  font-size:13px;color:#dfe7f5;padding:0 16px}
 .tukhoa{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 0}
 .tk{background:#0e1c2a;border:1px solid #2b4a63;color:#9fd8e8;font-size:12px;
   padding:6px 11px;border-radius:99px;font-family:ui-monospace,Menlo,monospace}
@@ -169,8 +181,14 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cho.mp3</code></div>
-    <div><span class="k">dùng ở</span> Chợ sớm Thất Huyền trấn (c1_y03, bc_cho_01…03)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cho_01.jpg" alt="Chợ sớm Thất Huyền trấn"><figcaption>Chợ sớm Thất Huyền trấn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cho_02.jpg" alt="Ngõ nhỏ sau chợ — lời đồn"><figcaption>Ngõ nhỏ sau chợ — lời đồn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cho_03.jpg" alt="Góc chợ — một ngày mòn mỏi"><figcaption>Góc chợ — một ngày mòn mỏi</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Chợ sớm: người dựng sạp, hàng hóa đặt xuống, bàn tán xa, tiếng bước chân trên đất. Không nhạc.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -220,8 +238,14 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tran.mp3</code></div>
-    <div><span class="k">dùng ở</span> Giao chiến, tập kích (bc_tran_lua, bc_dot_pha…)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tran_lua.jpg" alt="Dã Lang Bang tập kích"><figcaption>Dã Lang Bang tập kích</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tran_lua_2.jpg" alt="Xuống trấn — cứu dân"><figcaption>Xuống trấn — cứu dân</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tran_lua_3.jpg" alt="Thất Huyền Môn — cổng vỡ"><figcaption>Thất Huyền Môn — cổng vỡ</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_doi_mat.jpg" alt="Cổng đông — đối mặt địch"><figcaption>Cổng đông — đối mặt địch</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_giau.jpg" alt="Cổng đông — giấu thực lực"><figcaption>Cổng đông — giấu thực lực</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_toan_luc.jpg" alt="Cổng đông — dùng toàn lực"><figcaption>Cổng đông — dùng toàn lực</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_quyen.jpg" alt="Cổng đông — Thất Huyền quyền"><figcaption>Cổng đông — Thất Huyền quyền</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_cong_dong_hung_ba.jpg" alt="Cổng đông — gọi tên Hùng Bá"><figcaption>Cổng đông — gọi tên Hùng Bá</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_hoa_truong_cuu.jpg" alt="Hỏa trường — cứu người"><figcaption>Hỏa trường — cứu người</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Trận đánh: thép chạm thép, đất đá, gỗ vỡ, hơi thở nặng, tiếng hét xa không rõ chữ. Không nhạc.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -271,8 +295,14 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/nui.mp3</code></div>
-    <div><span class="k">dùng ở</span> Sườn núi, đường mòn, khe núi (bc_duong_mon_nui, bc_khe_nui…)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_duong_mon_nui.jpg" alt="Đường mòn lên núi — chạng vạng"><figcaption>Đường mòn lên núi — chạng vạng</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_khe_nui_dem.jpg" alt="Hậu sơn — khe núi đêm, theo lời đồn"><figcaption>Hậu sơn — khe núi đêm, theo lời đồn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_khe_nui_chon.jpg" alt="Hậu sơn — chôn trả lại"><figcaption>Hậu sơn — chôn trả lại</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Núi cao: gió qua đá và cỏ, âm vực rộng, rất ít sinh vật. Không nhạc.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -322,8 +352,14 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/san.mp3</code></div>
-    <div><span class="k">dùng ở</span> Luyện võ (bc_san_tap, bc_san_sau…)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_tap_ngay.jpg" alt="Sân tập Thất Huyền Môn — giữa ngày"><figcaption>Sân tập Thất Huyền Môn — giữa ngày</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_tap_chen_ep.jpg" alt="Sân tập — bị chèn ép"><figcaption>Sân tập — bị chèn ép</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_sau_luyen_dem.jpg" alt="Tân xá — luyện lén trong đêm"><figcaption>Tân xá — luyện lén trong đêm</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_tap_cai_lai.jpg" alt="Sân tập — cãi lại"><figcaption>Sân tập — cãi lại</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_sau_anh_sang.jpg" alt="Sân sau — đêm, dưới gốc cổ thụ"><figcaption>Sân sau — đêm, dưới gốc cổ thụ</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_san_sau_chon_lai.jpg" alt="Sân sau — chôn trả lại"><figcaption>Sân sau — chôn trả lại</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Sân tập: chân trần trên nền đất nện, quần áo vải, hơi thở, một tiếng đáp tay xa. Không nhạc.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -373,8 +409,14 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/vuon.mp3</code></div>
-    <div><span class="k">dùng ở</span> Vườn thảo dược, sườn núi hái thuốc (bc_vuon_thuoc…)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_gap.jpg" alt="Vườn thuốc phía sau môn"><figcaption>Vườn thuốc phía sau môn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_hoi.jpg" alt="Vườn thuốc — hỏi thẳng"><figcaption>Vườn thuốc — hỏi thẳng</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_im.jpg" alt="Vườn thuốc — im lặng"><figcaption>Vườn thuốc — im lặng</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_ngoc.jpg" alt="Vườn thuốc — Mạc Đại Phu và khối ngọc"><figcaption>Vườn thuốc — Mạc Đại Phu và khối ngọc</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_vuon_thuoc_dem.jpg" alt="Vườn thuốc — chôn trả lại"><figcaption>Vườn thuốc — chôn trả lại</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Vườn thuốc: lá cọ nhau, côn trùng nhỏ, chim xa, tay hái lá. Không nhạc.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -424,8 +466,14 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/mieu.mp3</code></div>
-    <div><span class="k">dùng ở</span> Miếu, từ đường, nơi thờ (bc_mieu_hoang, bc_mieu_trong…)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_mieu_hoang.jpg" alt="Ngoài miếu — quan sát"><figcaption>Ngoài miếu — quan sát</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_mieu_trong.jpg" alt="Trong miếu — xác người còn ấm"><figcaption>Trong miếu — xác người còn ấm</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_doat_hop.jpg" alt="Đoạt hộp — Đỗ Tam phản phệ"><figcaption>Đoạt hộp — Đỗ Tam phản phệ</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tu_khiem.jpg" alt="Tu luyện kiếm đạo — đêm đầu"><figcaption>Tu luyện kiếm đạo — đêm đầu</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Miếu cổ: phòng đá rỗng, tiếng vọng dài, gió lùa, một tiếng chuông đồng xa. Không nhạc, không tụng kinh.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -475,8 +523,14 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/dem.mp3</code></div>
-    <div><span class="k">dùng ở</span> Ban đêm, tập kích, chữa thương trong đêm (bc_dem_tap_kich, bc_khe_nui_dem…)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_dem.jpg" alt="Tân xá — tu luyện đêm đầu"><figcaption>Tân xá — tu luyện đêm đầu</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_dem_tap_kich.jpg" alt="Đêm cuối — Dã Lang Bang tập kích"><figcaption>Đêm cuối — Dã Lang Bang tập kích</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Đêm đồng quê: dế và côn trùng dày, gió nhẹ, chó sủa rất xa. Không nhạc.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -526,8 +580,14 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/lang.mp3</code></div>
-    <div><span class="k">dùng ở</span> Làng, xóm, cổng cộng đồng, quán trà, quán rượu (bc_tan_xa, bc_cong_dong, bc_quan_nuoc…)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_hoang.jpg" alt="Sau trận — giữa đống đổ nát"><figcaption>Sau trận — giữa đống đổ nát</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_binh_minh.jpg" alt="Kết chương — bình minh Thất Huyền trấn"><figcaption>Kết chương — bình minh Thất Huyền trấn</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_sang.jpg" alt="Tân xá Thất Huyền Môn — sáng"><figcaption>Tân xá Thất Huyền Môn — sáng</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_quan_nuoc.jpg" alt="Quán nước đầu trấn — dò tin"><figcaption>Quán nước đầu trấn — dò tin</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_song_tu.jpg" alt="Tân xá — đêm, lần song tu đầu tiên"><figcaption>Tân xá — đêm, lần song tu đầu tiên</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_kho_tu.jpg" alt="Tân xá — khổ tu, lần thất bại"><figcaption>Tân xá — khổ tu, lần thất bại</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_suyt_lo.jpg" alt="Tân xá — suýt bị phát hiện"><figcaption>Tân xá — suýt bị phát hiện</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_tan_xa_dot_pha.jpg" alt="Tân xá — đột phá Luyện Khí tầng hai"><figcaption>Tân xá — đột phá Luyện Khí tầng hai</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_mon_phai_tan_hoang.jpg" alt="Sau trận — giữa đống đổ nát"><figcaption>Sau trận — giữa đống đổ nát</figcaption></figure><figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_binh_minh_ngoc_cot.jpg" alt="Kết chương — bình minh Thất Huyền Môn"><figcaption>Kết chương — bình minh Thất Huyền Môn</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Làng quê: sinh hoạt thường ngày, gà, chó, tiếng người xa không rõ chữ, treo gió. Không nhạc.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -577,8 +637,14 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tinh.mp3</code></div>
-    <div><span class="k">dùng ở</span> Yên ắng: trong nhà, hiệu thuốc, lúc thiền (bc_hoi_uc, cảnh còn lại)</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    <figure onclick="xemAnh(this)"><img loading="lazy" src="../assets/scene/nho/bc_dot_pha.jpg" alt="Đột phá Luyện Khí"><figcaption>Đột phá Luyện Khí</figcaption></figure>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">Yên ắng: phòng kín, tiếng vọng nhỏ, gỗ kêu, gió ngoài cửa sổ. Không nhạc. Không phải file hỏng.</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -624,7 +690,25 @@ This is an ambience soundscape, NOT music. No melody, no musical instruments, no
   Tiếng do AI tạo (OpenHands) soạn prompt; bản ghi là do anh tạo và tải lên.
 </footer>
 
+<div class="xem-anh" id="xem-anh" onclick="dongAnh()">
+  <div class="nen"></div>
+  <img id="xem-anh-img" alt="">
+  <div class="chu" id="xem-anh-chu"></div>
+</div>
+
 <script>
+function xemAnh(fig){
+  const img = fig.querySelector('img');
+  const chu = fig.querySelector('figcaption');
+  const hop = document.getElementById('xem-anh');
+  document.getElementById('xem-anh-img').src = img.src.replace('/nho/', '/');
+  document.getElementById('xem-anh-chu').textContent = chu ? chu.textContent : '';
+  hop.classList.add('mo');
+}
+function dongAnh(){
+  document.getElementById('xem-anh').classList.remove('mo');
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') dongAnh(); });
 /* ================= tiện ích ================= */
 function cpText(id, btn){
   const t = document.getElementById(id);

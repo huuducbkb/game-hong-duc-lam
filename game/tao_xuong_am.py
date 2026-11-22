@@ -20,6 +20,8 @@ JS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "xuong_am.js")
 
 # Tên file trên đĩa: <ma>.mp3 trong docs/assets/am/
 DUONG = "assets/am/"
+# Ảnh cảnh trong game, bản thu nhỏ 300px (gốc 900px nặng gấp 10 lần).
+ANH = "/assets/scene/nho/"
 
 
 def esc(s):
@@ -39,8 +41,17 @@ def the_canh(n, i):
   </header>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>{DUONG}{esc(n['file'])}</code></div>
-    <div><span class="k">dùng ở</span> {esc(n['dung'])}</div>
   </div>
+
+  <label class="nhan">Cảnh này trông thế nào trong game</label>
+  <div class="luoi-anh">
+    {"".join(
+      f'<figure onclick="xemAnh(this)"><img loading="lazy" src="..{ANH}{esc(f)}" alt="{esc(bc)}">'
+      f'<figcaption>{esc(bc)}</figcaption></figure>'
+      for f, bc in n.get("anh", []))}
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm ảnh để xem to. Tiếng anh tải lên sẽ phát
+     đúng ở những cảnh này.</p>
   <p class="mota">{esc(n['mota'])}</p>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ sinh âm thanh</label>
@@ -153,6 +164,18 @@ button.phu{{background:transparent}}
 .tom-tat{{background:#0e1726;border:1px solid var(--line);border-radius:12px;padding:12px 14px;
   margin:12px 0;font-size:13px}}
 .tom-tat b{{color:var(--gold)}}
+.luoi-anh{{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:2px 0 0}}
+.luoi-anh figure{{margin:0;cursor:pointer}}
+.luoi-anh img{{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:7px;
+  display:block;border:1px solid var(--line);background:#0a1220}}
+.luoi-anh figcaption{{font-size:10.5px;color:var(--muted);line-height:1.3;margin-top:3px}}
+.xem-anh{{position:fixed;inset:0;z-index:50;display:none;align-items:center;
+  justify-content:center;padding:16px;background:rgba(6,10,18,.94)}}
+.xem-anh.mo{{display:flex}}
+.xem-anh img{{max-width:100%;max-height:82vh;border-radius:10px}}
+.xem-anh .nen{{position:absolute;inset:0}}
+.xem-anh .chu{{position:absolute;bottom:14px;left:0;right:0;text-align:center;
+  font-size:13px;color:#dfe7f5;padding:0 16px}}
 .tukhoa{{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 0}}
 .tk{{background:#0e1c2a;border:1px solid #2b4a63;color:#9fd8e8;font-size:12px;
   padding:6px 11px;border-radius:99px;font-family:ui-monospace,Menlo,monospace}}
@@ -256,7 +279,25 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   Tiếng do AI tạo (OpenHands) soạn prompt; bản ghi là do anh tạo và tải lên.
 </footer>
 
+<div class="xem-anh" id="xem-anh" onclick="dongAnh()">
+  <div class="nen"></div>
+  <img id="xem-anh-img" alt="">
+  <div class="chu" id="xem-anh-chu"></div>
+</div>
+
 <script>
+function xemAnh(fig){{
+  const img = fig.querySelector('img');
+  const chu = fig.querySelector('figcaption');
+  const hop = document.getElementById('xem-anh');
+  document.getElementById('xem-anh-img').src = img.src.replace('/nho/', '/');
+  document.getElementById('xem-anh-chu').textContent = chu ? chu.textContent : '';
+  hop.classList.add('mo');
+}}
+function dongAnh(){{
+  document.getElementById('xem-anh').classList.remove('mo');
+}}
+document.addEventListener('keydown', e => {{ if(e.key === 'Escape') dongAnh(); }});
 {js}
 </script>
 </body>

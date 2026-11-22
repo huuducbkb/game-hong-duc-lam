@@ -1037,16 +1037,22 @@ function nhomCanh(ten) {
   const t = String(ten).split("/").pop().replace(/\.[a-z0-9]+$/i, "");
   if (t.startsWith("nv_") || t.startsWith("vt_")) return "diem";  // điểm nhấn ngắn
   if (!t.startsWith("bc_")) return "";
-  if (t.includes("cho")) return "cho";
-  if (t.includes("tran_lua")) return "tran";
+  // "cho" phải là một từ riêng. Trước đây dùng includes("cho") nên
+  // "bc_khe_nui_chon" và "bc_san_sau_chon_lai" (chôn trả lại) cũng khớp, và hai
+  // cảnh chôn cất ban đêm nghe tiếng chợ đông người.
+  if (/(^|_)cho(_|$)/.test(t)) return "cho";
+  // Cổng đông là đối mặt địch, hỏa trường là cháy: cùng nhóm giao chiến.
+  if (t.includes("tran_lua") || t.includes("cong_dong")
+      || t.includes("hoa_truong")) return "tran";
   if (t.includes("khe_nui") || t.includes("duong_mon_nui")) return "nui";
   if (t.includes("san_tap") || t.includes("san_sau")) return "san";
   if (t.includes("vuon_thuoc")) return "vuon";
-  if (t.includes("mieu")) return "mieu";
+  // Đoạt hộp và tu luyện kiếm đạo đều xảy ra trong miếu hoang, không phải làng.
+  if (t.includes("mieu") || t.includes("doat_hop")
+      || t.includes("tu_khiem")) return "mieu";
   if (t.includes("dem") || t.includes("tap_kich")) return "dem";
   if (t.includes("tan_xa") || t.includes("tan_hoang") || t.includes("binh_minh")
-      || t.includes("quan_nuoc") || t.includes("cong_dong") || t.includes("doat_hop")
-      || t.includes("tu_khiem") || t.includes("hoa_truong_cuu")) return "lang";
+      || t.includes("quan_nuoc") || t.includes("mon_phai")) return "lang";
   return "tinh";
 }
 

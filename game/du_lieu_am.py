@@ -44,6 +44,11 @@ NHOM = [
         "ten": "Chợ sớm",
         "dung": "Chợ sớm Thất Huyền trấn (c1_y03, bc_cho_01…03)",
         "file": "cho.mp3",
+        "anh": [
+            ("bc_cho_01.jpg", "Chợ sớm Thất Huyền trấn"),
+            ("bc_cho_02.jpg", "Ngõ nhỏ sau chợ — lời đồn"),
+            ("bc_cho_03.jpg", "Góc chợ — một ngày mòn mỏi"),
+        ],
         "tu_khoa": [
             "morning market ambience",
             "vietnamese market crowd",
@@ -70,6 +75,17 @@ NHOM = [
         "ten": "Trận chiến",
         "dung": "Giao chiến, tập kích (bc_tran_lua, bc_dot_pha…)",
         "file": "tran.mp3",
+        "anh": [
+            ("bc_tran_lua.jpg", "Dã Lang Bang tập kích"),
+            ("bc_tran_lua_2.jpg", "Xuống trấn — cứu dân"),
+            ("bc_tran_lua_3.jpg", "Thất Huyền Môn — cổng vỡ"),
+            ("bc_cong_dong_doi_mat.jpg", "Cổng đông — đối mặt địch"),
+            ("bc_cong_dong_giau.jpg", "Cổng đông — giấu thực lực"),
+            ("bc_cong_dong_toan_luc.jpg", "Cổng đông — dùng toàn lực"),
+            ("bc_cong_dong_quyen.jpg", "Cổng đông — Thất Huyền quyền"),
+            ("bc_cong_dong_hung_ba.jpg", "Cổng đông — gọi tên Hùng Bá"),
+            ("bc_hoa_truong_cuu.jpg", "Hỏa trường — cứu người"),
+        ],
         "tu_khoa": [
             "battlefield ambience",
             "medieval battle crowd distant",
@@ -96,6 +112,11 @@ NHOM = [
         "ten": "Núi",
         "dung": "Sườn núi, đường mòn, khe núi (bc_duong_mon_nui, bc_khe_nui…)",
         "file": "nui.mp3",
+        "anh": [
+            ("bc_duong_mon_nui.jpg", "Đường mòn lên núi — chạng vạng"),
+            ("bc_khe_nui_dem.jpg", "Hậu sơn — khe núi đêm, theo lời đồn"),
+            ("bc_khe_nui_chon.jpg", "Hậu sơn — chôn trả lại"),
+        ],
         "tu_khoa": [
             "mountain wind ambience",
             "high altitude wind",
@@ -120,6 +141,14 @@ NHOM = [
         "ten": "Sân tập",
         "dung": "Luyện võ (bc_san_tap, bc_san_sau…)",
         "file": "san.mp3",
+        "anh": [
+            ("bc_san_tap_ngay.jpg", "Sân tập Thất Huyền Môn — giữa ngày"),
+            ("bc_san_tap_chen_ep.jpg", "Sân tập — bị chèn ép"),
+            ("bc_san_sau_luyen_dem.jpg", "Tân xá — luyện lén trong đêm"),
+            ("bc_san_tap_cai_lai.jpg", "Sân tập — cãi lại"),
+            ("bc_san_sau_anh_sang.jpg", "Sân sau — đêm, dưới gốc cổ thụ"),
+            ("bc_san_sau_chon_lai.jpg", "Sân sau — chôn trả lại"),
+        ],
         "tu_khoa": [
             "martial arts training ambience",
             "courtyard footsteps ambience",
@@ -144,6 +173,13 @@ NHOM = [
         "ten": "Vườn thuốc",
         "dung": "Vườn thảo dược, sườn núi hái thuốc (bc_vuon_thuoc…)",
         "file": "vuon.mp3",
+        "anh": [
+            ("bc_vuon_thuoc_gap.jpg", "Vườn thuốc phía sau môn"),
+            ("bc_vuon_thuoc_hoi.jpg", "Vườn thuốc — hỏi thẳng"),
+            ("bc_vuon_thuoc_im.jpg", "Vườn thuốc — im lặng"),
+            ("bc_vuon_thuoc_ngoc.jpg", "Vườn thuốc — Mạc Đại Phu và khối ngọc"),
+            ("bc_vuon_thuoc_dem.jpg", "Vườn thuốc — chôn trả lại"),
+        ],
         "tu_khoa": [
             "herb garden ambience",
             "garden birds insects ambience",
@@ -167,6 +203,12 @@ NHOM = [
         "ten": "Miếu",
         "dung": "Miếu, từ đường, nơi thờ (bc_mieu_hoang, bc_mieu_trong…)",
         "file": "mieu.mp3",
+        "anh": [
+            ("bc_mieu_hoang.jpg", "Ngoài miếu — quan sát"),
+            ("bc_mieu_trong.jpg", "Trong miếu — xác người còn ấm"),
+            ("bc_doat_hop.jpg", "Đoạt hộp — Đỗ Tam phản phệ"),
+            ("bc_tu_khiem.jpg", "Tu luyện kiếm đạo — đêm đầu"),
+        ],
         "tu_khoa": [
             "temple ambience",
             "empty shrine room tone",
@@ -192,6 +234,10 @@ NHOM = [
         "dung": "Ban đêm, tập kích, chữa thương trong đêm (bc_dem_tap_kich, "
                 "bc_khe_nui_dem…)",
         "file": "dem.mp3",
+        "anh": [
+            ("bc_tan_xa_dem.jpg", "Tân xá — tu luyện đêm đầu"),
+            ("bc_dem_tap_kich.jpg", "Đêm cuối — Dã Lang Bang tập kích"),
+        ],
         "tu_khoa": [
             "night countryside ambience",
             "crickets night field",
@@ -215,6 +261,18 @@ NHOM = [
         "dung": "Làng, xóm, cổng cộng đồng, quán trà, quán rượu (bc_tan_xa, "
                 "bc_cong_dong, bc_quan_nuoc…)",
         "file": "lang.mp3",
+        "anh": [
+            ("bc_tan_hoang.jpg", "Sau trận — giữa đống đổ nát"),
+            ("bc_binh_minh.jpg", "Kết chương — bình minh Thất Huyền trấn"),
+            ("bc_tan_xa_sang.jpg", "Tân xá Thất Huyền Môn — sáng"),
+            ("bc_quan_nuoc.jpg", "Quán nước đầu trấn — dò tin"),
+            ("bc_tan_xa_song_tu.jpg", "Tân xá — đêm, lần song tu đầu tiên"),
+            ("bc_tan_xa_kho_tu.jpg", "Tân xá — khổ tu, lần thất bại"),
+            ("bc_tan_xa_suyt_lo.jpg", "Tân xá — suýt bị phát hiện"),
+            ("bc_tan_xa_dot_pha.jpg", "Tân xá — đột phá Luyện Khí tầng hai"),
+            ("bc_mon_phai_tan_hoang.jpg", "Sau trận — giữa đống đổ nát"),
+            ("bc_binh_minh_ngoc_cot.jpg", "Kết chương — bình minh Thất Huyền Môn"),
+        ],
         "tu_khoa": [
             "village ambience",
             "rural village daytime",
@@ -240,6 +298,9 @@ NHOM = [
         "ten": "Tĩnh",
         "dung": "Yên ắng: trong nhà, hiệu thuốc, lúc thiền (bc_hoi_uc, cảnh còn lại)",
         "file": "tinh.mp3",
+        "anh": [
+            ("bc_dot_pha.jpg", "Đột phá Luyện Khí"),
+        ],
         "tu_khoa": [
             "quiet room tone",
             "interior room ambience",
