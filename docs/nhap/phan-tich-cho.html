@@ -123,19 +123,34 @@ trong game".</p>
 
 <h2>5. Tôi đã làm gì</h2>
 <div class="card ok">
-  <p style="margin:0 0 8px"><b>Giữ nội dung, đổi cách diễn đạt.</b></p>
-  <p style="margin:0">Prompt mới vẫn tả <b>chợ sớm Thất Huyền trấn</b> — đúng cảnh
-  <code>c1_y03</code> trong truyện, nơi người ta bàn tán chuyện Dã Lang Bang. Nhưng
-  tả bằng <b>nhạc cụ và lớp</b>, không tả bằng "tiếng ồn hiện trường".</p>
+  <p style="margin:0 0 8px"><b>Đổi hẳn thể loại: từ nhạc sang âm thanh môi trường.</b></p>
+  <p style="margin:0">Bản trước tôi viết prompt thành <b>nhạc</b> — đàn tranh, phách,
+  ngũ cung, nhịp 96. Sai. Anh chỉ ra rồi, và anh đúng: cảnh trong game cần
+  <b>tiếng của nơi chốn</b>, không phải bài hát.</p>
 </div>
+<p>Bản mới tả đúng thứ file anh tải lên đang có — chỉ khác là <b>đủ dải tần</b> và
+<b>liền mạch</b>:</p>
+<ul>
+  <li>Chợ sớm: người dựng sạp, hàng đặt xuống, bước chân trên đất, bàn tán xa</li>
+  <li>Không giai điệu, không nhạc cụ, không trống, không hòa âm</li>
+  <li>Có trầm dưới 120 Hz và không khí trên 5 kHz — đúng hai thứ file này thiếu</li>
+</ul>
 <p>Thêm vào <code>CHUNG</code> một câu chống đúng lỗi của file này:</p>
 <div class="card">
-  <p style="margin:0;font-size:14.5px">“Full-range mix with real low end (the music
-  must have weight below 120 Hz) and air above 5 kHz — <b>do not band-limit it to the
-  telephone band</b>.”</p>
+  <p style="margin:0;font-size:14.5px">“Full low end below 120 Hz where the scene has
+  weight (wind, room, crowd), and air above 5 kHz so it does not sound band-limited or
+  like a telephone or a radio.”</p>
 </div>
-<p class="note">Câu này bắt công cụ phải làm đủ trầm và đủ cao — đúng hai thứ file
-anh tải lên bị thiếu.</p>
+<p class="note">Và một câu chặn hẳn nhạc: “This is an ambience soundscape, NOT music.
+No melody, no musical instruments, no chords, no drum beat.”</p>
+
+<div class="card" style="border-left:4px solid #b8862b">
+  <p style="margin:0 0 8px"><b>Vì sao không dùng nhạc nền</b></p>
+  <p style="margin:0">Nhạc giai điệu lặp 10 giây thì người chơi nhận ra máy đang lặp
+  sau khoảng ba vòng — tai người bám vào nhịp và giai điệu nên nghe ra ngay chỗ nối.
+  Tiếng môi trường thì lặp mà không lộ, vì không có gì để bám vào. Đây cũng đúng
+  thể loại các thư viện âm thanh gọi là <i>ambience</i>.</p>
+</div>
 
 <h2>6. Chín cảnh, nhịp riêng</h2>
 <table>
@@ -156,9 +171,11 @@ nên vòng lặp khít đúng ô nhịp.</p>
 <h2>7. Anh làm gì tiếp</h2>
 <div class="card">
   <p style="margin:0 0 10px"><a href="../xuong-am/" style="font-size:16px;font-weight:600">
-  → Mở Xưởng âm thanh, copy prompt mới</a></p>
-  <p style="margin:0">Chọn cảnh <b>Chợ sớm</b>, bấm Copy, dán vào công cụ sinh âm
-  thanh, chọn <b>10 giây</b>.</p>
+  → Mở Xưởng âm thanh</a></p>
+  <p style="margin:0 0 8px">Mỗi cảnh giờ có <b>4 từ khoá tiếng Anh</b> để tìm nguồn
+  trên thư viện âm thanh. Cảnh chợ sớm: <code>morning market ambience</code>.</p>
+  <p style="margin:0">Tải file dài bao nhiêu cũng được — hệ thống <b>tự lấy 30 giây
+  đầu</b> khi anh gửi lên.</p>
 </div>
 <p><b>Nếu công cụ vẫn cho ra file nghe như radio</b>, gửi tôi file mới — tôi đo lại
 và biết ngay nó thiếu gì. Mỗi lần đo mất khoảng một phút.</p>

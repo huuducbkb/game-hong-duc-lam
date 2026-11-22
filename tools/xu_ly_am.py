@@ -89,6 +89,10 @@ def ma_tu_dong_truoc(text: str, url: str):
     return None
 
 
+# Chỉ lấy 30 giây đầu. Nguồn thư viện thường dài 2 phút; cảnh trong game chỉ
+# 10 giây nên 30 giây là quá đủ, và giữ file nhỏ để tải nhanh trên điện thoại.
+GIAY_LAY = 30
+
 MUC_LUFS = -18  # tiếng nền phát qua loa điện thoại; -23 (chuẩn phát thanh) nghe quá nhỏ
 DINH_TP = -2
 
@@ -96,7 +100,7 @@ DINH_TP = -2
 def do_am_thanh(src: str):
     """Đo loudness thật của file. Trả về (integrated LUFS, true peak dBTP)."""
     kq = subprocess.run(
-        ["ffmpeg", "-hide_banner", "-nostats", "-i", src,
+        ["ffmpeg", "-hide_banner", "-nostats", "-t", str(GIAY_LAY), "-i", src,
          "-af", f"loudnorm=I={MUC_LUFS}:TP={DINH_TP}:LRA=11:print_format=json",
          "-f", "null", "-"],
         capture_output=True, text=True)
@@ -124,7 +128,8 @@ def chuyen(src: str, ma: str) -> str:
         f":offset={j['target_offset']}:linear=true"
     )
     subprocess.run(
-        ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", src,
+        ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+         "-t", str(GIAY_LAY), "-i", src,
          "-af", loc, "-ac", "2", "-ar", "44100",
          "-c:a", "libmp3lame", "-b:a", "96k", ra],
         check=True)

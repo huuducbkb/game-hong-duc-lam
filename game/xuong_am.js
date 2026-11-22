@@ -17,6 +17,25 @@ function chon(t, xong){
   try{ document.execCommand('copy'); xong(); }catch(e){}
   t.setAttribute('readonly','');
 }
+/* Copy một chuỗi rời (từ khoá tiếng Anh) — không có textarea để chọn. */
+function cpChu(btn, chu){
+  const xong = () => {
+    const cu = btn.textContent;
+    btn.classList.add('da');
+    btn.textContent = '✅ ' + cu;
+    setTimeout(() => { btn.textContent = cu; btn.classList.remove('da'); }, 1500);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(chu).then(xong).catch(() => {});
+    return;
+  }
+  // Safari cũ: tạo vùng chọn tạm
+  const t = document.createElement('textarea');
+  t.value = chu; t.style.position = 'fixed'; t.style.opacity = '0';
+  document.body.appendChild(t); t.select();
+  try{ document.execCommand('copy'); xong(); }catch(e){}
+  document.body.removeChild(t);
+}
 function taiTxt(id, ten){
   const t = document.getElementById(id);
   if(!t) return;

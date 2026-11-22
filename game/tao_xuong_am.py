@@ -50,6 +50,13 @@ def the_canh(n, i):
     <button class="dl" onclick="taiTxt('p-{ma}', '{ma}.txt')">⬇️ .txt</button>
   </div>
 
+  <label class="nhan">Từ khoá tiếng Anh — dán vào ô tìm kiếm của thư viện âm thanh</label>
+  <div class="tukhoa">
+    {"".join(f'<button type="button" class="tk" onclick="cpChu(this,{esc(repr(k))})">{esc(k)}</button>' for k in n["tu_khoa"])}
+  </div>
+  <p class="mota" style="margin:6px 0 0">Bấm một cụm để copy. Tìm bằng tiếng Anh thì ra
+     kết quả; tìm bằng tiếng Việt hầu như không có.</p>
+
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
     <audio controls playsinline preload="none" data-audio hidden></audio>
@@ -146,6 +153,11 @@ button.phu{{background:transparent}}
 .tom-tat{{background:#0e1726;border:1px solid var(--line);border-radius:12px;padding:12px 14px;
   margin:12px 0;font-size:13px}}
 .tom-tat b{{color:var(--gold)}}
+.tukhoa{{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 0}}
+.tk{{background:#0e1c2a;border:1px solid #2b4a63;color:#9fd8e8;font-size:12px;
+  padding:6px 11px;border-radius:99px;font-family:ui-monospace,Menlo,monospace}}
+.tk:active{{background:#12303f}}
+.tk.da{{background:#123a2c;border-color:#2f6b4f;color:#a9f0c4}}
 .ml{{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}}
 .ml a{{font-size:12px;background:#0e1726;border:1px solid var(--line);border-radius:99px;
   padding:3px 10px;text-decoration:none;color:#9fb2cf}}
@@ -178,21 +190,40 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 
 <h2>Cách làm</h2>
 <div class="card">
-  <ol style="margin:0;padding-left:20px">
-    <li>Chọn cảnh ở dưới, bấm <b>📋 Copy prompt</b>.</li>
-    <li>Dán vào công cụ sinh âm thanh. Chọn <b>10 giây</b> — đúng bằng độ dài
-        mỗi cảnh trong game, nên không phải cắt. Bật <b>loop / seamless</b> nếu
-        công cụ có.</li>
-    <li>Nghe lại. Ưng thì tải file về máy.</li>
-    <li>Quay lại đây, <b>chọn file ngay dưới prompt</b> của đúng cảnh đó, bấm
-        <b>📤 Gửi tiếng này</b>. Trang tự đưa file lên GitHub.</li>
-    <li>Trang tự báo khi bot ghép xong và hiện ô nghe thử. Muốn xem lại thì bấm
-        <b>🔄 Kiểm tra</b> trên thẻ — không cần tải lại trang.</li>
+  <p style="margin:0 0 10px"><b>Cách 1 — anh có sẵn file từ thư viện âm thanh</b></p>
+  <ol style="margin:0 0 16px;padding-left:20px">
+    <li>Bấm một <b>từ khoá tiếng Anh</b> dưới mỗi cảnh để copy.</li>
+    <li>Dán vào ô tìm kiếm của thư viện (Freesound, Pixabay, YouTube…). Tìm bằng
+        tiếng Anh mới ra; tiếng Việt gần như không có.</li>
+    <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
+    <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
+    <li>Bot tự lấy <b>30 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
   </ol>
+
+  <p style="margin:0 0 10px"><b>Cách 2 — anh muốn tự tạo bằng AI</b></p>
+  <ol style="margin:0;padding-left:20px">
+    <li>Bấm <b>📋 Copy prompt</b> của cảnh đó.</li>
+    <li>Dán vào công cụ sinh âm thanh, chọn <b>10 giây</b>, bật <b>loop</b> nếu có.</li>
+    <li>Tải file về rồi gửi lên như cách 1.</li>
+  </ol>
+
+  <div class="card" style="background:#0e1726;margin:14px 0 0;padding:12px">
+    <p style="margin:0;font-size:12.5px"><b>Về 30 giây:</b> file anh gửi dài bao nhiêu
+    cũng được, hệ thống <b>tự cắt 30 giây đầu</b>. Cảnh trong game chỉ 10 giây nên 30
+    giây là quá đủ, và file nhỏ thì tải nhanh trên điện thoại. File ngắn hơn 30 giây
+    thì giữ nguyên, không cắt.</p>
+  </div>
+
+  <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
+    <p style="margin:0;font-size:12.5px"><b>Về thể loại:</b> đây là <b>âm thanh môi
+    trường</b> (ambience) — tiếng của nơi chốn. <b>Không phải nhạc</b>: không giai
+    điệu, không nhạc cụ, không trống, không hòa âm. Nhạc nền lặp 10 giây thì người
+    chơi nhận ra máy đang lặp; tiếng môi trường thì lặp mà không lộ.</p>
+  </div>
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
     <code>flac</code>. Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
-    gửi, bot tự chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
+    gửi, bot tự lấy 30 giây đầu, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
   </p>
 </div>
 
