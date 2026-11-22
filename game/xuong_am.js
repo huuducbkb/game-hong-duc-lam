@@ -100,6 +100,77 @@ function blobB64(blob){
   });
 }
 
+/* ===== trích tiếng từ video, ngay trong trình duyệt =====
+   Video không bao giờ được gửi lên: trình duyệt đọc luồng tiếng, ghi ra WAV,
+   rồi chỉ file WAV đó được đẩy vào inbox. Bot nén WAV thành mp3 như mọi file
+   khác. Nhờ vậy repo không phải chứa video, kể cả trong lịch sử git.
+
+   decodeAudioData đọc thẳng được tiếng trong mp4/mov — đã đo thật trên WebKit
+   (nhân Safari của iPhone): cả .mp4 và .mov đều ra đúng số giây. Không cần
+   thẻ <video> cũng không cần MediaRecorder. */
+const DUOI_VIDEO = ['mp4','mov','m4v','webm','mkv','avi','3gp','mpg','mpeg','wmv'];
+const GIAY_LAY = 12;        // phải khớp GIAY_LAY trong tools/xu_ly_am.py
+const TRAN_VIDEO_MB = 5;    // video lớn hơn mức này thì giải mã trên điện thoại quá chậm
+
+function laVideo(f){
+  const ten = (f.name || '').toLowerCase();
+  const duoi = ten.split('.').pop();
+  if(DUOI_VIDEO.includes(duoi)) return true;
+  // MIME trên iPhone hay để trống hoặc "application/octet-stream", nên đuôi
+  // file là dấu hiệu đáng tin hơn.
+  return /^video\//.test(f.type || '');
+}
+
+/* Ghi AudioBuffer thành WAV 16-bit. Tự viết thay vì dùng lamejs: không phải
+   nạp thêm thư viện ngoài, và bot đằng nào cũng nén lại nên chất lượng không
+   mất thêm. */
+function wavTuBuffer(buf){
+  const kenh = Math.min(2, buf.numberOfChannels);
+  const n = buf.length;
+  const dai = 44 + n * kenh * 2;
+  const dv = new DataView(new ArrayBuffer(dai));
+  const ghi = (o, s) => { for(let i=0;i<s.length;i++) dv.setUint8(o+i, s.charCodeAt(i)); };
+  ghi(0,'RIFF'); dv.setUint32(4, dai-8, true); ghi(8,'WAVE');
+  ghi(12,'fmt '); dv.setUint32(16,16,true); dv.setUint16(20,1,true);
+  dv.setUint16(22,kenh,true); dv.setUint32(24,buf.sampleRate,true);
+  dv.setUint32(28,buf.sampleRate*kenh*2,true); dv.setUint16(32,kenh*2,true);
+  dv.setUint16(34,16,true); ghi(36,'data'); dv.setUint32(40,n*kenh*2,true);
+  const duLieu = [];
+  for(let c=0;c<kenh;c++) duLieu.push(buf.getChannelData(c));
+  let o = 44;
+  for(let i=0;i<n;i++){
+    for(let c=0;c<kenh;c++){
+      let v = Math.max(-1, Math.min(1, duLieu[c][i]));
+      dv.setInt16(o, v < 0 ? v*0x8000 : v*0x7fff, true);
+      o += 2;
+    }
+  }
+  return new Blob([dv], {type:'audio/wav'});
+}
+
+/* Trả về {blob, ten, giay}. Chỉ lấy GIAY_LAY giây đầu, đúng như bot vẫn làm. */
+async function tiengTuVideo(f, giayLay){
+  const ab = await f.arrayBuffer();
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if(!Ctx) throw new Error('Trình duyệt này không đọc được tiếng trong video.');
+  const ctx = new Ctx();
+  let buf;
+  try{
+    buf = await new Promise((res, rej) => ctx.decodeAudioData(ab, res, rej));
+  }catch(e){
+    throw new Error('Không đọc được tiếng trong video này. Video có thể không '
+      + 'có tiếng, hoặc dùng định dạng máy này không hỗ trợ.');
+  }
+  if(!buf || !buf.length) throw new Error('Video này không có luồng tiếng.');
+  const can = Math.min(buf.length, Math.round(buf.sampleRate * giayLay));
+  const cat = ctx.createBuffer(buf.numberOfChannels, can, buf.sampleRate);
+  for(let c=0;c<buf.numberOfChannels;c++){
+    cat.copyToChannel(buf.getChannelData(c).subarray(0, can), c);
+  }
+  const ten = (f.name || 'video').replace(/\.[^.]+$/, '') + '.wav';
+  return {blob: wavTuBuffer(cat), ten, giay: can / buf.sampleRate};
+}
+
 async function ghLaySha(duong){
   const r = await fetch(
     `https://api.github.com/repos/${GH_REPO}/contents/${duong}?ref=${GH_BRANCH}`,
@@ -206,17 +277,33 @@ async function guiMot(hop){
     return;
   }
   const f = inp.files[0];
-  const mb = f.size / 1024 / 1024;
-  if(mb > 24){
-    ghHienTT(tt,'warn',`⚠️ File ${mb.toFixed(1)} MB quá lớn để gửi thẳng (trần 24 MB). `
-      + 'Nén lại thành mp3 96 kbps rồi gửi lại — 12 giây ở mức đó chỉ khoảng 0.2 MB.');
-    return;
-  }
   nut.disabled = true;
-  ghHienTT(tt,'muted',`Đang gửi <b>${f.name}</b> — ${mb.toFixed(1)} MB… Đừng đóng tab.`);
+  let gui = f;
+  let tenGui = file;      // tên trong inbox; bot lấy mã cảnh từ tên thư mục
   try{
-    const b64 = await blobB64(f);
-    await ghPutFile(`${INBOX}/${ma}/${file}`, b64);
+    if(laVideo(f)){
+      const mbVid = f.size / 1024 / 1024;
+      if(mbVid > TRAN_VIDEO_MB){
+        ghHienTT(tt,'warn',`⚠️ Video ${mbVid.toFixed(1)} MB, quá trần ${TRAN_VIDEO_MB} MB. `
+          + 'Cắt bớt video trên điện thoại rồi chọn lại.');
+        return;
+      }
+      ghHienTT(tt,'muted',`Đang trích tiếng từ <b>${f.name}</b>… Video không được tải lên, `
+        + 'chỉ đoạn tiếng được gửi đi.');
+      const t = await tiengTuVideo(f, GIAY_LAY);
+      gui = new File([t.blob], t.ten, {type:'audio/wav'});
+      tenGui = `${ma}.wav`;
+      ghHienTT(tt,'muted',`Đã trích ${t.giay.toFixed(1)} giây tiếng. Đang gửi…`);
+    }
+    const mb = gui.size / 1024 / 1024;
+    if(mb > 24){
+      ghHienTT(tt,'warn',`⚠️ File ${mb.toFixed(1)} MB quá lớn để gửi thẳng (trần 24 MB). `
+        + 'Nén lại thành mp3 96 kbps rồi gửi lại — 12 giây ở mức đó chỉ khoảng 0.2 MB.');
+      return;
+    }
+    ghHienTT(tt,'muted',`Đang gửi <b>${gui.name}</b> — ${mb.toFixed(1)} MB… Đừng đóng tab.`);
+    const b64 = await blobB64(gui);
+    await ghPutFile(`${INBOX}/${ma}/${tenGui}`, b64);
     ghHienTT(tt,'ok','📤 Đã gửi. Bot sẽ nén và cập nhật trong 1–2 phút — tự kiểm tra nhé.');
     theoDoi(hop);
   }catch(e){
@@ -244,9 +331,20 @@ function chonFile(hop, f){
   const mb = f.size / 1024 / 1024;
   if(nut) nut.disabled = false;
   if(vung) vung.classList.add('co-file');
-  if(chu) chu.innerHTML = `${f.name}<small>${mb.toFixed(1)} MB — bấm 📤 Gửi tiếng này</small>`;
+  const vid = laVideo(f);
+  if(chu) chu.innerHTML = `${f.name}<small>${mb.toFixed(1)} MB${vid ? ' — video, sẽ chỉ lấy tiếng' : ''} — bấm 📤 Gửi tiếng này</small>`;
   if(thanh){ thanh.hidden = true; if(ruot) ruot.style.width = '0%'; }
-  if(tt) ghHienTT(tt,'muted','Đã chọn file. Bấm 📤 Gửi tiếng này.');
+  if(tt){
+    if(vid && mb > TRAN_VIDEO_MB){
+      ghHienTT(tt,'warn',`⚠️ Video ${mb.toFixed(1)} MB, quá trần ${TRAN_VIDEO_MB} MB. `
+        + 'Cắt bớt video rồi chọn lại.');
+    }else if(vid){
+      ghHienTT(tt,'muted',`Đã chọn video ${mb.toFixed(1)} MB. Bấm 📤 Gửi tiếng này — `
+        + `trình duyệt sẽ tự trích ${GIAY_LAY} giây tiếng, video không tải lên.`);
+    }else{
+      ghHienTT(tt,'muted','Đã chọn file. Bấm 📤 Gửi tiếng này.');
+    }
+  }
 }
 
 // Khôi phục trạng thái kết nối sau khi tải lại trang. Không có hàm này thì

@@ -1,4 +1,5 @@
-"""Nhận file tiếng từ Issue GitHub (không cần token) hoặc từ xuong-am-inbox/.
+"""Nhận file tiếng hoặc video từ Issue GitHub (không cần token) hoặc từ
+xuong-am-inbox/. Video thì chỉ lấy luồng tiếng, bỏ phần hình (-vn).
 
 Dùng khi người dùng chỉ có điện thoại: kéo file tiếng vào ô nội dung Issue, GitHub
 biến nó thành URL `user-attachments`, workflow tải về rồi chuyển qua đây.
@@ -26,7 +27,8 @@ from du_lieu_am import CANH, THEO_MA  # noqa: E402
 
 MA = [c["ma"] for c in CANH]
 DICH = [os.path.join(GOC, "docs", "assets", "am"), os.path.join(GOC, "assets", "am")]
-DUOI_AM = ("mp3", "wav", "m4a", "aac", "ogg", "opus", "flac", "aiff", "aif", "mp4")
+DUOI_AM = ("mp3", "wav", "m4a", "aac", "ogg", "opus", "flac", "aiff", "aif",
+           "mp4", "mov", "m4v", "webm", "mkv", "avi", "3gp", "mpg", "mpeg", "wmv")
 TIMEOUT = 120
 
 
@@ -105,7 +107,7 @@ DINH_TP = -2
 def do_am_thanh(src: str):
     """Đo loudness thật của file. Trả về (integrated LUFS, true peak dBTP)."""
     kq = subprocess.run(
-        ["ffmpeg", "-hide_banner", "-nostats", "-t", str(GIAY_LAY), "-i", src,
+        ["ffmpeg", "-hide_banner", "-nostats", "-vn", "-t", str(GIAY_LAY), "-i", src,
          "-af", f"loudnorm=I={MUC_LUFS}:TP={DINH_TP}:LRA=11:print_format=json",
          "-f", "null", "-"],
         capture_output=True, text=True)
@@ -127,7 +129,9 @@ def _ma_hoa(src: str, ra: str, loc: str, them: str = "") -> None:
     if them:
         loc = loc + "," + them
     subprocess.run(
-        ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+        # -vn: bỏ luồng hình. File vào có thể là video; không có cờ này thì
+        # ffmpeg cố mang cả hình sang mp3 và báo lỗi.
+        ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-vn",
          "-t", str(GIAY_LAY), "-i", src,
          "-af", loc, "-ac", "2", "-ar", "44100",
          "-c:a", "libmp3lame", "-b:a", "96k", ra],

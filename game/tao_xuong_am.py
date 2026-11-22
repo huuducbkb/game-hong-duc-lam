@@ -93,7 +93,7 @@ def the_canh(n, i):
   <div class="gui" data-gui data-file="{n['file']}" data-ma="{ma}">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -254,6 +254,10 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
     <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
     <li>Bot tự lấy <b>12 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
+    <li><b>Gửi được cả video.</b> Chọn video (mp4, mov, webm…) là trình duyệt tự trích
+    tiếng ngay trên máy anh rồi chỉ gửi đoạn tiếng — <b>video không được tải lên</b>,
+    nên không nằm trong repo. Video dưới <b>5 MB</b>; lớn hơn thì giải mã trên điện
+    thoại rất chậm, cắt bớt trước.</li>
   </ol>
 
   <div class="card" style="background:#0e1726;margin:14px 0 0;padding:12px">
@@ -275,7 +279,8 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
-    <code>flac</code>. Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
+    <code>flac</code>, hoặc video <code>mp4</code>/<code>mov</code>/<code>webm</code>.
+    Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
     gửi, bot tự lấy 12 giây đầu, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
   </p>
 </div>

@@ -126,6 +126,10 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
     <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
     <li>Bot tự lấy <b>12 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
+    <li><b>Gửi được cả video.</b> Chọn video (mp4, mov, webm…) là trình duyệt tự trích
+    tiếng ngay trên máy anh rồi chỉ gửi đoạn tiếng — <b>video không được tải lên</b>,
+    nên không nằm trong repo. Video dưới <b>5 MB</b>; lớn hơn thì giải mã trên điện
+    thoại rất chậm, cắt bớt trước.</li>
   </ol>
 
   <div class="card" style="background:#0e1726;margin:14px 0 0;padding:12px">
@@ -147,7 +151,8 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
-    <code>flac</code>. Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
+    <code>flac</code>, hoặc video <code>mp4</code>/<code>mov</code>/<code>webm</code>.
+    Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
     gửi, bot tự lấy 12 giây đầu, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
   </p>
 </div>
@@ -216,7 +221,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="cho_01.mp3" data-ma="cho_01">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -270,7 +275,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="cho_02.mp3" data-ma="cho_02">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -324,7 +329,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="cho_03.mp3" data-ma="cho_03">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -379,7 +384,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tran_lua.mp3" data-ma="tran_lua">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -433,7 +438,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tran_lua_2.mp3" data-ma="tran_lua_2">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -487,7 +492,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tran_lua_3.mp3" data-ma="tran_lua_3">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -541,7 +546,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="cong_dong_doi_mat.mp3" data-ma="cong_dong_doi_mat">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -595,7 +600,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="cong_dong_giau.mp3" data-ma="cong_dong_giau">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -649,7 +654,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="cong_dong_toan_luc.mp3" data-ma="cong_dong_toan_luc">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -703,7 +708,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="cong_dong_quyen.mp3" data-ma="cong_dong_quyen">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -757,7 +762,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="cong_dong_hung_ba.mp3" data-ma="cong_dong_hung_ba">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -811,7 +816,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="hoa_truong_cuu.mp3" data-ma="hoa_truong_cuu">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -866,7 +871,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="duong_mon_nui.mp3" data-ma="duong_mon_nui">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -920,7 +925,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="khe_nui_dem.mp3" data-ma="khe_nui_dem">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -974,7 +979,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="khe_nui_chon.mp3" data-ma="khe_nui_chon">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1029,7 +1034,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="san_tap_ngay.mp3" data-ma="san_tap_ngay">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1083,7 +1088,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="san_tap_chen_ep.mp3" data-ma="san_tap_chen_ep">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1137,7 +1142,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="san_tap_cai_lai.mp3" data-ma="san_tap_cai_lai">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1191,7 +1196,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="san_sau_luyen_dem.mp3" data-ma="san_sau_luyen_dem">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1245,7 +1250,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="san_sau_anh_sang.mp3" data-ma="san_sau_anh_sang">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1299,7 +1304,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="san_sau_chon_lai.mp3" data-ma="san_sau_chon_lai">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1354,7 +1359,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="vuon_thuoc_gap.mp3" data-ma="vuon_thuoc_gap">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1408,7 +1413,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="vuon_thuoc_hoi.mp3" data-ma="vuon_thuoc_hoi">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1462,7 +1467,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="vuon_thuoc_im.mp3" data-ma="vuon_thuoc_im">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1516,7 +1521,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="vuon_thuoc_ngoc.mp3" data-ma="vuon_thuoc_ngoc">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1570,7 +1575,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="vuon_thuoc_dem.mp3" data-ma="vuon_thuoc_dem">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1625,7 +1630,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="mieu_hoang.mp3" data-ma="mieu_hoang">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1679,7 +1684,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="mieu_trong.mp3" data-ma="mieu_trong">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1733,7 +1738,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="doat_hop.mp3" data-ma="doat_hop">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1787,7 +1792,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tu_khiem.mp3" data-ma="tu_khiem">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1842,7 +1847,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tan_xa_dem.mp3" data-ma="tan_xa_dem">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1896,7 +1901,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="dem_tap_kich.mp3" data-ma="dem_tap_kich">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -1951,7 +1956,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tan_hoang.mp3" data-ma="tan_hoang">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2005,7 +2010,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="binh_minh.mp3" data-ma="binh_minh">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2059,7 +2064,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tan_xa_sang.mp3" data-ma="tan_xa_sang">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2113,7 +2118,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="quan_nuoc.mp3" data-ma="quan_nuoc">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2167,7 +2172,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tan_xa_song_tu.mp3" data-ma="tan_xa_song_tu">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2221,7 +2226,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tan_xa_kho_tu.mp3" data-ma="tan_xa_kho_tu">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2275,7 +2280,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tan_xa_suyt_lo.mp3" data-ma="tan_xa_suyt_lo">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2329,7 +2334,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="tan_xa_dot_pha.mp3" data-ma="tan_xa_dot_pha">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2383,7 +2388,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="mon_phai_tan_hoang.mp3" data-ma="mon_phai_tan_hoang">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2437,7 +2442,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="binh_minh_ngoc_cot.mp3" data-ma="binh_minh_ngoc_cot">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2492,7 +2497,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <div class="gui" data-gui data-file="dot_pha.mp3" data-ma="dot_pha">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
-             accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a,audio/ogg,audio/flac,audio/*">
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
       <span class="tha-am-icon">🎵</span>
       <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
     </label>
@@ -2631,6 +2636,77 @@ function blobB64(blob){
   });
 }
 
+/* ===== trích tiếng từ video, ngay trong trình duyệt =====
+   Video không bao giờ được gửi lên: trình duyệt đọc luồng tiếng, ghi ra WAV,
+   rồi chỉ file WAV đó được đẩy vào inbox. Bot nén WAV thành mp3 như mọi file
+   khác. Nhờ vậy repo không phải chứa video, kể cả trong lịch sử git.
+
+   decodeAudioData đọc thẳng được tiếng trong mp4/mov — đã đo thật trên WebKit
+   (nhân Safari của iPhone): cả .mp4 và .mov đều ra đúng số giây. Không cần
+   thẻ <video> cũng không cần MediaRecorder. */
+const DUOI_VIDEO = ['mp4','mov','m4v','webm','mkv','avi','3gp','mpg','mpeg','wmv'];
+const GIAY_LAY = 12;        // phải khớp GIAY_LAY trong tools/xu_ly_am.py
+const TRAN_VIDEO_MB = 5;    // video lớn hơn mức này thì giải mã trên điện thoại quá chậm
+
+function laVideo(f){
+  const ten = (f.name || '').toLowerCase();
+  const duoi = ten.split('.').pop();
+  if(DUOI_VIDEO.includes(duoi)) return true;
+  // MIME trên iPhone hay để trống hoặc "application/octet-stream", nên đuôi
+  // file là dấu hiệu đáng tin hơn.
+  return /^video\//.test(f.type || '');
+}
+
+/* Ghi AudioBuffer thành WAV 16-bit. Tự viết thay vì dùng lamejs: không phải
+   nạp thêm thư viện ngoài, và bot đằng nào cũng nén lại nên chất lượng không
+   mất thêm. */
+function wavTuBuffer(buf){
+  const kenh = Math.min(2, buf.numberOfChannels);
+  const n = buf.length;
+  const dai = 44 + n * kenh * 2;
+  const dv = new DataView(new ArrayBuffer(dai));
+  const ghi = (o, s) => { for(let i=0;i<s.length;i++) dv.setUint8(o+i, s.charCodeAt(i)); };
+  ghi(0,'RIFF'); dv.setUint32(4, dai-8, true); ghi(8,'WAVE');
+  ghi(12,'fmt '); dv.setUint32(16,16,true); dv.setUint16(20,1,true);
+  dv.setUint16(22,kenh,true); dv.setUint32(24,buf.sampleRate,true);
+  dv.setUint32(28,buf.sampleRate*kenh*2,true); dv.setUint16(32,kenh*2,true);
+  dv.setUint16(34,16,true); ghi(36,'data'); dv.setUint32(40,n*kenh*2,true);
+  const duLieu = [];
+  for(let c=0;c<kenh;c++) duLieu.push(buf.getChannelData(c));
+  let o = 44;
+  for(let i=0;i<n;i++){
+    for(let c=0;c<kenh;c++){
+      let v = Math.max(-1, Math.min(1, duLieu[c][i]));
+      dv.setInt16(o, v < 0 ? v*0x8000 : v*0x7fff, true);
+      o += 2;
+    }
+  }
+  return new Blob([dv], {type:'audio/wav'});
+}
+
+/* Trả về {blob, ten, giay}. Chỉ lấy GIAY_LAY giây đầu, đúng như bot vẫn làm. */
+async function tiengTuVideo(f, giayLay){
+  const ab = await f.arrayBuffer();
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if(!Ctx) throw new Error('Trình duyệt này không đọc được tiếng trong video.');
+  const ctx = new Ctx();
+  let buf;
+  try{
+    buf = await new Promise((res, rej) => ctx.decodeAudioData(ab, res, rej));
+  }catch(e){
+    throw new Error('Không đọc được tiếng trong video này. Video có thể không '
+      + 'có tiếng, hoặc dùng định dạng máy này không hỗ trợ.');
+  }
+  if(!buf || !buf.length) throw new Error('Video này không có luồng tiếng.');
+  const can = Math.min(buf.length, Math.round(buf.sampleRate * giayLay));
+  const cat = ctx.createBuffer(buf.numberOfChannels, can, buf.sampleRate);
+  for(let c=0;c<buf.numberOfChannels;c++){
+    cat.copyToChannel(buf.getChannelData(c).subarray(0, can), c);
+  }
+  const ten = (f.name || 'video').replace(/\.[^.]+$/, '') + '.wav';
+  return {blob: wavTuBuffer(cat), ten, giay: can / buf.sampleRate};
+}
+
 async function ghLaySha(duong){
   const r = await fetch(
     `https://api.github.com/repos/${GH_REPO}/contents/${duong}?ref=${GH_BRANCH}`,
@@ -2737,17 +2813,33 @@ async function guiMot(hop){
     return;
   }
   const f = inp.files[0];
-  const mb = f.size / 1024 / 1024;
-  if(mb > 24){
-    ghHienTT(tt,'warn',`⚠️ File ${mb.toFixed(1)} MB quá lớn để gửi thẳng (trần 24 MB). `
-      + 'Nén lại thành mp3 96 kbps rồi gửi lại — 12 giây ở mức đó chỉ khoảng 0.2 MB.');
-    return;
-  }
   nut.disabled = true;
-  ghHienTT(tt,'muted',`Đang gửi <b>${f.name}</b> — ${mb.toFixed(1)} MB… Đừng đóng tab.`);
+  let gui = f;
+  let tenGui = file;      // tên trong inbox; bot lấy mã cảnh từ tên thư mục
   try{
-    const b64 = await blobB64(f);
-    await ghPutFile(`${INBOX}/${ma}/${file}`, b64);
+    if(laVideo(f)){
+      const mbVid = f.size / 1024 / 1024;
+      if(mbVid > TRAN_VIDEO_MB){
+        ghHienTT(tt,'warn',`⚠️ Video ${mbVid.toFixed(1)} MB, quá trần ${TRAN_VIDEO_MB} MB. `
+          + 'Cắt bớt video trên điện thoại rồi chọn lại.');
+        return;
+      }
+      ghHienTT(tt,'muted',`Đang trích tiếng từ <b>${f.name}</b>… Video không được tải lên, `
+        + 'chỉ đoạn tiếng được gửi đi.');
+      const t = await tiengTuVideo(f, GIAY_LAY);
+      gui = new File([t.blob], t.ten, {type:'audio/wav'});
+      tenGui = `${ma}.wav`;
+      ghHienTT(tt,'muted',`Đã trích ${t.giay.toFixed(1)} giây tiếng. Đang gửi…`);
+    }
+    const mb = gui.size / 1024 / 1024;
+    if(mb > 24){
+      ghHienTT(tt,'warn',`⚠️ File ${mb.toFixed(1)} MB quá lớn để gửi thẳng (trần 24 MB). `
+        + 'Nén lại thành mp3 96 kbps rồi gửi lại — 12 giây ở mức đó chỉ khoảng 0.2 MB.');
+      return;
+    }
+    ghHienTT(tt,'muted',`Đang gửi <b>${gui.name}</b> — ${mb.toFixed(1)} MB… Đừng đóng tab.`);
+    const b64 = await blobB64(gui);
+    await ghPutFile(`${INBOX}/${ma}/${tenGui}`, b64);
     ghHienTT(tt,'ok','📤 Đã gửi. Bot sẽ nén và cập nhật trong 1–2 phút — tự kiểm tra nhé.');
     theoDoi(hop);
   }catch(e){
@@ -2775,9 +2867,20 @@ function chonFile(hop, f){
   const mb = f.size / 1024 / 1024;
   if(nut) nut.disabled = false;
   if(vung) vung.classList.add('co-file');
-  if(chu) chu.innerHTML = `${f.name}<small>${mb.toFixed(1)} MB — bấm 📤 Gửi tiếng này</small>`;
+  const vid = laVideo(f);
+  if(chu) chu.innerHTML = `${f.name}<small>${mb.toFixed(1)} MB${vid ? ' — video, sẽ chỉ lấy tiếng' : ''} — bấm 📤 Gửi tiếng này</small>`;
   if(thanh){ thanh.hidden = true; if(ruot) ruot.style.width = '0%'; }
-  if(tt) ghHienTT(tt,'muted','Đã chọn file. Bấm 📤 Gửi tiếng này.');
+  if(tt){
+    if(vid && mb > TRAN_VIDEO_MB){
+      ghHienTT(tt,'warn',`⚠️ Video ${mb.toFixed(1)} MB, quá trần ${TRAN_VIDEO_MB} MB. `
+        + 'Cắt bớt video rồi chọn lại.');
+    }else if(vid){
+      ghHienTT(tt,'muted',`Đã chọn video ${mb.toFixed(1)} MB. Bấm 📤 Gửi tiếng này — `
+        + `trình duyệt sẽ tự trích ${GIAY_LAY} giây tiếng, video không tải lên.`);
+    }else{
+      ghHienTT(tt,'muted','Đã chọn file. Bấm 📤 Gửi tiếng này.');
+    }
+  }
 }
 
 // Khôi phục trạng thái kết nối sau khi tải lại trang. Không có hàm này thì
