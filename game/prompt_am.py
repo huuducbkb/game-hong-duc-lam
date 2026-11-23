@@ -9,15 +9,15 @@ Mỗi prompt làm bốn việc:
 
 CẢNH CÓ THOẠI: mọi cảnh mà đoạn truyện có lời ai đó nói đều phải có 1–2 câu tiếng
 Hoa trong ngoặc 「」, kèm tuổi, giới và chất giọng. Không chỉ 21 cảnh nhóm "gap" —
-cả cảnh nền cũng có NPC nói (Tuyết Cơ nhắc trong đầu, kiếm linh nhắc, sư huynh
-quát, ăn mày lẩm bẩm…). Bảng giọng ở `game/GIONG_NPC.md`.
+cả cảnh nền cũng có NPC nói (Tuyết Cơ nhắc, kiếm linh nhắc, sư huynh quát, ăn mày
+lẩm bẩm…). Bảng giọng ở `game/GIONG_NPC.md`.
+
+Lời của NHÂN VẬT CHÍNH cũng lấy — đọc bằng giọng `nvc` (nam 16, trầm ấm). Chỉ bỏ câu
+suy nghĩ trong đầu (`*...*`), vì không ai nói ra. Cảnh chỉ có nhân vật chính nói vẫn
+phải có câu của nhân vật chính; từng bỏ sót nên `vuon_thuoc_im` mất câu 「多谢前辈。」.
 
 Sáu cảnh chỉ có giọng Hệ thống (máy, vô cảm, không phải NPC) thì để nguyên không
 thoại: cho_03, duong_mon_nui, khe_nui_dem, mieu_hoang, san_sau_anh_sang, mieu_trong.
-
-CẢNH CHỈ CÓ NHÂN VẬT CHÍNH NÓI: vẫn phải có câu của nhân vật chính, đọc bằng giọng
-nam 16 tuổi trầm ấm — xem `nvc` trong `game/GIONG_NPC.md`. Trước đây bỏ thoại ở
-những cảnh này, nên `vuon_thuoc_im` mất hẳn câu 「多谢前辈。」 dù truyện có lời thoại.
 
 Đã bỏ lối cũ "No music, no speech, seamless loop." lặp ở cuối mọi prompt: game phát
 mỗi file một lần rồi thôi, không lặp.

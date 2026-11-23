@@ -1021,36 +1021,48 @@ chữ này thì máy tự đoán chất, mỗi lần ra một kiểu. Bản cũ 
 `"nothing comes back"` → `"open air, no reflection, each sound lands and dies"`.
 `"gives nothing back"` → `"the canopy deadens everything above"`.
 
-**Không lời nói ở cảnh nền — chỉ âm không lời.** 42 cảnh nền KHÔNG có ai nói câu
-nào: không tiếng đọc, không "shouting in Vietnamese", không "voices talking". Tiếng
-người chỉ là âm không lời: thở, thở dốc, hừ, rên, huýt gió, la, khóc. Lý do: lời nói
-biến cảnh thành phim truyền thanh, và kéo theo chuyện phải chọn đúng tiếng Việt cho
-từng câu — việc công cụ tạo tiếng làm sai. Chú ý: "shouted count" là đếm thành tiếng,
-tức là có chữ — vi phạm; dùng "a sharp whistle".
+**Lời nói chỉ đưa vào khi truyện có lời thoại thật.** Cảnh không có ai nói câu nào
+thì không thêm tiếng đọc, không "shouting in Vietnamese", không "voices talking".
+Tiếng người lúc đó chỉ là âm không lời: thở, thở dốc, hừ, rên, huýt gió, la, khóc.
+Lý do: lời nói thêm vào chỗ không có sẽ biến cảnh thành phim truyền thanh. Chú ý:
+"shouted count" là đếm thành tiếng, tức là có chữ — vi phạm; dùng "a sharp whistle".
 
-Ngoại lệ: **cảnh nào có NPC nói thì prompt phải có 1–2 câu tiếng Hoa trong ngoặc
-`「」`**. Hiện là 53/64 cảnh, không phải chỉ 21 cảnh nhóm `gap`. Đây là yêu cầu
-người dùng nêu hai lần, lần thứ hai kèm ví dụ cảnh `cong_dong_giau` (Tuyết Cơ nhắc
-trong đầu) — cảnh nền cũng có NPC nói, đừng chỉ nhìn nhóm.
+Ngoại lệ: **cảnh nào có người nói thì prompt phải có 1–2 câu tiếng Hoa trong ngoặc
+`「」`** — NPC nói thì lấy lời NPC, nhân vật chính nói thì lấy lời nhân vật chính với
+giọng `nvc`, suy nghĩ trong đầu `*...*` thì bỏ. Hiện là 55/64 cảnh, không phải chỉ 21
+cảnh nhóm `gap`. Đây là yêu cầu người dùng nêu nhiều lần, gần nhất là cảnh nền cũng có
+NPC nói (`cong_dong_giau`, Tuyết Cơ nhắc) và cảnh chỉ có nhân vật chính nói
+(`vuon_thuoc_im`) — cả hai đều phải lên tiếng.
 
 Hai lỗi đã mắc, đừng mắc lại:
 
 1. **Suy thoại từ nhóm thay vì từ đoạn truyện.** Lần đầu chỉ gắn cho nhóm `gap` →
    bỏ sót 32 cảnh. Phải quét từng đoạn truyện trong `game/chapters/chuong1.json`,
    tìm câu trong ngoặc kép.
-2. **Đưa nhầm lời nhân vật chính.** 10 cảnh lấy câu của nhân vật chính (người chơi)
-   thay vì NPC — ví dụ `kiem_linh_thu` lấy `「信你？」` trong khi đó là câu nhân vật
-   chính hỏi kiếm linh. Người chơi tự đọc chữ trên màn hình; đưa lời họ vào prompt
-   là máy đọc thành tiếng một giọng khác. Dấu hiệu nhận biết:
+2. **Đưa nhầm lời nhân vật chính vào chỗ của NPC.** 10 cảnh lấy câu của nhân vật
+   chính (người chơi) thay vì NPC — ví dụ `kiem_linh_thu` lấy `「信你？」` trong khi
+   đó là câu nhân vật chính hỏi kiếm linh. Lỗi ở đây là **gán sai người nói**, không
+   phải "cấm lời nhân vật chính". Lời nhân vật chính vẫn lấy, nhưng phải đọc bằng
+   giọng `nvc` — xem mục dưới. Dấu hiệu nhận biết:
 
    - Câu NPC: đứng sau `— Tuyết Cơ nói`, `— kiếm linh nói`, `— ông khẽ nói`,
      `— hắn gầm lên` (có tên/chức danh).
-   - Câu nhân vật chính: đứng sau `— ta nói`, `— ta đáp`, `— ta quát`, hoặc đứng
-     một mình sau một dòng `*suy nghĩ*`. Bỏ.
+   - Câu nhân vật chính: đứng sau `— ta nói`, `— ta đáp`, `— ta quát`, `— ta hỏi`.
+   - Suy nghĩ trong đầu: đứng một mình sau `*...*`. Bỏ — không ai nói ra.
+
+**Lời nhân vật chính có giọng riêng, không bỏ.** Người dùng chốt: nhân vật chính là
+**nam 16 tuổi, giọng trầm ấm nghe dễ chịu**. Cảnh chỉ có nhân vật chính nói thì vẫn
+phải có câu của nhân vật chính — từng bỏ sót nên `vuon_thuoc_im` mất hẳn câu
+`「多谢前辈。」` dù truyện có thoại, người chơi nghe im lặng ở đúng chỗ đang nói:
+
+```
+A boy's voice, sixteen, low and warm, pleasant
+```
 
 **Mỗi câu thoại phải ghi tuổi và giới của người nói.** Không ghi thì máy tự đoán,
-mỗi cảnh ra một người khác nhau. Bảng giọng 13 NPC ở `game/GIONG_NPC.md`; câu thoại
-dài thì tách thành hai đoạn `「…」 then 「…」` để máy ngắt đúng chỗ.
+mỗi cảnh ra một người khác nhau. Bảng giọng (13 NPC + nhân vật chính `nvc`) ở
+`game/GIONG_NPC.md`; câu thoại dài thì tách thành hai đoạn `「…」 then 「…」` để máy
+ngắt đúng chỗ.
 
 **Tuyết Cơ là ngoại lệ quan trọng — giọng riêng, không dùng khuôn chung.** Người
 dùng đã sửa hai lần, chốt: **nữ 18 tuổi, ngọt ngào, gợi cảm, lẳng lơ, thích trêu
@@ -1096,9 +1108,10 @@ tiếng trẻ con, không dùng "violent", "dead", "weeping". Tả ĐỘNG TÁC 
 sweeping through air, boots hammering stone) thay vì tả mức độ dữ dội — vừa dễ qua
 bộ lọc, vừa ra tiếng đúng hơn.
 
-**Không kèm lời thoại.** Người dùng đã bỏ yêu cầu đó — chỉ cần tiếng nền. Đừng thêm lại
-`LOI`, đừng chèn câu tiếng Việt cụ thể trong ngoặc kép vào prompt. Sau này bỏ luôn cả
-tiếng nói: xem quy tắc "Không lời nói" ở trên.
+**Đừng thêm lời thoại vào cảnh không có ai nói.** Người dùng đã bỏ kiểu nhét câu tiếng
+Việt cụ thể trong ngoặc kép vào prompt. Chỉ lấy câu thoại có thật trong truyện, và câu
+tiếng Hoa trong `「」` — không phải tiếng Việt. Xem quy tắc "Lời nói chỉ đưa vào khi
+truyện có lời thoại thật" ở trên.
 
 Trước đây tôi đã bỏ prompt vì lý do sai: tôi cho là không công cụ nào tạo được ambience từ
 prompt. Thực ra vấn đề là prompt cũ tả nhạc, không tả không gian.

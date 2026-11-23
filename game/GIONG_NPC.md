@@ -1,9 +1,13 @@
-# Bảng giọng NPC — để prompt tiếng không tự đoán
+# Bảng giọng nhân vật — để prompt tiếng không tự đoán
 
-Mỗi NPC có một chất giọng cố định. Prompt tiếng phải ghi đúng tuổi + giới + chất
-giọng, nếu không công cụ tạo tiếng sẽ tự đoán và mỗi cảnh ra một người khác.
+Mỗi nhân vật có một chất giọng cố định, **kể cả nhân vật chính**. Prompt tiếng phải
+ghi đúng tuổi + giới + chất giọng, nếu không công cụ tạo tiếng sẽ tự đoán và mỗi
+cảnh ra một người khác.
 
-| Mã | NPC | Tuổi | Giới | Chất giọng | Câu tiếng Hoa |
+Bảng này gồm hai loại: NPC và nhân vật chính (`nvc`). Cả hai đều có giọng riêng và
+đều phải lên tiếng khi truyện có lời của họ.
+
+| Mã | Nhân vật | Tuổi | Giới | Chất giọng | Câu tiếng Hoa |
 |---|---|---|---|---|---|
 | `tuyet_co` | Tuyết Cơ | **18** | nữ | **ngọt ngào, gợi cảm, lẳng lơ, hay trêu** — giọng thở nhẹ, kéo dài cuối câu, cười cợt như đang đùa. Khi nổi giận thì ngọt mà lạnh, mất hẳn vẻ trêu đùa. | 我先问你——你是谁？ |
 | `nvc` | Nhân vật chính (người chơi) | **16** | nam | **trầm ấm, nghe dễ chịu** — không lạnh, không khoe, nói chậm vừa. Đây là giọng người chơi nghe suốt chương, phải cùng một người ở mọi cảnh. | 多谢前辈。 |
@@ -23,25 +27,28 @@ giọng, nếu không công cụ tạo tiếng sẽ tự đoán và mỗi cảnh
 
 ## Quy tắc chọn câu thoại
 
-**Câu của NPC thì lấy lời NPC. Câu của nhân vật chính thì lấy lời nhân vật chính,
-nhưng đọc bằng giọng `nvc` (nam 16, trầm ấm) — không bỏ.** Trước đây quy tắc là bỏ
-hết lời nhân vật chính; người dùng chỉ ra cảnh `vuon_thuoc_im` mất câu 「多谢前辈。」
-dù truyện rõ ràng có thoại. Cảnh chỉ có nhân vật chính nói vẫn phải có tiếng người.
+**Lấy lời của cả NPC và nhân vật chính.** Cảnh có lời ai nói thì prompt phải có tiếng
+người đó. Riêng câu của nhân vật chính đọc bằng giọng `nvc` (nam 16, trầm ấm) — vẫn
+là thoại thật, không bỏ.
+
+Chỉ bỏ khi câu đó là **suy nghĩ trong đầu**, không phải lời nói ra.
 
 Cách nhận biết trong truyện:
 
 - Câu của NPC đứng sau dấu gạch nối có tên hoặc chức danh: `— Tuyết Cơ nói`,
   `— kiếm linh nói`, `— ông khẽ nói`, `— hắn gầm lên`.
-- Câu của nhân vật chính đứng sau `— ta nói`, `— ta đáp`, `— ta quát`, hoặc nằm
-  trong ngoặc kép ngay sau một câu kể ở ngôi thứ nhất.
+- Câu của nhân vật chính đứng sau `— ta nói`, `— ta đáp`, `— ta quát`, `— ta hỏi`,
+  hoặc nằm trong ngoặc kép ngay sau một câu kể ở ngôi thứ nhất.
   Ví dụ `“Đa tạ tiền bối,” — ta nói` → câu tiếng Hoa 「多谢前辈。」, giọng `nvc`.
-- Câu không có ai dẫn, mà đứng một mình sau một dòng `*suy nghĩ*` — thường là
-  nhân vật chính tự nhủ. Bỏ.
+- Câu không có ai dẫn, mà đứng một mình sau một dòng `*suy nghĩ*` — đó là nhân vật
+  chính tự nhủ trong đầu. Bỏ, vì không ai nói ra.
 
-Một cảnh có cả NPC và nhân vật chính nói thì đưa 1–2 câu, chọn câu quan trọng hơn.
+Cảnh có cả NPC và nhân vật chính nói thì đưa 1–2 câu, chọn câu quan trọng hơn. Cảnh
+chỉ có nhân vật chính nói thì **vẫn phải có câu của nhân vật chính** — đây là chỗ
+từng bị bỏ sót, làm cảnh `vuon_thuoc_im` mất hẳn câu 「多谢前辈。」.
 
-Nếu cảnh không có lời ai nói (chỉ tả cảnh) thì **không thêm thoại**. Prompt vẫn tả
-tiếng không gian bình thường.
+Nếu cảnh không có lời ai nói (chỉ tả cảnh, hoặc chỉ có suy nghĩ) thì **không thêm
+thoại**. Prompt vẫn tả tiếng không gian bình thường.
 
 **Mỗi câu phải ghi tuổi và giới của người nói.** `A young woman's voice, around
 twenty` — không ghi thì máy tự đoán, mỗi cảnh ra một người khác.
