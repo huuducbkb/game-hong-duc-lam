@@ -5,7 +5,7 @@ giọng, nếu không công cụ tạo tiếng sẽ tự đoán và mỗi cảnh
 
 | Mã | NPC | Tuổi | Giới | Chất giọng | Câu tiếng Hoa |
 |---|---|---|---|---|---|
-| `tuyet_co` | Tuyết Cơ | 20 | nữ | mềm như tơ, lạnh ở dưới, nói chậm | 我先问你——你是谁？ |
+| `tuyet_co` | Tuyết Cơ | **18** | nữ | **ngọt ngào, gợi cảm, lẳng lơ, hay trêu** — giọng thở nhẹ, kéo dài cuối câu, cười cợt như đang đùa. Khi nổi giận thì ngọt mà lạnh, mất hẳn vẻ trêu đùa. | 我先问你——你是谁？ |
 | `kiem_linh` | Kiếm Linh (Hồng Trần) | ~20 | nam | phẳng, băng giá, rõ, hơi vang ma quái | 若我想杀你，你碰到盒子的那一刻就已经死了。 |
 | `han_lap` | Hàn Lập | ~20 | nam | trầm, đều, không vội, phẳng lì | 今晚谁都有秘密。我不问你，你也别问我。 |
 | `do_tam` | Đỗ Tam | ~40 | nam | khàn, thô, lớn, chậm, có mối đe dọa dưới | 又来一只老鼠。 |
@@ -40,3 +40,30 @@ không gian bình thường.
 
 **Mỗi câu phải ghi tuổi và giới của người nói.** `A young woman's voice, around
 twenty` — không ghi thì máy tự đoán, mỗi cảnh ra một người khác.
+
+## Tuyết Cơ — quy tắc riêng
+
+Người dùng chốt: Tuyết Cơ là **nữ 18 tuổi, giọng ngọt ngào, gợi cảm, lẳng lơ, thích
+trêu đùa**. Đây là NPC quan trọng nhất của chương một, xuất hiện trong **20 cảnh** —
+dùng đúng một câu mô tả cho tất cả, đừng mỗi cảnh một kiểu:
+
+```
+A girl's voice, eighteen, sweet and sultry, breathy, teasing, a little flirtatious
+```
+
+Biến thể theo tình huống, giữ nguyên "girl's voice, eighteen, sweet…":
+
+| Tình huống | Cách viết |
+|---|---|
+| Bình thường, trêu đùa | `sweet and sultry, breathy, teasing, a little flirtatious` |
+| Khen ngợi | `sweet and sultry, pleased, teasing` |
+| Nghiêm túc, cảnh báo | `sweet but cool and displeased, the teasing gone` |
+| Sốt ruột, gấp | `sweet but urgent, then fading` |
+| Mừng, ngạc nhiên | `sweet and delighted, teasing` |
+| Yếu, vừa tỉnh | `sweet and lazy, almost fond` |
+| Trong lúc song tu | `sweet and breathy, trembling, teasing` |
+
+**Đừng dùng** `woman's voice` hay `around twenty` — người dùng đã sửa hai lần, chốt
+là **girl, eighteen**. Cũng đừng dùng `cold as ice` / `cold underneath`: chất giọng
+nền là ngọt và trêu, cái lạnh chỉ hiện ra khi nàng nổi giận, viết bằng
+`the teasing gone`.

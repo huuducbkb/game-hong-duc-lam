@@ -1048,10 +1048,31 @@ Hai lỗi đã mắc, đừng mắc lại:
    - Câu nhân vật chính: đứng sau `— ta nói`, `— ta đáp`, `— ta quát`, hoặc đứng
      một mình sau một dòng `*suy nghĩ*`. Bỏ.
 
-**Mỗi câu thoại phải ghi tuổi và giới của người nói** — `A young woman's voice,
-around twenty, soft and silky with cold underneath`. Không ghi thì máy tự đoán,
+**Mỗi câu thoại phải ghi tuổi và giới của người nói.** Không ghi thì máy tự đoán,
 mỗi cảnh ra một người khác nhau. Bảng giọng 13 NPC ở `game/GIONG_NPC.md`; câu thoại
 dài thì tách thành hai đoạn `「…」 then 「…」` để máy ngắt đúng chỗ.
+
+**Tuyết Cơ là ngoại lệ quan trọng — giọng riêng, không dùng khuôn chung.** Người
+dùng đã sửa hai lần, chốt: **nữ 18 tuổi, ngọt ngào, gợi cảm, lẳng lơ, thích trêu
+đùa**. Câu chuẩn, áp cho cả 20 cảnh có nàng nói:
+
+```
+A girl's voice, eighteen, sweet and sultry, breathy, teasing, a little flirtatious
+```
+
+Bốn chữ không được bỏ: `sweet` (ngọt), `sultry` (gợi cảm), `breathy` (giọng hơi,
+thở nhẹ), `teasing` (trêu). Thiếu `teasing` là ra cô gái nghiêm túc; thiếu `breathy`
+là ra giọng trẻ con trong trẻo. Đổi phần đuôi theo tình huống (`pleased, teasing` /
+`sweet but urgent` / `sweet and delighted` / `sweet and lazy, almost fond` /
+`sweet and breathy, trembling`).
+
+**Đừng viết `cold` cho Tuyết Cơ.** Bản đầu em ghi `soft and silky with cold
+underneath` và `cold as ice` — người dùng chê vì ra giọng bà cô lạnh lùng, mất hết
+tính trêu đùa. Cái lạnh chỉ hiện khi nàng nổi giận: viết `sweet but cool and
+displeased, the teasing gone`.
+
+**Đừng dùng `woman's voice` hay `around twenty`** cho nàng — đã bị sửa hai lần, chốt
+là `girl's voice, eighteen`.
 
 Cảnh chỉ có giọng Hệ thống (máy, vô cảm) thì **không** thêm thoại: `cho_03`,
 `duong_mon_nui`, `khe_nui_dem`, `mieu_hoang`, `san_sau_anh_sang`, `mieu_trong`.
