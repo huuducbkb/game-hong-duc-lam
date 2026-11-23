@@ -727,6 +727,19 @@ lúc dựng trang.
 Bài học chung: nếu trang đã biết một sự thật lúc dựng, đừng bắt người dùng bấm nút
 để hỏi lại sự thật đó.
 
+### Không gọi GitHub API theo số lượng cảnh
+
+Trang xưởng từng gọi `api.github.com/.../commits?path=...` **một lần cho mỗi cảnh**,
+tức 64 lượt mỗi lần mở trang. GitHub cho 60 lượt/giờ cho mỗi IP, nên mở trang một
+lần là vượt hạn mức, và từ đó **mọi cảnh hiện như chưa có tiếng** — dù file vẫn tải
+được bình thường. Triệu chứng đánh lừa: file trả 200 nhưng giao diện báo thiếu.
+
+Nay: cảnh có file thì trỏ thẳng vào file trong repo (`data-co="1"` sinh sẵn lúc dựng
+trang), nút "Kiểm tra" hỏi thẳng file bằng `HEAD` + query đổi theo thời gian để không
+dính bộ nhớ đệm. Không cần token, không hạn mức.
+
+Quy tắc: nếu trang đã biết dữ liệu lúc dựng, đừng hỏi lại API lúc chạy.
+
 ### Sửa mã sinh trang thì phải sửa ở NGUỒN, không chỉ file sinh ra
 
 `docs/xuong-am/index.html` là **file sinh ra** từ `game/tao_xuong_am.py` +
