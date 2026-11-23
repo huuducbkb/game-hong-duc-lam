@@ -96,18 +96,26 @@ def ma_tu_dong_truoc(text: str, url: str):
     return None
 
 
-# Chỉ lấy 12 giây đầu. Cảnh trong game chỉ 10 giây, nên 12 giây là dư một chút
-# để vòng lặp không chạm mép file. File nhỏ thì tải nhanh trên điện thoại.
+# Trần cứng khi cắt: không cảnh nào dài hơn 12 giây, nên file vào dài hơn cũng
+# chỉ giữ 12 giây đầu. Cảnh ngắn hơn (thoại 3–6 giây, mở cửa 2 giây) thì cắt
+# đúng độ dài của cảnh, để file không dài hơn thời gian cảnh hiện trên màn hình.
 GIAY_LAY = 12
+
+
+def giay_canh(ma: str) -> int:
+    """Độ dài cảnh theo du_lieu_am.py. Không có trong dữ liệu thì dùng trần."""
+    c = THEO_MA.get(ma)
+    return int(c["giay"]) if c else GIAY_LAY
+
 
 MUC_LUFS = -18  # tiếng nền phát qua loa điện thoại; -23 (chuẩn phát thanh) nghe quá nhỏ
 DINH_TP = -2
 
 
-def do_am_thanh(src: str):
+def do_am_thanh(src: str, giay: int = 0):
     """Đo loudness thật của file. Trả về (integrated LUFS, true peak dBTP)."""
     kq = subprocess.run(
-        ["ffmpeg", "-hide_banner", "-nostats", "-vn", "-t", str(GIAY_LAY), "-i", src,
+        ["ffmpeg", "-hide_banner", "-nostats", "-vn", "-t", str(giay or GIAY_LAY), "-i", src,
          "-af", f"loudnorm=I={MUC_LUFS}:TP={DINH_TP}:LRA=11:print_format=json",
          "-f", "null", "-"],
         capture_output=True, text=True)
@@ -125,14 +133,14 @@ def do_am_thanh(src: str):
 DINH_MARGIN = 0.5     # dB dự phòng cho đỉnh vượt do mã hoá
 
 
-def _ma_hoa(src: str, ra: str, loc: str, them: str = "") -> None:
+def _ma_hoa(src: str, ra: str, loc: str, them: str = "", giay: int = 0) -> None:
     if them:
         loc = loc + "," + them
     subprocess.run(
         # -vn: bỏ luồng hình. File vào có thể là video; không có cờ này thì
         # ffmpeg cố mang cả hình sang mp3 và báo lỗi.
         ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-vn",
-         "-t", str(GIAY_LAY), "-i", src,
+         "-t", str(giay or GIAY_LAY), "-i", src,
          "-af", loc, "-ac", "2", "-ar", "44100",
          "-c:a", "libmp3lame", "-b:a", "96k", ra],
         check=True)
@@ -149,7 +157,8 @@ def chuyen(src: str, ma: str) -> str:
     """
     ra = os.path.join(DICH[0], f"{ma}.mp3")
     os.makedirs(DICH[0], exist_ok=True)
-    _, _, j = do_am_thanh(src)
+    giay = giay_canh(ma)
+    _, _, j = do_am_thanh(src, giay)
     dinh = DINH_TP - DINH_MARGIN
     loc = (
         f"loudnorm=I={MUC_LUFS}:TP={dinh}:LRA=11"
@@ -157,15 +166,15 @@ def chuyen(src: str, ma: str) -> str:
         f":measured_LRA={j['input_lra']}:measured_thresh={j['input_thresh']}"
         f":offset={j['target_offset']}:linear=true"
     )
-    _ma_hoa(src, ra, loc)
+    _ma_hoa(src, ra, loc, giay=giay)
     # Đo lại file đã mã hoá. Còn vượt thì hạ đúng phần dư; lặp tối đa 2 lần để
     # không rơi vào vòng lặp vô hạn nếu file có đỉnh kỳ dị.
     for _ in range(2):
-        _, tp, _ = do_am_thanh(ra)
+        _, tp, _ = do_am_thanh(ra, giay)
         du = DINH_TP - tp
         if du >= 0:
             break
-        _ma_hoa(src, ra, loc, f"volume={du:.2f}dB")
+        _ma_hoa(src, ra, loc, f"volume={du:.2f}dB", giay=giay)
     for d in DICH[1:]:
         os.makedirs(d, exist_ok=True)
         with open(ra, "rb") as f, open(os.path.join(d, f"{ma}.mp3"), "wb") as g:

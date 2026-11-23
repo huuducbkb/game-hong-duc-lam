@@ -988,6 +988,7 @@ let canhLoai = "";            // nhóm của cảnh hiện tại
 // có cờ này thì nó thấy canhDangChay = null, tưởng nền chết và phát lại từ đầu —
 // người chơi bấm mở bảng Hệ Thống là nghe lại tiếng cảnh lần nữa.
 let canhDaHet = false;
+let canhMa = "";          // mã cảnh đang phát, để không bỏ qua cảnh NPC kế tiếp
 
 function napCanh() {
   try { canhBat = localStorage.getItem(KHOA_CANH) === "1"; } catch (e) { canhBat = false; }
@@ -1013,8 +1014,15 @@ function datAmLuongCanh(v) {
   try { localStorage.setItem(KHOA_VOL, String(Math.round(canhVol * 100))); } catch (e) {}
   capNhatThanhAm();
   if (canhDangChay && ctxTieng && ctxTieng.state === "running") {
-    const t = ctxTieng.currentTime;
     const dich = Math.max(0.0001, (canhDangChay.mucGoc || 0) * canhVol);
+    // Lớp file tự lo lịch vào dần / tắt dần theo độ dài thật. Gọi thẳng vào gain
+    // như bản cũ sẽ cancelScheduledValues và xoá luôn hẹn tắt, làm tiếng chạy
+    // mãi sau khi người chơi kéo thanh âm lượng.
+    if (typeof canhDangChay.datAmLuong === "function") {
+      canhDangChay.datAmLuong(dich);
+      return;
+    }
+    const t = ctxTieng.currentTime;
     canhDangChay.g.gain.cancelScheduledValues(t);
     canhDangChay.g.gain.setValueAtTime(Math.max(0.0001, canhDangChay.g.gain.value), t);
     canhDangChay.g.gain.exponentialRampToValueAtTime(dich, t + 0.25);
@@ -1663,27 +1671,75 @@ function phatFileThat(ma, g, muc) {
   const ds = amThat || {};
   if (!ds[ma]) return null;
   const ten = (ds[ma] && ds[ma].file) || (ma + ".mp3");
+  // Độ dài cảnh do dữ liệu quyết định, không cố định 10 giây: cảnh mở cửa chỉ
+  // 2 giây, cảnh có thoại 3–6 giây, cảnh bối cảnh 10 giây. `giay` đi kèm trong
+  // danh-sach.json; thiếu thì lấy độ dài thật của file.
+  const giayCanh = Number(ds[ma] && ds[ma].giay) || 0;
   const khoa = ma;
   let tat = false;
   const lop = {
-    g: g, nguonFile: null, mucGoc: muc, laFile: true,
+    g: g, nguonFile: null, mucGoc: muc, laFile: true, dai: 0,
+    dich: 0, toiDa: giayCanh, batDau: 0, henTat: null,
+    // Hẹn vào dần / tắt dần theo độ dài THẬT của file. Bản trước dùng mốc cứng
+    // 1,2 giây vào dần và 10 giây tắt: âm mở cửa dài 1 giây bị fade-in nuốt gần
+    // hết, nghe chỉ còn một tiếng "phụt".
+    datAmLuong: (dich, toiDa) => {
+      lop.dich = dich;
+      if (toiDa) lop.toiDa = toiDa;
+      hen();
+    },
     dung: () => {
       tat = true;
+      if (lop.henTat) { clearTimeout(lop.henTat); lop.henTat = null; }
       try { if (lop.nguonFile) lop.nguonFile.stop(); } catch (e) {}
       try { g.disconnect(); } catch (e) {}
     },
   };
+
+  function hen() {
+    if (tat || !lop.dai || !lop.dich) return;
+    const t = ctxTieng.currentTime;
+    const batDau = lop.batDau || t;
+    const dai = lop.toiDa ? Math.min(lop.dai, lop.toiDa) : lop.dai;
+    const het = batDau + dai;
+    // Đã quá giờ tắt thì thôi, không hẹn lại.
+    if (t >= het) return;
+    // Tính lại mốc theo thời điểm hiện tại, để đổi âm lượng giữa chừng không
+    // đẩy lùi giờ tắt. Vào dần / tắt dần ngắn với cảnh ngắn: âm mở cửa 2 giây
+    // mà fade 1,2 giây thì gần như không còn tiếng.
+    const vao = Math.min(0.25, dai * 0.15);
+    const ra = Math.min(0.6, dai * 0.25);
+    const dinh = Math.max(0.0001, lop.dich);
+    const gain = lop.g.gain;
+    gain.cancelScheduledValues(t);
+    gain.setValueAtTime(Math.max(0.0001, gain.value || 0.0001), t);
+    if (batDau + vao > t) {
+      gain.exponentialRampToValueAtTime(dinh, batDau + vao);
+    } else {
+      gain.setValueAtTime(dinh, t);
+    }
+    const batDauRa = Math.max(t + 0.001, het - ra);
+    gain.setValueAtTime(dinh, batDauRa);
+    gain.exponentialRampToValueAtTime(0.0001, het);
+    if (lop.henTat) clearTimeout(lop.henTat);
+    lop.henTat = setTimeout(() => {
+      if (canhDangChay === lop) { dungCanh(); canhLoai = ""; canhDaHet = true; }
+    }, Math.max(0, (het - t) + 0.1) * 1000);
+  }
+
   const noi = () => {
     if (tat) return;
     const buf = demAmThat[khoa];
     if (!buf) return;
     const nguon = ctxTieng.createBufferSource();
     nguon.buffer = buf;
-    // Không lặp. Cảnh phát một lần rồi thôi; file ngắn hơn 10 giây thì
-    // hết tiếng sớm và phần còn lại của cảnh im.
+    // Không lặp. Cảnh phát một lần rồi thôi.
     nguon.connect(g);
     nguon.start();
     lop.nguonFile = nguon;
+    lop.dai = buf.duration;
+    lop.batDau = ctxTieng.currentTime;
+    hen();
   };
   if (demAmThat[khoa]) { noi(); return lop; }
   fetch("../assets/am/" + ten)
@@ -1746,12 +1802,16 @@ function catLangHaiDau(buf) {
 }
 
 // Dựng một lớp cảnh: gain chung + hạn chế đỉnh + bản nhạc hẹn giờ.
-// Mã cảnh của một ảnh: "bc_cho_02.jpg" -> "cho_02". Ảnh nhân vật/vật (nv_, vt_)
-// và ảnh lạ trả về "" để không đụng vào tiếng nền đang chạy.
+// Mã cảnh của một ảnh: "bc_cho_02.jpg" -> "cho_02", "nv_han_lap.jpg" ->
+// "han_lap". Ảnh nhân vật/vật cũng là cảnh có tiếng riêng: bỏ tiền tố đi để
+// khớp mã trong du_lieu_am.py. Trước đây hàm này trả "" cho nv_/vt_, nên 21
+// cảnh có thoại (Hàn Lập, Kiếm Linh, Đỗ Tam, Tuyết Cơ) không bao giờ phát được
+// tiếng dù đã có file.
 function maCanhTuAnh(ten) {
   const t = String(ten || "").split("/").pop().replace(/\.[a-z0-9]+$/i, "");
-  if (!t.startsWith("bc_")) return "";
-  return t.slice(3);
+  if (t.startsWith("bc_")) return t.slice(3);
+  if (t.startsWith("nv_") || t.startsWith("vt_")) return t.slice(3);
+  return "";
 }
 
 // `khoaFile`: mã cảnh có file tiếng riêng. Không còn đường lùi về nhạc tổng hợp:
@@ -1773,17 +1833,16 @@ function taoCanh(loai, muc, khoaFile) {
   return { g, mucGoc: muc, dung: () => { try { g.disconnect(); } catch (e) {} } };
 }
 
-// Tiếng cảnh chỉ phát 10 giây rồi tự tắt, không lặp vô hạn. Người dùng yêu cầu
-// đúng như vậy: "âm thanh nên kéo dài 10s thôi sau 10s thì tắt". Tắt bằng cách
-// hạ gain xuống dần trong 0.8 giây cuối để không bị cắt cụt.
-const GIAY_CANH = 10;
-const GIAY_TAT = 0.8;
+// Độ dài cảnh không còn cố định: mỗi cảnh khai `giay` riêng trong du_lieu_am.py
+// (2 giây cho tiếng mở cửa, 3–6 giây cho câu thoại, 10 giây cho bối cảnh), và
+// lớp file tự hẹn vào dần / tắt dần theo độ dài thật của file.
 
 function dungCanh() {
   if (canhDangChay) {
     try { canhDangChay.dung(); } catch (e) {}
     canhDangChay = null;
   }
+  canhMa = "";
 }
 
 // Phát tiếng cho cảnh vừa hiện. `ten` là tên file ảnh, ví dụ "bc_cho_01.jpg".
@@ -1794,15 +1853,24 @@ function doiCanhTieng(ten) {
   // mà `canhLoai` được gán TRƯỚC khi kiểm tra context đã tỉnh chưa. Nếu lần gọi
   // đầu rơi vào lúc context còn ngủ, nhóm đã bị gán nhưng không có lớp nào phát;
   // mọi lần gọi sau đều return sớm ở đây nên cảnh im vĩnh viễn.
-  if (nhom === canhLoai && canhDangChay) return;
-  // Ảnh nhân vật / vật là cận cảnh giữa chừng, không phải nơi chốn mới: giữ
-  // nguyên tiếng nền đang chạy, chỉ thêm một nốt điểm nhấn. Cắt nền ở đây sẽ
-  // nghe như tiếng bị hỏng đúng lúc đang đọc.
+  // Cảnh NPC đều mang nhóm "diem", nên so nhóm là sai: hai cảnh Hàn Lập liên
+  // tiếp sẽ bị coi là "đang phát đúng nhóm này" và cảnh sau im. So mã cảnh.
+  const maNay = maCanhTuAnh(ten);
+  if (maNay && canhMa === maNay && canhDangChay) return;
+  if (!maNay && nhom === canhLoai && canhDangChay) return;
+  // Ảnh nhân vật / vật (nv_, vt_) là cận cảnh có lời thoại. Có file riêng thì
+  // phát file đó; chưa có file thì mới dùng một nốt điểm nhấn ngắn để không im
+  // hoàn toàn. Trước đây nhánh này luôn `return` sau khi kêu một nốt, nên file
+  // của 21 cảnh có thoại không bao giờ được phát.
   if (nhom === "diem") {
-    if (!ctxTieng || ctxTieng.state === "closed") { if (!taoCtxTieng()) return; }
-    if (ctxTieng.state !== "running") return;
-    keTieng("diem");
-    return;
+    const maDiem = maCanhTuAnh(ten);
+    const coFileDiem = !!(maDiem && amThat && amThat[maDiem]);
+    if (!coFileDiem) {
+      if (!ctxTieng || ctxTieng.state === "closed") { if (!taoCtxTieng()) return; }
+      if (ctxTieng.state !== "running") return;
+      keTieng("diem");
+      return;
+    }
   }
   dungCanh();
   if (!nhom) { canhLoai = ""; return; }
@@ -1819,6 +1887,7 @@ function doiCanhTieng(ten) {
     return;
   }
   canhLoai = nhom;
+  canhMa = maNay;
   canhDaHet = false;
   // Chỉ phát file tiếng riêng của đúng cảnh này. Cảnh chưa có file thì IM, không
   // lấy file nhóm (cho/tran/nui/san) và không rơi về nhạc tổng hợp: người dùng
@@ -1829,17 +1898,15 @@ function doiCanhTieng(ten) {
   // Bản ghi thật đã được bot cân về -18 LUFS, nên trim 1.0 là đủ.
   const muc = 1.0;
   const lop = taoCanh(nhom, muc, maCanh);
-  const t = ctxTieng.currentTime;
+  // Không đặt mốc 10 giây ở đây nữa: mỗi cảnh tự biết độ dài của mình (2 giây
+  // cho tiếng mở cửa, 3–6 giây cho câu thoại, 10 giây cho bối cảnh). Việc vào
+  // dần và tắt dần do chính lớp file lo, theo độ dài thật.
   const dich = Math.max(0.0001, muc * canhVol);
-  lop.g.gain.setValueAtTime(0.0001, t);
-  lop.g.gain.exponentialRampToValueAtTime(dich, t + 1.2);   // vào dần cho êm
-  // Tự tắt sau GIAY_CANH giây: hạ dần trong GIAY_TAT cuối rồi dừng hẳn.
-  // Không hạ dần thì đúng 10 giây tiếng cắt phụt, nghe như hỏng.
-  lop.g.gain.setValueAtTime(dich, t + GIAY_CANH - GIAY_TAT);
-  lop.g.gain.exponentialRampToValueAtTime(0.0001, t + GIAY_CANH);
-  lop.henTat = setTimeout(() => {
-    if (canhDangChay === lop) { dungCanh(); canhLoai = ""; canhDaHet = true; }
-  }, (GIAY_CANH + 0.1) * 1000);
+  if (lop && typeof lop.datAmLuong === "function") {
+    lop.datAmLuong(dich);
+  } else if (lop && lop.g) {
+    lop.g.gain.setValueAtTime(dich, ctxTieng.currentTime);
+  }
   canhDangChay = lop;
 }
 

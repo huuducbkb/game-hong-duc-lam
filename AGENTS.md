@@ -656,7 +656,39 @@ Cảnh thưa (núi, miếu, tĩnh) dùng 48 BPM × 2 ô; cảnh vừa (vườn, 
 cảnh đông (chợ, sân, làng) 96 × 4. `duoi(nhịp, ô)` trong `game/du_lieu_am.py`
 có `assert` chặn mọi tổ hợp không ra đúng 10,00 giây — đừng bỏ assert đó.
 
-### Tiếng cảnh phát MỘT lần 10 giây rồi thôi — không lặp
+### Độ dài cảnh KHÔNG còn cố định 10 giây
+
+Mỗi cảnh khai `giay` riêng (phần tử thứ 8 của tuple trong `MOI`; thiếu thì lấy
+`GIAY_MAC_DINH`). Người dùng yêu cầu cảnh mở cửa chỉ **2 giây**; cảnh có lời thoại
+**3–6 giây**; cảnh bối cảnh vẫn **10 giây**. Con số này chảy qua ba chỗ, sửa một
+chỗ là lệch:
+
+1. `game/du_lieu_am.py` — nguồn duy nhất.
+2. `game/ghi_danh_sach_am.py` — ghi `giay` vào `danh-sach.json`; game đọc từ đó.
+3. `tools/xu_ly_am.py` — `giay_canh(ma)` cắt file tải lên đúng độ dài cảnh.
+
+Trong `play.html`, việc vào dần / tắt dần do chính lớp file lo (`datAmLuong` +
+`hen()`), tính theo **độ dài thật** của buffer. Đừng đặt lại mốc cứng: bản cũ
+fade-in 1,2 giây và tắt ở 10 giây, nên âm mở cửa 2 giây bị nuốt gần hết, chỉ còn
+một tiếng "phụt".
+
+### Ảnh `nv_` / `vt_` cũng là cảnh có tiếng — bốn lỗi từng làm chúng câm
+
+Cảnh có lời thoại dùng ảnh nhân vật/vật (`nv_han_lap.jpg`), không phải `bc_`.
+Bốn lỗi chồng nhau khiến 21 cảnh này **không bao giờ** phát được tiếng dù đã có file:
+
+1. `maCanhTuAnh()` trả `""` cho mọi ảnh không bắt đầu bằng `bc_`.
+2. Nhánh `"diem"` trong `doiCanhTieng()` kêu một nốt rồi `return` — bỏ qua file.
+3. Điều kiện bỏ qua so **nhóm** (`canhLoai`) chứ không so **mã cảnh**; mọi cảnh
+   nhân vật đều nhóm `diem`, nên cảnh thứ hai trở đi bị coi là "đang phát rồi".
+   Đã thêm biến `canhMa` để so theo mã.
+4. `datAmLuongCanh()` gọi thẳng `cancelScheduledValues` → xoá luôn hẹn tắt, tiếng
+   chạy mãi sau khi người chơi kéo thanh âm lượng. Phải đi qua `datAmLuong`.
+
+**Phép thử bắt buộc:** phát **sáu cảnh nhân vật liên tiếp**, đo biên độ từng cảnh.
+Cả 6 phải kêu. Chỉ thử một cảnh sẽ không bắt được lỗi số 3.
+
+### Tiếng cảnh phát MỘT lần rồi thôi — không lặp
 
 Người dùng chốt: "âm thanh ở các cảnh chạy 10s là thôi không lặp lại". Ba đường
 làm tiếng quay lại, cả ba đều phải bịt:

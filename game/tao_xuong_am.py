@@ -52,13 +52,21 @@ def khoi_prompt(n):
     n_ky = len(p)
     dem = (f'<span class="dem-ky{" qua" if n_ky > 450 else ""}">'
            f'{n_ky}/450 ký tự</span>')
+    co_thoai = n["nhom"] == "gap"
+    if co_thoai:
+        ghi_chu = ('Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng '
+                   'tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy '
+                   'không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên '
+                   'màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.')
+    else:
+        ghi_chu = ('Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, '
+                   'rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, '
+                   'phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. '
+                   'Prompt dưới 450 ký tự.')
     return f"""<label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-{ma}">{esc(p)}</div>
 <div class="row">{nut}{dem}</div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>"""
+<p class="mota" style="margin:6px 0 0">{ghi_chu}</p>"""
 
 
 def the_canh(n, i):
@@ -86,6 +94,7 @@ def the_canh(n, i):
   <p class="mota">{esc(n['mota'])}</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>{DUONG}{esc(n['file'])}</code></div>
+    <div><span class="k">dài</span> <code>{n['giay']} giây</code></div>
   </div>
 
   {khoi_prompt(n)}
@@ -279,7 +288,7 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
         mới ra; tiếng Việt gần như không có.</li>
     <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
-    <li>Bot tự lấy <b>12 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
+    <li>Bot tự cắt theo <b>độ dài ghi trên cảnh</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
     <li><b>Gửi được cả video.</b> Chọn video (mp4, mov, webm…) là trình duyệt tự trích
     tiếng, nén thành mp3 ngay trên máy anh rồi chỉ gửi đoạn mp3 đó —
     <b>video không được tải lên</b>, nên không nằm trong repo. Video dưới <b>5 MB</b>;
@@ -298,17 +307,17 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   </div>
 
   <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
-    <p style="margin:0;font-size:12.5px"><b>Về 12 giây:</b> file anh gửi dài bao nhiêu
-    cũng được, hệ thống <b>tự cắt 12 giây đầu</b>. Cảnh trong game chỉ 10 giây, nên 12
-    giây là dư một chút để vòng lặp không chạm mép file. File ngắn hơn 12 giây thì giữ
-    nguyên, không cắt.</p>
+    <p style="margin:0;font-size:12.5px"><b>Về độ dài:</b> mỗi cảnh ghi rõ
+    <b>dài bao nhiêu giây</b> ngay dưới tên cảnh — cảnh bối cảnh 10 giây, cảnh có thoại
+    3–6 giây, có cảnh chỉ 2 giây. Anh gửi file dài bao nhiêu cũng được, hệ thống tự lấy
+    đoạn đầu dài đúng bằng số đó. <b>Tiếng không lặp lại</b> — phát một lần rồi thôi.</p>
   </div>
 
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
     <code>flac</code>, hoặc video <code>mp4</code>/<code>mov</code>/<code>webm</code>.
     Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
-    gửi, bot tự lấy 12 giây đầu, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
+    gửi, bot tự cắt theo độ dài của cảnh, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
   </p>
 </div>
 

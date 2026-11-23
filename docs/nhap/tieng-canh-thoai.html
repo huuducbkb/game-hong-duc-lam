@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tiếng cho 21 cảnh có thoại</title>
+<style>
+:root{--bg:#111a2b;--card:#182337;--ink:#e8e6df;--muted:#93a0b8;--gold:#ffd98a;--jade:#6fe0c0;--line:#2b3b57;--red:#ff9b9b}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);
+ color:var(--ink);margin:0 auto;padding:16px;max-width:760px;line-height:1.6;-webkit-text-size-adjust:100%}
+h1{font-size:21px;color:var(--gold);margin:8px 0 4px}
+.phu{font-size:13px;color:var(--muted);margin:0 0 18px}
+h2{font-size:16px;color:var(--jade);margin:28px 0 10px;border-bottom:1px solid var(--line);padding-bottom:7px}
+h3{font-size:14px;margin:16px 0 6px;color:var(--gold)}
+code{background:#0a1220;padding:1px 6px;border-radius:4px;color:var(--jade);font-size:11.5px}
+.canh{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--jade);
+ border-radius:11px;padding:12px;margin:11px 0}
+.hop{background:rgba(255,217,138,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
+ padding:11px 13px;margin:14px 0;font-size:13.5px}
+.loi{background:rgba(255,120,120,.09);border-left:3px solid var(--red);border-radius:0 8px 8px 0;
+ padding:11px 13px;margin:14px 0;font-size:13.5px}
+.nut{display:block;text-align:center;background:#243a2c;border:1px solid #2f6b4f;color:#a9f0c4;
+ text-decoration:none;padding:13px;border-radius:10px;font-weight:600;font-size:15px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+td,th{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left;vertical-align:top}
+th{color:var(--jade);font-weight:600}
+p,li{font-size:14px;color:#cbd4e4}
+.so{font-variant-numeric:tabular-nums}
+.dung{color:#8ef0b0;font-weight:600}
+.sai{color:var(--red);font-weight:600}
+</style></head><body>
+
+<h1>Tiếng cho 21 cảnh có thoại</h1>
+<p class="phu">64 cảnh trong xưởng &middot; 21 cảnh mới có lời thoại &middot; mỗi cảnh một độ dài riêng</p>
+
+<div class="hop">
+<b>Đã xong cả ba việc anh nêu.</b> Cảnh có lời thoại của Hàn Lập, Kiếm Linh, Đỗ Tam,
+Tuyết Cơ, Ngọc Cốt đã có trong xưởng. Prompt viết bằng tiếng Hoa, đúng câu thoại đầu
+tiên của cảnh. Cảnh mở cửa giờ chỉ 2 giây, không còn 10 giây.
+</div>
+
+<h2>Trước đây hỏng ở đâu</h2>
+<p>Có bốn lỗi chồng lên nhau, nên dù anh có tải file lên thì cảnh có thoại vẫn im:</p>
+
+<table>
+<tr><th>Lỗi</th><th>Hậu quả</th><th>Giờ</th></tr>
+<tr>
+  <td><code>maCanhTuAnh()</code> chỉ nhận ảnh <code>bc_</code>, trả rỗng với
+      <code>nv_</code> / <code>vt_</code></td>
+  <td>21 cảnh nhân vật không bao giờ tìm được file của mình</td>
+  <td class="dung">Đã nhận cả <code>nv_</code>, <code>vt_</code></td>
+</tr>
+<tr>
+  <td>Nhánh <code>"diem"</code> kêu một nốt rồi <code>return</code> luôn</td>
+  <td>File của cảnh nhân vật bị bỏ qua, chỉ nghe tiếng điểm nhấn</td>
+  <td class="dung">Có file thì phát file</td>
+</tr>
+<tr>
+  <td>So <b>nhóm</b> thay vì so <b>mã cảnh</b></td>
+  <td>Mọi cảnh nhân vật cùng nhóm <code>diem</code> → cảnh thứ hai trở đi im</td>
+  <td class="dung">So theo mã cảnh</td>
+</tr>
+<tr>
+  <td>Vào dần cố định 1,2 giây, tắt ở mốc 10 giây</td>
+  <td>Tiếng mở cửa 2 giây bị fade nuốt gần hết, chỉ còn một tiếng "phụt"</td>
+  <td class="dung">Theo độ dài thật của cảnh</td>
+</tr>
+</table>
+
+<h2>Đo trên game thật</h2>
+<p>Em giả lập ảnh và file tiếng trong trình duyệt (không tạo file mp3 nào trong repo),
+bật tiếng cảnh, rồi đo biên độ đầu ra mỗi 100 ms. Số dưới đây là thời gian tiếng thật
+sự kêu.</p>
+
+<table>
+<tr><th>Cảnh</th><th>Cần</th><th>Đo được</th><th></th></tr>
+<tr><td><code>do_tam_mieu</code> — Đỗ Tam</td><td class="so">4 s</td><td class="so">3,31 s</td><td class="dung">đạt</td></tr>
+<tr><td><code>han_lap</code> — Hàn Lập</td><td class="so">4 s</td><td class="so">3,41 s</td><td class="dung">đạt</td></tr>
+<tr><td><code>mieu_trong</code> — mở cửa</td><td class="so">2 s</td><td class="so">1,50 s</td><td class="dung">đạt</td></tr>
+<tr><td><code>cho_01</code> — chợ sớm</td><td class="so">10 s</td><td class="so">9,31 s</td><td class="dung">đạt</td></tr>
+</table>
+
+<p>Phần thiếu so với con số cần là thời gian vào dần và tắt dần, có chủ ý. Trước khi
+sửa, cảnh 2 giây chỉ kêu được khoảng 0,1 giây.</p>
+
+<h3>Sáu cảnh nhân vật liên tiếp</h3>
+<p>Đây là phép thử cho lỗi thứ ba — mọi cảnh nhân vật đều cùng nhóm:</p>
+<table>
+<tr><th>Cảnh</th><th>Biên độ đỉnh</th><th>Kết quả</th></tr>
+<tr><td><code>han_lap</code></td><td class="so">0,292</td><td class="dung">kêu</td></tr>
+<tr><td><code>han_lap_2</code></td><td class="so">0,292</td><td class="dung">kêu</td></tr>
+<tr><td><code>kiem_linh</code></td><td class="so">0,293</td><td class="dung">kêu</td></tr>
+<tr><td><code>kiem_linh_thu</code></td><td class="so">0,291</td><td class="dung">kêu</td></tr>
+<tr><td><code>tuyet_co</code></td><td class="so">0,293</td><td class="dung">kêu</td></tr>
+<tr><td><code>tuyet_co_than_phan</code></td><td class="so">0,294</td><td class="dung">kêu</td></tr>
+</table>
+<p>6/6 đều kêu. Trước khi sửa, cảnh thứ hai trở đi đều im.</p>
+
+<h3>Kéo thanh âm lượng giữa lúc đang phát</h3>
+<p>Bản cũ xoá mất hẹn tắt khi kéo âm lượng, làm tiếng chạy mãi. Em kéo ba lần liên
+tiếp trong lúc cảnh 4 giây đang phát: tiếng vẫn tắt đúng ở giây 3,61 và ở giây thứ 7
+biên độ bằng 0.</p>
+
+<h2>Độ dài từng cảnh</h2>
+<p>Mỗi cảnh khai độ dài riêng trong <code>game/du_lieu_am.py</code>, và con số đó được
+ghi vào <code>danh-sach.json</code> để game biết phát bao lâu:</p>
+<ul>
+<li>Cảnh bối cảnh: 10 giây (giữ như cũ)</li>
+<li>Cảnh có thoại: 3–6 giây, tuỳ câu nói dài ngắn</li>
+<li>Cảnh mở cửa <code>mieu_trong</code>: 2 giây</li>
+</ul>
+<p>Bot xử lý file tải lên cũng cắt theo đúng con số này, nên file không dài hơn thời
+gian cảnh hiện trên màn hình.</p>
+
+<h2>Prompt cảnh có thoại</h2>
+<p>Mỗi cảnh chỉ <b>một câu</b> — đúng câu thoại đầu tiên của cảnh đó trong cốt truyện,
+viết bằng tiếng Hoa trong ngoặc <code>「」</code>. Prompt ghi rõ tuổi và chất giọng để
+máy không tự đoán. Ví dụ cảnh Hàn Lập ở hậu sơn:</p>
+
+<div class="canh">
+<div style="font-size:12px;color:var(--muted);margin-bottom:6px">han_lap — 4 giây — 257/450 ký tự</div>
+<div style="background:#0a1220;border:1px solid var(--line);border-radius:8px;padding:10px;
+ font-size:12.5px;line-height:1.6;color:#dfe7f5;font-family:ui-monospace,Menlo,monospace">
+4-second scene on a quiet mountain path, late afternoon. A man's voice, low and flat,
+unhurried, speaking without turning around, close to the ear, in Mandarin:
+「跟了我这么久，不累吗？」 Behind him: light wind on ridge grass, gravel underfoot,
+cloth shifting. No music.
+</div>
+</div>
+
+<p>21 câu thoại đã viết, tất cả dưới 450 ký tự — giới hạn ô prompt của ElevenLabs.</p>
+
+<a class="nut" href="../xuong-am/index.html">Mở xưởng âm thanh →</a>
+<a class="nut" href="../game/play.html">Vào game nghe thử →</a>
+
+<h2>Anh cần làm gì</h2>
+<p>Em <b>không</b> tải file mp3 nào lên repo — đúng như quy ước. Anh tự đưa tiếng vào
+bằng một trong hai cách:</p>
+<ul>
+<li>Vào xưởng, chọn cảnh, bấm <b>📤 Gửi tiếng này</b> — cần dán token GitHub một lần.</li>
+<li>Hoặc mở Issue với nhãn <code>xuong-am</code>, kéo file vào.</li>
+</ul>
+<p>Cảnh nào chưa có file thì vẫn im, không lấy tiếng của cảnh khác. Hiện có 44 file
+tiếng; 40 cảnh trong chương đã dùng được. <b>24 cảnh còn thiếu</b> — đúng 21 cảnh thoại
+mới, cộng ba cảnh cũ <code>vuon_thuoc_hoi</code>, <code>vuon_thuoc_im</code>,
+<code>dot_pha</code>.</p>
+
+<div class="loi">
+<b>Một chỗ em phải nói rõ.</b> Trong lúc thử, em có chạy bộ xử lý âm thanh thật và nó
+ghi đè hai file <code>cho_01.mp3</code> và <code>mieu_trong.mp3</code>. Em đã khôi phục
+cả hai từ git ngay, kiểm tra lại đúng 44 file mỗi thư mục, không thêm không bớt. Nếu
+anh nghe hai cảnh đó thấy khác trước thì báo em.
+</div>
+
+</body></html>

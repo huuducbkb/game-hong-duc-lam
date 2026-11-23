@@ -1,178 +1,222 @@
 {
   "binh_minh": {
     "bytes": 120729,
-    "file": "binh_minh.mp3"
+    "file": "binh_minh.mp3",
+    "giay": 10
   },
   "binh_minh_ngoc_cot": {
     "bytes": 120729,
-    "file": "binh_minh_ngoc_cot.mp3"
+    "file": "binh_minh_ngoc_cot.mp3",
+    "giay": 10
   },
   "cho": {
     "bytes": 159844,
-    "file": "cho.mp3"
+    "file": "cho.mp3",
+    "giay": 10
   },
   "cho_01": {
     "bytes": 159890,
-    "file": "cho_01.mp3"
+    "file": "cho_01.mp3",
+    "giay": 10
   },
   "cho_02": {
     "bytes": 120729,
-    "file": "cho_02.mp3"
+    "file": "cho_02.mp3",
+    "giay": 10
   },
   "cho_03": {
     "bytes": 159852,
-    "file": "cho_03.mp3"
+    "file": "cho_03.mp3",
+    "giay": 10
   },
   "cong_dong_doi_mat": {
     "bytes": 120729,
-    "file": "cong_dong_doi_mat.mp3"
+    "file": "cong_dong_doi_mat.mp3",
+    "giay": 10
   },
   "cong_dong_giau": {
     "bytes": 120729,
-    "file": "cong_dong_giau.mp3"
+    "file": "cong_dong_giau.mp3",
+    "giay": 10
   },
   "cong_dong_hung_ba": {
     "bytes": 120729,
-    "file": "cong_dong_hung_ba.mp3"
+    "file": "cong_dong_hung_ba.mp3",
+    "giay": 10
   },
   "cong_dong_quyen": {
     "bytes": 120729,
-    "file": "cong_dong_quyen.mp3"
+    "file": "cong_dong_quyen.mp3",
+    "giay": 10
   },
   "cong_dong_toan_luc": {
     "bytes": 120729,
-    "file": "cong_dong_toan_luc.mp3"
+    "file": "cong_dong_toan_luc.mp3",
+    "giay": 10
   },
   "dem_tap_kich": {
     "bytes": 120729,
-    "file": "dem_tap_kich.mp3"
+    "file": "dem_tap_kich.mp3",
+    "giay": 10
   },
   "doat_hop": {
     "bytes": 120729,
-    "file": "doat_hop.mp3"
+    "file": "doat_hop.mp3",
+    "giay": 10
   },
   "duong_mon_nui": {
     "bytes": 120729,
-    "file": "duong_mon_nui.mp3"
+    "file": "duong_mon_nui.mp3",
+    "giay": 10
   },
   "hoa_truong_cuu": {
     "bytes": 120729,
-    "file": "hoa_truong_cuu.mp3"
+    "file": "hoa_truong_cuu.mp3",
+    "giay": 10
   },
   "khe_nui_chon": {
     "bytes": 120729,
-    "file": "khe_nui_chon.mp3"
+    "file": "khe_nui_chon.mp3",
+    "giay": 10
   },
   "khe_nui_dem": {
     "bytes": 120729,
-    "file": "khe_nui_dem.mp3"
+    "file": "khe_nui_dem.mp3",
+    "giay": 10
   },
   "mieu_hoang": {
     "bytes": 120729,
-    "file": "mieu_hoang.mp3"
+    "file": "mieu_hoang.mp3",
+    "giay": 10
   },
   "mieu_trong": {
     "bytes": 120729,
-    "file": "mieu_trong.mp3"
+    "file": "mieu_trong.mp3",
+    "giay": 2
   },
   "mon_phai_tan_hoang": {
     "bytes": 120729,
-    "file": "mon_phai_tan_hoang.mp3"
+    "file": "mon_phai_tan_hoang.mp3",
+    "giay": 10
   },
   "nui": {
     "bytes": 159870,
-    "file": "nui.mp3"
+    "file": "nui.mp3",
+    "giay": 10
   },
   "quan_nuoc": {
     "bytes": 120729,
-    "file": "quan_nuoc.mp3"
+    "file": "quan_nuoc.mp3",
+    "giay": 10
   },
   "san": {
     "bytes": 159890,
-    "file": "san.mp3"
+    "file": "san.mp3",
+    "giay": 10
   },
   "san_sau_anh_sang": {
     "bytes": 120729,
-    "file": "san_sau_anh_sang.mp3"
+    "file": "san_sau_anh_sang.mp3",
+    "giay": 10
   },
   "san_sau_chon_lai": {
     "bytes": 120729,
-    "file": "san_sau_chon_lai.mp3"
+    "file": "san_sau_chon_lai.mp3",
+    "giay": 10
   },
   "san_sau_luyen_dem": {
     "bytes": 120729,
-    "file": "san_sau_luyen_dem.mp3"
+    "file": "san_sau_luyen_dem.mp3",
+    "giay": 10
   },
   "san_tap_cai_lai": {
     "bytes": 60857,
-    "file": "san_tap_cai_lai.mp3"
+    "file": "san_tap_cai_lai.mp3",
+    "giay": 10
   },
   "san_tap_chen_ep": {
     "bytes": 120729,
-    "file": "san_tap_chen_ep.mp3"
+    "file": "san_tap_chen_ep.mp3",
+    "giay": 10
   },
   "san_tap_ngay": {
     "bytes": 120729,
-    "file": "san_tap_ngay.mp3"
+    "file": "san_tap_ngay.mp3",
+    "giay": 10
   },
   "tan_hoang": {
     "bytes": 120729,
-    "file": "tan_hoang.mp3"
+    "file": "tan_hoang.mp3",
+    "giay": 10
   },
   "tan_xa_dem": {
     "bytes": 120729,
-    "file": "tan_xa_dem.mp3"
+    "file": "tan_xa_dem.mp3",
+    "giay": 10
   },
   "tan_xa_dot_pha": {
     "bytes": 120729,
-    "file": "tan_xa_dot_pha.mp3"
+    "file": "tan_xa_dot_pha.mp3",
+    "giay": 10
   },
   "tan_xa_kho_tu": {
     "bytes": 120729,
-    "file": "tan_xa_kho_tu.mp3"
+    "file": "tan_xa_kho_tu.mp3",
+    "giay": 10
   },
   "tan_xa_sang": {
     "bytes": 120729,
-    "file": "tan_xa_sang.mp3"
+    "file": "tan_xa_sang.mp3",
+    "giay": 10
   },
   "tan_xa_song_tu": {
     "bytes": 120729,
-    "file": "tan_xa_song_tu.mp3"
+    "file": "tan_xa_song_tu.mp3",
+    "giay": 10
   },
   "tan_xa_suyt_lo": {
     "bytes": 120729,
-    "file": "tan_xa_suyt_lo.mp3"
+    "file": "tan_xa_suyt_lo.mp3",
+    "giay": 10
   },
   "tran": {
     "bytes": 159892,
-    "file": "tran.mp3"
+    "file": "tran.mp3",
+    "giay": 10
   },
   "tran_lua": {
     "bytes": 120729,
-    "file": "tran_lua.mp3"
+    "file": "tran_lua.mp3",
+    "giay": 10
   },
   "tran_lua_2": {
     "bytes": 120729,
-    "file": "tran_lua_2.mp3"
+    "file": "tran_lua_2.mp3",
+    "giay": 10
   },
   "tran_lua_3": {
     "bytes": 120729,
-    "file": "tran_lua_3.mp3"
+    "file": "tran_lua_3.mp3",
+    "giay": 10
   },
   "tu_khiem": {
     "bytes": 120729,
-    "file": "tu_khiem.mp3"
+    "file": "tu_khiem.mp3",
+    "giay": 10
   },
   "vuon_thuoc_dem": {
     "bytes": 120729,
-    "file": "vuon_thuoc_dem.mp3"
+    "file": "vuon_thuoc_dem.mp3",
+    "giay": 10
   },
   "vuon_thuoc_gap": {
     "bytes": 120729,
-    "file": "vuon_thuoc_gap.mp3"
+    "file": "vuon_thuoc_gap.mp3",
+    "giay": 10
   },
   "vuon_thuoc_ngoc": {
     "bytes": 120729,
-    "file": "vuon_thuoc_ngoc.mp3"
+    "file": "vuon_thuoc_ngoc.mp3",
+    "giay": 10
   }
 }

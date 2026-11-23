@@ -289,13 +289,13 @@ PROMPT = {
         "wind into pieces. No music, no speech, seamless loop."
     ),
 
+    # Cảnh "quay phắt lại": chỉ cần tiếng cửa và bước chân, 2 giây. Không phải
+    # 10 giây — người chơi bấm xong là sang cảnh khác ngay.
     "mieu_trong": (
-        "10-second enclosed ambience inside a small stone shrine at night. "
-        "The room is the sound and the room is the depth: close at the ear a "
-        "single breath, then a long natural reverb carrying it away. Air "
-        "moving through the doorway, a draft pushing dust across stone, a "
-        "loose tile ticking. Further off, outside: wind in the trees. Cold "
-        "stone. No music, no speech, seamless loop."
+        "2-second scene, dry stone shrine interior at night. An old wooden "
+        "door drags open, hinge creaking, then two slow heavy footsteps on "
+        "gritted stone coming from behind, closer on the second. Short dry "
+        "stone reverb. No music, no voice, no wind."
     ),
 
     "doat_hop": (
@@ -439,6 +439,190 @@ PROMPT = {
         "low hum too far to be anything, laughter once, a hand slapped on a "
         "table. Low ceiling and close walls press the hum down around the "
         "head. No music, no speech, seamless loop."
+    ),
+
+    # ------------------- GẶP GỠ — CẢNH CÓ MỘT CÂU THOẠI -------------------
+    # Mỗi cảnh chỉ MỘT câu thoại, đúng câu đầu tiên trong cốt truyện. Người
+    # chơi đọc chữ; tiếng chỉ để nghe ra ai nói, giọng thế nào, và không gian
+    # quanh đó. Không lồng cả đoạn hội thoại — sẽ dài, và lệch với chữ trên
+    # màn hình khi người chơi bấm sang đoạn khác.
+    #
+    # Câu tiếng Hoa viết theo lối cổ trang, khớp với bản dịch tiếng Việt trong
+    # chuong1.json. Giọng ghi rõ tuổi và chất giọng để máy không tự đoán.
+
+    # Đỗ Tam: đàn ông vạm vỡ, sẹo dài, giọng khàn. Câu đầu: "Lại thêm một con
+    # chuột". Nói sát, lớn, có hơi đe.
+    "do_tam_mieu": (
+        "4-second scene, dry stone shrine interior. A heavy man's voice, "
+        "rough and hoarse, low-pitched, speaking close and unhurried with a "
+        "threat under it, in Mandarin: 「又来一只老鼠。」 Behind him: faint "
+        "wind through a broken doorway, stone reverb short and dry. No music."
+    ),
+
+    # Hộp kiếm bật mở, giọng nam lạnh không rõ nguồn. Câu: "Ngươi… khác bọn
+    # chúng."
+    "kiem_hap": (
+        "4-second scene in a cold stone shrine. First a wooden box lid "
+        "snapping open, dry and sharp. Then a cold male voice, young, quiet, "
+        "disembodied, close to the ear with long stone reverb, in Mandarin: "
+        "「你……和他们不一样。」 No music, no other voices."
+    ),
+
+    # Kiếm linh hiện hình: nam trẻ, lạnh, ngắn. Câu: "Ta là kiếm linh Hồng Trần."
+    "kiem_linh": (
+        "5-second scene, cold stone shrine, air still. A young man's voice, "
+        "flat and icy, quiet but clear, speaking close with a slight spectral "
+        "edge, in Mandarin: 「我是红尘剑灵。」 Long, cold stone reverb behind "
+        "the voice. No music, nothing else moves."
+    ),
+
+    # Nhân vật chính cười gằn, cảnh giác. Câu: "Tin ngươi?"
+    "kiem_linh_thu": (
+        "3-second scene in a still stone shrine. A young man's voice, wary "
+        "and dry, a short humourless laugh inside the words, close to the "
+        "ear, in Mandarin: 「信你？」 Faint metal ring far off, once. Short "
+        "stone reverb. No music."
+    ),
+
+    # Kiếm linh nói đều đều, không cảm xúc. Câu: "Ta là kiếm linh của Hồng
+    # Trần Kiếm."
+    "kiem_linh_than": (
+        "6-second scene, cold stone hall, dead quiet. A young man's voice, "
+        "even and emotionless, measured pace, close and clear, in Mandarin: "
+        "「我是红尘剑的剑灵。」 Stone hall reverb stretching behind each "
+        "phrase. No music, no breath, no movement."
+    ),
+
+    # Nhân vật chính hỏi lại, dè dặt. Câu: "Ta cần biết rõ."
+    "kiem_linh_dieu": (
+        "4-second scene, still stone shrine. A young man's voice, cautious "
+        "and low, choosing words carefully, close to the ear, in Mandarin: "
+        "「我要问清楚。」 Very short stone reverb, nothing else in the room. "
+        "No music."
+    ),
+
+    # Nhận chủ: kim loại rạch mảnh, rồi kiếm linh nói ngắn. Câu: "Xong rồi."
+    "kiem_hap_nhan": (
+        "4-second scene, cold stone shrine. A thin blade cuts skin, one "
+        "small sharp metallic whisper. Then a young man's low voice, "
+        "satisfied and final, close, in Mandarin: 「成了。」 Quiet stone "
+        "around it. No music."
+    ),
+
+    # Hàn Lập quay lưng, giọng trầm đều. Câu: "Theo ta lâu vậy, không mệt sao?"
+    "han_lap": (
+        "4-second scene on a quiet mountain path, late afternoon. A man's "
+        "voice, low and flat, unhurried, speaking without turning around, "
+        "close to the ear, in Mandarin: 「跟了我这么久，不累吗？」 Behind "
+        "him: light wind on ridge grass, gravel underfoot, cloth shifting. "
+        "No music."
+    ),
+
+    # Hàn Lập nói chậm, cân nhắc. Câu: "Người ở đây chỉ nhìn thấy một kẻ lang
+    # thang nơi ta."
+    "han_lap_2": (
+        "5-second scene, still mountain night. A man's voice, low and even, "
+        "slow, weighing each phrase, close, in Mandarin: 「这里的人只看见一个"
+        "流浪汉。」 Very quiet night air, one distant insect. No music, no "
+        "echo."
+    ),
+
+    # Tân xá đêm: đèn dầu tí tách + câu thoại của nhân vật chính. Ngọc phát
+    # sáng KHÔNG có âm thanh — anh dặn rõ: chỉ lửa đèn dầu, không tiếng cho ngọc.
+    "ngoc_cot": (
+        "6-second scene, small wooden room at night, very still. Close at the "
+        "ear: a tiny oil-lamp flame ticking and crackling, slow quiet "
+        "breathing, straw mat shifting once. Then a young man's voice, barely "
+        "above a whisper, half to himself, in Mandarin: 「你……是什么？」 The "
+        "glowing jade itself makes no sound at all. No music, no hum, no "
+        "shimmer."
+    ),
+
+    # Nhân vật chính giật mình. Câu: "Ngươi… ngươi là ai? Sao lại ở trong khối
+    # ngọc này?"
+    "tuyet_co": (
+        "5-second scene, wooden room at night, lamp lit. A young man's voice, "
+        "startled and unsteady, breath catching first, close to the ear, in "
+        "Mandarin: 「你……你是谁？怎么会在玉里？」 Tiny lamp flame ticking "
+        "under it. No music."
+    ),
+
+    # Nhân vật chính cười gằn, gượng. Câu: "Cần ta?"
+    "tuyet_co_canh_giac": (
+        "3-second scene, still night room. A young man's voice, guarded, "
+        "with a dry forced laugh at the front, close, in Mandarin: "
+        "「需要我？」 Soft room tone, one unsteady breath. No music."
+    ),
+
+    # Tuyết Cơ: nữ, mềm như tơ nhưng lạnh, chậm. Câu: "Ta là Tuyết Cơ."
+    "tuyet_co_than_phan": (
+        "6-second scene, quiet wooden room at night. A woman's voice, soft "
+        "and silky but cold underneath, slow as if telling an old story, "
+        "close to the ear, in Mandarin: 「我是雪姬。」 Lamp flame ticking "
+        "faintly, still air. No music."
+    ),
+
+    # Nhân vật chính hỏi, giọng đã run. Câu: "Ta cần biết rõ."
+    "tuyet_co_dieu_kien": (
+        "4-second scene, silent night room. A young man's voice, trembling "
+        "slightly, trying to hold steady, close, in Mandarin: 「我要问清楚。」 "
+        "Only quiet room tone and one breath. No music."
+    ),
+
+    # Do dự, KHÔNG có thoại. Chỉ nín thở, đèn dầu, gỗ khẽ kêu.
+    "tuyet_co_do_du": (
+        "5-second scene, night room, held breath. Close at the ear: breath "
+        "stopped then released slowly, a tiny oil-lamp flame ticking, one "
+        "dry wooden joint creaking. Tense but nothing loud. No voice, no "
+        "music."
+    ),
+
+    # Nhân vật chính nói ngắn, đã quyết. Câu: "Ta ký."
+    "tuyet_co_khe_uoc": (
+        "4-second scene, quiet night room. A young man's voice, low and "
+        "firm, decision already made, close, in Mandarin: 「我签。」 A soft "
+        "female breath answers, barely audible. Lamp ticking. No music."
+    ),
+
+    # Hàn Lập nói mà không quay đầu. Câu: "Theo ta suốt đoạn đường vậy, không
+    # mệt sao?"
+    "han_lap_gap": (
+        "4-second scene on a rocky path behind a mountain, night. A man's "
+        "voice, low and even, calm, speaking with his back turned, close, in "
+        "Mandarin: 「跟了我一路，不累吗？」 Light night wind over rock, "
+        "gravel. No music, nobody else."
+    ),
+
+    # Nhân vật chính nói ra, giọng khàn. Câu: "Ta biết tương lai của ngươi."
+    "han_lap_that": (
+        "6-second scene, very still mountain night. A young man's voice, "
+        "gone hoarse with tension, quiet but deliberate, close, in Mandarin: "
+        "「我知道你的未来。」 Dead air around it, no wind, no insect. No "
+        "music."
+    ),
+
+    # Nhân vật chính cười gượng, lảng tránh. Câu: "Ta chỉ là kẻ tình cờ ở đây
+    # thôi."
+    "han_lap_cuoi_tru": (
+        "4-second scene, quiet night air. A young man's voice, an awkward "
+        "laugh first, then evasive and light, close, in Mandarin: 「我只是碰巧"
+        "路过罢了。」 Still night behind it. No music."
+    ),
+
+    # Nhân vật chính hỏi ngược, có gai. Câu: "Vậy ngươi là ai?"
+    "han_lap_hoi_nguoc": (
+        "6-second scene, still mountain night. A young man's voice, sharp "
+        "and probing, an edge in it, close to the ear, in Mandarin: 「那你又是"
+        "谁？」 Faint wind far off. No music."
+    ),
+
+    # Hàn Lập nhận bầu nước, uống, rồi nói khẽ. Câu: "Ngươi không giống người
+    # ở đây."
+    "han_lap_bau_nuoc": (
+        "5-second scene, night mountain, very quiet. A water flask cap "
+        "opening, one swallow, then a man's voice, low and quiet, almost "
+        "warm, close, in Mandarin: 「你和这里的人不一样。」 Light wind. No "
+        "music."
     ),
 
 }

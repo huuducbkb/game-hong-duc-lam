@@ -114,11 +114,11 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
    thích, rồi tải lên đây — game tự dùng bản của anh.</p>
 
 <div class="tom-tat">
-  <b>43 cảnh, mỗi cảnh một file riêng.</b> Mỗi ảnh trong game là một cảnh, có tiếng
+  <b>64 cảnh, mỗi cảnh một file riêng.</b> Mỗi ảnh trong game là một cảnh, có tiếng
   riêng và từ khoá riêng. Cảnh nào chưa có file thì im — không lấy tiếng của cảnh khác,
   không chèn nhạc tổng hợp.
   <div class="ml">
-    <a href="#n-cho">Chợ</a><a href="#n-tran">Trận chiến</a><a href="#n-nui">Núi</a><a href="#n-san">Sân tập</a><a href="#n-vuon">Vườn thuốc</a><a href="#n-mieu">Miếu</a><a href="#n-dem">Đêm</a><a href="#n-lang">Làng</a><a href="#n-tinh">Tĩnh</a>
+    <a href="#n-cho">Chợ</a><a href="#n-tran">Trận chiến</a><a href="#n-nui">Núi</a><a href="#n-san">Sân tập</a><a href="#n-vuon">Vườn thuốc</a><a href="#n-mieu">Miếu</a><a href="#n-dem">Đêm</a><a href="#n-lang">Làng</a><a href="#n-tinh">Tĩnh</a><a href="#n-gap">Gặp gỡ — cảnh có lời thoại</a>
   </div>
 </div>
 
@@ -131,7 +131,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
         mới ra; tiếng Việt gần như không có.</li>
     <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
-    <li>Bot tự lấy <b>12 giây đầu</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
+    <li>Bot tự cắt theo <b>độ dài ghi trên cảnh</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
     <li><b>Gửi được cả video.</b> Chọn video (mp4, mov, webm…) là trình duyệt tự trích
     tiếng, nén thành mp3 ngay trên máy anh rồi chỉ gửi đoạn mp3 đó —
     <b>video không được tải lên</b>, nên không nằm trong repo. Video dưới <b>5 MB</b>;
@@ -150,17 +150,17 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   </div>
 
   <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
-    <p style="margin:0;font-size:12.5px"><b>Về 12 giây:</b> file anh gửi dài bao nhiêu
-    cũng được, hệ thống <b>tự cắt 12 giây đầu</b>. Cảnh trong game chỉ 10 giây, nên 12
-    giây là dư một chút để vòng lặp không chạm mép file. File ngắn hơn 12 giây thì giữ
-    nguyên, không cắt.</p>
+    <p style="margin:0;font-size:12.5px"><b>Về độ dài:</b> mỗi cảnh ghi rõ
+    <b>dài bao nhiêu giây</b> ngay dưới tên cảnh — cảnh bối cảnh 10 giây, cảnh có thoại
+    3–6 giây, có cảnh chỉ 2 giây. Anh gửi file dài bao nhiêu cũng được, hệ thống tự lấy
+    đoạn đầu dài đúng bằng số đó. <b>Tiếng không lặp lại</b> — phát một lần rồi thôi.</p>
   </div>
 
   <p class="muted" style="margin:10px 0 0">
     Định dạng nhận: <code>mp3</code>, <code>wav</code>, <code>m4a</code>, <code>ogg</code>,
     <code>flac</code>, hoặc video <code>mp4</code>/<code>mov</code>/<code>webm</code>.
     Gửi thẳng được tới <b>24 MB</b>; lớn hơn thì nén bớt trước. Sau khi
-    gửi, bot tự lấy 12 giây đầu, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
+    gửi, bot tự cắt theo độ dài của cảnh, chuyển về mp3 96 kbps và cân âm lượng về −18 LUFS.
   </p>
 </div>
 
@@ -203,15 +203,13 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
   <p class="mota">Chợ lúc sạp còn đang dựng: gỗ kéo trên đất, sọt và hũ đặt xuống, bước chân thưa, bàn tán rất khẽ. Chưa đông, chưa có tiếng rao.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cho_01.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-cho_01">10-second dense, close morning market ambience heard from ground level in a crowded corner. Cart wheels creaking on packed earth, clay jars knocking, coins dropped into a palm, cloth brushing past the ear. A few metres off: crossing footsteps, a stool dragged, laughter once. Far behind: a dog. Crowd-damped, echo swallowed. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second dense, close morning market ambience heard from ground level in a crowded corner. Cart wheels creaking on packed earth, clay jars knocking, coins dropped into a palm, cloth brushing past the ear. A few metres off: crossing footsteps, a stool dragged, laughter once. Far behind: a dog. Crowd-damped, echo swallowed. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">360/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -265,15 +263,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Ngõ hẹp sau chợ: tiếng vọng sát vách, bước chân gần, giọng nói nhỏ ngay sau bức tường, đồ đạc khua trong sân. Chen chúc, kín, không thoáng.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cho_02.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-cho_02">10-second hushed night ambience at the mouth of a narrow alley behind a market. Ten metres off, men sit around a small fire: crackling, a stick poking embers, spit hissing, a cough, a low sigh. Their sound comes back off the close walls, softened. Near the ear: quiet breathing, a boot scuffing grit. Intimate, walled-in field recording. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second hushed night ambience at the mouth of a narrow alley behind a market. Ten metres off, men sit around a small fire: crackling, a stick poking embers, spit hissing, a cough, a low sigh. Their sound comes back off the close walls, softened. Near the ear: quiet breathing, a boot scuffing grit. Intimate, walled-in field recording. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">373/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -327,15 +323,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Chợ lúc chiều muộn, đã thưa: người dọn hàng, thùng gỗ đậy lại, bước chân mệt, tiếng nói rời rạc. Không còn huyên náo, chỉ còn mệt.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cho_03.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-cho_03">10-second sparse, tired dusk ambience at the edge of an emptying market. Close at the ear: a broom sweeping packed earth, cloth moving. Further off: a wooden stall folded and stacked, crates dragged. Behind and right: slow footsteps walking away, a cough, a long sigh. Dry wind moving loose paper. Open ground, no reflection, far sounds thin out. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second sparse, tired dusk ambience at the edge of an emptying market. Close at the ear: a broom sweeping packed earth, cloth moving. Further off: a wooden stall folded and stacked, crates dragged. Behind and right: slow footsteps walking away, a cough, a long sigh. Dry wind moving loose paper. Open ground, no reflection, far sounds thin out. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">382/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -390,15 +384,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Tập kích bất ngờ: hỗn loạn bùng lên, lửa cháy, tiếng hét không rõ chữ, đồ vật vỡ, chạy loạn. Chưa thành trận đánh — còn là hoảng loạn.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tran_lua.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tran_lua">10-second distant night ambience from a high mountain path above a burning town. Everything from the valley is thin and wide: fire roaring, timber cracking, structures falling, one far shout, a horn. Close at the ear: wind on the ridge, grass moving, cloth. The valley is too wide to answer. Cold, open, cinematic. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second distant night ambience from a high mountain path above a burning town. Everything from the valley is thin and wide: fire roaring, timber cracking, structures falling, one far shout, a horn. Close at the ear: wind on the ridge, grass moving, cloth. The valley is too wide to answer. Cold, open, cinematic. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">350/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -452,15 +444,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Chạy xuống trấn giữa lửa: cháy gần, gỗ nổ, người gọi nhau, bước chân dồn trên đá. Chen giữa đám đông đang tháo chạy.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tran_lua_2.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tran_lua_2">10-second chaotic night ambience inside a burning town street. Close around the head: fire roaring through a wooden house, roof beams cracking, a blade sweeping through air, steel ringing on steel, boots hammering stone, hard breathing. Ahead: a wall coming down, horses. Behind: a shout. House fronts throw every sound back fast and hard. Immersive. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second chaotic night ambience inside a burning town street. Close around the head: fire roaring through a wooden house, roof beams cracking, a blade sweeping through air, steel ringing on steel, boots hammering stone, hard breathing. Ahead: a wall coming down, horses. Behind: a shout. House fronts throw every sound back fast and hard. Immersive. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">386/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -514,15 +504,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Cổng gỗ vỡ: tiếng gỗ lớn gãy, bản lề bật, đám đông tràn qua. Nặng, chát, có lực va đập thật.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tran_lua_3.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tran_lua_3">10-second violent night ambience at the shattered gate of a martial sect under assault. Close: a heavy gate splintering, hinges tearing, boots stamping broken planks, hard breathing, one blade turning another aside. Further back, bouncing off stone: many men moving at once, grunts, one hoarse shout. Beyond the gate: fire. Walled in, hard reflections. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second violent night ambience at the shattered gate of a martial sect under assault. Close: a heavy gate splintering, hinges tearing, boots stamping broken planks, hard breathing, one blade turning another aside. Further back, bouncing off stone: many men moving at once, grunts, one hoarse shout. Beyond the gate: fire. Walled in, hard reflections. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">388/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -576,15 +564,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đối mặt trước khi đánh: căng, gần như im, chỉ có gió, thở, và tiếng vải áo khẽ động. Chưa có tiếng thép — chính cái im mới là căng.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cong_dong_doi_mat.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-cong_dong_doi_mat">10-second tense near-silent ambience at a broken gate, the instant before blades meet. Close at the ear: slow breath, cloth shifting as weight settles. A few metres ahead: their breathing, a boot scuffing stone, a blade drawn an inch. Behind: wind through the gate. Sparse, with long gaps, and the stone carries every small sound. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second tense near-silent ambience at a broken gate, the instant before blades meet. Close at the ear: slow breath, cloth shifting as weight settles. A few metres ahead: their breathing, a boot scuffing stone, a blade drawn an inch. Behind: wind through the gate. Sparse, with long gaps, and the stone carries every small sound. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">366/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -638,15 +624,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Giấu lực: tiếng đánh bị nén lại, hơi thở giữ, bước chân chậm và chắc. Không bùng nổ, nhưng nặng.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cong_dong_giau.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-cong_dong_giau">10-second controlled, suppressed ambience at a gate. Close: fast shallow breathing, a blade turned aside, boots sliding backwards on stone, cloth snapping, a short grunt. Mid-distance, off to the side: other men moving, breath, a wordless shout. Stone walls close on both sides, so small sounds come back doubled. Restrained and dry. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second controlled, suppressed ambience at a gate. Close: fast shallow breathing, a blade turned aside, boots sliding backwards on stone, cloth snapping, a short grunt. Mid-distance, off to the side: other men moving, breath, a wordless shout. Stone walls close on both sides, so small sounds come back doubled. Restrained and dry. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">369/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -700,15 +684,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Toàn lực: va đập mạnh, gió bị xé, đất bật, hơi thở bung ra. To nhất trong nhóm cổng đông.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cong_dong_toan_luc.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-cong_dong_toan_luc">10-second sudden loud ambience at a gate. Close: one heavy impact, air torn, dust and gravel thrown, stone struck, breath bursting out, a loud grunt. Around, further off: the exchange carries on, then a brief stunned quiet, one shout from onlookers. The gate walls catch it and send it back a beat later. Punchy, physical. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second sudden loud ambience at a gate. Close: one heavy impact, air torn, dust and gravel thrown, stone struck, breath bursting out, a loud grunt. Around, further off: the exchange carries on, then a brief stunned quiet, one shout from onlookers. The gate walls catch it and send it back a beat later. Punchy, physical. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">358/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -762,15 +744,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đánh tay gần: quyền chạm quyền, tay áo phần phật, bước xoay trên đá, hơi thở đều. Gần và khô, không có nhạc.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cong_dong_quyen.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-cong_dong_quyen">10-second dry close-combat ambience at a gate, bare-handed. Right at the ear: a fist striking a chest, a forearm blocking, sleeves snapping, feet pivoting and stamping stone, steady breathing through the nose, a short exhale on each strike. Further off: boots on stone, a grunt. Stone under and behind returns every hit a little late. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second dry close-combat ambience at a gate, bare-handed. Right at the ear: a fist striking a chest, a forearm blocking, sleeves snapping, feet pivoting and stamping stone, steady breathing through the nose, a short exhale on each strike. Further off: boots on stone, a grunt. Stone under and behind returns every hit a little late. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">370/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -824,15 +804,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Một tiếng gọi vang lên giữa sân: mọi thứ khựng lại, chỉ còn tiếng vọng và gió. Có giọng người nhưng không rõ chữ.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/cong_dong_hung_ba.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-cong_dong_hung_ba">10-second courtyard ambience built on one shout and its echo. Close at the ear: one breath held. One raw wordless shout goes out and comes back off the far wall, then everything stops: blades quiet, footsteps halt, wind, many men holding still. The wall is the depth, a long hard reflection. Tense, wide, open. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second courtyard ambience built on one shout and its echo. Close at the ear: one breath held. One raw wordless shout goes out and comes back off the far wall, then everything stops: blades quiet, footsteps halt, wind, many men holding still. The wall is the depth, a long hard reflection. Tense, wide, open. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">346/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -886,15 +864,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Giữa đám cháy: lửa nổ lách tách, gỗ cháy sụp, khói, bước chân vội trên tro. Lửa là chính, người ở phía sau.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/hoa_truong_cuu.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-hoa_truong_cuu">10-second urgent ambience inside a burning building. Fire close and filling the space: roaring, crackling, timber snapping, embers falling. At the ear: heavy effort breathing, wood levered and thrown aside, a weak hoarse moan. Outside, further off and muffled through the fire: a shout. Thick, smoke-damped, claustrophobic. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second urgent ambience inside a burning building. Fire close and filling the space: roaring, crackling, timber snapping, embers falling. At the ear: heavy effort breathing, wood levered and thrown aside, a weak hoarse moan. Outside, further off and muffled through the fire: a shout. Thick, smoke-damped, claustrophobic. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">359/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -949,15 +925,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đường mòn chạng vạng: gió qua đá và cỏ khô, bước chân trên sỏi, không gian rộng. Chưa tối hẳn, còn tiếng chim xa.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/duong_mon_nui.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-duong_mon_nui">10-second cold open ambience on a narrow mountain trail at dusk. At the ear: boots on loose gravel, dry grass brushing legs, quiet breathing. Further out, wide and open: wind through tall grass, crickets starting up. Far below: wind moving in the valley. Open air, no reflection, each sound lands and dies. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second cold open ambience on a narrow mountain trail at dusk. At the ear: boots on loose gravel, dry grass brushing legs, quiet breathing. Further out, wide and open: wind through tall grass, crickets starting up. Far below: wind moving in the valley. Open air, no reflection, each sound lands and dies. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">342/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1011,15 +985,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Khe núi ban đêm: gió dồn trong khe hẹp, vọng lại, côn trùng thưa, lạnh. Hẹp hơn đường mòn, có tiếng vọng.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/khe_nui_dem.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-khe_nui_dem">10-second cold, narrow ambience in a rock ravine at night. Close at the ear: a few drops falling into a pool, sparse insects, quiet breathing. The ravine makes the wind sigh, forced through the gap and coming back off wet stone on both sides. Far above: wind crossing the open ridge. Tight, echoing, enclosed. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second cold, narrow ambience in a rock ravine at night. Close at the ear: a few drops falling into a pool, sparse insects, quiet breathing. The ravine makes the wind sigh, forced through the gap and coming back off wet stone on both sides. Far above: wind crossing the open ridge. Tight, echoing, enclosed. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">345/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1073,15 +1045,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đào đất ban đêm trong khe núi: xẻng lưỡi vào đất, sỏi rời, hơi thở nặng, gió khe núi phía sau. Việc nặng, làm lặng lẽ.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/khe_nui_chon.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-khe_nui_chon">10-second physical ambience of hurried digging in a mountain ravine at night. Close: a shovel blade cutting wet soil, gravel sliding, earth landing on a pile, heavy breathing with effort, the shovel scraping rock. Further out: wind through the ravine gap, distant insects. Rock walls close in, so the digging comes back off both sides. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second physical ambience of hurried digging in a mountain ravine at night. Close: a shovel blade cutting wet soil, gravel sliding, earth landing on a pile, heavy breathing with effort, the shovel scraping rock. Further out: wind through the ravine gap, distant insects. Rock walls close in, so the digging comes back off both sides. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">371/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1136,15 +1106,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Sân tập giữa ngày, đông: nhiều người cùng luyện, chân trên đất nện, vải áo phần phật, tiếng đếm nhịp xa. Đều và có nhịp của buổi tập.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/san_tap_ngay.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-san_tap_ngay">10-second dense, hot midday ambience in a large training yard. At the ear: bare feet stamping packed earth, breath forced out on each move. A few metres off, left and right: wooden staffs striking each other, staffs hitting the ground in unison, a sharp whistle blast. Further off: banners flapping overhead. Open yard, far sounds thin out. Rhythmic, busy. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second dense, hot midday ambience in a large training yard. At the ear: bare feet stamping packed earth, breath forced out on each move. A few metres off, left and right: wooden staffs striking each other, staffs hitting the ground in unison, a sharp whistle blast. Further off: banners flapping overhead. Open yard, far sounds thin out. Rhythmic, busy. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">392/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1198,15 +1166,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Bị vây giữa sân: tiếng cười khẽ, bàn tán chế giễu ở phía sau, bước chân vòng quanh. Không ai nói to, nhưng không thân thiện.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/san_tap_chen_ep.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-san_tap_chen_ep">10-second hostile quiet ambience in a training yard, a ring of students closing in. Low laughter, a mocking hum, feet shuffling as they circle, a staff tapping ground, someone spitting. Close, all around the head. The ring of bodies soaks the sound up instead of bouncing it. The rest of the training carries on further off. Tight, unpleasant. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second hostile quiet ambience in a training yard, a ring of students closing in. Low laughter, a mocking hum, feet shuffling as they circle, a staff tapping ground, someone spitting. Close, all around the head. The ring of bodies soaks the sound up instead of bouncing it. The rest of the training carries on further off. Tight, unpleasant. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">379/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1260,15 +1226,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Cãi lại: giọng bật lên giữa sân, rồi im phăng phắc, rồi xì xào. Có giọng người nhưng không rõ chữ.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/san_tap_cai_lai.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-san_tap_cai_lai">10-second ambience of a training yard going silent after one slap. One sharp angry shout, wordless, then a flat slap lands close, and the whole yard goes completely quiet. After a beat a low hum of reaction spreads through the crowd, only sound. Far off: the rest of the training has stopped too. The quiet leans in. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second ambience of a training yard going silent after one slap. One sharp angry shout, wordless, then a flat slap lands close, and the whole yard goes completely quiet. After a beat a low hum of reaction spreads through the crowd, only sound. Far off: the rest of the training has stopped too. The quiet leans in. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">352/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1322,15 +1286,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Luyện lén ban đêm: rất ít tiếng, chân trần trên đất, hơi thở nén, vải khẽ động. Phải giữ im nên mọi thứ đều nhỏ.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/san_sau_luyen_dem.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-san_sau_luyen_dem">10-second deliberately small ambience of solitary late-night practice in a back yard. Everything at the ear: bare feet on packed earth, cloth moving, breath held and released through the nose, a fist passing through air, a quiet landing after a step. Far off: insects, one dog. Open night air, no reflection, sound dies fast. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second deliberately small ambience of solitary late-night practice in a back yard. Everything at the ear: bare feet on packed earth, cloth moving, breath held and released through the nose, a fist passing through air, a quiet landing after a step. Far off: insects, one dog. Open night air, no reflection, sound dies fast. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">361/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1384,15 +1346,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Dưới gốc cổ thụ ban đêm: lá trên cao xào xạc, thân cây khẽ kêu, côn trùng thưa, không gian tĩnh.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/san_sau_anh_sang.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-san_sau_anh_sang">10-second still ambience under a huge old tree in a back yard at night. Close at the ear: quiet breathing, one insect very close. Overhead: leaves moving in a light wind, a thick branch creaking slowly, leaves letting go and landing. Far off: crickets, a dog. The canopy deadens everything above. Damp, faintly uneasy. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second still ambience under a huge old tree in a back yard at night. Close at the ear: quiet breathing, one insect very close. Overhead: leaves moving in a light wind, a thick branch creaking slowly, leaves letting go and landing. Far off: crickets, a dog. The canopy deadens everything above. Damp, faintly uneasy. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">354/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1446,15 +1406,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đào đất trong sân sau ban đêm: xẻng vào đất mềm, đất rơi, thở nặng, lá cây phía trên. Kín đáo, phải làm nhanh.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/san_sau_chon_lai.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-san_sau_chon_lai">10-second hurried ambience of digging in a back yard at night. Close: a small shovel biting soft earth, soil poured out, roots snapping, leaves pushed aside, fast breathing, cloth rustling. Overhead: the old tree&#x27;s leaves moving. Far off: a dog. Soft earth swallows the digging, the leaves overhead catch the rest. Muffled, secretive. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;10-second hurried ambience of digging in a back yard at night. Close: a small shovel biting soft earth, soil poured out, roots snapping, leaves pushed aside, fast breathing, cloth rustling. Overhead: the old tree&#x27;s leaves moving. Far off: a dog. Soft earth swallows the digging, the leaves overhead catch the rest. Muffled, secretive. No music, no speech, seamless loop.&quot;)">📋 Chép prompt</button><span class="dem-ky">370/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1509,15 +1467,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Vườn thuốc buổi sáng: lá cọ nhau trong gió nhẹ, ong gần, côn trùng thưa, một con chim từ trên tường đáp lại. Ấm, kín, không người.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_gap.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-vuon_thuoc_gap">10-second warm, secluded morning ambience in a walled herb garden. Gentle breeze rustling dense herbal leaves, brushing softly against each other and against cloth. A bee buzzes close by, sparse delicate insects behind it. Dry stems snap underfoot. Beyond the wall, softened by distance: wooden staffs striking, a sharp whistle. Intimate field recording, natural reverb off the wall. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second warm, secluded morning ambience in a walled herb garden. Gentle breeze rustling dense herbal leaves, brushing softly against each other and against cloth. A bee buzzes close by, sparse delicate insects behind it. Dry stems snap underfoot. Beyond the wall, softened by distance: wooden staffs striking, a sharp whistle. Intimate field recording, natural reverb off the wall. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">419/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1571,15 +1527,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Hỏi thẳng trong vườn: hai giọng nói thấp, ngắt quãng, lá vẫn cọ phía sau. Không rõ chữ, nhưng nghe ra là đang gặng.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_hoi.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-vuon_thuoc_hoi">10-second tense, quiet ambience in a walled herb garden, two people standing close and wordless. What carries is the shape of it: slow dry breathing close on the left, a younger breath held tight, a foot shifting, cloth. Behind them, further off: leaves moving, insects, a bundle of herbs being tied. The wall holds it all in, low. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second tense, quiet ambience in a walled herb garden, two people standing close and wordless. What carries is the shape of it: slow dry breathing close on the left, a younger breath held tight, a foot shifting, cloth. Behind them, further off: leaves moving, insects, a bundle of herbs being tied. The wall holds it all in, low. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">367/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1633,15 +1587,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Im lặng trong vườn: chỉ còn lá, gió, côn trùng rất xa. Không giọng người. Cái im này là cố ý, không phải file hỏng.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_im.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-vuon_thuoc_im">10-second deliberate stillness in a walled herb garden, wordless. Close at the ear: a bundle of dried herbs being handled, quiet breathing. Further off: leaves moving in a light wind, insects, one bird far away. Long quiet stretches between each small sound. The wall holds everything in, so the quiet has an edge. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second deliberate stillness in a walled herb garden, wordless. Close at the ear: a bundle of dried herbs being handled, quiet breathing. Further off: leaves moving in a light wind, insects, one bird far away. Long quiet stretches between each small sound. The wall holds everything in, so the quiet has an edge. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">350/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1695,15 +1647,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Trong vườn, có người đang cầm một vật nặng: đá hoặc ngọc đặt xuống gỗ, vải bọc mở ra, lá vẫn động phía sau. Trầm và kín.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_ngoc.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-vuon_thuoc_ngoc">10-second secretive ambience in a walled herb garden, a heavy object handled. Close: a jade object set down on wood with a solid knock, cloth unwrapped, fingers brushing stone, a bundle of herbs laid aside. Near the ear: two low unhurried breaths. Behind: leaves, insects. The wall keeps it in and small. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second secretive ambience in a walled herb garden, a heavy object handled. Close: a jade object set down on wood with a solid knock, cloth unwrapped, fingers brushing stone, a bundle of herbs laid aside. Near the ear: two low unhurried breaths. Behind: leaves, insects. The wall keeps it in and small. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">340/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1757,15 +1707,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đào đất trong vườn thuốc ban đêm: đất mềm hơn sân sau, rễ cây đứt, lá bị gạt sang, thở nén. Làm lặng lẽ giữa luống thuốc.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/vuon_thuoc_dem.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-vuon_thuoc_dem">10-second careful night ambience of digging in a herb garden. Close at the ear: a small tool cutting soft soil, roots snapping, earth poured out, breath held. Further out: leaves swept aside, insects in wet garden air. The wall keeps it close, damp air deadens whatever tries to travel. Still, cool, patient. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second careful night ambience of digging in a herb garden. Close at the ear: a small tool cutting soft soil, roots snapping, earth poured out, breath held. Further out: leaves swept aside, insects in wet garden air. The wall keeps it close, damp air deadens whatever tries to travel. Still, cool, patient. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">344/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1820,15 +1768,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Ngoài miếu hoang: gió lùa qua tường vỡ, côn trùng đêm, không gian trống. Đứng ngoài quan sát, chưa vào trong.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/mieu_hoang.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-mieu_hoang">10-second vast, cold ambience outside a ruined shrine at night. Close at the ear: quiet breathing, grass moving at the feet. Ahead, inside the ruin: wind pushing through broken walls and gaps, whistling low then dropping away, loose roof tiles shifting. Further off: crickets, a piece of wall crumbling. Broken walls break the wind into pieces. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second vast, cold ambience outside a ruined shrine at night. Close at the ear: quiet breathing, grass moving at the feet. Ahead, inside the ruin: wind pushing through broken walls and gaps, whistling low then dropping away, loose roof tiles shifting. Further off: crickets, a piece of wall crumbling. Broken walls break the wind into pieces. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">380/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -1879,29 +1825,27 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
     <figcaption>bc_mieu_trong.jpg — bấm để xem to</figcaption>
   </figure>
 
-  <p class="mota">Trong miếu đá: vọng dài, lạnh, gió qua cửa, bụi rơi. Rất ít tiếng nhưng không im — chính căn phòng có tiếng của nó.</p>
+  <p class="mota">Trong miếu đá: tiếng cửa mục kẽo kẹt rồi bước chân chậm, nặng tiến lại từ phía sau. Ngắn — chỉ đủ để nghe ra có kẻ đang tới.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/mieu_trong.mp3</code></div>
+    <div><span class="k">dài</span> <code>2 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
-<div class="prompt" id="p-mieu_trong">10-second enclosed ambience inside a small stone shrine at night. The room is the sound and the room is the depth: close at the ear a single breath, then a long natural reverb carrying it away. Air moving through the doorway, a draft pushing dust across stone, a loose tile ticking. Further off, outside: wind in the trees. Cold stone. No music, no speech, seamless loop.</div>
-<div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second enclosed ambience inside a small stone shrine at night. The room is the sound and the room is the depth: close at the ear a single breath, then a long natural reverb carrying it away. Air moving through the doorway, a draft pushing dust across stone, a loose tile ticking. Further off, outside: wind in the trees. Cold stone. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">371/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<div class="prompt" id="p-mieu_trong">2-second scene, dry stone shrine interior at night. An old wooden door drags open, hinge creaking, then two slow heavy footsteps on gritted stone coming from behind, closer on the second. Short dry stone reverb. No music, no voice, no wind.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;2-second scene, dry stone shrine interior at night. An old wooden door drags open, hinge creaking, then two slow heavy footsteps on gritted stone coming from behind, closer on the second. Short dry stone reverb. No music, no voice, no wind.&#x27;)">📋 Chép prompt</button><span class="dem-ky">240/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
-    <button type="button" class="tk" onclick="cpChu(this,&#x27;empty stone shrine interior ambience&#x27;)">empty stone shrine interior ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;temple room tone reverb&#x27;)">temple room tone reverb</button><button type="button" class="tk" onclick="cpChu(this,&#x27;cold stone hall sound&#x27;)">cold stone hall sound</button>
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;shrine door creak stone&#x27;)">shrine door creak stone</button><button type="button" class="tk" onclick="cpChu(this,&#x27;slow heavy footsteps behind&#x27;)">slow heavy footsteps behind</button><button type="button" class="tk" onclick="cpChu(this,&#x27;stone shrine interior&#x27;)">stone shrine interior</button>
   </div>
   <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
      Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
 
   <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
   <div class="tukhoa">
-    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;stone room reverb ambience&#x27;)">stone room reverb ambience</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;empty shrine interior room tone&#x27;)">empty shrine interior room tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;cold stone hall reverb&#x27;)">cold stone hall reverb</button>
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;old door creak close&#x27;)">old door creak close</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;heavy footsteps approaching stone floor&#x27;)">heavy footsteps approaching stone floor</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;empty shrine room tone&#x27;)">empty shrine room tone</button>
   </div>
   <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
      hoặc tìm nguồn ở chỗ khác.</p>
@@ -1944,15 +1888,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Giằng co trong miếu: chân trượt trên đá, va đập, một tiếng sụp xuống, rồi vọng trong phòng đá. Ngắn và dữ.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/doat_hop.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-doat_hop">10-second violent ambience of a struggle for a box inside a stone shrine. Close: boots slipping on stone, bodies colliding, cloth tearing, a blade swung and missing, one heavy impact, then weight dropping onto the floor. One hoarse shout, cut short. Further off, outside: a door, running feet. Then only echo. Hard, resonant stone. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second violent ambience of a struggle for a box inside a stone shrine. Close: boots slipping on stone, bodies colliding, cloth tearing, a blade swung and missing, one heavy impact, then weight dropping onto the floor. One hoarse shout, cut short. Further off, outside: a door, running feet. Then only echo. Hard, resonant stone. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">367/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2006,15 +1948,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Luyện kiếm trong miếu đêm: lưỡi kiếm xé không khí, kim loại khẽ rít, bước chân xoay trên đá, hơi thở đều. Sắc và lạnh.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tu_khiem.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tu_khiem">10-second precise ambience of sword practice in a shrine at night. Close at the ear: a blade cutting air in a long clean arc, steel ringing faintly as it turns, the guard shifting in the hand, bare feet pivoting on stone, even breathing. Further off: the room answers each swing with its own reverb, then near-silence. Cold, sharp, clean. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second precise ambience of sword practice in a shrine at night. Close at the ear: a blade cutting air in a long clean arc, steel ringing faintly as it turns, the guard shifting in the hand, bare feet pivoting on stone, even breathing. Further off: the room answers each swing with its own reverb, then near-silence. Cold, sharp, clean. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">374/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2069,15 +2009,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đêm trong tân xá: côn trùng ngoài cửa sổ, giường gỗ khẽ kêu, hơi thở đều, không gian chật. Yên nhưng không im.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tan_xa_dem.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tan_xa_dem">10-second small, dry ambience of a cramped wooden dormitory at night, someone lying awake. Close at the ear: a bed frame creaking under small movement, cloth shifting, slow even breathing. Outside the paper window, muffled and further: crickets, a frog, a dog far away, light wind. The small room keeps everything close. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second small, dry ambience of a cramped wooden dormitory at night, someone lying awake. Close at the ear: a bed frame creaking under small movement, cloth shifting, slow even breathing. Outside the paper window, muffled and further: crickets, a frog, a dog far away, light wind. The small room keeps everything close. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">356/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2131,15 +2069,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đêm bị tập kích: từ im lặng bùng thành hỗn loạn, lửa, hét xa, chạy. Nửa đầu là đêm, nửa sau là loạn.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/dem_tap_kich.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-dem_tap_kich">10-second ambience that turns from quiet night to chaos. Inside a wooden dormitory, close at the ear: insects, a bed frame, quiet breathing; further off: wind, timber settling. Then a horn cuts in from the forest and everything breaks at once: fire igniting, blades, running feet, a gate slamming, one shout. Sharp contrast, wide to close. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second ambience that turns from quiet night to chaos. Inside a wooden dormitory, close at the ear: insects, a bed frame, quiet breathing; further off: wind, timber settling. Then a horn cuts in from the forest and everything breaks at once: fire igniting, blades, running feet, a gate slamming, one shout. Sharp contrast, wide to close. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">375/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2194,15 +2130,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Sau trận, giữa đống đổ nát: lửa còn âm ỉ, gỗ cháy khẽ nổ, gió qua tường sập, không còn ai. Trống và nặng.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tan_hoang.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tan_hoang">10-second heavy, empty ambience among ruins just before dawn after a battle. Fire still smouldering: low crackling, a beam settling, ash shifting. Wind crosses collapsed walls. Close and quiet: slow footsteps of men carrying something heavy, setting it down, one long breath let go, a broken sob far off then stopping. Collapsed walls scatter the sound, so it thins and dies. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second heavy, empty ambience among ruins just before dawn after a battle. Fire still smouldering: low crackling, a beam settling, ash shifting. Wind crosses collapsed walls. Close and quiet: slow footsteps of men carrying something heavy, setting it down, one long breath let go, a broken sob far off then stopping. Collapsed walls scatter the sound, so it thins and dies. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">411/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2256,15 +2190,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Bình minh trên trấn: chim sớm, gà xa, gió nhẹ, rất ít người đã dậy. Nhẹ và sạch, sau những gì vừa xảy ra.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/binh_minh.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-binh_minh">10-second clean dawn ambience over a small town the morning after trouble. Close: birds starting up one at a time, a rooster far off, light wind moving dust and loose paper. Somewhere a shutter opens, a bucket of water poured, a broom working. Almost nobody awake, the town still asleep. Open morning air, each sound lands clean and stops. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second clean dawn ambience over a small town the morning after trouble. Close: birds starting up one at a time, a rooster far off, light wind moving dust and loose paper. Somewhere a shutter opens, a bucket of water poured, a broom working. Almost nobody awake, the town still asleep. Open morning air, each sound lands clean and stops. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">375/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2318,15 +2250,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Tân xá buổi sáng: người dậy, cửa mở, nước đổ, bước chân ra sân, nói chuyện thường ngày. Đời thường, không có gì đặc biệt.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tan_xa_sang.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tan_xa_sang">10-second ordinary morning ambience in a martial sect dormitory. Close: a wooden door sliding open, sandals on stone, water poured from a bucket, a bed frame creaking, someone coughing, cloth pulled on. Outside, further and softened: a staff tapped on the ground, footsteps, a sharp whistle from the yard. Unremarkable, easy, lived-in. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second ordinary morning ambience in a martial sect dormitory. Close: a wooden door sliding open, sandals on stone, water poured from a bucket, a bed frame creaking, someone coughing, cloth pulled on. Outside, further and softened: a staff tapped on the ground, footsteps, a sharp whistle from the yard. Unremarkable, easy, lived-in. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">371/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2380,15 +2310,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Quán nước: chén đặt xuống, nước rót, nhiều giọng nói chồng lên, tiếng cười thưa. Không rõ chữ — chỉ là chỗ đông người.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/quan_nuoc.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-quan_nuoc">10-second warm, crowded ambience in a dark corner of a roadside tea house. Close at the ear: a clay cup set on wood, tea poured, a kettle, coins counted, a stool scraping. Around, at other tables: a low hum too far to be anything, laughter once, a hand slapped on a table. Low ceiling and close walls press the hum down around the head. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second warm, crowded ambience in a dark corner of a roadside tea house. Close at the ear: a clay cup set on wood, tea poured, a kettle, coins counted, a stool scraping. Around, at other tables: a low hum too far to be anything, laughter once, a hand slapped on a table. Low ceiling and close walls press the hum down around the head. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">372/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2442,15 +2370,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đêm trong phòng: rất tĩnh, hơi thở, vải khẽ động, côn trùng xa. Kín và riêng tư, không có gì ồn.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tan_xa_song_tu.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tan_xa_song_tu">10-second extremely quiet, intimate ambience of lying still in a dark room at night. At the ear: slow breathing, a pulse, cloth shifting, a wooden bed taking weight, and a faint hum that seems to come from inside the room rather than outside it. Far off: crickets. The small room holds the sound against you. Private, close, still. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second extremely quiet, intimate ambience of lying still in a dark room at night. At the ear: slow breathing, a pulse, cloth shifting, a wooden bed taking weight, and a faint hum that seems to come from inside the room rather than outside it. Far off: crickets. The small room holds the sound against you. Private, close, still. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">367/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2504,15 +2430,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Khổ tu thất bại: hơi thở mệt và gấp, rồi thở dài, im. Có cái nặng trong phòng, không phải tiếng động lớn.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tan_xa_kho_tu.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tan_xa_kho_tu">10-second raw, quiet ambience of sitting in the dark after failure. Close: breathing too fast and too heavy, then a long shaky exhale, then silence. A hand pressed against a chest, cloth twisted. Further off, outside the room: a wooden floor creaking as someone else shifts weight. The room is small enough to send the breathing back. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second raw, quiet ambience of sitting in the dark after failure. Close: breathing too fast and too heavy, then a long shaky exhale, then silence. A hand pressed against a chest, cloth twisted. Further off, outside the room: a wooden floor creaking as someone else shifts weight. The room is small enough to send the breathing back. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">370/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2566,15 +2490,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Suýt bị phát hiện: nín thở, bước chân người khác tới gần rồi đi qua, im lại. Căng, không có tiếng lớn.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tan_xa_suyt_lo.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tan_xa_suyt_lo">10-second tight, tense ambience of held breath in a dark dormitory. Close: breath held, then released very carefully, cloth pulled tight. Further off, outside the door on the wooden walkway, coming closer: slow deliberate footsteps, pausing right outside, then moving away and fading. Then only insects. The thin wall carries it through too clearly. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second tight, tense ambience of held breath in a dark dormitory. Close: breath held, then released very carefully, cloth pulled tight. Further off, outside the door on the wooden walkway, coming closer: slow deliberate footsteps, pausing right outside, then moving away and fading. Then only insects. The thin wall carries it through too clearly. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">385/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2628,15 +2550,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đột phá: một luồng trầm dâng lên rồi lắng xuống, không khí rung nhẹ, rồi trở lại tĩnh. Không phải nhạc — là rung của không gian.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/tan_xa_dot_pha.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-tan_xa_dot_pha">10-second deep, sub-heavy ambience of a closed room under pressure. A low rumble rises out of silence, holds at its peak with a faint shimmer, then settles back into stillness. Close at the ear: one held breath, then a slow release. The walls take the rumble and give it back. Far off, the building settles around it. Pure air and stone. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second deep, sub-heavy ambience of a closed room under pressure. A low rumble rises out of silence, holds at its peak with a faint shimmer, then settles back into stillness. Close at the ear: one held breath, then a slow release. The walls take the rumble and give it back. Far off, the building settles around it. Pure air and stone. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">373/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2690,15 +2610,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Đống đổ nát của môn phái: tường sập, gỗ gãy còn rơi lả tả, gió lùa qua khoảng trống, không người. Rộng và trống hơn sân sau.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/mon_phai_tan_hoang.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-mon_phai_tan_hoang">10-second wide, empty ambience in the ruins of a martial sect just before dawn. Close at the ear: quiet breathing, ash shifting. Further out, crossing open ground through broken walls: wind, a wall section coming down somewhere, loose roof tiles sliding. Far off: slow footsteps of men carrying something heavy, one long breath. Open ruins, sound spreads and thins. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second wide, empty ambience in the ruins of a martial sect just before dawn. Close at the ear: quiet breathing, ash shifting. Further out, crossing open ground through broken walls: wind, a wall section coming down somewhere, loose roof tiles sliding. Far off: slow footsteps of men carrying something heavy, one long breath. Open ruins, sound spreads and thins. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">401/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2752,15 +2670,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Bình minh ở cổng môn: gió núi nhẹ, chim sớm, chuông rất xa, sân còn vắng. Sạch và cao, khác bình minh dưới trấn.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/binh_minh_ngoc_cot.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-binh_minh_ngoc_cot">10-second high, clean dawn ambience at the mountain gate of a martial sect. Close at the ear: cloth flapping on a pole, quiet breathing. Further out: mountain wind moving steadily, birds waking. Far down the valley: a temple bell struck once and ringing away. The courtyard is empty. High open air, so the bell runs away down the valley. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;10-second high, clean dawn ambience at the mountain gate of a martial sect. Close at the ear: cloth flapping on a pole, quiet breathing. Further out: mountain wind moving steadily, birds waking. Far down the valley: a temple bell struck once and ringing away. The courtyard is empty. High open air, so the bell runs away down the valley. No music, no speech, seamless loop.&#x27;)">📋 Chép prompt</button><span class="dem-ky">373/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2815,15 +2731,13 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   <p class="mota">Yên ắng trong phòng kín: gỗ khẽ kêu, cửa sổ động rất nhẹ, không khí có trọng lượng. Không phải file hỏng — là phòng cố ý im.</p>
   <div class="meta">
     <div><span class="k">lưu là</span> <code>assets/am/dot_pha.mp3</code></div>
+    <div><span class="k">dài</span> <code>10 giây</code></div>
   </div>
 
   <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-dot_pha">10-second heavy silence in a closed room at night. Close at the ear: wood creaking as it cools, quiet breathing, a window shutter moving a fraction. Further off, through the wall: a faint low presence in the air like pressure. Long stretches pass with only the room&#x27;s own settling. The closed room presses back, so the silence has weight. No music, no speech, seamless loop.</div>
 <div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;10-second heavy silence in a closed room at night. Close at the ear: wood creaking as it cools, quiet breathing, a window shutter moving a fraction. Further off, through the wall: a faint low presence in the air like pressure. Long stretches pass with only the room&#x27;s own settling. The closed room presses back, so the silence has weight. No music, no speech, seamless loop.&quot;)">📋 Chép prompt</button><span class="dem-ky">374/450 ký tự</span></div>
-<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
-khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
-phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
-"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Prompt dưới 450 ký tự.</p>
 
   <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
   <div class="tukhoa">
@@ -2846,6 +2760,1267 @@ phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc
   </div>
 
   <div class="gui" data-gui data-file="dot_pha.mp3" data-ma="dot_pha">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+<h2 id="n-gap">Gặp gỡ — cảnh có lời thoại<span class="dem">21 cảnh</span></h2>
+
+<article class="canh" id="c-do_tam_mieu" data-ma="do_tam_mieu" data-file="do_tam_mieu.mp3">
+  <header>
+    <span class="so">44</span>
+    <b>Đỗ Tam — kẻ tranh giành</b>
+    <code>do_tam_mieu</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_do_tam_mieu.jpg" alt="Đỗ Tam — kẻ tranh giành">
+    <figcaption>nv_do_tam_mieu.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đỗ Tam chắn ngay cửa miếu: giọng đàn ông khàn, lớn, nói sát tai. Nền miếu đá vọng nhẹ, gió lùa qua cửa. Một câu thoại rồi im.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/do_tam_mieu.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-do_tam_mieu">4-second scene, dry stone shrine interior. A heavy man&#x27;s voice, rough and hoarse, low-pitched, speaking close and unhurried with a threat under it, in Mandarin: 「又来一只老鼠。」 Behind him: faint wind through a broken doorway, stone reverb short and dry. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;4-second scene, dry stone shrine interior. A heavy man&#x27;s voice, rough and hoarse, low-pitched, speaking close and unhurried with a threat under it, in Mandarin: 「又来一只老鼠。」 Behind him: faint wind through a broken doorway, stone reverb short and dry. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">257/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;gruff male voice close&#x27;)">gruff male voice close</button><button type="button" class="tk" onclick="cpChu(this,&#x27;hoarse man speaking&#x27;)">hoarse man speaking</button><button type="button" class="tk" onclick="cpChu(this,&#x27;shrine interior voice&#x27;)">shrine interior voice</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;rough male voice dry&#x27;)">rough male voice dry</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;scarred man speaking&#x27;)">scarred man speaking</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;close dry male voice&#x27;)">close dry male voice</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="do_tam_mieu.mp3" data-ma="do_tam_mieu">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-kiem_hap" data-ma="kiem_hap" data-file="kiem_hap.mp3">
+  <header>
+    <span class="so">45</span>
+    <b>Trong miếu — chạm vào hộp kiếm</b>
+    <code>kiem_hap</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/vt_kiem_hap.jpg" alt="Trong miếu — chạm vào hộp kiếm">
+    <figcaption>vt_kiem_hap.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nắp hộp gỗ bật mở, rồi một giọng nam lạnh, không rõ nguồn, vọng trong miếu đá. Không có tiếng nhạc, không có tiếng gió mạnh.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/kiem_hap.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-kiem_hap">4-second scene in a cold stone shrine. First a wooden box lid snapping open, dry and sharp. Then a cold male voice, young, quiet, disembodied, close to the ear with long stone reverb, in Mandarin: 「你……和他们不一样。」 No music, no other voices.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;4-second scene in a cold stone shrine. First a wooden box lid snapping open, dry and sharp. Then a cold male voice, young, quiet, disembodied, close to the ear with long stone reverb, in Mandarin: 「你……和他们不一样。」 No music, no other voices.&#x27;)">📋 Chép prompt</button><span class="dem-ky">236/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;ethereal male voice whisper&#x27;)">ethereal male voice whisper</button><button type="button" class="tk" onclick="cpChu(this,&#x27;disembodied voice stone room&#x27;)">disembodied voice stone room</button><button type="button" class="tk" onclick="cpChu(this,&#x27;wooden box lid opening&#x27;)">wooden box lid opening</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;ghostly male voice close&#x27;)">ghostly male voice close</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;cold whisper in stone room&#x27;)">cold whisper in stone room</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;spirit voice with reverb&#x27;)">spirit voice with reverb</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="kiem_hap.mp3" data-ma="kiem_hap">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-kiem_linh" data-ma="kiem_linh" data-file="kiem_linh.mp3">
+  <header>
+    <span class="so">46</span>
+    <b>Kiếm linh hiện hình</b>
+    <code>kiem_linh</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_kiem_linh.jpg" alt="Kiếm linh hiện hình">
+    <figcaption>nv_kiem_linh.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Kiếm linh hiện ra: giọng nam trẻ, lạnh và ngắn, nói sát. Nền miếu đá im, chỉ có tiếng vọng rất nhẹ của chính giọng nói.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/kiem_linh.mp3</code></div>
+    <div><span class="k">dài</span> <code>5 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-kiem_linh">5-second scene, cold stone shrine, air still. A young man&#x27;s voice, flat and icy, quiet but clear, speaking close with a slight spectral edge, in Mandarin: 「我是红尘剑灵。」 Long, cold stone reverb behind the voice. No music, nothing else moves.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;5-second scene, cold stone shrine, air still. A young man&#x27;s voice, flat and icy, quiet but clear, speaking close with a slight spectral edge, in Mandarin: 「我是红尘剑灵。」 Long, cold stone reverb behind the voice. No music, nothing else moves.&quot;)">📋 Chép prompt</button><span class="dem-ky">236/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;cold male voice close&#x27;)">cold male voice close</button><button type="button" class="tk" onclick="cpChu(this,&#x27;sword spirit speaking&#x27;)">sword spirit speaking</button><button type="button" class="tk" onclick="cpChu(this,&#x27;stone shrine reverb&#x27;)">stone shrine reverb</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;icy young male voice&#x27;)">icy young male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;spectral male voice close&#x27;)">spectral male voice close</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;stone room voice reverb&#x27;)">stone room voice reverb</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="kiem_linh.mp3" data-ma="kiem_linh">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-kiem_linh_thu" data-ma="kiem_linh_thu" data-file="kiem_linh_thu.mp3">
+  <header>
+    <span class="so">47</span>
+    <b>Kiếm linh — thử thách</b>
+    <code>kiem_linh_thu</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_kiem_linh_thu.jpg" alt="Kiếm linh — thử thách">
+    <figcaption>nv_kiem_linh_thu.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính cười gằn, giọng nam trẻ, cảnh giác. Nền miếu đá im lặng, xa có một tiếng kim loại rung rất khẽ.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/kiem_linh_thu.mp3</code></div>
+    <div><span class="k">dài</span> <code>3 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-kiem_linh_thu">3-second scene in a still stone shrine. A young man&#x27;s voice, wary and dry, a short humourless laugh inside the words, close to the ear, in Mandarin: 「信你？」 Faint metal ring far off, once. Short stone reverb. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;3-second scene in a still stone shrine. A young man&#x27;s voice, wary and dry, a short humourless laugh inside the words, close to the ear, in Mandarin: 「信你？」 Faint metal ring far off, once. Short stone reverb. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">216/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;young male voice wary&#x27;)">young male voice wary</button><button type="button" class="tk" onclick="cpChu(this,&#x27;skeptical male voice close&#x27;)">skeptical male voice close</button><button type="button" class="tk" onclick="cpChu(this,&#x27;sword metal ringing faint&#x27;)">sword metal ringing faint</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;guarded young male voice&#x27;)">guarded young male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;dry skeptical tone close&#x27;)">dry skeptical tone close</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;faint metal ring&#x27;)">faint metal ring</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="kiem_linh_thu.mp3" data-ma="kiem_linh_thu">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-kiem_linh_than" data-ma="kiem_linh_than" data-file="kiem_linh_than.mp3">
+  <header>
+    <span class="so">48</span>
+    <b>Kiếm linh giới thiệu thân phận</b>
+    <code>kiem_linh_than</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_kiem_linh_than.jpg" alt="Kiếm linh giới thiệu thân phận">
+    <figcaption>nv_kiem_linh_than.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Kiếm linh nói đều đều, giọng nam trẻ, không cảm xúc. Miếu đá vọng dài phía sau câu nói.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/kiem_linh_than.mp3</code></div>
+    <div><span class="k">dài</span> <code>6 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-kiem_linh_than">6-second scene, cold stone hall, dead quiet. A young man&#x27;s voice, even and emotionless, measured pace, close and clear, in Mandarin: 「我是红尘剑的剑灵。」 Stone hall reverb stretching behind each phrase. No music, no breath, no movement.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;6-second scene, cold stone hall, dead quiet. A young man&#x27;s voice, even and emotionless, measured pace, close and clear, in Mandarin: 「我是红尘剑的剑灵。」 Stone hall reverb stretching behind each phrase. No music, no breath, no movement.&quot;)">📋 Chép prompt</button><span class="dem-ky">227/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;calm male voice explanation&#x27;)">calm male voice explanation</button><button type="button" class="tk" onclick="cpChu(this,&#x27;spirit voice measured tone&#x27;)">spirit voice measured tone</button><button type="button" class="tk" onclick="cpChu(this,&#x27;stone hall voice reverb&#x27;)">stone hall voice reverb</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;even cold male voice&#x27;)">even cold male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;measured spectral speech&#x27;)">measured spectral speech</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;hall reverb on voice&#x27;)">hall reverb on voice</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="kiem_linh_than.mp3" data-ma="kiem_linh_than">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-kiem_linh_dieu" data-ma="kiem_linh_dieu" data-file="kiem_linh_dieu.mp3">
+  <header>
+    <span class="so">49</span>
+    <b>Điều kiện nhận chủ</b>
+    <code>kiem_linh_dieu</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_kiem_linh_dieu.jpg" alt="Điều kiện nhận chủ">
+    <figcaption>nv_kiem_linh_dieu.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính hỏi lại, giọng nam trẻ, dè dặt. Nền miếu im, không có gì chen vào câu nói.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/kiem_linh_dieu.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-kiem_linh_dieu">4-second scene, still stone shrine. A young man&#x27;s voice, cautious and low, choosing words carefully, close to the ear, in Mandarin: 「我要问清楚。」 Very short stone reverb, nothing else in the room. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;4-second scene, still stone shrine. A young man&#x27;s voice, cautious and low, choosing words carefully, close to the ear, in Mandarin: 「我要问清楚。」 Very short stone reverb, nothing else in the room. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">201/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;young male voice asking&#x27;)">young male voice asking</button><button type="button" class="tk" onclick="cpChu(this,&#x27;careful male voice close&#x27;)">careful male voice close</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet stone room tone&#x27;)">quiet stone room tone</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;cautious young male voice&#x27;)">cautious young male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;dry questioning tone&#x27;)">dry questioning tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still stone ambience&#x27;)">still stone ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="kiem_linh_dieu.mp3" data-ma="kiem_linh_dieu">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-kiem_hap_nhan" data-ma="kiem_hap_nhan" data-file="kiem_hap_nhan.mp3">
+  <header>
+    <span class="so">50</span>
+    <b>Nhận chủ</b>
+    <code>kiem_hap_nhan</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/vt_kiem_hap_nhan.jpg" alt="Nhận chủ">
+    <figcaption>vt_kiem_hap_nhan.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nghi lễ xong: một tiếng kim loại rạch rất mảnh, rồi giọng nam trẻ nói ngắn, trầm. Sau đó im.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/kiem_hap_nhan.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-kiem_hap_nhan">4-second scene, cold stone shrine. A thin blade cuts skin, one small sharp metallic whisper. Then a young man&#x27;s low voice, satisfied and final, close, in Mandarin: 「成了。」 Quiet stone around it. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;4-second scene, cold stone shrine. A thin blade cuts skin, one small sharp metallic whisper. Then a young man&#x27;s low voice, satisfied and final, close, in Mandarin: 「成了。」 Quiet stone around it. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">202/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;male voice satisfied&#x27;)">male voice satisfied</button><button type="button" class="tk" onclick="cpChu(this,&#x27;blade cutting skin faint&#x27;)">blade cutting skin faint</button><button type="button" class="tk" onclick="cpChu(this,&#x27;stone shrine quiet&#x27;)">stone shrine quiet</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;low satisfied male voice&#x27;)">low satisfied male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;sharp blade whisper&#x27;)">sharp blade whisper</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet stone room&#x27;)">quiet stone room</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="kiem_hap_nhan.mp3" data-ma="kiem_hap_nhan">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-han_lap" data-ma="han_lap" data-file="han_lap.mp3">
+  <header>
+    <span class="so">51</span>
+    <b>Gặp Hàn Lập — hậu sơn</b>
+    <code>han_lap</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_han_lap.jpg" alt="Gặp Hàn Lập — hậu sơn">
+    <figcaption>nv_han_lap.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Hàn Lập đứng quay lưng, giọng trầm, đều, không cao không thấp. Nền: gió núi nhẹ, sỏi dưới chân, vải áo khẽ động.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/han_lap.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-han_lap">4-second scene on a quiet mountain path, late afternoon. A man&#x27;s voice, low and flat, unhurried, speaking without turning around, close to the ear, in Mandarin: 「跟了我这么久，不累吗？」 Behind him: light wind on ridge grass, gravel underfoot, cloth shifting. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;4-second scene on a quiet mountain path, late afternoon. A man&#x27;s voice, low and flat, unhurried, speaking without turning around, close to the ear, in Mandarin: 「跟了我这么久，不累吗？」 Behind him: light wind on ridge grass, gravel underfoot, cloth shifting. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">257/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;low male voice close&#x27;)">low male voice close</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet mountain path wind&#x27;)">quiet mountain path wind</button><button type="button" class="tk" onclick="cpChu(this,&#x27;man speaking without turning&#x27;)">man speaking without turning</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;low flat male voice&#x27;)">low flat male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;cold quiet male tone&#x27;)">cold quiet male tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;mountain wind at ear&#x27;)">mountain wind at ear</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="han_lap.mp3" data-ma="han_lap">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-han_lap_2" data-ma="han_lap_2" data-file="han_lap_2.mp3">
+  <header>
+    <span class="so">52</span>
+    <b>Đối thoại với Hàn Lập</b>
+    <code>han_lap_2</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_han_lap_2.jpg" alt="Đối thoại với Hàn Lập">
+    <figcaption>nv_han_lap_2.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Hàn Lập nói chậm, giọng trầm, cân nhắc từng chữ. Nền: núi đêm rất tĩnh, xa có côn trùng.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/han_lap_2.mp3</code></div>
+    <div><span class="k">dài</span> <code>5 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-han_lap_2">5-second scene, still mountain night. A man&#x27;s voice, low and even, slow, weighing each phrase, close, in Mandarin: 「这里的人只看见一个流浪汉。」 Very quiet night air, one distant insect. No music, no echo.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;5-second scene, still mountain night. A man&#x27;s voice, low and even, slow, weighing each phrase, close, in Mandarin: 「这里的人只看见一个流浪汉。」 Very quiet night air, one distant insect. No music, no echo.&quot;)">📋 Chép prompt</button><span class="dem-ky">191/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;low male voice measured&#x27;)">low male voice measured</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night mountain air&#x27;)">quiet night mountain air</button><button type="button" class="tk" onclick="cpChu(this,&#x27;man speaking slowly&#x27;)">man speaking slowly</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;even low male voice&#x27;)">even low male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;calm cold speech&#x27;)">calm cold speech</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still mountain night&#x27;)">still mountain night</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="han_lap_2.mp3" data-ma="han_lap_2">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-ngoc_cot" data-ma="ngoc_cot" data-file="ngoc_cot.mp3">
+  <header>
+    <span class="so">53</span>
+    <b>Tân xá — đêm, khối ngọc phát sáng</b>
+    <code>ngoc_cot</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/vt_ngoc_cot.jpg" alt="Tân xá — đêm, khối ngọc phát sáng">
+    <figcaption>vt_ngoc_cot.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Đêm trong tân xá: chỉ có tiếng đèn dầu tí tách rất nhỏ, hơi thở, vải chiếu khẽ động. Khối ngọc phát sáng KHÔNG có âm thanh — im hoàn toàn.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/ngoc_cot.mp3</code></div>
+    <div><span class="k">dài</span> <code>6 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-ngoc_cot">6-second scene, small wooden room at night, very still. Close at the ear: a tiny oil-lamp flame ticking and crackling, slow quiet breathing, straw mat shifting once. Then a young man&#x27;s voice, barely above a whisper, half to himself, in Mandarin: 「你……是什么？」 The glowing jade itself makes no sound at all. No music, no hum, no shimmer.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;6-second scene, small wooden room at night, very still. Close at the ear: a tiny oil-lamp flame ticking and crackling, slow quiet breathing, straw mat shifting once. Then a young man&#x27;s voice, barely above a whisper, half to himself, in Mandarin: 「你……是什么？」 The glowing jade itself makes no sound at all. No music, no hum, no shimmer.&quot;)">📋 Chép prompt</button><span class="dem-ky">332/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;oil lamp wick crackle&#x27;)">oil lamp wick crackle</button><button type="button" class="tk" onclick="cpChu(this,&#x27;small flame ticking&#x27;)">small flame ticking</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night room breath&#x27;)">quiet night room breath</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;tiny oil lamp flame sound&#x27;)">tiny oil lamp flame sound</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;crackling lamp wick close&#x27;)">crackling lamp wick close</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;silent night room with flame&#x27;)">silent night room with flame</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="ngoc_cot.mp3" data-ma="ngoc_cot">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tuyet_co" data-ma="tuyet_co" data-file="tuyet_co.mp3">
+  <header>
+    <span class="so">54</span>
+    <b>Ngọc cốt — người trong ngọc</b>
+    <code>tuyet_co</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_tuyet_co.jpg" alt="Ngọc cốt — người trong ngọc">
+    <figcaption>nv_tuyet_co.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính giật mình hỏi, giọng nam trẻ, hơi run. Nền: phòng gỗ đêm, đèn dầu tí tách.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tuyet_co.mp3</code></div>
+    <div><span class="k">dài</span> <code>5 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-tuyet_co">5-second scene, wooden room at night, lamp lit. A young man&#x27;s voice, startled and unsteady, breath catching first, close to the ear, in Mandarin: 「你……你是谁？怎么会在玉里？」 Tiny lamp flame ticking under it. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;5-second scene, wooden room at night, lamp lit. A young man&#x27;s voice, startled and unsteady, breath catching first, close to the ear, in Mandarin: 「你……你是谁？怎么会在玉里？」 Tiny lamp flame ticking under it. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">206/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;young male voice startled&#x27;)">young male voice startled</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night room breath&#x27;)">quiet night room breath</button><button type="button" class="tk" onclick="cpChu(this,&#x27;oil lamp flame faint&#x27;)">oil lamp flame faint</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;startled young male voice&#x27;)">startled young male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;uneasy male tone close&#x27;)">uneasy male tone close</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;lamp flame ticking&#x27;)">lamp flame ticking</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tuyet_co.mp3" data-ma="tuyet_co">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tuyet_co_canh_giac" data-ma="tuyet_co_canh_giac" data-file="tuyet_co_canh_giac.mp3">
+  <header>
+    <span class="so">55</span>
+    <b>Ngọc cốt — cảnh giác</b>
+    <code>tuyet_co_canh_giac</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_tuyet_co_canh_giac.jpg" alt="Ngọc cốt — cảnh giác">
+    <figcaption>nv_tuyet_co_canh_giac.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính cười gằn, giọng nam trẻ, gượng. Nền phòng đêm im, chỉ có hơi thở.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tuyet_co_canh_giac.mp3</code></div>
+    <div><span class="k">dài</span> <code>3 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-tuyet_co_canh_giac">3-second scene, still night room. A young man&#x27;s voice, guarded, with a dry forced laugh at the front, close, in Mandarin: 「需要我？」 Soft room tone, one unsteady breath. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;3-second scene, still night room. A young man&#x27;s voice, guarded, with a dry forced laugh at the front, close, in Mandarin: 「需要我？」 Soft room tone, one unsteady breath. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">175/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;young male voice defiant&#x27;)">young male voice defiant</button><button type="button" class="tk" onclick="cpChu(this,&#x27;forced laugh male&#x27;)">forced laugh male</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet room night ambience&#x27;)">quiet room night ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;wary young male voice&#x27;)">wary young male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;dry forced laugh&#x27;)">dry forced laugh</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still night interior&#x27;)">still night interior</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tuyet_co_canh_giac.mp3" data-ma="tuyet_co_canh_giac">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tuyet_co_than_phan" data-ma="tuyet_co_than_phan" data-file="tuyet_co_than_phan.mp3">
+  <header>
+    <span class="so">56</span>
+    <b>Ngọc cốt — Tuyết Cơ giới thiệu thân phận</b>
+    <code>tuyet_co_than_phan</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_tuyet_co_than_phan.jpg" alt="Ngọc cốt — Tuyết Cơ giới thiệu thân phận">
+    <figcaption>nv_tuyet_co_than_phan.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Tuyết Cơ nói, giọng nữ mềm như tơ nhưng lạnh, chậm như kể chuyện cũ. Nền: phòng đêm rất tĩnh, đèn dầu khẽ.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tuyet_co_than_phan.mp3</code></div>
+    <div><span class="k">dài</span> <code>6 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-tuyet_co_than_phan">6-second scene, quiet wooden room at night. A woman&#x27;s voice, soft and silky but cold underneath, slow as if telling an old story, close to the ear, in Mandarin: 「我是雪姬。」 Lamp flame ticking faintly, still air. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;6-second scene, quiet wooden room at night. A woman&#x27;s voice, soft and silky but cold underneath, slow as if telling an old story, close to the ear, in Mandarin: 「我是雪姬。」 Lamp flame ticking faintly, still air. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">217/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;soft female voice close&#x27;)">soft female voice close</button><button type="button" class="tk" onclick="cpChu(this,&#x27;woman speaking softly&#x27;)">woman speaking softly</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night room tone&#x27;)">quiet night room tone</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;silky female voice low&#x27;)">silky female voice low</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;soft cold female speech&#x27;)">soft cold female speech</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still room at night&#x27;)">still room at night</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tuyet_co_than_phan.mp3" data-ma="tuyet_co_than_phan">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tuyet_co_dieu_kien" data-ma="tuyet_co_dieu_kien" data-file="tuyet_co_dieu_kien.mp3">
+  <header>
+    <span class="so">57</span>
+    <b>Ngọc cốt — điều kiện khế ước</b>
+    <code>tuyet_co_dieu_kien</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_tuyet_co_dieu_kien.jpg" alt="Ngọc cốt — điều kiện khế ước">
+    <figcaption>nv_tuyet_co_dieu_kien.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính hỏi, giọng nam trẻ đã run. Nền phòng đêm im, không có gì chen vào.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tuyet_co_dieu_kien.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-tuyet_co_dieu_kien">4-second scene, silent night room. A young man&#x27;s voice, trembling slightly, trying to hold steady, close, in Mandarin: 「我要问清楚。」 Only quiet room tone and one breath. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;4-second scene, silent night room. A young man&#x27;s voice, trembling slightly, trying to hold steady, close, in Mandarin: 「我要问清楚。」 Only quiet room tone and one breath. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">174/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;young male voice trembling&#x27;)">young male voice trembling</button><button type="button" class="tk" onclick="cpChu(this,&#x27;nervous male voice close&#x27;)">nervous male voice close</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet room night&#x27;)">quiet room night</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;unsteady young male voice&#x27;)">unsteady young male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;tense male tone&#x27;)">tense male tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;silent night interior&#x27;)">silent night interior</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tuyet_co_dieu_kien.mp3" data-ma="tuyet_co_dieu_kien">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tuyet_co_do_du" data-ma="tuyet_co_do_du" data-file="tuyet_co_do_du.mp3">
+  <header>
+    <span class="so">58</span>
+    <b>Ngọc cốt — khoảnh khắc do dự</b>
+    <code>tuyet_co_do_du</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_tuyet_co_do_du.jpg" alt="Ngọc cốt — khoảnh khắc do dự">
+    <figcaption>nv_tuyet_co_do_du.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Không có thoại. Chỉ im lặng do dự: hơi thở nín, đèn dầu tí tách, phòng gỗ khẽ kêu. Căng mà không có tiếng lớn.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tuyet_co_do_du.mp3</code></div>
+    <div><span class="k">dài</span> <code>5 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-tuyet_co_do_du">5-second scene, night room, held breath. Close at the ear: breath stopped then released slowly, a tiny oil-lamp flame ticking, one dry wooden joint creaking. Tense but nothing loud. No voice, no music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&#x27;5-second scene, night room, held breath. Close at the ear: breath stopped then released slowly, a tiny oil-lamp flame ticking, one dry wooden joint creaking. Tense but nothing loud. No voice, no music.&#x27;)">📋 Chép prompt</button><span class="dem-ky">201/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;quiet room night breathing&#x27;)">quiet room night breathing</button><button type="button" class="tk" onclick="cpChu(this,&#x27;silent hesitation ambience&#x27;)">silent hesitation ambience</button><button type="button" class="tk" onclick="cpChu(this,&#x27;oil lamp small flame&#x27;)">oil lamp small flame</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;held breath quiet room&#x27;)">held breath quiet room</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;very still night interior&#x27;)">very still night interior</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;lamp wick ticking&#x27;)">lamp wick ticking</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tuyet_co_do_du.mp3" data-ma="tuyet_co_do_du">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-tuyet_co_khe_uoc" data-ma="tuyet_co_khe_uoc" data-file="tuyet_co_khe_uoc.mp3">
+  <header>
+    <span class="so">59</span>
+    <b>Ngọc cốt — ký khế ước</b>
+    <code>tuyet_co_khe_uoc</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_tuyet_co_khe_uoc.jpg" alt="Ngọc cốt — ký khế ước">
+    <figcaption>nv_tuyet_co_khe_uoc.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính nói ngắn, giọng nam trẻ đã quyết. Nền phòng đêm, đèn dầu, rồi im.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/tuyet_co_khe_uoc.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-tuyet_co_khe_uoc">4-second scene, quiet night room. A young man&#x27;s voice, low and firm, decision already made, close, in Mandarin: 「我签。」 A soft female breath answers, barely audible. Lamp ticking. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;4-second scene, quiet night room. A young man&#x27;s voice, low and firm, decision already made, close, in Mandarin: 「我签。」 A soft female breath answers, barely audible. Lamp ticking. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">187/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;young male voice resolved&#x27;)">young male voice resolved</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet room night tone&#x27;)">quiet room night tone</button><button type="button" class="tk" onclick="cpChu(this,&#x27;soft female voice faint&#x27;)">soft female voice faint</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;firm young male voice&#x27;)">firm young male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;quiet night interior&#x27;)">quiet night interior</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;low female murmur&#x27;)">low female murmur</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="tuyet_co_khe_uoc.mp3" data-ma="tuyet_co_khe_uoc">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-han_lap_gap" data-ma="han_lap_gap" data-file="han_lap_gap.mp3">
+  <header>
+    <span class="so">60</span>
+    <b>Gặp Hàn Lập — sau trận</b>
+    <code>han_lap_gap</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_han_lap_gap.jpg" alt="Gặp Hàn Lập — sau trận">
+    <figcaption>nv_han_lap_gap.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Hàn Lập nói mà không quay đầu, giọng trầm đều. Nền: đá sau hậu sơn, gió đêm nhẹ, không người.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/han_lap_gap.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-han_lap_gap">4-second scene on a rocky path behind a mountain, night. A man&#x27;s voice, low and even, calm, speaking with his back turned, close, in Mandarin: 「跟了我一路，不累吗？」 Light night wind over rock, gravel. No music, nobody else.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;4-second scene on a rocky path behind a mountain, night. A man&#x27;s voice, low and even, calm, speaking with his back turned, close, in Mandarin: 「跟了我一路，不累吗？」 Light night wind over rock, gravel. No music, nobody else.&quot;)">📋 Chép prompt</button><span class="dem-ky">214/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;low male voice night&#x27;)">low male voice night</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet rocky path wind&#x27;)">quiet rocky path wind</button><button type="button" class="tk" onclick="cpChu(this,&#x27;man speaking calmly&#x27;)">man speaking calmly</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;low even male voice&#x27;)">low even male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;cold calm speech&#x27;)">cold calm speech</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;night wind on rock&#x27;)">night wind on rock</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="han_lap_gap.mp3" data-ma="han_lap_gap">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-han_lap_that" data-ma="han_lap_that" data-file="han_lap_that.mp3">
+  <header>
+    <span class="so">61</span>
+    <b>Hàn Lập — lời thành thật</b>
+    <code>han_lap_that</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_han_lap_that.jpg" alt="Hàn Lập — lời thành thật">
+    <figcaption>nv_han_lap_that.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính nói ra, giọng khàn đi vì căng. Nền núi đêm rất tĩnh, không có gì che câu nói.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/han_lap_that.mp3</code></div>
+    <div><span class="k">dài</span> <code>6 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-han_lap_that">6-second scene, very still mountain night. A young man&#x27;s voice, gone hoarse with tension, quiet but deliberate, close, in Mandarin: 「我知道你的未来。」 Dead air around it, no wind, no insect. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;6-second scene, very still mountain night. A young man&#x27;s voice, gone hoarse with tension, quiet but deliberate, close, in Mandarin: 「我知道你的未来。」 Dead air around it, no wind, no insect. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">192/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;hoarse male voice confessing&#x27;)">hoarse male voice confessing</button><button type="button" class="tk" onclick="cpChu(this,&#x27;tense quiet night&#x27;)">tense quiet night</button><button type="button" class="tk" onclick="cpChu(this,&#x27;man speaking low&#x27;)">man speaking low</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;raspy young male voice&#x27;)">raspy young male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;strained honest tone&#x27;)">strained honest tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still night air&#x27;)">still night air</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="han_lap_that.mp3" data-ma="han_lap_that">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-han_lap_cuoi_tru" data-ma="han_lap_cuoi_tru" data-file="han_lap_cuoi_tru.mp3">
+  <header>
+    <span class="so">62</span>
+    <b>Hàn Lập — lời cười trừ</b>
+    <code>han_lap_cuoi_tru</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_han_lap_cuoi_tru.jpg" alt="Hàn Lập — lời cười trừ">
+    <figcaption>nv_han_lap_cuoi_tru.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính cười gượng rồi nói, giọng nam trẻ, lảng tránh. Nền núi đêm im.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/han_lap_cuoi_tru.mp3</code></div>
+    <div><span class="k">dài</span> <code>4 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-han_lap_cuoi_tru">4-second scene, quiet night air. A young man&#x27;s voice, an awkward laugh first, then evasive and light, close, in Mandarin: 「我只是碰巧路过罢了。」 Still night behind it. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;4-second scene, quiet night air. A young man&#x27;s voice, an awkward laugh first, then evasive and light, close, in Mandarin: 「我只是碰巧路过罢了。」 Still night behind it. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">167/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;awkward male laugh voice&#x27;)">awkward male laugh voice</button><button type="button" class="tk" onclick="cpChu(this,&#x27;young male voice deflecting&#x27;)">young male voice deflecting</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night ambience&#x27;)">quiet night ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;forced laugh young male&#x27;)">forced laugh young male</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;evasive male tone&#x27;)">evasive male tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still night background&#x27;)">still night background</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="han_lap_cuoi_tru.mp3" data-ma="han_lap_cuoi_tru">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-han_lap_hoi_nguoc" data-ma="han_lap_hoi_nguoc" data-file="han_lap_hoi_nguoc.mp3">
+  <header>
+    <span class="so">63</span>
+    <b>Hàn Lập — hỏi ngược</b>
+    <code>han_lap_hoi_nguoc</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_han_lap_hoi_nguoc.jpg" alt="Hàn Lập — hỏi ngược">
+    <figcaption>nv_han_lap_hoi_nguoc.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Nhân vật chính hỏi ngược lại, giọng nam trẻ, có gai. Nền núi đêm tĩnh, xa có gió.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/han_lap_hoi_nguoc.mp3</code></div>
+    <div><span class="k">dài</span> <code>6 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-han_lap_hoi_nguoc">6-second scene, still mountain night. A young man&#x27;s voice, sharp and probing, an edge in it, close to the ear, in Mandarin: 「那你又是谁？」 Faint wind far off. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;6-second scene, still mountain night. A young man&#x27;s voice, sharp and probing, an edge in it, close to the ear, in Mandarin: 「那你又是谁？」 Faint wind far off. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">162/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;male voice questioning sharp&#x27;)">male voice questioning sharp</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night air&#x27;)">quiet night air</button><button type="button" class="tk" onclick="cpChu(this,&#x27;man speaking with edge&#x27;)">man speaking with edge</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;probing male voice&#x27;)">probing male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;sharp questioning tone&#x27;)">sharp questioning tone</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still night ambience&#x27;)">still night ambience</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="han_lap_hoi_nguoc.mp3" data-ma="han_lap_hoi_nguoc">
+    <label class="tha-am" tabindex="0">
+      <input type="file" data-chon
+             accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">
+      <span class="tha-am-icon">🎵</span>
+      <span class="tha-am-chu">Chạm để chọn file tiếng<small>hoặc kéo file vào đây</small></span>
+    </label>
+    <div class="thanh" data-thanh hidden><div class="thanh-ruot" data-ruot></div></div>
+    <div class="row">
+      <button type="button" class="gui-kt" data-gui-kt disabled>📤 Gửi tiếng này</button>
+      <button type="button" class="gui-kt phu" data-kiem>🔄 Kiểm tra</button>
+    </div>
+    <div class="gui-tt" data-tt hidden></div>
+  </div>
+</article>
+
+<article class="canh" id="c-han_lap_bau_nuoc" data-ma="han_lap_bau_nuoc" data-file="han_lap_bau_nuoc.mp3">
+  <header>
+    <span class="so">64</span>
+    <b>Hàn Lập — bầu nước</b>
+    <code>han_lap_bau_nuoc</code>
+    <span class="badge thieu" data-badge>⬜ chưa có</span>
+  </header>
+
+  <figure class="anh-mot" onclick="xemAnh(this)">
+    <img loading="lazy" src="../assets/scene/nho/nv_han_lap_bau_nuoc.jpg" alt="Hàn Lập — bầu nước">
+    <figcaption>nv_han_lap_bau_nuoc.jpg — bấm để xem to</figcaption>
+  </figure>
+
+  <p class="mota">Hàn Lập nhận bầu nước, mở nắp, uống một ngụm, rồi nói khẽ. Nền: núi đêm, gió rất nhẹ.</p>
+  <div class="meta">
+    <div><span class="k">lưu là</span> <code>assets/am/han_lap_bau_nuoc.mp3</code></div>
+    <div><span class="k">dài</span> <code>5 giây</code></div>
+  </div>
+
+  <label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
+<div class="prompt" id="p-han_lap_bau_nuoc">5-second scene, night mountain, very quiet. A water flask cap opening, one swallow, then a man&#x27;s voice, low and quiet, almost warm, close, in Mandarin: 「你和这里的人不一样。」 Light wind. No music.</div>
+<div class="row"><button type="button" class="cp" onclick="cpChu(this,&quot;5-second scene, night mountain, very quiet. A water flask cap opening, one swallow, then a man&#x27;s voice, low and quiet, almost warm, close, in Mandarin: 「你和这里的人不一样。」 Light wind. No music.&quot;)">📋 Chép prompt</button><span class="dem-ky">186/450 ký tự</span></div>
+<p class="mota" style="margin:6px 0 0">Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.</p>
+
+  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
+  <div class="tukhoa">
+    <button type="button" class="tk" onclick="cpChu(this,&#x27;low male voice quiet thanks&#x27;)">low male voice quiet thanks</button><button type="button" class="tk" onclick="cpChu(this,&#x27;water flask opening&#x27;)">water flask opening</button><button type="button" class="tk" onclick="cpChu(this,&#x27;quiet night mountain&#x27;)">quiet night mountain</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
+     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
+
+  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
+  <div class="tukhoa">
+    <button type="button" class="tk mo" onclick="cpChu(this,&#x27;low quiet male voice&#x27;)">low quiet male voice</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;canteen cap opening&#x27;)">canteen cap opening</button><button type="button" class="tk mo" onclick="cpChu(this,&#x27;still mountain night&#x27;)">still mountain night</button>
+  </div>
+  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
+     hoặc tìm nguồn ở chỗ khác.</p>
+
+  <label class="nhan">Nghe thử bản đang dùng trong game</label>
+  <div class="nghe" data-nghe>
+    <audio controls playsinline preload="none" data-audio hidden></audio>
+    <span class="chua" data-chua>⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm.</span>
+  </div>
+
+  <div class="gui" data-gui data-file="han_lap_bau_nuoc.mp3" data-ma="han_lap_bau_nuoc">
     <label class="tha-am" tabindex="0">
       <input type="file" data-chon
              accept="audio/*,video/mp4,video/quicktime,video/webm,video/x-matroska,video/3gpp,video/x-msvideo,video/*,.mp3,.wav,.m4a,.ogg,.flac,.mp4,.mov,.m4v,.webm,.mkv,.avi,.3gp">

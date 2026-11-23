@@ -15,9 +15,17 @@ kiểu này từ prompt, nên giữ lại chỉ làm rối trang.
 
 `nhom` là nhóm cũ, dùng làm đường lùi: cảnh chưa có file riêng thì game dùng
 file nhóm nếu nhóm đó đã có.
+
+ĐỘ DÀI KHÔNG CỐ ĐỊNH. Mỗi cảnh có trường `giay` riêng: cảnh bối cảnh 10 giây,
+cảnh có thoại 3–6 giây tuỳ độ dài câu nói. Trước đây mọi cảnh đều 10 giây vì
+prompt nào cũng mở bằng "10-second" — rập khuôn, và âm mở cửa dài 1 giây thì
+không có chỗ trong khuôn đó.
 """
 
-# moi: (ma, ten, nhom, anh, tim[3], mo_ta[3], mota)
+# Độ dài mặc định cho cảnh không ghi rõ. Cảnh có thoại phải ghi `giay` riêng.
+GIAY_MAC_DINH = 10
+
+# moi: (ma, ten, nhom, anh, tim[3], mo_ta[3], mota[, giay])
 MOI = [
     # ---------------- CHỢ ----------------
     ("cho_01", "Chợ sớm Thất Huyền trấn", "cho", "bc_cho_01.jpg",
@@ -253,12 +261,12 @@ MOI = [
      "Đứng ngoài quan sát, chưa vào trong."),
 
     ("mieu_trong", "Trong miếu — xác người còn ấm", "mieu", "bc_mieu_trong.jpg",
-     ["empty stone shrine interior ambience", "temple room tone reverb",
-      "cold stone hall sound"],
-     ["stone room reverb ambience", "empty shrine interior room tone",
-      "cold stone hall reverb"],
-     "Trong miếu đá: vọng dài, lạnh, gió qua cửa, bụi rơi. Rất ít tiếng nhưng không "
-     "im — chính căn phòng có tiếng của nó."),
+     ["shrine door creak stone", "slow heavy footsteps behind",
+      "stone shrine interior"],
+     ["old door creak close", "heavy footsteps approaching stone floor",
+      "empty shrine room tone"],
+     "Trong miếu đá: tiếng cửa mục kẽo kẹt rồi bước chân chậm, nặng tiến lại từ phía "
+     "sau. Ngắn — chỉ đủ để nghe ra có kẻ đang tới.", 2),
 
     ("doat_hop", "Đoạt hộp — Đỗ Tam phản phệ", "mieu", "bc_doat_hop.jpg",
      ["struggle inside temple ambience", "scuffle stone floor sound",
@@ -389,14 +397,175 @@ MOI = [
       "stillness with low presence"],
      "Yên ắng trong phòng kín: gỗ khẽ kêu, cửa sổ động rất nhẹ, không khí có trọng "
      "lượng. Không phải file hỏng — là phòng cố ý im."),
+
+    # ---------------- GẶP GỠ — CẢNH CÓ LỜI THOẠI ----------------
+    # Ảnh nv_/vt_ là cận cảnh nhân vật hoặc vật giữa chừng. Mỗi cảnh có MỘT câu
+    # thoại đầu tiên trong cốt truyện, không phải cả đoạn hội thoại: người chơi
+    # đọc chữ, tiếng chỉ để nghe ra ai đang nói và không gian quanh đó.
+    ("do_tam_mieu", "Đỗ Tam — kẻ tranh giành", "gap", "nv_do_tam_mieu.jpg",
+     ["gruff male voice close", "hoarse man speaking", "shrine interior voice"],
+     ["rough male voice dry", "scarred man speaking", "close dry male voice"],
+     "Đỗ Tam chắn ngay cửa miếu: giọng đàn ông khàn, lớn, nói sát tai. Nền miếu đá "
+     "vọng nhẹ, gió lùa qua cửa. Một câu thoại rồi im.", 4),
+
+    ("kiem_hap", "Trong miếu — chạm vào hộp kiếm", "gap", "vt_kiem_hap.jpg",
+     ["ethereal male voice whisper", "disembodied voice stone room",
+      "wooden box lid opening"],
+     ["ghostly male voice close", "cold whisper in stone room",
+      "spirit voice with reverb"],
+     "Nắp hộp gỗ bật mở, rồi một giọng nam lạnh, không rõ nguồn, vọng trong miếu "
+     "đá. Không có tiếng nhạc, không có tiếng gió mạnh.", 4),
+
+    ("kiem_linh", "Kiếm linh hiện hình", "gap", "nv_kiem_linh.jpg",
+     ["cold male voice close", "sword spirit speaking", "stone shrine reverb"],
+     ["icy young male voice", "spectral male voice close", "stone room voice reverb"],
+     "Kiếm linh hiện ra: giọng nam trẻ, lạnh và ngắn, nói sát. Nền miếu đá im, chỉ "
+     "có tiếng vọng rất nhẹ của chính giọng nói.", 5),
+
+    ("kiem_linh_thu", "Kiếm linh — thử thách", "gap", "nv_kiem_linh_thu.jpg",
+     ["young male voice wary", "skeptical male voice close",
+      "sword metal ringing faint"],
+     ["guarded young male voice", "dry skeptical tone close", "faint metal ring"],
+     "Nhân vật chính cười gằn, giọng nam trẻ, cảnh giác. Nền miếu đá im lặng, xa có "
+     "một tiếng kim loại rung rất khẽ.", 3),
+
+    ("kiem_linh_than", "Kiếm linh giới thiệu thân phận", "gap",
+     "nv_kiem_linh_than.jpg",
+     ["calm male voice explanation", "spirit voice measured tone",
+      "stone hall voice reverb"],
+     ["even cold male voice", "measured spectral speech", "hall reverb on voice"],
+     "Kiếm linh nói đều đều, giọng nam trẻ, không cảm xúc. Miếu đá vọng dài phía "
+     "sau câu nói.", 6),
+
+    ("kiem_linh_dieu", "Điều kiện nhận chủ", "gap", "nv_kiem_linh_dieu.jpg",
+     ["young male voice asking", "careful male voice close",
+      "quiet stone room tone"],
+     ["cautious young male voice", "dry questioning tone", "still stone ambience"],
+     "Nhân vật chính hỏi lại, giọng nam trẻ, dè dặt. Nền miếu im, không có gì chen "
+     "vào câu nói.", 4),
+
+    ("kiem_hap_nhan", "Nhận chủ", "gap", "vt_kiem_hap_nhan.jpg",
+     ["male voice satisfied", "blade cutting skin faint",
+      "stone shrine quiet"],
+     ["low satisfied male voice", "sharp blade whisper", "quiet stone room"],
+     "Nghi lễ xong: một tiếng kim loại rạch rất mảnh, rồi giọng nam trẻ nói ngắn, "
+     "trầm. Sau đó im.", 4),
+
+    ("han_lap", "Gặp Hàn Lập — hậu sơn", "gap", "nv_han_lap.jpg",
+     ["low male voice close", "quiet mountain path wind",
+      "man speaking without turning"],
+     ["low flat male voice", "cold quiet male tone", "mountain wind at ear"],
+     "Hàn Lập đứng quay lưng, giọng trầm, đều, không cao không thấp. Nền: gió núi "
+     "nhẹ, sỏi dưới chân, vải áo khẽ động.", 4),
+
+    ("han_lap_2", "Đối thoại với Hàn Lập", "gap", "nv_han_lap_2.jpg",
+     ["low male voice measured", "quiet night mountain air",
+      "man speaking slowly"],
+     ["even low male voice", "calm cold speech", "still mountain night"],
+     "Hàn Lập nói chậm, giọng trầm, cân nhắc từng chữ. Nền: núi đêm rất tĩnh, xa có "
+     "côn trùng.", 5),
+
+    ("ngoc_cot", "Tân xá — đêm, khối ngọc phát sáng", "gap", "vt_ngoc_cot.jpg",
+     ["oil lamp wick crackle", "small flame ticking", "quiet night room breath"],
+     ["tiny oil lamp flame sound", "crackling lamp wick close",
+      "silent night room with flame"],
+     "Đêm trong tân xá: chỉ có tiếng đèn dầu tí tách rất nhỏ, hơi thở, vải chiếu khẽ "
+     "động. Khối ngọc phát sáng KHÔNG có âm thanh — im hoàn toàn.", 6),
+
+    ("tuyet_co", "Ngọc cốt — người trong ngọc", "gap", "nv_tuyet_co.jpg",
+     ["young male voice startled", "quiet night room breath",
+      "oil lamp flame faint"],
+     ["startled young male voice", "uneasy male tone close", "lamp flame ticking"],
+     "Nhân vật chính giật mình hỏi, giọng nam trẻ, hơi run. Nền: phòng gỗ đêm, đèn "
+     "dầu tí tách.", 5),
+
+    ("tuyet_co_canh_giac", "Ngọc cốt — cảnh giác", "gap",
+     "nv_tuyet_co_canh_giac.jpg",
+     ["young male voice defiant", "forced laugh male",
+      "quiet room night ambience"],
+     ["wary young male voice", "dry forced laugh", "still night interior"],
+     "Nhân vật chính cười gằn, giọng nam trẻ, gượng. Nền phòng đêm im, chỉ có hơi "
+     "thở.", 3),
+
+    ("tuyet_co_than_phan", "Ngọc cốt — Tuyết Cơ giới thiệu thân phận", "gap",
+     "nv_tuyet_co_than_phan.jpg",
+     ["soft female voice close", "woman speaking softly",
+      "quiet night room tone"],
+     ["silky female voice low", "soft cold female speech", "still room at night"],
+     "Tuyết Cơ nói, giọng nữ mềm như tơ nhưng lạnh, chậm như kể chuyện cũ. Nền: "
+     "phòng đêm rất tĩnh, đèn dầu khẽ.", 6),
+
+    ("tuyet_co_dieu_kien", "Ngọc cốt — điều kiện khế ước", "gap",
+     "nv_tuyet_co_dieu_kien.jpg",
+     ["young male voice trembling", "nervous male voice close",
+      "quiet room night"],
+     ["unsteady young male voice", "tense male tone", "silent night interior"],
+     "Nhân vật chính hỏi, giọng nam trẻ đã run. Nền phòng đêm im, không có gì "
+     "chen vào.", 4),
+
+    ("tuyet_co_do_du", "Ngọc cốt — khoảnh khắc do dự", "gap",
+     "nv_tuyet_co_do_du.jpg",
+     ["quiet room night breathing", "silent hesitation ambience",
+      "oil lamp small flame"],
+     ["held breath quiet room", "very still night interior", "lamp wick ticking"],
+     "Không có thoại. Chỉ im lặng do dự: hơi thở nín, đèn dầu tí tách, phòng gỗ "
+     "khẽ kêu. Căng mà không có tiếng lớn.", 5),
+
+    ("tuyet_co_khe_uoc", "Ngọc cốt — ký khế ước", "gap",
+     "nv_tuyet_co_khe_uoc.jpg",
+     ["young male voice resolved", "quiet room night tone",
+      "soft female voice faint"],
+     ["firm young male voice", "quiet night interior", "low female murmur"],
+     "Nhân vật chính nói ngắn, giọng nam trẻ đã quyết. Nền phòng đêm, đèn dầu, rồi "
+     "im.", 4),
+
+    ("han_lap_gap", "Gặp Hàn Lập — sau trận", "gap", "nv_han_lap_gap.jpg",
+     ["low male voice night", "quiet rocky path wind",
+      "man speaking calmly"],
+     ["low even male voice", "cold calm speech", "night wind on rock"],
+     "Hàn Lập nói mà không quay đầu, giọng trầm đều. Nền: đá sau hậu sơn, gió đêm "
+     "nhẹ, không người.", 4),
+
+    ("han_lap_that", "Hàn Lập — lời thành thật", "gap", "nv_han_lap_that.jpg",
+     ["hoarse male voice confessing", "tense quiet night",
+      "man speaking low"],
+     ["raspy young male voice", "strained honest tone", "still night air"],
+     "Nhân vật chính nói ra, giọng khàn đi vì căng. Nền núi đêm rất tĩnh, không có "
+     "gì che câu nói.", 6),
+
+    ("han_lap_cuoi_tru", "Hàn Lập — lời cười trừ", "gap",
+     "nv_han_lap_cuoi_tru.jpg",
+     ["awkward male laugh voice", "young male voice deflecting",
+      "quiet night ambience"],
+     ["forced laugh young male", "evasive male tone", "still night background"],
+     "Nhân vật chính cười gượng rồi nói, giọng nam trẻ, lảng tránh. Nền núi đêm im.", 4),
+
+    ("han_lap_hoi_nguoc", "Hàn Lập — hỏi ngược", "gap",
+     "nv_han_lap_hoi_nguoc.jpg",
+     ["male voice questioning sharp", "quiet night air",
+      "man speaking with edge"],
+     ["probing male voice", "sharp questioning tone", "still night ambience"],
+     "Nhân vật chính hỏi ngược lại, giọng nam trẻ, có gai. Nền núi đêm tĩnh, xa có "
+     "gió.", 6),
+
+    ("han_lap_bau_nuoc", "Hàn Lập — bầu nước", "gap",
+     "nv_han_lap_bau_nuoc.jpg",
+     ["low male voice quiet thanks", "water flask opening",
+      "quiet night mountain"],
+     ["low quiet male voice", "canteen cap opening", "still mountain night"],
+     "Hàn Lập nhận bầu nước, mở nắp, uống một ngụm, rồi nói khẽ. Nền: núi đêm, gió "
+     "rất nhẹ.", 5),
 ]
 
 
 def _khoi(m):
-    ma, ten, nhom, anh, tim, mo_ta, mota = m
+    # Phần tử thứ 8 là độ dài riêng, có thể bỏ. Cảnh có thoại ngắn 3–6 giây;
+    # cảnh bối cảnh để trống thì dùng mặc định 10 giây.
+    ma, ten, nhom, anh, tim, mo_ta, mota = m[:7]
+    giay = m[7] if len(m) > 7 else GIAY_MAC_DINH
     return {
         "ma": ma, "ten": ten, "nhom": nhom, "anh": anh, "file": ma + ".mp3",
-        "tim": tim, "mo_ta": mo_ta, "mota": mota,
+        "tim": tim, "mo_ta": mo_ta, "mota": mota, "giay": giay,
     }
 
 
@@ -409,6 +578,7 @@ NHOM = [
     ("cho", "Chợ"), ("tran", "Trận chiến"), ("nui", "Núi"),
     ("san", "Sân tập"), ("vuon", "Vườn thuốc"), ("mieu", "Miếu"),
     ("dem", "Đêm"), ("lang", "Làng"), ("tinh", "Tĩnh"),
+    ("gap", "Gặp gỡ — cảnh có lời thoại"),
 ]
 TEN_NHOM = dict(NHOM)
 
