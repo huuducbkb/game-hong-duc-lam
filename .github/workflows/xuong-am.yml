@@ -77,7 +77,12 @@ jobs:
           fi
 
       - name: Ghi danh sách
-        run: python3 game/ghi_danh_sach_am.py
+        run: |
+          python3 game/ghi_danh_sach_am.py
+          # Xưởng ghi cứng trạng thái "đã có" vào HTML lúc sinh trang, nên có
+          # tiếng mới mà không sinh lại thì thẻ vẫn báo "chưa có" và nút nghe
+          # vẫn ẩn. Sinh lại ở đây để trang khớp danh sách vừa ghi.
+          python3 game/tao_xuong_am.py
 
       - name: Dọn hộp nhận
         run: |
@@ -155,7 +160,7 @@ jobs:
       cancel-in-progress: false
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment2.outputs.page_url || steps.deployment3.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -166,5 +171,31 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
+      # deploy-pages hỏng tạm thời khá thường: "Fetching artifact metadata
+      # failed" / "No artifacts named github-pages were found" — lỗi phía
+      # GitHub, không phải file sai. Đã chết 2 lần liền (run 45203424457,
+      # 45204652597) làm tiếng mới không lên trang. Thử lại vài lượt.
       - id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Chờ GitHub ổn lại
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - name: Thử lại deploy nếu lỗi tạm thời
+        if: steps.deployment.outcome == 'failure'
+        id: deployment2
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Chờ thêm
+        if: steps.deployment.outcome == 'failure' && steps.deployment2.outcome == 'failure'
+        run: sleep 60
+      - name: Thử lại deploy lần cuối
+        if: steps.deployment.outcome == 'failure' && steps.deployment2.outcome == 'failure'
+        id: deployment3
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Báo lỗi nếu vẫn không deploy được
+        if: steps.deployment.outcome == 'failure' && steps.deployment2.outcome == 'failure' && steps.deployment3.outcome == 'failure'
+        run: |
+          echo "::error::Deploy Pages hỏng 3 lượt. Chạy lại workflow này, hoặc chạy Triển khai GitHub Pages."
+          exit 1
