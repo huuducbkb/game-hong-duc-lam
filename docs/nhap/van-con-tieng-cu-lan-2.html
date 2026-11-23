@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vẫn còn tiếng cũ — lần 2</title>
+<style>
+:root{--bg:#111a2b;--card:#182337;--ink:#e8e6df;--muted:#93a0b8;--gold:#ffd98a;--jade:#6fe0c0;--line:#2b3b57;--red:#ff9b9b}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);
+ color:var(--ink);margin:0 auto;padding:16px;max-width:760px;line-height:1.6;-webkit-text-size-adjust:100%}
+h1{font-size:21px;color:var(--gold);margin:8px 0 4px}
+.phu{font-size:13px;color:var(--muted);margin:0 0 18px}
+h2{font-size:16px;color:var(--jade);margin:28px 0 10px;border-bottom:1px solid var(--line);padding-bottom:7px}
+h3{font-size:14px;margin:16px 0 6px;color:var(--gold)}
+code{background:#0a1220;padding:1px 6px;border-radius:4px;color:var(--jade);font-size:11.5px}
+.hop{background:rgba(255,217,138,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
+ padding:11px 13px;margin:14px 0;font-size:13.5px}
+.loi{background:rgba(255,120,120,.09);border-left:3px solid var(--red);border-radius:0 8px 8px 0;
+ padding:11px 13px;margin:14px 0;font-size:13.5px}
+.nut{display:block;text-align:center;background:#243a2c;border:1px solid #2f6b4f;color:#a9f0c4;
+ text-decoration:none;padding:13px;border-radius:10px;font-weight:600;font-size:15px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+td,th{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left;vertical-align:top}
+th{color:var(--jade);font-weight:600}
+p,li{font-size:14px;color:#cbd4e4}
+.so{font-variant-numeric:tabular-nums}
+.dung{color:#8ef0b0;font-weight:600}
+.sai{color:var(--red);font-weight:600}
+</style></head><body>
+
+<h1>Vẫn còn tiếng cũ — lần 2</h1>
+<p class="phu">Anh tải thêm 1 tiếng, xưởng vẫn phát bản cũ</p>
+
+<div class="hop">
+<b>Anh báo đúng, và em đã tìm ra. Nhưng lần này hỏng vì lý do khác hẳn lần trước.</b>
+Không phải bộ nhớ đệm nữa. File mới <b>đã vào repo</b>, nhưng <b>chưa lên trang</b>.
+</div>
+
+<a class="nut" href="https://huuducbkb.github.io/game-hong-duc-lam/xuong-am/">🔧 Mở xưởng nghe lại</a>
+<a class="nut" href="https://huuducbkb.github.io/game-hong-duc-lam/game/play.html">▶ Mở game</a>
+
+<h2>Chuyện gì đã xảy ra</h2>
+<p>Em kiểm theo thứ tự, và thấy hai chỗ hỏng mới:</p>
+
+<div class="loi">
+<b>1. Bước đưa trang lên mạng chết — hai lần liền.</b><br>
+Log GitHub ghi:<br>
+<code>Fetching artifact metadata failed</code><br>
+<code>No artifacts named "github-pages" were found</code>
+<br><br>
+Đây là <b>lỗi phía GitHub</b>, không phải file của anh sai. Bước xử lý tiếng
+<b>thành công</b>, file đã nằm trong repo. Nhưng bước deploy chết, nên trang công khai
+vẫn là bản cũ. Anh nghe đúng bản cũ vì trang thật sự vẫn là bản cũ.
+</div>
+
+<div class="loi">
+<b>2. Xưởng không được tạo lại sau khi thêm tiếng.</b><br>
+Trang xưởng <b>ghi cứng</b> chữ "đã có" / "chưa có" vào HTML lúc sinh trang. Workflow
+chỉ ghi lại danh sách tiếng mà <b>không sinh lại xưởng</b> — nên thẻ vẫn báo "chưa có"
+và nút nghe vẫn ẩn, dù tiếng đã vào.
+</div>
+
+<h2>Vì sao lần trước sửa mà vẫn hỏng</h2>
+<p>Lần trước em sửa hai chỗ: chống bộ nhớ đệm 10 phút, và cho bot thử lại khi push
+đụng độ. Cả hai vẫn đúng và vẫn cần. Nhưng có một đường khác cũng dẫn tới cùng triệu
+chứng, mà em chưa bịt:</p>
+
+<div class="hop">
+Bot push bằng khoá của GitHub, nên GitHub <b>không</b> tự chạy workflow
+<code>Triển khai GitHub Pages</code> (GitHub chặn vòng lặp). Nghĩa là deploy nằm trong
+<code>xuong-am.yml</code> là <b>đường duy nhất</b> đưa tiếng lên trang.
+<br><br>
+Đường đó chết → tiếng không lên, dù repo hoàn toàn đúng. Em đã tưởng chỉ cần sửa
+push là xong, nhưng chưa tính chuyện deploy tự nó chết.
+</div>
+
+<h2>Đã sửa</h2>
+<table>
+<tr><th>Chỗ hỏng</th><th>Cách sửa</th></tr>
+<tr>
+  <td>Deploy chết vì lỗi tạm thời, không thử lại</td>
+  <td>Thử <b>3 lượt</b>, chờ 30 giây rồi 60 giây giữa các lượt. Hết 3 lượt mới báo lỗi
+      đỏ rõ ràng</td>
+</tr>
+<tr>
+  <td>Xưởng không sinh lại khi có tiếng mới</td>
+  <td>Sinh lại xưởng <b>ngay sau</b> khi ghi danh sách tiếng</td>
+</tr>
+</table>
+
+<h2>Kiểm trên trang thật</h2>
+<table>
+<tr><th>Việc kiểm</th><th>Kết quả</th></tr>
+<tr><td>Tiếng mới trong repo</td><td class="dung">có</td></tr>
+<tr><td>Tiếng mới trên trang công khai</td><td class="dung">có — nội dung khớp từng byte</td></tr>
+<tr><td>Mã vân tay trong danh sách: repo và trang</td><td class="dung">khớp</td></tr>
+<tr><td>Xưởng công khai và xưởng trong repo</td><td class="dung">giống nhau, 338.466 byte</td></tr>
+<tr><td>Thẻ báo "đã có"</td><td class="so dung">40</td></tr>
+<tr><td>Bấm nghe trong xưởng</td><td class="dung">tải đúng bản mới, có <code>?v=</code></td></tr>
+<tr><td>File kẹt trong hộp nhận</td><td class="so dung">0</td></tr>
+<tr><td>mp3 còn nguyên</td><td class="so dung">44</td></tr>
+</table>
+
+<p>Địa chỉ xưởng thật sự gọi lúc em bấm nghe:</p>
+<p><code>khe_nui_dem.mp3?v=1795448212822</code><br>
+<code>san_tap_chen_ep.mp3?v=1795448212823</code></p>
+
+<h2>Thứ tự em kiểm từ giờ</h2>
+<p>Để lần sau không đoán mò, em ghi sẵn 6 bước vào <code>AGENTS.md</code>:</p>
+<table>
+<tr><th>#</th><th>Kiểm</th><th>Nếu sai</th></tr>
+<tr><td>1</td><td>File còn kẹt trong hộp nhận?</td><td>Chạy lại workflow</td></tr>
+<tr><td>2</td><td>Lần chạy gần nhất có lỗi?</td><td>Xem bước nào chết</td></tr>
+<tr><td>3</td><td>Đã có commit cho file đó?</td><td>Bot chưa xử lý</td></tr>
+<tr><td>4</td><td>Nội dung file local</td><td>—</td></tr>
+<tr><td>5</td><td>Nội dung file trên trang</td><td>Lệch = chưa deploy</td></tr>
+<tr><td>6</td><td>Mã vân tay hai bên</td><td>Lệch = chưa deploy</td></tr>
+</table>
+
+<div class="hop">
+<b>Anh thử giúp em:</b> mở xưởng, bấm nghe <b>san_tap_chen_ep</b> và
+<b>khe_nui_dem</b>. Giờ phải ra bản mới.
+<br><br>
+Nếu vẫn ra bản cũ thì anh nói em ngay — lúc đó là chuyện thứ ba, và em sẽ kiểm đúng
+6 bước trên chứ không đoán.
+</div>
+
+<p style="font-size:12px;color:var(--muted);margin-top:26px;border-top:1px solid var(--line);padding-top:12px">
+<i>Trang này do AI tạo (OpenHands) nhân danh chủ repo.</i>
+</p>
+</body></html>

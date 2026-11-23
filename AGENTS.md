@@ -1135,3 +1135,37 @@ md5sum docs/assets/am/<ma>.mp3; curl -s <live-url> | md5sum            # live kh
 ```
 
 Nếu live khớp local mà vẫn nghe cũ thì là bộ nhớ đệm, không phải file sai.
+
+### Lần 2: vẫn "ở âm thanh cũ" — hai lỗi khác, không phải lỗi cũ
+
+Sau khi đã sửa bộ nhớ đệm và push đụng độ, người dùng báo lại y hệt. Lần này
+nguyên nhân KHÁC, nên đừng vội kết luận "đã sửa rồi mà vẫn lỗi":
+
+**a. `deploy-pages` chết vì lỗi tạm thời của GitHub.** Hai run liền
+(`45203424457`, `45204652597`) báo `Fetching artifact metadata failed` và
+`No artifacts named "github-pages" were found`. Bước xử lý tiếng thành công,
+file đã nằm trong repo, nhưng **chưa lên trang** — live vẫn là bản cũ. Cách
+nhận biết nhanh: so `md5sum` file local với file live; lệch nhau mà
+`git log` đã có commit mới nghĩa là chưa deploy, không phải file sai.
+Đã thêm 3 lượt thử, chờ 30s rồi 60s giữa các lượt.
+
+**b. Xưởng ghi cứng trạng thái lúc sinh trang.** `tao_xuong_am.py` đọc
+`danh-sach.json` rồi nhúng `data-co="0/1"` vào HTML. Workflow chỉ ghi lại
+danh sách mà **không sinh lại xưởng**, nên thẻ vẫn báo "chưa có" và nút nghe
+vẫn ẩn dù tiếng đã vào. Nay workflow chạy `game/tao_xuong_am.py` ngay sau
+`ghi_danh_sach_am.py`.
+
+**Điều dễ bỏ sót:** bot push bằng `GITHUB_TOKEN` nên **không** kích hoạt
+`pages.yml` (GitHub chặn vòng lặp). Deploy trong `xuong-am.yml` là đường
+**duy nhất** đưa tiếng lên trang. Nó chết là tiếng không lên, dù repo đúng.
+
+**Thứ tự kiểm khi người dùng báo "vẫn âm thanh cũ":**
+
+```bash
+find xuong-am-inbox -type f ! -name 'README.md' ! -name '.gitkeep'  # 1. kẹt?
+curl -s <api>/actions/workflows/xuong-am.yml/runs?per_page=5         # 2. run lỗi?
+git log --oneline -3 -- docs/assets/am/<ma>.mp3                      # 3. có commit?
+md5sum docs/assets/am/<ma>.mp3                                       # 4. local
+curl -s <live>/assets/am/<ma>.mp3 | md5sum                           # 5. live khop?
+curl -s <live>/assets/am/danh-sach.json | grep <ma>                  # 6. v khop?
+```
