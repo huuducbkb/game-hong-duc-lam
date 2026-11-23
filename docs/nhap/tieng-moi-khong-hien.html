@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tiếng mới không hiện — đã sửa</title>
+<style>
+:root{--bg:#111a2b;--card:#182337;--ink:#e8e6df;--muted:#93a0b8;--gold:#ffd98a;--jade:#6fe0c0;--line:#2b3b57;--red:#ff9b9b}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);
+ color:var(--ink);margin:0 auto;padding:16px;max-width:760px;line-height:1.6;-webkit-text-size-adjust:100%}
+h1{font-size:21px;color:var(--gold);margin:8px 0 4px}
+.phu{font-size:13px;color:var(--muted);margin:0 0 18px}
+h2{font-size:16px;color:var(--jade);margin:28px 0 10px;border-bottom:1px solid var(--line);padding-bottom:7px}
+h3{font-size:14px;margin:16px 0 6px;color:var(--gold)}
+code{background:#0a1220;padding:1px 6px;border-radius:4px;color:var(--jade);font-size:11.5px}
+.hop{background:rgba(255,217,138,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
+ padding:11px 13px;margin:14px 0;font-size:13.5px}
+.loi{background:rgba(255,120,120,.09);border-left:3px solid var(--red);border-radius:0 8px 8px 0;
+ padding:11px 13px;margin:14px 0;font-size:13.5px}
+.nut{display:block;text-align:center;background:#243a2c;border:1px solid #2f6b4f;color:#a9f0c4;
+ text-decoration:none;padding:13px;border-radius:10px;font-weight:600;font-size:15px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+td,th{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left;vertical-align:top}
+th{color:var(--jade);font-weight:600}
+p,li{font-size:14px;color:#cbd4e4}
+img{width:100%;display:block;border-radius:10px;border:1px solid var(--line);margin:12px 0 6px}
+.so{font-variant-numeric:tabular-nums}
+.dung{color:#8ef0b0;font-weight:600}
+.sai{color:var(--red);font-weight:600}
+</style></head><body>
+
+<h1>Tiếng mới không hiện</h1>
+<p class="phu">Anh báo: tải tiếng mới lên mà vẫn nghe bản cũ, mà tiếng mới không thấy đâu</p>
+
+<div class="hop">
+<b>Anh báo đúng cả hai chuyện, và đó là hai lỗi khác nhau xảy ra cùng lúc.</b>
+Không phải anh làm sai, không phải file hỏng. Em tìm ra cả hai, sửa cả hai, đã kiểm trên
+trang thật.
+</div>
+
+<a class="nut" href="https://huuducbkb.github.io/game-hong-duc-lam/game/play.html">▶ Mở game để nghe lại</a>
+<a class="nut" href="https://huuducbkb.github.io/game-hong-duc-lam/xuong-am/">🔧 Mở xưởng âm thanh</a>
+
+<h2>Chuyện 1 — tiếng mới không thấy đâu</h2>
+<p>Có một file bị <b>kẹt lại giữa đường</b>. Anh bấm gửi, máy anh báo thành công, nhưng file
+nằm trong thư mục chờ <code>xuong-am-inbox/</code> và không bao giờ được chuyển vào
+<code>docs/assets/am/</code> — nơi game đọc.</p>
+
+<div class="loi">
+<b>Nguyên nhân thật, lấy từ log GitHub:</b><br>
+<code>! [rejected] main -> main (fetch first)</code><br>
+<code>error: failed to push some refs</code>
+<br><br>
+Bot sửa file xong thì push lên. Nhưng đúng lúc đó em cũng đang push bản sửa giọng Tuyết Cơ.
+Hai bên đụng nhau, GitHub từ chối bot, <b>job chết ngay ở bước Commit</b>. File vẫn nằm
+trong hộp nhận. Anh chờ bao lâu cũng không thấy.
+</div>
+
+<p>File bị kẹt lần đó là <code>cong_dong_doi_mat.mp3</code> và <code>hoa_truong_cuu.mp3</code>.
+Em đã kiểm: giờ cả hai đã vào đúng chỗ, hộp nhận trống.</p>
+
+<h3>Cách sửa</h3>
+<p>Bot giờ <b>thử lại 5 lượt</b>. Mỗi lần bị từ chối thì nó kéo bản mới nhất của main về,
+đặt việc của mình lên trên, rồi push lại. Hết 5 lượt mà vẫn không được thì nó báo lỗi đỏ
+rõ ràng, không im lặng bỏ file.</p>
+
+<h2>Chuyện 2 — vẫn nghe bản cũ</h2>
+<p>Chuyện này khác hẳn. File mới <b>đã lên mạng thật</b>, nhưng tai anh vẫn nghe bản cũ.</p>
+
+<div class="loi">
+<b>Nguyên nhân:</b> GitHub Pages dặn trình duyệt giữ file lại <b>10 phút</b>:<br>
+<code>cache-control: max-age=600</code>
+<br><br>
+Anh thay tiếng của cảnh <code>cong_dong_giau</code> mà tên file vẫn là
+<code>cong_dong_giau.mp3</code>. Với máy anh, đó vẫn là "cùng một địa chỉ" — nên nó
+lấy bản trong bộ nhớ đệm ra phát, không thèm tải lại.
+</div>
+
+<h3>Cách sửa</h3>
+<p>Mỗi file giờ có một <b>mã vân tay</b> — 8 ký tự đầu của mã băm nội dung. Game gắn mã đó
+vào địa chỉ: <code>cong_dong_giau.mp3?v=b2ebe5f4</code>. Thay nội dung là mã đổi, địa chỉ
+đổi, trình duyệt buộc phải tải bản mới. Không còn chờ 10 phút, không cần xoá bộ nhớ đệm.</p>
+
+<h2>Kiểm trên trang thật</h2>
+<p>Em chạy game và xưởng trên đúng địa chỉ công khai, giả lập iPad, rồi xem trình duyệt
+thật sự gọi những địa chỉ nào:</p>
+
+<table>
+<tr><th>Việc kiểm</th><th>Kết quả</th></tr>
+<tr><td>Cảnh trong danh sách</td><td class="so dung">44</td></tr>
+<tr><td>Cảnh có mã vân tay</td><td class="so dung">44 / 44</td></tr>
+<tr><td>Game gọi tiếng có <code>?v=</code></td><td class="dung">có, đủ</td></tr>
+<tr><td>Xưởng phát lại có <code>?v=</code></td><td class="dung">có, đủ</td></tr>
+<tr><td>File kẹt trong hộp nhận</td><td class="so dung">0</td></tr>
+<tr><td>mp3 còn nguyên</td><td class="so dung">44 / 44</td></tr>
+<tr><td>Lỗi trang</td><td class="dung">không</td></tr>
+<tr><td>File tải lỗi (4xx)</td><td class="dung">không</td></tr>
+<tr><td>Tràn ngang iPad / iPhone</td><td class="dung">không</td></tr>
+</table>
+
+<p>Địa chỉ trình duyệt thật sự gọi, lấy từ lúc chạy thử:</p>
+<p><code>cong_dong_giau.mp3?v=b2ebe5f4</code><br>
+<code>hoa_truong_cuu.mp3?v=334eee11</code><br>
+<code>cho_02.mp3?v=4bd94b1f</code></p>
+
+<img src="xuong-am-da-sua.png" alt="Xưởng âm thanh sau khi sửa, trên khung iPad">
+
+<h2>Năm cảnh anh tải hôm nay</h2>
+<p>Em so nội dung từng file trước và sau, để chắc không phải "báo xong mà file vẫn cũ":</p>
+
+<table>
+<tr><th>Cảnh</th><th>Nội dung đổi?</th></tr>
+<tr><td><code>cho_02</code></td><td class="dung">đã đổi</td></tr>
+<tr><td><code>cong_dong_doi_mat</code></td><td class="dung">đã đổi</td></tr>
+<tr><td><code>hoa_truong_cuu</code></td><td class="dung">đã đổi</td></tr>
+<tr><td><code>cong_dong_toan_luc</code></td><td class="dung">đã đổi</td></tr>
+<tr><td><code>cong_dong_giau</code></td><td class="dung">đã đổi</td></tr>
+</table>
+
+<div class="hop">
+<b>Anh thử giúp em:</b> mở game, vào cảnh <b>cổng đông — giấu thực lực</b> hoặc
+<b>hoa trường cửu</b>. Nếu vẫn ra tiếng cũ thì anh nói em — lúc đó là chuyện khác nữa,
+không phải bộ nhớ đệm.
+<br><br>
+Từ giờ anh thay tiếng cảnh nào cũng được, không cần đổi tên file, không cần chờ, không
+cần xoá gì trong máy.
+</div>
+
+<p style="font-size:12px;color:var(--muted);margin-top:26px;border-top:1px solid var(--line);padding-top:12px">
+<i>Trang này do AI tạo (OpenHands) nhân danh chủ repo.</i>
+</p>
+</body></html>
