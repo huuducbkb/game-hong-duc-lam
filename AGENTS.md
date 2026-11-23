@@ -1106,3 +1106,32 @@ prompt. Thực ra vấn đề là prompt cũ tả nhạc, không tả không gia
 **Playwright có thể mất trình duyệt** (cache trống). Cài lại bằng
 `npx playwright install-deps webkit` rồi `npx playwright install webkit`. Bước `-deps` cần
 quyền root và chạy lâu, nên đặt chạy nền.
+
+## Tiếng cảnh: bộ nhớ đệm và push đụng độ
+
+Người dùng báo "tải tiếng mới lên mà vẫn nghe bản cũ, mà tiếng mới không thấy
+đâu". Hai lỗi riêng biệt, cùng lúc:
+
+**1. GitHub Pages giữ file 10 phút.** `cache-control: max-age=600`. Thay tiếng
+của một cảnh mà giữ nguyên tên file thì trình duyệt vẫn phát bản cũ. Sửa: mỗi mục
+trong `docs/assets/am/danh-sach.json` có thêm `v` = 8 ký tự đầu mã băm nội dung
+(`game/ghi_danh_sach_am.py`), và nơi phát tiếng gắn `?v=<mã>` vào địa chỉ. Đã sửa
+ở cả `game/play.html`, `docs/game/play.html` (hàm `phatFileThat`) và
+`game/xuong_am.js` (dùng `Date.now()`).
+
+**2. Workflow `xuong-am.yml` push thẳng vào main.** Người dùng và agent cũng push
+vào main, nên khi trùng lúc thì bot bị từ chối (`! [rejected] main -> main (fetch
+first)`), job chết ở bước Commit, và file nằm kẹt trong `xuong-am-inbox/` — không
+vào `docs/assets/am/`, nên game không thấy. Đã xảy ra thật với
+`cong_dong_doi_mat` (run 45197036729). Sửa: vòng thử 5 lượt, mỗi lượt
+`git pull --rebase --autostash` rồi push lại; hết lượt thì `::error::` và exit 1.
+
+**Cách kiểm khi người dùng báo lỗi này** — đừng đoán, chạy đúng ba bước:
+
+```bash
+find xuong-am-inbox -type f ! -name 'README.md' ! -name '.gitkeep'   # file ket?
+curl -s <api>/actions/workflows/xuong-am.yml/runs?per_page=15          # run that bai?
+md5sum docs/assets/am/<ma>.mp3; curl -s <live-url> | md5sum            # live khop local?
+```
+
+Nếu live khớp local mà vẫn nghe cũ thì là bộ nhớ đệm, không phải file sai.

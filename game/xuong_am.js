@@ -429,7 +429,11 @@ function datNgheSan(hop){
   const audio = oNghe.querySelector('[data-audio]');
   const chua = oNghe.querySelector('[data-chua]');
   if(audio){
-    audio.src = new URL('../' + AM_DIR + hop.dataset.file, location.href).href;
+    // ?v= đổi mỗi lần mở trang: GitHub Pages cho giữ file 10 phút, không có mã
+    // này thì nghe lại bản cũ dù đã tải lên bản mới.
+    const duongNghe = new URL('../' + AM_DIR + hop.dataset.file, location.href);
+    duongNghe.searchParams.set('v', Date.now());
+    audio.src = duongNghe.href;
     audio.hidden = false;
   }
   if(chua) chua.hidden = true;

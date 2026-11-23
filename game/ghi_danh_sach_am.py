@@ -8,8 +8,14 @@ Mỗi mục ghi kèm `giay` — độ dài cảnh lấy từ du_lieu_am.py. Game
 biết phát bao lâu: cảnh mở cửa 2 giây, cảnh thoại 3–6 giây, bối cảnh 10 giây.
 Không cố định 10 giây cho mọi cảnh.
 
+Mỗi mục cũng ghi `v` — 8 ký tự đầu của mã băm nội dung file. GitHub Pages gửi
+`cache-control: max-age=600`, nên khi thay tiếng của một cảnh mà giữ nguyên tên
+file, trình duyệt vẫn phát bản cũ tới 10 phút. Game gắn `?v=<mã băm>` vào địa chỉ
+nên mỗi lần nội dung đổi là một địa chỉ mới, không dính bộ nhớ đệm.
+
 Chạy: python3 game/ghi_danh_sach_am.py
 """
+import hashlib
 import io
 import json
 import os
@@ -20,6 +26,14 @@ from du_lieu_am import THEO_MA, GIAY_MAC_DINH  # noqa: E402
 
 GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DS = ["docs/assets/am", "assets/am"]
+
+
+def bam(duong):
+    h = hashlib.sha256()
+    with open(duong, "rb") as f:
+        for khoi in iter(lambda: f.read(1 << 16), b""):
+            h.update(khoi)
+    return h.hexdigest()[:8]
 
 
 def quet(thu_muc):
@@ -36,6 +50,7 @@ def quet(thu_muc):
             "file": ten,
             "bytes": os.path.getsize(duong),
             "giay": canh["giay"] if canh else GIAY_MAC_DINH,
+            "v": bam(duong),
         }
     return ra
 

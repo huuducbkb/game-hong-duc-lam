@@ -1742,7 +1742,10 @@ function phatFileThat(ma, g, muc) {
     hen();
   };
   if (demAmThat[khoa]) { noi(); return lop; }
-  fetch("../assets/am/" + ten)
+  // ?v=<mã băm> để mỗi lần thay nội dung là một địa chỉ mới: GitHub Pages cho
+  // giữ file 10 phút (max-age=600), không có mã này thì máy phát bản cũ.
+  const vAm = (ds[ma] && ds[ma].v) || "";
+  fetch("../assets/am/" + ten + (vAm ? "?v=" + vAm : ""))
     .then(r => (r.ok ? r.arrayBuffer() : Promise.reject(new Error("HTTP " + r.status))))
     .then(ab => new Promise((res, rej) => ctxTieng.decodeAudioData(ab, res, rej)))
     .then(buf => {

@@ -97,8 +97,23 @@ jobs:
           else
             SO=$(python3 -c "import json;print(len(json.load(open('/tmp/bao-cao-am.json')).get('da_luu',[])))" 2>/dev/null || echo "?")
             git commit -q -m "Xưởng âm thanh: ghép ${SO} tiếng cảnh"
-            git push
-            echo "da_commit=1" >> "$GITHUB_OUTPUT"
+            # Người dùng và agent cũng push vào main. Đẩy thẳng thì bị từ chối
+            # ("fetch first") và file kẹt lại trong hộp nhận — đã xảy ra một lần
+            # với cong_dong_doi_mat. Thử lại vài lượt, mỗi lượt rebase lên main
+            # mới nhất. `git add -A` ở trên đã stage sẵn nên rebase giữ nguyên.
+            for lan in 1 2 3 4 5; do
+              if git push; then
+                echo "da_commit=1" >> "$GITHUB_OUTPUT"
+                break
+              fi
+              echo "Push bị từ chối (lượt $lan) — rebase lên main rồi thử lại."
+              git pull --rebase --autostash origin main || true
+              sleep $((lan * 5))
+            done
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+              echo "::error::Không push được sau 5 lượt — tiếng vẫn nằm trong hộp nhận."
+              exit 1
+            fi
           fi
 
       - name: Báo lại trong Issue
