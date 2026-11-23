@@ -35,6 +35,10 @@
     "bytes": 120729,
     "file": "cong_dong_toan_luc.mp3"
   },
+  "doat_hop": {
+    "bytes": 120729,
+    "file": "doat_hop.mp3"
+  },
   "duong_mon_nui": {
     "bytes": 120729,
     "file": "duong_mon_nui.mp3"
@@ -110,6 +114,10 @@
   "tran_lua_3": {
     "bytes": 120729,
     "file": "tran_lua_3.mp3"
+  },
+  "tu_khiem": {
+    "bytes": 120729,
+    "file": "tu_khiem.mp3"
   },
   "vuon_thuoc_dem": {
     "bytes": 120729,
