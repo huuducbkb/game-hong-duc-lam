@@ -137,6 +137,40 @@ cloth shifting. No music.
 <a class="nut" href="../xuong-am/index.html">Mở xưởng âm thanh →</a>
 <a class="nut" href="../game/play.html">Vào game nghe thử →</a>
 
+<h2>Thoại NPC: em bỏ sót 32 cảnh</h2>
+<p>Anh chỉ đúng chỗ nặng nhất. Cảnh <code>cổng đông — giấu thực lực</code> có Tuyết Cơ
+nói trong đầu, mà prompt lại không có câu nào. Em kiểm ra nguyên nhân: em chỉ gắn
+thoại cho <b>21 cảnh nhóm "gap"</b>, còn cảnh nền thì bỏ qua — dù cảnh nền cũng có
+NPC nói.</p>
+
+<table>
+<tr><th>Việc</th><th>Trước</th><th>Giờ</th></tr>
+<tr><td>Cảnh có thoại NPC</td><td>21</td><td><b>53</b></td></tr>
+<tr><td>Cảnh không thoại</td><td>43</td><td>11</td></tr>
+<tr><td>Nhầm lời nhân vật chính</td><td>10</td><td><b>0</b></td></tr>
+<tr><td>Thiếu tuổi/giới của giọng</td><td>14</td><td><b>0</b></td></tr>
+</table>
+
+<p><b>Lỗi thứ hai, nặng hơn, em tự tìm ra:</b> 10 cảnh em đưa nhầm <b>lời nhân vật
+chính</b> vào prompt. Ví dụ cảnh <code>kiếm linh — thử thách</code>, câu
+「信你？」 là của nhân vật chính, không phải kiếm linh. Người chơi tự đọc chữ trên
+màn hình, nên đưa lời họ vào prompt là máy đọc thành tiếng một giọng khác — sai hẳn.
+Đã thay bằng đúng câu NPC.</p>
+
+<p><b>Đúng cảnh anh nêu, giờ ra thế này:</b></p>
+<img src="cong-dong-giau-moi.png" alt="Cảnh cổng đông giấu thực lực với thoại Tuyết Cơ">
+<p class="phu" style="font-size:12.5px">Tuyết Cơ, nữ 20 tuổi, giọng mềm như tơ lạnh ở
+dưới, nói trong đầu: 「这就对了。」 rồi 「藏好。活过今晚比赢更重要。」 Tách thành hai
+đoạn để máy ngắt đúng chỗ, không đọc liền một hơi.</p>
+
+<p><b>Mọi câu thoại giờ ghi rõ tuổi và giới.</b> <code>A young woman's voice, around
+twenty, soft and silky with cold underneath</code> — không ghi thì máy tự đoán, mỗi
+cảnh ra một người khác nhau. Bảng giọng 13 NPC nằm trong <code>game/GIONG_NPC.md</code>.</p>
+
+<p><b>11 cảnh không thoại</b> là đúng, không phải sót: sáu cảnh chỉ có giọng Hệ
+thống (máy, vô cảm — không phải NPC), và năm cảnh chỉ có tiếng không gian hoặc
+nhân vật chính tự nhủ.</p>
+
 <h2>Prompt viết lại: bỏ câu khuôn, theo kiểu Gemini</h2>
 <p>Anh nói đúng — ghi chú dưới mỗi ô prompt trong xưởng đang đóng đinh một bộ yêu cầu
 cũ, đọc đi đọc lại 64 lần. Em đã bỏ hẳn. Và prompt cũng viết lại, vì bộ yêu cầu đó

@@ -1028,9 +1028,33 @@ biến cảnh thành phim truyền thanh, và kéo theo chuyện phải chọn �
 từng câu — việc công cụ tạo tiếng làm sai. Chú ý: "shouted count" là đếm thành tiếng,
 tức là có chữ — vi phạm; dùng "a sharp whistle".
 
-Ngoại lệ: **21 cảnh nhóm `gap`** (gặp Hàn Lập, kiếm linh, Đỗ Tam, Tuyết Cơ…) cố ý có
-đúng MỘT câu tiếng Hoa trong ngoặc `「」`, lấy câu đầu tiên của đoạn truyện. Đó là
-quyết định của người dùng, không phải sót lại — đừng "dọn" chúng đi.
+Ngoại lệ: **cảnh nào có NPC nói thì prompt phải có 1–2 câu tiếng Hoa trong ngoặc
+`「」`**. Hiện là 53/64 cảnh, không phải chỉ 21 cảnh nhóm `gap`. Đây là yêu cầu
+người dùng nêu hai lần, lần thứ hai kèm ví dụ cảnh `cong_dong_giau` (Tuyết Cơ nhắc
+trong đầu) — cảnh nền cũng có NPC nói, đừng chỉ nhìn nhóm.
+
+Hai lỗi đã mắc, đừng mắc lại:
+
+1. **Suy thoại từ nhóm thay vì từ đoạn truyện.** Lần đầu chỉ gắn cho nhóm `gap` →
+   bỏ sót 32 cảnh. Phải quét từng đoạn truyện trong `game/chapters/chuong1.json`,
+   tìm câu trong ngoặc kép.
+2. **Đưa nhầm lời nhân vật chính.** 10 cảnh lấy câu của nhân vật chính (người chơi)
+   thay vì NPC — ví dụ `kiem_linh_thu` lấy `「信你？」` trong khi đó là câu nhân vật
+   chính hỏi kiếm linh. Người chơi tự đọc chữ trên màn hình; đưa lời họ vào prompt
+   là máy đọc thành tiếng một giọng khác. Dấu hiệu nhận biết:
+
+   - Câu NPC: đứng sau `— Tuyết Cơ nói`, `— kiếm linh nói`, `— ông khẽ nói`,
+     `— hắn gầm lên` (có tên/chức danh).
+   - Câu nhân vật chính: đứng sau `— ta nói`, `— ta đáp`, `— ta quát`, hoặc đứng
+     một mình sau một dòng `*suy nghĩ*`. Bỏ.
+
+**Mỗi câu thoại phải ghi tuổi và giới của người nói** — `A young woman's voice,
+around twenty, soft and silky with cold underneath`. Không ghi thì máy tự đoán,
+mỗi cảnh ra một người khác nhau. Bảng giọng 13 NPC ở `game/GIONG_NPC.md`; câu thoại
+dài thì tách thành hai đoạn `「…」 then 「…」` để máy ngắt đúng chỗ.
+
+Cảnh chỉ có giọng Hệ thống (máy, vô cảm) thì **không** thêm thoại: `cho_03`,
+`duong_mon_nui`, `khe_nui_dem`, `mieu_hoang`, `san_sau_anh_sang`, `mieu_trong`.
 
 **Ba lớp khoảng cách, gắn vào câu chứ không chia mục.** Prompt cần (1) sát tai,
 (2) vài mét, (3) xa — và nói rõ tiếng ĐỔI thế nào khi đi qua không gian đó: tường đá

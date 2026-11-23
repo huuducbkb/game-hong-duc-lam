@@ -115,9 +115,11 @@ def khoi_prompt(n):
     n_ky = len(p)
     dem = (f'<span class="dem-ky{" qua" if n_ky > 450 else ""}">'
            f'{n_ky}/450 ký tự</span>')
-    co_thoai = n["nhom"] == "gap"
-    if co_thoai:
-        ghi_chu = 'Có một câu thoại tiếng Hoa trong ngoặc 「」 — câu đầu tiên của cảnh.'
+    # Suy từ chính prompt, không từ nhóm: cảnh nền cũng có NPC nói.
+    so_cau = len(re.findall(r"「[^」]+」", p))
+    if so_cau:
+        ghi_chu = (f'Có {so_cau} câu thoại tiếng Hoa trong ngoặc 「」, kèm tuổi và '
+                   f'chất giọng để máy không tự đoán.')
     else:
         ghi_chu = ''
     duoi = f'<p class="mota" style="margin:6px 0 0">{ghi_chu}</p>' if ghi_chu else ''
