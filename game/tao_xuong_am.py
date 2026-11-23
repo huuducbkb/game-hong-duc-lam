@@ -9,6 +9,7 @@ workflow chỉ cần chạy lại script này khi thêm nhóm tiếng mới.
 import html
 import io
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -37,8 +38,70 @@ def da_co():
         return set()
 
 
+TRUYEN = {}
+
+
+def doc_truyen():
+    """Đoạn truyện của từng cảnh, đọc từ game/chapters/chuong*.json.
+
+    Khoá là tên ảnh (bc_cho_01.jpg) vì đó là thứ nối cảnh âm thanh với cốt truyện.
+    Một ảnh có thể xuất hiện ở nhiều đoạn — gom hết, giữ thứ tự trong chương.
+    """
+    import glob
+    import json
+    if TRUYEN:
+        return TRUYEN
+    for p in sorted(glob.glob(os.path.join(GOC, "game", "chapters", "chuong*.json"))):
+        try:
+            d = json.load(io.open(p, encoding="utf-8"))
+        except Exception:  # noqa: BLE001 - file hỏng thì bỏ qua, không chặn sinh trang
+            continue
+        for doan in d.get("doan", []):
+            anh = (doan.get("hinh_anh") or {}).get("anh")
+            if anh and doan.get("ke"):
+                TRUYEN.setdefault(anh, []).append(doan)
+    return TRUYEN
+
+
 def esc(s):
     return html.escape(str(s), quote=True)
+
+
+def _doan_van(chu):
+    """Một đoạn truyện: escape rồi đổi *nhấn mạnh* thành chữ nghiêng."""
+    ra = []
+    for p in chu.split("\n\n"):
+        p = p.strip()
+        if not p:
+            continue
+        p = esc(p).replace("\n", "<br>")
+        p = re.sub(r"\*([^*]+)\*", r'<em class="nghieng">\1</em>', p)
+        lop = ' class="he-thong"' if p.startswith("👁") else ""
+        ra.append(f"<p{lop}>{p}</p>")
+    return "\n".join(ra)
+
+
+def khoi_truyen(n):
+    """Khối cốt truyện của cảnh, đóng sẵn cho gọn trang."""
+    ds = doc_truyen().get(n["anh"]) or []
+    if not ds:
+        return ""
+    phan = []
+    for doan in ds:
+        bc = doan.get("boi_canh") or ""
+        dau = f'<p class="truyen-boi">{esc(bc)}</p>' if bc else ""
+        phan.append(dau + _doan_van(doan["ke"]))
+    so_ky = sum(len(d["ke"]) for d in ds)
+    dem = f'{len(ds)} đoạn · {so_ky} ký tự' if len(ds) > 1 else f'{so_ky} ký tự'
+    return f"""<details class="truyen">
+  <summary>
+    <span class="truyen-dau">📖 Cốt truyện cảnh này</span>
+    <span class="truyen-dem">{dem}</span>
+  </summary>
+  <div class="truyen-than">
+    {"".join(phan)}
+  </div>
+</details>"""
 
 
 def khoi_prompt(n):
@@ -82,7 +145,7 @@ def the_canh(n, i):
         nhan = '<span class="badge thieu" data-badge>⬜ chưa có</span>'
         lop = "canh"
     return f"""
-<article class="{lop}" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}">
+<article class="{lop}" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}" data-co="{1 if ma in co else 0}">
   <header>
     <span class="so">{i}</span>
     <b>{esc(n['ten'])}</b>
@@ -101,21 +164,9 @@ def the_canh(n, i):
     <div><span class="k">dài</span> <code>{n['giay']} giây</code></div>
   </div>
 
+  {khoi_truyen(n)}
+
   {khoi_prompt(n)}
-
-  <label class="nhan">Từ khoá tìm trên thư viện âm thanh</label>
-  <div class="tukhoa">
-    {"".join(f'<button type="button" class="tk" onclick="cpChu(this,{esc(repr(k))})">{esc(k)}</button>' for k in n["tim"])}
-  </div>
-  <p class="mota" style="margin:6px 0 0">Dán vào ô tìm của Freesound, Pixabay, YouTube.
-     Tìm bằng tiếng Anh mới ra; tiếng Việt gần như không có.</p>
-
-  <label class="nhan">Từ khoá mô tả âm thanh — dán vào Google</label>
-  <div class="tukhoa">
-    {"".join(f'<button type="button" class="tk mo" onclick="cpChu(this,{esc(repr(k))})">{esc(k)}</button>' for k in n["mo_ta"])}
-  </div>
-  <p class="mota" style="margin:6px 0 0">Dùng khi muốn tìm hiểu tiếng này gọi là gì,
-     hoặc tìm nguồn ở chỗ khác.</p>
 
   <label class="nhan">Nghe thử bản đang dùng trong game</label>
   <div class="nghe" data-nghe>
@@ -248,6 +299,24 @@ button.phu{{background:transparent}}
 .xem-anh .nen{{position:absolute;inset:0}}
 .xem-anh .chu{{position:absolute;bottom:14px;left:0;right:0;text-align:center;
   font-size:13px;color:#dfe7f5;padding:0 16px}}
+.truyen{{background:#0d1626;border:1px solid var(--line);border-radius:9px;margin:10px 0 0}}
+.truyen summary{{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;
+  padding:10px 12px;cursor:pointer;font-size:12.5px;list-style:none;
+  -webkit-tap-highlight-color:transparent}}
+.truyen summary::-webkit-details-marker{{display:none}}
+.truyen summary::before{{content:"▸";color:var(--jade);font-size:12px;line-height:1;
+  transition:transform .15s;display:inline-block}}
+.truyen[open] summary::before{{transform:rotate(90deg)}}
+.truyen[open] summary{{border-bottom:1px solid var(--line)}}
+.truyen-dau{{color:var(--gold);font-weight:600}}
+.truyen-dem{{font-size:11px;color:var(--muted);margin-left:auto}}
+.truyen-than{{padding:10px 12px 12px}}
+.truyen-than p{{margin:0 0 9px;font-size:13px;line-height:1.62;color:#d5dce9}}
+.truyen-than p:last-child{{margin-bottom:0}}
+.truyen-than p.he-thong{{color:var(--jade);font-size:12.5px}}
+.truyen-than .nghieng{{font-style:italic;color:#b9c6dd}}
+.truyen-boi{{font-size:11.5px !important;color:var(--muted) !important;
+  text-transform:none;margin-bottom:7px !important}}
 .tukhoa{{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 0}}
 .tk{{background:#0e1c2a;border:1px solid #2b4a63;color:#9fd8e8;font-size:12px;
   padding:6px 11px;border-radius:99px;font-family:ui-monospace,Menlo,monospace}}
@@ -276,8 +345,8 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 
 <div class="tom-tat">
   <b>{so} cảnh, mỗi cảnh một file riêng.</b> Mỗi ảnh trong game là một cảnh, có tiếng
-  riêng và từ khoá riêng. Cảnh nào chưa có file thì im — không lấy tiếng của cảnh khác,
-  không chèn nhạc tổng hợp.
+  riêng, prompt riêng và đoạn truyện riêng để anh đọc trước khi làm. Cảnh nào chưa có
+  file thì im — không lấy tiếng của cảnh khác, không chèn nhạc tổng hợp.
   <div class="ml">
     {"".join(f'<a href="#n-{ma}">{esc(ten)}</a>' for ma, ten in NHOM if canh_theo_nhom(ma))}
   </div>
@@ -286,10 +355,10 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 <h2>Cách làm</h2>
 <div class="card">
   <ol style="margin:0;padding-left:20px">
-    <li>Nhìn <b>ảnh</b> ở mỗi cảnh để chắc đúng ngữ cảnh anh cần.</li>
-    <li>Bấm một <b>từ khoá</b> để copy.</li>
-    <li>Dán vào ô tìm của thư viện (Freesound, Pixabay, YouTube…). Tìm bằng tiếng Anh
-        mới ra; tiếng Việt gần như không có.</li>
+    <li>Mở <b>📖 Cốt truyện cảnh này</b> để đọc đúng đoạn truyện của cảnh — biết
+        ai đang ở đó, chuyện gì đang xảy ra, tiếng gì phải nghe được.</li>
+    <li>Nhìn <b>ảnh</b> bên cạnh để chắc đúng ngữ cảnh anh cần.</li>
+    <li>Copy <b>prompt</b> và dán vào công cụ tạo âm thanh của anh.</li>
     <li>Tải file về máy. <b>Dài bao nhiêu cũng được</b> — 2 phút, 5 phút, không sao.</li>
     <li>Quay lại đây, <b>chọn file dưới đúng cảnh</b>, bấm <b>📤 Gửi tiếng này</b>.</li>
     <li>Bot tự cắt theo <b>độ dài ghi trên cảnh</b>, chuyển mp3, cân âm lượng, rồi ghép vào game.</li>
@@ -299,16 +368,6 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
     lớn hơn thì giải mã trên điện thoại rất chậm, cắt bớt trước. Video không có tiếng
     thì báo lỗi ngay, không gửi file rỗng.</li>
   </ol>
-
-  <div class="card" style="background:#0e1726;margin:14px 0 0;padding:12px">
-    <p style="margin:0 0 8px;font-size:12.5px"><b>Hai bộ từ khoá khác nhau:</b></p>
-    <ul style="margin:0;padding-left:18px;font-size:12.5px">
-      <li><b>Từ khoá tìm</b> — để tìm file trên thư viện. Đây là thứ người ta đặt tên
-          cho file âm thanh.</li>
-      <li><b>Từ khoá mô tả</b> — để dán vào Google khi muốn hiểu tiếng đó gọi là gì,
-          hoặc tìm nguồn ở chỗ khác.</li>
-    </ul>
-  </div>
 
   <div class="card" style="background:#0e1726;margin:10px 0 0;padding:12px">
     <p style="margin:0;font-size:12.5px"><b>Về độ dài:</b> mỗi cảnh ghi rõ

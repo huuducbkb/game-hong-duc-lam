@@ -24,6 +24,7 @@ table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
 td,th{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left;vertical-align:top}
 th{color:var(--jade);font-weight:600}
 p,li{font-size:14px;color:#cbd4e4}
+img{width:100%;display:block;border-radius:10px;border:1px solid var(--line);margin:12px 0 6px}
 .so{font-variant-numeric:tabular-nums}
 .dung{color:#8ef0b0;font-weight:600}
 .sai{color:var(--red);font-weight:600}
@@ -33,9 +34,13 @@ p,li{font-size:14px;color:#cbd4e4}
 <p class="phu">64 cảnh trong xưởng &middot; 21 cảnh mới có lời thoại &middot; mỗi cảnh một độ dài riêng</p>
 
 <div class="hop">
-<b>Đã xong cả ba việc anh nêu.</b> Cảnh có lời thoại của Hàn Lập, Kiếm Linh, Đỗ Tam,
-Tuyết Cơ, Ngọc Cốt đã có trong xưởng. Prompt viết bằng tiếng Hoa, đúng câu thoại đầu
-tiên của cảnh. Cảnh mở cửa giờ chỉ 2 giây, không còn 10 giây.
+<b>Đã xong cả ba việc anh nêu, cộng hai việc phát sinh.</b> Cảnh có lời thoại của Hàn Lập,
+Kiếm Linh, Đỗ Tam, Tuyết Cơ, Ngọc Cốt đã có trong xưởng. Prompt viết bằng tiếng Hoa,
+đúng câu thoại đầu tiên của cảnh. Cảnh mở cửa giờ chỉ 2 giây, không còn 10 giây.
+<br><br>
+<b>Mới:</b> từ khoá tiếng Anh đã bỏ, thay bằng đoạn truyện của chính cảnh đó, đóng mở
+được. Và trang xưởng không còn gọi GitHub API 64 lần mỗi lần mở — chính chỗ đó làm
+mọi thẻ báo sai "chưa có".
 </div>
 
 <h2>Trước đây hỏng ở đâu</h2>
@@ -131,6 +136,35 @@ cloth shifting. No music.
 
 <a class="nut" href="../xuong-am/index.html">Mở xưởng âm thanh →</a>
 <a class="nut" href="../game/play.html">Vào game nghe thử →</a>
+
+<h2>Xưởng: đọc truyện trước khi làm tiếng</h2>
+<p>Trước đây mỗi thẻ có hai bộ từ khoá tiếng Anh — em đã bỏ. Giờ chỗ đó là
+<b>đoạn truyện thật của cảnh đó</b>, lấy thẳng từ <code>game/chapters/chuong1.json</code>,
+đóng sẵn cho gọn trang. Anh mở ra đọc là biết ai đang ở đó, chuyện gì đang xảy ra,
+nên tiếng nào phải nghe được.</p>
+
+<p>Khối truyện đóng mặc định, chạm vào dòng <b>📖 Cốt truyện cảnh này</b> là mở, chạm
+lần nữa là đóng. Mỗi cảnh có một khối riêng, mở nhiều cảnh cùng lúc được. Ghi rõ số
+ký tự để anh biết đoạn dài hay ngắn. Dòng 【Hệ thống】 hiện màu xanh, chữ *nhấn mạnh*
+trong truyện hiện nghiêng, giống hệt trong game.</p>
+
+<img src="xuong-truyen-dong.png" alt="Khối cốt truyện đang đóng">
+<p class="phu" style="font-size:12.5px">Đóng: chỉ một dòng, không chiếm chỗ.</p>
+
+<img src="xuong-truyen-mo.png" alt="Khối cốt truyện đang mở">
+<p class="phu" style="font-size:12.5px">Mở: đọc được cả đoạn, trang tự giãn ra,
+không có khung cuộn riêng bên trong.</p>
+
+<h2>Một lỗi nữa em tìm ra khi sửa</h2>
+<p>Trang xưởng tự gọi GitHub API <b>64 lần</b> mỗi lần mở — mỗi cảnh một lần, để hỏi
+"cảnh này có file chưa". GitHub chỉ cho 60 lượt/giờ cho mỗi địa chỉ, nên mở trang một
+lần là vượt hạn mức, và từ đó mọi cảnh đều hiện như chưa có tiếng. Đây chính là lý do
+thẻ <code>mieu_trong</code> báo sai dù file vẫn tải được.</p>
+
+<p>Giờ trang không gọi API nữa: cảnh nào có file thì trỏ thẳng vào file ngay trong
+trang. Đo lại: <b>0 lượt gọi API</b>, <b>0 tài nguyên lỗi</b>, 40 thẻ hiện đúng khung
+nghe nhạc, 24 thẻ chưa có hiện đúng. Nút <b>🔄 Kiểm tra</b> cũng đổi sang hỏi thẳng
+file trên trang, không cần token, không hạn mức.</p>
 
 <h2>Anh cần làm gì</h2>
 <p>Em <b>không</b> tải file mp3 nào lên repo — đúng như quy ước. Anh tự đưa tiếng vào

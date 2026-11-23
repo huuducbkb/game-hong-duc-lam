@@ -226,35 +226,33 @@ async function kiemTraMot(hop){
   const chua = oNghe.querySelector('[data-chua]');
   if(nut) nut.classList.add('dang');
   try{
-    const t = ghToken();
-    const r = await fetch(
-      `https://api.github.com/repos/${GH_REPO}/commits?path=${AM_DIR}${file}&per_page=1`,
-      {headers:t ? {'Authorization':`Bearer ${t}`,'Accept':'application/vnd.github+json'}
-                  : {'Accept':'application/vnd.github+json'}});
-    if(r.status === 403 || r.status === 429)
-      throw new Error('GitHub tạm giới hạn lượt gọi — chờ chút rồi thử lại');
-    if(!r.ok) throw new Error(`HTTP ${r.status}`);
-    const ds = await r.json();
-    if(!Array.isArray(ds) || !ds.length){
+    // Hỏi thẳng file trên trang, không qua GitHub API: API chỉ cho 60 lượt/giờ
+    // cho mỗi IP, nên bấm vài lần là bị chặn. Query đổi mỗi lần để không dính
+    // bản cũ trong bộ nhớ đệm của GitHub Pages.
+    const duong = new URL('../' + AM_DIR + file, location.href);
+    duong.searchParams.set('v', Date.now());
+    const r = await fetch(duong.href, {method:'HEAD', cache:'no-store'});
+    if(!r.ok && r.status !== 405 && r.status !== 403){
       audio.hidden = true; audio.removeAttribute('src');
       chua.hidden = false;
-      ghHienTT(tt,'muted','⬜ Chưa có trên trang. Gửi file rồi bấm 🔄 Kiểm tra lại (bot cần ~1–2 phút).');
+      ghHienTT(tt,'muted','⬜ Chưa thấy trên trang. Bot cần ~1–2 phút sau khi gửi; chờ rồi bấm 🔄 Kiểm tra lại.');
       return {co:false};
     }
-    const sha = ds[0].sha;
-    audio.src = `https://raw.githubusercontent.com/${GH_REPO}/${sha}/${AM_DIR}${file}`;
+    if(r.status === 403){
+      ghHienTT(tt,'warn','⚠️ Trang chưa cho xem file này. Chờ ~1–2 phút rồi bấm lại.');
+      return {co:null};
+    }
+    audio.src = duong.href;
     audio.hidden = false;
     chua.hidden = true;
     const the = hop.closest('article');
     if(the){
       the.classList.add('done');
+      the.dataset.co = '1';
       const nh = the.querySelector('[data-badge]');
       if(nh){ nh.className = 'badge chac'; nh.textContent = '✅ đã có'; }
     }
-    const khi = new Date(ds[0].commit.author.date);
-    const gio = isNaN(khi) ? ds[0].commit.author.date
-      : khi.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
-    ghHienTT(tt,'ok',`✅ Đã lên trang · ${gio} · <code>${sha.slice(0,7)}</code>`);
+    ghHienTT(tt,'ok','✅ Đã có tiếng trên trang.');
     return {co:true};
   }catch(e){
     ghHienTT(tt,'warn',`⚠️ Không kiểm tra được: ${e}`);
@@ -417,7 +415,24 @@ document.querySelectorAll('[data-gui]').forEach(hop => {
       });
     }
   }
-  kiemTraMot(hop);
+  datNgheSan(hop);
 });
+
+// Cảnh đã có file thì trỏ thẳng vào file trong repo — không gọi GitHub API.
+// Trước đây mỗi thẻ gọi API một lần, mở trang là 64 lượt, vượt hạn mức 60/giờ
+// nên GitHub trả 403 và mọi cảnh hiện như chưa có tiếng.
+function datNgheSan(hop){
+  const the = hop.closest('article');
+  if(!the || the.dataset.co !== '1') return;
+  const oNghe = the.querySelector('[data-nghe]');
+  if(!oNghe) return;
+  const audio = oNghe.querySelector('[data-audio]');
+  const chua = oNghe.querySelector('[data-chua]');
+  if(audio){
+    audio.src = new URL('../' + AM_DIR + hop.dataset.file, location.href).href;
+    audio.hidden = false;
+  }
+  if(chua) chua.hidden = true;
+}
 
 ghKhoiPhuc();
