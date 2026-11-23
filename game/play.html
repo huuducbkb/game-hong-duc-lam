@@ -882,7 +882,8 @@ function thucDayTieng() {
   // vẫn "running" thì không có gì chữa: người chơi bật phông cảnh, thấy im, và
   // mọi cú chạm sau đều không làm nó sống lại.
   const canDungLai = () => {
-    if (!canhBat || canhDangChay || typeof doiCanhTieng !== "function") return;
+    // Phát xong 10 giây là hết; đừng dựng lại chỉ vì người chơi chạm màn hình.
+    if (!canhBat || canhDaHet || canhDangChay || typeof doiCanhTieng !== "function") return;
     const im = document.getElementById("sceneImg");
     if (im && im.getAttribute("src")) { canhLoai = ""; doiCanhTieng(im.getAttribute("src")); }
   };
@@ -983,6 +984,10 @@ let canhVol = 1;              // hệ số nhân, người chơi tự chỉnh
 let canhBat = false;          // mặc định tắt: người chơi phải tự bật
 let canhDangChay = null;      // lớp nền đang phát
 let canhLoai = "";            // nhóm của cảnh hiện tại
+// Cảnh này đã phát xong 10 giây rồi. Mỗi cú chạm gọi thucDayTieng(); nếu không
+// có cờ này thì nó thấy canhDangChay = null, tưởng nền chết và phát lại từ đầu —
+// người chơi bấm mở bảng Hệ Thống là nghe lại tiếng cảnh lần nữa.
+let canhDaHet = false;
 
 function napCanh() {
   try { canhBat = localStorage.getItem(KHOA_CANH) === "1"; } catch (e) { canhBat = false; }
@@ -1674,7 +1679,8 @@ function phatFileThat(ma, g, muc) {
     if (!buf) return;
     const nguon = ctxTieng.createBufferSource();
     nguon.buffer = buf;
-    nguon.loop = true;
+    // Không lặp. Cảnh phát một lần rồi thôi; file ngắn hơn 10 giây thì
+    // hết tiếng sớm và phần còn lại của cảnh im.
     nguon.connect(g);
     nguon.start();
     lop.nguonFile = nguon;
@@ -1684,12 +1690,12 @@ function phatFileThat(ma, g, muc) {
     .then(r => (r.ok ? r.arrayBuffer() : Promise.reject(new Error("HTTP " + r.status))))
     .then(ab => new Promise((res, rej) => ctxTieng.decodeAudioData(ab, res, rej)))
     .then(buf => {
-      demAmThat[khoa] = lamVongKhit(buf);
+      demAmThat[khoa] = catLangHaiDau(buf);
       // Cảnh có thể đã đổi trong lúc tải; chỉ phát nếu lớp này còn là lớp đang chạy.
       if (canhDangChay === lop) noi();
     })
     .catch(() => {
-      // File hỏng hoặc mất mạng: rơi về tiếng tổng hợp thay vì im. Xoá khỏi danh
+      // File hỏng hoặc mất mạng: cảnh im, không chèn tiếng khác. Xoá khỏi danh
       // sách để lần sau không thử lại file hỏng đó.
       if (canhDangChay === lop) {
         delete amThat[ma];
@@ -1702,10 +1708,10 @@ function phatFileThat(ma, g, muc) {
 }
 
 
-// Cắt lặng ở hai đầu rồi nối vòng bằng crossfade.
-// File người dùng tải lên thường có lặng ở đầu và kết thúc giữa tiếng; phát
-// thẳng với loop=true thì mỗi vòng nghe một khoảng câm rồi tiếng cụt.
-function lamVongKhit(buf) {
+// Cắt lặng ở hai đầu file. File người dùng tải lên thường có 1–2 giây lặng ở
+// đầu; để nguyên thì sang cảnh xong phải đợi một lúc mới nghe thấy tiếng.
+// Không nối vòng: tiếng cảnh phát một lần rồi thôi.
+function catLangHaiDau(buf) {
   const sr = buf.sampleRate;
   const n = buf.length;
   if (!n || n < sr * 0.4) return buf;
@@ -1732,19 +1738,9 @@ function lamVongKhit(buf) {
   const dai = cuoi - dau;
   if (dai < sr * 0.3) return buf;
 
-  // Crossfade: phần đuôi chồng lên phần đầu để chỗ nối không bị giật.
-  const F = Math.min(Math.round(sr * 0.08), Math.floor(dai / 4));
-  const ra = ctxTieng.createBuffer(buf.numberOfChannels, dai - F, sr);
+  const ra = ctxTieng.createBuffer(buf.numberOfChannels, dai, sr);
   for (let ch = 0; ch < buf.numberOfChannels; ch++) {
-    const vao = buf.getChannelData(ch);
-    const raCh = ra.getChannelData(ch);
-    const goc = dai - F;
-    for (let i = 0; i < goc; i++) {
-      const x = i / F;
-      raCh[i] = i < F
-        ? vao[dau + i] * x + vao[dau + goc + i] * (1 - x)
-        : vao[dau + i];
-    }
+    ra.getChannelData(ch).set(buf.getChannelData(ch).subarray(dau, cuoi));
   }
   return ra;
 }
@@ -1823,12 +1819,13 @@ function doiCanhTieng(ten) {
     return;
   }
   canhLoai = nhom;
+  canhDaHet = false;
   // Chỉ phát file tiếng riêng của đúng cảnh này. Cảnh chưa có file thì IM, không
   // lấy file nhóm (cho/tran/nui/san) và không rơi về nhạc tổng hợp: người dùng
   // yêu cầu cảnh nào chưa có tiếng thì để nguyên, không chèn âm thanh khác.
   const maCanh = maCanhTuAnh(ten);
   const coFileCanh = !!(maCanh && amThat && amThat[maCanh]);
-  if (!coFileCanh) { canhLoai = ""; return; }
+  if (!coFileCanh) { canhLoai = ""; canhDaHet = true; return; }
   // Bản ghi thật đã được bot cân về -18 LUFS, nên trim 1.0 là đủ.
   const muc = 1.0;
   const lop = taoCanh(nhom, muc, maCanh);
@@ -1841,7 +1838,7 @@ function doiCanhTieng(ten) {
   lop.g.gain.setValueAtTime(dich, t + GIAY_CANH - GIAY_TAT);
   lop.g.gain.exponentialRampToValueAtTime(0.0001, t + GIAY_CANH);
   lop.henTat = setTimeout(() => {
-    if (canhDangChay === lop) { dungCanh(); canhLoai = ""; }
+    if (canhDangChay === lop) { dungCanh(); canhLoai = ""; canhDaHet = true; }
   }, (GIAY_CANH + 0.1) * 1000);
   canhDangChay = lop;
 }
@@ -1851,6 +1848,7 @@ function batTatCanh() {
   try { localStorage.setItem(KHOA_CANH, canhBat ? "1" : "0"); } catch (e) {}
   capNhatNutCanh();
   if (canhBat) {
+    canhDaHet = false;      // người chơi chủ động bật lại thì được nghe lại
     moKhoaTieng();
     const img = document.getElementById("sceneImg");
     canhLoai = "";
