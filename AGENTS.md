@@ -656,17 +656,33 @@ Cảnh thưa (núi, miếu, tĩnh) dùng 48 BPM × 2 ô; cảnh vừa (vườn, 
 cảnh đông (chợ, sân, làng) 96 × 4. `duoi(nhịp, ô)` trong `game/du_lieu_am.py`
 có `assert` chặn mọi tổ hợp không ra đúng 10,00 giây — đừng bỏ assert đó.
 
-### File tiếng tải lên phải được nối vòng, không phát thẳng
+### Tiếng cảnh phát MỘT lần 10 giây rồi thôi — không lặp
 
-`cho.mp3` có **0,3 giây lặng câm ở đầu** và kết thúc giữa tiếng. Code cũ đặt
-`nguon.loop = true` nên mỗi vòng nghe một khoảng câm rồi tiếng cụt. Đã sửa bằng
-`lamVongKhit()` trong `play.html` (cả hai bản): cắt lặng hai đầu, rồi crossfade
-80ms chồng đuôi lên đầu.
+Người dùng chốt: "âm thanh ở các cảnh chạy 10s là thôi không lặp lại". Ba đường
+làm tiếng quay lại, cả ba đều phải bịt:
 
-Đo được: bước nhảy tại chỗ nối từ **giật** thành **0,6 lần mức trung bình**
-(mượt hơn cả tiếng bình thường trong file); chênh âm lượng hai đầu 2,2 dB; file
-6,06s → 5,7s. Không có hàm này thì **mọi file anh tải lên đều bị lỗi này**, vì
-công cụ sinh âm thanh luôn thêm lặng ở đầu.
+1. **`nguon.loop`** — không được đặt `true`. File ngắn hơn 10 giây (có hai file:
+   `cong_dong_quyen` ~4s, `san_tap_cai_lai` ~5s) sẽ lặp 2–3 lần trong một cảnh.
+   Phát một lần; hết file thì im, phần còn lại của cảnh không có tiếng.
+
+2. **Nối vòng bằng crossfade** — hàm cũ `lamVongKhit` cắt đuôi rồi chồng lên đầu.
+   Chỉ có nghĩa khi lặp; bỏ lặp thì nó **cắt mất đuôi tiếng**. Giờ là
+   `catLangHaiDau`: vẫn cắt lặng hai đầu (công cụ sinh âm thanh luôn thêm 0,3–2
+   giây lặng ở đầu, để nguyên thì phải đợi mới nghe thấy), nhưng không nối vòng.
+
+3. **`thucDayTieng` dựng lại nền** — đây là lỗi người dùng nghe thấy thật, và nó
+   không nằm ở chỗ phát file. Hàm này chạy ở **mọi cú chạm** và mọi lần tab hiện
+   lại. Sau 10 giây tiếng đã tắt nên `canhDangChay === null`; hàm tưởng nền chết
+   và dựng lại từ đầu. Người chơi bấm mở bảng Hệ Thống sau giây thứ 10 là nghe
+   lại tiếng cảnh — lặp vô hạn theo số lần chạm.
+
+   Cờ `canhDaHet` chặn việc này: đặt khi hết 10 giây hoặc khi cảnh không có file;
+   xoá khi sang cảnh mới hoặc khi người chơi chủ động bật lại tiếng.
+
+**Phép thử đúng** phải đo biên độ theo thời gian, không chỉ đếm số nguồn: đếm
+"đợt tiếng" (RMS > 0,001 liên tục ≥ 0,3s). Đúng là **1 đợt** và đợt đó **không
+kéo quá 10,6 giây**. Đếm nguồn không bắt được lỗi số 1 nếu file dài hơn 10s, và
+không bắt được lỗi số 3 nếu không chạm màn hình sau giây thứ 10.
 
 ### Sửa mã sinh trang thì phải sửa ở NGUỒN, không chỉ file sinh ra
 
@@ -800,10 +816,12 @@ Bỏ tiếng thì cú chạm đầu sau khi mở lại trang mất âm — ngư�
 cuối hàm; nếu `hienThi` ném lỗi thì cờ kẹt và **mọi lần bấm sau bị chặn từ đầu** — không kêu,
 không chuyển trang. Đã bọc `try/finally` cả ba.
 
-### Tiếng theo cảnh: nhiễu nâu lặp vòng, mặc định tắt
+### Tiếng theo cảnh: chỉ file thật, mặc định tắt
 
-68 ảnh chia chín nhóm trong `nhomCanh()`; mỗi nhóm một lớp nhiễu nâu lặp (buffer 2 giây,
-`loop = true`) lọc bandpass, thêm lớp "thưa" hẹn giờ ngẫu nhiên (chuông, dế, gió).
+Không còn tiếng tổng hợp. Cảnh nào có file trong `docs/assets/am/` thì phát file
+đó một lần 10 giây; cảnh nào chưa có thì **im hẳn** — không lấy file của cảnh
+khác, không chèn nhạc dựng bằng Web Audio. `nhomCanh()` vẫn còn nhưng chỉ dùng để
+biết cảnh có đổi không, không dùng để chọn file.
 
 Bốn điều dễ làm sai:
 
