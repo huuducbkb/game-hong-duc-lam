@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vì sao báo đã lên trang mà vẫn ra tiếng cũ</title>
+<style>
+ :root{--n:#1b2430;--m:#5b6b7c;--v:#e8eef5;--d:#b3261e;--g:#1e6b3a;--o:#8a5a00}
+ *{box-sizing:border-box}
+ body{margin:0;padding:18px 16px 48px;font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--n);background:#fff;max-width:760px;margin:0 auto}
+ h1{font-size:24px;line-height:1.3;margin:6px 0 4px}
+ h2{font-size:20px;margin:32px 0 8px;padding-top:16px;border-top:1px solid var(--v)}
+ p{margin:10px 0}
+ .dan{color:var(--m);font-size:15px;margin-bottom:22px}
+ .hop{background:#f6f9fc;border-left:4px solid var(--d);padding:12px 14px;border-radius:6px;margin:16px 0}
+ .hop.g{border-color:var(--g)}
+ .hop b{display:block;margin-bottom:4px}
+ code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:14.5px}
+ pre{background:#1b2430;color:#e6edf3;padding:12px;border-radius:8px;overflow-x:auto;font-size:13.5px;line-height:1.5}
+ .so{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;background:var(--n);color:#fff;border-radius:50%;font-size:14px;font-weight:600;margin-right:8px;vertical-align:2px}
+ table{border-collapse:collapse;width:100%;font-size:15px;margin:14px 0}
+ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--v);vertical-align:top}
+ th{color:var(--m);font-weight:600;font-size:13.5px;text-transform:uppercase;letter-spacing:.03em}
+ .ok{color:var(--g);font-weight:600}
+ .x{color:var(--d);font-weight:600}
+ img{max-width:100%;border:1px solid var(--v);border-radius:8px;margin:10px 0}
+ .cu{color:var(--m);font-size:14px}
+</style>
+
+<h1>Vì sao báo “đã lên trang” mà vẫn ra tiếng cũ</h1>
+<p class="dan">Tìm ra 5 lỗi thật. Đã sửa, đã đẩy lên, đã kiểm trên trang live bằng trình duyệt iPad.</p>
+
+<div class="hop g"><b>Trả lời ngắn</b>
+Tiếng anh gửi <b>không hề bị hỏng</b>. Em đã băm nội dung file trên trang live: khớp đúng từng byte với file trong máy. Cái sai là <b>trang báo xong khi chưa có gì mới</b> — nên anh chờ, rồi nghe lại đúng bản cũ.</div>
+
+<h2><span class="so">1</span>Nút “Kiểm tra” nói dối</h2>
+<p>Nút này chỉ hỏi GitHub một câu: <i>“có file cùng tên không?”</i>. File cũ vẫn nằm đó, nên câu trả lời luôn là có — dù bản anh vừa gửi chưa hề lên trang.</p>
+<p>Em chứng minh bằng cách <b>không gửi gì cả</b>, chỉ bấm Kiểm tra:</p>
+<pre>Trước khi sửa:  ✅ Đã có tiếng trên trang.
+Sau khi sửa:    Đang phát bản 467e0973 · 118 KB.</pre>
+<p>Giờ nó tải thật file, băm nội dung (SHA-256), rồi so với bản chốt <i>trước lúc gửi</i>. Chỉ báo “bản mới đã lên” khi mã băm <b>đổi thật</b>.</p>
+
+<h2><span class="so">2</span>Lần gửi 23:00 là commit rỗng</h2>
+<p>File lần đó <b>y hệt</b> lần gửi trước (cùng một mã băm). GitHub nhận, nhưng không tạo thay đổi nào. Workflow lọc theo đường dẫn nên <b>không chạy</b>. Anh chờ, và tiếng vẫn là bản cũ.</p>
+<pre>b25715b  parents=ecfa5fc   ← 0 file thay đổi
+tree ecfa5fc = 13c09e86…   ← giống hệt
+tree b25715b = 13c09e86…</pre>
+<p>Giờ trang so mã băm với bản trên GitHub trước khi gửi, và báo thẳng: <i>“File này y hệt bản đã gửi trước đó — chọn bản thu mới.”</i></p>
+
+<h2><span class="so">3</span>Bot xoá mất file khi xử lý lỗi</h2>
+<p>Bước dọn hộp nhận xoá <b>mọi</b> file, kể cả file bot vừa xử lý lỗi. Tiếng không lên trang mà file cũng biến mất — không còn gì để chạy lại.</p>
+<p>Giờ chỉ xoá file đã xử lý <b>xong</b>. File lỗi được giữ lại, kèm cảnh báo trong log.</p>
+
+<h2><span class="so">4</span>Chạy lại workflow sau khi deploy hỏng — không có tác dụng</h2>
+<p>Deploy GitHub Pages hay hỏng tạm thời. Nhưng khi bấm chạy lại, hộp nhận đã rỗng nên điều kiện deploy sai → deploy bị bỏ qua. Giờ chạy tay luôn deploy lại bản đã commit.</p>
+
+<h2><span class="so">5</span>Game giữ tiếng cũ trong bộ nhớ</h2>
+<p>Hai chỗ, cả hai đều làm tiếng cũ sống dai:</p>
+<table>
+<tr><th>Chỗ</th><th>Trước</th><th>Sau</th></tr>
+<tr><td>Đệm tiếng đã giải mã</td><td>khoá theo mã cảnh → bản cũ giữ hết phiên chơi</td><td>khoá gồm mã băm nội dung</td></tr>
+<tr><td>Đọc danh sách tiếng</td><td>chỉ đọc 1 lần, không bao giờ đọc lại</td><td>quay lại trang là đọc lại, bỏ đệm cũ</td></tr>
+</table>
+<p>Lỗi thứ hai giải thích đúng cảnh của anh: Safari trên điện thoại khôi phục trang từ bộ nhớ đệm, trang sống qua lúc bot đẩy tiếng mới, nên cả phiên vẫn phát bản cũ.</p>
+
+<h2>Kiểm trên trang live</h2>
+<p>Sau khi đẩy, em mở trang live bằng trình duyệt giả lập iPad và bấm Kiểm tra:</p>
+<img src="anh-kiem-tra-live.png" alt="Ảnh chụp trang xưởng âm trên bản live">
+<table>
+<tr><th>Hạng mục</th><th>Kết quả</th></tr>
+<tr><td>Mã băm file trên trang live</td><td class="ok">467e0973 — khớp file thật</td></tr>
+<tr><td>Manifest (danh-sách.json)</td><td class="ok">44/44 mã băm đúng</td></tr>
+<tr><td>Trang xưởng bản mới</td><td class="ok">đã lên, không lỗi JS</td></tr>
+<tr><td>Game đọc danh sách</td><td class="ok">44 cảnh, khoá đệm có phiên bản</td></tr>
+<tr><td>Bấm Kiểm tra khi không gửi gì</td><td class="ok">nói đúng bản đang phát, không báo “đã xong”</td></tr>
+</table>
+
+<h2>Còn một việc anh cần biết</h2>
+<div class="hop"><b>Hai cảnh đang dùng chung một file tiếng</b>
+<code>tan_xa_dot_pha</code> và <code>tan_xa_suyt_lo</code> có nội dung giống hệt nhau (cùng md5 <code>0a5eb8ed…</code>), gửi cách nhau 55 giây. Nhiều khả năng anh chọn nhầm cùng một file cho hai cảnh.
+<br><br>Em không tự tạo tiếng nên không sửa được — cần anh gửi lại một trong hai cảnh bằng bản thu khác.</div>
+
+<p class="cu">Cách dùng từ giờ: gửi tiếng, rồi bấm 🔄 Kiểm tra. Trang sẽ nói rõ <i>“Vẫn là bản cũ”</i> hay <i>“Bản mới đã lên trang (mã cũ → mã mới)”</i>. Nếu Safari còn giữ bản cũ, tải lại trang một lần là chắc chắn sạch.</p>
+</html>
