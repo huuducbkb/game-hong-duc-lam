@@ -716,6 +716,17 @@ làm tiếng quay lại, cả ba đều phải bịt:
 kéo quá 10,6 giây**. Đếm nguồn không bắt được lỗi số 1 nếu file dài hơn 10s, và
 không bắt được lỗi số 3 nếu không chạm màn hình sau giây thứ 10.
 
+### Trạng thái "đã có tiếng" phải sinh từ dữ liệu, không viết cứng
+
+`da_co()` trong `game/tao_xuong_am.py` đọc `danh-sach.json` và biết chính xác cảnh
+nào có file. Nhưng badge trong thẻ từng bị viết cứng `<span class="badge thieu">⬜
+chưa có</span>`, nên **40 cảnh có tiếng vẫn hiện như chưa có** — người dùng chỉ thấy
+đúng sau khi bấm "Kiểm tra lại" từng thẻ. Nhãn và class `done` giờ lấy từ `da_co()`
+lúc dựng trang.
+
+Bài học chung: nếu trang đã biết một sự thật lúc dựng, đừng bắt người dùng bấm nút
+để hỏi lại sự thật đó.
+
 ### Sửa mã sinh trang thì phải sửa ở NGUỒN, không chỉ file sinh ra
 
 `docs/xuong-am/index.html` là **file sinh ra** từ `game/tao_xuong_am.py` +
