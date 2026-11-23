@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vì sao cảnh đó thiếu thoại — và ba giọng đã chốt</title>
+<style>
+ :root{--n:#1b2430;--m:#5b6b7c;--v:#e8eef5;--d:#b3261e;--g:#1e6b3a}
+ *{box-sizing:border-box}
+ body{margin:0 auto;padding:18px 16px 48px;max-width:760px;font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--n);background:#fff}
+ h1{font-size:24px;line-height:1.3;margin:6px 0 4px}
+ h2{font-size:20px;margin:32px 0 8px;padding-top:16px;border-top:1px solid var(--v)}
+ p{margin:10px 0}
+ .dan{color:var(--m);font-size:15px;margin-bottom:22px}
+ .hop{background:#f6f9fc;border-left:4px solid var(--d);padding:12px 14px;border-radius:6px;margin:16px 0}
+ .hop.g{border-color:var(--g)}
+ .hop b{display:block;margin-bottom:4px}
+ code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:14.5px}
+ pre{background:#1b2430;color:#e6edf3;padding:12px;border-radius:8px;overflow-x:auto;font-size:13.5px;line-height:1.55;white-space:pre-wrap}
+ table{border-collapse:collapse;width:100%;font-size:15px;margin:14px 0}
+ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--v);vertical-align:top}
+ th{color:var(--m);font-weight:600;font-size:13.5px;text-transform:uppercase;letter-spacing:.03em}
+ .ok{color:var(--g);font-weight:600}
+ .x{color:var(--d);font-weight:600}
+ img{max-width:100%;border:1px solid var(--v);border-radius:8px;margin:10px 0}
+ .cu{color:var(--m);font-size:14px}
+ .so{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;background:var(--n);color:#fff;border-radius:50%;font-size:14px;font-weight:600;margin-right:8px;vertical-align:2px}
+</style>
+
+<h1>Cảnh “Vườn thuốc — im lặng” thiếu thoại, và ba giọng đã chốt</h1>
+<p class="dan">Anh chỉ đúng. Em đã tìm ra nguyên nhân và sửa cả 3 giọng.</p>
+
+<div class="hop"><b>Lỗi nằm ở một quy tắc, không phải ở cảnh đó</b>
+File <code>game/GIONG_NPC.md</code> có quy tắc: <i>“Chỉ lấy lời NPC, không lấy lời nhân vật chính.”</i>
+<p style="margin:8px 0 0">Nghe hợp lý nhưng sai. Cảnh Vườn thuốc — im lặng chỉ có nhân vật chính nói — nên quy tắc đó xoá sạch thoại. Kết quả: anh nghe im lặng hoàn toàn ở đúng chỗ nhân vật đang nói.</p></div>
+
+<h2><span class="so">1</span>Cảnh đó giờ đã có lời</h2>
+<p>Truyện: <code>“Đa tạ tiền bối,” — ta nói</code></p>
+<p>Prompt mới, đúng giọng anh chốt — <b>nam 16 tuổi, trầm ấm</b>:</p>
+<pre>… Then a boy's voice, sixteen, low and warm, pleasant,
+speaks quietly in Mandarin: 「多谢前辈。」 …</pre>
+<img src="the-vuon-thuoc-im.png" alt="Thẻ cảnh Vườn thuốc — im lặng trên trang xưởng">
+
+<h2><span class="so">2</span>Em quét cả 64 cảnh để tìm chỗ tương tự</h2>
+<p>Em tách từng câu thoại trong truyện, xem ai nói, rồi so với prompt:</p>
+<table>
+<tr><th>Kiểm</th><th>Kết quả</th></tr>
+<tr><td>Cảnh có lời nói nhưng prompt không có thoại</td><td class="ok">0 cảnh (sau khi sửa)</td></tr>
+<tr><td>Cảnh <i>chỉ</i> có nhân vật chính nói</td><td class="ok">đúng 1 cảnh — Vườn thuốc, đã sửa</td></tr>
+<tr><td>Cảnh chỉ có giọng Hệ thống</td><td class="ok">6 cảnh, để nguyên không thoại</td></tr>
+<tr><td>Prompt quá 450 ký tự</td><td class="ok">0</td></tr>
+</table>
+<p>Em cũng tìm ra một cảnh nữa cùng lỗi: <code>tuyet_co_do_du</code>. Truyện có lời Tuyết Cơ “Một phần dương khí” nhưng prompt để trống. Đã thêm <code>「一部分阳气。」</code>.</p>
+
+<h2><span class="so">3</span>Ba giọng đã chốt</h2>
+<table>
+<tr><th>Vai</th><th>Trước</th><th>Sau</th><th>Cảnh</th></tr>
+<tr><td>Nhân vật chính</td><td class="x">không có</td><td class="ok">nam 16, trầm ấm, dễ chịu</td><td>1</td></tr>
+<tr><td>Hàn Lập</td><td class="x">~20, “low and even”</td><td class="ok">18, lạnh lùng</td><td>7</td></tr>
+<tr><td>Kiếm Linh</td><td class="x">~20, “young man”</td><td class="ok">30, trầm trững trạc</td><td>10</td></tr>
+</table>
+<p>Cách viết em dùng trong prompt, giữ y nguyên ở mọi cảnh để máy không đổi người:</p>
+<pre>Nhân vật chính:  A boy's voice, sixteen, low and warm, pleasant
+Hàn Lập:         A young man's voice, eighteen, low and cold
+Kiếm Linh:       A man's voice, thirty, deep and grave, flat and icy</pre>
+<img src="the-kiem-linh.png" alt="Thẻ cảnh Kiếm Linh trên trang xưởng">
+
+<h2>Kiểm trên bản live</h2>
+<table>
+<tr><th>Hạng mục</th><th>Kết quả</th></tr>
+<tr><td>Giọng nhân vật chính trong trang live</td><td class="ok">có</td></tr>
+<tr><td>“voice, thirty” (Kiếm Linh)</td><td class="ok">22 chỗ</td></tr>
+<tr><td>“eighteen, low and c…” (Hàn Lập)</td><td class="ok">14 chỗ</td></tr>
+<tr><td>Lỗi JavaScript</td><td class="ok">không</td></tr>
+</table>
+
+<h2>Anh cần làm gì</h2>
+<div class="hop g"><b>Tạo lại tiếng cho 2 cảnh</b>
+<p style="margin:6px 0 0">Prompt đã đúng, nhưng file tiếng cũ vẫn là bản không có thoại. Anh vào trang Xưởng, tìm hai cảnh này, bấm copy prompt rồi tạo lại tiếng:</p>
+<p style="margin:8px 0 0"><code>vuon_thuoc_im</code> — Vườn thuốc, im lặng<br><code>tuyet_co_do_du</code> — Tuyết Cơ, dương khí</p>
+<p style="margin:8px 0 0">7 cảnh Hàn Lập và 10 cảnh Kiếm Linh cũng nên tạo lại, vì giọng đã đổi tuổi.</p></div>
+
+<p class="cu">Từ giờ quy tắc đã ghi rõ trong <code>GIONG_NPC.md</code>: câu của NPC thì lấy lời NPC, câu của nhân vật chính thì lấy lời nhân vật chính nhưng đọc bằng giọng nam 16 trầm ấm — không bỏ.</p>
+</html>
