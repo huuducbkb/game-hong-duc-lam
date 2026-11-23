@@ -117,19 +117,14 @@ def khoi_prompt(n):
            f'{n_ky}/450 ký tự</span>')
     co_thoai = n["nhom"] == "gap"
     if co_thoai:
-        ghi_chu = ('Cảnh có MỘT câu thoại, đúng câu đầu tiên trong cốt truyện, viết bằng '
-                   'tiếng Hoa trong ngoặc 「」. Giọng đã ghi rõ tuổi và chất giọng để máy '
-                   'không tự đoán. Không lồng cả đoạn hội thoại — người chơi đọc chữ trên '
-                   'màn hình, tiếng chỉ để nghe ra ai nói. Prompt dưới 450 ký tự.')
+        ghi_chu = 'Có một câu thoại tiếng Hoa trong ngoặc 「」 — câu đầu tiên của cảnh.'
     else:
-        ghi_chu = ('Prompt tả âm thanh, không kể chuyện: mở bằng câu khai báo có chất âm, '
-                   'rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội, '
-                   'phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. '
-                   'Prompt dưới 450 ký tự.')
+        ghi_chu = ''
+    duoi = f'<p class="mota" style="margin:6px 0 0">{ghi_chu}</p>' if ghi_chu else ''
     return f"""<label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-{ma}">{esc(p)}</div>
 <div class="row">{nut}{dem}</div>
-<p class="mota" style="margin:6px 0 0">{ghi_chu}</p>"""
+{duoi}"""
 
 
 def the_canh(n, i):

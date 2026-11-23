@@ -137,6 +137,48 @@ cloth shifting. No music.
 <a class="nut" href="../xuong-am/index.html">Mở xưởng âm thanh →</a>
 <a class="nut" href="../game/play.html">Vào game nghe thử →</a>
 
+<h2>Prompt viết lại: bỏ câu khuôn, theo kiểu Gemini</h2>
+<p>Anh nói đúng — ghi chú dưới mỗi ô prompt trong xưởng đang đóng đinh một bộ yêu cầu
+cũ, đọc đi đọc lại 64 lần. Em đã bỏ hẳn. Và prompt cũng viết lại, vì bộ yêu cầu đó
+dẫn tới một khuôn xấu.</p>
+
+<p><b>Bệnh cũ:</b> 42/64 prompt kết thúc bằng đúng một câu y hệt nhau —
+<code>No music, no speech, seamless loop.</code> Ba lỗi trong một câu:</p>
+
+<table>
+<tr><th>Lỗi</th><th>Vì sao sai</th></tr>
+<tr><td><code>seamless loop</code></td><td>Game phát mỗi file <b>một lần</b> rồi thôi,
+  không lặp. Ghi vậy là bảo máy làm bản nền lặp — ngược hẳn cách game dùng.</td></tr>
+<tr><td><code>no speech</code></td><td>Trong prompt không hề có ai nói. Phủ định một
+  cái không tồn tại thì máy không biết phải làm gì với nó.</td></tr>
+<tr><td>Lặp 42 lần</td><td>Câu nào lặp nhiều nhất thì máy coi là quan trọng nhất.
+  Ba chữ vô nghĩa thành chỉ dẫn chính.</td></tr>
+</table>
+
+<p><b>Cách viết mới</b> — đúng kiểu bản Gemini mà anh khen:</p>
+<ol>
+<li>Mở bằng một câu khai báo đầy đủ: dài bao lâu, chất âm gì, không khí gì, ở đâu.</li>
+<li>Tả tiếng trong câu liền mạch. Khoảng cách gắn vào câu
+  (<code>Close at the ear, … A few paces off, … Far behind, …</code>), không chia
+  thành danh sách có dấu hai chấm như bản cũ.</li>
+<li>Chốt bằng một thẻ chất âm riêng của cảnh đó, kiểu
+  <code>Warm, tranquil, intimate walled-garden field recording.</code></li>
+</ol>
+
+<p>Ví dụ, cảnh vườn thuốc — bản cũ mở bằng ba lần phủ định, bản mới mở bằng chất âm:</p>
+
+<img src="prompt-moi-the.png" alt="Thẻ cảnh chợ với prompt mới">
+<p class="phu" style="font-size:12.5px">Thẻ cảnh chợ sớm. Prompt mở bằng chất âm, tả
+tiếng theo câu chảy, chốt bằng thẻ chất âm. Không còn ghi chú cứng bên dưới.</p>
+
+<img src="prompt-moi-thoai.png" alt="Thẻ cảnh có thoại">
+<p class="phu" style="font-size:12.5px">Cảnh có thoại: vẫn đúng một câu tiếng Hoa
+trong ngoặc 「」, giữ nguyên 21/21 câu — em đã so từng câu với bản cũ.</p>
+
+<p><b>Đo lại:</b> 64/64 prompt dưới 450 ký tự (dài nhất 420, trước là 419 nhưng trung
+bình 315 → nay 344 vì tả kỹ hơn). Câu khuôn còn 0. Ghi chú cứng còn 0. Bố cục không
+tràn ngang trên cả iPad và iPhone, 64 khối truyện vẫn đóng mặc định.</p>
+
 <h2>Xưởng: đọc truyện trước khi làm tiếng</h2>
 <p>Trước đây mỗi thẻ có hai bộ từ khoá tiếng Anh — em đã bỏ. Giờ chỗ đó là
 <b>đoạn truyện thật của cảnh đó</b>, lấy thẳng từ <code>game/chapters/chuong1.json</code>,

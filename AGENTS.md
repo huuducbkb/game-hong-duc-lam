@@ -621,40 +621,22 @@ Lưu ý harness: iframe **phải cùng origin** với trang cần đo, nếu kh�
 (ví dụ để tạm ở gốc dự án rồi mở qua `game_server.py`), dùng đường dẫn tương đối
 (`/game`). Nhớ xoá file harness sau khi đo.
 
-### Prompt tiếng cảnh: phải là ÂM THANH GAME, không phải bản ghi thực địa
+### (Đã bỏ) Quy tắc "âm thanh game có nhạc cụ"
 
-Prompt cũ mở đầu bằng "Field recording of…" và cấm nhạc/nhạc cụ. Kết quả: file
-nghe như radio hoặc như micro đặt giữa chợ thật — người chơi chê đúng. Âm thanh
-game là **thiết kế có lớp**: nhạc cụ (đàn tranh, sáo, trống, chiêng, đàn bầu),
-thang ngũ cung, nền đệm, sạch và cách điệu. Không phải bản ghi hiện trường.
+Từng có một giai đoạn prompt đòi mở bằng `Game ambience loop for …`, liệt kê nhạc cụ
+(đàn tranh, sáo, trống, chiêng), thang ngũ cung, và ghi rõ "NOT a field recording".
+**Toàn bộ giai đoạn đó đã bị bỏ.** Người dùng chốt: tiếng cảnh là tiếng không gian
+người chơi nghe thấy, không phải nhạc nền — nên prompt giờ tả âm thanh hiện trường
+(`field recording` là chữ ĐƯỢC dùng, trong thẻ chất âm ở cuối prompt).
 
-Quy tắc khi viết prompt trong `game/du_lieu_am.py`:
+`DUOI`, `CHUNG`, `duoi(nhịp, ô)` và mọi assert nhịp BPM **không còn trong mã**. Nếu
+thấy tài liệu nào còn nhắc, tài liệu đó cũ.
 
-- mở đầu bằng "Game ambience loop for …", nói rõ **NOT a field recording**
-- liệt kê từng **lớp** (layer): nhạc cụ nào, làm gì, nền đệm là gì
-- **10 giây**, không phải 30 — đúng bằng `GIAY_CANH` trong game
-- cấm: lời nói hiểu được, giọng đọc, giọng radio, lo-fi, hiss băng, static
-- `DUOI` giữ phần 10 giây/loop; `CHUNG` giữ quy ước chung. Đừng lặp lại
-  hai lần trong cùng một prompt.
+### (Đã bỏ) Quy tắc "phải nói rõ nhạc lặp lại"
 
-### Prompt phải nói RÕ nhạc lặp lại, không chỉ ghi chữ "loop"
-
-Ghi "seamless 10-second loop" là **chưa đủ**: công cụ sinh âm thanh vẫn trả về
-một bản 10 giây **có mở đầu và có kết thúc** — hết là hết, không lặp. Phải nói
-cả ba điều:
-
-1. **Nhịp và số ô nhịp** sao cho chia chẵn 10 giây. Một ô 4/4 dài `4*60/nhịp`
-   giây, nên số ô = `nhịp/24`. Chỉ nhịp bội của 24 mới chẵn:
-   48 BPM → 2 ô, 72 BPM → 3 ô, 96 BPM → 4 ô, 120 BPM → 5 ô.
-2. **"The musical pattern must repeat at least twice inside these ten seconds"**
-   — nói thẳng là nền chạy tiếp, không phải bản nhạc có đầu có cuối.
-3. **"No intro, no outro, no build-up, no final chord, no resolution"** — cấm
-   mọi dấu hiệu kết thúc. Câu chốt: "the first beat and the last beat are the
-   same point in the cycle".
-
-Cảnh thưa (núi, miếu, tĩnh) dùng 48 BPM × 2 ô; cảnh vừa (vườn, đêm) 72 × 3;
-cảnh đông (chợ, sân, làng) 96 × 4. `duoi(nhịp, ô)` trong `game/du_lieu_am.py`
-có `assert` chặn mọi tổ hợp không ra đúng 10,00 giây — đừng bỏ assert đó.
+Cũng bỏ theo. Game phát mỗi file **một lần** rồi thôi, không lặp — xem mục
+"Đừng lặp một câu khuôn ở cuối mọi prompt" bên dưới. Đừng viết `seamless loop`,
+đừng tính BPM, đừng bắt máy lặp mẫu.
 
 ### Độ dài cảnh KHÔNG còn cố định 10 giây
 
@@ -1010,8 +992,16 @@ cách tính từ tai người chơi. Đây là khác biệt cốt lõi: cùng l�
 giữa đám đông, chợ chiều thì ngồi một mình ở rìa — hai prompt khác hẳn, không dùng chung
 một file ambience.
 
-Luôn có `no music` — đây là tiếng không gian, không phải nhạc nền game. Không cần ghi
-`Vietnamese` nữa: đã bỏ hết lời nói nên không còn gì để công cụ đọc thành tiếng Anh.
+**Đừng lặp một câu khuôn ở cuối mọi prompt.** Bản cũ có `No music, no speech,
+seamless loop.` ở cuối cả 42 prompt nền. Ba lỗi trong một câu:
+
+- `seamless loop` **sai sự thật**: game phát mỗi file một lần rồi thôi
+  (`<audio>` không đặt `loop`). Ghi vậy là bảo máy làm bản nền lặp.
+- `no speech` **thừa**: prompt không hề có ai nói, phủ định một cái không tồn tại.
+- Câu khuôn lặp 42 lần thì máy coi đó là phần quan trọng nhất của prompt.
+
+Thay bằng một **thẻ chất âm** riêng cho từng cảnh ở cuối, kiểu
+`Warm, tranquil, intimate walled-garden field recording.` — ngắn, cụ thể, đổi theo cảnh.
 
 **Prompt tả âm thanh, không kể chuyện.** Máy tạo tiếng không tạo được hành động của
 nhân vật. "The player walks into a walled herb garden" không cho nó biết phải phát ra
@@ -1031,19 +1021,26 @@ chữ này thì máy tự đoán chất, mỗi lần ra một kiểu. Bản cũ 
 `"nothing comes back"` → `"open air, no reflection, each sound lands and dies"`.
 `"gives nothing back"` → `"the canopy deadens everything above"`.
 
-**Không lời nói — chỉ âm không lời.** Prompt KHÔNG được có ai nói câu nào, không
-tiếng đọc, không "shouting in Vietnamese", không "voices talking". Tiếng người chỉ
-được là âm không lời: thở, thở dốc, hừ, rên, huýt gió, la, khóc. Mọi prompt mở đầu
-bằng `no speech`. Lý do: lời nói biến cảnh thành phim truyền thanh, và kéo theo
-chuyện phải chọn đúng tiếng Việt cho từng câu — việc mà công cụ tạo tiếng làm sai.
-Chú ý: "shouted count" là đếm thành tiếng, tức là có chữ — vi phạm. Dùng "a sharp
-whistle" thay thế.
+**Không lời nói ở cảnh nền — chỉ âm không lời.** 42 cảnh nền KHÔNG có ai nói câu
+nào: không tiếng đọc, không "shouting in Vietnamese", không "voices talking". Tiếng
+người chỉ là âm không lời: thở, thở dốc, hừ, rên, huýt gió, la, khóc. Lý do: lời nói
+biến cảnh thành phim truyền thanh, và kéo theo chuyện phải chọn đúng tiếng Việt cho
+từng câu — việc công cụ tạo tiếng làm sai. Chú ý: "shouted count" là đếm thành tiếng,
+tức là có chữ — vi phạm; dùng "a sharp whistle".
 
-**Ba lớp khoảng cách, và tiếng phải đổi chất.** Mỗi prompt phải có (1) sát tai —
-tiếng của chính người chơi và thứ ngay cạnh, (2) vài mét, (3) xa. Nhưng gần/xa thôi
-chưa đủ: phải nói rõ tiếng ĐỔI thế nào khi đi qua không gian đó — tường đá dội lại,
-ngõ hẹp dội nhanh và cứng, phòng kín đè tiếng xuống quanh đầu, ngoài trời thì tiếng
-rơi xuống là mất. Đó mới là thứ làm tai nghe ra chiều sâu.
+Ngoại lệ: **21 cảnh nhóm `gap`** (gặp Hàn Lập, kiếm linh, Đỗ Tam, Tuyết Cơ…) cố ý có
+đúng MỘT câu tiếng Hoa trong ngoặc `「」`, lấy câu đầu tiên của đoạn truyện. Đó là
+quyết định của người dùng, không phải sót lại — đừng "dọn" chúng đi.
+
+**Ba lớp khoảng cách, gắn vào câu chứ không chia mục.** Prompt cần (1) sát tai,
+(2) vài mét, (3) xa — và nói rõ tiếng ĐỔI thế nào khi đi qua không gian đó: tường đá
+dội lại, ngõ hẹp dội nhanh và cứng, phòng kín đè tiếng xuống quanh đầu, ngoài trời
+tiếng rơi xuống là mất. Nhưng viết thành câu liền mạch (`Close at the ear, … A few
+paces off, … Far behind, …`), KHÔNG viết thành danh sách có dấu hai chấm như bản cũ
+— danh sách làm máy đọc từng mục rời rạc, ra tiếng chắp vá.
+
+Bài học từ bản Gemini mà người dùng khen: câu chảy, mỗi câu một tầng, kết bằng một
+thẻ chất âm. Đó là khuôn mẫu, không phải danh sách gạch đầu dòng.
 
 **Trần 450 ký tự.** Ô prompt của ElevenLabs Sound Effects chỉ nhận 450 ký tự —
 dài hơn thì trang báo lỗi và không cho tạo, không phải lỗi nội dung. Prompt cũ dài

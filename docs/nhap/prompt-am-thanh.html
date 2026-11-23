@@ -1,203 +1,317 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prompt tiếng từng cảnh</title>
+<title>Prompt tiếng — 64 cảnh</title>
 <style>
-:root{--bg:#111a2b;--card:#182337;--ink:#e8e6df;--muted:#93a0b8;--gold:#ffd98a;--jade:#6fe0c0;--line:#2b3b57}
+:root{--bg:#0b1220;--card:#111c2e;--line:#22314a;--chu:#dfe7f5;--mo:#93a5c0;
+  --xanh:#7fd4a0;--vang:#e8c07d}
 *{box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);
- color:var(--ink);margin:0 auto;padding:16px;max-width:760px;line-height:1.6;-webkit-text-size-adjust:100%}
-h1{font-size:21px;color:var(--gold);margin:8px 0 4px}
-.phu{font-size:13px;color:var(--muted);margin:0 0 18px}
-h2{font-size:16px;color:var(--jade);margin:28px 0 10px;display:flex;gap:8px;align-items:baseline;
- border-bottom:1px solid var(--line);padding-bottom:7px}
-.dem{font-size:11px;color:var(--muted);font-weight:400}
-h3{font-size:14px;margin:0 0 8px;color:var(--gold);display:flex;flex-wrap:wrap;gap:7px;align-items:center}
-code{background:#0a1220;padding:1px 6px;border-radius:4px;color:var(--jade);font-size:11px}
-.dem-ky{font-size:11px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
-.canh{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--jade);
- border-radius:11px;padding:12px;margin:11px 0}
-.prompt{background:#0a1220;border:1px solid var(--line);border-radius:8px;padding:10px;
- font-size:12.5px;line-height:1.6;color:#dfe7f5;white-space:pre-wrap;
- font-family:ui-monospace,Menlo,monospace;-webkit-user-select:text;user-select:text}
-p,li{font-size:14px;color:#cbd4e4}
-.hop{background:rgba(255,217,138,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
- padding:11px 13px;margin:14px 0;font-size:13.5px}
-.nut{display:block;text-align:center;background:#243a2c;border:1px solid #2f6b4f;color:#a9f0c4;
- text-decoration:none;padding:13px;border-radius:10px;font-weight:600;font-size:15px;margin:12px 0}
-table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
-td,th{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left}
-th{color:var(--jade);font-weight:600}
+body{margin:0;padding:18px 16px 60px;background:var(--bg);color:var(--chu);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  line-height:1.6;-webkit-text-size-adjust:100%}
+h1{font-size:22px;margin:0 0 4px}
+.phu{color:var(--mo);font-size:13.5px;margin:0 0 16px}
+.hop{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--xanh);
+  border-radius:10px;padding:13px 15px;margin:0 0 18px;font-size:14px}
+.the{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px;margin:0 0 10px}
+.the.gap{border-left:3px solid var(--vang)}
+h3{font-size:14.5px;margin:0 0 7px;font-weight:600;display:flex;flex-wrap:wrap;
+  align-items:baseline;gap:6px}
+h3 code{font-size:11.5px;color:var(--mo);font-weight:400;background:#0a1220;
+  padding:1px 6px;border-radius:5px}
+.dem{margin-left:auto;font-size:11.5px;color:var(--mo);font-weight:400}
+.p{margin:0;font-size:13.5px;color:#cfdaea}
+.nut{display:block;text-align:center;background:#243a2c;border:1px solid #2f6b4f;
+  color:#a9f0c4;text-decoration:none;padding:12px;border-radius:10px;font-weight:600;
+  font-size:15px;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+td,th{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left}
+th{color:var(--xanh);font-weight:600}
 </style></head><body>
-<h1>Prompt tiếng cho từng cảnh</h1>
-<p class="phu">43 cảnh &middot; dài nhất 419/450 ký tự &middot; trung bình 369</p>
+
+<h1>Prompt tiếng — 64 cảnh</h1>
+<p class="phu">Viết lại theo kiểu câu chảy &middot; dài nhất 420/450 &middot; trung bình 332</p>
 
 <div class="hop">
-<b>Viết lại toàn bộ.</b> Bản trước kể chuyện ("the player walks into..."), mở bằng ba
-lần phủ định, và chỉ 2/43 cảnh nói chất âm muốn thế nào. Bản này sửa cả bốn lỗi đó.
+<b>Đã bỏ lối cũ.</b> Không còn câu <code>No music, no speech, seamless loop.</code>
+lặp ở cuối mọi prompt — câu đó vừa rập khuôn vừa sai, vì game phát mỗi file một lần
+rồi thôi, không lặp. Cũng không còn ghi chú cứng ngắt dưới ô prompt trong xưởng.
+<br><br>
+Mỗi prompt giờ mở bằng một câu khai báo đầy đủ (dài bao lâu, chất âm gì, ở đâu), tả
+tiếng trong câu liền mạch, rồi chốt bằng một thẻ chất âm ngắn — đúng kiểu bản của
+Gemini mà anh khen.
 </div>
 
 <table>
-<tr><th>Lỗi cũ</th><th>Bản này</th></tr>
-<tr><td>Mở bằng "Ambience, no music, no speech"</td><td>Mở bằng "10-second warm, secluded..."</td></tr>
-<tr><td>43/43 cảnh có "the player"</td><td>0 cảnh</td></tr>
-<tr><td>2/43 cảnh có từ chỉ chất âm</td><td>43/43 cảnh</td></tr>
-<tr><td>"Shouted count" (đếm thành tiếng) vi phạm "no speech"</td><td>Đổi thành "a sharp whistle"</td></tr>
+<tr><th>Việc</th><th>Trước</th><th>Giờ</th></tr>
+<tr><td>Câu cuối rập khuôn</td><td>42/64</td><td>0</td></tr>
+<tr><td>Dài nhất</td><td>419</td><td>420</td></tr>
+<tr><td>Trung bình</td><td>315</td><td>332</td></tr>
+<tr><td>Ghi chú cứng trong xưởng</td><td>có</td><td>không</td></tr>
 </table>
 
-<p><b>Vì sao bỏ "the player".</b> Máy tạo tiếng không tạo được hành động. Nó không
-hiểu "the player walks into a garden" — nó chỉ tạo được tiếng. Nên prompt chỉ tả cái
-tai nghe thấy. Người chơi vẫn là gốc của mọi khoảng cách (<code>at the ear</code>,
-<code>a few metres off</code>, <code>far behind</code>), nhưng không bị kể là đang làm gì.</p>
+<a class="nut" href="../xuong-am/">→ Mở Xưởng âm thanh</a>
 
-<p><b>Ba lớp, và tiếng phải đổi chất.</b> Mỗi prompt có sát tai, vài mét, xa — và nói
-rõ tiếng đổi thế nào khi đi qua không gian đó:</p>
-<ul>
-<li>Tường đá: <i>"natural reverb off the wall"</i>, <i>"send it back a beat later"</i></li>
-<li>Ngõ hẹp: <i>"small sounds come back doubled"</i></li>
-<li>Phòng kín: <i>"press the hum down around the head"</i></li>
-<li>Ngoài trời: <i>"open air, no reflection, each sound lands and dies"</i></li>
-</ul>
-
-<div class="hop">
-<b>Phủ định trừu tượng đã bỏ hết.</b> Bản cũ có <i>"nothing comes back"</i>,
-<i>"nothing happens"</i>, <i>"gives nothing back"</i>. Máy không tạo được cái
-không-có-gì. Giờ tả cái đang có: <i>"no reflection, sound thins and dies"</i>.
+<div class="the gap">
+  <h3>Đỗ Tam — kẻ tranh giành <code>do_tam_mieu</code> <span class="dem">303/450</span></h3>
+  <p class="p">4-second scene inside a dry stone shrine at night. A heavy man&#x27;s voice, rough and hoarse, pitched low, speaks close and unhurried with a threat resting under it, in Mandarin: 「又来一只老鼠。」 Behind him, faint wind moves through a broken doorway. Short, dry stone reverb. Dark, close, intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Gặp Hàn Lập — hậu sơn <code>han_lap</code> <span class="dem">302/450</span></h3>
+  <p class="p">4-second scene on a quiet mountain path in late afternoon. A man&#x27;s voice, low and flat, unhurried, speaks without turning around, close to the ear, in Mandarin: 「跟了我这么久，不累吗？」 Behind him, light wind moves ridge grass, gravel shifts underfoot, cloth stirs. Cool, still, intimate mountain field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Đối thoại với Hàn Lập <code>han_lap_2</code> <span class="dem">236/450</span></h3>
+  <p class="p">5-second scene on a still mountain night. A man&#x27;s voice, low and even, slow, weighing each phrase, speaks close in Mandarin: 「这里的人只看见一个流浪汉。」 Very quiet night air behind it, one distant insect. Cool, bare, intimate night field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Hàn Lập — bầu nước <code>han_lap_bau_nuoc</code> <span class="dem">242/450</span></h3>
+  <p class="p">5-second scene on a night mountain, very quiet. A water flask cap opens, one swallow, then a man&#x27;s voice, low and quiet, almost warm, speaks close in Mandarin: 「你和这里的人不一样。」 Light wind behind. Cool, quiet, almost warm intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Hàn Lập — lời cười trừ <code>han_lap_cuoi_tru</code> <span class="dem">209/450</span></h3>
+  <p class="p">4-second scene in quiet night air. A young man&#x27;s voice, an awkward laugh first, then light and evasive, speaks close in Mandarin: 「我只是碰巧路过罢了。」 Still night behind it. Cool, thin, intimate night field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Gặp Hàn Lập — sau trận <code>han_lap_gap</code> <span class="dem">244/450</span></h3>
+  <p class="p">4-second scene on a rocky path behind a mountain at night. A man&#x27;s voice, low and even, calm, speaks with his back turned, close in Mandarin: 「跟了我一路，不累吗？」 Light night wind crosses rock, gravel shifts. Cool, open, intimate night field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Hàn Lập — hỏi ngược <code>han_lap_hoi_nguoc</code> <span class="dem">210/450</span></h3>
+  <p class="p">6-second scene on a still mountain night. A young man&#x27;s voice, sharp and probing, an edge under it, speaks close to the ear in Mandarin: 「那你又是谁？」 Faint wind far off. Cool, sharp, intimate night field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Hàn Lập — lời thành thật <code>han_lap_that</code> <span class="dem">239/450</span></h3>
+  <p class="p">6-second scene on a very still mountain night. A young man&#x27;s voice, gone hoarse with tension, quiet but deliberate, speaks close in Mandarin: 「我知道你的未来。」 Dead air around it, no wind, no insect. Bare, exposed, intimate night field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Trong miếu — chạm vào hộp kiếm <code>kiem_hap</code> <span class="dem">260/450</span></h3>
+  <p class="p">4-second scene in a cold stone shrine. A wooden box lid snaps open, dry and sharp, then a cold young male voice speaks close to the ear, quiet and disembodied, in Mandarin: 「你……和他们不一样。」 Long stone reverb trails behind it. Cold, still, intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Nhận chủ <code>kiem_hap_nhan</code> <span class="dem">255/450</span></h3>
+  <p class="p">4-second scene in a cold stone shrine. A thin blade whispers across skin, one small sharp metallic sound, then a young man&#x27;s low voice, satisfied and final, speaks close in Mandarin: 「成了。」 Quiet stone sits around it. Cold, final, intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Kiếm linh hiện hình <code>kiem_linh</code> <span class="dem">270/450</span></h3>
+  <p class="p">5-second scene in a cold stone shrine, air completely still. A young man&#x27;s voice, flat and icy, quiet but clear, with a faint spectral edge, speaks close in Mandarin: 「我是红尘剑灵。」 Long cold stone reverb opens out behind the voice. Still, spectral, intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Điều kiện nhận chủ <code>kiem_linh_dieu</code> <span class="dem">247/450</span></h3>
+  <p class="p">4-second scene in a still stone shrine. A young man&#x27;s voice, cautious and low, choosing each word carefully, speaks close to the ear in Mandarin: 「我要问清楚。」 Very short stone reverb, nothing else in the room. Careful, quiet, intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Kiếm linh giới thiệu thân phận <code>kiem_linh_than</code> <span class="dem">237/450</span></h3>
+  <p class="p">6-second scene in a cold stone hall, dead quiet. A young man&#x27;s voice, even and emotionless, measured, speaks close and clear in Mandarin: 「我是红尘剑的剑灵。」 Stone hall reverb stretches behind each phrase. Cold, hollow, intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Kiếm linh — thử thách <code>kiem_linh_thu</code> <span class="dem">256/450</span></h3>
+  <p class="p">3-second scene in a still stone shrine. A young man&#x27;s voice, wary and dry, carrying a short humourless laugh inside the words, speaks close to the ear in Mandarin: 「信你？」 Far off, metal rings once. Short stone reverb. Dry, guarded, intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Tân xá — đêm, khối ngọc phát sáng <code>ngoc_cot</code> <span class="dem">358/450</span></h3>
+  <p class="p">6-second scene in a small wooden room at night, very still. Close at the ear, a tiny oil-lamp flame ticks and crackles, breathing stays slow and quiet, a straw mat shifts once. Then a young man&#x27;s voice, barely above a whisper, half to himself, in Mandarin: 「你……是什么？」 The glowing jade itself makes no sound at all. Warm, hushed, intimate room field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Ngọc cốt — người trong ngọc <code>tuyet_co</code> <span class="dem">261/450</span></h3>
+  <p class="p">5-second scene in a wooden room at night with the lamp lit. A young man&#x27;s voice, startled and unsteady, breath catching first, speaks close to the ear in Mandarin: 「你……你是谁？怎么会在玉里？」 Under it, a tiny lamp flame ticks. Warm, hushed, tense intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Ngọc cốt — cảnh giác <code>tuyet_co_canh_giac</code> <span class="dem">230/450</span></h3>
+  <p class="p">3-second scene in a still night room. A young man&#x27;s voice, guarded, a dry forced laugh at the front of it, speaks close in Mandarin: 「需要我？」 Soft room tone and one unsteady breath behind. Quiet, wary, intimate room field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Ngọc cốt — điều kiện khế ước <code>tuyet_co_dieu_kien</code> <span class="dem">230/450</span></h3>
+  <p class="p">4-second scene in a silent night room. A young man&#x27;s voice, trembling slightly, trying to hold steady, speaks close in Mandarin: 「我要问清楚。」 Only quiet room tone and one breath behind it. Hushed, tense, intimate room field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Ngọc cốt — khoảnh khắc do dự <code>tuyet_co_do_du</code> <span class="dem">235/450</span></h3>
+  <p class="p">5-second scene in a night room, a breath held. Close at the ear, breath stops and releases slowly, a tiny oil-lamp flame ticks, one dry wooden joint creaks. Tense but nothing loud. Warm, hushed, suspended intimate room field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Ngọc cốt — ký khế ước <code>tuyet_co_khe_uoc</code> <span class="dem">242/450</span></h3>
+  <p class="p">4-second scene in a quiet night room. A young man&#x27;s voice, low and firm, decision already made, speaks close in Mandarin: 「我签。」 A soft female breath answers, barely audible, and the lamp ticks. Warm, hushed, resolved intimate field recording.</p>
+</div>
+<div class="the gap">
+  <h3>Ngọc cốt — Tuyết Cơ giới thiệu thân phận <code>tuyet_co_than_phan</code> <span class="dem">278/450</span></h3>
+  <p class="p">6-second scene in a quiet wooden room at night. A woman&#x27;s voice, soft and silky with cold underneath, slow as if telling an old story, speaks close to the ear in Mandarin: 「我是雪姬。」 A lamp flame ticks faintly in still air. Warm, silk-smooth, faintly cold intimate field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Kết chương — bình minh Thất Huyền trấn <code>binh_minh</code> <span class="dem">388/450</span></h3>
+  <p class="p">10-second clean dawn ambience over a small town the morning after trouble. Close in, birds start up one at a time, a rooster far off, light wind moves dust and loose paper. Somewhere a shutter opens, a bucket of water is poured, a broom works. Almost nobody awake, the town still asleep. Open morning air, each sound landing clean and stopping. Clean, calm, open-air dawn field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Kết chương — bình minh Thất Huyền Môn <code>binh_minh_ngoc_cot</code> <span class="dem">388/450</span></h3>
+  <p class="p">10-second high, clean dawn ambience at the mountain gate of a martial sect. Close at the ear, cloth flaps on a pole and breathing stays quiet. Further out, mountain wind moves steadily and birds wake. Far down the valley, a temple bell is struck once and rings away. The courtyard is empty. High open air, so the bell runs away down the valley. Clean, high, open mountain field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Chợ sớm Thất Huyền trấn <code>cho_01</code> <span class="dem">393/450</span></h3>
+  <p class="p">10-second dense, lively early-morning ambience in a crowded corner of a small town market. Cart wheels creak over packed earth, clay jars knock together, coins drop into a palm, cloth brushes past the ear. A few paces off, feet cross and a stool is dragged; laughter rises once and settles. Far behind, a dog answers. Warm, human, close-recorded market field recording with soft crowd damping.</p>
+</div>
+<div class="the nen">
+  <h3>Ngõ nhỏ sau chợ — lời đồn <code>cho_02</code> <span class="dem">386/450</span></h3>
+  <p class="p">10-second hushed, secretive night ambience at the mouth of a narrow alley behind a market. Ten paces in, men sit around a small fire: wood crackles, a stick pokes the embers, spit hisses, someone coughs and sighs low. Their voices reach the ear softened, coming back off the close walls. Near at hand, quiet breathing and a boot scuffing grit. Intimate, walled-in night field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Góc chợ — một ngày mòn mỏi <code>cho_03</code> <span class="dem">412/450</span></h3>
+  <p class="p">10-second sparse, tired dusk ambience at the edge of a market that is emptying. Close at the ear, a broom sweeps packed earth and cloth shifts. Further off, a wooden stall is folded and stacked, crates dragged a short way. Behind and to the right, slow footsteps walk away, a cough, a long sigh. Dry wind moves loose paper over open ground, where distant sounds thin out and die. Weary, open-air field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Cổng đông — đối mặt địch <code>cong_dong_doi_mat</code> <span class="dem">381/450</span></h3>
+  <p class="p">10-second tense, near-silent ambience at a broken gate in the instant before blades meet. Close at the ear, slow breath and cloth shifting as weight settles. A few paces ahead, their breathing, a boot scuffing stone, a blade drawn an inch. Behind, wind through the gate. Long gaps between sounds, and the stone carries every small one. Cold, coiled, intimate stone field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Cổng đông — giấu thực lực <code>cong_dong_giau</code> <span class="dem">355/450</span></h3>
+  <p class="p">10-second controlled, suppressed ambience at a gate. Close in, fast shallow breathing, a blade turned aside, boots sliding backwards on stone, cloth snapping, a short grunt. Off to the side, other men move and breathe, one wordless shout. Stone walls close on both sides, so small sounds come back doubled. Restrained, dry, enclosed stone field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Cổng đông — gọi tên Hùng Bá <code>cong_dong_hung_ba</code> <span class="dem">349/450</span></h3>
+  <p class="p">10-second courtyard ambience built on one shout and its echo. Close at the ear, one breath held. A single raw wordless shout goes out, comes back off the far wall, and everything stops: blades quiet, footsteps halt, wind, many men holding still. The wall supplies the depth, a long hard reflection. Tense, wide, open stone courtyard field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Cổng đông — Thất Huyền quyền <code>cong_dong_quyen</code> <span class="dem">369/450</span></h3>
+  <p class="p">10-second dry, close bare-handed combat ambience at a gate. Right at the ear, a fist strikes a chest, a forearm blocks, sleeves snap, feet pivot and stamp stone, steady breathing through the nose, a short exhale on each strike. Further off, boots on stone, a grunt. The stone under and behind returns every hit a little late. Tight, dry, enclosed stone field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Cổng đông — dùng toàn lực <code>cong_dong_toan_luc</code> <span class="dem">365/450</span></h3>
+  <p class="p">10-second sudden, loud ambience at a gate. Close in, one heavy impact, air torn, dust and gravel thrown, stone struck, breath bursting out, a loud grunt. Around and further off, the exchange carries on, then a brief stunned quiet, one shout from onlookers. The gate walls catch it all and send it back a beat later. Punchy, physical, enclosed stone field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Đêm cuối — Dã Lang Bang tập kích <code>dem_tap_kich</code> <span class="dem">384/450</span></h3>
+  <p class="p">10-second ambience that turns from quiet night into chaos. Inside a wooden dormitory, close at the ear, insects, a bed frame, quiet breathing; further off, wind and timber settling. Then a horn cuts in from the forest and everything breaks at once: fire igniting, blades, running feet, a gate slamming, one shout. Sharp contrast, wide to close. Tense, cinematic night field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Đoạt hộp — Đỗ Tam phản phệ <code>doat_hop</code> <span class="dem">350/450</span></h3>
+  <p class="p">10-second frantic ambience of a struggle for a box inside a stone shrine. Close in, boots slip on stone, bodies collide, cloth tears, a blade swings and misses, one heavy impact, then weight drops to the floor. One hoarse shout, cut short. Further off, outside, a door and running feet. Then only echo. Hard, resonant, enclosed stone field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Đột phá Luyện Khí <code>dot_pha</code> <span class="dem">372/450</span></h3>
+  <p class="p">10-second heavy silence in a closed room at night. Close at the ear, wood creaks as it cools, quiet breathing, a window shutter moves a fraction. Further off, through the wall, a faint low presence in the air like pressure. Long stretches pass with only the room&#x27;s own settling. The closed room presses back, so the silence has weight. Deep, still, enclosed room ambience.</p>
+</div>
+<div class="the nen">
+  <h3>Đường mòn lên núi — chạng vạng <code>duong_mon_nui</code> <span class="dem">354/450</span></h3>
+  <p class="p">10-second cold, open ambience on a narrow mountain trail at dusk. At the ear, boots on loose gravel, dry grass brushing legs, quiet breathing. Further out and wide, wind moves through tall grass and crickets start up. Far below, wind turns over in the valley. Open air, no reflection, each sound lands and dies. Cold, open, wide mountain field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Hỏa trường — cứu người <code>hoa_truong_cuu</code> <span class="dem">323/450</span></h3>
+  <p class="p">10-second urgent ambience inside a burning building. Fire close and filling the space: roaring, crackling, timber snapping, embers falling. At the ear, heavy effort breathing, wood levered and thrown aside, a weak hoarse moan. Outside, muffled through the fire, a shout. Thick, smoke-damped, claustrophobic field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Hậu sơn — chôn trả lại <code>khe_nui_chon</code> <span class="dem">381/450</span></h3>
+  <p class="p">10-second physical ambience of hurried digging in a mountain ravine at night. Close in, a shovel blade cuts wet soil, gravel slides, earth lands on a pile, heavy breathing with effort, the shovel scrapes rock. Further out, wind through the ravine gap and distant insects. Rock walls close in, so the digging comes back off both sides. Cold, physical, enclosed rock field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Hậu sơn — khe núi đêm <code>khe_nui_dem</code> <span class="dem">326/450</span></h3>
+  <p class="p">10-second cold, narrow ambience in a rock ravine at night. Close at the ear, a few drops fall into a pool, sparse insects, quiet breathing. The ravine makes the wind sigh, forced through the gap and coming back off wet stone on both sides. Far above, wind crosses the open ridge. Tight, echoing, enclosed rock field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Ngoài miếu — quan sát <code>mieu_hoang</code> <span class="dem">388/450</span></h3>
+  <p class="p">10-second vast, cold ambience outside a ruined shrine at night. Close at the ear, quiet breathing and grass moving at the feet. Ahead, inside the ruin, wind pushes through broken walls and gaps, whistling low then dropping away, loose roof tiles shift. Further off, crickets and a piece of wall crumbling. Broken walls break the wind into pieces. Cold, vast, ruined-stone field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Trong miếu — xác người còn ấm <code>mieu_trong</code> <span class="dem">253/450</span></h3>
+  <p class="p">2-second scene inside a dry stone shrine at night. An old wooden door drags open with a creak of hinges, then two slow heavy footsteps land on gritted stone, the second closer than the first. Short dry stone reverb. Cold, close, enclosed stone ambience.</p>
+</div>
+<div class="the nen">
+  <h3>Sau trận — giữa đống đổ nát <code>mon_phai_tan_hoang</code> <span class="dem">415/450</span></h3>
+  <p class="p">10-second wide, empty ambience in the ruins of a martial sect just before dawn. Close at the ear, quiet breathing and ash shifting. Further out, crossing open ground through broken walls, wind, a wall section coming down somewhere, loose roof tiles sliding. Far off, slow footsteps of men carrying something heavy, one long breath. Open ruins, sound spreading and thinning. Cold, empty, wide ruined field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Quán nước đầu trấn — dò tin <code>quan_nuoc</code> <span class="dem">391/450</span></h3>
+  <p class="p">10-second warm, crowded ambience in a dark corner of a roadside tea house. Close at the ear, a clay cup is set on wood, tea poured, a kettle, coins counted, a stool scraping. Around, at other tables, a low hum too far to be anything, laughter once, a hand slapped on a table. A low ceiling and close walls press the hum down around the head. Warm, crowded, close-recorded tea house ambience.</p>
+</div>
+<div class="the nen">
+  <h3>Sân sau — đêm, dưới gốc cổ thụ <code>san_sau_anh_sang</code> <span class="dem">350/450</span></h3>
+  <p class="p">10-second still ambience under a huge old tree in a back yard at night. Close at the ear, quiet breathing and one insect very near. Overhead, leaves move in a light wind, a thick branch creaks slowly, leaves let go and land. Far off, crickets and a dog. The canopy deadens everything above. Damp, faintly uneasy, close-recorded night field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Sân sau — chôn trả lại <code>san_sau_chon_lai</code> <span class="dem">365/450</span></h3>
+  <p class="p">10-second hurried ambience of digging in a back yard at night. Close in, a small shovel bites soft earth, soil pours out, roots snap, leaves are pushed aside, breathing quickens, cloth rustles. Overhead, the old tree&#x27;s leaves move. Far off, a dog. Soft earth swallows the digging, the leaves overhead catch the rest. Muffled, secretive, close night field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Tân xá — luyện lén trong đêm <code>san_sau_luyen_dem</code> <span class="dem">375/450</span></h3>
+  <p class="p">10-second deliberately small ambience of solitary late-night practice in a back yard. Everything at the ear: bare feet on packed earth, cloth moving, breath held and released through the nose, a fist passing through air, a quiet landing after a step. Far off, insects and one dog. Open night air, no reflection, sound dying fast. Small, secretive, open-night field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Sân tập — cãi lại <code>san_tap_cai_lai</code> <span class="dem">355/450</span></h3>
+  <p class="p">10-second ambience of a training yard going silent after one slap. A sharp wordless angry shout, then a flat slap lands close, and the whole yard goes completely quiet. After a beat, a low hum of reaction spreads through the crowd, sound only. Far off, the rest of the training has stopped too. The quiet leans in. Sharp, still, open-yard field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Sân tập — bị chèn ép <code>san_tap_chen_ep</code> <span class="dem">375/450</span></h3>
+  <p class="p">10-second hostile, quiet ambience in a training yard as a ring of students closes in. Low laughter, a mocking hum, feet shuffling as they circle, a staff tapping ground, someone spitting. Close, all around the head. The ring of bodies soaks the sound up instead of bouncing it. The rest of the training carries on further off. Tight, unpleasant, close-recorded yard ambience.</p>
+</div>
+<div class="the nen">
+  <h3>Sân tập Thất Huyền Môn — giữa ngày <code>san_tap_ngay</code> <span class="dem">373/450</span></h3>
+  <p class="p">10-second dense, hot midday ambience in a large training yard. At the ear, bare feet stamp packed earth and breath is forced out on each move. A few paces left and right, wooden staffs strike each other, staffs hit the ground in unison, a sharp whistle cuts across. Overhead, banners flap. Open yard, where far sounds thin out. Rhythmic, busy, hot open-air field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Sau trận — giữa đống đổ nát <code>tan_hoang</code> <span class="dem">420/450</span></h3>
+  <p class="p">10-second heavy, empty ambience among ruins just before dawn after a battle. Fire still smoulders: low crackling, a beam settling, ash shifting. Wind crosses collapsed walls. Close and quiet, slow footsteps of men carrying something heavy, setting it down, one long breath let go, a broken sob far off that stops. Collapsed walls scatter the sound, so it thins and dies. Cold, exhausted, ruined open-air field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Tân xá — tu luyện đêm đầu <code>tan_xa_dem</code> <span class="dem">370/450</span></h3>
+  <p class="p">10-second small, dry ambience of a cramped wooden dormitory at night, someone lying awake. Close at the ear, a bed frame creaks under small movement, cloth shifts, breathing stays slow and even. Outside the paper window, muffled and further, crickets, a frog, a dog far away, light wind. The small room keeps everything close. Dry, hushed, intimate room field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Tân xá — đột phá Luyện Khí tầng hai <code>tan_xa_dot_pha</code> <span class="dem">362/450</span></h3>
+  <p class="p">10-second deep, sub-heavy ambience of a closed room under pressure. A low rumble rises out of silence, holds at its peak with a faint shimmer, then settles back into stillness. Close at the ear, one held breath, then a slow release. The walls take the rumble and give it back. Far off, the building settles around it. Deep, enclosed, low-frequency room ambience.</p>
+</div>
+<div class="the nen">
+  <h3>Tân xá — khổ tu, lần thất bại <code>tan_xa_kho_tu</code> <span class="dem">377/450</span></h3>
+  <p class="p">10-second raw, quiet ambience of sitting in the dark after failure. Close in, breathing too fast and too heavy, then a long shaky exhale, then silence. A hand pressed against a chest, cloth twisted. Further off, outside the room, a wooden floor creaks as someone else shifts weight. The room is small enough to send the breathing back. Dry, bare, intimate room field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Tân xá Thất Huyền Môn — sáng <code>tan_xa_sang</code> <span class="dem">354/450</span></h3>
+  <p class="p">10-second ordinary morning ambience in a martial sect dormitory. Close in, a wooden door slides open, sandals on stone, water poured from a bucket, a bed frame creaks, someone coughs, cloth pulled on. Outside, further and softened, a staff tapped on the ground, footsteps, a sharp whistle from the yard. Unremarkable, easy, lived-in room field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Tân xá — đêm, lần song tu đầu tiên <code>tan_xa_song_tu</code> <span class="dem">362/450</span></h3>
+  <p class="p">10-second extremely quiet, intimate ambience of lying still in a dark room at night. At the ear, slow breathing, a pulse, cloth shifting, a wooden bed taking weight, and a faint hum that seems to come from inside the room rather than outside it. Far off, crickets. The small room holds the sound against you. Private, close, still, intimate room field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Tân xá — suýt bị phát hiện <code>tan_xa_suyt_lo</code> <span class="dem">396/450</span></h3>
+  <p class="p">10-second tight, tense ambience of held breath in a dark dormitory. Close in, breath held, then released very carefully, cloth pulled tight. Further off, outside the door on the wooden walkway, coming closer, slow deliberate footsteps that pause right outside, then move away and fade. Then only insects. The thin wall carries it through too clearly. Tight, hushed, intimate room field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Dã Lang Bang tập kích <code>tran_lua</code> <span class="dem">371/450</span></h3>
+  <p class="p">10-second distant, wide night ambience from a high mountain path above a burning town. Everything rising from the valley arrives thin and stretched: fire roaring, timber cracking, structures folding, one far shout, a horn. Close at the ear, wind combs the ridge grass and cloth lifts. The valley is too wide to answer back. Cold, open, cinematic mountain field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Xuống trấn — cứu dân <code>tran_lua_2</code> <span class="dem">376/450</span></h3>
+  <p class="p">10-second chaotic, close night ambience inside a burning town street. Fire roars through a wooden house beside the ear, roof beams crack, a blade sweeps through air, steel rings on steel, boots hammer stone, breath comes hard. Ahead, a wall comes down and horses pass. Behind, a shout. House fronts throw every sound back fast and hard. Immersive, hot, urgent field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Thất Huyền Môn — cổng vỡ <code>tran_lua_3</code> <span class="dem">399/450</span></h3>
+  <p class="p">10-second frantic, enclosed night ambience at the shattered gate of a martial sect under assault. Close by, a heavy gate splinters, hinges tear, boots stamp broken planks, breath rasps, one blade turns another aside. Further back, bouncing off stone, many men move at once, grunts, a hoarse shout. Beyond the gate, fire. Walled in, hard reflections. Brutal, enclosed stone courtyard field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Tu luyện kiếm đạo — đêm đầu <code>tu_khiem</code> <span class="dem">356/450</span></h3>
+  <p class="p">10-second precise ambience of sword practice in a shrine at night. Close at the ear, a blade cuts air in a long clean arc, steel rings faintly as it turns, the guard shifts in the hand, bare feet pivot on stone, breathing stays even. Further off, the room answers each swing with its own reverb, then near-silence. Cold, sharp, clean stone field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Vườn thuốc — chôn trả lại <code>vuon_thuoc_dem</code> <span class="dem">345/450</span></h3>
+  <p class="p">10-second careful night ambience of digging in a herb garden. Close at the ear, a small tool cuts soft soil, roots snap, earth pours out, breath held. Further out, leaves swept aside and insects in wet garden air. The wall keeps it close, and damp air deadens whatever tries to travel. Still, cool, patient, close-recorded night garden ambience.</p>
+</div>
+<div class="the nen">
+  <h3>Vườn thuốc phía sau môn <code>vuon_thuoc_gap</code> <span class="dem">418/450</span></h3>
+  <p class="p">10-second warm, secluded morning ambience in a walled herb garden. A gentle breeze rustles dense herbal leaves, brushing softly against each other and against cloth. A bee buzzes close by, weaving past the plants, sparse delicate insects behind it. Dry stems snap underfoot. Beyond the wall, softened by distance, wooden staffs strike and a sharp whistle sounds. Warm, tranquil, intimate walled-garden field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Vườn thuốc — hỏi thẳng <code>vuon_thuoc_hoi</code> <span class="dem">377/450</span></h3>
+  <p class="p">10-second tense, quiet ambience in a walled herb garden, two people standing close and wordless. What carries is the shape of it: slow dry breathing close on the left, a younger breath held tight, a foot shifting, cloth. Behind them, further off, leaves move, insects, a bundle of herbs being tied. The wall holds it all in, low. Warm, hushed, walled-in garden field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Vườn thuốc — im lặng <code>vuon_thuoc_im</code> <span class="dem">364/450</span></h3>
+  <p class="p">10-second deliberate stillness in a walled herb garden, wordless. Close at the ear, a bundle of dried herbs is handled and quiet breathing. Further off, leaves move in a light wind, insects, one bird far away. Long quiet stretches open between each small sound. The wall holds everything in, so the quiet has an edge. Warm, still, walled-in garden field recording.</p>
+</div>
+<div class="the nen">
+  <h3>Vườn thuốc — Mạc Đại Phu và khối ngọc <code>vuon_thuoc_ngoc</code> <span class="dem">370/450</span></h3>
+  <p class="p">10-second secretive ambience in a walled herb garden where a heavy object is handled. Close in, a jade object is set down on wood with a solid knock, cloth is unwrapped, fingers brush stone, a bundle of herbs is laid aside. Near the ear, two low unhurried breaths. Behind, leaves and insects. The wall keeps it in and small. Warm, hushed, close-recorded garden ambience.</p>
 </div>
 
-<p>Cả 43 prompt đều có <code>no music</code>, <code>no speech</code>,
-<code>seamless loop</code>. Tất cả dưới 450 ký tự.</p>
-
-<a class="nut" href="../xuong-am/">Mở Xưởng âm thanh — có nút chép prompt</a>
-
-<h2>Chợ<span class="dem">3 cảnh</span></h2><div class="canh">
-  <h3>Chợ sớm Thất Huyền trấn <code>cho_01</code> <span class="dem-ky">360/450</span></h3>
-  <div class="prompt">10-second dense, close morning market ambience heard from ground level in a crowded corner. Cart wheels creaking on packed earth, clay jars knocking, coins dropped into a palm, cloth brushing past the ear. A few metres off: crossing footsteps, a stool dragged, laughter once. Far behind: a dog. Crowd-damped, echo swallowed. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Ngõ nhỏ sau chợ — lời đồn <code>cho_02</code> <span class="dem-ky">373/450</span></h3>
-  <div class="prompt">10-second hushed night ambience at the mouth of a narrow alley behind a market. Ten metres off, men sit around a small fire: crackling, a stick poking embers, spit hissing, a cough, a low sigh. Their sound comes back off the close walls, softened. Near the ear: quiet breathing, a boot scuffing grit. Intimate, walled-in field recording. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Góc chợ — một ngày mòn mỏi <code>cho_03</code> <span class="dem-ky">382/450</span></h3>
-  <div class="prompt">10-second sparse, tired dusk ambience at the edge of an emptying market. Close at the ear: a broom sweeping packed earth, cloth moving. Further off: a wooden stall folded and stacked, crates dragged. Behind and right: slow footsteps walking away, a cough, a long sigh. Dry wind moving loose paper. Open ground, no reflection, far sounds thin out. No music, no speech, seamless loop.</div>
-</div><h2>Trận chiến<span class="dem">9 cảnh</span></h2><div class="canh">
-  <h3>Dã Lang Bang tập kích <code>tran_lua</code> <span class="dem-ky">350/450</span></h3>
-  <div class="prompt">10-second distant night ambience from a high mountain path above a burning town. Everything from the valley is thin and wide: fire roaring, timber cracking, structures falling, one far shout, a horn. Close at the ear: wind on the ridge, grass moving, cloth. The valley is too wide to answer. Cold, open, cinematic. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Xuống trấn — cứu dân <code>tran_lua_2</code> <span class="dem-ky">386/450</span></h3>
-  <div class="prompt">10-second chaotic night ambience inside a burning town street. Close around the head: fire roaring through a wooden house, roof beams cracking, a blade sweeping through air, steel ringing on steel, boots hammering stone, hard breathing. Ahead: a wall coming down, horses. Behind: a shout. House fronts throw every sound back fast and hard. Immersive. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Thất Huyền Môn — cổng vỡ <code>tran_lua_3</code> <span class="dem-ky">388/450</span></h3>
-  <div class="prompt">10-second violent night ambience at the shattered gate of a martial sect under assault. Close: a heavy gate splintering, hinges tearing, boots stamping broken planks, hard breathing, one blade turning another aside. Further back, bouncing off stone: many men moving at once, grunts, one hoarse shout. Beyond the gate: fire. Walled in, hard reflections. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Cổng đông — đối mặt địch <code>cong_dong_doi_mat</code> <span class="dem-ky">366/450</span></h3>
-  <div class="prompt">10-second tense near-silent ambience at a broken gate, the instant before blades meet. Close at the ear: slow breath, cloth shifting as weight settles. A few metres ahead: their breathing, a boot scuffing stone, a blade drawn an inch. Behind: wind through the gate. Sparse, with long gaps, and the stone carries every small sound. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Cổng đông — giấu thực lực <code>cong_dong_giau</code> <span class="dem-ky">369/450</span></h3>
-  <div class="prompt">10-second controlled, suppressed ambience at a gate. Close: fast shallow breathing, a blade turned aside, boots sliding backwards on stone, cloth snapping, a short grunt. Mid-distance, off to the side: other men moving, breath, a wordless shout. Stone walls close on both sides, so small sounds come back doubled. Restrained and dry. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Cổng đông — dùng toàn lực <code>cong_dong_toan_luc</code> <span class="dem-ky">358/450</span></h3>
-  <div class="prompt">10-second sudden loud ambience at a gate. Close: one heavy impact, air torn, dust and gravel thrown, stone struck, breath bursting out, a loud grunt. Around, further off: the exchange carries on, then a brief stunned quiet, one shout from onlookers. The gate walls catch it and send it back a beat later. Punchy, physical. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Cổng đông — Thất Huyền quyền <code>cong_dong_quyen</code> <span class="dem-ky">370/450</span></h3>
-  <div class="prompt">10-second dry close-combat ambience at a gate, bare-handed. Right at the ear: a fist striking a chest, a forearm blocking, sleeves snapping, feet pivoting and stamping stone, steady breathing through the nose, a short exhale on each strike. Further off: boots on stone, a grunt. Stone under and behind returns every hit a little late. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Cổng đông — gọi tên Hùng Bá <code>cong_dong_hung_ba</code> <span class="dem-ky">346/450</span></h3>
-  <div class="prompt">10-second courtyard ambience built on one shout and its echo. Close at the ear: one breath held. One raw wordless shout goes out and comes back off the far wall, then everything stops: blades quiet, footsteps halt, wind, many men holding still. The wall is the depth, a long hard reflection. Tense, wide, open. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Hỏa trường — cứu người <code>hoa_truong_cuu</code> <span class="dem-ky">359/450</span></h3>
-  <div class="prompt">10-second urgent ambience inside a burning building. Fire close and filling the space: roaring, crackling, timber snapping, embers falling. At the ear: heavy effort breathing, wood levered and thrown aside, a weak hoarse moan. Outside, further off and muffled through the fire: a shout. Thick, smoke-damped, claustrophobic. No music, no speech, seamless loop.</div>
-</div><h2>Núi<span class="dem">3 cảnh</span></h2><div class="canh">
-  <h3>Đường mòn lên núi — chạng vạng <code>duong_mon_nui</code> <span class="dem-ky">342/450</span></h3>
-  <div class="prompt">10-second cold open ambience on a narrow mountain trail at dusk. At the ear: boots on loose gravel, dry grass brushing legs, quiet breathing. Further out, wide and open: wind through tall grass, crickets starting up. Far below: wind moving in the valley. Open air, no reflection, each sound lands and dies. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Hậu sơn — khe núi đêm <code>khe_nui_dem</code> <span class="dem-ky">345/450</span></h3>
-  <div class="prompt">10-second cold, narrow ambience in a rock ravine at night. Close at the ear: a few drops falling into a pool, sparse insects, quiet breathing. The ravine makes the wind sigh, forced through the gap and coming back off wet stone on both sides. Far above: wind crossing the open ridge. Tight, echoing, enclosed. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Hậu sơn — chôn trả lại <code>khe_nui_chon</code> <span class="dem-ky">371/450</span></h3>
-  <div class="prompt">10-second physical ambience of hurried digging in a mountain ravine at night. Close: a shovel blade cutting wet soil, gravel sliding, earth landing on a pile, heavy breathing with effort, the shovel scraping rock. Further out: wind through the ravine gap, distant insects. Rock walls close in, so the digging comes back off both sides. No music, no speech, seamless loop.</div>
-</div><h2>Sân tập<span class="dem">6 cảnh</span></h2><div class="canh">
-  <h3>Sân tập Thất Huyền Môn — giữa ngày <code>san_tap_ngay</code> <span class="dem-ky">392/450</span></h3>
-  <div class="prompt">10-second dense, hot midday ambience in a large training yard. At the ear: bare feet stamping packed earth, breath forced out on each move. A few metres off, left and right: wooden staffs striking each other, staffs hitting the ground in unison, a sharp whistle blast. Further off: banners flapping overhead. Open yard, far sounds thin out. Rhythmic, busy. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Sân tập — bị chèn ép <code>san_tap_chen_ep</code> <span class="dem-ky">379/450</span></h3>
-  <div class="prompt">10-second hostile quiet ambience in a training yard, a ring of students closing in. Low laughter, a mocking hum, feet shuffling as they circle, a staff tapping ground, someone spitting. Close, all around the head. The ring of bodies soaks the sound up instead of bouncing it. The rest of the training carries on further off. Tight, unpleasant. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Sân tập — cãi lại <code>san_tap_cai_lai</code> <span class="dem-ky">352/450</span></h3>
-  <div class="prompt">10-second ambience of a training yard going silent after one slap. One sharp angry shout, wordless, then a flat slap lands close, and the whole yard goes completely quiet. After a beat a low hum of reaction spreads through the crowd, only sound. Far off: the rest of the training has stopped too. The quiet leans in. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Tân xá — luyện lén trong đêm <code>san_sau_luyen_dem</code> <span class="dem-ky">361/450</span></h3>
-  <div class="prompt">10-second deliberately small ambience of solitary late-night practice in a back yard. Everything at the ear: bare feet on packed earth, cloth moving, breath held and released through the nose, a fist passing through air, a quiet landing after a step. Far off: insects, one dog. Open night air, no reflection, sound dies fast. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Sân sau — đêm, dưới gốc cổ thụ <code>san_sau_anh_sang</code> <span class="dem-ky">354/450</span></h3>
-  <div class="prompt">10-second still ambience under a huge old tree in a back yard at night. Close at the ear: quiet breathing, one insect very close. Overhead: leaves moving in a light wind, a thick branch creaking slowly, leaves letting go and landing. Far off: crickets, a dog. The canopy deadens everything above. Damp, faintly uneasy. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Sân sau — chôn trả lại <code>san_sau_chon_lai</code> <span class="dem-ky">370/450</span></h3>
-  <div class="prompt">10-second hurried ambience of digging in a back yard at night. Close: a small shovel biting soft earth, soil poured out, roots snapping, leaves pushed aside, fast breathing, cloth rustling. Overhead: the old tree&#x27;s leaves moving. Far off: a dog. Soft earth swallows the digging, the leaves overhead catch the rest. Muffled, secretive. No music, no speech, seamless loop.</div>
-</div><h2>Vườn thuốc<span class="dem">5 cảnh</span></h2><div class="canh">
-  <h3>Vườn thuốc phía sau môn <code>vuon_thuoc_gap</code> <span class="dem-ky">419/450</span></h3>
-  <div class="prompt">10-second warm, secluded morning ambience in a walled herb garden. Gentle breeze rustling dense herbal leaves, brushing softly against each other and against cloth. A bee buzzes close by, sparse delicate insects behind it. Dry stems snap underfoot. Beyond the wall, softened by distance: wooden staffs striking, a sharp whistle. Intimate field recording, natural reverb off the wall. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Vườn thuốc — hỏi thẳng <code>vuon_thuoc_hoi</code> <span class="dem-ky">367/450</span></h3>
-  <div class="prompt">10-second tense, quiet ambience in a walled herb garden, two people standing close and wordless. What carries is the shape of it: slow dry breathing close on the left, a younger breath held tight, a foot shifting, cloth. Behind them, further off: leaves moving, insects, a bundle of herbs being tied. The wall holds it all in, low. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Vườn thuốc — im lặng <code>vuon_thuoc_im</code> <span class="dem-ky">350/450</span></h3>
-  <div class="prompt">10-second deliberate stillness in a walled herb garden, wordless. Close at the ear: a bundle of dried herbs being handled, quiet breathing. Further off: leaves moving in a light wind, insects, one bird far away. Long quiet stretches between each small sound. The wall holds everything in, so the quiet has an edge. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Vườn thuốc — Mạc Đại Phu và khối ngọc <code>vuon_thuoc_ngoc</code> <span class="dem-ky">340/450</span></h3>
-  <div class="prompt">10-second secretive ambience in a walled herb garden, a heavy object handled. Close: a jade object set down on wood with a solid knock, cloth unwrapped, fingers brushing stone, a bundle of herbs laid aside. Near the ear: two low unhurried breaths. Behind: leaves, insects. The wall keeps it in and small. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Vườn thuốc — chôn trả lại <code>vuon_thuoc_dem</code> <span class="dem-ky">344/450</span></h3>
-  <div class="prompt">10-second careful night ambience of digging in a herb garden. Close at the ear: a small tool cutting soft soil, roots snapping, earth poured out, breath held. Further out: leaves swept aside, insects in wet garden air. The wall keeps it close, damp air deadens whatever tries to travel. Still, cool, patient. No music, no speech, seamless loop.</div>
-</div><h2>Miếu<span class="dem">4 cảnh</span></h2><div class="canh">
-  <h3>Ngoài miếu — quan sát <code>mieu_hoang</code> <span class="dem-ky">380/450</span></h3>
-  <div class="prompt">10-second vast, cold ambience outside a ruined shrine at night. Close at the ear: quiet breathing, grass moving at the feet. Ahead, inside the ruin: wind pushing through broken walls and gaps, whistling low then dropping away, loose roof tiles shifting. Further off: crickets, a piece of wall crumbling. Broken walls break the wind into pieces. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Trong miếu — xác người còn ấm <code>mieu_trong</code> <span class="dem-ky">371/450</span></h3>
-  <div class="prompt">10-second enclosed ambience inside a small stone shrine at night. The room is the sound and the room is the depth: close at the ear a single breath, then a long natural reverb carrying it away. Air moving through the doorway, a draft pushing dust across stone, a loose tile ticking. Further off, outside: wind in the trees. Cold stone. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Đoạt hộp — Đỗ Tam phản phệ <code>doat_hop</code> <span class="dem-ky">367/450</span></h3>
-  <div class="prompt">10-second violent ambience of a struggle for a box inside a stone shrine. Close: boots slipping on stone, bodies colliding, cloth tearing, a blade swung and missing, one heavy impact, then weight dropping onto the floor. One hoarse shout, cut short. Further off, outside: a door, running feet. Then only echo. Hard, resonant stone. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Tu luyện kiếm đạo — đêm đầu <code>tu_khiem</code> <span class="dem-ky">374/450</span></h3>
-  <div class="prompt">10-second precise ambience of sword practice in a shrine at night. Close at the ear: a blade cutting air in a long clean arc, steel ringing faintly as it turns, the guard shifting in the hand, bare feet pivoting on stone, even breathing. Further off: the room answers each swing with its own reverb, then near-silence. Cold, sharp, clean. No music, no speech, seamless loop.</div>
-</div><h2>Đêm<span class="dem">2 cảnh</span></h2><div class="canh">
-  <h3>Tân xá — tu luyện đêm đầu <code>tan_xa_dem</code> <span class="dem-ky">356/450</span></h3>
-  <div class="prompt">10-second small, dry ambience of a cramped wooden dormitory at night, someone lying awake. Close at the ear: a bed frame creaking under small movement, cloth shifting, slow even breathing. Outside the paper window, muffled and further: crickets, a frog, a dog far away, light wind. The small room keeps everything close. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Đêm cuối — Dã Lang Bang tập kích <code>dem_tap_kich</code> <span class="dem-ky">375/450</span></h3>
-  <div class="prompt">10-second ambience that turns from quiet night to chaos. Inside a wooden dormitory, close at the ear: insects, a bed frame, quiet breathing; further off: wind, timber settling. Then a horn cuts in from the forest and everything breaks at once: fire igniting, blades, running feet, a gate slamming, one shout. Sharp contrast, wide to close. No music, no speech, seamless loop.</div>
-</div><h2>Làng<span class="dem">10 cảnh</span></h2><div class="canh">
-  <h3>Sau trận — giữa đống đổ nát <code>tan_hoang</code> <span class="dem-ky">411/450</span></h3>
-  <div class="prompt">10-second heavy, empty ambience among ruins just before dawn after a battle. Fire still smouldering: low crackling, a beam settling, ash shifting. Wind crosses collapsed walls. Close and quiet: slow footsteps of men carrying something heavy, setting it down, one long breath let go, a broken sob far off then stopping. Collapsed walls scatter the sound, so it thins and dies. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Kết chương — bình minh Thất Huyền trấn <code>binh_minh</code> <span class="dem-ky">375/450</span></h3>
-  <div class="prompt">10-second clean dawn ambience over a small town the morning after trouble. Close: birds starting up one at a time, a rooster far off, light wind moving dust and loose paper. Somewhere a shutter opens, a bucket of water poured, a broom working. Almost nobody awake, the town still asleep. Open morning air, each sound lands clean and stops. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Tân xá Thất Huyền Môn — sáng <code>tan_xa_sang</code> <span class="dem-ky">371/450</span></h3>
-  <div class="prompt">10-second ordinary morning ambience in a martial sect dormitory. Close: a wooden door sliding open, sandals on stone, water poured from a bucket, a bed frame creaking, someone coughing, cloth pulled on. Outside, further and softened: a staff tapped on the ground, footsteps, a sharp whistle from the yard. Unremarkable, easy, lived-in. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Quán nước đầu trấn — dò tin <code>quan_nuoc</code> <span class="dem-ky">372/450</span></h3>
-  <div class="prompt">10-second warm, crowded ambience in a dark corner of a roadside tea house. Close at the ear: a clay cup set on wood, tea poured, a kettle, coins counted, a stool scraping. Around, at other tables: a low hum too far to be anything, laughter once, a hand slapped on a table. Low ceiling and close walls press the hum down around the head. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Tân xá — đêm, lần song tu đầu tiên <code>tan_xa_song_tu</code> <span class="dem-ky">367/450</span></h3>
-  <div class="prompt">10-second extremely quiet, intimate ambience of lying still in a dark room at night. At the ear: slow breathing, a pulse, cloth shifting, a wooden bed taking weight, and a faint hum that seems to come from inside the room rather than outside it. Far off: crickets. The small room holds the sound against you. Private, close, still. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Tân xá — khổ tu, lần thất bại <code>tan_xa_kho_tu</code> <span class="dem-ky">370/450</span></h3>
-  <div class="prompt">10-second raw, quiet ambience of sitting in the dark after failure. Close: breathing too fast and too heavy, then a long shaky exhale, then silence. A hand pressed against a chest, cloth twisted. Further off, outside the room: a wooden floor creaking as someone else shifts weight. The room is small enough to send the breathing back. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Tân xá — suýt bị phát hiện <code>tan_xa_suyt_lo</code> <span class="dem-ky">385/450</span></h3>
-  <div class="prompt">10-second tight, tense ambience of held breath in a dark dormitory. Close: breath held, then released very carefully, cloth pulled tight. Further off, outside the door on the wooden walkway, coming closer: slow deliberate footsteps, pausing right outside, then moving away and fading. Then only insects. The thin wall carries it through too clearly. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Tân xá — đột phá Luyện Khí tầng hai <code>tan_xa_dot_pha</code> <span class="dem-ky">373/450</span></h3>
-  <div class="prompt">10-second deep, sub-heavy ambience of a closed room under pressure. A low rumble rises out of silence, holds at its peak with a faint shimmer, then settles back into stillness. Close at the ear: one held breath, then a slow release. The walls take the rumble and give it back. Far off, the building settles around it. Pure air and stone. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Sau trận — giữa đống đổ nát <code>mon_phai_tan_hoang</code> <span class="dem-ky">401/450</span></h3>
-  <div class="prompt">10-second wide, empty ambience in the ruins of a martial sect just before dawn. Close at the ear: quiet breathing, ash shifting. Further out, crossing open ground through broken walls: wind, a wall section coming down somewhere, loose roof tiles sliding. Far off: slow footsteps of men carrying something heavy, one long breath. Open ruins, sound spreads and thins. No music, no speech, seamless loop.</div>
-</div><div class="canh">
-  <h3>Kết chương — bình minh Thất Huyền Môn <code>binh_minh_ngoc_cot</code> <span class="dem-ky">373/450</span></h3>
-  <div class="prompt">10-second high, clean dawn ambience at the mountain gate of a martial sect. Close at the ear: cloth flapping on a pole, quiet breathing. Further out: mountain wind moving steadily, birds waking. Far down the valley: a temple bell struck once and ringing away. The courtyard is empty. High open air, so the bell runs away down the valley. No music, no speech, seamless loop.</div>
-</div><h2>Tĩnh<span class="dem">1 cảnh</span></h2><div class="canh">
-  <h3>Đột phá Luyện Khí <code>dot_pha</code> <span class="dem-ky">374/450</span></h3>
-  <div class="prompt">10-second heavy silence in a closed room at night. Close at the ear: wood creaking as it cools, quiet breathing, a window shutter moving a fraction. Further off, through the wall: a faint low presence in the air like pressure. Long stretches pass with only the room&#x27;s own settling. The closed room presses back, so the silence has weight. No music, no speech, seamless loop.</div>
-</div>
+<footer style="margin-top:30px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--mo)">
+Thẻ viền vàng là cảnh có một câu thoại tiếng Hoa.
+</footer>
 </body></html>
