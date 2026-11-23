@@ -216,44 +216,81 @@ async function ghPutFile(duong, b64){
 }
 
 /* ================= kiểm tra / gửi ================= */
-async function kiemTraMot(hop){
+// Mã băm nội dung file, 8 ký tự đầu — cùng cách ghi_danh_sach_am.py tính `v`.
+async function bamNoiDung(duong){
+  const r = await fetch(duong, {cache:'no-store'});
+  if(!r.ok) return {ok:false, status:r.status};
+  const buf = await r.arrayBuffer();
+  const h = await crypto.subtle.digest('SHA-256', buf);
+  const hex = [...new Uint8Array(h)].map(x => x.toString(16).padStart(2,'0')).join('');
+  return {ok:true, bam:hex.slice(0,8), bytes:buf.byteLength};
+}
+
+// Bản đang có trên trang lúc này, rỗng nếu chưa có file.
+async function bamHienTai(hop){
+  try{
+    const duong = new URL('../' + AM_DIR + hop.dataset.file, location.href);
+    duong.searchParams.set('v', Date.now());
+    const kq = await bamNoiDung(duong.href);
+    return kq.ok ? kq.bam : '';
+  }catch(e){ return ''; }
+}
+
+async function kiemTraMot(hop, banTruoc){
   const file = hop.dataset.file;
-  const ma = hop.dataset.ma;
   const tt = hop.querySelector('[data-tt]');
   const nut = hop.querySelector('[data-kiem]');
-  const oNghe = hop.closest('article').querySelector('[data-nghe]');
+  const the = hop.closest('article');
+  const oNghe = the.querySelector('[data-nghe]');
   const audio = oNghe.querySelector('[data-audio]');
   const chua = oNghe.querySelector('[data-chua]');
   if(nut) nut.classList.add('dang');
   try{
-    // Hỏi thẳng file trên trang, không qua GitHub API: API chỉ cho 60 lượt/giờ
-    // cho mỗi IP, nên bấm vài lần là bị chặn. Query đổi mỗi lần để không dính
-    // bản cũ trong bộ nhớ đệm của GitHub Pages.
+    // Tải thật file rồi băm nội dung. Trước đây chỉ hỏi HEAD "file có tồn tại
+    // không": file cũ vẫn nằm đó nên lần nào cũng báo "đã có", kể cả khi bản
+    // vừa gửi chưa hề lên trang — đúng cái làm người dùng tưởng đã xong mà
+    // nghe vẫn ra tiếng cũ.
+    // ?v= đổi mỗi lần: GitHub Pages giữ file 10 phút, không có mã này thì đọc
+    // phải bản cũ trong bộ nhớ đệm.
     const duong = new URL('../' + AM_DIR + file, location.href);
     duong.searchParams.set('v', Date.now());
-    const r = await fetch(duong.href, {method:'HEAD', cache:'no-store'});
-    if(!r.ok && r.status !== 405 && r.status !== 403){
+    const kq = await bamNoiDung(duong.href);
+    if(!kq.ok){
+      if(kq.status === 403){
+        ghHienTT(tt,'warn','⚠️ Trang chưa cho xem file này. Chờ ~1–2 phút rồi bấm lại.');
+        return {co:null};
+      }
       audio.hidden = true; audio.removeAttribute('src');
       chua.hidden = false;
       ghHienTT(tt,'muted','⬜ Chưa thấy trên trang. Bot cần ~1–2 phút sau khi gửi; chờ rồi bấm 🔄 Kiểm tra lại.');
       return {co:false};
     }
-    if(r.status === 403){
-      ghHienTT(tt,'warn','⚠️ Trang chưa cho xem file này. Chờ ~1–2 phút rồi bấm lại.');
-      return {co:null};
-    }
     audio.src = duong.href;
     audio.hidden = false;
     chua.hidden = true;
-    const the = hop.closest('article');
-    if(the){
-      the.classList.add('done');
-      the.dataset.co = '1';
-      const nh = the.querySelector('[data-badge]');
-      if(nh){ nh.className = 'badge chac'; nh.textContent = '✅ đã có'; }
+    the.classList.add('done');
+    the.dataset.co = '1';
+    const nh = the.querySelector('[data-badge]');
+    if(nh){ nh.className = 'badge chac'; nh.textContent = '✅ đã có'; }
+
+    const kb = Math.round(kq.bytes / 1024);
+    // Gửi xong thì theo dõi: chỉ báo xong khi bản trên trang KHÁC bản lúc bấm
+    // gửi. Không có mốc so sánh thì không thể biết bản mới đã lên hay chưa.
+    if(banTruoc){
+      if(banTruoc === kq.bam){
+        ghHienTT(tt,'warn',`⚠️ Vẫn là bản cũ (${kq.bam}). Bot chưa xử lý xong hoặc chưa đưa lên trang. `
+          + 'Chờ ~1–2 phút rồi bấm 🔄 Kiểm tra lại.');
+        return {co:true, moi:false};
+      }
+      ghHienTT(tt,'ok',`🎉 Bản mới đã lên trang (${banTruoc} → ${kq.bam}, ${kb} KB). Bấm ▶ để nghe.`);
+      return {co:true, moi:true};
     }
-    ghHienTT(tt,'ok','✅ Đã có tiếng trên trang.');
-    return {co:true};
+    // Bấm kiểm tra tự do: nói đúng bản đang phát, không phán bừa là "đã xong".
+    const laBaked = kq.bam === (the.dataset.ban || '');
+    ghHienTT(tt, laBaked ? 'ok' : 'warn',
+      `Đang phát bản ${kq.bam} · ${kb} KB.`
+      + (laBaked ? '' : ' Khác bản ghi lúc tạo trang — tải lại trang để thấy trạng thái mới.'));
+    return {co:true, moi:false, bam:kq.bam};
   }catch(e){
     ghHienTT(tt,'warn',`⚠️ Không kiểm tra được: ${e}`);
     return {co:null};
@@ -262,17 +299,21 @@ async function kiemTraMot(hop){
   }
 }
 
-async function theoDoi(hop){
+async function theoDoi(hop, banTruoc){
   const tt = hop.querySelector('[data-tt]');
   for(let lan = 1; lan <= 10; lan++){
     await new Promise(r => setTimeout(r, 15000));
-    const kq = await kiemTraMot(hop);
-    if(kq.co){ ghHienTT(tt,'ok','🎉 Tiếng đã lên trang!'); return; }
+    const kq = await kiemTraMot(hop, banTruoc);
+    // Chỉ dừng khi bản trên trang THẬT SỰ khác bản trước khi gửi. Trước đây
+    // dừng ngay khi thấy file tồn tại, nên báo "đã lên trang" trong khi vẫn
+    // là tiếng cũ.
+    if(kq.co && kq.moi) return;
     if(kq.co === null) return;
     if(lan < 10) ghHienTT(tt,'muted',
       `⏳ Bot đang xử lý… tự kiểm tra lại sau 15 giây (lần ${lan}/10). Cứ để trang mở.`);
   }
-  ghHienTT(tt,'muted','⏳ Lâu hơn thường lệ. Bấm 🔄 Kiểm tra để thử lại.');
+  ghHienTT(tt,'warn','⏳ Lâu hơn thường lệ. Bản mới CHƯA thấy trên trang. '
+    + 'Bấm 🔄 Kiểm tra để thử lại, hoặc mở tab Xem trước để biết bot chạy tới đâu.');
 }
 
 async function guiMot(hop){
@@ -315,10 +356,15 @@ async function guiMot(hop){
       return;
     }
     ghHienTT(tt,'muted',`Đang gửi <b>${gui.name}</b> — ${mb.toFixed(1)} MB… Đừng đóng tab.`);
+    // Chốt bản đang có TRƯỚC khi gửi. Đây là mốc duy nhất để biết bản mới đã
+    // lên trang hay chưa: không có nó thì mọi lần kiểm tra đều thấy "có file"
+    // và báo xong trong khi tiếng vẫn là bản cũ.
+    const banTruoc = await bamHienTai(hop);
     const b64 = await blobB64(gui);
     await ghPutFile(`${INBOX}/${ma}/${tenGui}`, b64);
-    ghHienTT(tt,'ok','📤 Đã gửi. Bot sẽ nén và cập nhật trong 1–2 phút — tự kiểm tra nhé.');
-    theoDoi(hop);
+    ghHienTT(tt,'ok','📤 Đã gửi lên GitHub. Bot sẽ nén và cập nhật trong 1–2 phút — '
+      + `đang chờ bản mới${banTruoc ? ` (bản cũ ${banTruoc})` : ''}.`);
+    theoDoi(hop, banTruoc);
   }catch(e){
     ghHienTT(tt,'warn',`⚠️ Gửi lỗi: ${e}`);
   }finally{

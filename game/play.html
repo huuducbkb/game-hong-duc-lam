@@ -895,7 +895,15 @@ function thucDayTieng() {
 }
 document.addEventListener("touchstart", thucDayTieng, { passive: true });
 document.addEventListener("click", thucDayTieng, { passive: true });
-document.addEventListener("visibilitychange", () => { if (!document.hidden) thucDayTieng(); });
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) return;
+  // Quay lại trang (hoặc Safari khôi phục từ bộ nhớ đệm) thì đọc lại danh sách
+  // tiếng: bot có thể đã đẩy bản mới trong lúc trang nằm im.
+  napAmThat(true).catch(() => {}).finally(() => thucDayTieng());
+});
+window.addEventListener("pageshow", e => {
+  if (e.persisted) napAmThat(true).catch(() => {});
+});
 
 // Dựng một tiếng ngắn từ dao động + nhiễu, tắt dần theo hàm mũ.
 function keTieng(loai) {
@@ -1651,16 +1659,29 @@ function buaRen(t, dich, opt) {
 let amThat = null;
 let dangNapAmThat = null;
 
-function napAmThat() {
-  if (amThat) return Promise.resolve(amThat);
-  if (dangNapAmThat) return dangNapAmThat;
+// `lai` = đọc lại dù đã có: trang bị đưa vào bộ nhớ đệm (Safari giữ cả tiến
+// trình) sống qua lúc bot đẩy tiếng mới, nên danh sách cũ nằm lại và cả phiên
+// chơi vẫn phát tiếng cũ dù trên trang đã là bản mới.
+function napAmThat(lai) {
+  if (amThat && !lai) return Promise.resolve(amThat);
+  if (dangNapAmThat && !lai) return dangNapAmThat;
   dangNapAmThat = fetch("../assets/am/danh-sach.json", { cache: "no-store" })
     .then(r => (r.ok ? r.json() : {}))
     .then(j => {
-      amThat = (j && typeof j === "object") ? j : {};
+      const moi = (j && typeof j === "object") ? j : {};
+      // Giữ đệm giải mã chỉ khi phiên bản không đổi; đổi rồi thì bỏ để lần phát
+      // sau đọc file mới thay vì dùng lại âm thanh đã giải mã của bản cũ.
+      for (const k of Object.keys(demAmThat)) {
+        const ma = k.split("@")[0];
+        if (!moi[ma] || (moi[ma] && moi[ma].v) !== ((amThat && amThat[ma] && amThat[ma].v) || "")) {
+          delete demAmThat[k];
+        }
+      }
+      amThat = moi;
       return amThat;
     })
-    .catch(() => { amThat = {}; return amThat; });
+    .catch(() => { amThat = {}; return amThat; })
+    .finally(() => { dangNapAmThat = null; });
   return dangNapAmThat;
 }
 
@@ -1675,7 +1696,10 @@ function phatFileThat(ma, g, muc) {
   // 2 giây, cảnh có thoại 3–6 giây, cảnh bối cảnh 10 giây. `giay` đi kèm trong
   // danh-sach.json; thiếu thì lấy độ dài thật của file.
   const giayCanh = Number(ds[ma] && ds[ma].giay) || 0;
-  const khoa = ma;
+  // Khoá đệm phải gồm cả phiên bản file. Chỉ dùng mã cảnh thì lần đầu tải bản
+  // cũ là giữ nguyên trong phiên chơi: thay tiếng xong, quay lại cảnh vẫn phát
+  // tiếng cũ dù danh-sach.json đã trỏ sang bản mới.
+  const khoa = ma + '@' + ((ds[ma] && ds[ma].v) || '0');
   let tat = false;
   const lop = {
     g: g, nguonFile: null, mucGoc: muc, laFile: true, dai: 0,

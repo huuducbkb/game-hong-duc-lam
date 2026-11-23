@@ -26,16 +26,30 @@ DUONG = "assets/am/"
 ANH = "/assets/scene/nho/"
 
 
+_DS = None
+
+
+def danh_sach():
+    """Mã cảnh/nhóm đã có file tiếng trên đĩa, đọc từ danh-sach.json.
+
+    Giữ cả `v` (mã băm nội dung) chứ không chỉ lấy tên: trang phải biết bản trên
+    trang đã đổi chưa. Chỉ so tên file thì file cũ nằm đó là lần nào cũng báo
+    "đã có", kể cả khi bản vừa gửi chưa hề lên trang.
+    """
+    global _DS
+    if _DS is None:
+        import json
+        p = os.path.join(GOC, "docs", "assets", "am", "danh-sach.json")
+        try:
+            d = json.load(io.open(p, encoding="utf-8"))
+            _DS = d if isinstance(d, dict) else {}
+        except Exception:  # noqa: BLE001 - thiếu/hỏng thì coi như chưa có gì
+            _DS = {}
+    return _DS
+
+
 def da_co():
-    """Mã cảnh/nhóm đã có file tiếng trên đĩa, đọc từ danh-sach.json."""
-    import json
-    p = os.path.join(GOC, "docs", "assets", "am", "danh-sach.json")
-    if not os.path.isfile(p):
-        return set()
-    try:
-        return set(json.load(io.open(p, encoding="utf-8")))
-    except Exception:  # noqa: BLE001 - file hỏng thì coi như chưa có gì
-        return set()
+    return set(danh_sach())
 
 
 TRUYEN = {}
@@ -132,8 +146,12 @@ def khoi_prompt(n):
 def the_canh(n, i):
     ma = n["ma"]
     anh = n["anh"]
-    co = da_co()
-    if ma in co:
+    ds = danh_sach()
+    co = ma in ds
+    # Mã băm bản đang có trên trang. Trang đem số này so với bản vừa gửi để biết
+    # tiếng mới đã lên thật hay chưa — chỉ so tên file là không đủ.
+    ban = (ds.get(ma) or {}).get("v", "")
+    if ma in ds:
         trang_thai = "✅ Đã có tiếng riêng cho cảnh này."
         nhan = '<span class="badge chac" data-badge>✅ đã có</span>'
         lop = "canh done"
@@ -142,7 +160,7 @@ def the_canh(n, i):
         nhan = '<span class="badge thieu" data-badge>⬜ chưa có</span>'
         lop = "canh"
     return f"""
-<article class="{lop}" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}" data-co="{1 if ma in co else 0}">
+<article class="{lop}" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}" data-co="{1 if co else 0}" data-ban="{ban}">
   <header>
     <span class="so">{i}</span>
     <b>{esc(n['ten'])}</b>

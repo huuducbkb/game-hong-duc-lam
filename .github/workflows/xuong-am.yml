@@ -86,8 +86,25 @@ jobs:
 
       - name: Dọn hộp nhận
         run: |
-          # Chỉ xoá file âm thanh đã xử lý. README và .gitkeep phải giữ lại.
-          find xuong-am-inbox -type f ! -name 'README.md' ! -name '.gitkeep' -delete 2>/dev/null || true
+          # CHỈ xoá file đã xử lý xong. Xoá cả file xử lý lỗi là mất luôn bản
+          # người dùng vừa gửi: tiếng không lên trang mà file cũng biến mất,
+          # không còn gì để chạy lại. Lỗi thì giữ nguyên trong hộp nhận.
+          python3 - <<'PY'
+          import json, os
+          try:
+              d = json.load(open('/tmp/bao-cao-am.json'))
+          except Exception:
+              raise SystemExit("không đọc được báo cáo — giữ nguyên hộp nhận")
+          xong = {x['ma'] for x in d.get('da_luu', [])}
+          for ma in sorted(xong):
+              for ten in os.listdir(os.path.join('xuong-am-inbox', ma)) if os.path.isdir(os.path.join('xuong-am-inbox', ma)) else []:
+                  p = os.path.join('xuong-am-inbox', ma, ten)
+                  if os.path.isfile(p):
+                      os.remove(p)
+          for loi in d.get('loi', []):
+              print(f"::warning::giữ lại file vì xử lý lỗi: {loi}")
+          print(f"đã xoá {len(xong)} thư mục đã xử lý: {', '.join(sorted(xong)) or '(không có)'}")
+          PY
           find xuong-am-inbox -mindepth 1 -type d -empty -delete 2>/dev/null || true
           touch xuong-am-inbox/.gitkeep
 
@@ -153,7 +170,16 @@ jobs:
 
   deploy:
     needs: xu-ly
-    if: needs.xu-ly.outputs.da_commit == '1'
+    # Có tiếng mới thì deploy. Chạy tay (workflow_dispatch) cũng deploy, để khi
+    # deploy hỏng tạm thời thì chạy lại workflow là đưa được bản đã commit lên
+    # trang — hộp nhận lúc đó rỗng nên không có da_commit, trước đây deploy bị
+    # bỏ qua và chạy lại workflow không có tác dụng gì.
+    # `always()` để chạy được cả khi job xu-ly bị bỏ qua (Issue không có nhãn,
+    # comment không có file): mặc định `needs` bị bỏ qua là job này bỏ qua luôn,
+    # nên chạy tay để deploy lại sẽ không làm gì cả.
+    if: >-
+      always() &&
+      (needs.xu-ly.outputs.da_commit == '1' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     concurrency:
       group: pages
