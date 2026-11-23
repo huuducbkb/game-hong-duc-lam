@@ -67,11 +67,8 @@ def the_canh(n, i):
     co = da_co()
     if ma in co:
         trang_thai = "✅ Đã có tiếng riêng cho cảnh này."
-    elif n["nhom"] in co:
-        trang_thai = (f"🟡 Chưa có tiếng riêng — game đang dùng tạm file nhóm "
-                      f"{n['nhom']}.mp3. Gửi file ở dưới để thay.")
     else:
-        trang_thai = "⬜ Chưa có tiếng — game đang dùng tiếng tổng hợp."
+        trang_thai = "⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm."
     return f"""
 <article class="canh" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}">
   <header>
@@ -266,8 +263,8 @@ footer{{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
 
 <div class="tom-tat">
   <b>{so} cảnh, mỗi cảnh một file riêng.</b> Mỗi ảnh trong game là một cảnh, có tiếng
-  riêng và từ khoá riêng. Cảnh nào chưa có file thì game dùng tiếng tổng hợp — không bao
-  giờ im.
+  riêng và từ khoá riêng. Cảnh nào chưa có file thì im — không lấy tiếng của cảnh khác,
+  không chèn nhạc tổng hợp.
   <div class="ml">
     {"".join(f'<a href="#n-{ma}">{esc(ten)}</a>' for ma, ten in NHOM if canh_theo_nhom(ma))}
   </div>

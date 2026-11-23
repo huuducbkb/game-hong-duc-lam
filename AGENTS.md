@@ -738,13 +738,14 @@ Game dùng bốn tiếng ngắn (`bam`, `lat`, `lui`, `mo`) dựng bằng Web Au
 **Ngoại lệ có kiểm soát: Xưởng âm thanh.** Người dùng tự tạo bản ghi rồi tải lên qua
 `docs/xuong-am/` hoặc kéo file vào một Issue có nhãn `xuong-am`. Workflow `xuong-am.yml`
 nén về mp3 96 kbps, cân âm lượng −18 LUFS, đặt vào `docs/assets/am/<mã>.mp3`. Game đọc
-`docs/assets/am/danh-sach.json`: nhóm nào có trong đó thì phát file, không có thì dùng
-tiếng tổng hợp. **Không bao giờ im.** Đừng tự tay commit mp3 vào `assets/am/` — hãy đi
-qua xưởng, để còn cân âm lượng.
+`docs/assets/am/danh-sach.json`: cảnh nào có mã trong đó thì phát đúng file của cảnh
+đó. **Cảnh chưa có file thì IM.** Không lùi về file nhóm, không rơi về nhạc tổng hợp —
+người dùng yêu cầu rõ: cảnh nào chưa có tiếng thì để nguyên, không chèn âm thanh khác.
+Đừng tự tay commit mp3 vào `assets/am/` — hãy đi qua xưởng, để còn cân âm lượng.
 
-Chín nhóm tiếng và prompt tạo nằm ở `game/du_lieu_am.py`; sửa prompt thì sửa ở đó rồi
-chạy `python3 game/tao_xuong_am.py`. Nhóm tiếng suy ra từ tên file ảnh cảnh
-(`nhomCanh`), nên 68 ảnh chỉ cần 9 file tiếng.
+Prompt tạo tiếng nằm ở `game/prompt_am.py`, danh sách cảnh ở `game/du_lieu_am.py`; sửa
+prompt thì sửa ở đó rồi chạy `python3 game/tao_xuong_am.py`. Mã cảnh suy ra từ tên file
+ảnh (`maCanhTuAnh`), nên mỗi cảnh cần đúng một file `<mã>.mp3`.
 
 Bốn điều đã trả giá để biết, đừng làm lại:
 
