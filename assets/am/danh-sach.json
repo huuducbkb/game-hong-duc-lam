@@ -106,5 +106,9 @@
   "vuon_thuoc_gap": {
     "bytes": 120729,
     "file": "vuon_thuoc_gap.mp3"
+  },
+  "vuon_thuoc_ngoc": {
+    "bytes": 120729,
+    "file": "vuon_thuoc_ngoc.mp3"
   }
 }
