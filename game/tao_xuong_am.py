@@ -75,15 +75,19 @@ def the_canh(n, i):
     co = da_co()
     if ma in co:
         trang_thai = "✅ Đã có tiếng riêng cho cảnh này."
+        nhan = '<span class="badge chac" data-badge>✅ đã có</span>'
+        lop = "canh done"
     else:
         trang_thai = "⬜ Chưa có tiếng — cảnh này đang im. Gửi file ở dưới để thêm."
+        nhan = '<span class="badge thieu" data-badge>⬜ chưa có</span>'
+        lop = "canh"
     return f"""
-<article class="canh" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}">
+<article class="{lop}" id="c-{ma}" data-ma="{ma}" data-file="{n['file']}">
   <header>
     <span class="so">{i}</span>
     <b>{esc(n['ten'])}</b>
     <code>{ma}</code>
-    <span class="badge thieu" data-badge>⬜ chưa có</span>
+    {nhan}
   </header>
 
   <figure class="anh-mot" onclick="xemAnh(this)">
