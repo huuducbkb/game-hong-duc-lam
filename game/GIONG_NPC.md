@@ -6,8 +6,9 @@ giọng, nếu không công cụ tạo tiếng sẽ tự đoán và mỗi cảnh
 | Mã | NPC | Tuổi | Giới | Chất giọng | Câu tiếng Hoa |
 |---|---|---|---|---|---|
 | `tuyet_co` | Tuyết Cơ | **18** | nữ | **ngọt ngào, gợi cảm, lẳng lơ, hay trêu** — giọng thở nhẹ, kéo dài cuối câu, cười cợt như đang đùa. Khi nổi giận thì ngọt mà lạnh, mất hẳn vẻ trêu đùa. | 我先问你——你是谁？ |
-| `kiem_linh` | Kiếm Linh (Hồng Trần) | ~20 | nam | phẳng, băng giá, rõ, hơi vang ma quái | 若我想杀你，你碰到盒子的那一刻就已经死了。 |
-| `han_lap` | Hàn Lập | ~20 | nam | trầm, đều, không vội, phẳng lì | 今晚谁都有秘密。我不问你，你也别问我。 |
+| `nvc` | Nhân vật chính (người chơi) | **16** | nam | **trầm ấm, nghe dễ chịu** — không lạnh, không khoe, nói chậm vừa. Đây là giọng người chơi nghe suốt chương, phải cùng một người ở mọi cảnh. | 多谢前辈。 |
+| `kiem_linh` | Kiếm Linh (Hồng Trần) | **30** | nam | trầm, trững trạc, phẳng, băng giá, rõ, hơi vang ma quái | 若我想杀你，你碰到盒子的那一刻就已经死了。 |
+| `han_lap` | Hàn Lập | **18** | nam | trẻ nhưng lạnh lùng, trầm, đều, không vội, phẳng lì | 今晚谁都有秘密。我不问你，你也别问我。 |
 | `do_tam` | Đỗ Tam | ~40 | nam | khàn, thô, lớn, chậm, có mối đe dọa dưới | 又来一只老鼠。 |
 | `mac_dai_phu` | Mạc Đại Phu | ~60 | nam | già, khàn nhẹ, chậm rãi, điềm tĩnh | 你…和他们不一样。 |
 | `he_thong` | Hệ thống | — | máy | vô cảm, đều như máy, không ngữ điệu | — |
@@ -22,9 +23,10 @@ giọng, nếu không công cụ tạo tiếng sẽ tự đoán và mỗi cảnh
 
 ## Quy tắc chọn câu thoại
 
-**Chỉ lấy lời NPC, không lấy lời nhân vật chính.** Nhân vật chính là người chơi —
-người chơi tự đọc chữ trên màn hình. Nếu prompt đưa câu của nhân vật chính vào thì
-máy sẽ đọc thành tiếng một giọng khác, sai hẳn.
+**Câu của NPC thì lấy lời NPC. Câu của nhân vật chính thì lấy lời nhân vật chính,
+nhưng đọc bằng giọng `nvc` (nam 16, trầm ấm) — không bỏ.** Trước đây quy tắc là bỏ
+hết lời nhân vật chính; người dùng chỉ ra cảnh `vuon_thuoc_im` mất câu 「多谢前辈。」
+dù truyện rõ ràng có thoại. Cảnh chỉ có nhân vật chính nói vẫn phải có tiếng người.
 
 Cách nhận biết trong truyện:
 
@@ -32,14 +34,27 @@ Cách nhận biết trong truyện:
   `— kiếm linh nói`, `— ông khẽ nói`, `— hắn gầm lên`.
 - Câu của nhân vật chính đứng sau `— ta nói`, `— ta đáp`, `— ta quát`, hoặc nằm
   trong ngoặc kép ngay sau một câu kể ở ngôi thứ nhất.
+  Ví dụ `“Đa tạ tiền bối,” — ta nói` → câu tiếng Hoa 「多谢前辈。」, giọng `nvc`.
 - Câu không có ai dẫn, mà đứng một mình sau một dòng `*suy nghĩ*` — thường là
   nhân vật chính tự nhủ. Bỏ.
 
-Nếu cảnh chỉ có nhân vật chính nói thì **không thêm thoại**. Prompt vẫn tả tiếng
-không gian bình thường.
+Một cảnh có cả NPC và nhân vật chính nói thì đưa 1–2 câu, chọn câu quan trọng hơn.
+
+Nếu cảnh không có lời ai nói (chỉ tả cảnh) thì **không thêm thoại**. Prompt vẫn tả
+tiếng không gian bình thường.
 
 **Mỗi câu phải ghi tuổi và giới của người nói.** `A young woman's voice, around
 twenty` — không ghi thì máy tự đoán, mỗi cảnh ra một người khác.
+
+## Ba giọng người dùng đã chốt
+
+Người dùng chốt tuổi và chất giọng, dùng đúng một kiểu cho mọi cảnh:
+
+| Vai | Cách viết trong prompt |
+|---|---|
+| Nhân vật chính | `A boy's voice, sixteen, low and warm, pleasant` |
+| Hàn Lập | `A young man's voice, eighteen, cold and level` |
+| Kiếm Linh | `A man's voice, thirty, deep and grave, flat and icy` |
 
 ## Tuyết Cơ — quy tắc riêng
 

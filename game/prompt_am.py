@@ -14,7 +14,10 @@ quát, ăn mày lẩm bẩm…). Bảng giọng ở `game/GIONG_NPC.md`.
 
 Sáu cảnh chỉ có giọng Hệ thống (máy, vô cảm, không phải NPC) thì để nguyên không
 thoại: cho_03, duong_mon_nui, khe_nui_dem, mieu_hoang, san_sau_anh_sang, mieu_trong.
-`vuon_thuoc_im` cũng không thoại — đoạn truyện chỉ có câu của nhân vật chính.
+
+CẢNH CHỈ CÓ NHÂN VẬT CHÍNH NÓI: vẫn phải có câu của nhân vật chính, đọc bằng giọng
+nam 16 tuổi trầm ấm — xem `nvc` trong `game/GIONG_NPC.md`. Trước đây bỏ thoại ở
+những cảnh này, nên `vuon_thuoc_im` mất hẳn câu 「多谢前辈。」 dù truyện có lời thoại.
 
 Đã bỏ lối cũ "No music, no speech, seamless loop." lặp ở cuối mọi prompt: game phát
 mỗi file một lần rồi thôi, không lặp.
@@ -59,7 +62,7 @@ PROMPT = {
         "10-second distant, wide night ambience from a high mountain path above "
         "a burning town. Everything rising from the valley arrives thin and "
         "stretched: fire roaring, timber cracking, one far shout, a horn. Close "
-        "at the ear, wind combs ridge grass. A young man's voice, flat and icy, "
+        "at the ear, wind combs ridge grass. A man's voice, thirty, deep and grave, flat and icy, "
         "speaks close in Mandarin: 「野狼帮来得比我预想的早。」 Cold, open, "
         "cinematic mountain field recording."
     ),
@@ -68,7 +71,7 @@ PROMPT = {
         "10-second chaotic, close night ambience inside a burning town street. "
         "Fire roars through a wooden house beside the ear, roof beams crack, a "
         "blade sweeps through air, steel rings on steel, boots hammer stone, "
-        "breath comes hard. A young man's voice, cold and clipped, cuts in "
+        "breath comes hard. A man's voice, thirty, deep and clipped, cold, cuts in "
         "close in Mandarin: 「很好。双手配合，别停下。」 Immersive, hot, "
         "urgent field recording."
     ),
@@ -76,7 +79,7 @@ PROMPT = {
     "tran_lua_3": (
         "10-second frantic, enclosed night ambience at the shattered gate of a "
         "martial sect under assault. Close by, a heavy gate splinters, hinges "
-        "tear, boots stamp broken planks, breath rasps. A young man's voice, icy "
+        "tear, boots stamp broken planks, breath rasps. A man's voice, thirty, deep and icy "
         "and level, speaks in Mandarin: 「别贪战。你撑不了多久，保命要紧。」 "
         "Further back, bouncing off stone, many men move at once, grunts, a "
         "hoarse shout. Brutal, enclosed stone courtyard field recording."
@@ -240,12 +243,13 @@ PROMPT = {
     ),
 
     "vuon_thuoc_im": (
-        "10-second deliberate stillness in a walled herb garden, wordless. "
-        "Close at the ear, a bundle of dried herbs is handled and quiet "
-        "breathing. Further off, leaves move in a light wind, insects, one bird "
-        "far away. Long quiet stretches open between each small sound. The wall "
-        "holds everything in, so the quiet has an edge. Warm, still, walled-in "
-        "garden field recording."
+        "10-second deliberate stillness in a walled herb garden. Close at the "
+        "ear, a bundle of dried herbs is handled and quiet breathing. Then a "
+        "boy's voice, sixteen, low and warm, pleasant, speaks quietly in "
+        "Mandarin: 「多谢前辈。」 Leaves move in a light wind, insects, one bird "
+        "far away, then long quiet stretches open between each small sound. The "
+        "wall holds everything in, so the quiet has an edge. Warm, still, "
+        "walled-in garden field recording."
     ),
 
     "vuon_thuoc_ngoc": (
@@ -288,14 +292,14 @@ PROMPT = {
         "shrine. Close in, boots slip on stone, bodies collide, cloth tears, one "
         "heavy impact, then weight drops to the floor. A heavy man's voice, "
         "around forty, hoarse and gloating, in Mandarin: 「蠢货。我让你看看，有"
-        "缘人长什么样。」 Then a young man's voice, cold and flat, from the "
+        "缘人长什么样。」 Then a man's voice, thirty, deep and cold, from the "
         "blades: 「不……配……」 Hard, resonant, enclosed stone field recording."
     ),
 
     "tu_khiem": (
         "10-second precise ambience of sword practice in a shrine at night. "
         "Close at the ear, a blade cuts air in a long clean arc, steel rings "
-        "faintly, bare feet pivot on stone. A young man's voice, flat and icy, "
+        "faintly, bare feet pivot on stone. A man's voice, thirty, deep and grave, flat and icy, "
         "instructing close in Mandarin: 「吸气。把气送到手，送到柄，送到剑尖。」 "
         "The room answers each swing with its own reverb. Cold, sharp, clean "
         "stone field recording."
@@ -330,7 +334,7 @@ PROMPT = {
     "binh_minh": (
         "10-second clean dawn ambience over a small town the morning after "
         "trouble. Close in, birds start up one at a time, a rooster far off, "
-        "light wind moves dust and loose paper. A young man's voice, tired but "
+        "light wind moves dust and loose paper. A man's voice, thirty, deep and grave, tired but "
         "almost smiling, in Mandarin: 「你活过了第一夜。而且已经到炼气三层。」 "
         "Open morning air, each sound landing clean and stopping. Clean, calm, "
         "open-air dawn field recording."
@@ -405,7 +409,7 @@ PROMPT = {
     "dot_pha": (
         "10-second heavy silence in a closed room at night. Close at the ear, "
         "wood creaks as it cools, quiet breathing, a window shutter moves a "
-        "fraction. A young man's voice, cool and measured, in Mandarin: 「你上了"
+        "fraction. A man's voice, thirty, deep and measured, in Mandarin: 「你上了"
         "台阶。」 then 「但听清楚：这是凡尘。别在人前露剑气。」 Deep, still, "
         "enclosed room ambience."
     ),
@@ -428,29 +432,29 @@ PROMPT = {
     ),
 
     "kiem_linh": (
-        "5-second scene in a cold stone shrine, air completely still. A young "
-        "man's voice, flat and icy, quiet but clear, with a faint spectral edge, "
+        "5-second scene in a cold stone shrine, air completely still. A man's "
+        "voice, thirty, deep and grave, flat and icy, quiet but clear, with a faint spectral edge, "
         "speaks close in Mandarin: 「我是红尘剑灵。」 Long cold stone reverb opens "
         "out behind the voice. Still, spectral, intimate field recording."
     ),
 
     "kiem_linh_thu": (
-        "3-second scene in a still stone shrine. A young man's voice, around "
-        "twenty, flat and icy, speaks close to the ear in Mandarin: 「若我想杀你，"
+        "3-second scene in a still stone shrine. A man's voice, thirty, deep and "
+        "grave, flat and icy, speaks close to the ear in Mandarin: 「若我想杀你，"
         "你碰到盒子的那一刻就已经死了。」 Far off, metal rings once. Short stone "
         "reverb. Cold, final, intimate field recording."
     ),
 
     "kiem_linh_than": (
-        "6-second scene in a cold stone hall, dead quiet. A young man's voice, "
-        "even and emotionless, measured, speaks close and clear in Mandarin: "
+        "6-second scene in a cold stone hall, dead quiet. A man's voice, thirty, "
+        "deep and grave, even and emotionless, speaks close and clear in Mandarin: "
         "「我是红尘剑的剑灵。」 Stone hall reverb stretches behind each phrase. "
         "Cold, hollow, intimate field recording."
     ),
 
     "kiem_linh_dieu": (
-        "4-second scene in a still stone shrine. A young man's voice, around "
-        "twenty, flat and icy, speaks close to the ear in Mandarin: 「我要你走在"
+        "4-second scene in a still stone shrine. A man's voice, thirty, deep and "
+        "grave, flat and icy, speaks close to the ear in Mandarin: 「我要你走在"
         "红尘之中。」 Very short stone reverb, nothing else in the room. Cold, "
         "quiet, intimate field recording."
     ),
@@ -463,16 +467,16 @@ PROMPT = {
     ),
 
     "han_lap": (
-        "4-second scene on a quiet mountain path in late afternoon. A man's "
-        "voice, around twenty, low and flat, unhurried, speaks without turning around, close to "
+        "4-second scene on a quiet mountain path in late afternoon. A young man's "
+        "voice, eighteen, low and cold, unhurried, speaks without turning around, close to "
         "the ear, in Mandarin: 「跟了我这么久，不累吗？」 Behind him, light wind "
         "moves ridge grass, gravel shifts underfoot. Cool, still, intimate "
         "mountain field recording."
     ),
 
     "han_lap_2": (
-        "5-second scene on a still mountain night. A man's voice, around twenty, low and even, "
-        "slow, weighing each phrase, speaks close in Mandarin: 「这里的人只看见"
+        "5-second scene on a still mountain night. A young man's voice, eighteen, low and "
+        "cold, slow, weighing each phrase, speaks close in Mandarin: 「这里的人只看见"
         "一个流浪汉。」 Very quiet night air behind it, one distant insect. Cool, "
         "bare, intimate night field recording."
     ),
@@ -510,8 +514,9 @@ PROMPT = {
     "tuyet_co_do_du": (
         "5-second scene in a night room, a breath held. Close at the ear, breath "
         "stops and releases slowly, a tiny oil-lamp flame ticks, one dry wooden "
-        "joint creaks. Tense but nothing loud. Warm, hushed, suspended intimate "
-        "room field recording."
+        "joint creaks. A girl's voice, eighteen, sweet and light, as if it "
+        "hardly matters, speaks close in Mandarin: 「一部分阳气。」 Tense but "
+        "nothing loud. Warm, hushed, suspended intimate room field recording."
     ),
 
     "tuyet_co_khe_uoc": (
@@ -521,36 +526,36 @@ PROMPT = {
     ),
 
     "han_lap_gap": (
-        "4-second scene on a rocky path behind a mountain at night. A man's "
-        "voice, around twenty, low and even, calm, speaks with his back turned, close in "
+        "4-second scene on a rocky path behind a mountain at night. A young man's "
+        "voice, eighteen, low and cold, level, speaks with his back turned, close in "
         "Mandarin: 「跟了我一路，不累吗？」 Light night wind crosses rock, gravel "
         "shifts. Cool, open, intimate night field recording."
     ),
 
     "han_lap_that": (
-        "6-second scene on a very still mountain night. A man's voice, around "
-        "twenty, low and cold, slow, speaks close in Mandarin: 「你可知道，我会"
+        "6-second scene on a very still mountain night. A young man's voice, "
+        "eighteen, low and cold, slow, speaks close in Mandarin: 「你可知道，我会"
         "怎么对待知道太多的人？」 Dead air around it, no wind, no insect. Bare, "
         "exposed, intimate night field recording."
     ),
 
     "han_lap_cuoi_tru": (
-        "4-second scene in quiet night air. A man's voice, around twenty, low "
-        "and flat, unimpressed, speaks close in Mandarin: 「碰巧的人，不会天没亮"
+        "4-second scene in quiet night air. A young man's voice, eighteen, low "
+        "and cold, unimpressed, speaks close in Mandarin: 「碰巧的人，不会天没亮"
         "就跟着别人上后山。」 Still night behind it. Cool, thin, intimate night "
         "field recording."
     ),
 
     "han_lap_hoi_nguoc": (
-        "6-second scene on a still mountain night. A man's voice, around "
-        "twenty, low and cold, an edge under it, speaks close to the ear in "
+        "6-second scene on a still mountain night. A young man's voice, "
+        "eighteen, low and cold, an edge under it, speaks close to the ear in "
         "Mandarin: 「今晚谁都有秘密。我不问你，你也别问我。」 Faint wind far "
         "off. Cool, sharp, intimate night field recording."
     ),
 
     "han_lap_bau_nuoc": (
         "5-second scene on a night mountain, very quiet. A water flask cap "
-        "opens, one swallow, then a man's voice, around twenty, low and quiet, almost warm, "
+        "opens, one swallow, then a young man's voice, eighteen, low and cool, almost warm, "
         "speaks close in Mandarin: 「你和这里的人不一样。」 Light wind behind. "
         "Cool, quiet, almost warm intimate field recording."
     ),
