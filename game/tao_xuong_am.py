@@ -55,10 +55,10 @@ def khoi_prompt(n):
     return f"""<label class="nhan">Prompt tạo tiếng — dán vào công cụ tạo âm thanh</label>
 <div class="prompt" id="p-{ma}">{esc(p)}</div>
 <div class="row">{nut}{dem}</div>
-<p class="mota" style="margin:6px 0 0">Prompt viết theo tai người chơi: sát tai nghe gì,
-xa nghe gì, và tiếng đổi thế nào theo khoảng cách. Không có lời nói — chỉ thở, hừ, la,
-khóc. Có sẵn "no music", "no speech" và yêu cầu lặp 10 giây. Ô prompt của ElevenLabs
-chỉ nhận 450 ký tự — quá thì trang báo lỗi, không cho tạo.</p>"""
+<p class="mota" style="margin:6px 0 0">Prompt tả âm thanh, không kể chuyện: mở bằng câu
+khai báo có chất âm, rồi tới sát tai — vài mét — xa, kèm chỗ tiếng đổi chất (tường dội,
+phòng kín, ngoài trời). Không có lời nói, chỉ thở, hừ, la, khóc. Có sẵn "no music",
+"no speech", "seamless loop". Ô prompt của ElevenLabs chỉ nhận 450 ký tự.</p>"""
 
 
 def the_canh(n, i):

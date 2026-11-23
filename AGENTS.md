@@ -929,19 +929,40 @@ npm tạo file mới và **xoá sạch `node_modules`** — mất Playwright. D�
 
 ### Prompt tiếng theo cảnh: tả không gian, không tả nhạc
 
-Mỗi cảnh trong `game/prompt_am.py` có một prompt. Nguyên tắc: mở đầu bằng **chỗ người chơi
-đứng** và khoảng cách tới nguồn tiếng, rồi mới tới các lớp tiếng. Đây là khác biệt cốt lõi:
-cùng là chợ mà chợ sớm thì đứng giữa đám đông, chợ chiều thì ngồi một mình ở rìa — hai prompt
-khác hẳn, không dùng chung một file ambience.
+Mỗi cảnh trong `game/prompt_am.py` có một prompt. Nguyên tắc: mở đầu bằng **một câu khai
+báo đầy đủ** — dài bao lâu, không khí gì, ở đâu — rồi mới tới các lớp tiếng theo khoảng
+cách tính từ tai người chơi. Đây là khác biệt cốt lõi: cùng là chợ mà chợ sớm thì đứng
+giữa đám đông, chợ chiều thì ngồi một mình ở rìa — hai prompt khác hẳn, không dùng chung
+một file ambience.
 
 Luôn có `no music` — đây là tiếng không gian, không phải nhạc nền game. Không cần ghi
 `Vietnamese` nữa: đã bỏ hết lời nói nên không còn gì để công cụ đọc thành tiếng Anh.
+
+**Prompt tả âm thanh, không kể chuyện.** Máy tạo tiếng không tạo được hành động của
+nhân vật. "The player walks into a walled herb garden" không cho nó biết phải phát ra
+tiếng gì — nó chỉ tạo được tiếng. Nên KHÔNG viết "the player", "his own". Chỉ tả cái
+tai nghe thấy. Người chơi vẫn là gốc của mọi khoảng cách (`at the ear`, `a few metres
+off`, `far behind`), nhưng không bị kể là đang làm gì.
+
+**Mở bằng câu khai báo, không mở bằng phủ định.** Sai: `"Ambience, no music, no
+speech."` — ba lần phủ định, không nói gì về chất âm. Đúng: `"10-second warm, secluded
+morning ambience in a walled herb garden."` — dài bao lâu, không khí gì, ở đâu.
+
+**Phải có từ chỉ chất âm.** `warm`, `cold`, `intimate`, `tense`, `sparse`, `dense`,
+`field recording`, `natural reverb`, `open air`, `enclosed`, `muffled`. Không có mấy
+chữ này thì máy tự đoán chất, mỗi lần ra một kiểu. Bản cũ chỉ 2/43 cảnh có.
+
+**Phủ định trừu tượng phải đổi thành tả cụ thể.** Máy không tạo được cái không-có-gì.
+`"nothing comes back"` → `"open air, no reflection, each sound lands and dies"`.
+`"gives nothing back"` → `"the canopy deadens everything above"`.
 
 **Không lời nói — chỉ âm không lời.** Prompt KHÔNG được có ai nói câu nào, không
 tiếng đọc, không "shouting in Vietnamese", không "voices talking". Tiếng người chỉ
 được là âm không lời: thở, thở dốc, hừ, rên, huýt gió, la, khóc. Mọi prompt mở đầu
 bằng `no speech`. Lý do: lời nói biến cảnh thành phim truyền thanh, và kéo theo
 chuyện phải chọn đúng tiếng Việt cho từng câu — việc mà công cụ tạo tiếng làm sai.
+Chú ý: "shouted count" là đếm thành tiếng, tức là có chữ — vi phạm. Dùng "a sharp
+whistle" thay thế.
 
 **Ba lớp khoảng cách, và tiếng phải đổi chất.** Mỗi prompt phải có (1) sát tai —
 tiếng của chính người chơi và thứ ngay cạnh, (2) vài mét, (3) xa. Nhưng gần/xa thôi
