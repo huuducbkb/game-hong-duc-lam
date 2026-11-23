@@ -4396,6 +4396,29 @@ async function ghPutFile(duong, b64){
   return true;
 }
 
+// File y hệt bản đã nằm trong hộp nhận thì đừng gửi lại: GitHub nhận nhưng tạo
+// commit rỗng, không đổi file nào, workflow không chạy (lọc theo đường dẫn) và
+// trang báo xong trong khi tiếng vẫn là bản cũ. Đúng cái làm người dùng tưởng
+// đã cập nhật mà nghe không đổi.
+async function tepYHetTrenGithub(duong, bamMoi){
+  try{
+    const r = await fetch(
+      `https://api.github.com/repos/${GH_REPO}/contents/${duong}?ref=${GH_BRANCH}`,
+      {headers:{'Authorization':`Bearer ${ghToken()}`,'Accept':'application/vnd.github.raw'}});
+    if(!r.ok) return false;
+    const buf = await r.arrayBuffer();
+    const h = await crypto.subtle.digest('SHA-256', buf);
+    const bam = [...new Uint8Array(h)].map(x => x.toString(16).padStart(2,'0')).join('').slice(0,8);
+    return bam === bamMoi;
+  }catch(e){ return false; }
+}
+
+async function bamTep(f){
+  const buf = await f.arrayBuffer();
+  const h = await crypto.subtle.digest('SHA-256', buf);
+  return [...new Uint8Array(h)].map(x => x.toString(16).padStart(2,'0')).join('').slice(0,8);
+}
+
 /* ================= kiểm tra / gửi ================= */
 // Mã băm nội dung file, 8 ký tự đầu — cùng cách ghi_danh_sach_am.py tính `v`.
 async function bamNoiDung(duong){
@@ -4542,6 +4565,14 @@ async function guiMot(hop){
     // và báo xong trong khi tiếng vẫn là bản cũ.
     const banTruoc = await bamHienTai(hop);
     const b64 = await blobB64(gui);
+    // Gửi lại đúng file đã nằm trong hộp nhận thì GitHub tạo commit rỗng: không
+    // có gì để bot xử lý, workflow không chạy. Báo thẳng thay vì để người dùng
+    // chờ rồi nghe vẫn ra tiếng cũ.
+    if(await tepYHetTrenGithub(`${INBOX}/${ma}/${tenGui}`, await bamTep(gui))){
+      ghHienTT(tt,'warn','⚠️ File này y hệt bản đã gửi trước đó — GitHub không tạo thay đổi nào '
+        + 'nên bot không chạy. Chọn file khác (bản thu mới) rồi gửi lại.');
+      return;
+    }
     await ghPutFile(`${INBOX}/${ma}/${tenGui}`, b64);
     ghHienTT(tt,'ok','📤 Đã gửi lên GitHub. Bot sẽ nén và cập nhật trong 1–2 phút — '
       + `đang chờ bản mới${banTruoc ? ` (bản cũ ${banTruoc})` : ''}.`);
