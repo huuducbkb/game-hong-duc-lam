@@ -1089,6 +1089,23 @@
       "dung_o": [
         "c1_p18d"
       ]
+    },
+    "bc_tan_xa_nghi_dem.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Chọn về tân xá nghỉ; Tuyết Cơ gọi dậy, nhắc bóng người đi hậu sơn (p16b).",
+      "tags": [
+        "mình",
+        "đêm",
+        "chọn",
+        "về",
+        "tân",
+        "xá",
+        "nghỉ",
+        "tuyết"
+      ],
+      "dung_o": [
+        "c1_p16b"
+      ]
     }
   }
 }
