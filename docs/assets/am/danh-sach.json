@@ -71,11 +71,23 @@
     "giay": 10,
     "v": "0f6a0ce5"
   },
+  "do_tam_mieu": {
+    "bytes": 31077,
+    "file": "do_tam_mieu.mp3",
+    "giay": 4,
+    "v": "28d582cf"
+  },
   "doat_hop": {
     "bytes": 120729,
     "file": "doat_hop.mp3",
     "giay": 10,
     "v": "d0234ab6"
+  },
+  "dot_pha": {
+    "bytes": 120729,
+    "file": "dot_pha.mp3",
+    "giay": 10,
+    "v": "23f86be8"
   },
   "duong_mon_nui": {
     "bytes": 120729,
@@ -100,6 +112,18 @@
     "file": "khe_nui_dem.mp3",
     "giay": 10,
     "v": "12635e11"
+  },
+  "kiem_hap": {
+    "bytes": 48945,
+    "file": "kiem_hap.mp3",
+    "giay": 4,
+    "v": "f7a836f5"
+  },
+  "kiem_linh": {
+    "bytes": 60857,
+    "file": "kiem_linh.mp3",
+    "giay": 5,
+    "v": "47258133"
   },
   "mieu_hoang": {
     "bytes": 120729,
