@@ -1267,6 +1267,27 @@ vẫn ẩn dù tiếng đã vào. Nay workflow chạy `game/tao_xuong_am.py` nga
 `pages.yml` (GitHub chặn vòng lặp). Deploy trong `xuong-am.yml` là đường
 **duy nhất** đưa tiếng lên trang. Nó chết là tiếng không lên, dù repo đúng.
 
+**c. Deploy dồn dập thì Pages chặn, không phải lỗi code.** Một phiên sửa
+prompt đã deploy 12 lần trong 1 giờ; 4 lượt liền báo `Deployment failed, try
+again later` dù artifact upload thành công (75 MB, có trong run) và
+githubstatus.com ghi "All Systems Operational". `workflow_dispatch` và
+`rerun` đều hỏng. Chờ ~15 phút rồi dispatch lại → **thành công ngay**.
+
+Nên: sau 2 lượt hỏng liên tiếp cùng thông báo đó, **đừng thử tiếp** — chờ
+10–15 phút. Phân biệt hai lỗi rất giống nhau:
+
+| Thông báo | Nghĩa | Xử lý |
+|---|---|---|
+| `No artifacts named "github-pages"` / `Fetching artifact metadata failed` | artifact không tới được bước deploy | thử lại 1–2 lần, cách 30–60s |
+| `Deployment failed, try again later` (sau khi đã `Created deployment`) | Pages từ chối build, thường do dồn dập | chờ 15 phút, đừng retry liền |
+
+Cách kiểm artifact có thật trong run hay không:
+
+```bash
+gh api repos/<owner>/<repo>/actions/runs/<run_id>/artifacts \
+  --jq '.artifacts[] | "\(.name) \(.size_in_bytes) expired=\(.expired)"'
+```
+
 **Thứ tự kiểm khi người dùng báo "vẫn âm thanh cũ":**
 
 ```bash
