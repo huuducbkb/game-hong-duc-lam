@@ -325,6 +325,22 @@ ASSETS = [
         "Desolate, quiet, sorrowful, exhausted.",
     },
     {
+        "key": "bc_mieu_hoang_nghi_dem",
+        "name": "C.6b Miếu hoang — một mình trong đêm",
+        "ratio": "3:4 dọc (900×1200)",
+        "file": "bc_mieu_hoang_nghi_dem.jpg",
+        "use": "Tán tu về miếu hoang nghỉ sau trận, kiếm linh lên tiếng (d14b).",
+        "prompt": STYLE + " "
+        "The interior of a small ruined roadside shrine at night, just before dawn, seen from "
+        "inside at seated eye level. A broken roof open to a sliver of dark sky, a rotting wooden "
+        "pillar, a cracked stone altar with dust and dry leaves, thin ash drifted across the stone "
+        "floor. A narrow gap in the plank wall lets cold wind through, faint mist hanging low. "
+        "A sheathed long sword leans against the pillar, a short sword laid beside it. No people. "
+        "Cold blue-grey moonlight, deep shadow in the corners, restrained ink-wash tones. "
+        "Composition keeps the upper part dark and calm for game text. "
+        "Lonely, cold, exhausted, quiet.",
+    },
+    {
         "key": "nv_han_lap",
         "name": "C.7 Hàn Lập (nhân vật — crossover Phàm Nhân Tu Tiên)",
         "ratio": "3:4 dọc (900×1200)",
@@ -753,6 +769,7 @@ DOAN_CUA_ANH = {
     "bc_tran_lua_2": ["c1_d12"],
     "bc_tran_lua_3": ["c1_d13"],
     "bc_tan_hoang": ["c1_d14"],
+    "bc_mieu_hoang_nghi_dem": ["c1_d14b"],
     "nv_han_lap": ["c1_d15"],
     "nv_han_lap_2": ["c1_d16"],
     "bc_binh_minh": ["c1_d17"],
@@ -776,7 +793,8 @@ NHOM_CUA_ANH = {
     "bc_cho_01": "c1-tan-tu", "bc_tan_xa_dem": "c1-mon-phai", "vt_ngoc_cot": "c1-mon-phai",
     "nv_tuyet_co": "c1-mon-phai", "bc_duong_mon_nui": "c1-tan-tu", "bc_mieu_hoang": "c1-tan-tu",
     "vt_kiem_hap": "c1-tan-tu", "nv_kiem_linh": "c1-tan-tu", "bc_tran_lua": "c1-tan-tu",
-    "bc_tan_hoang": "c1-tan-tu", "nv_han_lap": "c1-tan-tu", "bc_binh_minh": "c1-tan-tu",
+    "bc_tan_hoang": "c1-tan-tu", "bc_mieu_hoang_nghi_dem": "c1-tan-tu",
+    "nv_han_lap": "c1-tan-tu", "bc_binh_minh": "c1-tan-tu",
     "bc_cho_02": "c1-tan-tu", "bc_cho_03": "c1-tan-tu", "bc_mieu_trong": "c1-tan-tu",
     "nv_do_tam_mieu": "c1-tan-tu", "bc_doat_hop": "c1-tan-tu", "bc_tu_khiem": "c1-tan-tu",
     "bc_dot_pha": "c1-tan-tu", "vt_kiem_hap_nhan": "c1-tan-tu",
@@ -839,7 +857,8 @@ NHOM_CANH = [
      "mau": ["nv_chinh_mau"]},
     {"ma": "d-tran-lua", "phan": "c1-tan-tu", "ten": "Trấn cháy — cứu dân",
      "mota": "Thất Huyền trấn chìm trong lửa, cứu dân, cổng môn vỡ.",
-     "keys": ["bc_tran_lua", "bc_tran_lua_2", "bc_tran_lua_3", "bc_tan_hoang"],
+     "keys": ["bc_tran_lua", "bc_tran_lua_2", "bc_tran_lua_3", "bc_tan_hoang",
+               "bc_mieu_hoang_nghi_dem"],
      "mau": ["nv_chinh_mau"]},
     {"ma": "d-han-lap", "phan": "c1-tan-tu", "ten": "Hàn Lập",
      "mota": "Chạm mặt Hàn Lập, đối thoại.",

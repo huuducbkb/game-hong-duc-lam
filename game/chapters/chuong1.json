@@ -476,11 +476,44 @@
       "lua_chon": [
         {
           "chu": "Lặng lẽ bám theo bóng người ấy",
-          "den": "c1_d15"
+          "den": "c1_d15",
+          "hieu_ung": {
+            "sinh_luc": 10
+          }
         },
         {
           "chu": "Về nơi trú, tìm chỗ nghỉ lấy sức",
-          "den": "c1_d15"
+          "den": "c1_d14b",
+          "hieu_ung": {
+            "sinh_luc": 18
+          }
+        }
+      ]
+    },
+    {
+      "id": "c1_d14b",
+      "hoi": "Thân",
+      "boi_canh": "Miếu hoang — một mình trong đêm",
+      "hinh_anh": {
+        "tags": [
+          "miếu hoang",
+          "đêm",
+          "mệt",
+          "kiếm linh"
+        ],
+        "anh": "bc_mieu_hoang_nghi_dem.jpg"
+      },
+      "ke": "Ta quay lưng lại đám người đang khiêng xác, men theo con đường mòn trở về miếu hoang.\n\nMiếu vẫn như ta rời đi: mái vỡ, cột mục, cửa mở toang. Gió lùa qua khe vách, thổi tro bay lả tả trên nền đá. Ta ngồi xuống cạnh bệ thờ, lưng tựa vào cột, hai chân run lên vì mệt.\n\n“Ngồi đó làm gì?” — kiếm linh nói, giọng trầm mà phẳng.\n\n“Gã gầy gò vừa rồi đi về hậu sơn. Hắn đã nhìn ngươi.”\n\n*Kẻ đó.* Trong lòng ta chợt dấy lên một nỗi bất an không tên — như có ai vừa khắc một dấu lạ lên vách đá, mà ta thì chưa đọc được nghĩa.\n\nTa im lặng rất lâu. Mệt đến mức mí mắt nặng như đá. Nhưng ta biết y nói phải.\n\n“Ta biết rồi,” — ta nói, chống kiếm đứng dậy.\n\nTrời chưa sáng hẳn. Ta bước ra khỏi miếu, đi về phía hậu sơn.\n\nĐi được một quãng, phía trước, bóng dáng gầy gò ấy hiện ra trong sương — không đi nhanh, cũng không ngoái lại, như thể đang chờ một kẻ mà hắn biết chắc sẽ tới.",
+      "lua_chon": [
+        {
+          "chu": "Chống kiếm đứng dậy, đi về phía hậu sơn",
+          "den": "c1_d15",
+          "hieu_ung": {
+            "sinh_luc": 18,
+            "co_su_kien": [
+              "nghe_kiem_linh_goi_day"
+            ]
+          }
         }
       ]
     },
@@ -1531,9 +1564,9 @@
         },
         {
           "chu": "Về tân xá, tìm chỗ nghỉ lấy sức",
-          "den": "c1_p17",
+          "den": "c1_p16b",
           "hieu_ung": {
-            "sinh_luc": 10,
+            "sinh_luc": 18,
             "them_vat": [
               {
                 "ten": "Gói thuốc phòng thân",
@@ -1546,6 +1579,35 @@
             },
             "co_su_kien": [
               "mac_dai_phu_tang_thuoc"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c1_p16b",
+      "hoi": "Thân",
+      "boi_canh": "Tân xá — một mình trong đêm",
+      "hinh_anh": {
+        "tags": [
+          "tân xá",
+          "đêm",
+          "mệt",
+          "ngọc cốt"
+        ],
+        "anh": "bc_tan_xa_nghi_dem.jpg"
+      },
+      "ke": "Ta quay lưng lại đám người đang khiêng xác, men theo bức tường đổ trở về tân xá.\n\nTân xá cũng chẳng còn nguyên vẹn. Mái ngói thủng một mảng, gió lùa qua khe hở, thổi tro bay lả tả trên nền đất. Vài người bị thương nằm la liệt, tiếng rên khe khẽ, đứt quãng.\n\nTa ngồi xuống bậc cửa, lưng tựa vào cột gỗ. Toàn thân đau nhức, hai chân run lên vì mệt. Ta nhắm mắt lại, chỉ định nghỉ một chốc.\n\nTrong vạt áo, khối ngọc cốt khẽ ấm lên.\n\n“Ngồi đó làm gì?” — Tuyết Cơ nói, giọng ngọt mà như đang trêu — “Gã gầy gò vừa rồi đi về hậu sơn. Hắn đã nhìn ngươi.”\n\n*Kẻ đó.* Trong lòng ta chợt dấy lên một nỗi bất an không tên — như có ai vừa khắc một dấu lạ lên vách đá, mà ta thì chưa đọc được nghĩa.\n\nTa im lặng rất lâu. Mệt đến mức mí mắt nặng như đá. Nhưng ta biết nàng nói phải.\n\n“Ta biết rồi,” — ta nói, chống tay đứng dậy.\n\nKhối ngọc lại ấm lên, lần này như có tiếng cười rất khẽ ở bên trong.\n\nTrời chưa sáng hẳn. Ta bước ra khỏi tân xá, đi về phía hậu sơn.\n\nĐi được một quãng, phía trước, bóng dáng gầy gò ấy hiện ra trong sương — không đi nhanh, cũng không ngoái lại, như thể đang chờ một kẻ mà hắn biết chắc sẽ tới.",
+      "lua_chon": [
+        {
+          "chu": "Đứng dậy, đi về phía hậu sơn",
+          "den": "c1_p17",
+          "hieu_ung": {
+            "hao_cam": {
+              "Tuyết Cơ": 5
+            },
+            "co_su_kien": [
+              "nghe_tuyet_co_goi_day"
             ]
           }
         }

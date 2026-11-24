@@ -362,6 +362,25 @@ MOI = [
      "Suýt bị phát hiện: nín thở, bước chân người khác tới gần rồi đi qua, im lại. "
      "Căng, không có tiếng lớn."),
 
+    ("tan_xa_nghi_dem", "Tân xá — một mình trong đêm", "lang",
+     "bc_tan_xa_nghi_dem.jpg",
+     ["collapsed dormitory night ambience", "exhausted sitting alone quiet",
+      "ruined barracks wind through gaps"],
+     ["damaged room night ambience", "wind through broken roof tiles",
+      "tired breathing quiet room"],
+     "Tân xá sau trận, đêm chưa sáng: mái thủng, gió lùa qua khe ngói, tro bay "
+     "rất khẽ, người bị thương rên đứt quãng ở đâu đó. Một người ngồi bệt xuống "
+     "bậc cửa, thở dài, rồi im.", 10),
+
+    ("mieu_hoang_nghi_dem", "Miếu hoang — một mình trong đêm", "lang",
+     "bc_mieu_hoang.jpg",
+     ["abandoned shrine night ambience", "exhausted sitting alone quiet",
+      "broken roof wind through gaps"],
+     ["derelict temple night ambience", "wind through broken eaves",
+      "tired breathing quiet stone floor"],
+     "Miếu hoang sau trận, đêm chưa sáng: mái vỡ, gió lùa qua khe vách, tro bay "
+     "rất khẽ trên nền đá. Một người ngồi bệt cạnh bệ thờ, thở dài, rồi im.", 10),
+
     ("tan_xa_dot_pha", "Tân xá — đột phá Luyện Khí tầng hai", "lang",
      "bc_tan_xa_dot_pha.jpg",
      ["energy surge ambience", "breakthrough moment sound",
