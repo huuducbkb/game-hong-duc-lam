@@ -446,38 +446,63 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 4. Thư viện ảnh/video: mở rộng đủ Chương 1 (~19 ảnh) + video ngắn (chuỗi ảnh + hiệu ứng)
 5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
 
-## NÉT VẼ: phải liền mạch, không loang (bắt buộc)
+## NÉT VẼ: hội họa có khối, KHÔNG viền cứng (bắt buộc)
 
 Người dùng phản ánh ảnh ra "nét như răng cưa, quần áo và mặt như tranh trừu tượng".
-Đo được: cả **77/77** prompt đều bị, vì khối style chung cũ chứa `wet ink bleeding edges,
-dry brush strokes, visible paper fibre texture, rough handmade`. Bốn cụm đó dạy AI vẽ
-nét đứt quãng và loang — đúng thứ gây lỗi.
+Lần sửa đầu tiên ép `one continuous unbroken brush stroke` + `crisp, well-defined edges`
++ `solid filled shapes`. **Đó là ngõ cụt**: chính yêu cầu viền sắc sinh ra răng cưa, vì
+AI không giữ được đường cong trơn trên hình phức tạp nên gãy khúc. Đo bằng thước mới:
+**70/70 ảnh** có độ mềm mép 0.49–0.62, đúng dải của nét viền cứng.
 
-Đã sửa gốc trong `tools_server.py`:
+Hướng đúng (đang dùng) là **hội họa có khối**: mép mềm, sáng tối thể tích, giải phẫu thật.
 
-- `STYLE_GOC` / `MAU_GOC`: bỏ hết cụm gây loang, đổi `rough handmade` → `smooth handmade`,
-  thêm `clean controlled brushwork` + `crisp, well-defined edges`.
-- `NET_LIEN` (mới): chèn vào **cả 3** khối `STYLE`, `STYLE_MAU`, `STYLE_CHU`. Nội dung:
-  mỗi đường viền là **một nét bút liền**, cấm `jagged zigzag edges`, `sketchy broken lines`,
-  `short choppy overlapping strokes`, `abstract scribbled shapes`; mảng mực phải đặc đều,
-  không chấm li ti, không loang halo.
-- `NET_NGUOI` (mới): chèn tự động cho prompt có người (mã `nv_`/`bc_`/`vt_` + có chữ
-  Portrait / Character reference / figure). Ép giải phẫu rõ, mắt-mũi-miệng nét liền, nếp áo
-  thành mảng lớn mượt. Ảnh giao diện **không** nhận câu này.
-- Bỏ 5 chỗ `suggested loosely by a few ink strokes, faces not detailed` — chính nó dạy
-  AI vẽ trừu tượng. Thay bằng "each drawn with clean continuous outlines and a readable
-  silhouette".
-- Ảnh giao diện: bỏ `ink splashes`, `wobbly edges`, `dry-brush ends`, `blotchy`.
+- `STYLE_GOC` / `MAU_GOC`: `painterly cinematic`, `soft blended edges`, `volumetric shading`,
+  `atmospheric depth`, `realistic anatomy`, `detailed fabric folds`; cấm
+  `NOT folk art, NOT flat cartoon, NOT comic-book linework`. Vẫn giữ `smooth handmade`,
+  palette trầm, chủ đạo mực đen trên giấy dó.
+- `NET_MEM` (thay `NET_LIEN`): `soft blended edges and graduated tone instead of hard black
+  contours`, `no bold black outline`, `no flat fill`, `no clean crisp comic linework`.
+  Vẫn cấm `jagged`, `sketchy broken lines`, `choppy overlapping strokes`, `speckle`,
+  `splatter`, `bleeding halo`.
+- `NET_NGUOI`: `correct, realistic human anatomy`, khối mặt (cheekbones, jaw), nếp vải
+  `large smooth folds with real weight and drape`. Chèn tự động cho prompt có người.
+- **`STYLE_UI` + `NET_UI` (ngoại lệ có chủ đích)**: 7 ảnh giao diện (`bg-main`,
+  `panel-character`, `panel-story`, `avatar-ring`, `btn-choice`, `divider-ink`, `seal`) **giữ
+  cạnh sắc, tô phẳng, ruột trống**. Chúng là khung để đặt chữ; viền mềm làm chữ khó đọc.
+  Đừng áp mép mềm cho nhóm này.
+- **Không dùng lại các cụm cũ**: `continuous unbroken brush stroke`, `crisp, well-defined edges`,
+  `solid filled shapes`, `each drawn with clean continuous outlines`, `readable silhouette`.
+  Test sẽ báo hỏng nếu tái phạm.
 
-**Cách kiểm nhanh** — dùng script `tools/kiem_prompt_anh.py`, phải in `SACH`:
+### Nhận khối style phải theo khối nền, không theo cả chuỗi
 
-```bash
-python3 tools/kiem_prompt_anh.py
-```
+`NET_NGUOI` được chèn **ngay trước `NO_TEXT`**, nên prompt có người **không còn khớp nguyên
+chuỗi** `STYLE_MAU`. Dùng `khoi_style(p)` (trả `ui`/`mau`/`goc`) để nhận khối, và
+`_prompt_than(a)` để tách mô tả riêng. So khớp `p.startswith(STYLE_MAU)` sẽ trượt.
 
-`game/_test_api.py` có 4 phép kiểm canh việc này (đã thử chèn từ xấu → test bắt đúng).
-Sửa prompt xong **phải dựng lại trang**: `python3 tools/build_xuong.py` và
-`python3 tools/build_xuong_video.py`, không thì trang vẫn là bản cũ.
+### Regex "có người" phải khớp cả số nhiều
+
+Bản cũ chỉ có `figure|disciple|cultivator`, nên **3 cảnh đông người** (`bc_cho_01`,
+`bc_tan_hoang`, `bc_doat_hop` ghi `figures`) bị bỏ sót khối giải phẫu. Đã cho khớp
+`figures?|disciples?|cultivators?|men|women|youths?|beggars?|raiders?|faces?`.
+
+### Thước đo nét: `tools/do_net_anh.py`
+
+Thước cũ đếm **chu vi mảng mực** rồi so bản làm trơn — chỉ đúng với hình vẽ bằng viền cứng.
+Ảnh mép mềm có chu vi lớn tự nhiên nên bị chấm sai. Thước hiện tại đo hai đại lượng:
+
+| Đại lượng | Đo gì | Đạt |
+|---|---|---|
+| `MEM` | độ rộng chuyển sáng→tối ở mép (điểm ảnh) | ≥ 1.00, nên ≥ 1.15 |
+| `VUN` | tỉ lệ mực nằm trong mảng nhỏ rời rạc | ≤ 0.15, nên ≤ 0.10 |
+
+`python3 tools/do_net_anh.py --tu-kiem` phải in **"Thước phân biệt đúng"** trước khi tin số đo.
+Lần viết đầu thước chấm sai 2/3 ảnh tổng hợp (dấu nhiễu bị ngược, ngưỡng quá chặt) — luôn
+chạy tự kiểm.
+
+`game/_test_api.py` có **9 phép kiểm** canh hướng này (chặn cả hai chiều: thiếu cụm mới, và
+quay lại cụm cũ). Sửa prompt xong **phải dựng lại trang**: `python3 tools/build_xuong.py` và
+`python3 tools/build_xuong_video.py`.
 
 **Bẫy `__pycache__` và server cũ**: `tools/build_xuong.py` import `tools_server`, nên nếu
 `__pycache__/tools_server.cpython-*.pyc` còn bản cũ thì trang sinh ra vẫn là prompt cũ
@@ -496,7 +521,8 @@ python3 tools/build_xuong.py && python3 tools/build_xuong_video.py
 Dựng xong phải kiểm lại chính file HTML, không tin mỗi dòng "Đã dựng":
 
 ```bash
-grep -c "continuous unbroken brush stroke" docs/xuong/index.html   # phải > 0
+grep -c "soft blended edges" docs/xuong/index.html                  # phải > 0
+grep -c "continuous unbroken\|crisp, well-defined edges" docs/xuong/index.html # phải = 0
 grep -c "suggested loosely\|wet ink bleeding" docs/xuong/index.html # phải = 0
 ```
 
