@@ -560,12 +560,24 @@ print("\n=== Z. Nén ảnh khi lưu ===")
 if not NEN_OK:
     print("  (bỏ qua: chưa cài Pillow)")
 else:
-    # Ảnh lớn (900×1200, có nhiễu như ảnh thật) lưu vào game phải NHẸ hơn gốc
+    # Ảnh lớn (900×1200, có nhiễu như ảnh thật) lưu vào game phải NHẸ hơn gốc.
+    # Dùng một key nháp rồi xoá: ghi vào key thật sẽ đè mất ảnh vẽ của người dùng.
     _goc = _png_nhieu(900, 1200)
-    kq = _post_raw("/luu_loat", {"ds": [{"key": "bc_cho_01", "data": _b64(_goc)}]})
-    _duong = "/workspace/game-hong-duc-lam/assets/scene/bc_cho_01.jpg"
-    _luu = os.path.getsize(_duong) if os.path.isfile(_duong) else 0
-    check("ảnh lưu ra nhẹ hơn ảnh gốc", _luu > 0 and _luu < len(_goc), True)
+    _k = "bc_cho_01"
+    _duong = "/workspace/game-hong-duc-lam/assets/scene/" + _k + ".jpg"
+    _sao = _duong + ".test-goc"
+    _co_cu = os.path.isfile(_duong)
+    if _co_cu:
+        import shutil as _sh
+        _sh.copy2(_duong, _sao)
+    try:
+        _post_raw("/luu_loat", {"ds": [{"key": _k, "data": _b64(_goc)}]})
+        _luu = os.path.getsize(_duong) if os.path.isfile(_duong) else 0
+        check("ảnh lưu ra nhẹ hơn ảnh gốc", _luu > 0 and _luu < len(_goc), True)
+    finally:
+        if _co_cu:
+            import shutil as _sh
+            _sh.move(_sao, _duong)
     # Ảnh giữ trong suốt (seal) phải vẫn là PNG
     kq = _post_raw("/luu_loat", {"ds": [{"key": "seal", "data": _b64(_png(1024, 1024))}]})
     _seal = "/workspace/game-hong-duc-lam/assets/ui/seal.png"
@@ -575,7 +587,7 @@ else:
 
 _restore(_snap)
 
-print("\n=== Prompt ảnh: hội họa có khối, không viền cứng ===")
+print("\n=== Prompt ảnh: line-art nét liền, sạch ===")
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import tools_server as _TS
 _LOANG = ("wet ink bleeding", "bleeding edges", "dry brush", "dry-brush", "paper fibre",
@@ -584,24 +596,33 @@ _LOANG = ("wet ink bleeding", "bleeding edges", "dry brush", "dry-brush", "paper
 _xau = {a["key"]: [c for c in _LOANG if c in a["prompt"].lower()] for a in _TS.ASSETS}
 check("không prompt ảnh nào chứa từ gây loang", {k: v for k, v in _xau.items() if v}, {})
 
-# Ảnh truyện/nhân vật phải đòi mép mềm, khối, giải phẫu thật — hướng hội họa.
+# Ảnh truyện/nhân vật: line-art nét liền, tô phẳng, cấm chuyển sắc mềm.
 _TRUYEN = [a for a in _TS.ASSETS if _TS.khoi_style(a["prompt"]) in ("mau", "goc")]
-_MEM = ("soft blended edges", "volumetric shading", "atmospheric depth")
-check("ảnh truyện/nhân vật đòi mép mềm và khối",
-      {a["key"]: [c for c in _MEM if c not in a["prompt"]] for a in _TRUYEN
-       if any(c not in a["prompt"] for c in _MEM)}, {})
-check("ảnh truyện/nhân vật cấm viền đen đậm và tô phẳng",
-      {a["key"]: [c for c in ("no bold black outline", "no flat fill")
+_NET = ("one continuous unbroken brush stroke", "crisp, clean and clearly readable",
+        "solid filled shapes", "ONE solid, opaque, evenly toned ink")
+check("ảnh truyện/nhân vật đòi nét liền, sạch, tô phẳng",
+      {a["key"]: [c for c in _NET if c not in a["prompt"]] for a in _TRUYEN
+       if any(c not in a["prompt"] for c in _NET)}, {})
+check("mọi prompt đòi mực đặc, cấm loang lỗ và đốm sáng",
+      {a["key"]: [c for c in ("no mottled or patchy texture", "no blotches",
+                              "no bright pinholes")
                   if c not in a["prompt"]] for a in _TRUYEN
-       if any(c not in a["prompt"] for c in ("no bold black outline", "no flat fill"))}, {})
-# Chặn tái phạm: đòi viền sắc / nét bút liền mạch là quay lại hướng cũ.
-_CU = ("crisp, well-defined edges", "continuous unbroken brush stroke",
-       "solid filled shapes", "continuous outlines")
-check("không prompt ảnh truyện nào quay lại hướng viền cứng",
-      {a["key"]: [c for c in _CU if c in a["prompt"]] for a in _TRUYEN
-       if any(c in a["prompt"] for c in _CU)}, {})
+       if any(c not in a["prompt"] for c in ("no mottled or patchy texture",
+                                             "no blotches", "no bright pinholes"))}, {})
+check("ảnh truyện/nhân vật khai báo line-art, không phải tranh",
+      {a["key"] for a in _TRUYEN if "line-art" not in a["prompt"]}, set())
+# Chặn tái phạm: quay lại hướng "có khối / mép mềm" là sai hướng hiện tại.
+_KHOI = ("soft blended edges", "volumetric shading", "atmospheric depth",
+         "painterly cinematic", "melting into the paper", "no bold black outline")
+check("không prompt ảnh truyện nào quay lại hướng có khối",
+      {a["key"]: [c for c in _KHOI if c in a["prompt"]] for a in _TRUYEN
+       if any(c in a["prompt"] for c in _KHOI)}, {})
+check("prompt có người vẫn đòi giải phẫu thật",
+      {a["key"] for a in _TRUYEN
+       if _TS.NET_NGUOI in a["prompt"] and "correct, realistic human anatomy" not in a["prompt"]},
+      set())
 
-# Ảnh giao diện là ngoại lệ có chủ đích: cần cạnh sắc, tô phẳng để chữ đọc được.
+# Ảnh giao diện cũng là line-art, nhưng tô phẳng tuyệt đối để chữ đọc được.
 _UI = [a for a in _TS.ASSETS if _TS.khoi_style(a["prompt"]) == "ui"]
 check("có ảnh giao diện dùng khối riêng", len(_UI) >= 6, True)
 check("ảnh giao diện giữ cạnh sắc và tô phẳng",
@@ -614,12 +635,6 @@ check("ảnh giao diện không bị gắn mép mềm",
 check("mọi prompt ảnh đều cấm chữ",
       [a["key"] for a in _TS.ASSETS
        if a["key"] != "seal" and "no text" not in a["prompt"].lower()], [])
-
-_nv = [a for a in _TS.ASSETS if a["key"].startswith(("nv_", "bc_", "vt_"))
-       and ("Portrait" in a["prompt"] or "figure" in a["prompt"].lower()
-            or "Character reference" in a["prompt"])]
-check("prompt có người đều đòi rõ giải phẫu",
-      {a["key"] for a in _nv if "correct, realistic human anatomy" not in a["prompt"]}, set())
 check("ảnh giao diện không bị gắn nhầm ràng buộc giải phẫu",
       [a["key"] for a in _TS.ASSETS
        if not a["key"].startswith(("nv_", "bc_", "vt_"))

@@ -32,182 +32,144 @@
  .cu{background:#fdf5f4;border-left:4px solid var(--d);padding:10px 12px;border-radius:6px;font-size:14.5px;margin:8px 0}
  .moi{background:#f4fbf6;border-left:4px solid var(--g);padding:10px 12px;border-radius:6px;font-size:14.5px;margin:8px 0}
 </style>
-
-<h1>Đổi sang hướng hội họa có khối — em đã làm xong phần prompt</h1>
+<h1>Đổi sang line-art nét liền — và bệnh thật là mực loang lỗ</h1>
 <p class="dan">Báo cáo cho anh · 17/11/2026 · nhánh <code>main</code></p>
 
 <div class="hop bad">
-  <b>Điều phải nói trước, không để anh chờ vô ích</b>
-  Prompt mới <b>không sửa được 70 ảnh đã vẽ</b>. Chúng vẫn mang nét viền cứng như cũ cho tới khi
-  anh bấm vẽ lại. Em đã đo và ghi số bên dưới. Việc em làm là đổi câu lệnh, để
-  <b>lần vẽ lại sẽ ra tranh có khối</b>.
+  <b>Điều phải nói trước</b>
+  Prompt mới <b>không sửa được 70 ảnh đã vẽ</b>. Anh phải vẽ lại thì mới thấy khác.
+  Việc em làm là đổi câu lệnh để lần vẽ lại ra nét liền, sạch, mực đặc.
 </div>
+
+<div class="hop">
+  <b>Anh chỉ đúng chỗ em đo sai</b>
+  Em đi tìm răng cưa, nhưng bệnh thật là <b>vết mực loang lỗ và nhiều đốm sáng</b>.
+  Em đã viết lại thước đo theo đúng hai bệnh đó, và số đo xác nhận lời anh:
+  <b>63/70 ảnh bị mực loang lỗ</b>, 1 ảnh có đốm sáng, chỉ 6 ảnh đạt.
+</div>
+
+<h2>1. Hướng vẽ mới: line-art nét liền</h2>
+
+<p>Bốn khối câu lệnh quyết định cách vẽ. Em đổi cả bốn:</p>
+
+<table>
+<tr><th>Khối</th><th>Trước (hướng cũ)</th><th>Nay</th></tr>
+<tr>
+  <td><code>STYLE_GOC</code><br>mực đen</td>
+  <td>“Painterly cinematic… soft blended edges, volumetric shading, atmospheric depth”</td>
+  <td>“Clean East Asian ink line-art (baimiao / 白描)… every shape closed by a clear continuous outline, filled with flat even ink, generous empty negative space (liubai)”</td>
+</tr>
+<tr>
+  <td><code>MAU_GOC</code><br>điểm màu</td>
+  <td>“colour-ink painting… soft blended edges, volumetric shading”</td>
+  <td>“colour line-art… crisp black ink outlines, flat muted colour laid inside the lines… colour applied flat, never as a soft gradient”</td>
+</tr>
+<tr>
+  <td><code>NET_LIEN</code><br>nét vẽ</td>
+  <td>“soft blended edges and graduated tone instead of hard black contours… no bold black outline”</td>
+  <td>“one continuous unbroken brush stroke… Fill each shape with ONE solid, opaque, evenly toned ink… no mottled or patchy texture, no blotches, no bright pinholes or speckles inside the ink”</td>
+</tr>
+<tr>
+  <td><code>NET_NGUOI</code><br>người</td>
+  <td>“modelled cheekbones and jaw, clothing painted as large smooth folds”</td>
+  <td>“correct, realistic human anatomy… outline the face, the hands and the garments with continuous unbroken lines”</td>
+</tr>
+</table>
+
+<p>Hai câu quan trọng nhất, vì chúng nhắm thẳng vào bệnh anh thấy:</p>
+
+<div class="cu">“soft blended edges… volume comes from layered washes turning gradually from dark to light, with the edges of shadows melting into the paper” — <b>hướng cũ, chính là thứ tạo ra mảng loang lỗ</b></div>
+<div class="moi">“Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches, no bright pinholes or speckles inside the ink”</div>
+
+<h2>2. Thước đo — em viết lại, và tự kiểm trước khi dùng</h2>
+
+<p>Thước cũ tìm răng cưa nên không bắt được bệnh thật. Thước mới đo hai thứ anh chỉ ra:</p>
+
+<table>
+<tr><th>Đại lượng</th><th>Đo gì</th><th>Ngưỡng</th></tr>
+<tr><td><b>LOANG</b></td><td>tỉ lệ điểm còn sáng nằm <b>bên trong thân mực</b>. Mực tô đặc cho 0.00; mực loang lỗ cho 0.15–0.48</td><td>trên 0.15 là loang lỗ</td></tr>
+<tr><td><b>ĐỐM</b></td><td>tỉ lệ điểm sáng nằm trong các <b>lỗ nhỏ</b> khoét giữa thân mực. Lỗ lớn là mảng giấy trắng trong nét bao — hợp lệ với line-art, không tính</td><td>trên 0.03 là có đốm</td></tr>
+<tr><td><b>NÉT</b></td><td>độ nhất quán hướng nét dọc đường biên. Nét kéo một hơi thì hướng đều; nét chắp vụn thì hướng đảo</td><td>chỉ để soi ảnh bất thường</td></tr>
+</table>
 
 <div class="hop warn">
-  <b>Một chỗ em không làm theo lời khuyên Meta AI, và lý do</b>
-  Lời khuyên đó đúng 6/7 phần. Phần em bỏ là áp nó cho <b>7 ảnh giao diện</b> (nền màn hình,
-  khung bảng, viền đại diện, nút bấm, con dấu, đường kẻ). Những ảnh này là <b>cái khung để đặt chữ</b>.
-  Viền mềm làm chữ trong game khó đọc. Nên em tách riêng một khối style cho chúng, giữ cạnh sắc.
-  70 ảnh truyện và nhân vật thì theo đúng hướng mới.
+  <b>Em tự kiểm thước trên 3 ảnh biết trước đáp án</b>
+  Mực đặc → chấm “mực đặc”. Mực loang lỗ → chấm “mực loang lỗ”. Có đốm → chấm “có đốm sáng”.
+  Lần đầu em để phép kiểm đốm chạy trước, nó chấm sai ảnh loang (vì mực loang tự sinh ra lỗ nhỏ).
+  Đảo thứ tự xong mới đúng 3/3. Chạy lại được bất cứ lúc nào:<br>
+  <code>python3 tools/do_net_anh.py --tu-kiem</code>
 </div>
 
-<h2>1. Em đã đổi cái gì</h2>
-
-<p>Khối style chung là câu lệnh dán trước mọi prompt. Nó quyết định toàn bộ cách vẽ. Em đổi bốn khối:</p>
-
-<table>
-<tr><th>Khối</th><th>Trước</th><th>Nay</th></tr>
-<tr>
-  <td><code>STYLE_GOC</code><br><span style="color:#5b6b7c;font-size:13px">mực đen</span></td>
-  <td>Traditional East Asian ink wash painting… <b>clean controlled brushwork</b></td>
-  <td>Painterly cinematic East Asian ink painting… <b>soft blended edges, volumetric shading, atmospheric depth, realistic anatomy, detailed fabric folds</b></td>
-</tr>
-<tr>
-  <td><code>MAU_GOC</code><br><span style="color:#5b6b7c;font-size:13px">điểm màu 彩墨</span></td>
-  <td>…<b>crisp, well-defined edges</b>…</td>
-  <td>…<b>soft blended edges, volumetric shading</b>… + <b>NOT folk art, NOT flat cartoon, NOT comic-book linework</b></td>
-</tr>
-<tr>
-  <td><code>NET_LIEN</code> → <code>NET_MEM</code><br><span style="color:#5b6b7c;font-size:13px">nét vẽ</span></td>
-  <td><b>one continuous unbroken brush stroke</b>… <b>solid filled shapes</b>, flat even ink</td>
-  <td><b>soft blended edges and graduated tone instead of hard black contours</b>: no bold black outline, no flat fill, no comic linework. Vẫn cấm răng cưa, chấm li ti, loang.</td>
-</tr>
-<tr>
-  <td><code>NET_NGUOI</code><br><span style="color:#5b6b7c;font-size:13px">người</span></td>
-  <td>…face outline, eyes, nose, mouth drawn with <b>precise continuous lines</b></td>
-  <td>…<b>correct, realistic human anatomy</b>, modelled cheekbones and jaw, clothing painted as large smooth folds with real weight and drape</td>
-</tr>
-</table>
-
-<p>Thêm khối mới <code>STYLE_UI</code> + <code>NET_UI</code> cho 7 ảnh giao diện, giữ
-<code>crisp well-defined edges</code> và <code>flat even ink coverage</code> như cũ.</p>
-
-<div class="cu"><b>Trước</b> — câu lệnh ép AI vẽ nét viền:<br>
-“Draw every outline as <b>one continuous unbroken brush stroke</b>… Contours must be <b>crisp</b>,
-clean and clearly readable, with <b>solid filled shapes</b>. <b>Flat, even ink coverage</b> inside each shape.”</div>
-
-<div class="moi"><b>Nay</b> — câu lệnh ép AI vẽ khối:<br>
-“Build every form with <b>soft blended edges and graduated tone instead of hard black contours</b>:
-<b>no bold black outline, no flat fill</b>, no clean crisp comic linework. Volume comes from
-<b>layered washes turning gradually from dark to light</b>, with the edges of shadows melting into the paper.”</div>
-
-<h2>2. Vì sao hướng cũ sinh ra răng cưa</h2>
-
-<p>Câu lệnh cũ đòi hai thứ đi ngược nhau. Nó bảo “một nét bút liền, viền sắc, tô phẳng” — nhưng
-cũng bảo “không răng cưa”. Khi phải vẽ một đường viền sắc chạy quanh hình phức tạp, AI không giữ
-được đường cong trơn ở mọi chỗ. Chỗ nào lệch, nó gãy khúc. <b>Chính yêu cầu viền sắc tạo ra răng cưa.</b></p>
-
-<p>Hướng mới bỏ hẳn yêu cầu viền. Không có đường viền thì không có gì để gãy khúc. Hình khối do
-các lớp wash chuyển dần, nên mép vốn đã mềm.</p>
-
-<h2>3. Em đo được, và thước cũ đã sai</h2>
-
-<p>Thước cũ đếm chu vi mảng mực rồi so với bản làm trơn. Nó chỉ đúng với hình vẽ bằng viền cứng.
-Ảnh hội họa mép mềm có chu vi lớn một cách tự nhiên, nên thước cũ sẽ chấm ảnh đẹp là ảnh hỏng.
-Em viết thước mới đo hai thứ đúng bệnh:</p>
-
-<table>
-<tr><th>Đại lượng</th><th>Đo gì</th><th>Ngưỡng đạt</th></tr>
-<tr><td><b>MEM</b> — độ mềm mép</td>
-    <td>Độ rộng vùng chuyển sáng→tối ở mép hình, tính bằng điểm ảnh. Nét viền cứng chuyển trong 1–2 điểm ảnh. Mép hội họa chuyển qua 4–8 điểm ảnh.</td>
-    <td>≥ 1.00<br><span style="color:#5b6b7c">nên ≥ 1.15</span></td></tr>
-<tr><td><b>VUN</b> — độ vụn</td>
-    <td>Tỉ lệ mực nằm trong các mảng nhỏ rời rạc. Bắt lỗi “nét chắp vụn, chấm li ti”.</td>
-    <td>≤ 0.15<br><span style="color:#5b6b7c">nên ≤ 0.10</span></td></tr>
-</table>
-
-<div class="hop">
-  <b>Thước tự kiểm trước khi dùng</b>
-  Em dựng ba ảnh tổng hợp đã biết trước đáp án, rồi chấm. Lần đầu thước <b>chấm sai 2/3</b> — dấu
-  nhiễu bị ngược và ngưỡng quá chặt. Em sửa tới khi đúng 3/3 mới đem đo ảnh thật. Nếu không có
-  bước này thì không biết thước đang đo đúng bệnh hay đo bừa.
-</div>
-
-<h2>4. Số đo ảnh hiện có</h2>
+<h2>3. Số đo 70 ảnh hiện có</h2>
 
 <div class="luoi">
-  <div class="o"><div class="n">70</div><div class="t">ảnh đã đo</div></div>
-  <div class="o"><div class="n">0</div><div class="t">ảnh đạt mép mềm</div></div>
-  <div class="o"><div class="n">0.49–0.62</div><div class="t">MEM toàn bộ<br>(ngưỡng đạt 1.00)</div></div>
-  <div class="o"><div class="n">0.004–0.198</div><div class="t">VUN toàn bộ</div></div>
+  <div class="o"><div class="n x">63</div><div class="t">mực loang lỗ</div></div>
+  <div class="o"><div class="n x">1</div><div class="t">có đốm sáng</div></div>
+  <div class="o"><div class="n ok">6</div><div class="t">đạt</div></div>
+  <div class="o"><div class="n">0.272</div><div class="t">loang trung vị</div></div>
 </div>
 
-<p>Không ảnh nào đạt. Toàn bộ nằm trong dải 0.49–0.62 — đúng bằng mức của <b>nét viền cứng</b>, và
-rất đều. Đây không phải lỗi ngẫu nhiên của từng ảnh: cả 70 ảnh cùng một kiểu vẽ, vì cùng một câu lệnh.</p>
-
-<p>Phần <b>VUN</b> thì 62/70 ảnh đã đạt (≤ 0.15). Nghĩa là mực không bị vụn nhiều — bệnh chính là
-<b>mép cứng</b>, không phải vụn. Đây là thông tin hữu ích: hướng mới nhắm đúng chỗ cần sửa.</p>
-
-<h2>5. Ba lỗi em phát hiện thêm khi làm</h2>
-
-<p>Những lỗi này có sẵn từ trước, không phải do đổi hướng. Em sửa luôn vì chúng ảnh hưởng chất lượng ảnh:</p>
-
-<table>
-<tr><th>Lỗi</th><th>Hậu quả</th><th>Đã sửa</th></tr>
-<tr>
-  <td>Regex nhận diện “có người” chỉ khớp số ít (<code>figure</code>), không khớp <code>figures</code></td>
-  <td><b>3 cảnh đông người</b> (Chợ sớm, Sau trận, Đoạt hộp) bị bỏ sót khối giải phẫu → mặt dễ méo khi vẽ lại</td>
-  <td>Cho khớp cả số nhiều. Giờ 0 cảnh thiếu.</td>
-</tr>
-<tr>
-  <td><code>_prompt_than()</code> so khớp nguyên chuỗi style để tách mô tả riêng</td>
-  <td>Khối giải phẫu chèn vào giữa làm phép so khớp trượt → <b>trang xưởng hiện cả khối style lẫn mô tả</b> trong ô prompt lẻ</td>
-  <td>Thay bằng <code>khoi_style()</code> nhận theo khối nền</td>
-</tr>
-<tr>
-  <td>1 ảnh cảnh (<code>bc_mieu_hoang_nghi_dem</code>) lẫn trong bộ điểm màu nhưng vẫn dùng khối mực đen</td>
-  <td>Vẽ ra sẽ lệch tông với 69 ảnh còn lại</td>
-  <td>Chuyển sang khối điểm màu</td>
-</tr>
-</table>
-
-<h2>6. Canh để không tái phạm</h2>
-
-<p>Em thêm 9 phép kiểm vào bộ test, chạy mỗi lần sửa code. Chúng chặn cả hai chiều:</p>
-
-<ul>
-  <li>Ảnh truyện/nhân vật <b>phải</b> có <code>soft blended edges</code>, <code>volumetric shading</code>, <code>atmospheric depth</code></li>
-  <li>Ảnh truyện/nhân vật <b>phải</b> có <code>no bold black outline</code>, <code>no flat fill</code></li>
-  <li>Ảnh truyện/nhân vật <b>không được</b> chứa <code>crisp, well-defined edges</code> hay <code>continuous unbroken brush stroke</code> — tức là không được quay lại hướng cũ</li>
-  <li>Ảnh giao diện <b>phải</b> giữ <code>crisp well-defined edges</code>, và <b>không được</b> bị gắn mép mềm</li>
-  <li>Mọi prompt (trừ con dấu) <b>phải</b> cấm chữ</li>
-</ul>
-
-<p>Kết quả: <span class="ok">173 đạt, 0 hỏng</span>. Trước khi đổi là 167.</p>
-
-<h2>7. Anh cần làm gì</h2>
+<p>Trung vị 0.272 so với ngưỡng 0.15 — <b>gần gấp đôi</b>. Đây là bệnh toàn bộ, không phải vài ảnh cá biệt.
+Ảnh tệ nhất là chân dung: <code>nv_han_lap</code> 0.477, <code>nv_chinh_mau</code> 0.435.
+Ảnh tốt nhất <code>bc_khe_nui_chon</code> 0.087 — vẫn chưa sạch hẳn.</p>
 
 <div class="hop">
-  <b>Chỉ một việc: vẽ lại ảnh</b>
-  Prompt đã đổi trên trang xưởng. Anh mở xưởng, copy prompt, dán vào AI vẽ ảnh như trước.
-  Không cần làm gì thêm. Ảnh cũ vẫn dùng được trong game — chỉ là còn nét cứng.
+  <b>Vì sao chân dung tệ nhất</b>
+  Mặt người là chỗ cần mực đặc và đều nhất, nhưng hướng cũ lại đòi “modelled cheekbones” và
+  “soft blended edges”. AI tô mặt bằng nhiều lớp wash chồng lên nhau, nên da thành vá víu —
+  đúng như anh thấy “mặt như tranh trừu tượng”.
 </div>
 
+<h2>4. Ảnh giao diện: em vẫn tách riêng</h2>
+
+<p>7 ảnh giao diện (nền, khung bảng, viền đại diện, nút, con dấu, đường kẻ) là <b>cái khung để đặt chữ</b>.
+Chúng dùng khối <code>STYLE_UI</code> riêng, vẫn line-art nhưng tô phẳng tuyệt đối để chữ trong game đọc được.
+Đây là chỗ duy nhất em không áp cùng một câu lệnh.</p>
+
+<h2>5. Em đã kiểm những gì</h2>
+
 <ul>
-  <li><a href="https://huuducbkb.github.io/game-hong-duc-lam/xuong/">Xưởng ảnh</a> — 77 prompt đã đổi</li>
-  <li><a href="https://huuducbkb.github.io/game-hong-duc-lam/xuong-video/">Xưởng video</a> — 14 cảnh đã đổi</li>
-  <li><a href="https://huuducbkb.github.io/game-hong-duc-lam/game/play.html">Game</a></li>
+  <li><b>174 phép kiểm đạt, 0 hỏng.</b> Có phép kiểm chặn cả hai chiều: bắt buộc có câu “one continuous unbroken brush stroke”, và <b>cấm</b> quay lại “soft blended edges / volumetric shading”.</li>
+  <li>Có phép kiểm riêng bắt buộc mọi prompt phải có câu chống loang lỗ và đốm sáng.</li>
+  <li>Trang xưởng: 93 khối prompt ảnh và 20 khối video đều là bản mới, <b>0 câu cũ</b> còn sót.</li>
+  <li>Tài liệu prompt video: 15/15 khối đã đồng bộ.</li>
 </ul>
 
+<div class="hop bad">
+  <b>Một sự cố em gây ra, đã sửa xong</b>
+  Khi kiểm thước, em gọi thẳng vào đường lưu ảnh của server bằng ảnh nhiễu thử nghiệm,
+  và nó <b>ghi đè mất ảnh thật <code>bc_cho_01.jpg</code></b>. Em phát hiện ngay, khôi phục từ git,
+  và đối chiếu md5 — ảnh đã về đúng bản gốc. Em cũng sửa bộ test để nó không bao giờ ghi vào
+  key ảnh thật nữa.
+</div>
 
-<h2>8. Ảnh chụp màn hình (em chụp trên trang live)</h2>
+<h2>6. Anh cần làm gì</h2>
+
+<p>Một việc: mở <a href="https://huuducbkb.github.io/game-hong-duc-lam/xuong/">Xưởng ảnh</a>,
+copy prompt, vẽ lại. Prompt đã là bản mới, có câu chống loang lỗ.</p>
+
+<p>Vẽ xong <b>một ảnh</b> là gửi em đo trước. Nếu LOANG còn trên 0.15 thì em phải chỉnh câu lệnh tiếp —
+chưa nên vẽ cả 70 ảnh.</p>
+
+<h2>7. Hai điều em chưa làm được</h2>
+
+<ul>
+  <li><b>Chưa vẽ thử được ảnh nào.</b> Cả 4 khoá Gemini đều hết hạn mức (HTTP 429). Nên em chưa có ảnh mẫu
+  của hướng mới cho anh xem trước — toàn bộ số đo trên là của ảnh cũ.</li>
+  <li><b>Prompt không sửa được ảnh đã vẽ.</b> 63 ảnh loang lỗ vẫn dùng được trong game, chỉ là chưa đúng hướng mới.</li>
+</ul>
+
+<h2>8. Ảnh chụp màn hình</h2>
 
 <figure>
-  <img src="xuong-prompt-moi-huong.jpg" alt="Đầu trang Xưởng ảnh với prompt mới">
-  <figcaption><a href="https://huuducbkb.github.io/game-hong-duc-lam/xuong/">Xưởng ảnh</a> — phần đầu trang.
-  Prompt đã là bản mới: “Painterly cinematic… soft blended edges”.</figcaption>
+  <img src="xuong-prompt-moi-huong.jpg" alt="Đầu trang Xưởng ảnh với prompt line-art mới">
+  <figcaption><a href="https://huuducbkb.github.io/game-hong-duc-lam/xuong/">Xưởng ảnh</a> — phần đầu trang, khổ điện thoại.
+  Prompt đã là bản line-art.</figcaption>
 </figure>
 
 <figure>
   <img src="xuong-video-prompt-moi.jpg" alt="Đầu trang Xưởng video với prompt mới">
   <figcaption><a href="https://huuducbkb.github.io/game-hong-duc-lam/xuong-video/">Xưởng video</a> — 14 cảnh, cùng khối style mới.</figcaption>
 </figure>
-
-<div class="hop warn">
-  <b>Em chưa vẽ thử được ảnh nào</b>
-  Cả 4 khoá Gemini đều báo hết hạn mức (HTTP 429), nên em <b>chưa có ảnh mẫu theo hướng mới</b> để
-  cho anh xem trước. Số đo trên là của ảnh cũ. Khi anh vẽ được ảnh đầu tiên, gửi em đo lại —
-  nếu MEM chưa lên ≥ 1.0 thì phải chỉnh câu lệnh tiếp.
-</div>
 
 </html>

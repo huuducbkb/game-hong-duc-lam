@@ -446,89 +446,56 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 4. Thư viện ảnh/video: mở rộng đủ Chương 1 (~19 ảnh) + video ngắn (chuỗi ảnh + hiệu ứng)
 5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
 
-## NÉT VẼ: hội họa có khối, KHÔNG viền cứng (bắt buộc)
+## NÉT VẼ: line-art nét liền, mực đặc (bắt buộc)
 
 Người dùng phản ánh ảnh ra "nét như răng cưa, quần áo và mặt như tranh trừu tượng".
-Lần sửa đầu tiên ép `one continuous unbroken brush stroke` + `crisp, well-defined edges`
-+ `solid filled shapes`. **Đó là ngõ cụt**: chính yêu cầu viền sắc sinh ra răng cưa, vì
-AI không giữ được đường cong trơn trên hình phức tạp nên gãy khúc. Đo bằng thước mới:
-**70/70 ảnh** có độ mềm mép 0.49–0.62, đúng dải của nét viền cứng.
 
-Hướng đúng (đang dùng) là **hội họa có khối**: mép mềm, sáng tối thể tích, giải phẫu thật.
+**Hướng đang dùng: line-art nét liền (baimiao / 白描).** Nét đen sắc, mỗi hình khép kín
+bằng một đường viền liền, tô **một lớp mực đặc**, để nhiều mảng giấy trắng (liubai).
+Đây là hướng người dùng chốt; đừng tự đổi lại.
 
-- `STYLE_GOC` / `MAU_GOC`: `painterly cinematic`, `soft blended edges`, `volumetric shading`,
-  `atmospheric depth`, `realistic anatomy`, `detailed fabric folds`; cấm
-  `NOT folk art, NOT flat cartoon, NOT comic-book linework`. Vẫn giữ `smooth handmade`,
-  palette trầm, chủ đạo mực đen trên giấy dó.
-- `NET_MEM` (thay `NET_LIEN`): `soft blended edges and graduated tone instead of hard black
-  contours`, `no bold black outline`, `no flat fill`, `no clean crisp comic linework`.
-  Vẫn cấm `jagged`, `sketchy broken lines`, `choppy overlapping strokes`, `speckle`,
-  `splatter`, `bleeding halo`.
-- `NET_NGUOI`: `correct, realistic human anatomy`, khối mặt (cheekbones, jaw), nếp vải
-  `large smooth folds with real weight and drape`. Chèn tự động cho prompt có người.
+Lịch sử hai ngõ cụt, ghi lại để không đi lại:
+
+1. **Đòi viền sắc mà không đòi nét liền** → răng cưa. Trên hình phức tạp, AI không giữ
+   được đường cong trơn nên gãy khúc. Phải nói rõ "one continuous unbroken brush stroke".
+2. **Chuyển sang hội họa có khối** (`soft blended edges`, `volumetric shading`, bỏ viền)
+   → **mực loang lỗ và đốm sáng**, người dùng thấy "mặt như tranh trừu tượng". Nguyên nhân:
+   đòi "layered washes turning gradually" thì AI tô nhiều lớp chồng lên nhau, mảng mực
+   không kín. **Đây mới là bệnh chính, không phải răng cưa.**
+
+Các khối hiện tại:
+
+- `STYLE_GOC` / `MAU_GOC`: `Clean East Asian ink line-art (baimiao)`, `crisp black ink lines`,
+  `every shape closed by a clear continuous outline`, `flat even ink`, `liubai`; cấm
+  `NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework`.
+- `NET_LIEN`: `one continuous unbroken brush stroke` + `Fill each shape with ONE solid,
+  opaque, evenly toned ink` + `no mottled or patchy texture, no uneven washes, no blotches,
+  no bright pinholes or speckles inside the ink`. Câu chống loang là **bắt buộc**, có test chặn.
+- `NET_NGUOI`: `correct, realistic human anatomy` + `outline the face, the hands and the
+  garments with continuous unbroken lines`. Chèn tự động cho prompt có người (`_NGUOI` khớp cả số nhiều).
 - **`STYLE_UI` + `NET_UI` (ngoại lệ có chủ đích)**: 7 ảnh giao diện (`bg-main`,
   `panel-character`, `panel-story`, `avatar-ring`, `btn-choice`, `divider-ink`, `seal`) **giữ
   cạnh sắc, tô phẳng, ruột trống**. Chúng là khung để đặt chữ; viền mềm làm chữ khó đọc.
-  Đừng áp mép mềm cho nhóm này.
-- **Không dùng lại các cụm cũ**: `continuous unbroken brush stroke`, `crisp, well-defined edges`,
-  `solid filled shapes`, `each drawn with clean continuous outlines`, `readable silhouette`.
+- **Không dùng lại các cụm cũ**: `soft blended edges`, `volumetric shading`,
+  `atmospheric depth`, `painterly cinematic`, `melting into the paper`, `no bold black outline`.
   Test sẽ báo hỏng nếu tái phạm.
 
-### Nhận khối style phải theo khối nền, không theo cả chuỗi
+### Đo chất lượng mực
 
-`NET_NGUOI` được chèn **ngay trước `NO_TEXT`**, nên prompt có người **không còn khớp nguyên
-chuỗi** `STYLE_MAU`. Dùng `khoi_style(p)` (trả `ui`/`mau`/`goc`) để nhận khối, và
-`_prompt_than(a)` để tách mô tả riêng. So khớp `p.startswith(STYLE_MAU)` sẽ trượt.
+`python3 tools/do_net_anh.py` — ba đại lượng, ngưỡng lấy từ ảnh tổng hợp chứ không đoán:
 
-### Regex "có người" phải khớp cả số nhiều
-
-Bản cũ chỉ có `figure|disciple|cultivator`, nên **3 cảnh đông người** (`bc_cho_01`,
-`bc_tan_hoang`, `bc_doat_hop` ghi `figures`) bị bỏ sót khối giải phẫu. Đã cho khớp
-`figures?|disciples?|cultivators?|men|women|youths?|beggars?|raiders?|faces?`.
-
-### Thước đo nét: `tools/do_net_anh.py`
-
-Thước cũ đếm **chu vi mảng mực** rồi so bản làm trơn — chỉ đúng với hình vẽ bằng viền cứng.
-Ảnh mép mềm có chu vi lớn tự nhiên nên bị chấm sai. Thước hiện tại đo hai đại lượng:
-
-| Đại lượng | Đo gì | Đạt |
+| Đại lượng | Đo gì | Ngưỡng |
 |---|---|---|
-| `MEM` | độ rộng chuyển sáng→tối ở mép (điểm ảnh) | ≥ 1.00, nên ≥ 1.15 |
-| `VUN` | tỉ lệ mực nằm trong mảng nhỏ rời rạc | ≤ 0.15, nên ≤ 0.10 |
+| `LOANG` | tỉ lệ điểm còn sáng nằm **bên trong thân mực**. Mực đặc = 0.00; loang lỗ = 0.15–0.48 | trên 0.15 là loang lỗ |
+| `ĐỐM` | điểm sáng trong **lỗ nhỏ** giữa thân mực. Lỗ lớn = giấy trắng trong nét bao, hợp lệ | trên 0.03 |
+| `NÉT` | nhất quán hướng nét dọc biên; nét chắp vụn thì hướng đảo | chỉ để soi bất thường |
 
-`python3 tools/do_net_anh.py --tu-kiem` phải in **"Thước phân biệt đúng"** trước khi tin số đo.
-Lần viết đầu thước chấm sai 2/3 ảnh tổng hợp (dấu nhiễu bị ngược, ngưỡng quá chặt) — luôn
-chạy tự kiểm.
+`--tu-kiem` chạy trên 3 ảnh biết trước đáp án; **phải đúng 3/3 mới được dùng**. Thứ tự xét
+quan trọng: xét `LOANG` trước `ĐỐM`, vì mực loang tự sinh lỗ nhỏ nên nếu xét đốm trước sẽ
+chấm nhầm.
 
-`game/_test_api.py` có **9 phép kiểm** canh hướng này (chặn cả hai chiều: thiếu cụm mới, và
-quay lại cụm cũ). Sửa prompt xong **phải dựng lại trang**: `python3 tools/build_xuong.py` và
-`python3 tools/build_xuong_video.py`.
-
-**Bẫy `__pycache__` và server cũ**: `tools/build_xuong.py` import `tools_server`, nên nếu
-`__pycache__/tools_server.cpython-*.pyc` còn bản cũ thì trang sinh ra vẫn là prompt cũ
-dù file `.py` đã sửa. Tệ hơn, `game_server.py` đang chạy giữ prompt cũ **trong bộ nhớ**;
-mỗi lần API được gọi (kể cả lúc chạy test) nó dựng lại `docs/xuong/index.html` bằng prompt
-cũ và **ghi đè bản mới**. Sửa prompt xong phải làm cả ba việc:
-
-```bash
-ps aux | grep game_server            # tìm PID cũ
-kill <PID>                           # tắt server giữ code cũ
-rm -rf __pycache__ tools/__pycache__
-python3 game_server.py >/tmp/gs.log 2>&1 &
-python3 tools/build_xuong.py && python3 tools/build_xuong_video.py
-```
-
-Dựng xong phải kiểm lại chính file HTML, không tin mỗi dòng "Đã dựng":
-
-```bash
-grep -c "soft blended edges" docs/xuong/index.html                  # phải > 0
-grep -c "continuous unbroken\|crisp, well-defined edges" docs/xuong/index.html # phải = 0
-grep -c "suggested loosely\|wet ink bleeding" docs/xuong/index.html # phải = 0
-```
-
-Ảnh **tạo trước khi sửa thì vẫn bị lỗi** — sửa prompt không chữa được ảnh cũ, phải tạo lại.
-Đo độ gãy nét bằng `python3 tools/do_net_anh.py` (tỉ lệ chu vi thô / chu vi đã làm trơn;
-dưới 1.3 là nét liền, bộ ảnh hiện tại trung bình 3.97).
+Số đo bộ 70 ảnh cũ: **63 loang lỗ, 1 có đốm, 6 đạt**, trung vị 0.272. Ảnh tệ nhất là chân
+dung (`nv_han_lap` 0.477). Sửa prompt **không chữa được ảnh cũ** — phải vẽ lại.
 
 ## Xưởng ảnh tự động (GitHub)
 

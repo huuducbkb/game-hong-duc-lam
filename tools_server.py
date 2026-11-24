@@ -28,40 +28,44 @@ SCENE_DIR = f"{ROOT}/assets/scene"
 FIELDS = ["OPENROUTER_API_KEY", "geminikey", "geminikey1", "geminikey2", "geminikey3"]
 
 STYLE_GOC = (
-    "Painterly cinematic East Asian ink painting, in the manner of a realistic historical "
-    "illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric shading, "
-    "atmospheric depth, realistic anatomy, detailed fabric folds. Muted desaturated palette, mostly "
-    "black ink and bare paper, restrained washes, calm and elegant hanging-scroll mood. "
-    "NOT folk art, NOT flat cartoon, NOT comic-book linework. "
+    "Clean East Asian ink line-art (baimiao / 白描) on smooth handmade mulberry (dó) paper: crisp "
+    "black ink lines drawn on bare pale paper, with the calm economy of an ancient hanging scroll. "
+    "Every shape is closed by a clear continuous outline, filled with flat even ink, leaving "
+    "generous empty negative space (liubai). Flat graphic line-art, not a painting: no shading "
+    "gradients, no airbrush, no volumetric modelling, no soft blurred edges. "
+    "NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework. "
 )
-# Chống nét gãy, nhưng KHÔNG ép nét viền sắc: chính viền đen sắc trên nền phẳng là thứ
-# đọc ra thành răng cưa. Khối lượng do nhiều lớp wash chuyển dần, mép tan vào giấy.
-NET_MEM = (
-    "Build every form with soft blended edges and graduated tone instead of hard black contours: "
-    "no bold black outline, no flat fill, no clean crisp comic linework. Volume comes from layered "
-    "washes turning gradually from dark to light, with the edges of shadows melting into the paper. "
-    "Even so, never jagged: no zigzag edges, no sketchy broken lines, no short choppy overlapping "
-    "strokes, no scribbled shapes, no speckle, no splatter, no bleeding halo. "
+# Chống nét gãy. Line-art đòi viền sắc, nên phải nói rõ "một nét liền, đều tay" — nếu chỉ
+# nói "sắc" thì AI vẽ viền gãy khúc ở chỗ hình phức tạp.
+NET_LIEN = (
+    "Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and "
+    "even line weight: no jagged zigzag edges, no sketchy broken lines, no short choppy "
+    "overlapping strokes, no scribbled shapes. Fill each shape with ONE solid, opaque, evenly "
+    "toned ink: the inside of every shape must be uniform and clean, with no mottled or patchy "
+    "texture, no uneven washes, no blotches, no bright pinholes or speckles inside the ink, no "
+    "gradient, no airbrush and no soft blurred shading. Contours of faces, hands and clothing "
+    "folds must be crisp, clean and clearly readable, with solid filled shapes rather than "
+    "scattered fragments of ink. "
 )
-# 彩墨 (cǎi-mò) — thủy mặc ĐIỂM MÀU: vẫn chủ đạo mực đen trên giấy dó, chỉ phủ thêm
-# vài mảng màu trầm. Dùng cho ảnh truyện/nhân vật (không dùng cho ảnh giao diện).
+# 彩墨 (cǎi-mò) — line-art ĐIỂM MÀU: nét đen là xương, màu trầm lót phẳng bên trong nét.
+# Dùng cho ảnh truyện/nhân vật (không dùng cho ảnh giao diện).
 MAU_GOC = (
-    "Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic "
-    "historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric "
-    "shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated "
-    "by black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over "
-    "the ink, so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, "
-    "jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue "
-    "for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. "
-    "Never bright, never saturated, never a full-colour painting. "
-    "NOT folk art, NOT flat cartoon, NOT comic-book linework. "
+    "Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp "
+    "black ink outlines on bare pale paper, with flat muted colour laid inside the lines. The "
+    "picture stays dominated by black linework and bare paper, so the palette is desaturated and "
+    "quiet: soft indigo and slate blue for sky and water, jade and olive green for foliage, warm "
+    "ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained "
+    "accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even "
+    "patches, never as a soft gradient. Never bright, never saturated, never a full-colour "
+    "painting. NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book "
+    "linework. "
 )
-# Chân dung người là chỗ dễ hỏng nhất: nét gãy làm mặt méo, áo nát. Ép giải phẫu và khối.
+# Chân dung người là chỗ dễ hỏng nhất: nét gãy làm mặt méo, áo nát. Ép giải phẫu và nét liền.
 NET_NGUOI = (
-    "Render the figure with correct, realistic human anatomy and a convincing sense of volume: one "
-    "well-formed face with readable eyes, nose and mouth, modelled cheekbones and jaw, and clothing "
-    "painted as large smooth folds with real weight and drape. Do not fragment the face or the "
-    "garments into loose patches, dots or scattered marks. "
+    "Render the figure with correct, realistic human anatomy: one well-formed face with readable "
+    "eyes, nose and mouth, and clothing drawn as large clean folds with real weight and drape. "
+    "Outline the face, the hands and the garments with continuous unbroken lines. Do not fragment "
+    "the face or the garments into loose patches, dots or scattered marks. "
 )
 # Ảnh GIAO DIỆN (nền, khung, viền, nút, ấn son, đường kẻ) là ngoại lệ: chúng phải giữ cạnh
 # sắc, tô phẳng, ruột trống — nếu làm mềm thì chữ trong game khó đọc.
@@ -79,8 +83,8 @@ NO_TEXT = (
     "IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, "
     "no watermark, no logo, no UI labels."
 )
-STYLE = STYLE_GOC + NET_MEM + NO_TEXT
-STYLE_MAU = MAU_GOC + NET_MEM + NO_TEXT
+STYLE = STYLE_GOC + NET_LIEN + NO_TEXT
+STYLE_MAU = MAU_GOC + NET_LIEN + NO_TEXT
 # Ấn son là ngoại lệ: chữ trong dấu là nội dung chính, không được cấm chữ.
 STYLE_CHU = STYLE_UI + NET_UI + (
     "IMPORTANT: the ONLY text allowed is the words inside the seal; "
@@ -768,7 +772,7 @@ def khoi_style(p: str) -> str:
 def _prompt_than(a: dict) -> str:
     """Bỏ phần phong cách chung, chỉ giữ mô tả riêng của asset."""
     p = a.get("prompt", "")
-    for phan in (STYLE_UI + NET_UI + NO_TEXT, MAU_GOC, STYLE_GOC, NET_MEM, NET_UI,
+    for phan in (STYLE_UI + NET_UI + NO_TEXT, MAU_GOC, STYLE_GOC, NET_LIEN, NET_UI,
                  NET_NGUOI, NO_TEXT):
         if p.startswith(phan):
             p = p[len(phan):]
@@ -1063,9 +1067,9 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "", mau: list = None
     if khoi == {"ui"}:
         phong_cach = (STYLE_UI + NET_UI).strip()
     elif "ui" in khoi:
-        phong_cach = (STYLE_GOC + NET_MEM).strip()
+        phong_cach = (STYLE_GOC + NET_LIEN).strip()
     else:
-        phong_cach = (MAU_GOC + NET_MEM).strip()
+        phong_cach = (MAU_GOC + NET_LIEN).strip()
     dong = [
         dong_dau,
         "Produce the images ONE BY ONE, in the order below, each as a SEPARATE image at its "

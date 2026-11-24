@@ -67,19 +67,22 @@ Tổng **72 giây**.
 Đã chèn sẵn vào từng cảnh. Dán riêng nếu công cụ có ô "style" riêng:
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 ```
@@ -89,8 +92,9 @@ no watermark, no logo, no UI labels.
 ```
 text, letters, watermark, signature, logo, photorealistic, 3d render, cgi, anime, cartoon,
 oversaturated, neon, plastic skin, modern objects, cars, buildings, blurry, low detail,
-bold black outlines, flat cartoon fill, cel shading, comic linework, folk-art woodblock,
-jagged zigzag lines, broken sketchy strokes, abstract scribbles, ink splatter,
+painterly, watercolour wash, soft blended edges, gradient shading, airbrush, volumetric modelling,
+mottled ink, patchy ink texture, blotchy shading, pinholes,
+folk-art woodblock, jagged zigzag lines, broken sketchy strokes, abstract scribbles, ink splatter,
 muddy bleeding ink, fragmented shapes,
 extra limbs, deformed hands, cluttered composition
 ```
@@ -102,19 +106,22 @@ extra limbs, deformed hands, cluttered composition
 **0:00–0:05** · 9:16 · Zoom out rất chậm
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -137,19 +144,22 @@ Background: mist and empty paper. Deep atmospheric perspective.
 **0:05–0:09** · 9:16 · Pan lên
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -173,19 +183,22 @@ Small, awed, yearning — the moment a mortal first looks at the world of immort
 **0:09–0:12** · 9:16 · Zoom in mạnh
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -206,19 +219,22 @@ Vertical motion: solid at top, liquid at bottom. High contrast, unsettling, quie
 **0:12–0:15** · 9:16 · Cắt thẳng
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -241,19 +257,22 @@ Intimate, disorienting — a body recognised as not one's own.
 > Cảnh quan trọng nhất của trailer. Tạo 6–8 biến thể, chọn khung choáng nhất.
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -279,19 +298,22 @@ Majestic, vast, silent, ancient. The world the mortal boy was looking at.
 **0:23–0:28** · 9:16 · Pan lên
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -316,19 +338,22 @@ Formal, imposing, a threshold that cannot be uncrossed.
 **0:28–0:33** · 9:16 · Zoom in chậm
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -352,19 +377,22 @@ Disciplined, solitary, patient. A mortal forcing himself to become something els
 **0:33–0:37** · 9:16 · Rung + zoom in
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -391,19 +419,22 @@ Explosive, triumphant, the instant a mortal ceases to be merely mortal.
 > Đồ vật DV-1 trong canon. Chép nguyên văn phần mô tả.
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -427,19 +458,22 @@ Ancient, sealed, waiting. Something alive inside something dead.
 **0:42–0:46** · 9:16 · Pan ngang trái
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -464,19 +498,22 @@ Overwhelming, predatory, ancient. The world does not care that you are the prota
 **0:46–0:51** · 9:16 · Pan ngang phải
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -501,19 +538,22 @@ Swift, overwhelming, beautiful and lethal.
 **0:51–0:56** · 9:16 · Rung nhẹ
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -541,19 +581,22 @@ Catastrophic, tragic, total. The end of everything that was built.
 > cảnh khoe sức mạnh.
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
@@ -565,19 +608,22 @@ Cinematic vertical two-shot, a standoff between two young men on a dark hillside
 **1:03–1:12** · 9:16 · Tĩnh
 
 ```
-Painterly cinematic East Asian colour-ink painting (cǎi-mò / 彩墨) in the manner of a realistic
-historical illustration, on smooth handmade mulberry (dó) paper. Soft blended edges, volumetric
-shading, atmospheric depth, realistic anatomy, detailed fabric folds. The picture stays dominated by
-black ink and bare pale dó paper, with only restrained, muted washes of soft colour laid over the ink,
-so the palette stays desaturated and quiet: soft indigo and slate blue for sky and water, jade and
-olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth,
-and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never
-saturated, never a full-colour painting. NOT folk art, NOT flat cartoon, NOT comic-book linework.
-Build every form with soft blended edges and graduated tone instead of hard black contours: no bold
-black outline, no flat fill, no clean crisp comic linework. Volume comes from layered washes turning
-gradually from dark to light, with the edges of shadows melting into the paper. Even so, never jagged:
-no zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract scribbles,
-no speckle, no splatter, no bleeding halo.
+Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp
+black ink outlines on bare pale paper, with flat muted colour laid inside the lines. Every shape is
+closed by a clear continuous outline and filled with flat even ink, leaving generous empty negative
+space (liubai). The picture stays dominated by black linework and bare paper, so the palette is
+desaturated and quiet: soft indigo and slate blue for sky and water, jade and olive green for
+foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single
+restrained accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even
+patches, never as a soft gradient. Never bright, never saturated, never a full-colour painting.
+NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and even line
+weight: no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no
+scribbled shapes. Fill each shape with ONE solid, opaque, evenly toned ink: the inside of every
+shape must be uniform and clean, with no mottled or patchy texture, no uneven washes, no blotches,
+no bright pinholes or speckles inside the ink, no gradient, no airbrush and no soft blurred shading.
+Contours of faces, hands and clothing folds must be crisp, clean and clearly readable, with solid
+filled shapes rather than scattered fragments of ink.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
