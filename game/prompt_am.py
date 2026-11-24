@@ -326,8 +326,8 @@ PROMPT = {
         "10-second heavy, empty ambience among ruins just before dawn after a "
         "battle. Fire still smoulders: low crackling, a beam settling, ash "
         "shifting. Wind crosses collapsed walls. Slow footsteps of men carrying "
-        "something heavy, setting it down, one long breath let go. A young man's "
-        "voice, quiet and unusually gentle, in Mandarin: 「你做得不错。但这只是"
+        "something heavy, setting it down, one long breath let go. A man's voice, "
+        "thirty, deep and grave, quiet and unusually gentle, in Mandarin: 「你做得不错。但这只是"
         "开始。」 Cold, exhausted, ruined open-air field recording."
     ),
 
@@ -426,8 +426,8 @@ PROMPT = {
 
     "kiem_hap": (
         "4-second scene in a cold stone shrine. A wooden box lid snaps open, dry "
-        "and sharp, then a cold young male voice speaks close to the ear, quiet "
-        "and disembodied, in Mandarin: 「你……和他们不一样。」 Long stone reverb "
+        "and sharp, then a man's voice, thirty, deep and grave, flat and icy, "
+        "disembodied, speaks close to the ear in Mandarin: 「你……和他们不一样。」 Long stone reverb "
         "trails behind it. Cold, still, intimate field recording."
     ),
 
@@ -461,8 +461,8 @@ PROMPT = {
 
     "kiem_hap_nhan": (
         "4-second scene in a cold stone shrine. A thin blade whispers across "
-        "skin, one small sharp metallic sound, then a young man's low voice, "
-        "satisfied and final, speaks close in Mandarin: 「成了。」 Quiet stone "
+        "skin, one small sharp metallic sound, then a man's voice, thirty, deep "
+        "and grave, satisfied and final, speaks close in Mandarin: 「成了。」 Quiet stone "
         "sits around it. Cold, final, intimate field recording."
     ),
 
