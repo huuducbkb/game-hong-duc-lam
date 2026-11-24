@@ -1106,6 +1106,23 @@
       "dung_o": [
         "c1_p16b"
       ]
+    },
+    "bc_mieu_hoang_nghi_dem.jpg": {
+      "loai": "boi_canh",
+      "mo_ta": "Tán tu về miếu hoang nghỉ sau trận, kiếm linh lên tiếng (d14b).",
+      "tags": [
+        "mình",
+        "đêm",
+        "tán",
+        "tu",
+        "về",
+        "miếu",
+        "hoang",
+        "nghỉ"
+      ],
+      "dung_o": [
+        "c1_d14b"
+      ]
     }
   }
 }
