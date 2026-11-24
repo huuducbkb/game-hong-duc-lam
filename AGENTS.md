@@ -1089,6 +1089,34 @@ là `girl's voice, eighteen`.
 Cảnh chỉ có giọng Hệ thống (máy, vô cảm) thì **không** thêm thoại: `cho_03`,
 `duong_mon_nui`, `khe_nui_dem`, `mieu_hoang`, `san_sau_anh_sang`, `mieu_trong`.
 
+**Sửa prompt xong thì phải rà lại TOÀN BỘ, không chỉ cảnh vừa sửa.** Lần chốt ba
+giọng, em sửa 20 cảnh nhưng bỏ sót 3 cảnh vẫn tả giọng kiểu cũ (`kiem_hap`
+"a cold young male voice", `kiem_hap_nhan` "a young man's low voice", `tan_hoang`
+"A young man's voice, quiet and unusually gentle") — cả ba đều là Kiếm Linh. Cách
+rà: gom mọi mẫu `(?:A|a|Then a) … voice` trong `PROMPT` rồi so với danh sách khuôn
+giọng đã chốt; mẫu nào không khớp khuôn nào là mẫu sai.
+
+**Kiểm tiếng đã úp thì so prompt tại ĐÚNG LÚC úp, không so với prompt hiện tại.**
+Một file tiếng có thể đúng giọng mà vẫn thiếu thoại, vì nó được tạo trước khi thoại
+được thêm vào prompt. Cách kiểm đúng:
+
+```python
+r = git log -1 --format=%H -- docs/assets/am/<canh>.mp3   # commit úp file
+old = PROMPT tại f'{r}^'                                   # prompt lúc đó
+# nếu ('「' in old) != ('「' in PROMPT[canh]) -> file thiếu/thừa thoại, phải tạo lại
+```
+
+Lần kiểm 66 file, cách này lôi ra 10 cảnh có tiếng nhưng tạo từ prompt chưa có
+thoại (`tran_lua`, `tran_lua_2`, `tran_lua_3`, `binh_minh`, `san_tap_ngay`,
+`cong_dong_hung_ba`, `cong_dong_quyen`, `quan_nuoc`, `san_sau_chon_lai`,
+`tan_hoang`). So với prompt hiện tại thì không thấy, vì prompt hiện tại khác cả
+những cảnh chỉ đổi câu chữ.
+
+**Đừng đoán thoại bằng phân tích tín hiệu.** Em thử đo nhịp điệu âm (2–8 Hz) và độ
+có cao độ để tìm câu nói trong file — cả hai đều sai: `san_sau_luyen_dem` (không
+thoại) cho chỉ số cao hơn `vuon_thuoc_im` (có thoại). Muốn biết file có thoại hay
+không thì đọc prompt đã dùng để tạo nó, đừng suy từ sóng âm.
+
 **Ba lớp khoảng cách, gắn vào câu chứ không chia mục.** Prompt cần (1) sát tai,
 (2) vài mét, (3) xa — và nói rõ tiếng ĐỔI thế nào khi đi qua không gian đó: tường đá
 dội lại, ngõ hẹp dội nhanh và cứng, phòng kín đè tiếng xuống quanh đầu, ngoài trời
