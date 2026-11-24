@@ -16,7 +16,7 @@ import os
 import sys
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 from scipy import ndimage as ndi
 
 MAC_DINH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -41,6 +41,56 @@ def do(path):
     if muot < 100:
         return None
     return tho / muot, float(ink.mean() * 100)
+
+
+def vung_dac_muc(a, ti_le=0.34):
+    """Tìm ô vuông nhiều ĐƯỜNG NÉT nhất.
+
+    Chọn theo mật độ cạnh (Sobel) chứ không theo lượng mực: vùng nhiều mực nhất
+    thường là mảng đen đặc, cắt vào đó chỉ thấy một khối đen, không thấy nét.
+    """
+    h, w = a.shape
+    s = int(min(h, w) * ti_le)
+    buoc = max(8, s // 12)
+    g = np.asarray(Image.fromarray(a).filter(ImageFilter.FIND_EDGES), dtype=np.float32)
+    canh = (g > 60).astype(np.float32)
+    tich = np.pad(np.cumsum(np.cumsum(canh, 0), 1), ((1, 0), (1, 0)))
+
+    def tong(y, x):
+        return tich[y + s, x + s] - tich[y, x + s] - tich[y + s, x] + tich[y, x]
+
+    tot, cho = -1.0, (0, 0)
+    for y in range(0, h - s + 1, buoc):
+        for x in range(0, w - s + 1, buoc):
+            t = tong(y, x)
+            if t > tot:
+                tot, cho = t, (y, x)
+    return cho[1], cho[0], s
+
+
+def cat_can_mat(src, dst, phong=2):
+    """Cắt vùng nhiều nét nhất và phóng bằng NEAREST.
+
+    Không dùng LANCZOS: nội suy làm mượt đúng chỗ nét gãy cần phơi ra.
+    """
+    im = Image.open(src).convert("RGB")
+    a = np.asarray(im.convert("L"))
+    x, y, s = vung_dac_muc(a)
+    o = im.crop((x, y, x + s, y + s)).resize((s * phong, s * phong), Image.NEAREST)
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    o.save(dst, quality=92)
+    return o.size, do_bytes(a[y:y + s, x:x + s])
+
+
+def do_bytes(a):
+    """Độ gãy tính trên vùng cắt nguyên độ phân giải (cùng thang với số toàn ảnh)."""
+    ink = a < 115
+    if ink.sum() < 2000:
+        return 0.0, float(ink.mean() * 100)
+    sm = ndi.binary_closing(ink, structure=np.ones((5, 5)))
+    sm = ndi.binary_opening(sm, structure=np.ones((3, 3)))
+    sm = ndi.gaussian_filter(sm.astype(np.float32), 2.0) > 0.5
+    return chu_vi(ink) / max(chu_vi(sm), 100), float(ink.mean() * 100)
 
 
 def main() -> int:
