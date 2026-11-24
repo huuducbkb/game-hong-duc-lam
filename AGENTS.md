@@ -1131,6 +1131,15 @@ thẻ chất âm. Đó là khuôn mẫu, không phải danh sách gạch đầu 
 dài hơn thì trang báo lỗi và không cho tạo, không phải lỗi nội dung. Prompt cũ dài
 508 ký tự nên bị chặn. Mọi prompt phải dưới 450; trang Xưởng có bộ đếm để thấy ngay.
 
+Đã tái phạm: hai prompt cảnh nghỉ đêm thêm sau đó dài 602 và 582 ký tự, vượt trần
+mà không ai thấy, vì bộ đếm trên trang chỉ **tô đỏ con số** — vẫn phải tự nhìn vào
+mới biết. Giờ `game/_test_api.py` có phép kiểm canh trần, chạy là báo ngay.
+
+Rút prompt mà không mất tầng âm: bỏ chữ trùng nghĩa trước ("at night, just before
+dawn" khi đã có "before dawn"), bỏ tính từ chồng ("pleasant, quiet", "cramped,
+exhausted", "hollow with a faint eerie ring"), gộp "Further out" thành "A few paces
+off". Đừng cắt câu thoại hay cắt tầng khoảng cách — đó là phần tai nghe ra khác biệt.
+
 **Tránh chữ dễ bị bộ lọc chặn:** không tả thương tích, không tả xác, không lồng
 tiếng trẻ con, không dùng "violent", "dead", "weeping". Tả ĐỘNG TÁC cụ thể (a blade
 sweeping through air, boots hammering stone) thay vì tả mức độ dữ dội — vừa dễ qua
