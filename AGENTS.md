@@ -1246,3 +1246,61 @@ for sid,key in (('c1_p16b','tan_xa_nghi_dem'),('c1_d14b','mieu_hoang_nghi_dem'))
 
 Khoá rẽ nhánh trong `chuong1.json` là **`den`**, không phải `toi`.
 `__ket_thuc__` là mốc kết thúc hợp lệ, không phải đích hỏng.
+
+## Ảnh vào repo là chưa đủ — cần bản nhỏ 300px
+
+Xưởng âm thanh (`game/tao_xuong_am.py`) trỏ ảnh vào `assets/scene/nho/`, bản
+thu nhỏ 300px, để trang nhẹ trên điện thoại. Không có script tự sinh bản nhỏ:
+workflow xưởng ảnh chỉ ghi bản gốc. Ảnh mới lên mà thiếu bản nhỏ thì thẻ cảnh
+trong xưởng âm thanh hiện **ô ảnh trống**, không báo lỗi gì.
+
+Kiểm nhanh (phải in `khong`):
+
+```bash
+python3 -c "
+import os,glob
+goc={os.path.basename(p) for p in glob.glob('docs/assets/scene/*.jpg')}
+nho={os.path.basename(p) for p in glob.glob('docs/assets/scene/nho/*.jpg')}
+print('thieu ban nho:',sorted(goc-nho) or 'khong')
+"
+```
+
+Tạo bản nhỏ, **giữ đúng tỉ lệ ảnh gốc** (đừng ép 3:4 — ảnh 759x1600 mà ép
+3:4 sẽ cắt mất đầu/chân nhân vật; CSS `object-fit:cover` đã tự lo khung):
+
+```bash
+python3 -c "
+from PIL import Image
+k='bc_ten_anh'
+im=Image.open(f'docs/assets/scene/{k}.jpg').convert('RGB')
+im=im.resize((300, round(im.height*300/im.width)), Image.LANCZOS)
+im.save(f'docs/assets/scene/nho/{k}.jpg','JPEG',quality=82,optimize=True)
+"
+```
+
+## Trang xưởng là HTML sinh sẵn, sửa dữ liệu phải sinh lại
+
+`docs/xuong/index.html` (xưởng ảnh) và `docs/xuong-am/index.html` (xưởng âm
+thanh) đều là file tĩnh sinh ra, **không đọc dữ liệu lúc chạy**. Thêm mục vào
+`ASSETS` / `du_lieu_am.py` mà quên sinh lại thì trang vẫn là bản cũ, không báo
+lỗi. Phải chạy:
+
+```bash
+python3 tools/build_xuong.py        # xưởng ảnh
+python3 game/tao_xuong_am.py        # xưởng âm thanh
+python3 game/ghi_danh_sach_am.py    # danh sách tiếng
+```
+
+## Xưởng âm thanh gắn cốt truyện theo TÊN ẢNH
+
+`doc_truyen()` trong `tao_xuong_am.py` gom đoạn truyện theo
+`hinh_anh.anh` của từng đoạn. Mục tiếng trỏ **nhầm ảnh** thì khối "Cốt truyện
+cảnh này" hiện đoạn của cảnh khác — nhìn qua tưởng đúng vì vẫn có chữ. Khi
+thêm mục tiếng, kiểm `anh` trỏ đúng file của chính cảnh đó.
+
+## Hai nhánh chương 1 tách theo xuất thân, không gặp nhau
+
+`c1_d01` (tán tu) và `c1_p01` (môn phái) là hai cây riêng: từ `c1_d01` chỉ tới
+được 24/66 đoạn. Muốn kiểm nhánh môn phái phải chọn xuất thân `mon_phai` ở
+màn tạo nhân vật (`.xt-the[data-ma=mon_phai]`), không thì không bao giờ tới
+`c1_p16b`. Đừng kết luận "nút hỏng" khi thực ra đi sai cây.
