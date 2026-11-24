@@ -373,15 +373,16 @@ MOI = [
      "bậc cửa, thở dài, rồi im.", 10),
 
     ("mieu_hoang_nghi_dem", "Miếu hoang — một mình trong đêm", "lang",
-     "bc_mieu_hoang.jpg",
+     "bc_mieu_hoang_nghi_dem.jpg",
      ["abandoned shrine night ambience", "exhausted sitting alone quiet",
       "broken roof wind through gaps"],
      ["derelict temple night ambience", "wind through broken eaves",
       "tired breathing quiet stone floor"],
      "Miếu hoang sau trận, đêm chưa sáng: mái vỡ, gió lùa qua khe vách, tro bay "
-     "rất khẽ trên nền đá. Một người ngồi bệt cạnh bệ thờ, thở dài, rồi im.", 10),
+     "rất khẽ trên nền đá. Một người ngồi bệt cạnh bệ thờ, thở dài. Rồi kiếm "
+     "linh nói trong đầu — giọng trầm, phẳng — và người kia đáp lại. Im.", 10),
 
-    ("tan_xa_dot_pha", "Tân xá — đột phá Luyện Khí tầng hai", "lang",
+("tan_xa_dot_pha", "Tân xá — đột phá Luyện Khí tầng hai", "lang",
      "bc_tan_xa_dot_pha.jpg",
      ["energy surge ambience", "breakthrough moment sound",
       "low rumble rising ambience"],
