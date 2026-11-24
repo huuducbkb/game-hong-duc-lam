@@ -22,13 +22,13 @@ SCENES = [
         "key": "bc_san_tap_ngay",
         "name": "Sân tập — giữa ngày",
         "use": "Sân tập rộng, hàng trăm đệ tử luyện võ (p02).",
-        "body": "A wide earthen training ground of an ancient Chinese martial sect at midday, seen at eye level. Packed earth with soft tonal variation, blue sect banners on poles at both sides, rows of disciples practising staff and fist forms, each modelled with soft shaded volume and readable posture, faces clear but softly painted, dust and heat haze drifting in the air. In one corner a thin plain-robed youth practises alone, small in the frame. Composition keeps the upper third calm for game text. Hot, crowded, disciplined.",
+        "body": "A wide earthen training ground of an ancient Chinese martial sect at midday, seen at eye level. Flat packed earth, blue sect banners on poles at both sides, rows of disciples practising staff and fist forms, each drawn with a clear readable silhouette and a simple readable face, dust and heat haze in the air. In one corner a thin plain-robed youth practises alone, small in the frame. Composition keeps the upper third calm for game text. Hot, crowded, disciplined.",
     },
     {
         "key": "bc_san_tap_chen_ep",
         "name": "Sân tập — bị chèn ép",
         "use": "Tân đệ tử bị gã to con chèn ép trước đám đông (p03).",
-        "body": "The same earthen training ground, close view: a thin young disciple in coarse patched robes has stumbled and fallen back onto the ground, a wooden staff thrown aside, while a burly sneering senior disciple stands over him and jeers, a few other disciples laughing behind. Faces softly modelled with clear readable features and real volume. Harsh midday light, dust kicked up. Composition keeps one side calm for game text. Humiliating, tense.",
+        "body": "The same earthen training ground, close view: a thin young disciple in coarse patched robes has stumbled and fallen back onto the ground, a wooden staff thrown aside, while a burly sneering senior disciple stands over him and jeers, a few other disciples laughing behind. Faces drawn with clear readable features and simple solid shapes. Harsh midday light, dust kicked up. Composition keeps one side calm for game text. Humiliating, tense.",
     },
     {
         "key": "bc_san_sau_luyen_dem",
@@ -40,7 +40,7 @@ SCENES = [
         "key": "bc_san_tap_cai_lai",
         "name": "Sân tập — cãi lại",
         "use": "Tân đệ tử cãi lại, bị tát ngã, không cúi đầu (p03c).",
-        "body": "The training ground seen close and low: a thin young disciple sits fallen on the packed earth, blood at the corner of his mouth, head raised defiantly, while a burly senior disciple turns away in anger, a crowd of silent disciples watching. Faces loosely suggested. Harsh light, dust. Composition keeps one side calm for game text. Defiant, painful, a flicker of respect.",
+        "body": "The training ground seen close and low: a thin young disciple sits fallen on the packed earth, blood at the corner of his mouth, head raised defiantly, while a burly senior disciple turns away in anger, a crowd of silent disciples watching. Faces simple but clearly drawn. Harsh light, dust. Composition keeps one side calm for game text. Defiant, painful, a flicker of respect.",
     },
     {
         "key": "bc_san_sau_anh_sang",
@@ -58,7 +58,7 @@ SCENES = [
         "key": "bc_vuon_thuoc_gap",
         "name": "Vườn thuốc — gặp Mạc Đại Phu",
         "use": "Lần đầu tới vườn thuốc, gặp Mạc Đại Phu (p04).",
-        "body": "A quiet herb garden behind an ancient Chinese martial sect in soft daylight, seen at eye level. Neat beds of medicinal plants, a low wooden fence, drying bundles of herbs hung on a rack, mist over the far hill. At one corner an old grey-robed physician sits sorting herbs with slow sure hands, looking up at a thin young disciple who stands before him. Faces suggested. Composition keeps the upper third calm for game text. Calm, watchful.",
+        "body": "A quiet herb garden behind an ancient Chinese martial sect in soft daylight, seen at eye level. Neat beds of medicinal plants, a low wooden fence, drying bundles of herbs hung on a rack, mist over the far hill. At one corner an old grey-robed physician sits sorting herbs with slow sure hands, looking up at a thin young disciple who stands before him. Faces simple but clearly drawn. Composition keeps the upper third calm for game text. Calm, watchful.",
     },
     {
         "key": "bc_vuon_thuoc_hoi",

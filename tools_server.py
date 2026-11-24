@@ -28,65 +28,31 @@ SCENE_DIR = f"{ROOT}/assets/scene"
 FIELDS = ["OPENROUTER_API_KEY", "geminikey", "geminikey1", "geminikey2", "geminikey3"]
 
 STYLE_GOC = (
-    "Clean East Asian ink line-art (baimiao / 白描) on smooth handmade mulberry (dó) paper: crisp "
-    "black ink lines drawn on bare pale paper, with the calm economy of an ancient hanging scroll. "
-    "Every shape is closed by a clear continuous outline, filled with flat even ink, leaving "
-    "generous empty negative space (liubai). Flat graphic line-art, not a painting: no shading "
-    "gradients, no airbrush, no volumetric modelling, no soft blurred edges. "
-    "NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework. "
+    "Traditional East Asian ink wash painting (shui-mo / thủy mặc) on smooth handmade mulberry (dó) paper. "
+    "Monochrome black ink with subtle warm cream and pale sepia paper tones, clean controlled brushwork, "
+    "generous empty negative space (liubai), "
+    "minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. "
 )
-# Chống nét gãy. Line-art đòi viền sắc, nên phải nói rõ "một nét liền, đều tay" — nếu chỉ
-# nói "sắc" thì AI vẽ viền gãy khúc ở chỗ hình phức tạp.
-NET_LIEN = (
-    "Draw every outline as one continuous unbroken brush stroke with a smooth steady curve and "
-    "even line weight: no jagged zigzag edges, no sketchy broken lines, no short choppy "
-    "overlapping strokes, no scribbled shapes. Fill each shape with ONE solid, opaque, evenly "
-    "toned ink: the inside of every shape must be uniform and clean, with no mottled or patchy "
-    "texture, no uneven washes, no blotches, no bright pinholes or speckles inside the ink, no "
-    "gradient, no airbrush and no soft blurred shading. Contours of faces, hands and clothing "
-    "folds must be crisp, clean and clearly readable, with solid filled shapes rather than "
-    "scattered fragments of ink. "
-)
-# 彩墨 (cǎi-mò) — line-art ĐIỂM MÀU: nét đen là xương, màu trầm lót phẳng bên trong nét.
-# Dùng cho ảnh truyện/nhân vật (không dùng cho ảnh giao diện).
+# 彩墨 (cǎi-mò) — thủy mặc ĐIỂM MÀU: vẫn chủ đạo mực đen trên giấy dó, chỉ phủ thêm
+# vài mảng màu trầm. Dùng cho ảnh truyện/nhân vật (không dùng cho ảnh giao diện).
 MAU_GOC = (
-    "Clean East Asian colour line-art (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: crisp "
-    "black ink outlines on bare pale paper, with flat muted colour laid inside the lines. The "
-    "picture stays dominated by black linework and bare paper, so the palette is desaturated and "
-    "quiet: soft indigo and slate blue for sky and water, jade and olive green for foliage, warm "
-    "ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained "
-    "accent of vermilion or ember orange for fire and lamps. Colour is applied flat, in even "
-    "patches, never as a soft gradient. Never bright, never saturated, never a full-colour "
-    "painting. NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book "
-    "linework. "
-)
-# Chân dung người là chỗ dễ hỏng nhất: nét gãy làm mặt méo, áo nát. Ép giải phẫu và nét liền.
-NET_NGUOI = (
-    "Render the figure with correct, realistic human anatomy: one well-formed face with readable "
-    "eyes, nose and mouth, and clothing drawn as large clean folds with real weight and drape. "
-    "Outline the face, the hands and the garments with continuous unbroken lines. Do not fragment "
-    "the face or the garments into loose patches, dots or scattered marks. "
-)
-# Ảnh GIAO DIỆN (nền, khung, viền, nút, ấn son, đường kẻ) là ngoại lệ: chúng phải giữ cạnh
-# sắc, tô phẳng, ruột trống — nếu làm mềm thì chữ trong game khó đọc.
-STYLE_UI = (
-    "Traditional East Asian ink work on smooth handmade mulberry (dó) paper, treated as a flat "
-    "graphic interface element: monochrome black ink with subtle warm cream and pale sepia paper "
-    "tones, minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. "
-)
-NET_UI = (
-    "Draw the shapes as clean, even, straight-edged hand-painted ink strokes with smooth solid "
-    "stroke ends, flat even ink coverage and crisp well-defined edges, with no bleeding halo and "
-    "no speckle, so that text placed on top stays fully legible. "
+    "Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: "
+    "an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, "
+    "muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp, "
+    "well-defined edges, and the generous empty negative space (liubai) of an ancient "
+    "hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade "
+    "and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for "
+    "cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, "
+    "never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. "
 )
 NO_TEXT = (
     "IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, "
     "no watermark, no logo, no UI labels."
 )
-STYLE = STYLE_GOC + NET_LIEN + NO_TEXT
-STYLE_MAU = MAU_GOC + NET_LIEN + NO_TEXT
+STYLE = STYLE_GOC + NO_TEXT
+STYLE_MAU = MAU_GOC + NO_TEXT
 # Ấn son là ngoại lệ: chữ trong dấu là nội dung chính, không được cấm chữ.
-STYLE_CHU = STYLE_UI + NET_UI + (
+STYLE_CHU = STYLE_GOC + (
     "IMPORTANT: the ONLY text allowed is the words inside the seal; "
     "no other letters, numbers, signature, watermark, logo or UI labels."
 )
@@ -108,9 +74,9 @@ ASSETS = [
         "use": "Nền sau tất cả (dùng background-size: cover).",
         "prompt": STYLE + " "
         "An almost empty aged-paper background for a mobile game screen, portrait orientation. "
-        "Subtle paper texture with faint uneven washes of pale ink near the corners and edges, "
+        "Subtle paper texture with faint even washes of pale ink near the corners and edges, "
         "a very faint silhouette of distant misty mountains along the very top and bottom edges, "
-        "and one or two soft even washes at the margins. "
+        "one or two soft even washes at the margins. "
         "The whole center is left empty and light so game text can be placed on top. Low contrast, calm, quiet.",
     },
     {
@@ -121,8 +87,8 @@ ASSETS = [
         "use": "Khung bảng chỉ số nhân vật (cột trái). Ruột để trống cho chữ.",
         "prompt": STYLE + " "
         "A vertical hanging-scroll card for a game interface, portrait orientation. "
-        "The border is a clean hand-painted black ink rectangle with straight, even edges and "
-        "smooth solid stroke ends, and a thin second inner line. "
+        "The border is a hand-painted black ink rectangle with straight even edges and solid stroke ends, "
+        "and a thin second inner line. "
         "The INSIDE of the panel is plain empty light paper with no decoration at all, reserved for text. "
         "One small red square seal stamp sits in the bottom-right corner of the border. "
         "Flat frontal view, centered, the frame fills almost the entire image with a small even margin.",
@@ -135,7 +101,7 @@ ASSETS = [
         "use": "Khung bảng nội dung câu chuyện. Ruột để trống cho chữ.",
         "prompt": STYLE + " "
         "A large rectangular story panel for a game interface, portrait orientation, slightly softer and simpler than a scroll. "
-        "A clean hand-painted black ink border with gently rounded corners and a smooth even stroke, "
+        "A hand-painted black ink border with gently rounded corners and a smooth even stroke, "
         "very subtle. The entire interior is plain empty light paper with nothing drawn inside, reserved for long text. "
         "No seal, no ornaments. Flat frontal view, the frame fills almost the whole image with a small even margin.",
     },
@@ -147,7 +113,7 @@ ASSETS = [
         "use": "Viền tròn quanh ảnh đại diện (sẽ đè lên ảnh người dùng).",
         "prompt": STYLE + " "
         "A single decorative circular ring for a game avatar frame, centered, on a plain empty light paper background. "
-        "The ring is painted with bold black ink brush strokes, smooth and unbroken all the way round. "
+        "The ring is painted with bold black ink brush strokes, smooth and solid all the way round. "
         "The inside of the circle and everything outside it is completely empty light paper. "
         "Only the ring itself, nothing else, no face, no figure.",
     },
@@ -197,7 +163,7 @@ ASSETS = [
         "use": "Đường phân cách giữa các mục.",
         "prompt": STYLE + " "
         "A single horizontal decorative divider line for a game interface, extremely wide and short. "
-        "A simple black ink brush stroke that starts thin, swells smoothly in the middle and tapers to a clean point. "
+        "A simple black ink brush stroke that starts thin, swells in the middle and tapers to a clean point. "
         "On a plain empty light paper background. "
         "Only the single brush stroke, nothing else.",
     },
@@ -212,7 +178,7 @@ ASSETS = [
         "prompt": STYLE + " "
         "An early-morning market street in an ancient Chinese mountain town, seen at eye level. "
         "Rows of humble wooden stalls with awnings, baskets of dried fish and herbs, jars, "
-        "a few distant figures in simple cloth robes, each modelled with soft shaded volume and a readable posture. "
+        "a few distant figures in simple cloth robes drawn with solid readable shapes. "
         "Dawn light, thin morning mist drifting between the stalls. "
         "Composition leaves the upper third and one side calm and empty for game text. "
         "Warm cream paper, quiet and lived-in, no dramatic action.",
@@ -337,8 +303,8 @@ ASSETS = [
         "prompt": STYLE + " "
         "An ancient Chinese mountain market town burning at night during a bandit raid, seen from a "
         "distance at eye level. Rows of wooden houses and stalls engulfed in tall orange flames, thick "
-        "black smoke rolling up into the dark sky, sparks drifting in the air. Small distant figures of "
-        "fleeing townsfolk and mounted raiders, softly shaded so each posture reads clearly against the firelight. "
+        "black smoke rolling up into the dark sky, sparks drifting in the air. Small distant silhouettes "
+        "of fleeing townsfolk and mounted raiders drawn with solid readable shapes. "
         "A broken gate and fallen banners at the town edge, embers glowing on the ground. "
         "Dramatic contrast of firelight against the deep night, but rendered in restrained ink-wash tones. "
         "Composition keeps the upper part smoky and calm for game text. Chaotic, tragic, tense.",
@@ -353,7 +319,7 @@ ASSETS = [
         "The aftermath of a battle in an ancient Chinese mountain town at first grey dawn, seen from "
         "inside the ruins. Collapsed charred timber buildings, broken stone steps, torn banners lying in "
         "the dust, thin smoke still curling from the wreckage, ash scattered on the ground. "
-        "A few weary distant figures quietly carrying the fallen, softly shaded so each posture reads clearly. "
+        "A few weary distant figures quietly carrying the fallen, drawn with solid readable shapes. "
         "Pale cold dawn light, low mist over the ruins, the sky almost empty and grey. "
         "Composition keeps the center low and calm so game text can sit above. "
         "Desolate, quiet, sorrowful, exhausted.",
@@ -415,8 +381,7 @@ ASSETS = [
         "A humble wayside tea stall at the edge of an ancient Chinese mountain town, seen at eye level. "
         "A low thatched awning on rough wooden posts, a few worn benches and low tables, a steaming "
         "iron kettle on a clay stove, rows of coarse ceramic bowls. A handful of travelling men in "
-        "plain robes sitting close together and talking in low voices, each drawn with clean continuous "
-        "strokes; no faces in detail. Late-afternoon light, thin smoke from the stove, dust in the air. "
+        "plain robes sitting close together and talking in low voices, drawn with solid readable shapes; no faces in detail. Late-afternoon light, thin smoke from the stove, dust in the air. "
         "Composition leaves the upper third and one side calm and empty for game text. "
         "Quiet, watchful, a place where rumours change hands.",
     },
@@ -431,8 +396,7 @@ ASSETS = [
         "the ruined training courtyard. A broken stone gate and a collapsed wall, splintered wooden "
         "weapon racks and fallen practice poles, torn blue banners lying in the dust, thin smoke still "
         "curling from a burnt storehouse. An old physician in a plain long robe bends over the wounded, "
-        "a wooden medicine box open at his feet; a few weary disciples sit or kneel nearby, suggested "
-        "outlines and simple readable faces. Pale cold dawn light, low mist, ash on the "
+        "a wooden medicine box open at his feet; a few weary disciples sit or kneel nearby, drawn with solid readable shapes and simple clear faces. Pale cold dawn light, low mist, ash on the "
         "ground. Composition keeps the center low and calm so game text can sit above. "
         "Solemn, exhausted, stubbornly unbroken.",
     },
@@ -641,35 +605,10 @@ MP = _ilu.module_from_spec(_mp_spec)
 _mp_spec.loader.exec_module(MP)
 ASSETS.extend(MP.assets(STYLE_MAU))
 
-# Ảnh GIAO DIỆN phải giữ cạnh sắc, tô phẳng, ruột trống cho chữ — không dùng khối hội họa
-# viền mềm. Tách sang STYLE_UI ngay sau khi dựng danh sách.
-UI_KEYS = ["bg-main", "panel-character", "panel-story", "avatar-ring", "btn-choice", "divider-ink"]
-for _a in ASSETS:
-    if _a["key"] in UI_KEYS and _a["prompt"].startswith(STYLE):
-        _a["prompt"] = STYLE_UI + NET_UI + NO_TEXT + _a["prompt"][len(STYLE):]
-
 # Ảnh truyện/nhân vật dùng bản tô màu điểm (彩墨) thay cho mực đen thuần.
 for _a in ASSETS:
     if _a["key"] in MAU_KEYS and _a["prompt"].startswith(STYLE):
         _a["prompt"] = STYLE_MAU + _a["prompt"][len(STYLE):]
-
-# Ảnh cảnh lẻ còn sót khối mực đen (lẫn trong bộ điểm màu) → đổi cho đồng bộ.
-for _a in ASSETS:
-    if _a["key"].startswith(("bc_", "nv_", "vt_")) and _a["prompt"].startswith(STYLE):
-        _a["prompt"] = STYLE_MAU + _a["prompt"][len(STYLE):]
-
-# Prompt có người (chân dung hoặc cảnh đông người) phải nhận thêm ràng buộc giải phẫu,
-# vì nét gãy làm mặt méo và nếp áo nát — lỗi người dùng thấy rõ nhất. Chỉ áp cho ảnh
-# truyện/nhân vật; ảnh giao diện (khung, nút, nền) không có người nên không cần.
-# Số nhiều cũng phải khớp: cảnh đông người ghi "figures"/"disciples" mà regex cũ chỉ
-# có dạng số ít, nên ba cảnh đông người bị bỏ sót khối giải phẫu.
-_NGUOI = re.compile(r"\b(portrait of|character reference|young man|young woman|figures?|disciples?|"
-                    r"cultivators?|men|women|youths?|beggars?|townsfolk|raiders?|faces?)\b", re.I)
-for _a in ASSETS:
-    if not _a["key"].startswith(("nv_", "bc_", "vt_")):
-        continue
-    if _NGUOI.search(_a["prompt"]) and NET_NGUOI not in _a["prompt"]:
-        _a["prompt"] = _a["prompt"].replace(NO_TEXT, NET_NGUOI + NO_TEXT, 1)
 
 
 def load_env():
@@ -755,13 +694,7 @@ def build_received_html():
 
 
 def khoi_style(p: str) -> str:
-    """Khối phong cách nền của một prompt.
-
-    Không so khớp cả `STYLE_MAU`: `NET_NGUOI` được chèn ngay trước `NO_TEXT`, nên
-    prompt có người không còn khớp nguyên chuỗi và sẽ bị nhận nhầm là mực đen.
-    """
-    if p.startswith(STYLE_UI):
-        return "ui"
+    """Khối phong cách nền của một prompt."""
     if p.startswith(MAU_GOC):
         return "mau"
     if p.startswith(STYLE_GOC):
@@ -772,8 +705,7 @@ def khoi_style(p: str) -> str:
 def _prompt_than(a: dict) -> str:
     """Bỏ phần phong cách chung, chỉ giữ mô tả riêng của asset."""
     p = a.get("prompt", "")
-    for phan in (STYLE_UI + NET_UI + NO_TEXT, MAU_GOC, STYLE_GOC, NET_LIEN, NET_UI,
-                 NET_NGUOI, NO_TEXT):
+    for phan in (MAU_GOC, STYLE_GOC, NO_TEXT):
         if p.startswith(phan):
             p = p[len(phan):]
     return p.strip()
@@ -1062,14 +994,9 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "", mau: list = None
         dong_dau = (f'TASK: Create {so} for a Vietnamese cultivation game named '
                     f'"Hồng Đức Tu Tiên Lộ"')
         dong_dau += f" — {tieu_de}." if tieu_de else "."
-    # Ghi phong cách chung của cả bộ: điểm màu (ảnh truyện) hay cạnh sắc (ảnh giao diện).
-    khoi = {khoi_style(a["prompt"]) for a in ds}
-    if khoi == {"ui"}:
-        phong_cach = (STYLE_UI + NET_UI).strip()
-    elif "ui" in khoi:
-        phong_cach = (STYLE_GOC + NET_LIEN).strip()
-    else:
-        phong_cach = (MAU_GOC + NET_LIEN).strip()
+    # Nếu cả bộ đều là ảnh điểm màu thì ghi phong cách 彩墨, ngược lại ghi mực đen.
+    tat_ca_mau = all(a["prompt"].startswith(STYLE_MAU) for a in ds)
+    phong_cach = (MAU_GOC if tat_ca_mau else STYLE_GOC).strip()
     dong = [
         dong_dau,
         "Produce the images ONE BY ONE, in the order below, each as a SEPARATE image at its "
@@ -1108,18 +1035,15 @@ def _build_gop(ds: list, tieu_de: str = "", dong_dau: str = "", mau: list = None
             "no logo in ANY image."
         )
     dong.append("")
-    # Bộ trộn nhiều phong cách → ghi rõ từng ảnh dùng khối nào.
-    hoa_tron = len(khoi) > 1
+    # Bộ trộn cả ảnh điểm màu lẫn mực đen → ghi rõ phong cách từng ảnh.
+    hoa_tron = len({a["prompt"].startswith(STYLE_MAU) for a in ds}) > 1
     for i, a in enumerate(ds, 1):
         nhan = ""
         if hoa_tron:
-            ks = khoi_style(a["prompt"])
-            if ks == "ui":
-                nhan = " [interface element: sharp flat edges]"
-            elif ks == "mau":
-                nhan = " [colour-ink 彩墨, painterly]"
+            if a["prompt"].startswith(STYLE_MAU):
+                nhan = " [colour-ink 彩墨]"
             elif a["key"] != "seal":
-                nhan = " [black ink only, painterly]"
+                nhan = " [black ink only]"
         doan = doan_cua(a["key"])
         vitri = ("  · dùng ở: " + ", ".join(doan)) if doan else ""
         dong.append(f"{i}. {a['file']} — {a['ratio']} — {ten_sach(a)}{nhan}{vitri}")

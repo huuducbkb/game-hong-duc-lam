@@ -587,58 +587,24 @@ else:
 
 _restore(_snap)
 
-print("\n=== Prompt ảnh: line-art nét liền, sạch ===")
+print("\n=== Prompt ảnh: thủy mặc, sạch loang và đốm ===")
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import tools_server as _TS
+
+# Bốn cụm gốc sinh ra mực loang lỗ và đốm sáng: "wet ink bleeding edges",
+# "dry brush strokes", "visible paper fiber texture", "rough handmade".
 _LOANG = ("wet ink bleeding", "bleeding edges", "dry brush", "dry-brush", "paper fibre",
           "paper fiber", "suggested loosely", "loosely by", "ink splash", "blotchy",
           "wobbly edges", "rough handmade", "abstract scribble")
 _xau = {a["key"]: [c for c in _LOANG if c in a["prompt"].lower()] for a in _TS.ASSETS}
 check("không prompt ảnh nào chứa từ gây loang", {k: v for k, v in _xau.items() if v}, {})
 
-# Ảnh truyện/nhân vật: line-art nét liền, tô phẳng, cấm chuyển sắc mềm.
-_TRUYEN = [a for a in _TS.ASSETS if _TS.khoi_style(a["prompt"]) in ("mau", "goc")]
-_NET = ("one continuous unbroken brush stroke", "crisp, clean and clearly readable",
-        "solid filled shapes", "ONE solid, opaque, evenly toned ink")
-check("ảnh truyện/nhân vật đòi nét liền, sạch, tô phẳng",
-      {a["key"]: [c for c in _NET if c not in a["prompt"]] for a in _TRUYEN
-       if any(c not in a["prompt"] for c in _NET)}, {})
-check("mọi prompt đòi mực đặc, cấm loang lỗ và đốm sáng",
-      {a["key"]: [c for c in ("no mottled or patchy texture", "no blotches",
-                              "no bright pinholes")
-                  if c not in a["prompt"]] for a in _TRUYEN
-       if any(c not in a["prompt"] for c in ("no mottled or patchy texture",
-                                             "no blotches", "no bright pinholes"))}, {})
-check("ảnh truyện/nhân vật khai báo line-art, không phải tranh",
-      {a["key"] for a in _TRUYEN if "line-art" not in a["prompt"]}, set())
-# Chặn tái phạm: quay lại hướng "có khối / mép mềm" là sai hướng hiện tại.
-_KHOI = ("soft blended edges", "volumetric shading", "atmospheric depth",
-         "painterly cinematic", "melting into the paper", "no bold black outline")
-check("không prompt ảnh truyện nào quay lại hướng có khối",
-      {a["key"]: [c for c in _KHOI if c in a["prompt"]] for a in _TRUYEN
-       if any(c in a["prompt"] for c in _KHOI)}, {})
-check("prompt có người vẫn đòi giải phẫu thật",
-      {a["key"] for a in _TRUYEN
-       if _TS.NET_NGUOI in a["prompt"] and "correct, realistic human anatomy" not in a["prompt"]},
-      set())
-
-# Ảnh giao diện cũng là line-art, nhưng tô phẳng tuyệt đối để chữ đọc được.
-_UI = [a for a in _TS.ASSETS if _TS.khoi_style(a["prompt"]) == "ui"]
-check("có ảnh giao diện dùng khối riêng", len(_UI) >= 6, True)
-check("ảnh giao diện giữ cạnh sắc và tô phẳng",
-      {a["key"]: [c for c in ("crisp well-defined edges", "flat even ink coverage")
-                  if c not in a["prompt"]] for a in _UI
-       if any(c not in a["prompt"] for c in ("crisp well-defined edges",
-                                             "flat even ink coverage"))}, {})
-check("ảnh giao diện không bị gắn mép mềm",
-      [a["key"] for a in _UI if "soft blended edges" in a["prompt"]], [])
+# Hướng đã chọn là thủy mặc shui-mo / 彩墨, không phải line-art.
+check("khối phong cách vẫn là thủy mặc",
+      ("shui-mo" in _TS.STYLE_GOC, "cǎi-mò" in _TS.MAU_GOC), (True, True))
 check("mọi prompt ảnh đều cấm chữ",
       [a["key"] for a in _TS.ASSETS
        if a["key"] != "seal" and "no text" not in a["prompt"].lower()], [])
-check("ảnh giao diện không bị gắn nhầm ràng buộc giải phẫu",
-      [a["key"] for a in _TS.ASSETS
-       if not a["key"].startswith(("nv_", "bc_", "vt_"))
-       and "correct, realistic human anatomy" in a["prompt"]], [])
 
 print("\n=== Prompt tiếng: trần 450 ký tự ===")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
