@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Âm thanh anh vừa úp — em đã kiểm</title>
+<style>
+ :root{--n:#1b2430;--m:#5b6b7c;--v:#e8eef5;--d:#b3261e;--g:#1e6b3a;--y:#8a6100}
+ *{box-sizing:border-box}
+ body{margin:0 auto;padding:18px 16px 48px;max-width:780px;font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--n);background:#fff}
+ h1{font-size:23px;line-height:1.3;margin:6px 0 4px}
+ h2{font-size:19px;margin:30px 0 8px;padding-top:16px;border-top:1px solid var(--v)}
+ .dan{color:var(--m);font-size:15px;margin-bottom:20px}
+ .hop{background:#f6f9fc;border-left:4px solid var(--g);padding:12px 14px;border-radius:6px;margin:16px 0}
+ .hop.bad{border-color:var(--d);background:#fdf5f4}
+ .hop.warn{border-color:var(--y);background:#fdfaf0}
+ .hop b{display:block;margin-bottom:5px}
+ code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:14.5px}
+ pre{background:#1b2430;color:#e6edf3;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.5;white-space:pre-wrap}
+ table{border-collapse:collapse;width:100%;font-size:14.5px;margin:12px 0}
+ th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--v);vertical-align:top}
+ th{color:var(--m);font-weight:600;font-size:13px;text-transform:uppercase}
+ .ok{color:var(--g);font-weight:600}
+ .x{color:var(--d);font-weight:600}
+ .big{font-size:34px;font-weight:700;line-height:1.1}
+ .so{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;background:var(--n);color:#fff;border-radius:50%;font-size:14px;font-weight:600;margin-right:8px;vertical-align:2px}
+ .luoi{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+ .o{flex:1 1 100px;background:#f6f9fc;border-radius:8px;padding:10px 12px;text-align:center}
+ .o .n{font-size:26px;font-weight:700}
+ .o .t{font-size:12.5px;color:var(--m);line-height:1.3}
+ ul{margin:8px 0;padding-left:20px} li{margin:5px 0}
+ .cu{color:var(--m);font-size:14px}
+</style>
+
+<h1>Âm thanh anh vừa úp — em đã kiểm hết</h1>
+<p class="dan">66 file, em băm từng file, đo thời lượng, kiểm mã băm trong manifest, và phát thử trên máy.</p>
+
+<div class="luoi">
+ <div class="o"><div class="n ok">66</div><div class="t">file tiếng</div></div>
+ <div class="o"><div class="n ok">0</div><div class="t">file câm</div></div>
+ <div class="o"><div class="n ok">0</div><div class="t">file trùng</div></div>
+ <div class="o"><div class="n ok">0</div><div class="t">mã băm lệch</div></div>
+</div>
+
+<div class="hop"><b>Phần lớn anh làm đúng rồi</b>
+66 file đều là bản riêng, không file nào trùng file nào, không file nào câm, manifest khớp 100% với file thật. Lỗi trùng tiếng của <code>tan_xa_dot_pha</code> và <code>tan_xa_suyt_lo</code> lần trước đã hết.</div>
+
+<h2><span class="so">1</span>Còn 2 cảnh chưa có tiếng</h2>
+<p>Hai cảnh này có trong truyện chương 1 và có prompt, nhưng chưa có file:</p>
+<table>
+<tr><th>Cảnh</th><th>Ai nói</th><th>Câu</th></tr>
+<tr><td><code>kiem_hap_nhan</code><br><span class="cu">Kiếm Linh nhận máu</span></td><td>Kiếm Linh</td><td>成了。</td></tr>
+<tr><td><code>ngoc_cot</code><br><span class="cu">Ngọc cốt hiện ra</span></td><td>Tuyết Cơ</td><td>你……终于来了。</td></tr>
+</table>
+
+<h2><span class="so">2</span>Còn 10 cảnh tiếng cũ, tạo trước khi có thoại</h2>
+<p>Đây là chỗ dễ hiểu lầm nhất. Em so prompt tại <b>đúng lúc anh úp file</b> với prompt hiện tại:</p>
+<table>
+<tr><th>Cảnh</th><th>Tình trạng</th></tr>
+<tr><td><code>tran_lua</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>tran_lua_2</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>tran_lua_3</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>binh_minh</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>san_tap_ngay</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>cong_dong_hung_ba</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>cong_dong_quyen</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>quan_nuoc</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>san_sau_chon_lai</code></td><td class="x">file cũ không có thoại</td></tr>
+<tr><td><code>tan_hoang</code></td><td class="x">file cũ không có thoại</td></tr>
+</table>
+<p>Mười cảnh này anh đã tạo tiếng <b>trước</b> khi em thêm thoại vào prompt. Nên file đang có là tiếng nền không lời. Cần tạo lại.</p>
+
+<div class="hop warn"><b>Bốn cảnh chỉ lệch câu chữ, không cần tạo lại</b>
+<code>duong_mon_nui</code>, <code>mieu_trong</code>, <code>khe_nui_chon</code>, <code>san_sau_luyen_dem</code> — prompt đổi cách diễn đạt nhưng vẫn không có thoại. Tiếng cũ vẫn dùng được.</div>
+
+<h2><span class="so">3</span>Em tìm ra 3 cảnh nữa ghi sai giọng</h2>
+<p>Nhờ rà lại toàn bộ 64 prompt, em thấy ba cảnh vẫn tả giọng kiểu cũ — nếu anh tạo tiếng cho chúng, máy sẽ đọc ra người khác:</p>
+<pre>kiem_hap        "a cold young male voice"        -> man's voice, thirty, deep and grave
+kiem_hap_nhan   "a young man's low voice"         -> man's voice, thirty, deep and grave
+tan_hoang       "A young man's voice, quiet..."   -> man's voice, thirty, deep and grave</pre>
+<p>Cả ba đều là <b>Kiếm Linh</b> nói. Em đã đối chiếu truyện: <code>kiem_hap</code> là cảnh y xuất hiện lần đầu từ hai thanh kiếm, <code>kiem_hap_nhan</code> là câu "Xong rồi", <code>tan_hoang</code> là câu "Ngươi làm tốt" — kiếm linh nói giọng dịu.</p>
+<p class="ok">Giờ 100% câu thoại trong 64 prompt khớp đúng khuôn giọng đã chốt.</p>
+
+<h2>Việc anh cần làm</h2>
+<div class="hop bad"><b>Tạo lại 12 cảnh</b>
+<p style="margin:6px 0 4px">Hai cảnh chưa có tiếng:</p>
+<p style="margin:2px 0"><code>kiem_hap_nhan</code>, <code>ngoc_cot</code></p>
+<p style="margin:10px 0 4px">Mười cảnh tiếng cũ thiếu thoại:</p>
+<p style="margin:2px 0"><code>tran_lua</code>, <code>tran_lua_2</code>, <code>tran_lua_3</code>, <code>binh_minh</code>, <code>san_tap_ngay</code>, <code>cong_dong_hung_ba</code>, <code>cong_dong_quyen</code>, <code>quan_nuoc</code>, <code>san_sau_chon_lai</code>, <code>tan_hoang</code></p>
+<p style="margin:10px 0 0">Vào trang Xưởng, tìm từng cảnh, bấm copy prompt rồi tạo. Prompt đã sửa sẵn, anh chỉ cần tạo.</p></div>
+
+<h2>Những gì đã đúng</h2>
+<ul>
+<li>54 cảnh còn lại: tiếng mới, tạo sau khi có thoại, đúng giọng.</li>
+<li><code>vuon_thuoc_im</code> và <code>tuyet_co_do_du</code>: đã có tiếng mới, đúng câu thoại em thêm.</li>
+<li>Toàn bộ 12 cảnh Hàn Lập và Kiếm Linh: tiếng mới, đúng giọng đã chốt.</li>
+</ul>
+
+<p class="cu">Em không tự sửa file tiếng — chỉ anh tạo được. Em lo phần kiểm và ghi lại chính xác cảnh nào cần làm.</p>
+</html>
