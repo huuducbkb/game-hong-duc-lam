@@ -28,31 +28,48 @@ SCENE_DIR = f"{ROOT}/assets/scene"
 FIELDS = ["OPENROUTER_API_KEY", "geminikey", "geminikey1", "geminikey2", "geminikey3"]
 
 STYLE_GOC = (
-    "Traditional East Asian ink wash painting (shui-mo / thủy mặc) on rough handmade mulberry (dó) paper. "
-    "Monochrome black ink with subtle warm cream and pale sepia paper tones, visible paper fiber texture, "
-    "wet ink bleeding edges, dry brush strokes, generous empty negative space (liubai), "
+    "Traditional East Asian ink wash painting (shui-mo / thủy mặc) on smooth handmade mulberry (dó) paper. "
+    "Monochrome black ink with subtle warm cream and pale sepia paper tones, clean controlled brushwork, "
+    "generous empty negative space (liubai), "
     "minimal and elegant ancient Chinese hanging-scroll aesthetic, muted and calm. "
+)
+# Nét phải LIỀN MẠCH: mỗi đường viền là MỘT nét bút đi liền từ đầu đến cuối. Nét gãy
+# khúc / chắp vụn làm ảnh đọc ra như tranh trừu tượng, mặt và quần áo không ra hình.
+NET_LIEN = (
+    "Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: "
+    "no jagged zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, "
+    "no abstract or scribbled shapes. Contours of faces, hands and clothing folds must be crisp, "
+    "clean and clearly readable, with solid filled shapes rather than scattered fragments of ink. "
+    "Flat, even ink coverage inside each shape, with no speckle, no splatter and no bleeding halo. "
 )
 # 彩墨 (cǎi-mò) — thủy mặc ĐIỂM MÀU: vẫn chủ đạo mực đen trên giấy dó, chỉ phủ thêm
 # vài mảng màu trầm. Dùng cho ảnh truyện/nhân vật (không dùng cho ảnh giao diện).
 MAU_GOC = (
-    "Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: "
+    "Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: "
     "an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, "
-    "muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush "
-    "strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient "
+    "muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp, "
+    "well-defined edges, and the generous empty negative space (liubai) of an ancient "
     "hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade "
     "and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for "
     "cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, "
     "never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. "
 )
+# Chân dung người là chỗ dễ hỏng nhất: nét gãy làm mặt méo, áo nát. Ép thêm
+# yêu cầu giải phẫu rõ và nếp áo liền, vì NET_LIEN một mình chưa đủ cho mặt.
+NET_NGUOI = (
+    "Render the figure with clear, correct human anatomy: a single well-defined face outline, "
+    "eyes, nose and mouth drawn with precise continuous lines and readable shape, "
+    "and clothing rendered as large smooth folds with continuous contour lines. "
+    "Do not fragment the face or the garments into loose patches, dots or scattered marks. "
+)
 NO_TEXT = (
     "IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, "
     "no watermark, no logo, no UI labels."
 )
-STYLE = STYLE_GOC + NO_TEXT
-STYLE_MAU = MAU_GOC + NO_TEXT
+STYLE = STYLE_GOC + NET_LIEN + NO_TEXT
+STYLE_MAU = MAU_GOC + NET_LIEN + NO_TEXT
 # Ấn son là ngoại lệ: chữ trong dấu là nội dung chính, không được cấm chữ.
-STYLE_CHU = STYLE_GOC + (
+STYLE_CHU = STYLE_GOC + NET_LIEN + (
     "IMPORTANT: the ONLY text allowed is the words inside the seal; "
     "no other letters, numbers, signature, watermark, logo or UI labels."
 )
@@ -76,7 +93,7 @@ ASSETS = [
         "An almost empty aged-paper background for a mobile game screen, portrait orientation. "
         "Subtle paper texture with faint uneven washes of pale ink near the corners and edges, "
         "a very faint silhouette of distant misty mountains along the very top and bottom edges, "
-        "a few tiny scattered ink specks and one or two faint dry-brush strokes at the margins. "
+        "and one or two soft even washes at the margins. "
         "The whole center is left empty and light so game text can be placed on top. Low contrast, calm, quiet.",
     },
     {
@@ -87,8 +104,8 @@ ASSETS = [
         "use": "Khung bảng chỉ số nhân vật (cột trái). Ruột để trống cho chữ.",
         "prompt": STYLE + " "
         "A vertical hanging-scroll card for a game interface, portrait orientation. "
-        "The border is an irregular hand-painted black ink rectangle with dry-brush ends and slightly wobbly edges, "
-        "a few small ink splashes near the corners, and a thin second inner line. "
+        "The border is a clean hand-painted black ink rectangle with straight, even edges and "
+        "smooth solid stroke ends, and a thin second inner line. "
         "The INSIDE of the panel is plain empty light paper with no decoration at all, reserved for text. "
         "One small red square seal stamp sits in the bottom-right corner of the border. "
         "Flat frontal view, centered, the frame fills almost the entire image with a small even margin.",
@@ -101,7 +118,7 @@ ASSETS = [
         "use": "Khung bảng nội dung câu chuyện. Ruột để trống cho chữ.",
         "prompt": STYLE + " "
         "A large rectangular story panel for a game interface, portrait orientation, slightly softer and simpler than a scroll. "
-        "A rough hand-painted black ink border with rounded irregular corners and light dry-brush texture, "
+        "A clean hand-painted black ink border with gently rounded corners and a smooth even stroke, "
         "very subtle. The entire interior is plain empty light paper with nothing drawn inside, reserved for long text. "
         "No seal, no ornaments. Flat frontal view, the frame fills almost the whole image with a small even margin.",
     },
@@ -113,8 +130,8 @@ ASSETS = [
         "use": "Viền tròn quanh ảnh đại diện (sẽ đè lên ảnh người dùng).",
         "prompt": STYLE + " "
         "A single decorative circular ring for a game avatar frame, centered, on a plain empty light paper background. "
-        "The ring is painted with bold black ink brush strokes, uneven and slightly broken, with dry-brush edges "
-        "and a few tiny ink splashes. The inside of the circle and everything outside it is completely empty light paper. "
+        "The ring is painted with bold black ink brush strokes, smooth and unbroken all the way round. "
+        "The inside of the circle and everything outside it is completely empty light paper. "
         "Only the ring itself, nothing else, no face, no figure.",
     },
     {
@@ -125,7 +142,7 @@ ASSETS = [
         "use": "Nền cho các nút chọn A/B/C. Ruột để trống cho chữ.",
         "prompt": STYLE + " "
         "A wide horizontal blank plaque / name-plate shape for a game button, very wide and short. "
-        "Drawn as a simple hand-painted black ink rounded rectangle with thin dry-brush border and slightly wobbly edges. "
+        "Drawn as a simple hand-painted black ink rounded rectangle with a thin smooth border and even edges. "
         "The interior is plain empty light paper, reserved for a single line of text. Minimal, one ink brush stroke along the bottom edge. "
         "Flat frontal view, the plaque fills almost the whole image.",
     },
@@ -137,8 +154,8 @@ ASSETS = [
         "use": "Con dấu đỏ trang trí (góc bảng, góc tranh). Chữ bên trong: HỒNG ĐỨC — chữ Latin, font kiểu Hán, xếp DỌC (trên xuống).",
         "prompt": STYLE_CHU + " "
         "A single traditional red seal stamp (chop) on a plain empty light paper background, centered. "
-        "A square vermilion-red stamped mark with rough uneven edges like a real ink seal impression, "
-        "faded and slightly blotchy, authentic antique look. "
+        "A square vermilion-red stamped mark with slightly uneven edges like a real ink seal impression, "
+        "faded a little, authentic antique look. "
         "CRITICAL LAYOUT — the text inside the seal MUST be on TWO SEPARATE LINES stacked "
         "vertically, like two rows of a Chinese vertical banner read top-to-bottom. "
         "LINE 1 (top half of the square): the word \"HỒNG\". "
@@ -163,8 +180,8 @@ ASSETS = [
         "use": "Đường phân cách giữa các mục.",
         "prompt": STYLE + " "
         "A single horizontal decorative divider line for a game interface, extremely wide and short. "
-        "A simple black ink brush stroke that starts thin, swells in the middle and fades to a dry broken end, "
-        "with one or two small ink splashes. On a plain empty light paper background. "
+        "A simple black ink brush stroke that starts thin, swells smoothly in the middle and tapers to a clean point. "
+        "On a plain empty light paper background. "
         "Only the single brush stroke, nothing else.",
     },
 
@@ -178,7 +195,7 @@ ASSETS = [
         "prompt": STYLE + " "
         "An early-morning market street in an ancient Chinese mountain town, seen at eye level. "
         "Rows of humble wooden stalls with awnings, baskets of dried fish and herbs, jars, "
-        "a few distant figures in simple cloth robes suggested loosely by a few ink strokes. "
+        "a few distant figures in simple cloth robes, each drawn with clear continuous outlines and a simple readable silhouette. "
         "Dawn light, thin morning mist drifting between the stalls. "
         "Composition leaves the upper third and one side calm and empty for game text. "
         "Warm cream paper, quiet and lived-in, no dramatic action.",
@@ -304,7 +321,7 @@ ASSETS = [
         "An ancient Chinese mountain market town burning at night during a bandit raid, seen from a "
         "distance at eye level. Rows of wooden houses and stalls engulfed in tall orange flames, thick "
         "black smoke rolling up into the dark sky, sparks drifting in the air. Small distant silhouettes "
-        "of fleeing townsfolk and mounted raiders suggested loosely by a few ink strokes. "
+        "of fleeing townsfolk and mounted raiders, each drawn with clean continuous outlines and a readable silhouette. "
         "A broken gate and fallen banners at the town edge, embers glowing on the ground. "
         "Dramatic contrast of firelight against the deep night, but rendered in restrained ink-wash tones. "
         "Composition keeps the upper part smoky and calm for game text. Chaotic, tragic, tense.",
@@ -319,7 +336,7 @@ ASSETS = [
         "The aftermath of a battle in an ancient Chinese mountain town at first grey dawn, seen from "
         "inside the ruins. Collapsed charred timber buildings, broken stone steps, torn banners lying in "
         "the dust, thin smoke still curling from the wreckage, ash scattered on the ground. "
-        "A few weary distant figures quietly carrying the fallen, suggested loosely by a few ink strokes. "
+        "A few weary distant figures quietly carrying the fallen, each drawn with clean continuous outlines and a readable silhouette. "
         "Pale cold dawn light, low mist over the ruins, the sky almost empty and grey. "
         "Composition keeps the center low and calm so game text can sit above. "
         "Desolate, quiet, sorrowful, exhausted.",
@@ -381,7 +398,7 @@ ASSETS = [
         "A humble wayside tea stall at the edge of an ancient Chinese mountain town, seen at eye level. "
         "A low thatched awning on rough wooden posts, a few worn benches and low tables, a steaming "
         "iron kettle on a clay stove, rows of coarse ceramic bowls. A handful of travelling men in "
-        "plain robes sitting close together and talking in low voices, suggested loosely by a few ink "
+        "plain robes sitting close together and talking in low voices, each drawn with clean continuous "
         "strokes; no faces in detail. Late-afternoon light, thin smoke from the stove, dust in the air. "
         "Composition leaves the upper third and one side calm and empty for game text. "
         "Quiet, watchful, a place where rumours change hands.",
@@ -398,7 +415,7 @@ ASSETS = [
         "weapon racks and fallen practice poles, torn blue banners lying in the dust, thin smoke still "
         "curling from a burnt storehouse. An old physician in a plain long robe bends over the wounded, "
         "a wooden medicine box open at his feet; a few weary disciples sit or kneel nearby, suggested "
-        "loosely by a few ink strokes, faces not detailed. Pale cold dawn light, low mist, ash on the "
+        "outlines and simple readable faces. Pale cold dawn light, low mist, ash on the "
         "ground. Composition keeps the center low and calm so game text can sit above. "
         "Solemn, exhausted, stubbornly unbroken.",
     },
@@ -611,6 +628,17 @@ ASSETS.extend(MP.assets(STYLE_MAU))
 for _a in ASSETS:
     if _a["key"] in MAU_KEYS and _a["prompt"].startswith(STYLE):
         _a["prompt"] = STYLE_MAU + _a["prompt"][len(STYLE):]
+
+# Prompt có người (chân dung hoặc cảnh đông người) phải nhận thêm ràng buộc giải phẫu,
+# vì nét gãy làm mặt méo và nếp áo nát — lỗi người dùng thấy rõ nhất. Chỉ áp cho ảnh
+# truyện/nhân vật; ảnh giao diện (khung, nút, nền) không có người nên không cần.
+_NGUOI = re.compile(r"\b(portrait of|character reference|young man|young woman|figure|disciple|"
+                    r"cultivator|man |woman |youth|beggars|townsfolk|raiders|faces)\b", re.I)
+for _a in ASSETS:
+    if not _a["key"].startswith(("nv_", "bc_", "vt_")):
+        continue
+    if _NGUOI.search(_a["prompt"]) and NET_NGUOI not in _a["prompt"]:
+        _a["prompt"] = _a["prompt"].replace(NO_TEXT, NET_NGUOI + NO_TEXT, 1)
 
 
 def load_env():

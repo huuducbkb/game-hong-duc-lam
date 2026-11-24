@@ -67,11 +67,13 @@ Tổng **72 giây**.
 Đã chèn sẵn vào từng cảnh. Dán riêng nếu công cụ có ô "style" riêng:
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -94,11 +96,13 @@ extra limbs, deformed hands, cluttered composition
 **0:00–0:05** · 9:16 · Zoom out rất chậm
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -124,11 +128,13 @@ Background: mist and empty paper. Deep atmospheric perspective.
 **0:05–0:09** · 9:16 · Pan lên
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -155,11 +161,13 @@ Small, awed, yearning — the moment a mortal first looks at the world of immort
 **0:09–0:12** · 9:16 · Zoom in mạnh
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -183,11 +191,13 @@ Vertical motion: solid at top, liquid at bottom. High contrast, unsettling, quie
 **0:12–0:15** · 9:16 · Cắt thẳng
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -213,11 +223,13 @@ Intimate, disorienting — a body recognised as not one's own.
 > Cảnh quan trọng nhất của trailer. Tạo 6–8 biến thể, chọn khung choáng nhất.
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -246,11 +258,13 @@ Majestic, vast, silent, ancient. The world the mortal boy was looking at.
 **0:23–0:28** · 9:16 · Pan lên
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -278,11 +292,13 @@ Formal, imposing, a threshold that cannot be uncrossed.
 **0:28–0:33** · 9:16 · Zoom in chậm
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -309,11 +325,13 @@ Disciplined, solitary, patient. A mortal forcing himself to become something els
 **0:33–0:37** · 9:16 · Rung + zoom in
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -343,11 +361,13 @@ Explosive, triumphant, the instant a mortal ceases to be merely mortal.
 > Đồ vật DV-1 trong canon. Chép nguyên văn phần mô tả.
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -374,11 +394,13 @@ Ancient, sealed, waiting. Something alive inside something dead.
 **0:42–0:46** · 9:16 · Pan ngang trái
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -388,7 +410,7 @@ no watermark, no logo, no UI labels.
 Vertical composition, seen from the ground looking up into dense mist. A colossal demon beast emerges
 from the fog, only partly visible: an enormous horned head lowered toward the viewer, filling the
 upper half of the frame, its body lost entirely in mist so the scale is impossible to judge. The
-creature is rendered as heavy black ink masses with dry-brush fur texture, its hide suggesting thick
+creature is rendered as heavy black ink masses with smooth fur texture, its hide suggesting thick
 coarse scales. Two huge eyes glow with a single cold amber-orange light — the only warm colour in the
 image — and a long slow breath of white vapour curls from its nostrils. Its horns are massive, ridged
 and dark. In the extreme lower foreground, tiny and insignificant, the dark silhouettes of two or
@@ -406,11 +428,13 @@ Overwhelming, predatory, ancient. The world does not care that you are the prota
 **0:46–0:51** · 9:16 · Pan ngang phải
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -419,8 +443,8 @@ no watermark, no logo, no UI labels.
 
 Dynamic vertical composition, sky filled with flying swords. Dozens of slender Chinese straight swords
 streak diagonally upward and across the frame in a loose swarm, each trailing a long thin line of
-pale cold light like a comet's tail — the trails are drawn as sharp dry brush strokes, tapering and
-breaking into bristle fragments at their ends. The blades themselves are dark silhouettes with a thin
+pale cold light like a comet's tail — the trails are drawn as clean, smooth tapering strokes
+that narrow to a fine point at their ends. The blades themselves are dark silhouettes with a thin
 bright edge catching light. They rise from a dark mountain ridge at the bottom of the frame and
 converge toward the upper right, where the light trails knot together into a bright pale knot before
 dispersing. In the lower foreground, the small dark figure of a swordsman in flowing robes stands on
@@ -438,11 +462,13 @@ Swift, overwhelming, beautiful and lethal.
 **0:51–0:56** · 9:16 · Rung nhẹ
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
@@ -473,7 +499,7 @@ Catastrophic, tragic, total. The end of everything that was built.
 > cảnh khoe sức mạnh.
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper: an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained, muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp, well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll. Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged zigzag edges, no sketchy broken lines, no abstract or scribbled shapes. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright, never saturated, never a full-colour painting: most of the image must remain black ink and bare paper. IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature, no watermark, no logo, no UI labels.
 
 Cinematic vertical two-shot, a standoff between two young men on a dark hillside path at dusk. They stand facing each other at a slight angle, roughly equal in the frame, a narrow gap of empty dark paper between them — neither is dominant, and neither has drawn a weapon. LEFT, seen in three-quarter profile turned toward the right: Vietnamese transmigrator reborn into the body of a poor young male drifter, around 16–17 years old. Thin build, slightly underfed. Short black hair, messy, tied back with a rough cord. Sun-tanned skin, sharp cheekbones. Dark, watchful eyes with a modern alertness in them. Wearing coarse, patched, frayed grey-brown hemp clothes that are too big, sleeves rolled up; rope belt. Hands calloused with black-rimmed nails. Expression: guarded, calculating, quietly defiant. No jewellery, no ornaments. RIGHT, seen in three-quarter profile turned toward the left: A lean, gaunt youth of about 16–17, slightly undernourished. Long face, high cheekbones, sun-darkened skin. Dark eyes, sharp as a blade, cold at first glance — but hiding a deep weariness, the look of someone who has long concealed his true self. Black hair tied simply at the nape. Wearing coarse grey hemp robes of a low-ranking servant disciple, sleeves slightly worn. A plain cloth bag at his belt. Expression: quiet, guarded, reserved; rarely shows emotion. Ordinary in appearance, easy to overlook — but there is a quiet, unsettling weight behind his eyes. Both are the same height and the same age, both thin, both plainly dressed and poor — the mirror of each other. The left one's eyes are alert and calculating, the eyes of a man doing arithmetic he does not intend to share. The right one's eyes are cold and unreadable, the eyes of a man who has already decided something. Between them, at chest height, a faint pale mist drifts and curls, the only bright thing in the frame. A cold pale rim light from above catches one edge of each face and leaves the rest in deep shadow, so they are lit identically — two men under the same sky, on opposite sides of a line neither has drawn yet. Behind them, hillside rock and pine dissolve into black ink and empty paper. The lower third of the frame is empty dark ink so a line of text can be placed beneath. Foreground: dark wet stone. Middle ground: the two figures, sharp. Background: black ink and void. Quiet, tense, dangerous — the moment two people recognise each other as the only real threat in the room.
 ```
@@ -483,18 +509,20 @@ Cinematic vertical two-shot, a standoff between two young men on a dark hillside
 **1:03–1:12** · 9:16 · Tĩnh
 
 ```
-Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on rough handmade mulberry (dó) paper:
+Traditional East Asian colour-ink painting (cǎi-mò / 彩墨) on smooth handmade mulberry (dó) paper:
 an ink-wash picture still dominated by black ink and bare pale dó paper, with only a few restrained,
-muted washes of soft colour laid over the ink. Keep the ink brushwork, wet bleeding edges, dry brush
-strokes, visible paper fibre texture and the generous empty negative space (liubai) of an ancient
-hanging scroll. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
+muted washes of soft colour laid over the ink. Keep the brushwork clean and controlled with crisp,
+well-defined edges, and the generous empty negative space (liubai) of an ancient hanging scroll.
+Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or scribbled
+shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly readable. Use a small desaturated palette — soft indigo and slate blue for sky and water, jade
 and olive green for foliage, warm ochre and sepia for earth and wood, off-white and pale blue for
 cloth, and a single restrained accent of vermilion or ember orange for fire and lamps. Never bright,
 never saturated, never a full-colour painting: most of the image must remain black ink and bare paper.
 IMPORTANT: absolutely no text, no letters, no numbers, no calligraphy, no signature,
 no watermark, no logo, no UI labels.
 
-A nearly empty vertical sheet of rough handmade mulberry paper filling the frame, pale warm cream with
+A nearly empty vertical sheet of smooth handmade mulberry paper filling the frame, pale warm cream with
 visible fibre texture and faint uneven washes of pale sepia near the edges. A single long vertical
 brush stroke of black ink descends through the upper middle of the paper — thick and dark where the
 brush first touched down, thinning and breaking into dry bristle marks as it trails downward. Along

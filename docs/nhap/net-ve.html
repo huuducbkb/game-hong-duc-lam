@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nét vẽ: đã sửa gốc — em đã kiểm</title>
+<style>
+ :root{--n:#1b2430;--m:#5b6b7c;--v:#e8eef5;--d:#b3261e;--g:#1e6b3a;--y:#8a6100}
+ *{box-sizing:border-box}
+ body{margin:0 auto;padding:18px 16px 48px;max-width:780px;font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--n);background:#fff}
+ h1{font-size:23px;line-height:1.3;margin:6px 0 4px}
+ h2{font-size:19px;margin:30px 0 8px;padding-top:16px;border-top:1px solid var(--v)}
+ .dan{color:var(--m);font-size:15px;margin-bottom:20px}
+ .hop{background:#f6f9fc;border-left:4px solid var(--g);padding:12px 14px;border-radius:6px;margin:16px 0}
+ .hop.bad{border-color:var(--d);background:#fdf5f4}
+ .hop.warn{border-color:var(--y);background:#fdfaf0}
+ .hop b{display:block;margin-bottom:5px}
+ code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:14.5px}
+ pre{background:#1b2430;color:#e6edf3;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.5;white-space:pre-wrap}
+ table{border-collapse:collapse;width:100%;font-size:14.5px;margin:12px 0}
+ th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--v);vertical-align:top}
+ th{color:var(--m);font-weight:600;font-size:13px;text-transform:uppercase}
+ .ok{color:var(--g);font-weight:600}
+ .x{color:var(--d);font-weight:600}
+ .luoi{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+ .o{flex:1 1 100px;background:#f6f9fc;border-radius:8px;padding:10px 12px;text-align:center}
+ .o .n{font-size:26px;font-weight:700}
+ .o .t{font-size:12.5px;color:var(--m);line-height:1.3}
+ ul{margin:8px 0;padding-left:20px} li{margin:5px 0}
+ figure{margin:16px 0}
+ figure img{width:100%;border-radius:8px;border:1px solid var(--v);display:block}
+ figcaption{font-size:13.5px;color:var(--m);margin-top:6px}
+ .cu{background:#fdf5f4;border-left:4px solid var(--d);padding:10px 12px;border-radius:6px;font-size:14.5px;margin:8px 0}
+ .moi{background:#f4fbf6;border-left:4px solid var(--g);padding:10px 12px;border-radius:6px;font-size:14.5px;margin:8px 0}
+</style>
+
+<h1>Nét vẽ răng cưa: em đã tìm ra gốc và sửa</h1>
+<p class="dan">Báo cáo cho anh · 17/11/2026 · nhánh <code>main</code></p>
+
+<div class="hop bad">
+  <b>Tin phải nói trước</b>
+  Sửa prompt <b>không chữa được ảnh đã vẽ rồi</b>. Ảnh cũ vẫn còn nét gãy cho tới khi anh
+  bấm vẽ lại. Việc em làm là chặn lỗi ngay từ câu lệnh, để <b>ảnh vẽ lại sẽ sạch</b>.
+</div>
+
+<h2>1. Anh tả đúng, và em đo được</h2>
+<p>Em đo độ "gãy khúc" của nét mực: đếm chu vi mảng mực thô, rồi làm trơn hình học và đếm lại.
+Nét liền thì hai số sát nhau. Nét chắp vụn, zíc-zắc thì số thô vọt lên nhiều lần.</p>
+
+<div class="luoi">
+  <div class="o"><div class="n">77/77</div><div class="t">prompt đều bị</div></div>
+  <div class="o"><div class="n">3.97</div><div class="t">độ gãy trung bình</div></div>
+  <div class="o"><div class="n">64</div><div class="t">ảnh gãy nặng (&gt;3)</div></div>
+  <div class="o"><div class="n">&lt;1.3</div><div class="t">mức nét liền</div></div>
+</div>
+
+<p>Nghĩa là <b>không phải vài ảnh lỗi</b> — cả bộ cùng lỗi. Vì cả bộ dùng chung một khối style.</p>
+
+<h2>2. Gốc lỗi: bốn cụm từ trong khối style chung</h2>
+<p>Khối <code>STYLE_GOC</code> / <code>MAU_GOC</code> trong <code>tools_server.py</code> dạy AI vẽ
+đúng thứ anh thấy:</p>
+
+<div class="cu">
+  <code>wet ink bleeding edges</code> · <code>dry brush strokes</code> ·
+  <code>visible paper fibre texture</code> · <code>rough handmade</code>
+</div>
+
+<p>"Mực loang ở mép" + "cọ khô" + "giấy ráp" = AI vẽ nét đứt quãng, chỗ đậm chỗ nhạt, viền nham nhở.
+Thêm nữa, 5 prompt cảnh còn ghi thẳng <code>suggested loosely by a few ink strokes, faces not
+detailed</code> — câu đó bảo AI vẽ người bằng mấy vệt nguệch ngoạc. Đó chính là "kiểu trừu tượng"
+anh thấy.</p>
+
+<h2>3. Em sửa những gì</h2>
+
+<table>
+<tr><th>Chỗ sửa</th><th>Trước</th><th>Sau</th></tr>
+<tr>
+  <td>Giấy</td>
+  <td><code>rough handmade</code></td>
+  <td><code>smooth handmade</code></td>
+</tr>
+<tr>
+  <td>Nét</td>
+  <td><code>wet bleeding edges, dry brush</code></td>
+  <td><code>clean controlled brushwork, crisp well-defined edges</code></td>
+</tr>
+<tr>
+  <td>Câu mới <code>NET_LIEN</code></td>
+  <td>—</td>
+  <td>Mỗi viền là <b>một nét liền</b>; cấm thẳng <code>jagged zigzag</code>,
+      <code>sketchy broken lines</code>, <code>choppy overlapping strokes</code>,
+      <code>abstract scribbles</code>; mảng mực đặc đều, không chấm li ti, không loang halo</td>
+</tr>
+<tr>
+  <td>Câu mới <code>NET_NGUOI</code></td>
+  <td>—</td>
+  <td>Ép giải phẫu rõ: một viền mặt, mắt-mũi-miệng nét liền, nếp áo thành mảng lớn mượt.
+      Gắn tự động cho 70 prompt có người</td>
+</tr>
+<tr>
+  <td>5 prompt cảnh</td>
+  <td><code>suggested loosely by a few ink strokes</code></td>
+  <td><code>each drawn with clean continuous outlines and a readable silhouette</code></td>
+</tr>
+<tr>
+  <td>Ảnh giao diện</td>
+  <td><code>ink splashes, wobbly edges, blotchy</code></td>
+  <td>Bỏ hết, viền thẳng đều</td>
+</tr>
+</table>
+
+<p>Khối mới trông như sau (chèn vào <b>cả ba</b> khối <code>STYLE</code>, <code>STYLE_MAU</code>,
+<code>STYLE_CHU</code>, nên 77/77 prompt đều nhận):</p>
+
+<div class="moi">
+  Draw every outline as one continuous unbroken brush stroke with a smooth steady curve: no jagged
+  zigzag edges, no sketchy broken lines, no short choppy overlapping strokes, no abstract or
+  scribbled shapes. Contours of faces, hands and clothing folds must be crisp, clean and clearly
+  readable, with solid filled shapes rather than scattered fragments of ink. Flat, even ink coverage
+  inside each shape, with no speckle, no splatter and no bleeding halo.
+</div>
+
+<h2>4. Ảnh cận mặt — anh xem chỗ em đo</h2>
+<p>Đây là ảnh <b>hiện tại</b> (bản cũ, chưa vẽ lại). Em phóng 3 lần để anh thấy rõ nét gãy. So với
+mức &lt;1.3 thì đây là chỗ cần vẽ lại.</p>
+
+<figure>
+  <img src="net-ve/nv_han_lap_can-mat.jpg" alt="Cận mặt Hàn Lập">
+  <figcaption><b>Hàn Lập</b> — nét viền mặt và tóc gãy khúc, mảng mực chỗ đậm chỗ nhạt.</figcaption>
+</figure>
+
+<figure>
+  <img src="net-ve/nv_tuyet_co_can-mat.jpg" alt="Cận mặt Tuyết Cơ">
+  <figcaption><b>Tuyết Cơ</b> — viền mặt và tóc cùng kiểu.</figcaption>
+</figure>
+
+<figure>
+  <img src="net-ve/bc_san_tap_ngay_can-mat.jpg" alt="Sân tập, quần áo đệ tử">
+  <figcaption><b>Sân tập</b> — đúng chỗ anh kêu: quần áo đệ tử thành vệt rối, không ra nếp vải.</figcaption>
+</figure>
+
+<figure>
+  <img src="net-ve/bc_cong_dong_quyen_can-mat.jpg" alt="Công đường, đám đông">
+  <figcaption><b>Công đường</b> — đám đông bị vẽ thành chấm và vệt, đọc ra như tranh trừu tượng.</figcaption>
+</figure>
+
+<h2>5. Ảnh nào gãy nặng nhất</h2>
+<table>
+<tr><th>Ảnh</th><th>Độ gãy</th></tr>
+<tr><td><code>vt_kiem_hap</code></td><td class="x">6.01</td></tr>
+<tr><td><code>bc_hoa_truong_cuu</code></td><td class="x">5.65</td></tr>
+<tr><td><code>bc_duong_mon_nui</code></td><td class="x">5.25</td></tr>
+<tr><td><code>bc_cong_dong_giau</code></td><td class="x">5.14</td></tr>
+<tr><td><code>bc_san_sau_anh_sang</code></td><td class="x">5.10</td></tr>
+<tr><td colspan="2" style="color:#5b6b7c;font-size:13.5px">Toàn bộ 69 ảnh đo được: trung bình 3.97 · 64 ảnh gãy nặng</td></tr>
+</table>
+
+<h2>6. Em đã canh để không tái phạm</h2>
+<ul>
+  <li><b>4 phép kiểm mới</b> trong <code>game/_test_api.py</code>: không prompt nào chứa từ gây
+      loang; mọi prompt đều đòi nét liền; prompt có người đều đòi rõ giải phẫu; ảnh giao diện
+      không bị gắn nhầm.</li>
+  <li>Em đã <b>thử cố tình chèn lại</b> <code>wet ink bleeding</code> → phép kiểm bắt đúng, báo
+      8 ảnh vi phạm. Rồi em gỡ ra.</li>
+  <li><code>tools/kiem_prompt_anh.py</code> — soát nhanh, in <code>SACH</code>.</li>
+  <li><code>tools/do_net_anh.py</code> — đo lại độ gãy sau khi vẽ lại, để biết đã sạch chưa.</li>
+</ul>
+
+<p>Kết quả test: <span class="ok">167 đạt, 0 hỏng</span> (trước là 163, thêm 4 phép kiểm mới).</p>
+
+<h2>7. Anh cần làm gì</h2>
+<div class="hop warn">
+  <b>Vẽ lại ảnh</b>
+  Mở <a href="../xuong/">Xưởng ảnh</a>, copy prompt mới và vẽ lại. Ưu tiên 5 ảnh gãy nặng nhất
+  ở mục 5, rồi tới các ảnh <code>nv_</code> (mặt nhân vật).
+  <br><br>
+  Vẽ xong, em chạy <code>tools/do_net_anh.py</code> để xác nhận đã xuống dưới 1.3.
+</div>
+
+<div class="hop">
+  <b>Vì sao phải vẽ lại chứ không sửa ảnh cũ</b>
+  Nét gãy nằm trong dữ liệu ảnh, không phải lớp phủ. Làm mượt bằng phần mềm sẽ xoá luôn chi tiết
+  mặt và nếp áo — hỏng hơn. Cách đúng là vẽ lại từ prompt sạch.
+</div>
+</html>

@@ -575,6 +575,26 @@ else:
 
 _restore(_snap)
 
+print("\n=== Prompt ảnh: nét liền mạch, không loang ===")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import tools_server as _TS
+_LOANG = ("wet ink bleeding", "bleeding edges", "dry brush", "dry-brush", "paper fibre",
+          "paper fiber", "suggested loosely", "loosely by", "ink splash", "blotchy",
+          "wobbly edges", "rough handmade", "abstract scribble")
+_xau = {a["key"]: [c for c in _LOANG if c in a["prompt"].lower()] for a in _TS.ASSETS}
+check("không prompt ảnh nào chứa từ gây loang", {k: v for k, v in _xau.items() if v}, {})
+check("mọi prompt ảnh đều đòi nét liền mạch",
+      all("continuous unbroken brush stroke" in a["prompt"] for a in _TS.ASSETS), True)
+_nv = [a for a in _TS.ASSETS if a["key"].startswith(("nv_", "bc_", "vt_"))
+       and ("Portrait" in a["prompt"] or "figure" in a["prompt"].lower()
+            or "Character reference" in a["prompt"])]
+check("prompt có người đều đòi rõ giải phẫu",
+      all("clear, correct human anatomy" in a["prompt"] for a in _nv), True)
+check("ảnh giao diện không bị gắn nhầm ràng buộc giải phẫu",
+      [a["key"] for a in _TS.ASSETS
+       if not a["key"].startswith(("nv_", "bc_", "vt_"))
+       and "clear, correct human anatomy" in a["prompt"]], [])
+
 print("\n=== Prompt tiếng: trần 450 ký tự ===")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import prompt_am as _PA

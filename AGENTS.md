@@ -446,6 +446,64 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 4. Thư viện ảnh/video: mở rộng đủ Chương 1 (~19 ảnh) + video ngắn (chuỗi ảnh + hiệu ứng)
 5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
 
+## NÉT VẼ: phải liền mạch, không loang (bắt buộc)
+
+Người dùng phản ánh ảnh ra "nét như răng cưa, quần áo và mặt như tranh trừu tượng".
+Đo được: cả **77/77** prompt đều bị, vì khối style chung cũ chứa `wet ink bleeding edges,
+dry brush strokes, visible paper fibre texture, rough handmade`. Bốn cụm đó dạy AI vẽ
+nét đứt quãng và loang — đúng thứ gây lỗi.
+
+Đã sửa gốc trong `tools_server.py`:
+
+- `STYLE_GOC` / `MAU_GOC`: bỏ hết cụm gây loang, đổi `rough handmade` → `smooth handmade`,
+  thêm `clean controlled brushwork` + `crisp, well-defined edges`.
+- `NET_LIEN` (mới): chèn vào **cả 3** khối `STYLE`, `STYLE_MAU`, `STYLE_CHU`. Nội dung:
+  mỗi đường viền là **một nét bút liền**, cấm `jagged zigzag edges`, `sketchy broken lines`,
+  `short choppy overlapping strokes`, `abstract scribbled shapes`; mảng mực phải đặc đều,
+  không chấm li ti, không loang halo.
+- `NET_NGUOI` (mới): chèn tự động cho prompt có người (mã `nv_`/`bc_`/`vt_` + có chữ
+  Portrait / Character reference / figure). Ép giải phẫu rõ, mắt-mũi-miệng nét liền, nếp áo
+  thành mảng lớn mượt. Ảnh giao diện **không** nhận câu này.
+- Bỏ 5 chỗ `suggested loosely by a few ink strokes, faces not detailed` — chính nó dạy
+  AI vẽ trừu tượng. Thay bằng "each drawn with clean continuous outlines and a readable
+  silhouette".
+- Ảnh giao diện: bỏ `ink splashes`, `wobbly edges`, `dry-brush ends`, `blotchy`.
+
+**Cách kiểm nhanh** — dùng script `tools/kiem_prompt_anh.py`, phải in `SACH`:
+
+```bash
+python3 tools/kiem_prompt_anh.py
+```
+
+`game/_test_api.py` có 4 phép kiểm canh việc này (đã thử chèn từ xấu → test bắt đúng).
+Sửa prompt xong **phải dựng lại trang**: `python3 tools/build_xuong.py` và
+`python3 tools/build_xuong_video.py`, không thì trang vẫn là bản cũ.
+
+**Bẫy `__pycache__` và server cũ**: `tools/build_xuong.py` import `tools_server`, nên nếu
+`__pycache__/tools_server.cpython-*.pyc` còn bản cũ thì trang sinh ra vẫn là prompt cũ
+dù file `.py` đã sửa. Tệ hơn, `game_server.py` đang chạy giữ prompt cũ **trong bộ nhớ**;
+mỗi lần API được gọi (kể cả lúc chạy test) nó dựng lại `docs/xuong/index.html` bằng prompt
+cũ và **ghi đè bản mới**. Sửa prompt xong phải làm cả ba việc:
+
+```bash
+ps aux | grep game_server            # tìm PID cũ
+kill <PID>                           # tắt server giữ code cũ
+rm -rf __pycache__ tools/__pycache__
+python3 game_server.py >/tmp/gs.log 2>&1 &
+python3 tools/build_xuong.py && python3 tools/build_xuong_video.py
+```
+
+Dựng xong phải kiểm lại chính file HTML, không tin mỗi dòng "Đã dựng":
+
+```bash
+grep -c "continuous unbroken brush stroke" docs/xuong/index.html   # phải > 0
+grep -c "suggested loosely\|wet ink bleeding" docs/xuong/index.html # phải = 0
+```
+
+Ảnh **tạo trước khi sửa thì vẫn bị lỗi** — sửa prompt không chữa được ảnh cũ, phải tạo lại.
+Đo độ gãy nét bằng `python3 tools/do_net_anh.py` (tỉ lệ chu vi thô / chu vi đã làm trơn;
+dưới 1.3 là nét liền, bộ ảnh hiện tại trung bình 3.97).
+
 ## Xưởng ảnh tự động (GitHub)
 
 Xưởng ảnh giờ chạy **trên GitHub**, không cần agent:

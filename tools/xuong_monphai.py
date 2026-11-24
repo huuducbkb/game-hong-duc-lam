@@ -22,13 +22,13 @@ SCENES = [
         "key": "bc_san_tap_ngay",
         "name": "Sân tập — giữa ngày",
         "use": "Sân tập rộng, hàng trăm đệ tử luyện võ (p02).",
-        "body": "A wide earthen training ground of an ancient Chinese martial sect at midday, seen at eye level. Flat packed earth, blue sect banners on poles at both sides, rows of disciples practising staff and fist forms suggested loosely by ink strokes, faces not detailed, dust and heat haze in the air. In one corner a thin plain-robed youth practises alone, small in the frame. Composition keeps the upper third calm for game text. Hot, crowded, disciplined.",
+        "body": "A wide earthen training ground of an ancient Chinese martial sect at midday, seen at eye level. Flat packed earth, blue sect banners on poles at both sides, rows of disciples practising staff and fist forms, each drawn with clean continuous outlines and a readable silhouette, simple readable faces, dust and heat haze in the air. In one corner a thin plain-robed youth practises alone, small in the frame. Composition keeps the upper third calm for game text. Hot, crowded, disciplined.",
     },
     {
         "key": "bc_san_tap_chen_ep",
         "name": "Sân tập — bị chèn ép",
         "use": "Tân đệ tử bị gã to con chèn ép trước đám đông (p03).",
-        "body": "The same earthen training ground, close view: a thin young disciple in coarse patched robes has stumbled and fallen back onto the ground, a wooden staff thrown aside, while a burly sneering senior disciple stands over him and jeers, a few other disciples laughing behind. Faces suggested, not detailed. Harsh midday light, dust kicked up. Composition keeps one side calm for game text. Humiliating, tense.",
+        "body": "The same earthen training ground, close view: a thin young disciple in coarse patched robes has stumbled and fallen back onto the ground, a wooden staff thrown aside, while a burly sneering senior disciple stands over him and jeers, a few other disciples laughing behind. Faces drawn with clean continuous outlines and clear simple features. Harsh midday light, dust kicked up. Composition keeps one side calm for game text. Humiliating, tense.",
     },
     {
         "key": "bc_san_sau_luyen_dem",
