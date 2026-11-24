@@ -1210,3 +1210,39 @@ md5sum docs/assets/am/<ma>.mp3                                       # 4. local
 curl -s <live>/assets/am/<ma>.mp3 | md5sum                           # 5. live khop?
 curl -s <live>/assets/am/danh-sach.json | grep <ma>                  # 6. v khop?
 ```
+
+## Cảnh dùng lại ảnh nền sẽ phát nhầm tiếng
+
+`doiCanhTieng()` trong `docs/game/play.html` suy mã tiếng từ **tên file ảnh**
+(`maCanhTuAnh`). Hai cảnh khác nhau dùng chung một ảnh nền thì chúng dùng chung
+một mã tiếng: cảnh sau nghe lại đúng đoạn tiếng của cảnh trước, và mục tiếng
+riêng của cảnh sau không bao giờ được phát dù file đã có.
+
+Vì vậy **mỗi cảnh cần một ảnh nền riêng** nếu muốn có tiếng riêng. Khi thêm
+cảnh mới:
+
+1. Thêm mục vào `ASSETS` (`tools_server.py`) với `key` = tên file không đuôi.
+2. Thêm key đó vào một nhóm trong `NHOM_CANH` — ảnh không thuộc nhóm nào thì
+   **không hiện** trên trang Xưởng.
+3. Thêm dòng trong `DOAN_CUA_ANH` để biết ảnh thuộc đoạn nào.
+4. Thêm mục trong `game/du_lieu_am.py` (mã tiếng = key bỏ tiền tố `bc_`).
+5. Thêm prompt trong `game/prompt_am.py` — **đúng số câu thoại** trong cảnh và
+   **đúng tuổi + giới** theo `game/GIONG_NPC.md`.
+6. `python3 tools/build_xuong.py` rồi `python3 game/ghi_danh_sach_am.py`.
+
+Kiểm nhanh lỗi lệch thoại (số câu tiếng phải bằng số câu thoại trong cảnh):
+
+```bash
+python3 -c "
+import json,io,re,sys; sys.path.insert(0,'game')
+import prompt_am as PA
+d=json.load(io.open('game/chapters/chuong1.json',encoding='utf-8'))
+D={x['id']:x for x in d['doan']}
+for sid,key in (('c1_p16b','tan_xa_nghi_dem'),('c1_d14b','mieu_hoang_nghi_dem')):
+    th=re.findall(r'“([^”]+)”',D[sid]['ke']); cn=re.findall(r'「([^」]+)」',PA.PROMPT[key])
+    print(sid,len(th),len(cn),'KHOP' if len(th)==len(cn) else 'LECH')
+"
+```
+
+Khoá rẽ nhánh trong `chuong1.json` là **`den`**, không phải `toi`.
+`__ket_thuc__` là mốc kết thúc hợp lệ, không phải đích hỏng.
