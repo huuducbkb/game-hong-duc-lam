@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giọng nhân vật — tra nhanh</title>
+<style>
+ :root{--n:#17202b;--m:#5c6b7a;--v:#e6ecf3;--x:#0f6b3f;--nen:#fbfcfe}
+ *{box-sizing:border-box}
+ body{margin:0 auto;padding:16px 14px 60px;max-width:720px;font:16.5px/1.62
+   -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--n);background:var(--nen)}
+ h1{font-size:22px;line-height:1.3;margin:4px 0 6px}
+ .dan{color:var(--m);font-size:14.5px;margin:0 0 18px}
+ .so{display:flex;gap:8px;margin:0 0 20px}
+ .so div{flex:1;background:#fff;border:1px solid var(--v);border-radius:9px;padding:9px 4px;text-align:center}
+ .so b{display:block;font-size:21px;line-height:1.2}
+ .so span{font-size:11.5px;color:var(--m);line-height:1.25;display:block}
+ .ml{background:#fff;border:1px solid var(--v);border-radius:11px;padding:6px;margin:0 0 22px}
+ .ml a{display:flex;justify-content:space-between;align-items:center;padding:9px 10px;
+   border-radius:7px;color:var(--n);text-decoration:none;font-size:15px}
+ .ml a:active{background:#eef3f8}
+ .ml .n2{color:var(--m);font-size:13px;background:#eef2f7;border-radius:20px;
+   padding:1px 8px;min-width:26px;text-align:center}
+ .nv{background:#fff;border:1px solid var(--v);border-radius:13px;padding:14px 15px 16px;
+   margin:0 0 14px;scroll-margin-top:12px}
+ .nv h2{font-size:18.5px;margin:0 0 6px;display:flex;justify-content:space-between;
+   align-items:baseline;gap:10px;line-height:1.3}
+ .dem{font-size:12px;color:var(--m);font-weight:500;white-space:nowrap}
+ .tt{margin:0 0 2px;font-size:14.5px;color:#33414f}
+ .mt{margin:0 0 12px;font-size:14px;color:var(--m)}
+ .mt.trong{margin:6px 0 0;font-style:italic}
+ .nhan{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+   color:var(--m);margin:12px 0 5px}
+ .cau{margin:0;background:#0f1a24;color:#e8f0f7;padding:10px 12px;border-radius:8px;
+   font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-x:auto;
+   white-space:pre-wrap;word-break:break-word}
+ ul.bt{list-style:none;margin:0;padding:0;font-size:14px}
+ ul.bt li{background:#f4f7fa;border-radius:7px;padding:7px 10px;margin:0 0 5px;line-height:1.45}
+ ul.bt b{color:#33414f;font-size:13px}
+ .ds{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+ .ma{font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:#eef2f7;
+   color:#26333f;padding:2px 7px;border-radius:5px}
+ .cuoi{margin:26px 0 0;padding-top:16px;border-top:1px solid var(--v);color:var(--m);font-size:13.5px}
+ code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:13.5px}
+</style>
+
+<h1>Giọng nhân vật — tra nhanh</h1>
+<p class="dan">Bảng này đọc thẳng từ prompt thật, nên không bao giờ lệch. Muốn biết
+một NPC giọng thế nào thì tìm tên ở đây.</p>
+
+<div class="so">
+ <div><b>15</b><span>nhân vật</span></div>
+ <div><b>64</b><span>cảnh</span></div>
+ <div><b>55</b><span>cảnh có thoại</span></div>
+</div>
+
+<nav class="ml"><a href="#tuyet_co">Tuyết Cơ<span class="n2">21</span></a><a href="#kiem_linh">Kiếm Linh (Hồng Trần)<span class="n2">14</span></a><a href="#han_lap">Hàn Lập<span class="n2">7</span></a><a href="#mac_dai_phu">Mạc Đại Phu<span class="n2">4</span></a><a href="#su_huynh_to">Sư huynh to con<span class="n2">3</span></a><a href="#do_tam">Đỗ Tam<span class="n2">2</span></a><a href="#su_huynh_thi_thao">Sư huynh (chứng kiến)<span class="n2">1</span></a><a href="#phu_khuan_vac">Phu khuân vác<span class="n2">1</span></a><a href="#nvc">Nhân vật chính (người chơi)<span class="n2">1</span></a><a href="#hung_ba">Hùng Bá<span class="n2">1</span></a><a href="#he_thong">Hệ thống<span class="n2">1</span></a><a href="#hai_de_tu">Hai đệ tử luyện võ<span class="n2">1</span></a><a href="#ga_rau">Gã râu quai nón<span class="n2">1</span></a><a href="#de_tu_nho">Đệ tử nhỏ<span class="n2">1</span></a><a href="#an_may_que">Lão ăn mày què<span class="n2">1</span></a></nav>
+
+<section class="nv" id="tuyet_co">
+<h2>Tuyết Cơ<span class="dem">21 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> 18 · <span class="nhan">Giới</span> nữ</p>
+<p class="mt">Người quan trọng nhất chương một, xuất hiện nhiều nhất</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A girl&#x27;s voice, eighteen, sweet and sultry, breathy, teasing</p>
+<p class="nhan">Đổi đuôi theo tình huống</p>
+<ul class="bt">
+<li><b>trêu đùa, bình thường</b><br>sweet and sultry, breathy, teasing, a little flirtatious</li>
+<li><b>khen ngợi</b><br>sweet and sultry, pleased, teasing</li>
+<li><b>nghiêm túc, cảnh báo</b><br>sweet but cool and displeased, the teasing gone</li>
+<li><b>sốt ruột</b><br>sweet but urgent, then fading</li>
+<li><b>mừng, ngạc nhiên</b><br>sweet and delighted, teasing</li>
+<li><b>yếu, vừa tỉnh</b><br>sweet and lazy, almost fond</li>
+<li><b>song tu</b><br>sweet and breathy, trembling, teasing</li>
+</ul>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">binh_minh_ngoc_cot</span>
+<span class="ma">cong_dong_doi_mat</span>
+<span class="ma">cong_dong_giau</span>
+<span class="ma">cong_dong_hung_ba</span>
+<span class="ma">cong_dong_quyen</span>
+<span class="ma">cong_dong_toan_luc</span>
+<span class="ma">dem_tap_kich</span>
+<span class="ma">hoa_truong_cuu</span>
+<span class="ma">ngoc_cot</span>
+<span class="ma">san_sau_chon_lai</span>
+<span class="ma">tan_xa_dem</span>
+<span class="ma">tan_xa_dot_pha</span>
+<span class="ma">tan_xa_kho_tu</span>
+<span class="ma">tan_xa_song_tu</span>
+<span class="ma">tan_xa_suyt_lo</span>
+<span class="ma">tuyet_co</span>
+<span class="ma">tuyet_co_canh_giac</span>
+<span class="ma">tuyet_co_dieu_kien</span>
+<span class="ma">tuyet_co_do_du</span>
+<span class="ma">tuyet_co_khe_uoc</span>
+<span class="ma">tuyet_co_than_phan</span>
+</div>
+</section>
+<section class="nv" id="kiem_linh">
+<h2>Kiếm Linh (Hồng Trần)<span class="dem">14 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> 30 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Thanh kiếm nói trong đầu, giọng ma quái</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A man&#x27;s voice, thirty, deep and grave, flat and icy</p>
+<p class="nhan">Đổi đuôi theo tình huống</p>
+<ul class="bt">
+<li><b>lạnh, dứt khoát</b><br>deep and clipped, cold</li>
+<li><b>đều, vô cảm</b><br>deep and grave, even and emotionless</li>
+<li><b>dịu (hiếm khi)</b><br>deep and grave, quiet and unusually gentle</li>
+</ul>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">binh_minh</span>
+<span class="ma">doat_hop</span>
+<span class="ma">dot_pha</span>
+<span class="ma">kiem_hap</span>
+<span class="ma">kiem_hap_nhan</span>
+<span class="ma">kiem_linh</span>
+<span class="ma">kiem_linh_dieu</span>
+<span class="ma">kiem_linh_than</span>
+<span class="ma">kiem_linh_thu</span>
+<span class="ma">tan_hoang</span>
+<span class="ma">tran_lua</span>
+<span class="ma">tran_lua_2</span>
+<span class="ma">tran_lua_3</span>
+<span class="ma">tu_khiem</span>
+</div>
+</section>
+<section class="nv" id="han_lap">
+<h2>Hàn Lập<span class="dem">7 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> 18 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Đồng môn, lạnh lùng, nói ít</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A young man&#x27;s voice, eighteen, low and cold</p>
+<p class="nhan">Đổi đuôi theo tình huống</p>
+<ul class="bt">
+<li><b>gần ấm</b><br>low and cool, almost warm</li>
+<li><b>có ẩn ý</b><br>low and cold, an edge under it</li>
+</ul>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">han_lap</span>
+<span class="ma">han_lap_2</span>
+<span class="ma">han_lap_bau_nuoc</span>
+<span class="ma">han_lap_cuoi_tru</span>
+<span class="ma">han_lap_gap</span>
+<span class="ma">han_lap_hoi_nguoc</span>
+<span class="ma">han_lap_that</span>
+</div>
+</section>
+<section class="nv" id="mac_dai_phu">
+<h2>Mạc Đại Phu<span class="dem">4 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~60 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Thầy thuốc ở vườn thuốc</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">An old man&#x27;s voice, quiet and steady</p>
+<p class="nhan">Đổi đuôi theo tình huống</p>
+<ul class="bt">
+<li><b>khô, chậm</b><br>dry and unhurried</li>
+<li><b>dò hỏi</b><br>casual but probing</li>
+</ul>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">mon_phai_tan_hoang</span>
+<span class="ma">vuon_thuoc_gap</span>
+<span class="ma">vuon_thuoc_hoi</span>
+<span class="ma">vuon_thuoc_ngoc</span>
+</div>
+</section>
+<section class="nv" id="su_huynh_to">
+<h2>Sư huynh to con<span class="dem">3 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~30 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Kẻ bắt nạt ở sân tập</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A big young man&#x27;s voice, loud and sneering</p>
+<p class="nhan">Đổi đuôi theo tình huống</p>
+<ul class="bt">
+<li><b>giận</b><br>big young man&#x27;s voice, furious</li>
+<li><b>huyênh hoang</b><br>big man&#x27;s voice, around thirty, loud and blustering</li>
+</ul>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">san_tap_cai_lai</span>
+<span class="ma">san_tap_chen_ep</span>
+<span class="ma">tan_xa_sang</span>
+</div>
+</section>
+<section class="nv" id="do_tam">
+<h2>Đỗ Tam<span class="dem">2 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~40 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Kẻ bắt nạt ở tân xá</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A heavy man&#x27;s voice, around forty, hoarse and gloating</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">do_tam_mieu</span>
+<span class="ma">doat_hop</span>
+</div>
+</section>
+<section class="nv" id="su_huynh_thi_thao">
+<h2>Sư huynh (chứng kiến)<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~25 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Người đứng xem, sửng sốt</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A young man&#x27;s hushed voice, around twenty-five, startled</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">cong_dong_toan_luc</span>
+</div>
+</section>
+<section class="nv" id="phu_khuan_vac">
+<h2>Phu khuân vác<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~35 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Người gánh hàng ở chợ</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A rough male porter&#x27;s voice, around thirty-five, hoarse and impatient</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">cho_01</span>
+</div>
+</section>
+<section class="nv" id="nvc">
+<h2>Nhân vật chính (người chơi)<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> 16 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Người chơi — phải cùng một giọng ở mọi cảnh</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A boy&#x27;s voice, sixteen, low and warm, pleasant</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">vuon_thuoc_im</span>
+</div>
+</section>
+<section class="nv" id="hung_ba">
+<h2>Hùng Bá<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~45 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Bang chủ Dã Lang Bang, nói từ xa</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A hoarse heavy male voice, a man around forty-five</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">cong_dong_hung_ba</span>
+</div>
+</section>
+<section class="nv" id="he_thong">
+<h2>Hệ thống<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> — · <span class="nhan">Giới</span> máy</p>
+<p class="mt">Giọng máy trong đầu, không ngữ điệu</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A flat machine-even voice inside the head</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">cho_01</span>
+</div>
+</section>
+<section class="nv" id="hai_de_tu">
+<h2>Hai đệ tử luyện võ<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~20 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Hai người nói chuyện ở sân tập</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">Two young male disciples, both around twenty</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">san_tap_ngay</span>
+</div>
+</section>
+<section class="nv" id="ga_rau">
+<h2>Gã râu quai nón<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~40 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Dân trong thị trấn</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A bearded man&#x27;s voice, around forty, dropped low and secretive</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">quan_nuoc</span>
+</div>
+</section>
+<section class="nv" id="de_tu_nho">
+<h2>Đệ tử nhỏ<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~14 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Đứa trẻ được cứu trong trận</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A boy&#x27;s voice, around fourteen, thin and broken</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">hoa_truong_cuu</span>
+</div>
+</section>
+<section class="nv" id="an_may_que">
+<h2>Lão ăn mày què<span class="dem">1 cảnh</span></h2>
+<p class="tt"><span class="nhan">Tuổi</span> ~60 · <span class="nhan">Giới</span> nam</p>
+<p class="mt">Người báo tin ở chợ đêm</p>
+<p class="nhan">Câu dùng trong prompt</p>
+<p class="cau">A lame old beggar, a man around sixty, mutters low and hoarse</p>
+<p class="nhan">Cảnh có lời người này</p>
+<div class="ds">
+<span class="ma">cho_02</span>
+</div>
+</section>
+
+<p class="cuoi">Tệp gốc: <code>game/GIONG_NPC.md</code>. Sinh lại trang bằng
+<code>python3 game/tao_trang_giong.py</code> sau khi sửa prompt.</p>
+</html>

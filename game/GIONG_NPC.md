@@ -17,13 +17,14 @@ Bảng này gồm hai loại: NPC và nhân vật chính (`nvc`). Cả hai đề
 | `mac_dai_phu` | Mạc Đại Phu | ~60 | nam | già, khàn nhẹ, chậm rãi, điềm tĩnh | 你…和他们不一样。 |
 | `he_thong` | Hệ thống | — | máy | vô cảm, đều như máy, không ngữ điệu | — |
 | `an_may_que` | Lão ăn mày què | ~60 | nam | lẩm bẩm, khàn, thì thào | — |
-| `an_may_khac` | Gã ăn mày khác | ~35 | nam | cười gằn, chua chát | — |
+| `an_may_khac` | Gã ăn mày khác | ~35 | nam | cười gằn, chua chát | （chưa lên tiếng — cảnh `cho_02` chỉ lấy lời lão què) |
 | `phu_khuan_vac` | Phu khuân vác | ~35 | nam | quát to, gắt, hụt hơi | — |
 | `su_huynh_to` | Sư huynh to con | ~25 | nam | oang oang, khoe khoang, độc địa | — |
 | `hung_ba` | Hùng Bá | ~45 | nam | khàn, từ xa vọng lại, nặng | — |
 | `de_tu_nho` | Đệ tử nhỏ | ~14 | nam | thều thào, yếu, đau | — |
 | `ga_rau` | Gã râu quai nón | ~40 | nam | hạ giọng, bí mật, hào hứng | — |
 | `su_huynh_thi_thao` | Sư huynh (chứng kiến) | ~25 | nam | thì thào, sửng sốt | — |
+| `hai_de_tu` | Hai đệ tử luyện võ | ~20 | nam | hai người nói chuyện, một háo hức một sợ | 嘘！想死啊？ |
 
 ## Quy tắc chọn câu thoại
 
