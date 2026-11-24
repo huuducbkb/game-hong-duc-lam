@@ -575,5 +575,13 @@ else:
 
 _restore(_snap)
 
+print("\n=== Prompt tiếng: trần 450 ký tự ===")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import prompt_am as _PA
+_qua = {k: len(v) for k, v in _PA.PROMPT.items() if len(v) > 450}
+check("không prompt nào vượt 450 ký tự", _qua, {})
+check("prompt cảnh nghỉ đêm đều có câu tiếng Hoa",
+      all("「" in v for k, v in _PA.PROMPT.items() if k.endswith("_nghi_dem")), True)
+
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)

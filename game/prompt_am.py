@@ -380,27 +380,23 @@ PROMPT = {
     ),
 
     "tan_xa_nghi_dem": (
-        "10-second quiet, damaged dormitory at night, just before dawn. Close at "
-        "the ear, a tired body settling onto a wooden step, a long sigh, cloth "
-        "shifting. Further out, wind through a broken roof, ash drifting on the "
-        "floor, faint pained breathing from the wounded somewhere down the room. "
-        "A girl's voice, eighteen, sweet and sultry, breathy, teasing, a little "
-        "flirtatious, speaks low in the head in Mandarin: 「坐那干什么？」 then "
-        "「刚才那个瘦子往后山去了。他看过你。」 A boy's voice, sixteen, low and "
-        "warm, pleasant, quiet in Mandarin: 「我知道了。」 Then silence returns. "
-        "Cold, cramped, exhausted room field recording."
+        "10-second quiet damaged dormitory before dawn. Close at the ear, a "
+        "tired body settling onto a wooden step, a long sigh, cloth shifting. A "
+        "few paces off, wind through a broken roof, faint murmurs down the room. "
+        "A girl's voice, eighteen, sweet and sultry, breathy, teasing, speaks "
+        "low in the head in Mandarin: 「坐那干什么？」 then 「刚才那个瘦子往后山去了。"
+        "他看过你。」 A boy's voice, sixteen, low and warm in Mandarin: 「我知道了。」 "
+        "Silence returns. Cold room field recording."
     ),
 
     "mieu_hoang_nghi_dem": (
-        "10-second quiet, abandoned shrine at night, just before dawn. Close at "
-        "the ear, a tired body lowering onto a stone floor, a long sigh, cloth "
-        "shifting against a wooden pillar. Further out, wind through a broken "
-        "roof and a gap in the plank wall, ash drifting on stone. A man's voice, "
-        "thirty, deep and grave, flat and icy, hollow with a faint eerie ring, "
-        "the voice of a sword spirit speaking inside the head, in Mandarin: "
-        "「坐那干什么？」 then 「刚才那个瘦子往后山去了。他看过你。」 A boy's voice, "
-        "sixteen, low and warm, pleasant, quiet in Mandarin: 「我知道了。」 Then "
-        "silence returns. Cold, cramped, exhausted stone room field recording."
+        "10-second quiet abandoned shrine before dawn. Close at the ear, a tired "
+        "body lowering onto stone, a long sigh, cloth against a pillar. A few "
+        "paces off, wind through a broken roof, ash drifting on stone. A man's "
+        "voice, thirty, deep and grave, flat and icy, inside the head in "
+        "Mandarin: 「坐那干什么？」 then 「刚才那个瘦子往后山去了。他看过你。」 A boy's "
+        "voice, sixteen, low and warm in Mandarin: 「我知道了。」 Silence returns. "
+        "Cold stone room field recording."
     ),
 
     "tan_xa_dot_pha": (
