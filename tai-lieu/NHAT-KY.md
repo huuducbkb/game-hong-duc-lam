@@ -10,6 +10,143 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-17 · CHỐT CHƯƠNG 1 — bàn giao sang chương 2
+
+Người dùng: "chương 1 đã xong, ghi nhớ những gì đã làm để sang chương 2." Đây là mục
+bàn giao. Đọc mục này là đủ để bắt đầu chương 2 mà không cần dựng lại từ chat cũ.
+
+### Chương 1 đã có gì (số đo thật, đếm từ file)
+
+| Hạng mục | Số lượng | Ghi chú |
+|---|---|---|
+| File truyện | `game/chapters/chuong1.json` | Chỉ có **1 file chương** trong `game/chapters/` |
+| Tên chương | Đại chiến Dã Lang Bang | |
+| Tổng số đoạn | **66** | Mở 19 · Thân 38 · Kết 9 |
+| Nhánh **tán tu** | **24 đoạn**, `c1_d01` → `c1_d17` | Kết riêng `c1_d17` |
+| Nhánh **môn phái** | **42 đoạn**, `c1_p01` → `c1_p19` | Kết riêng `c1_p19` |
+| Tổng lựa chọn | **95** | Không đoạn nào thiếu lựa chọn (0 đoạn rỗng) |
+| Ảnh minh họa | **66 ảnh, mỗi đoạn một ảnh riêng** | Không ảnh nào dùng lại; **0 ảnh thiếu file** |
+| Prompt tiếng | **66/66** cảnh có | `game/prompt_am.py` |
+| File tiếng thật | **64/66** | Thiếu `kiem_hap_nhan.mp3`, `ngoc_cot.mp3` (2 ảnh vật phẩm) |
+| Đoạn có `video` | **0** | Chương 1 không dùng video nào |
+
+Hai nhánh **không hội tụ**: mỗi nhánh có đoạn kết riêng. Ràng buộc cũ "mọi nhánh về
+`c1_d18`" đã bỏ, `c1_d18` đã xoá. Đừng dựng lại chỗ hội tụ.
+
+### Mẫu dữ liệu một đoạn (chép đúng khuôn này khi viết chương 2)
+
+```json
+{
+  "id": "c1_d01",
+  "hoi": "Mở",                      // Mở | Thân | Kết
+  "boi_canh": "Chợ sớm Thất Huyền trấn",
+  "hinh_anh": {"tags": ["chợ", "ăn mày", "sáng"], "anh": "bc_cho_01.jpg"},
+  "ke": "Ta mở mắt giữa một góc chợ…",
+  "lua_chon": [{"chu": "Lê bước tới ngõ sau chợ", "den": "c1_d02"}]
+}
+```
+
+Trường tuỳ chọn đã dùng thật trong chương 1 — chỉ **2 lựa chọn** có điều kiện:
+
+```json
+{"chu": "Vận Thất Huyền quyền đỡ đòn rồi phản kích", "den": "c1_p14d",
+ "dieu_kien": {"co_su_kien": ["hoc_that_huyen_quyen"]},
+ "ly_do_khoa": "Chưa học Thất Huyền quyền"}
+```
+
+Tức cơ chế điều kiện **có sẵn và đã chạy**, nhưng chương 1 dùng rất tiết kiệm. Chương 2
+có thể dùng nhiều hơn cho nhánh Huyết Sát Thí Luyện (ví dụ bắt buộc đã có ngọc cốt /
+đã học Thất Huyền quyền mới mở lựa chọn sống sót).
+
+### Quy ước ID — chương 2 phải theo
+
+- Chương 1: nhánh tán tu `c1_dNN`, nhánh môn phái `c1_pNN`.
+- Chương 2 đặt **`c2_dNN`** (tán tu) và **`c2_pNN`** (môn phái). Đừng dùng lại tiền tố `c1_`.
+- `id` không được trùng trong cùng file — chương 1 có 66 id, 0 trùng.
+- Đoạn kết đánh dấu `"ket_thuc": true` (chương 1: `c1_d17`, `c1_p19`).
+
+### Cơ chế chuyển chương — CHƯA CÓ, phải làm
+
+Đây là **việc đầu tiên của chương 2**, chưa ai làm:
+
+- `engine.load_chuong(so)` đọc `game/chapters/chuong{so}.json`.
+- `engine._chuyen_doan()`: khi `den` không có trong chương hiện tại → đặt
+  `state["ket_thuc"] = True`. Tức chương 1 kết thúc bằng cách **đi tới một đoạn không
+  tồn tại**, không phải bằng cách tăng số chương.
+- **Không có** hàm nào tăng `state["chuong"]`, không có API "sang chương 2", không có
+  nút trên giao diện. Grep `sang chuong` / `next_chapter` / `tiep_chuong` → 0 kết quả.
+- `_man_ket_chuong()` đang **viết cứng** chữ "Chương 1 — hết" và câu
+  "*Chương sau: Huyết Sát Thí Luyện.*" → khi làm chương 2 phải sửa thành theo
+  `state["chuong"]`, nếu không chương 2 vẫn hiện "Chương 1 — hết".
+- `khởi tạo state` đặt cứng `"chuong": 1`; `doan_dau_cua(nhom)` lấy `doan_dau` từ
+  `game/xuat_than.json` — trường này đang trỏ đoạn `c1_*`, nên chương 2 cần bảng
+  đoạn đầu **riêng theo chương**, đừng sửa đè lên `doan_dau` của chương 1.
+
+### Ràng buộc canon chương 2 — Huyết Sát Thí Luyện
+
+Đã chốt trong `SPEC.md`: chương 2 = **Huyết Sát Thí Luyện**, Hàn Lập ở trong môn phái,
+người chơi chen vào thí luyện tranh cơ duyên.
+
+**Vẫn ở tầng phàm nhân/giang hồ** (SPEC ghi rõ chương 1–3 là tầng giang hồ). Canon bắt buộc:
+
+- Tiền tệ là **bạc/vàng**, **KHÔNG "linh thạch"**.
+- Thất Huyền Môn vẫn là **môn phái võ lâm phàm nhân**, đừng gọi đệ tử là "tu sĩ".
+- Tu luyện vẫn **bí mật**: người chơi giấu ngọc cốt, Hàn Lập giấu Trường Xuân Công.
+- "Xuyên không" **chỉ trong suy nghĩ nội tâm**, không nói ra với người bản địa.
+- Giọng Hệ thống đúng định dạng `👁️‍🗨️ 【Hệ thống】“…”`.
+- Văn phong: tránh từ đời thường ("đồ bỏ" → "phàm vật"); **ngoại lệ nhánh tán tu** giữ
+  giọng dân dã vì thân phận ăn mày là dụng ý.
+
+### Bài học chương 1 phải mang sang (đã trả giá thật)
+
+1. **Ảnh phải vẽ bằng prompt thủy mặc đã sửa** (commit `14a108a`). Prompt cũ có bốn cụm
+   `wet ink bleeding edges` / `dry brush strokes` / `visible paper fiber texture` /
+   `rough handmade` → mực loang lỗ, mặt như tranh trừu tượng.
+
+   **Đã đo lại toàn bộ 66 ảnh chương 1 (2026-11-17, `tools/do_net_anh.py`):**
+
+   | Số đo | Kết quả |
+   |---|---|
+   | Đo được | 66/66 |
+   | Trung vị `LOANG` | **0.279** |
+   | Thấp nhất / cao nhất | 0.087 / **0.477** |
+   | Loang, trên ngưỡng 0.15 | **60 ảnh** |
+   | Đạt (≤ 0.15) | **6 ảnh** |
+
+   Ảnh tệ nhất: `nv_han_lap` 0.477 · `bc_vuon_thuoc_im` 0.430 · `nv_han_lap_cuoi_tru` 0.428.
+   Tốt nhất: `bc_khe_nui_chon` 0.087 · `nv_tuyet_co_dieu_kien` 0.089.
+
+   Tức **gần như cả chương 1 phải vẽ lại** mới sạch. Chương 2 đừng dùng lại ảnh chương 1
+   trừ khi đo từng ảnh và thấy ≤ 0.15.
+2. **Mỗi đoạn một ảnh riêng** là chuẩn chương 1 (66 đoạn / 66 ảnh). Chương 2 nên theo,
+   nhưng **vẽ một ảnh thử rồi đo** trước khi vẽ cả loạt — đừng vẽ 40 ảnh rồi mới phát
+   hiện prompt sai.
+3. **Tiếng theo cảnh** dùng tên file đã bỏ tiền tố: `bc_cho_01.jpg` → `cho_01.mp3`.
+   Quên bỏ tiền tố là cảnh im hoàn toàn (lỗi đã từng xảy ra).
+4. **Trạng thái "đã có tiếng" phải sinh từ dữ liệu**, không viết cứng.
+5. **Sửa mã sinh trang thì sửa ở NGUỒN** (`tools/build_*.py`), rồi sinh lại — đừng sửa
+   thẳng file HTML đã sinh.
+6. **Kiểm hành vi, không chỉ kiểm "có tín hiệu"**: "có tiếng" khác "tiếng đổi đúng";
+   "có ảnh" khác "ảnh đúng cảnh".
+
+### Việc còn nợ của chương 1 (nên trả trước khi làm chương 2)
+
+- [ ] **`AGENTS.md` mục "NÉT VẼ: line-art" đã SAI** — prompt đã về thủy mặc ở commit
+      `14a108a`, nhưng tài liệu vẫn mô tả `NET_LIEN` / `STYLE_UI` / `NET_NGUOI` là bắt
+      buộc. Ba hằng số đó **đã xoá khỏi mã**; ai đọc tài liệu rồi làm theo sẽ tái phạm.
+      Cần viết lại mục này cho khớp thủy mặc.
+- [ ] **66 ảnh chương 1 vẽ bằng prompt cũ** (loang 0.20–0.31) — chưa vẽ lại.
+- [ ] **Thiếu tiếng 2 ảnh**: `vt_kiem_hap_nhan.jpg`, `vt_ngoc_cot.jpg`.
+- [ ] **Chưa có cơ chế chuyển chương 1 → 2** (xem mục trên).
+
+### File đã đụng trong việc này
+
+`tai-lieu/NHAT-KY.md` (mục này), `AGENTS.md` (sửa mục NÉT VẼ). Không đụng mã game,
+không đụng ảnh, không đụng `chuong1.json`.
+
+---
+
+
 ## 2026-11-21 (tiếp) · Hướng 3 — tiếng theo cảnh
 
 Người dùng chọn hướng 3 thay vì nhạc nền. Lý do đúng: nhạc nền vướng **nguồn nhạc** (đang đăng

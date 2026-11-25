@@ -440,45 +440,74 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 
 1. ~~Người dùng duyệt giao diện 1 cột~~ ✅
 1b. ~~Giao diện cơ duyên trong túi (viền nhiều màu + bấm xem thông tin)~~ ✅
-1c. ~~Thư viện ảnh cảnh truyện + giao diện hiển thị theo đoạn (Chương 1, 4 ảnh thử)~~ ✅
-2. Backend game Python + tích hợp LLM (theo cơ chế chương + đoạn)
-3. Nội dung Chương 1 (Dã Lang Bang), Chương 2 (Huyết Sát Thí Luyện), Chương 3
-4. Thư viện ảnh/video: mở rộng đủ Chương 1 (~19 ảnh) + video ngắn (chuỗi ảnh + hiệu ứng)
-5. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
+1c. ~~Thư viện ảnh cảnh truyện + giao diện hiển thị theo đoạn~~ ✅
+2. ~~Backend game Python + tích hợp LLM (theo cơ chế chương + đoạn)~~ ✅
+3. ~~**Chương 1** (Dã Lang Bang)~~ ✅ **XONG 2026-11-17** — 66 đoạn, 2 nhánh
+   (tán tu 24 · môn phái 42), 95 lựa chọn, 66 ảnh riêng, test 166 đạt.
+   Bàn giao chi tiết: `tai-lieu/NHAT-KY.md` mục *"CHỐT CHƯƠNG 1"*.
+4. **Chương 2** (Huyết Sát Thí Luyện) — chưa bắt đầu.
+   **Việc đầu tiên: làm cơ chế chuyển chương** (hiện chưa có; chương 1 kết bằng cách
+   đi tới đoạn không tồn tại). Xem `NHAT-KY.md` mục *"Cơ chế chuyển chương"*.
+5. Chương 3 (đêm đại chiến Hoàng Cung — diệt Hắc Sát Giáo)
+6. **Vẽ lại ảnh chương 1** bằng prompt thủy mặc mới. Đo 2026-11-17: **60/66 ảnh loang**,
+   trung vị 0.279, tệ nhất `nv_han_lap` 0.477; chỉ 6 ảnh đạt (ngưỡng ≤ 0.15)
+7. Video ngắn (chuỗi ảnh + hiệu ứng) — chương 1 hiện **0 đoạn có video**
+8. *(giai đoạn sau)* Nghề phụ + thị trường kinh tế
 
-## NÉT VẼ: line-art nét liền, mực đặc (bắt buộc)
+## NÉT VẼ: thủy mặc, sạch loang và đốm (bắt buộc)
+
+> **Mục này từng SAI.** Suốt một thời gian dài nó đòi "line-art nét liền" với các hằng số
+> `NET_LIEN` / `NET_NGUOI` / `STYLE_UI`. Ba hằng số đó **đã xoá khỏi mã** ở commit `14a108a`.
+> Đọc lại mục này là thấy hướng đúng, đừng dựng lại hướng cũ.
 
 Người dùng phản ánh ảnh ra "nét như răng cưa, quần áo và mặt như tranh trừu tượng".
 
-**Hướng đang dùng: line-art nét liền (baimiao / 白描).** Nét đen sắc, mỗi hình khép kín
-bằng một đường viền liền, tô **một lớp mực đặc**, để nhiều mảng giấy trắng (liubai).
-Đây là hướng người dùng chốt; đừng tự đổi lại.
+**Hướng đang dùng: thủy mặc shui-mo (水墨) / điểm màu cǎi-mò (彩墨).** Không phải line-art,
+không phải hội họa có khối. Đây là bản gốc trước cả hai hướng kia, và là hướng người dùng
+chốt lại (2026-11-17).
 
-Lịch sử hai ngõ cụt, ghi lại để không đi lại:
+**Bốn cụm từ là nguồn gốc của mực loang lỗ và đốm sáng — TUYỆT ĐỐI không dùng lại:**
 
-1. **Đòi viền sắc mà không đòi nét liền** → răng cưa. Trên hình phức tạp, AI không giữ
-   được đường cong trơn nên gãy khúc. Phải nói rõ "one continuous unbroken brush stroke".
-2. **Chuyển sang hội họa có khối** (`soft blended edges`, `volumetric shading`, bỏ viền)
-   → **mực loang lỗ và đốm sáng**, người dùng thấy "mặt như tranh trừu tượng". Nguyên nhân:
-   đòi "layered washes turning gradually" thì AI tô nhiều lớp chồng lên nhau, mảng mực
-   không kín. **Đây mới là bệnh chính, không phải răng cưa.**
+| Cụm cấm | Vì sao |
+|---|---|
+| `wet ink bleeding edges` | đòi mực chảy loang ra mép → mảng mực không kín |
+| `dry brush strokes` | nét khô gãy vụn, vá víu sáng tối |
+| `visible paper fiber texture` | AI vẽ vân giấy thành đốm li ti trong thân mực |
+| `rough handmade` | giấy nhám → nền lốm đốm, đọc như tranh trừu tượng |
 
-Các khối hiện tại:
+Cách thay đúng (đang dùng trong mã):
 
-- `STYLE_GOC` / `MAU_GOC`: `Clean East Asian ink line-art (baimiao)`, `crisp black ink lines`,
-  `every shape closed by a clear continuous outline`, `flat even ink`, `liubai`; cấm
-  `NOT painterly, NOT watercolour wash, NOT folk art, NOT flat cartoon, NOT comic-book linework`.
-- `NET_LIEN`: `one continuous unbroken brush stroke` + `Fill each shape with ONE solid,
-  opaque, evenly toned ink` + `no mottled or patchy texture, no uneven washes, no blotches,
-  no bright pinholes or speckles inside the ink`. Câu chống loang là **bắt buộc**, có test chặn.
-- `NET_NGUOI`: `correct, realistic human anatomy` + `outline the face, the hands and the
-  garments with continuous unbroken lines`. Chèn tự động cho prompt có người (`_NGUOI` khớp cả số nhiều).
-- **`STYLE_UI` + `NET_UI` (ngoại lệ có chủ đích)**: 7 ảnh giao diện (`bg-main`,
-  `panel-character`, `panel-story`, `avatar-ring`, `btn-choice`, `divider-ink`, `seal`) **giữ
-  cạnh sắc, tô phẳng, ruột trống**. Chúng là khung để đặt chữ; viền mềm làm chữ khó đọc.
-- **Không dùng lại các cụm cũ**: `soft blended edges`, `volumetric shading`,
-  `atmospheric depth`, `painterly cinematic`, `melting into the paper`, `no bold black outline`.
-  Test sẽ báo hỏng nếu tái phạm.
+- `rough handmade` → **`smooth handmade`**
+- ba cụm còn lại → bỏ hẳn, thay bằng **`clean controlled brushwork`** và
+  **`solid flat ink`** / `crisp, well-defined edges`.
+
+Ba hướng đã đi và đã bỏ, ghi lại để không đi lại:
+
+1. **Đòi viền sắc mà không đòi nét liền** → răng cưa.
+2. **Hội họa có khối** (`soft blended edges`, `volumetric shading`, bỏ viền) → **loang lỗ
+   nặng nhất**. Đòi "layered washes turning gradually" thì AI tô nhiều lớp chồng nhau.
+3. **Line-art nét liền** (`baimiao`) → chữa được răng cưa nhưng **người dùng không chọn**.
+   Đã gỡ toàn bộ (`NET_LIEN`, `NET_NGUOI`, `NET_UI`, `STYLE_UI`, vòng `UI_KEYS`, regex
+   `_NGUOI` tiêm câu vào prompt).
+
+Các khối hiện tại trong `tools_server.py`:
+
+- `STYLE_GOC` / `MAU_GOC`: thủy mặc trên giấy dó **trơn** (`smooth handmade`), mực đen chủ
+  đạo + vài mảng màu trầm, `clean controlled brushwork`, `liubai`. `MAU_GOC` thêm
+  `Keep the brushwork clean and controlled with crisp, well-defined edges`.
+- `STYLE_CHU` = `STYLE_GOC + NO_TEXT`; `STYLE_MAU` = `MAU_GOC + NO_TEXT`.
+- `khoi_style(p)` trả `"mau" | "goc" | "khac"`. **Không còn nhánh `"ui"`.**
+- Bộ trộn nhiều phong cách dựa trên `a["prompt"].startswith(STYLE_MAU)` — không dùng
+  `STYLE_UI`.
+
+**Chặn tái phạm:** `python3 tools/kiem_prompt_anh.py` phải in `SACH`. Test trong
+`game/_test_api.py` cũng chặn: *"không prompt ảnh nào chứa từ gây loang"* — danh sách
+`_LOANG` gồm cả `wet ink bleeding`, `dry brush`, `paper fiber`, `rough handmade`,
+`suggested loosely`, `ink splash`, `blotchy`, `wobbly edges`.
+
+**Cụm "vẽ rời rạc" cũng gây loang, không chỉ bốn cụm trên.** `suggested loosely by a few
+ink strokes` / `faces not detailed` từng nằm trong 5 cảnh + 2 prompt môn phái; đã đổi thành
+`drawn with solid readable shapes`.
 
 ### Đo chất lượng mực
 
