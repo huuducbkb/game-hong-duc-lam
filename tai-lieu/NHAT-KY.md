@@ -74,6 +74,29 @@ Hiện **chưa có test nào** kiểm `den` có trỏ tới đoạn thật — �
 **Bài học:** báo cáo cho người dùng điện thoại cũng phải đo như giao diện game. Bảng và
 khối mã là hai chỗ tràn ngang dễ nhất, và mắt thường không thấy vì trang vẫn "hiện ra".
 
+### Đính chính sau khi đọc kỹ: màn kết chương 1 là NGÕ CỤT HẲN
+
+Lần đầu em viết "nút bấm đã có". Sai. `_man_ket_chuong()` trả `lua_chon: []` **và**
+`cho_phep_tu_do: false` (`docs/game/engine.js:361-362`, tương ứng `game/engine.py`).
+Nghĩa là màn kết **không có một nút nào**, cũng không gõ tự do được. Người chơi chỉ còn
+tải lại trang, hoặc bấm "Chơi lại" — mà nút đó **xoá sạch tiến trình**.
+
+Nên "thêm cơ chế chuyển chương" thực chất là **hai** việc: (1) thêm nút vào màn kết đang
+rỗng, (2) viết phần đổi `state.chuong`. Đã sửa lại trong trang báo cáo.
+
+### Pages deploy có lần hỏng — kiểm bằng API chứ đừng tin `git push` thành công
+
+Sau khi push `8c16906`, cả trang mới và ảnh đều **404** dù file đã có trên GitHub (kiểm
+qua `contents` API: sha `a55e72a`). Nguyên nhân: workflow "Triển khai GitHub Pages"
+**failure** ở bước `actions/deploy-pages@v4` với lỗi `Deployment failed, try again later.`
+— lỗi tạm thời phía GitHub, **không phải file sai**. Chạy lại (`POST .../runs/{id}/rerun`)
+thì `completed success`, sau đó cả hai URL trả 200.
+
+**Cách kiểm đúng khi push xong mà live vẫn 404:**
+1. `curl` file qua `contents` API — nếu có sha nghĩa là file đã lên, lỗi ở khâu deploy.
+2. `curl "https://api.github.com/repos/.../actions/runs?per_page=3"` xem `conclusion`.
+3. Nếu `failure` → đọc log job, gặp `try again later` thì rerun, đừng sửa file.
+
 ---
 
 

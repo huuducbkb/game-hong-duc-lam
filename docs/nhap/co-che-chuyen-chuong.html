@@ -66,9 +66,16 @@
       <tr><td><code>c1_d17</code></td><td>tán tu</td><td>“Khép lại Chương 1” → <code>__ket_thuc__</code></td></tr>
       <tr><td><code>c1_p19</code></td><td>môn phái</td><td>“Khép lại Chương 1” → <code>__ket_thuc__</code></td></tr>
     </table>
+    <div class="hop">
+      <b>Nhưng màn kết hiện là ngõ cụt hẳn:</b> <code>_man_ket_chuong()</code> trả
+      <code>lua_chon: []</code> và <code>cho_phep_tu_do: false</code> — tức màn kết
+      <b>không có một nút nào</b>, cũng không gõ tự do được. Người chơi chỉ còn cách tải lại trang
+      hoặc bấm "Chơi lại" trong bảng Hệ thống, mà "Chơi lại" thì <b>xoá sạch tiến trình</b>.
+    </div>
     <div class="canh">
-      <b>Tin tốt:</b> nút bấm đã có, chữ đã có, dữ liệu đã có. Không phải thiết kế lại
-      giao diện. Chỉ thiếu phần <b>đổi chương</b> phía sau nút đó.
+      <b>Tin tốt:</b> chỗ cắm đã có — dữ liệu hai đoạn kết đã trỏ <code>__ket_thuc__</code>, và chữ
+      "Khép lại Chương 1" đã viết sẵn. Việc phải làm là <b>thêm nút vào màn kết</b> (đang rỗng) và
+      phần đổi <code>state.chuong</code> phía sau. Không phải thiết kế lại giao diện.
     </div>
 
     <h2>2. Điều kiện tiên quyết — chưa ai nhắc tới</h2>
