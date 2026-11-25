@@ -1,0 +1,1343 @@
+{
+  "chuong": 2,
+  "ten": "Tiểu hội Thái Nam Sơn Cốc",
+  "tom_tat": "Mạc Đại Phu chết sau trận Dã Lang Bang. Hàn Lập mang di vật về Mạc phủ ở Gia Nguyên thành, và từ miệng khách viếng nghe được hai chữ 'Thái Nam'. Người chơi theo hắn tới Tiểu hội Thái Nam Sơn Cốc — nơi lần đầu chạm mặt giới tu tiên: linh thạch, linh căn, tông môn. Kết chương, cả hai qua hội tuyển và bước qua cánh cửa từ phàm nhân sang người tu hành.",
+  "doan_dau_theo_nhom": {
+    "tan_tu": "c2_d01",
+    "mon_phai": "c2_p01"
+  },
+  "doan": [
+    {
+      "id": "c2_d01",
+      "hoi": "Mở",
+      "boi_canh": "Bình minh — Thất Huyền trấn",
+      "hinh_anh": {
+        "tags": [
+          "bình minh",
+          "trấn",
+          "khói"
+        ],
+        "anh": "bc_binh_minh.jpg"
+      },
+      "ke": "Trời sáng hẳn. Khói từ những mái nhà cháy đêm qua vẫn vương thành một dải xám mỏng, treo lơ lửng trên nóc chợ.\n\nTa ngồi trên bậc đá trước cổng trấn, tay ôm cặp kiếm trong vạt áo. Kiếm linh im lặng suốt từ lúc bình minh, đến mức ta phải khẽ gọi hai lần.\n\n“Đừng gọi nữa,” — giọng nó yếu ớt vang lên — “Ta đang nhìn một thứ.”\n\n“Nhìn gì?”\n\n“Gã kia kìa. Hàn Lập.”\n\nTa ngẩng lên. Giữa đám người đang dọn xác và gánh nước, một bóng áo xám gầy gò lặng lẽ bước về phía đông, sau lưng đeo một cái hòm gỗ nhỏ.\n\n“Hắn đi đâu?”\n\n“Về nhà sư phụ hắn,” — kiếm linh nói — “Mạc Đại Phu. Lão già ấy đêm qua trúng một chưởng, không qua khỏi sáng nay. Xác còn chưa lạnh mà hắn đã lên đường rồi.”\n\nTa im. *Mạc Đại Phu.* Ta chưa từng gặp ông lão ấy, vậy mà cái tên ấy làm tim ta nhói lên một cách vô cớ.\n\n“Ngươi muốn ta đi theo hắn.”\n\n“Ta muốn ngươi đi theo hắn,” — kiếm linh đáp, giọng bỗng nghiêm — “Ta đã nói rồi. Hắn sẽ là người quan trọng nhất trong đời ngươi. Và con đường hắn sắp bước vào… không phải con đường võ lâm.”\n\n👁️‍🗨️ 【Hệ thống】“Nhiệm vụ mới: bám theo Hàn Lập. Phần thưởng: chưa rõ.”",
+      "lua_chon": [
+        {
+          "chu": "Đứng dậy, đi theo hắn",
+          "den": "c2_d02"
+        },
+        {
+          "chu": "Ngồi thêm chút nữa, nghĩ đã",
+          "den": "c2_d01b"
+        }
+      ]
+    },
+    {
+      "id": "c2_d01b",
+      "hoi": "Thân",
+      "boi_canh": "Bậc đá trước cổng trấn",
+      "hinh_anh": {
+        "tags": [
+          "bình minh",
+          "suy nghĩ"
+        ],
+        "anh": "bc_binh_minh.jpg"
+      },
+      "ke": "Ta ngồi yên, nhìn dải khói mỏng tan dần trong nắng sớm.\n\n*Đi theo một kẻ ta mới gặp một lần.* Ta nhớ đêm qua — hắn đứng trong góc tối hậu sơn, biết ta bám theo từ đầu mà không hề quay lại. Cái kiểu biết mà không nói ấy không phải kiểu của một tạp dịch bình thường.\n\n“Ngươi do dự,” — kiếm linh nhận xét.\n\n“Ta đang nghĩ.”\n\n“Nghĩ cũng được. Nhưng nghĩ lâu thì người ta đi mất.”\n\nTa bật cười khẽ. Nó nói đúng. Cả đời ta — cả hai đời ta — đã bỏ lỡ bao nhiêu thứ chỉ vì ngồi nghĩ thêm một chút.\n\nTa đứng dậy, phủi đất trên vạt áo rách, và bước về phía đông.",
+      "lua_chon": [
+        {
+          "chu": "Đi theo Hàn Lập",
+          "den": "c2_d02"
+        }
+      ]
+    },
+    {
+      "id": "c2_d02",
+      "hoi": "Thân",
+      "boi_canh": "Đường mòn ra khỏi trấn — sáng",
+      "hinh_anh": {
+        "tags": [
+          "đường mòn",
+          "núi",
+          "sáng"
+        ],
+        "anh": "bc_duong_mon_nui.jpg"
+      },
+      "ke": "Đường ra khỏi trấn men theo chân núi, hai bên là ruộng bậc thang đã bị giày xéo từ đêm qua. Lúa non nằm rạp, lẫn trong bùn là những vệt đen của máu khô.\n\nHàn Lập đi trước ta chừng hai mươi bước, bước chân đều và không ngoái lại. Cái hòm gỗ sau lưng hắn kêu kẽo kẹt theo nhịp.\n\nTa bám theo được một quãng thì hắn rẽ vào một lối nhỏ xuyên qua rừng, khuất sau mấy tảng đá.\n\nTa chạy theo. Nhưng tới khúc quanh thì chỉ còn con đường trống và tiếng gió lay lá.\n\n“Hắn mất dấu rồi,” — kiếm linh nói.\n\n“Ngươi bảo ta bám theo hắn.”\n\n“Ta bảo ngươi đi theo hắn. Không bảo ngươi bám đuôi hắn như kẻ trộm.” — Nó thở dài, một tiếng thở dài của thanh kiếm nghe rất kỳ. — “Thôi. Ta biết hắn đi đâu. Gia Nguyên thành. Đi thẳng về phía đông, tới khi thấy tường đá.”",
+      "lua_chon": [
+        {
+          "chu": "Đi về phía đông",
+          "den": "c2_d03"
+        }
+      ]
+    },
+    {
+      "id": "c2_d03",
+      "hoi": "Thân",
+      "boi_canh": "Quán nước bên đường — chiều",
+      "hinh_anh": {
+        "tags": [
+          "quán nước",
+          "chiều",
+          "lời đồn"
+        ],
+        "anh": "bc_quan_nuoc.jpg"
+      },
+      "ke": "Ta đi bộ suốt một ngày. Đến chiều thì ghé vào một quán nước tranh tre bên đường, chân rã rời, bụng đói.\n\nBà chủ quán nhìn bộ dạng ta rồi múc cho một bát nước vối, không lấy tiền.\n\nBàn bên cạnh có hai gã lái buôn đang nói chuyện. Ta không định nghe, nhưng một cái tên làm tai ta giật lên.\n\n“…tháng này lại có hội ở Thái Nam sơn. Đám buôn chúng bay liệu mà tránh xa.”\n\n“Tránh làm gì? Hội của người tu hành, mình có tới đâu.”\n\n“Nhưng khách của chúng nó thì có. Mấy lão thương nhân trong thành đang gom bạc, đòi mua mấy thứ thuốc lạ. Nghe đâu một viên nhỏ bằng hạt đậu, giá bằng cả cái quán này.”\n\nGã kia cười khẩy. “Thổi phồng. Toàn lũ lang băm.”\n\nTa cúi xuống bát nước, tim đập nhanh. *Thái Nam.* Kiếm linh không nói gì, nhưng ta biết nó cũng đang nghe.",
+      "lua_chon": [
+        {
+          "chu": "Hỏi thăm đường tới Gia Nguyên",
+          "den": "c2_d04"
+        }
+      ]
+    },
+    {
+      "id": "c2_d04",
+      "hoi": "Thân",
+      "boi_canh": "Gia Nguyên thành — cổng tây",
+      "hinh_anh": {
+        "tags": [
+          "thành",
+          "cổng",
+          "đông người"
+        ],
+        "anh": "bc_cho_02.jpg"
+      },
+      "ke": "Hai ngày nữa, Gia Nguyên thành hiện ra sau khúc quanh của con đường.\n\nTa chưa từng thấy một tòa thành lớn đến thế. Tường đá cao đến mức phải ngửa cổ mới nhìn hết, cổng thành đóng đinh sắt, người ra kẻ vào nối nhau thành một dòng không dứt.\n\nLính gác nhìn ta từ đầu đến chân rồi phẩy tay: “Ăn mày thì đi cổng tây.”\n\nTa không cãi. Ta đi vòng theo chân tường đá, tới cổng tây, lách vào thành qua đám đông đang chen nhau vào chợ.\n\nTrong thành, mọi thứ ồn hơn ta tưởng. Tiếng rao, tiếng xe, tiếng trẻ con, tiếng ai đó đang mắng nhau ngoài chợ vải. Ta đứng giữa dòng người, đột nhiên thấy mình nhỏ đến mức nào.\n\n“Giờ sao?” — ta hỏi khẽ.\n\n“Tìm một cái phủ họ Mạc,” — kiếm linh đáp. — “Ở cuối ngõ Thanh Trúc.”",
+      "lua_chon": [
+        {
+          "chu": "Tìm ngõ Thanh Trúc",
+          "den": "c2_d05"
+        }
+      ]
+    },
+    {
+      "id": "c2_d05",
+      "hoi": "Thân",
+      "boi_canh": "Ngõ Thanh Trúc — trước cổng Mạc phủ",
+      "hinh_anh": {
+        "tags": [
+          "Hàn Lập",
+          "cổng",
+          "tang"
+        ],
+        "anh": "nv_han_lap.jpg"
+      },
+      "ke": "Ngõ Thanh Trúc yên tĩnh đến mức ta nghe rõ tiếng chân mình.\n\nCuối ngõ là một cái phủ tường quét vôi trắng, cửa gỗ nâu đã bạc màu. Trước cổng treo hai dải vải trắng — dấu hiệu nhà có tang.\n\nVà đứng trước cổng ấy là Hàn Lập.\n\nHắn quay lưng về phía ta, vai hơi sụp xuống, cái hòm gỗ đặt dưới chân. Hắn không gõ cửa. Cứ đứng đó.\n\nTa đứng lại, cách hắn chừng mười bước, không dám lên tiếng.\n\nRồi hắn nói, không quay đầu: “Ta biết ngươi theo ta từ Thất Huyền trấn.”\n\n“Sao ngươi biết?”\n\n“Vì ngươi đi bộ.” — Hắn quay lại. Đôi mắt ấy vẫn sắc như đêm qua, nhưng quanh mắt có quầng thâm. — “Người đi bộ một mình qua ba ngày đường, tới đây, rồi đứng im trước cổng nhà người khác — không phải kẻ cướp.”\n\nHắn nhìn ta một lúc. “Ngươi muốn gì?”\n\n“Ta không biết,” — ta đáp thật.\n\nHắn im rất lâu. Rồi hắn đẩy cửa. “Vào đi. Đừng nói gì cả.”",
+      "lua_chon": [
+        {
+          "chu": "Theo hắn vào",
+          "den": "c2_d06"
+        }
+      ]
+    },
+    {
+      "id": "c2_d06",
+      "hoi": "Thân",
+      "boi_canh": "Mạc phủ — sân trong",
+      "hinh_anh": {
+        "tags": [
+          "tang lễ",
+          "sân",
+          "trắng"
+        ],
+        "anh": "bc_tan_hoang.jpg"
+      },
+      "ke": "Trong sân, người ta đã dựng một gian lều tang trắng. Khói hương quyện với mùi giấy vàng cháy, mùi ấy bám vào cổ họng ta đến khó thở.\n\nBa người phụ nữ mặc đồ tang ngồi quỳ bên trong. Hai người khóc. Một người thì không.\n\nHàn Lập quỳ xuống, đặt hòm gỗ lên chiếc bàn thấp trước linh vị.\n\n“Đệ tử Hàn Lập,” — hắn nói, giọng khàn — “Mang di vật của sư phụ về.”\n\nNgười phụ nữ không khóc đứng dậy. Bà ta nhìn hắn một lúc lâu, rồi nhìn sang ta — ánh mắt sắc như dao cau.\n\n“Còn ngươi là ai?”\n\n“Bạn của hắn,” — ta đáp.\n\n“Bạn.” — Bà ta nhắc lại, giọng không giấu vẻ khinh. — “Một kẻ ăn mày làm bạn với đệ tử của phụ thân ta. Thời buổi này thật lạ.”\n\nTa cúi đầu, không đáp. Ta đã nghe câu ấy nhiều lần đến mức nó chẳng còn làm ta đau nữa.\n\nNhưng Hàn Lập thì khác. Bàn tay đặt trên đầu gối hắn siết lại, và ta thấy hàm hắn nghiến chặt.\n\n👁️‍🗨️ 【Hệ thống】“Ghi nhận: ngươi đã đứng về phía hắn.”",
+      "lua_chon": [
+        {
+          "chu": "Im lặng chịu đựng",
+          "den": "c2_d07",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 5
+            },
+            "co_su_kien": [
+              "bi_khinh_o_mac_phu"
+            ]
+          }
+        },
+        {
+          "chu": "Nói một câu cho hắn đỡ nhục",
+          "den": "c2_d07",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 8
+            },
+            "co_su_kien": [
+              "benh_han_lap_o_mac_phu"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_d07",
+      "hoi": "Thân",
+      "boi_canh": "Mạc phủ — hiên sau, đêm",
+      "hinh_anh": {
+        "tags": [
+          "linh vị",
+          "di ảnh",
+          "đêm"
+        ],
+        "anh": "nv_mac_dai_phu_mau.jpg"
+      },
+      "ke": "Đêm ấy, khi khách viếng đã về gần hết, ta ngồi ngoài hiên sau và nghe được từng mảnh câu chuyện qua khung cửa hé.\n\nGiọng người phụ nữ ấy, lạnh và đều: “…phụ thân ta giấu cả nhà suốt ba mươi năm. Ta tưởng ông ấy chỉ là một lang y.”\n\nRồi giọng một người đàn ông lạ — khách chưa về, ngồi lại uống trà: “Lão Mạc không phải lang y. Lão là người tu hành, chỉ là sa cơ. Các người ở đây không biết, nhưng ở ngoài kia người ta vẫn nhớ tên lão.”\n\n“Vậy ông ta tới đây làm gì?”\n\n“Trốn.” — Tiếng chén trà đặt xuống bàn. — “Và chết.”\n\nIm lặng một lúc. Rồi người đàn ông ấy nói thêm, giọng nhẹ đi:\n\n“Tháng này ở Thái Nam sơn có tiểu hội. Người tu hành bốn phương tụ về đó. Nếu đứa đệ tử kia thật sự muốn biết sư phụ nó là ai… thì đó là chỗ để hỏi.”\n\nTa ngồi im trong bóng tối, tim đập đến mức nghe rõ trong tai. *Thái Nam sơn. Tiểu hội.*\n\n👁️‍🗨️ 【Hệ thống】“Từ khoá mới: Tiểu hội Thái Nam Sơn Cốc.”",
+      "lua_chon": [
+        {
+          "chu": "Đem chuyện này nói với Hàn Lập",
+          "den": "c2_d08",
+          "hieu_ung": {
+            "co_su_kien": [
+              "biet_tieu_hoi",
+              "ke_cho_han_lap"
+            ]
+          }
+        },
+        {
+          "chu": "Giữ trong lòng, xem hắn có tự biết không",
+          "den": "c2_d08",
+          "hieu_ung": {
+            "co_su_kien": [
+              "biet_tieu_hoi",
+              "giu_kin_chuyen_tieu_hoi"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_d08",
+      "hoi": "Thân",
+      "boi_canh": "Quán nước đầu phố — sáng hôm sau",
+      "hinh_anh": {
+        "tags": [
+          "quán nước",
+          "sáng",
+          "gặp gỡ"
+        ],
+        "anh": "bc_quan_nuoc.jpg"
+      },
+      "ke": "Sáng hôm sau, Hàn Lập rời Mạc phủ với một cái túi vải nhỏ hơn cái hòm gỗ rất nhiều.\n\n“Bà ta đuổi ngươi?”\n\n“Không.” — Hắn lắc đầu. — “Bà ta đưa ta cái này. Nói là di vật của sư phụ, chia cho ta một phần.”\n\nHắn mở túi. Bên trong là mấy nén bạc, một cuốn sách mỏng đã ố, và một mảnh ngọc nhỏ xíu màu trắng đục.\n\n“Thái Nam sơn,” — hắn nói, không nhìn ta — “Ngươi biết đường không?”\n\n“Không.”\n\n“Ta cũng không.” — Hắn cất túi đi. — “Nhưng ta sẽ đi. Canh tư sáng mai.”\n\nTa mở miệng định nói đi cùng. Hắn giơ tay, chặn trước.\n\n“Đừng.” — Hắn nhìn ta. — “Ta cần đi một mình đoạn này. Ta không biết mình sẽ gặp gì ở đó, và ta không muốn kéo ngươi vào chuyện ta chưa hiểu.”\n\nTa im.\n\n“Nhưng ta sẽ đợi ngươi ở đó,” — hắn nói thêm, giọng bớt lạnh. — “Nếu ngươi tới.”\n\nĐúng lúc ấy, một giọng nói chen vào từ bàn bên cạnh.\n\n“Thái Nam à? Vị này cũng đi Thái Nam?”\n\nMột gã thanh niên áo vải xanh ngồi đó từ lúc nào, mặt mũi sáng sủa, cười rất tươi, tay cầm một bát nước đã cạn.\n\n“Ta là Vạn Tiểu Sơn,” — hắn nói, kéo ghế sang — “Và ta biết đường.”",
+      "lua_chon": [
+        {
+          "chu": "Ngồi nghe hắn nói",
+          "den": "c2_d09"
+        },
+        {
+          "chu": "Cảnh giác, không nói gì",
+          "den": "c2_d08b"
+        }
+      ]
+    },
+    {
+      "id": "c2_d08b",
+      "hoi": "Thân",
+      "boi_canh": "Quán nước đầu phố",
+      "hinh_anh": {
+        "tags": [
+          "quán nước",
+          "cảnh giác"
+        ],
+        "anh": "bc_quan_nuoc.jpg"
+      },
+      "ke": "Ta không đáp. Ở chốn này, kẻ tự nhiên thân thiện thường là kẻ có ý đồ.\n\nVạn Tiểu Sơn cũng không vì thế mà bớt vui. Hắn rót thêm nước, tự uống một mình, rồi nói với khoảng không:\n\n“Ngoài kia người ta bảo Thái Nam sơn chỉ là chuyện láo. Rằng chẳng có ai tu hành cả, chỉ có mấy gã lang băm bán thuốc giả.” — Hắn nhún vai. — “Ta thì ta biết đó là thật. Vì ta đã tới đó một lần rồi.”\n\nHàn Lập ngẩng lên. “Thật à?”\n\n“Thật.” — Vạn Tiểu Sơn cười. — “Và lần này ta quay lại, vì lần trước ta không có gì để đổi. Lần này thì khác.”\n\nHắn vỗ vào túi áo, rồi hạ giọng: “Các ngươi có biết linh thạch là gì không?”",
+      "lua_chon": [
+        {
+          "chu": "Lắc đầu, nghe tiếp",
+          "den": "c2_d09"
+        }
+      ]
+    },
+    {
+      "id": "c2_d09",
+      "hoi": "Thân",
+      "boi_canh": "Quán nước đầu phố — Vạn Tiểu Sơn",
+      "hinh_anh": {
+        "tags": [
+          "chợ",
+          "nói chuyện",
+          "linh thạch"
+        ],
+        "anh": "bc_cho_03.jpg"
+      },
+      "ke": "“Linh thạch,” — Vạn Tiểu Sơn nói, giọng như đang kể chuyện cổ tích — “là thứ tiền của người tu hành. Không phải bạc, không phải vàng. Một viên linh thạch hạ phẩm bằng cả một căn nhà ở Gia Nguyên này.”\n\nTa bật cười. “Ngươi đùa.”\n\n“Ta chưa từng đùa về tiền.” — Hắn nghiêng người tới. — “Nghe này. Ở Thái Nam sơn, người ta không mua bán bằng bạc. Họ đổi linh thạch lấy đan dược, lấy pháp khí, lấy sách công pháp. Và ai không có linh thạch thì… đứng ngoài nhìn.”\n\n“Vậy ngươi có không?”\n\n“Ta có ba viên.” — Hắn cười, rồi cười nhạt đi. — “Mà ba viên thì chẳng mua được gì đáng kể. Nhưng ta biết chỗ đứng. Biết ai nên tránh.”\n\nHàn Lập im lặng một lúc, rồi hỏi câu ta cũng đang muốn hỏi: “Làm sao ngươi biết những chuyện này?”\n\n“Vì ta đã từng là người ngoài đứng nhìn,” — Vạn Tiểu Sơn đáp, và lần đầu tiên nụ cười của hắn tắt hẳn — “Suốt bốn năm.”\n\nHắn đứng dậy, chỉnh lại vạt áo. “Sáng mai, cổng đông. Ta đợi. Ai tới thì đi.”",
+      "lua_chon": [
+        {
+          "chu": "Sáng mai có mặt ở cổng đông",
+          "den": "c2_d10",
+          "hieu_ung": {
+            "co_su_kien": [
+              "gap_van_tieu_son"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_d10",
+      "hoi": "Thân",
+      "boi_canh": "Đường lên Thái Nam sơn",
+      "hinh_anh": {
+        "tags": [
+          "núi",
+          "đường",
+          "xa"
+        ],
+        "anh": "bc_duong_mon_nui.jpg"
+      },
+      "ke": "Hai người, hai con ngựa thuê — thứ xa xỉ nhất ta từng tiêu trong đời. Vạn Tiểu Sơn trả tiền và không cho ta hỏi vì sao.\n\nĐường lên Thái Nam sơn khác hẳn đường phàm. Càng lên cao, cây cối càng lạ: lá cây óng ánh như phủ một lớp sương mỏng không tan, đá dưới chân ấm dần lên dù trời lạnh.\n\n“Đừng chạm vào gì cả,” — Vạn Tiểu Sơn dặn, giọng không còn đùa — “Có thứ ở đây ăn người đấy.”\n\n“Ăn người?”\n\n“Yêu thú.” — Hắn nói gọn. — “Chúng không tấn công đoàn đông. Đi lẻ là chết.”\n\nTa nghĩ tới Hàn Lập, đi một mình, ba ngày trước. Ta không nói ra.\n\nĐến chiều ngày thứ ba, núi tách ra thành một cái cốc rộng. Từ trên cao, ta nhìn thấy nó: một thung lũng đầy lều trại, đèn lồng treo khắp nơi dù trời chưa tối, và một dòng người dài không dứt đang đổ vào.\n\n“Thái Nam Sơn Cốc,” — Vạn Tiểu Sơn nói, và giọng hắn có gì đó rất lạ — “Đến rồi.”\n\nHắn dừng ngựa, rồi nói thêm, không nhìn ta: “Từ đây ta đi một mình. Ta có việc riêng ở đây.”\n\n“Việc gì?”\n\n“Việc bốn năm trước ta chưa làm xong.” — Hắn cười, nhưng cái cười ấy không tới mắt. — “Nếu cần ta, ta ở dãy hàng phía tây. Quầy bán bùa.”\n\nHắn đi. Ta đứng một mình ở mép thung lũng.\n\n👁️‍🗨️ 【Hệ thống】“Đã tới: Thái Nam Sơn Cốc.”",
+      "lua_chon": [
+        {
+          "chu": "Xuống thung lũng",
+          "den": "c2_c01"
+        }
+      ]
+    },
+    {
+      "id": "c2_p01",
+      "hoi": "Mở",
+      "boi_canh": "Tân xá — sáng, sau trận",
+      "hinh_anh": {
+        "tags": [
+          "tân xá",
+          "sáng",
+          "tỉnh dậy"
+        ],
+        "anh": "bc_tan_xa_sang.jpg"
+      },
+      "ke": "Ta tỉnh dậy trên tấm phản gỗ quen thuộc, người đau như bị ai đánh một trận. Có lẽ đúng là vậy.\n\nÁnh sáng lọt qua khe cửa sổ rách, rơi thành một vệt dài trên nền đất. Bên ngoài, tiếng người vẫn ồn — tiếng khiêng gỗ, tiếng gọi nhau dọn dẹp, tiếng ai đó khóc rất khẽ rồi nín.\n\nTrong vạt áo, khối ngọc cốt ấm lên.\n\n“Tỉnh rồi,” — Tuyết Cơ nói, giọng đã đỡ yếu hơn đêm qua — “Ngươi ngủ hai ngày.”\n\n“Hai ngày?”\n\n“Đêm ấy ngươi dùng quá nhiều linh lực.” — Nàng ngừng một chút. — “Và có chuyện ngươi cần biết. Mạc Đại Phu đã mất.”\n\nTa ngồi bật dậy, đầu choáng váng.\n\n“Mất?”\n\n“Trúng một chưởng ở cổng đông. Lão cố cầm cự tới sáng, rồi đi.” — Giọng nàng chậm lại. — “Nhưng trước khi đi, lão có nói một câu. Người ta kể lại rằng lão bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”\n\n👁️‍🗨️ 【Hệ thống】“Tin buồn: Mạc Đại Phu đã mất.”",
+      "lua_chon": [
+        {
+          "chu": "Đứng dậy, ra ngoài xem tình hình",
+          "den": "c2_p02"
+        },
+        {
+          "chu": "Ngồi lại, hỏi Tuyết Cơ cho rõ",
+          "den": "c2_p01b"
+        }
+      ]
+    },
+    {
+      "id": "c2_p01b",
+      "hoi": "Thân",
+      "boi_canh": "Tân xá — trong phòng",
+      "hinh_anh": {
+        "tags": [
+          "tân xá",
+          "trong phòng"
+        ],
+        "anh": "bc_tan_xa_nghi_dem.jpg"
+      },
+      "ke": "Ta ngồi lại trên phản, hai tay ôm lấy đầu gối.\n\n“Mạc Đại Phu là ai?”\n\n“Một lang y.” — Tuyết Cơ im một lúc. — “Hoặc không phải. Ta chỉ là một phân thân bị nhốt trong ngọc, ta không nhìn thấy mọi thứ. Nhưng đêm ấy, khi lão đi ngang qua ngươi, ta ngửi thấy một mùi rất lạ.”\n\n“Mùi gì?”\n\n“Mùi của người đã từng hút linh khí.” — Nàng nói chậm. — “Không nhiều. Nhưng đủ. Lão không phải người thường, dù lão sống như người thường suốt ba mươi năm.”\n\nTa nhớ lại vườn thuốc, ông lão áo xám ngồi bó thuốc, đôi mắt già nua mà sáng lạ thường. *Ta đã đứng cạnh một người như thế mà không biết.*\n\n“Vậy là trên đời này không chỉ có mình ta giấu chuyện.”\n\n“Không chỉ mình ngươi.” — Giọng nàng có chút gì đó gần như dịu lại. — “Và đó là lý do ngươi nên ra ngoài. Ở chốn này, ai giấu mình cũng có lý do. Ngươi cần biết lý do của họ trước khi họ biết lý do của ngươi.”",
+      "lua_chon": [
+        {
+          "chu": "Ra ngoài",
+          "den": "c2_p02"
+        }
+      ]
+    },
+    {
+      "id": "c2_p02",
+      "hoi": "Thân",
+      "boi_canh": "Sân tập — trưa, sau trận",
+      "hinh_anh": {
+        "tags": [
+          "sân tập",
+          "sau trận",
+          "Hàn Lập"
+        ],
+        "anh": "bc_san_tap_ngay.jpg"
+      },
+      "ke": "Sân tập giờ là một bãi đất lộn xộn. Một nửa mái che đã sập, cột cờ gãy làm đôi, và ở góc sân người ta đang dựng một dãy giường tre để kê người bị thương.\n\nCác đệ tử đi lại như những cái bóng. Không ai nói to. Không ai cười.\n\nTa thấy Hàn Lập đứng ở rìa sân, bên cạnh một cái cáng phủ vải trắng. Hắn không khóc. Hắn chỉ đứng đó, hai tay buông thõng, nhìn xuống.\n\nTa tới gần. Hắn không quay lại, nhưng biết ta ở đó.\n\n“Sư phụ ta,” — hắn nói, giọng đều đến lạ — “Người ta bảo ông ấy là lang y. Nhưng ta biết ông ấy không phải.”\n\nTa không đáp.\n\n“Ông ấy dạy ta một bộ công pháp,” — hắn nói tiếp, rất khẽ — “Trường Xuân Công. Ông bảo đừng nói với ai. Ta giữ kín ba năm. Giờ ông ấy chết rồi, mà ta vẫn chưa dám nói với ai.”\n\nHắn quay sang ta. Đôi mắt ấy sắc, và ướt.\n\n“Vì sao ta lại nói với ngươi?”",
+      "lua_chon": [
+        {
+          "chu": "“Vì ngươi cần một người biết.”",
+          "den": "c2_p03",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 10
+            },
+            "co_su_kien": [
+              "han_lap_ke_truong_xuan"
+            ]
+          }
+        },
+        {
+          "chu": "Im lặng, chỉ đứng cạnh hắn",
+          "den": "c2_p03",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 6
+            },
+            "co_su_kien": [
+              "han_lap_ke_truong_xuan"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_p03",
+      "hoi": "Thân",
+      "boi_canh": "Sân tập — chiều muộn",
+      "hinh_anh": {
+        "tags": [
+          "sân sau",
+          "ánh sáng",
+          "sách"
+        ],
+        "anh": "bc_san_sau_anh_sang.jpg"
+      },
+      "ke": "Hàn Lập ngồi xuống bậc đá, ta ngồi cạnh.\n\n“Trước khi mất, ông ấy dặn ta một câu,” — hắn nói — “Đừng ở lại đây. Đi về phía nam. Tới Thái Nam sơn.”\n\n“Thái Nam sơn là chỗ nào?”\n\n“Ta không biết.” — Hắn lắc đầu. — “Ông ấy chỉ nói: ở đó có một cuộc họp của người tu hành. Tiểu hội Thái Nam Sơn Cốc. Và ông bảo ta mang theo cuốn sách ông để lại.”\n\nHắn mở túi vải, lấy ra một cuốn sách mỏng đã ố vàng, bìa không có chữ.\n\n“Trường Xuân Công?”\n\n“Không phải.” — Hắn lật vài trang. — “Cuốn kia ta đã học thuộc rồi. Cuốn này… ta không đọc được. Chữ lạ.”\n\nTa nhìn vào trang giấy. Những nét chữ mảnh, đều, xa lạ — không phải chữ của người phàm.\n\n“Ta đọc được,” — Tuyết Cơ bỗng nói trong đầu ta, giọng căng thẳng — “Và ngươi nên biết: cuốn sách này không phải của một lang y. Đây là sổ tay của một kẻ đã từng giết người vì nó.”\n\n👁️‍🗨️ 【Hệ thống】“Vật phẩm mới: Sổ tay Mạc Đại Phu (chưa đọc).”",
+      "lua_chon": [
+        {
+          "chu": "“Ta đi cùng ngươi.”",
+          "den": "c2_p04",
+          "hieu_ung": {
+            "co_su_kien": [
+              "hua_di_cung_han_lap"
+            ]
+          }
+        },
+        {
+          "chu": "“Ngươi đi trước đi. Ta còn phải thu xếp.”",
+          "den": "c2_p04",
+          "hieu_ung": {
+            "co_su_kien": [
+              "de_han_lap_di_truoc"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_p04",
+      "hoi": "Thân",
+      "boi_canh": "Cổng môn — sáng hôm sau",
+      "hinh_anh": {
+        "tags": [
+          "cổng môn",
+          "sáng",
+          "đường"
+        ],
+        "anh": "bc_duong_mon_nui.jpg"
+      },
+      "ke": "Hàn Lập đi từ lúc trời chưa sáng.\n\nTa ra tới cổng môn thì chỉ còn cái bóng áo xám nhỏ dần trên đường mòn phía nam, sau lưng là cái hòm gỗ.\n\n“Hắn không đợi ngươi,” — Tuyết Cơ nói.\n\n“Ta biết.”\n\n“Ngươi có giận không?”\n\nTa nghĩ một lúc. “Không. Hắn quen đi một mình rồi.”\n\nTa đứng ở cổng môn, nhìn bóng ấy khuất sau khúc quanh. Rồi ta quay vào, thu xếp túi áo — mấy nén bạc, khối ngọc cốt, và một tấm bản đồ cũ ta mượn được ở phòng quản sự.\n\nTa cũng đi về phía nam. Nhưng ta đi đường khác.\n\n*Nếu hắn đã quen đi một mình,* ta nghĩ, *thì ta sẽ tới đó trước hắn.*\n\n👁️‍🗨️ 【Hệ thống】“Hành trình mới: Thái Nam sơn.”",
+      "lua_chon": [
+        {
+          "chu": "Xuống núi",
+          "den": "c2_p05"
+        }
+      ]
+    },
+    {
+      "id": "c2_p05",
+      "hoi": "Thân",
+      "boi_canh": "Quán nước bên đường — trưa",
+      "hinh_anh": {
+        "tags": [
+          "quán nước",
+          "trưa",
+          "tin đồn"
+        ],
+        "anh": "bc_quan_nuoc.jpg"
+      },
+      "ke": "Ta đi bộ hai ngày, ngủ nhờ trong những cái miếu ven đường. Đến trưa ngày thứ ba thì ghé quán nước.\n\nQuán đông hơn ta tưởng. Một bàn có ba gã đàn ông ăn mặc khá giả, nói chuyện to. Ta ngồi bàn góc, gọi bát nước, nghe lỏm.\n\n“Tháng này hội mở sớm hơn mọi năm,” — một gã nói — “Nghe đâu có chuyện lớn.”\n\n“Chuyện gì?”\n\n“Không rõ. Nhưng mấy nhà buôn trong thành đang gom hàng. Có người bỏ cả gia sản ra mua một viên thuốc nhỏ xíu.”\n\nGã thứ ba hạ giọng: “Nghe nói hội này có cả người của tông môn lớn tới. Không phải hạng lang băm đâu.”\n\nTa cúi xuống bát nước. *Tông môn.* Một chữ ta chưa từng nghe, mà trong ngực lại có gì đó nhói lên như nhận ra.\n\n“Ngươi đang nghĩ đúng đấy,” — Tuyết Cơ nói. — “Thái Nam sơn. Đó là chỗ ta từng nghe tên, rất lâu rồi.”",
+      "lua_chon": [
+        {
+          "chu": "Hỏi thăm đường lên Thái Nam",
+          "den": "c2_p06"
+        }
+      ]
+    },
+    {
+      "id": "c2_p06",
+      "hoi": "Thân",
+      "boi_canh": "Chân núi Thái Nam — chiều",
+      "hinh_anh": {
+        "tags": [
+          "chân núi",
+          "linh khí",
+          "chiều"
+        ],
+        "anh": "bc_khe_nui_chon.jpg"
+      },
+      "ke": "Chân núi Thái Nam khác hẳn chân núi Thất Huyền.\n\nĐất ở đây ấm. Không phải ấm vì nắng — trời đang râm — mà ấm từ dưới lên, như có ai đốt lửa trong lòng đất. Cây cối thì lạ: lá óng ánh như phủ sương mỏng không tan, và có những vệt sáng nhỏ bay lơ lửng trong không khí như đom đóm ban ngày.\n\nTa đưa tay ra. Một vệt sáng chạm vào đầu ngón tay, rồi tan.\n\n“Linh khí,” — Tuyết Cơ nói, giọng có chút gì đó gần như xúc động — “Ta chưa thấy linh khí đậm thế này từ khi còn sống.”\n\n“Đậm là tốt hay xấu?”\n\n“Với ngươi thì tốt. Ngươi hấp thu linh khí nhanh gấp mấy lần người thường.” — Nàng ngừng. — “Nhưng cũng có nghĩa là ở đây có nhiều kẻ mạnh hơn ngươi rất nhiều. Đi cẩn thận.”\n\nTrước mặt ta, con đường mòn tách ra làm hai. Một nhánh đi lên theo sườn núi, một nhánh vòng xuống thung lũng.\n\nTa chọn nhánh vòng xuống. Và khi qua khúc quanh, ta thấy nó.\n\nMột thung lũng đầy lều trại, đèn lồng treo khắp nơi, người đi lại như mắc cửi.\n\n👁️‍🗨️ 【Hệ thống】“Đã tới: Thái Nam Sơn Cốc.”",
+      "lua_chon": [
+        {
+          "chu": "Xuống thung lũng",
+          "den": "c2_c01"
+        }
+      ]
+    },
+    {
+      "id": "c2_c01",
+      "hoi": "Thân",
+      "boi_canh": "Thái Nam Sơn Cốc — mép thung lũng",
+      "hinh_anh": {
+        "tags": [
+          "thung lũng",
+          "hội",
+          "linh khí"
+        ],
+        "anh": "bc_duong_mon_nui.jpg"
+      },
+      "ke": "Ta đứng ở mép thung lũng, và lần đầu tiên trong đời, ta thấy người ta bay.\n\nKhông phải nhảy cao. Không phải đu dây. Bay. Một người áo trắng đứng trên một thanh kiếm mảnh, lơ lửng cách mặt đất chừng ba trượng, rồi hạ xuống nhẹ như lá rụng.\n\nTa đứng im rất lâu.\n\nPhía dưới, thung lũng trải ra như một cái chợ khổng lồ: hàng trăm lều trại dựng san sát, đèn lồng treo thành dãy, và ở giữa là một khoảng trống lớn nơi người ta bày hàng trên những tấm vải trải đất.\n\nNhưng cái làm ta nghẹn thở không phải cái chợ. Mà là những vệt sáng.\n\nChúng bay lơ lửng khắp nơi, hàng nghìn vệt nhỏ, như đom đóm ban ngày. Người ta đi xuyên qua chúng như đi xuyên qua sương.\n\nTa đưa tay ra. Một vệt sáng chạm vào đầu ngón tay, rồi tan.\n\nVà trong ngực ta, có một thứ khẽ động đậy — như thể nó vừa nhận ra chỗ này.\n\n👁️‍🗨️ 【Hệ thống】“Mật độ linh khí: cao gấp bốn mươi lần Thất Huyền trấn.”",
+      "lua_chon": [
+        {
+          "chu": "Xuống chợ",
+          "den": "c2_c02"
+        }
+      ]
+    },
+    {
+      "id": "c2_c02",
+      "hoi": "Thân",
+      "boi_canh": "Chợ trong thung lũng — chiều",
+      "hinh_anh": {
+        "tags": [
+          "chợ",
+          "linh thạch",
+          "bị khinh"
+        ],
+        "anh": "bc_cho_03.jpg"
+      },
+      "ke": "Cái chợ này không giống bất kỳ cái chợ nào ta từng biết.\n\nKhông ai rao. Không ai mặc cả to tiếng. Người ta ngồi sau tấm vải, hàng hoá bày trước mặt, và khi có khách thì nói rất khẽ — khẽ đến mức ta phải đứng gần mới nghe được.\n\nTa đi dọc một dãy hàng. Ở đây bán thứ ta không hiểu: một cái bình nhỏ xíu mà người bán nói bên trong chứa được “một gian nhà”; một tấm bùa giấy vàng vẽ nét run rẩy; một viên đá tròn màu xanh đục, đặt trên một miếng nhung.\n\nTa dừng lại trước viên đá ấy.\n\n“Cái này bao nhiêu?” — ta hỏi.\n\nNgười bán — một bà lão tóc bạc, mắt lim dim — mở mắt nhìn ta từ đầu đến chân. Rồi bà ta cười. Một tiếng cười rất khẽ, rất ngắn, và trong đó có đủ thứ ta không muốn nghe.\n\n“Bạc à?” — bà ta nói, như đang hỏi một đứa trẻ. — “Đây là linh thạch hạ phẩm. Một viên. Ngươi có linh thạch không?”\n\n“Ta có bạc.”\n\n“Bạc thì về chợ Gia Nguyên mà mua rau.”\n\nMấy người quanh đó quay lại nhìn. Không ai cười to. Nhưng ta thấy rõ ánh mắt họ — cái ánh mắt ta đã gặp cả đời, chỉ khác là lần này nó lạnh hơn.\n\nTa cúi đầu, lùi ra khỏi dãy hàng.\n\n👁️‍🗨️ 【Hệ thống】“Ghi nhận: bạc không có giá trị ở đây.”",
+      "lua_chon": [
+        {
+          "chu": "Đi tiếp, tìm hiểu thêm",
+          "den": "c2_c03"
+        },
+        {
+          "chu": "Ngồi xuống bên lề, quan sát",
+          "den": "c2_c02b"
+        }
+      ]
+    },
+    {
+      "id": "c2_c02b",
+      "hoi": "Thân",
+      "boi_canh": "Lề chợ — chiều muộn",
+      "hinh_anh": {
+        "tags": [
+          "lề chợ",
+          "quan sát",
+          "chiều"
+        ],
+        "anh": "bc_cho_02.jpg"
+      },
+      "ke": "Ta ngồi xuống bên lề, lưng tựa vào một tảng đá, và học bằng cách nhìn.\n\nBa điều trong nửa canh giờ.\n\nMột: người ta trả giá bằng những viên đá xanh nhỏ. Một viên đổi được một bình thuốc. Ba viên đổi được một thanh kiếm. Mười viên thì ta không dám đoán.\n\nHai: có những người không ai dám tới gần. Họ mặc áo cùng một màu, đi thành nhóm, và khi họ tới gần thì người bán tự động cúi đầu.\n\nBa: có những người như ta — đi vòng quanh, nhìn, không mua gì, và bị nhìn bằng ánh mắt giống hệt nhau.\n\nTa đếm được bảy người như thế trong nửa canh giờ. Bảy người, trong một cái chợ có lẽ hàng nghìn người.\n\n*Đây là lần đầu ta thấy mình không phải kẻ thấp nhất,* ta nghĩ. *Mà là một trong rất nhiều kẻ thấp nhất.*\n\nTa nhớ lại những đêm luyện một mình ở Thất Huyền trấn, sợ có tiếng động, sợ có người đi qua. Hoá ra cả một vùng đất rộng lớn này đầy những kẻ cũng phải giấu mình như ta.\n\n👁️‍🗨️ 【Hệ thống】“Quan sát: phân tầng rõ rệt. Kẻ có linh thạch, kẻ không.”",
+      "lua_chon": [
+        {
+          "chu": "Đứng dậy, đi tiếp",
+          "den": "c2_c03"
+        }
+      ]
+    },
+    {
+      "id": "c2_c03",
+      "hoi": "Thân",
+      "boi_canh": "Dãy hàng phía đông — chạng vạng",
+      "hinh_anh": {
+        "tags": [
+          "Hàn Lập",
+          "mặc cả",
+          "chạng vạng"
+        ],
+        "anh": "nv_han_lap_2.jpg"
+      },
+      "ke": "Ta thấy Hàn Lập trước khi hắn thấy ta.\n\nHắn ngồi sau một tấm vải nhỏ ở dãy hàng phía đông, trước mặt bày mấy thứ: một cuốn sách ố, mấy lọ thuốc, và một mảnh ngọc trắng đục. Di vật của Mạc Đại Phu.\n\nMột gã đàn ông mặc áo gấm đứng trước tấm vải, cầm cuốn sách lên lật vài trang rồi ném trả lại.\n\n“Rác,” — gã nói. — “Công pháp phàm nhân. Ở đây ai thèm.”\n\n“Đây là sách của sư phụ ta.”\n\n“Sư phụ ngươi là ai?”\n\nHàn Lập im.\n\n“Không biết à?” — Gã cười, rồi chỉ vào mảnh ngọc. — “Cái này thì được. Ta cho ngươi hai viên hạ phẩm.”\n\nTa thấy vai Hàn Lập cứng lại. Hai viên. Ta vừa học được rằng ở đây, hai viên là giá của một kẻ không biết gì.\n\nHắn không biết. Hắn đang định gật đầu.\n\n👁️‍🗨️ 【Hệ thống】“Cơ hội: can thiệp, hoặc đứng nhìn.”",
+      "lua_chon": [
+        {
+          "chu": "Bước vào, phá ngang",
+          "den": "c2_c04a"
+        },
+        {
+          "chu": "Đứng nhìn, để hắn tự quyết",
+          "den": "c2_c04b"
+        }
+      ]
+    },
+    {
+      "id": "c2_c04a",
+      "hoi": "Thân",
+      "boi_canh": "Dãy hàng phía đông",
+      "hinh_anh": {
+        "tags": [
+          "chợ",
+          "can thiệp",
+          "hoàng hôn"
+        ],
+        "anh": "bc_cho_01.jpg"
+      },
+      "ke": "Ta bước tới, đứng chắn giữa gã áo gấm và tấm vải.\n\n“Mảnh ngọc ấy,” — ta nói, giọng bình thản đến mức chính ta cũng ngạc nhiên — “không phải ngọc thường. Ngươi thử cầm nó dưới nắng xem.”\n\nGã áo gấm nhíu mày. Nhưng gã vẫn làm — giơ mảnh ngọc lên.\n\nÁnh hoàng hôn xuyên qua. Và trong lòng mảnh ngọc, một vệt sáng đỏ thẫm hiện ra, chậm rãi xoay như máu đang chảy.\n\nMặt gã đổi màu.\n\n“Cái này… đây là huyết ngọc?”\n\n“Ta không biết nó là gì,” — ta nói thật — “Nhưng ta biết hai viên hạ phẩm là giá của kẻ không biết nó là gì.”\n\nGã nhìn ta rất lâu. Rồi gã cười — lần này cười thật.\n\n“Ngươi là ai?”\n\n“Không ai cả.”\n\n“Không ai cả mà dám phá ngang việc của ta.” — Gã ném xuống tấm vải một cái túi nhỏ. — “Mười viên. Giá thật. Vì ta thích kẻ dám nói.”\n\nGã đi. Ta quay lại, và thấy Hàn Lập đang nhìn ta — lần đầu tiên, nhìn thẳng, không giấu gì.\n\n“Vì sao ngươi giúp ta?”\n\n“Vì ta đã từng bị trả giá hai viên,” — ta đáp.\n\n👁️‍🗨️ 【Hệ thống】“Hảo cảm Hàn Lập +15. Nhận: 10 linh thạch hạ phẩm.”",
+      "lua_chon": [
+        {
+          "chu": "Đưa túi linh thạch cho hắn",
+          "den": "c2_c05",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 15
+            },
+            "co_su_kien": [
+              "cuu_han_lap_o_cho"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c04b",
+      "hoi": "Thân",
+      "boi_canh": "Dãy hàng phía đông",
+      "hinh_anh": {
+        "tags": [
+          "chợ",
+          "đứng nhìn",
+          "hoàng hôn"
+        ],
+        "anh": "bc_cho_01.jpg"
+      },
+      "ke": "Ta đứng nhìn.\n\nHàn Lập cầm mảnh ngọc lên, nhìn nó một lúc, rồi đặt xuống.\n\n“Không bán.”\n\nGã áo gấm nhướng mày. “Hai viên là giá tốt cho kẻ như ngươi.”\n\n“Ta biết.” — Hàn Lập nói, giọng đều — “Nhưng ta không biết nó là gì. Và ta không bán thứ ta không biết giá.”\n\nGã nhìn hắn một lúc, rồi nhún vai bỏ đi. “Tuỳ. Đến mai ta vẫn ở đây.”\n\nKhi gã đi khuất, Hàn Lập mới quay sang ta — không ngạc nhiên, như thể hắn biết ta đứng đó từ đầu.\n\n“Ngươi đứng nhìn nãy giờ.”\n\n“Ta muốn xem ngươi làm gì.”\n\n“Và ngươi thấy gì?”\n\n“Ta thấy một kẻ không bán thứ mình không hiểu.” — Ta ngồi xuống cạnh hắn. — “Đó là điều tốt. Nhưng ngươi vẫn chưa biết nó là gì.”\n\nHắn im một lúc. Rồi hắn đưa mảnh ngọc cho ta.\n\n“Vậy thì cùng tìm hiểu.”\n\n👁️‍🗨️ 【Hệ thống】“Hảo cảm Hàn Lập +8.”",
+      "lua_chon": [
+        {
+          "chu": "Cầm mảnh ngọc lên xem",
+          "den": "c2_c05",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 8
+            },
+            "co_su_kien": [
+              "cung_tim_hieu_manh_ngoc"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c05",
+      "hoi": "Thân",
+      "boi_canh": "Góc chợ — tối",
+      "hinh_anh": {
+        "tags": [
+          "sách",
+          "tối",
+          "đèn lồng"
+        ],
+        "anh": "nv_mac_dai_phu_mau.jpg"
+      },
+      "ke": "Đèn lồng trong thung lũng thắp lên cùng một lúc, và cái chợ đổi hẳn màu.\n\nTa ngồi cạnh Hàn Lập trên một tảng đá, giữa hai dãy hàng đã bắt đầu dọn. Trong tay hắn là cuốn sách ố.\n\n“Ta đọc được chữ này,” — cái thứ trong vạt áo ta bỗng lên tiếng, giọng căng — “Nhưng ngươi phải hứa: đừng để hắn biết ngươi có ta.”\n\n“Vì sao?”\n\n“Vì cuốn sách này viết về một thứ mà chỉ kẻ đã từng giết người vì nó mới biết. Nếu hắn biết ta đọc được, hắn sẽ biết ta là ai. Và ta chưa muốn hắn biết.”\n\nTa nhìn Hàn Lập. Hắn đang cúi xuống trang giấy, mày nhíu lại, cố đọc những nét chữ mình không hiểu.\n\n“Nó viết gì?” — ta hỏi.\n\n“Ta không biết.” — Hắn đẩy sách sang. — “Ngươi thử xem.”\n\nTa cầm lấy. Những nét chữ mảnh, đều, xa lạ. Ta không đọc được gì cả.\n\nNhưng cái thứ trong vạt áo ta thì đọc được, và nó đọc cho ta nghe — rất khẽ, rất chậm, như sợ chính mình nghe thấy.\n\n“Đây là sổ tay của một kẻ tên Mạc Cư Nhân. Nó ghi về một chuyến đi tới Thái Nam sơn, bốn mươi năm trước. Và nó ghi về một thứ ông ta tìm thấy ở đây — rồi phải bỏ chạy.”\n\nTa ngẩng lên.\n\n“Chạy khỏi cái gì?”\n\n“Không ghi.” — Nó ngừng. — “Trang cuối bị xé.”",
+      "lua_chon": [
+        {
+          "chu": "Nói cho Hàn Lập biết sách viết gì",
+          "den": "c2_c06a",
+          "hieu_ung": {
+            "co_su_kien": [
+              "doc_duoc_so_tay"
+            ]
+          }
+        },
+        {
+          "chu": "Giấu, chưa nói",
+          "den": "c2_c06b",
+          "hieu_ung": {
+            "co_su_kien": [
+              "giu_kin_so_tay"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c06a",
+      "hoi": "Thân",
+      "boi_canh": "Góc chợ — tối",
+      "hinh_anh": {
+        "tags": [
+          "Hàn Lập",
+          "tối",
+          "nghi ngờ"
+        ],
+        "anh": "nv_han_lap_that.jpg"
+      },
+      "ke": "“Ta đọc được,” — ta nói.\n\nHàn Lập ngẩng lên, mắt sắc lại.\n\n“Ngươi đọc được chữ này?”\n\n“Không phải ta.” — Ta ngừng một nhịp, chọn lời. — “Ta có một thứ giúp ta đọc. Ta chưa thể nói là gì. Nhưng ta không muốn giấu ngươi chuyện này, vì ngươi đã không giấu ta chuyện Trường Xuân Công.”\n\nHắn nhìn ta rất lâu. Rồi hắn gật đầu, chậm.\n\n“Được. Ngươi đọc đi.”\n\nTa đọc cho hắn nghe những gì đọc được. Về Mạc Cư Nhân. Về chuyến đi bốn mươi năm trước. Về thứ ông ta tìm thấy rồi bỏ chạy.\n\nKhi ta dứt lời, Hàn Lập im lặng rất lâu.\n\n“Vậy là sư phụ ta không phải lang y,” — hắn nói cuối cùng. — “Và ông ấy chết không phải vì một chưởng ở cổng đông.”\n\n“Ngươi nghĩ vậy?”\n\n“Ta nghĩ,” — hắn nói, và giọng hắn lạnh đi — “rằng có người đã đợi bốn mươi năm để giết ông ấy.”\n\n👁️‍🗨️ 【Hệ thống】“Hảo cảm Hàn Lập +10. Mở: mối nghi về cái chết của Mạc Đại Phu.”",
+      "lua_chon": [
+        {
+          "chu": "“Vậy ta phải tìm hiểu.”",
+          "den": "c2_c07",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 10
+            },
+            "co_su_kien": [
+              "nghi_mac_dai_phu_bi_giet"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c06b",
+      "hoi": "Thân",
+      "boi_canh": "Góc chợ — tối",
+      "hinh_anh": {
+        "tags": [
+          "Hàn Lập",
+          "tối",
+          "im lặng"
+        ],
+        "anh": "nv_han_lap_cuoi_tru.jpg"
+      },
+      "ke": "Ta đặt cuốn sách xuống.\n\n“Ta không đọc được.”\n\nĐó là lần đầu ta nói dối hắn. Câu dối trôi ra khỏi miệng ta dễ đến mức chính ta cũng thấy lạnh.\n\nHàn Lập nhìn ta một lúc. Hắn không nói gì, nhưng ta biết hắn biết.\n\n“Được,” — hắn nói cuối cùng, và cất sách đi. — “Khi nào ngươi đọc được thì nói.”\n\nHắn đứng dậy, phủi đất trên vạt áo. “Mai ta đi tìm chỗ nghỉ. Ngươi đi không?”\n\n“Đi.”\n\nChúng ta đi về phía tây thung lũng, và suốt quãng đường không ai nói gì.\n\n*Ta sẽ nói với hắn,* ta tự nhủ. *Chỉ là chưa phải lúc.*\n\nNhưng trong lòng ta có một chỗ lạnh, biết rằng cái “chưa phải lúc” ấy rất dễ kéo dài thành “không bao giờ”.\n\n👁️‍🗨️ 【Hệ thống】“Ghi nhận: ngươi đã giấu Hàn Lập một chuyện.”",
+      "lua_chon": [
+        {
+          "chu": "Đi theo hắn",
+          "den": "c2_c07"
+        }
+      ]
+    },
+    {
+      "id": "c2_c07",
+      "hoi": "Thân",
+      "boi_canh": "Rìa thung lũng — đêm",
+      "hinh_anh": {
+        "tags": [
+          "đêm",
+          "tu luyện",
+          "linh khí"
+        ],
+        "anh": "bc_khe_nui_dem.jpg"
+      },
+      "ke": "Đêm ấy ta ngủ ngoài trời, dưới một gờ đá, cách chỗ Hàn Lập nghỉ chừng hai mươi bước.\n\nThung lũng ban đêm khác hẳn ban ngày. Đèn lồng tắt dần, và những vệt linh khí trở nên rõ hơn — chúng bay chậm, như bụi trong ánh nắng, và một vài vệt chạm vào người ta rồi tan đi.\n\nTa đưa tay ra, để chúng chạm vào.\n\nRồi ta ngồi thẳng, nhắm mắt, và làm theo cách ta vẫn làm mỗi đêm từ bốn ngày trước. Hơi thở chậm lại. Những vệt sáng tụ về phía ta, chậm rồi nhanh, chui vào da thịt như nước thấm vào đất khô.\n\nĐau. Rồi mát. Rồi ấm.\n\nKhi ta mở mắt, trời đã gần sáng, và trong ngực ta có một thứ nặng hơn hôm qua — không phải nặng khó chịu, mà là cái nặng của một bình đã được rót thêm nước.\n\n👁️‍🗨️ 【Hệ thống】“Một đêm ở đây bằng một tháng ở Thất Huyền trấn.”",
+      "lua_chon": [
+        {
+          "chu": "Đứng dậy, tìm Hàn Lập",
+          "den": "c2_c08"
+        }
+      ]
+    },
+    {
+      "id": "c2_c08",
+      "hoi": "Thân",
+      "boi_canh": "Giữa thung lũng — sáng sớm",
+      "hinh_anh": {
+        "tags": [
+          "đám đông",
+          "ông lão",
+          "sáng"
+        ],
+        "anh": "bc_san_tap_ngay.jpg"
+      },
+      "ke": "Sáng hôm sau, giữa thung lũng có một đám đông tụ lại.\n\nTa tới gần. Ở giữa đám đông là một cái bục đá thấp, và trên bục là một ông lão mặc áo xám dài, tóc bạc buộc gọn, tay chống một cây gậy gỗ trơn nhẵn.\n\n“Ta là người coi cốc này,” — ông nói, giọng không to mà ai cũng nghe rõ — “Các ngươi tụ về đây mua bán, ta không cấm. Nhưng có ba điều.”\n\nÔng giơ một ngón tay.\n\n“Một: không giết người trong cốc. Kẻ giết người, ta giết lại.”\n\nNgón thứ hai.\n\n“Hai: không cướp. Kẻ cướp, ta chặt tay.”\n\nNgón thứ ba.\n\n“Ba: hội này mở bảy ngày. Hết bảy ngày, tất cả phải đi. Ai ở lại quá hạn, ta không chịu trách nhiệm.”\n\nÔng hạ tay, nhìn quanh một lượt. “Các ngươi tới đây vì các ngươi muốn một cái gì đó. Ta không cần biết là gì. Nhưng nhớ: cái giá của thứ các ngươi muốn, thường không phải là thứ các ngươi nghĩ.”\n\nĐám đông im phăng phắc. Rồi ông lão bước xuống bục, và đám đông tản ra như nước.\n\n👁️‍🗨️ 【Hệ thống】“Luật của cốc: không giết, không cướp, bảy ngày.”",
+      "lua_chon": [
+        {
+          "chu": "Đi tìm Hàn Lập",
+          "den": "c2_c09"
+        },
+        {
+          "chu": "Đi theo ông lão",
+          "den": "c2_c08b"
+        }
+      ]
+    },
+    {
+      "id": "c2_c08b",
+      "hoi": "Thân",
+      "boi_canh": "Sau bục đá — sáng",
+      "hinh_anh": {
+        "tags": [
+          "ông lão",
+          "sáng",
+          "hỏi"
+        ],
+        "anh": "bc_duong_mon_nui.jpg"
+      },
+      "ke": "Ta đi theo ông lão.\n\nÔng không quay lại, nhưng tới khúc quanh thì dừng: “Đi theo ta làm gì?”\n\n“Ta muốn hỏi một chuyện.”\n\n“Hỏi.”\n\nTa nghĩ rất nhanh. “Làm sao để có linh thạch, khi trong túi chỉ có bạc?”\n\nÔng lão quay lại. Đôi mắt ông không sắc như ta tưởng — chúng mệt mỏi, và có gì đó gần như thương hại.\n\n“Ngươi tu hành bao lâu rồi?”\n\nCâu hỏi làm ta khựng lại. Ta chưa từng nói với ai.\n\n“Bốn ngày,” — ta đáp.\n\n“Bốn ngày.” — Ông không cười. — “Và ngươi đã tới đây. Ngươi biết mình đang đứng ở đâu không?”\n\n“Không.”\n\n“Ngươi đang đứng ở chỗ mà kẻ tu hành cả đời cũng không dám tới, vì họ không có gì để đổi.” — Ông nhìn ta. — “Có ba cách để một kẻ không có gì có được linh thạch. Một: bán thứ người khác muốn. Hai: làm việc người khác không muốn làm. Ba: tìm một kẻ nhận ngươi làm đồ đệ.”\n\n“Cách nào dễ nhất?”\n\n“Cách thứ hai.” — Ông bước đi. — “Và cách ấy sẽ giết ngươi, nếu ngươi không may mắn.”\n\nRồi ông nói thêm, không quay lại: “Nhưng ngươi đã hỏi đúng câu. Phần lớn kẻ tới đây không hỏi gì cả. Họ chỉ nhìn, rồi về.”\n\n👁️‍🗨️ 【Hệ thống】“Kiến thức mới: ba con đường có linh thạch.”",
+      "lua_chon": [
+        {
+          "chu": "Đi tìm Hàn Lập",
+          "den": "c2_c09",
+          "hieu_ung": {
+            "co_su_kien": [
+              "biet_ba_con_duong"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c09",
+      "hoi": "Thân",
+      "boi_canh": "Dãy hàng phía bắc — trưa",
+      "hinh_anh": {
+        "tags": [
+          "chợ",
+          "mặc cả",
+          "trưa"
+        ],
+        "anh": "bc_cho_01.jpg"
+      },
+      "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Thuốc này là thuốc phàm,” — người đàn bà nói — “Không có linh khí. Nhưng công dụng thì thật. Ta cho ngươi một viên hạ phẩm cho cả mẻ.”\n\n“Một viên?”\n\n“Một viên. Hoặc ngươi mang về.”\n\nHàn Lập im. Ta thấy tay hắn nắm lại rồi mở ra.\n\n“Được,” — hắn nói.\n\nTa bước tới. “Khoan.”\n\nNgười đàn bà nhìn ta. “Ngươi là ai?”\n\n“Người biết giá.” — Ta chỉ vào mấy lọ thuốc. — “Bà nói công dụng thật. Vậy thử một lọ trước mặt mọi người. Nếu thật, giá phải gấp ba.”\n\nIm lặng.\n\nRồi người đàn bà cười — một tiếng cười ngắn, sắc. “Ngươi không phải kẻ mới.”\n\n“Ta mới bốn ngày.”\n\n“Kẻ mới bốn ngày không biết nói thế.” — Bà ta nhìn ta rất lâu, rồi đặt lên quầy ba viên đá xanh. — “Ba viên. Và ta sẽ nhớ mặt ngươi.”\n\nBà ta đi. Hàn Lập nhìn ba viên linh thạch trong tay, rồi nhìn ta.\n\n“Lần thứ hai,” — hắn nói.\n\n“Lần thứ hai gì?”\n\n“Lần thứ hai ngươi giúp ta mà ta không hiểu vì sao.”\n\n👁️‍🗨️ 【Hệ thống】“Hảo cảm Hàn Lập +10. Nhận: 3 linh thạch hạ phẩm.”",
+      "lua_chon": [
+        {
+          "chu": "“Vì ta cũng cần một người hiểu ta.”",
+          "den": "c2_c10",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 10
+            },
+            "co_su_kien": [
+              "noi_that_voi_han_lap"
+            ]
+          }
+        },
+        {
+          "chu": "“Vì ta ghét bị trả giá.”",
+          "den": "c2_c10",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c10",
+      "hoi": "Thân",
+      "boi_canh": "Rìa thung lũng — chiều ngày thứ ba",
+      "hinh_anh": {
+        "tags": [
+          "chiều",
+          "thung lũng",
+          "quyết định"
+        ],
+        "anh": "bc_tan_xa_sang.jpg"
+      },
+      "ke": "Ba ngày trôi qua.\n\nTa học được nhiều thứ đến mức đầu ta đau. Rằng linh thạch có bốn phẩm. Rằng pháp khí chia theo cấp. Rằng có những kẻ ở đây đã tu hành cả trăm năm mà trông vẫn như thanh niên hai mươi.\n\nVà ta học được một điều quan trọng hơn cả: ở đây, không ai quan tâm ngươi là ai trước khi tới. Chỉ quan tâm ngươi có gì.\n\nHàn Lập bán hết thuốc. Hắn có trong tay bảy viên linh thạch — một gia tài đối với hắn, một món tiền lẻ đối với người khác.\n\n“Ta định mua một cuốn công pháp,” — hắn nói với ta, chiều hôm ấy. — “Cuốn rẻ nhất ở đây. Để ta không phải tu một mình nữa.”\n\n“Trường Xuân Công không đủ?”\n\n“Trường Xuân Công là của sư phụ ta.” — Hắn nhìn xuống tay mình. — “Ta muốn thứ của chính ta.”\n\nTa hiểu. Ta cũng muốn một thứ của chính ta.\n\n👁️‍🗨️ 【Hệ thống】“Còn bốn ngày tới khi hội kết thúc.”",
+      "lua_chon": [
+        {
+          "chu": "Đi cùng hắn tới quầy sách",
+          "den": "c2_c11"
+        }
+      ]
+    },
+    {
+      "id": "c2_c11",
+      "hoi": "Thân",
+      "boi_canh": "Quầy sách — chiều muộn",
+      "hinh_anh": {
+        "tags": [
+          "sách",
+          "quầy",
+          "chiều"
+        ],
+        "anh": "bc_cho_03.jpg"
+      },
+      "ke": "Quầy sách nằm ở cuối dãy hàng phía tây, dưới một cái lều vá víu.\n\nNgười bán là một gã gầy, đeo kính, ngồi sau một chồng sách cao đến ngực. Gã không nhìn khách, chỉ nhìn sách.\n\n“Công pháp cho người mới,” — Hàn Lập nói.\n\nGã ngẩng lên, nhìn hắn từ đầu đến chân. Rồi nhìn ta. Rồi cười — cái cười của kẻ đã thấy hàng nghìn người như chúng ta.\n\n“Người mới.” — Gã lôi ra một cuốn sách mỏng, bìa rách. — “Đây. ‘Thanh Nguyên Quyết’. Cơ bản nhất. Năm viên.”\n\n“Năm viên cho một cuốn cơ bản?”\n\n“Năm viên.” — Gã nhún vai. — “Hoặc ngươi có thể mua cuốn này.” — Gã lôi ra một cuốn khác, dày hơn, bìa còn mới. — “‘Huyền Âm Chân Kinh’. Hai mươi viên. Nhưng nó không dành cho ngươi.”\n\n“Vì sao?”\n\n“Vì nó viết cho nữ tử.” — Gã cười. — “Trừ khi ngươi muốn thành nữ tử.”\n\nHàn Lập không cười. Nhưng ta thì để ý thấy một chuyện khác — cuốn sách thứ ba, nằm dưới cùng chồng, bìa không có chữ.\n\n“Cuốn đó là gì?” — ta hỏi.\n\nGã liếc xuống. Rồi mặt gã đổi.\n\n“Không bán.”\n\n“Vì sao?”\n\n“Vì ta không biết nó là gì,” — gã nói, và lần đầu tiên gã không cười — “Và ta không bán thứ ta không biết giá.”\n\nTa nhìn Hàn Lập. Hàn Lập nhìn ta. Cả hai cùng nghĩ tới một chuyện.\n\n👁️‍🗨️ 【Hệ thống】“Phát hiện: một cuốn sách không rõ lai lịch.”",
+      "lua_chon": [
+        {
+          "chu": "Hỏi gã về lai lịch cuốn sách",
+          "den": "c2_c12a"
+        },
+        {
+          "chu": "Mua cuốn cơ bản, bỏ qua",
+          "den": "c2_c12b"
+        }
+      ]
+    },
+    {
+      "id": "c2_c12a",
+      "hoi": "Thân",
+      "boi_canh": "Quầy sách",
+      "hinh_anh": {
+        "tags": [
+          "sách",
+          "bí mật",
+          "quầy"
+        ],
+        "anh": "bc_cho_02.jpg"
+      },
+      "ke": "“Cuốn đó từ đâu tới?” — ta hỏi.\n\nGã im một lúc. Rồi gã hạ giọng, và cái giọng ấy khác hẳn cái giọng bán hàng lúc nãy.\n\n“Ba mươi năm trước, có một người tới đây bán nó cho ta. Lão nói lão cần tiền để chạy trốn.”\n\n“Chạy trốn khỏi cái gì?”\n\n“Lão không nói.” — Gã nhìn ta. — “Nhưng lão nói một câu ta nhớ đến giờ. Lão bảo: ‘Ở Thái Nam sơn có một thứ không phải của thế giới này. Ai tìm thấy nó thì đừng mở ra.’”\n\nTa thấy lạnh sống lưng.\n\n“Lão tên gì?”\n\nGã lắc đầu. “Không nói. Nhưng lão già, gầy, mắt sáng lạ thường. Và tay lão… tay lão run.”\n\n*Mạc Đại Phu.* Ta không biết vì sao ta biết. Nhưng ta biết.\n\n“Ta mua cuốn sách đó.”\n\n“Ta đã nói không bán.”\n\n“Mười viên.”\n\nGã nhìn ta rất lâu. Rồi gã cười, và cái cười ấy không vui.\n\n“Ngươi không có mười viên.”\n\n“Ta sẽ có.”\n\n👁️‍🗨️ 【Hệ thống】“Nhiệm vụ: gom 10 linh thạch hạ phẩm trước khi hội kết thúc.”",
+      "lua_chon": [
+        {
+          "chu": "Nhận nhiệm vụ",
+          "den": "c2_c13",
+          "hieu_ung": {
+            "co_su_kien": [
+              "biet_ve_cuon_sach_bi_an"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c12b",
+      "hoi": "Thân",
+      "boi_canh": "Quầy sách",
+      "hinh_anh": {
+        "tags": [
+          "sách",
+          "linh căn",
+          "quầy"
+        ],
+        "anh": "bc_cho_03.jpg"
+      },
+      "ke": "Hàn Lập mua cuốn ‘Thanh Nguyên Quyết’ với giá năm viên.\n\nGã bán sách gói nó vào một tờ giấy, rồi nói, giọng bâng quơ: “Nhớ đấy. Tu công pháp mà không có linh căn thì chỉ tổ uổng công.”\n\nHàn Lập khựng lại. “Linh căn?”\n\n“Ngươi không biết linh căn là gì?” — Gã cười. — “Trời ạ. Linh căn là thứ quyết định ngươi tu được hay không. Không có linh căn thì cả đời cũng chỉ là phàm nhân.”\n\n“Ta có linh căn không?”\n\n“Ta không biết. Muốn biết thì tìm người đo.” — Gã chỉ về phía đông thung lũng. — “Có một bà lão ở dãy đông, đo linh căn, lấy một viên một lần.”\n\nHàn Lập cầm cuốn sách, im lặng rất lâu.\n\nRồi hắn nói, rất khẽ: “Nếu ta không có linh căn thì sao?”\n\n“Thì ngươi đã phí ba ngày ở đây.” — Gã nhún vai. — “Và năm viên.”\n\n👁️‍🗨️ 【Hệ thống】“Từ khoá mới: linh căn.”",
+      "lua_chon": [
+        {
+          "chu": "Đi đo linh căn",
+          "den": "c2_c13",
+          "hieu_ung": {
+            "co_su_kien": [
+              "biet_linh_can"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c13",
+      "hoi": "Thân",
+      "boi_canh": "Dãy đông — bà lão đo linh căn",
+      "hinh_anh": {
+        "tags": [
+          "linh căn",
+          "đo",
+          "sáng"
+        ],
+        "anh": "nv_tuyet_co_canh_giac.jpg"
+      },
+      "ke": "Bà lão ngồi trên một tấm chiếu rách, trước mặt là một viên đá trắng đục to bằng nắm tay.\n\n“Một viên một lần,” — bà nói, không ngẩng lên.\n\nHàn Lập đặt viên linh thạch xuống. Bà đẩy viên đá về phía hắn.\n\n“Đặt tay lên.”\n\nHàn Lập đặt tay. Viên đá im lặng một lúc. Rồi nó sáng lên — một vệt sáng xanh lục, mỏng, yếu, chạy từ trong ra ngoài.\n\nBà lão nhìn, rồi gật gù. “Thuỷ linh căn. Tạp. Yếu. Nhưng có.”\n\nHàn Lập thở ra. Ta thấy vai hắn hạ xuống.\n\n“Còn ngươi?” — bà hỏi, mắt vẫn không ngẩng.\n\n“Ta không có linh thạch.”\n\n“Vậy thì đứng đó mà nhìn.” — Bà đẩy viên đá về phía ta. — “Lần này ta không lấy tiền. Ta tò mò.”\n\nTa đặt tay lên đá.\n\nViên đá im rất lâu. Lâu đến mức ta tưởng nó hỏng.\n\nRồi nó sáng.\n\nKhông phải một vệt. Mà là toàn bộ viên đá, sáng trắng đến mức ta phải nhắm mắt. Ánh sáng ấy không tắt ngay — nó giữ nguyên vài nhịp thở, rồi từ từ lịm xuống.\n\nBà lão ngẩng lên. Lần đầu tiên bà nhìn thẳng vào mặt ta.\n\n“Ngươi,” — bà nói, giọng khàn — “tu hành bao lâu rồi?”\n\n“Bốn ngày.”\n\nBà im rất lâu. Rồi bà cất viên đá đi, chậm rãi, như đang cất một thứ nguy hiểm.\n\n👁️‍🗨️ 【Hệ thống】“Kết quả: linh căn của ngươi không thuộc bảng phân loại thông thường.”",
+      "lua_chon": [
+        {
+          "chu": "“Sao bà lại cất nó đi?”",
+          "den": "c2_c14a"
+        },
+        {
+          "chu": "Im lặng, chờ bà nói",
+          "den": "c2_c14b"
+        }
+      ]
+    },
+    {
+      "id": "c2_c14a",
+      "hoi": "Thân",
+      "boi_canh": "Dãy đông — bà lão",
+      "hinh_anh": {
+        "tags": [
+          "bà lão",
+          "cảnh báo"
+        ],
+        "anh": "nv_tuyet_co_do_du.jpg"
+      },
+      "ke": "“Sao bà lại cất nó đi?”\n\n“Vì ta không muốn đo lại lần thứ hai.” — Bà nhìn quanh. — “Nghe cho kỹ. Ta đo linh căn bốn mươi năm. Ta đã thấy thiên linh căn, địa linh căn, dị linh căn. Ta chưa từng thấy cái gì sáng như thế.”\n\n“Nghĩa là tốt hay xấu?”\n\n“Nghĩa là ngươi nên giấu.” — Bà hạ giọng. — “Ở đây có kẻ sẵn sàng giết người vì một viên linh thạch. Ngươi nghĩ chúng sẽ làm gì với kẻ có linh căn như ngươi?”\n\nTa im.\n\n“Đi đi,” — bà nói. — “Và đừng để ai đo lại. Với ai.”\n\n👁️‍🗨️ 【Hệ thống】“Cảnh báo: che giấu linh căn.”",
+      "lua_chon": [
+        {
+          "chu": "Cúi đầu cảm ơn, rời đi",
+          "den": "c2_c15",
+          "hieu_ung": {
+            "co_su_kien": [
+              "linh_can_biet_an"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c14b",
+      "hoi": "Thân",
+      "boi_canh": "Dãy đông — bà lão",
+      "hinh_anh": {
+        "tags": [
+          "bà lão",
+          "lời khuyên"
+        ],
+        "anh": "nv_tuyet_co_than_phan.jpg"
+      },
+      "ke": "Ta không nói gì. Ta chờ.\n\nBà lão cất viên đá vào một cái hộp gỗ, khoá lại, rồi mới nhìn ta.\n\n“Ngươi không hỏi.”\n\n“Bà sẽ nói nếu bà muốn.”\n\n“Khôn.” — Bà gật đầu, chậm. — “Vậy ta nói. Bốn mươi năm đo linh căn, ta chưa từng thấy cái gì sáng như thế. Và ta đã thấy ba kẻ như ngươi.”\n\n“Họ giờ ở đâu?”\n\n“Một kẻ chết.” — Bà nói, giọng đều. — “Một kẻ biến mất. Một kẻ giờ là chưởng môn của một tông môn, và không bao giờ quay lại đây nữa.”\n\nTa nuốt khan.\n\n“Vậy ta nên làm gì?”\n\n“Giấu.” — Bà đứng dậy, thu dọn chiếu. — “Và tìm một chỗ dạy ngươi cách giấu cho đúng. Ở đây ngươi học không nổi đâu. Hội này là chợ, không phải trường.”\n\n👁️‍🗨️ 【Hệ thống】“Lời khuyên: tìm nơi học đàng hoàng.”",
+      "lua_chon": [
+        {
+          "chu": "Cảm ơn, rời đi",
+          "den": "c2_c15",
+          "hieu_ung": {
+            "co_su_kien": [
+              "linh_can_biet_an",
+              "biet_can_tim_su_phu"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c15",
+      "hoi": "Thân",
+      "boi_canh": "Rìa thung lũng — đêm ngày thứ tư",
+      "hinh_anh": {
+        "tags": [
+          "đêm",
+          "lửa",
+          "Hàn Lập"
+        ],
+        "anh": "bc_khe_nui_dem.jpg"
+      },
+      "ke": "Ta kể cho Hàn Lập nghe mọi chuyện, trừ một điều.\n\nTa kể về viên đá sáng trắng. Ta kể về bà lão. Ta kể về những kẻ bà ta nhắc tới — một chết, một biến mất, một thành chưởng môn.\n\nTa không kể rằng trong vạt áo ta có một thứ cũng đang giấu mình, và nó cũng đã nghe hết.\n\n“Vậy là ngươi có linh căn mạnh,” — Hàn Lập nói. — “Mạnh đến mức bà ta sợ.”\n\n“Có vẻ vậy.”\n\n“Và ngươi mới tu bốn ngày.”\n\n“Có vẻ vậy.”\n\nHắn im một lúc. Rồi hắn nói, giọng rất bình thản, như đang nói về thời tiết: “Vậy thì đêm nay ngươi ngủ chỗ khác. Ta sẽ ngủ chỗ ngươi.”\n\nTa quay sang nhìn hắn.\n\n“Vì sao?”\n\n“Vì ta không có gì để mất.” — Hắn nhìn vào đống lửa. — “Ngươi có.”\n\n👁️‍🗨️ 【Hệ thống】“Hảo cảm Hàn Lập +20.”",
+      "lua_chon": [
+        {
+          "chu": "Từ chối, không để hắn gánh thay",
+          "den": "c2_c16",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 10
+            },
+            "co_su_kien": [
+              "tu_choi_de_han_lap_ganh"
+            ]
+          }
+        },
+        {
+          "chu": "Nhận, và hứa sẽ trả",
+          "den": "c2_c16",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 20
+            },
+            "co_su_kien": [
+              "nhan_su_giup_cua_han_lap"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c16",
+      "hoi": "Thân",
+      "boi_canh": "Rìa thung lũng — nửa đêm",
+      "hinh_anh": {
+        "tags": [
+          "đêm",
+          "truy tìm",
+          "nguy hiểm"
+        ],
+        "anh": "bc_khe_nui_dem.jpg"
+      },
+      "ke": "Đêm ấy, có người tới.\n\nTa nghe tiếng bước chân rất khẽ — khẽ hơn cả tiếng gió, nhưng ta đã học được cách nghe sau bốn ngày ở đây.\n\nBa bóng người. Đi thẳng về phía chỗ ta ngủ.\n\nTa nằm im, mắt hé, tay đặt lên vật trong vạt áo.\n\nHọ dừng lại cách ta chừng năm bước. Một kẻ cúi xuống, chạm vào tấm chăn.\n\n“Không phải hắn.”\n\n“Vậy hắn đâu?”\n\n“Không biết. Nhưng con bé nói hắn ngủ ở đây.”\n\nIm lặng. Rồi kẻ thứ ba — giọng khàn hơn — nói: “Tìm. Hội còn ba ngày. Hắn không đi đâu được.”\n\nHọ đi. Ta nằm im rất lâu, tim đập đến mức ta sợ họ nghe thấy.\n\n*Hàn Lập đang ngủ ở chỗ ta.* Ta ngồi bật dậy.\n\n👁️‍🗨️ 【Hệ thống】“Nguy hiểm: ba kẻ lạ đang tìm ngươi.”",
+      "lua_chon": [
+        {
+          "chu": "Chạy đi tìm Hàn Lập",
+          "den": "c2_c17"
+        }
+      ]
+    },
+    {
+      "id": "c2_c17",
+      "hoi": "Thân",
+      "boi_canh": "Chỗ Hàn Lập ngủ — nửa đêm",
+      "hinh_anh": {
+        "tags": [
+          "khe núi",
+          "ẩn",
+          "đêm"
+        ],
+        "anh": "bc_khe_nui_chon.jpg"
+      },
+      "ke": "Ta tìm thấy Hàn Lập trước khi họ tìm thấy.\n\nHắn ngồi dậy ngay khi ta tới gần — không ngủ, hoặc ngủ rất nông.\n\n“Có người tới,” — ta nói.\n\n“Mấy kẻ?”\n\n“Ba.”\n\nHắn đứng dậy, không hỏi thêm. Động tác của hắn nhanh và gọn đến mức ta nhận ra: hắn đã từng bị truy đuổi trước đây. Nhiều lần.\n\n“Đi theo ta,” — hắn nói. — “Ta biết một chỗ.”\n\nChúng ta đi về phía đông thung lũng, men theo chân vách đá, tới một khe hở hẹp giữa hai tảng đá lớn. Hàn Lập lách vào trước. Ta theo sau.\n\nBên trong là một khoảng trống nhỏ, đủ cho hai người ngồi, khuất hẳn khỏi mọi ánh nhìn.\n\n“Sao ngươi biết chỗ này?”\n\n“Ta tìm ra hôm đầu tiên.” — Hắn ngồi xuống, lưng tựa vách đá. — “Kẻ phải chạy trốn thì luôn tìm đường lui trước.”\n\nTa ngồi xuống cạnh hắn. Bên ngoài, tiếng bước chân đi qua, rồi xa dần.\n\n👁️‍🗨️ 【Hệ thống】“An toàn tạm thời.”",
+      "lua_chon": [
+        {
+          "chu": "Ngồi im tới sáng",
+          "den": "c2_c18"
+        }
+      ]
+    },
+    {
+      "id": "c2_c18",
+      "hoi": "Thân",
+      "boi_canh": "Khe đá — gần sáng",
+      "hinh_anh": {
+        "tags": [
+          "khe đá",
+          "sáng",
+          "tâm sự"
+        ],
+        "anh": "bc_san_sau_anh_sang.jpg"
+      },
+      "ke": "Chúng ta ngồi im rất lâu. Bên ngoài, tiếng bước chân đã xa hẳn.\n\n“Hàn Lập.”\n\n“Ừ.”\n\n“Vì sao ngươi giúp ta?” — ta hỏi. — “Ngươi mới biết ta bốn ngày.”\n\nHắn im lâu đến mức ta tưởng hắn không trả lời.\n\n“Vì ngươi là người duy nhất ở đây không hỏi ta có gì.” — Hắn nói, giọng đều. — “Ở Thất Huyền Môn, ai cũng hỏi ta có gì. Ở đây, ai cũng hỏi ta có gì. Ngươi thì không.”\n\n“Ta cũng muốn biết ngươi có gì.”\n\n“Nhưng ngươi không hỏi.” — Hắn quay sang. — “Đó là khác biệt.”\n\nTa nhìn hắn trong ánh sáng mờ. Gương mặt gầy, gò má cao, đôi mắt sắc. Một kẻ mà cả đời chưa ai cho hắn một thứ gì mà không đòi lại.\n\n“Ta có một chuyện phải nói,” — ta nói.\n\n“Nói.”\n\n“Trong vạt áo ta có một thứ. Nó không phải đồ ta mua. Ta không hiểu hết nó là gì. Và ta chưa từng nói với ai.”\n\nHắn không đổi mặt. “Ta biết.”\n\n“Ngươi biết?”\n\n“Ta ngửi thấy.” — Hắn nhìn ta. — “Đêm đầu tiên, ở Mạc phủ. Ngươi có mùi lạ. Ta không hỏi vì ta cũng có mùi lạ.”\n\nTa bật cười. Lần đầu tiên trong bốn ngày.\n\n👁️‍🗨️ 【Hệ thống】“Hảo cảm Hàn Lập +25. Đạt: người tin cậy.”",
+      "lua_chon": [
+        {
+          "chu": "“Vậy thì cùng nhau ra khỏi đây.”",
+          "den": "c2_c19",
+          "hieu_ung": {
+            "hao_cam": {
+              "Hàn Lập": 25
+            },
+            "co_su_kien": [
+              "han_lap_biet_bi_mat"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2_c19",
+      "hoi": "Thân",
+      "boi_canh": "Thung lũng — sáng ngày thứ năm",
+      "hinh_anh": {
+        "tags": [
+          "sáng",
+          "kế hoạch",
+          "chợ"
+        ],
+        "anh": "bc_cho_02.jpg"
+      },
+      "ke": "Trời sáng. Chúng ta ra khỏi khe đá.\n\nBa kẻ ấy không tìm thấy chúng ta. Nhưng họ vẫn ở đây, và hội còn hai ngày.\n\n“Ta có một ý,” — Hàn Lập nói, khi chúng ta đang ăn mấy cái bánh khô mua ở quầy đầu chợ. — “Kẻ tìm ngươi là kẻ muốn thứ trong áo ngươi. Nhưng họ không biết mặt ngươi.”\n\n“Sao ngươi biết?”\n\n“Vì đêm qua họ chạm vào chăn và nói ‘không phải hắn’.” — Hắn nhìn ta. — “Họ chỉ biết ngươi ngủ ở đâu. Không biết ngươi là ai.”\n\nTa hiểu ra. “Vậy ta chỉ cần đổi chỗ ngủ.”\n\n“Không.” — Hắn lắc đầu. — “Ngươi cần làm cho họ tưởng ngươi đã đi.”\n\nTa nghĩ một lúc. Rồi ta nghĩ ra.\n\n“Ta cần một người rời khỏi hội,” — ta nói — “và đi về hướng bắc. Mang theo một cái túi.”\n\nHàn Lập nhìn ta. Rồi hắn cười — lần đầu tiên ta thấy hắn cười.\n\n“Ngươi bắt đầu nghĩ như người ở đây rồi đấy.”\n\n👁️‍🗨️ 【Hệ thống】“Kế hoạch: nghi binh.”",
+      "lua_chon": [
+        {
+          "chu": "Thực hiện kế hoạch",
+          "den": "c2_c20"
+        }
+      ]
+    },
+    {
+      "id": "c2_c20",
+      "hoi": "Thân",
+      "boi_canh": "Cổng bắc thung lũng — chiều ngày thứ năm",
+      "hinh_anh": {
+        "tags": [
+          "bà lão",
+          "chiều",
+          "hội tuyển"
+        ],
+        "anh": "bc_san_tap_ngay.jpg"
+      },
+      "ke": "Kế hoạch đơn giản đến mức ta tự hỏi vì sao mình không nghĩ ra sớm hơn.\n\nTa nhờ một gã lái buôn trẻ quen ở quầy đầu chợ — kẻ đã bán cho ta mấy cái bánh khô và nợ ta một ân tình nhỏ — nhận một cái túi vải nhồi rơm, rồi đi về hướng bắc, chậm rãi, như kẻ đang mang đồ quý.\n\nBa kẻ ấy đi theo hắn trong vòng nửa canh giờ.\n\nCòn ta và Hàn Lập đi về hướng nam, tới chỗ bà lão đo linh căn.\n\n“Ta tới để trả một món nợ,” — ta nói với bà.\n\n“Ngươi không nợ ta gì.”\n\n“Ta nợ bà một lời cảm ơn.” — Ta cúi đầu. — “Và ta muốn hỏi một chuyện.”\n\nBà lão nhìn ta.\n\n“Hỏi.”\n\n“Ta mới tu được bốn ngày. Ta không biết luật. Ta không biết phẩm cấp. Ta không biết ai là ai.” — Ta ngừng. — “Nếu ta muốn đi tiếp, ta phải tìm ai?”\n\nBà im rất lâu. Rồi bà nói, chậm rãi:\n\n“Mỗi năm một lần, các tông môn tới đây mở hội tuyển. Năm nay họ tới vào ngày cuối. Ai muốn thì lên đài.”\n\n“Lên rồi làm gì?”\n\n“Họ thử ngươi. Qua thì họ nhận.” — Bà nhìn ta. — “Không qua thì ngươi về, và không ai nhớ mặt ngươi.”\n\n👁️‍🗨️ 【Hệ thống】“Phát hiện: hội tuyển của các tông môn, ngày cuối.”",
+      "lua_chon": [
+        {
+          "chu": "Hỏi: khi nào?",
+          "den": "c2_c21"
+        }
+      ]
+    },
+    {
+      "id": "c2_c21",
+      "hoi": "Thân",
+      "boi_canh": "Dãy đông — chiều tối",
+      "hinh_anh": {
+        "tags": [
+          "đài",
+          "chiều",
+          "quyết định"
+        ],
+        "anh": "bc_san_tap_ngay.jpg"
+      },
+      "ke": "“Ngày mai.” — Bà lão đứng dậy. — “Ngày cuối của hội. Các tông môn dựng một cái đài ở giữa thung lũng.”\n\nTa quay sang Hàn Lập. Hắn đứng đó, im lặng, mắt nhìn về phía giữa thung lũng, nơi người ta đã bắt đầu khuân đá.\n\n“Ngươi định lên không?” — ta hỏi.\n\n“Ta định lên.” — Hắn nói, không do dự. — “Sư phụ ta đã chết vì chuyện này. Ta không thể về nhà tay không.”\n\n“Ngươi sợ không?”\n\n“Sợ.” — Hắn nhìn ta. — “Nhưng ta sợ việc trở về Thất Huyền Môn quét lá hơn.”\n\nTa nhìn cái đài đang mọc lên rất lâu.\n\n*Đây là nó.* Ta nhận ra, và cái nhận ra ấy làm chân ta run. *Đây là chỗ ta sẽ biết mình có phải là kẻ đứng ngoài hay không.*\n\n👁️‍🗨️ 【Hệ thống】“Sự kiện: hội tuyển ngày mai.”",
+      "lua_chon": [
+        {
+          "chu": "Chuẩn bị cho ngày mai",
+          "den": "c2_c22"
+        }
+      ]
+    },
+    {
+      "id": "c2_c22",
+      "hoi": "Thân",
+      "boi_canh": "Khe đá — đêm ngày thứ năm",
+      "hinh_anh": {
+        "tags": [
+          "đêm",
+          "khế ước",
+          "quyết tâm"
+        ],
+        "anh": "nv_tuyet_co_khe_uoc.jpg"
+      },
+      "ke": "Đêm cuối trước ngày tuyển, chúng ta ngồi trong khe đá.\n\nHàn Lập lấy cuốn sách mua được ra, đọc lại lần thứ mười. Ta ngồi đối diện, tay đặt lên vật trong vạt áo, cảm thấy nó ấm dần lên.\n\n“Ngày mai,” — cái thứ ấy nói trong đầu ta — “ngươi sẽ phải chọn.”\n\n“Chọn gì?”\n\n“Nếu ngươi qua, ngươi sẽ vào một tông môn. Và tông môn ấy sẽ có luật. Một trong những luật ấy có thể là: không được giấu thứ gì.”\n\nTa im.\n\n“Và ngươi đang giấu ta,” — nó nói tiếp, giọng không trách móc. — “Ngươi đang giấu một thứ mà cả cái hội này sẽ giết ngươi để có.”\n\n“Ta sẽ không bỏ ngươi.”\n\n“Ta biết.” — Nó ngừng. — “Nhưng ngươi phải biết cái giá.”\n\nTa nhìn xuống tay mình. Bốn ngày trước, bàn tay này còn bới đất trong vườn thuốc, còn run khi cầm bát nước ai cho. Giờ nó đã biết cầm kiếm, biết đếm linh thạch, biết giấu.\n\n“Vậy thì,” — ta nói — “ta sẽ phải mạnh hơn họ.”\n\n“Đó là câu trả lời đúng.” — Lần đầu tiên, ta nghe trong giọng nó có gì đó gần như dịu lại. — “Đó là câu trả lời đầu tiên ngươi nói mà ta tin.”\n\n👁️‍🗨️ 【Hệ thống】“Chuẩn bị xong. Ngày mai: hội tuyển.”",
+      "lua_chon": [
+        {
+          "chu": "Ngủ, chờ trời sáng",
+          "den": "c2_c23"
+        }
+      ]
+    },
+    {
+      "id": "c2_c23",
+      "hoi": "Thân",
+      "boi_canh": "Giữa thung lũng — sáng ngày thứ sáu",
+      "hinh_anh": {
+        "tags": [
+          "đài",
+          "đám đông",
+          "sáng"
+        ],
+        "anh": "bc_san_tap_ngay.jpg"
+      },
+      "ke": "Cái đài đá đã dựng xong từ đêm qua.\n\nNó không lớn — một khối đá vuông, cao chừng hai trượng, bốn mặt nhẵn bóng. Trên đỉnh đài có một cái lỗ nhỏ, và trong lỗ ấy cắm một thanh kiếm gỗ.\n\nĐứng trên đài là ba người: một ông lão áo trắng, một người đàn bà áo xanh, và một gã đàn ông trẻ áo đen. Cả ba đều không nói gì. Họ chỉ đứng đó, nhìn xuống đám đông.\n\nĐám đông dưới đài đông đến mức ta không thấy được mép.\n\n“Nghe đây,” — ông lão áo trắng nói, và giọng ông vang khắp thung lũng dù ông không nói to — “Ba tông môn chúng ta mở một lần mỗi năm. Các ngươi ai muốn thử thì lên. Nhưng ta nói trước: kẻ không có linh căn thì đừng phí thời gian.”\n\nMột tràng cười rộ khắp đám đông.\n\n“Và một điều nữa.” — Ông lão nhìn xuống. — “Kẻ qua được thì theo chúng ta đi ngay trong ngày. Không về nhà từ biệt. Không mang theo người thân. Chỉ mang theo chính mình.”\n\nTa thấy Hàn Lập bên cạnh ta khẽ động đậy.\n\n“Ngươi vẫn lên chứ?” — ta hỏi.\n\n“Ta lên.” — Hắn nhìn ta. — “Còn ngươi?”\n\n👁️‍🗨️ 【Hệ thống】“Lựa chọn cuối: lên đài, hoặc ở lại.”",
+      "lua_chon": [
+        {
+          "chu": "“Ta lên.”",
+          "den": "c2_c24a"
+        },
+        {
+          "chu": "“Ta lên. Nhưng không phải để họ chọn ta.”",
+          "den": "c2_c24b"
+        },
+        {
+          "chu": "“Ta không lên.”",
+          "den": "c2_c24c"
+        }
+      ]
+    },
+    {
+      "id": "c2_c24a",
+      "hoi": "Thân",
+      "boi_canh": "Chân đài — sáng",
+      "hinh_anh": {
+        "tags": [
+          "đài",
+          "ánh sáng",
+          "tuyển"
+        ],
+        "anh": "bc_dot_pha.jpg"
+      },
+      "ke": "Ta bước lên.\n\nBậc đá dưới chân ta nóng ran. Đám đông dưới kia im bặt khi ta bước qua hàng người cuối cùng — không phải vì kính trọng, mà vì tò mò. Một kẻ áo rách bước lên đài của ba tông môn.\n\nTrên đài, ba người nhìn ta.\n\n“Tên.”\n\n“Ta không có tên để cho các vị.”\n\nÔng lão áo trắng nhướng mày. “Vậy thì đặt tay lên kiếm.”\n\nTa đặt tay lên thanh kiếm gỗ.\n\nTrong một nhịp thở, không có gì xảy ra. Rồi thanh kiếm gỗ sáng lên — không phải ánh sáng trắng như viên đá của bà lão, mà là một thứ ánh sáng vàng nhạt, ấm, lan từ chuôi kiếm lên tới mũi.\n\nÔng lão áo trắng bước tới một bước.\n\n“Linh căn,” — ông nói, rất khẽ — “không có trong bảng.”\n\nNgười đàn bà áo xanh cũng bước tới. Bà ta nhìn thanh kiếm, rồi nhìn ta, và ta thấy trong mắt bà ta một thứ ta không ngờ: sợ.\n\n“Lão Trần,” — bà ta nói với ông lão — “cái này…”\n\n“Ta biết.” — Ông lão giơ tay, cắt ngang. Rồi ông quay sang ta. — “Ngươi tu hành bao lâu rồi?”\n\n“Bốn ngày.”\n\nÔng lão im rất lâu. Rồi ông nói, giọng đổi hẳn: “Ngươi đi theo ta.”\n\n👁️‍🗨️ 【Hệ thống】“Kết quả: qua tuyển. Tông môn: chưa rõ tên.”",
+      "lua_chon": [
+        {
+          "chu": "Bước xuống, theo ông lão",
+          "den": "c2_c25"
+        }
+      ]
+    },
+    {
+      "id": "c2_c24b",
+      "hoi": "Thân",
+      "boi_canh": "Chân đài — sáng",
+      "hinh_anh": {
+        "tags": [
+          "đài",
+          "ánh sáng",
+          "dám"
+        ],
+        "anh": "bc_dot_pha.jpg"
+      },
+      "ke": "“Ta lên. Nhưng không phải để họ chọn ta.”\n\nHàn Lập quay sang nhìn ta.\n\n“Vậy để làm gì?”\n\n“Để biết họ là ai.” — Ta nhìn ba người trên đài. — “Bốn ngày nay ta học được một chuyện: ở đây ai cũng muốn một cái gì đó từ ngươi. Ta muốn biết họ muốn gì trước khi ta đưa tay ra.”\n\nHàn Lập im một lúc. Rồi hắn gật đầu, chậm.\n\n“Được.”\n\nChúng ta cùng bước lên.\n\nTrên đài, ba người nhìn chúng ta — hai kẻ áo rách, đứng cạnh nhau, giữa một đám đông toàn người mặc áo đẹp.\n\n“Tên.”\n\n“Ta không có tên để cho các vị.”\n\nÔng lão áo trắng nhìn ta rất lâu. Rồi ông cười — không phải cười khinh, mà là cái cười của người vừa nghe một câu trả lời thú vị.\n\n“Vậy thì đặt tay lên kiếm.”\n\nTa đặt tay lên thanh kiếm gỗ.\n\nNó sáng lên — vàng nhạt, ấm, lan từ chuôi lên mũi.\n\nÔng lão bước tới. Người đàn bà áo xanh bước tới. Gã áo đen cũng bước tới.\n\nBa người, cùng một lúc, cùng một vẻ mặt.\n\n“Ngươi,” — ông lão nói — “đi theo ta.”\n\n“Không.” — Ta rút tay khỏi kiếm. — “Trước tiên, các vị nói cho ta biết các vị muốn gì.”\n\nĐám đông dưới kia nín thở.\n\nÔng lão nhìn ta rất lâu. Rồi ông cười to — một tiếng cười thật, vang khắp thung lũng.\n\n“Được,” — ông nói. — “Ngươi là kẻ đầu tiên trong bốn mươi năm dám nói câu ấy với ta. Ngươi đi theo ta, và ta sẽ nói.”\n\n👁️‍🗨️ 【Hệ thống】“Kết quả: qua tuyển. Điều kiện: được biết lý do.”",
+      "lua_chon": [
+        {
+          "chu": "Bước xuống, theo ông lão",
+          "den": "c2_c25"
+        }
+      ]
+    },
+    {
+      "id": "c2_c24c",
+      "hoi": "Thân",
+      "boi_canh": "Chân đài — sáng",
+      "hinh_anh": {
+        "tags": [
+          "đài",
+          "đám đông",
+          "ở lại"
+        ],
+        "anh": "bc_san_tap_ngay.jpg"
+      },
+      "ke": "“Ta không lên.”\n\nHàn Lập nhìn ta, và trong mắt hắn không có vẻ gì trách móc. Chỉ có một câu hỏi.\n\n“Vì sao?”\n\n“Vì họ nói rõ rồi.” — Ta nhìn cái đài. — “Qua thì đi ngay trong ngày. Không về nhà từ biệt. Không mang theo ai.”\n\nTa đặt tay lên vạt áo, nơi có một thứ mà không tông môn nào được biết.\n\n“Ta còn một việc phải làm trước.”\n\nHàn Lập im rất lâu. Rồi hắn gật đầu.\n\n“Ta hiểu.”\n\n“Ngươi vẫn lên chứ?”\n\n“Ta lên.” — Hắn nhìn cái đài. — “Ta không có gì phải giữ lại.”\n\nHắn bước về phía đài. Ta đứng dưới chân đài, giữa đám đông, và nhìn hắn đi.\n\n👁️‍🗨️ 【Hệ thống】“Ngươi chọn ở lại. Hàn Lập chọn đi.”",
+      "lua_chon": [
+        {
+          "chu": "Đứng nhìn hắn lên đài",
+          "den": "c2_c24c2"
+        }
+      ]
+    },
+    {
+      "id": "c2_c24c2",
+      "hoi": "Thân",
+      "boi_canh": "Chân đài — sáng",
+      "hinh_anh": {
+        "tags": [
+          "Hàn Lập",
+          "trao",
+          "sáng"
+        ],
+        "anh": "nv_han_lap_that.jpg"
+      },
+      "ke": "Hàn Lập đặt tay lên thanh kiếm gỗ.\n\nThanh kiếm sáng lên — một vệt xanh lục mỏng, yếu, run rẩy. Không đẹp. Nhưng nó sáng.\n\nÔng lão áo trắng nhìn một lúc, rồi gật đầu. “Thuỷ linh căn. Tạp. Nhưng qua.”\n\nHàn Lập bước xuống khỏi đài, và đi về phía ta.\n\n“Ngươi qua rồi,” — ta nói.\n\n“Ừ.” — Hắn đứng trước mặt ta. — “Và ta sẽ đi trong hôm nay.”\n\nTa gật đầu. Cổ họng ta nghẹn lại, và ta không hiểu vì sao.\n\n“Đây.” — Hắn đưa cho ta mảnh ngọc trắng đục của Mạc Đại Phu. — “Ta không mang theo được. Họ nói chỉ mang chính mình.”\n\n“Đây là di vật của sư phụ ngươi.”\n\n“Ta biết.” — Hắn nhét nó vào tay ta. — “Nên ta trao cho người duy nhất ta tin.”\n\n👁️‍🗨️ 【Hệ thống】“Nhận: mảnh ngọc của Mạc Đại Phu.”",
+      "lua_chon": [
+        {
+          "chu": "Nhận, và hứa sẽ tìm hắn",
+          "den": "c2_c25b"
+        }
+      ]
+    },
+    {
+      "id": "c2_c25b",
+      "hoi": "Thân",
+      "boi_canh": "Rìa thung lũng — chiều ngày thứ sáu",
+      "hinh_anh": {
+        "tags": [
+          "chiều",
+          "thung lũng",
+          "chia tay"
+        ],
+        "anh": "bc_binh_minh.jpg"
+      },
+      "ke": "Hội kết thúc vào chiều hôm ấy.\n\nNgười ta dọn lều, cuộn vải, gánh hàng đi. Đèn lồng tắt dần từng cái. Đến khi mặt trời lặn, thung lũng chỉ còn là một bãi đất trống, và những vệt linh khí vẫn bay lơ lửng như chưa từng có gì xảy ra.\n\nHàn Lập đi cùng đoàn người của ông lão áo trắng. Hắn không ngoái lại — ta biết hắn cố không ngoái lại.\n\nTa đứng một mình ở rìa thung lũng, tay cầm mảnh ngọc trắng đục.\n\n*Hắn đi trước. Ta đi sau.* Ta nhìn theo đoàn người đã khuất sau khúc núi. *Nhưng ta sẽ đi.*\n\n👁️‍🗨️ 【Hệ thống】“Chương 2 — hoàn thành. Hành trình tiếp tục một mình.”",
+      "lua_chon": [
+        {
+          "chu": "Nhìn lại thung lũng lần cuối",
+          "den": "c2_c26"
+        }
+      ]
+    },
+    {
+      "id": "c2_c25",
+      "hoi": "Thân",
+      "boi_canh": "Rìa thung lũng — chiều ngày thứ sáu",
+      "hinh_anh": {
+        "tags": [
+          "chiều",
+          "thung lũng",
+          "kết"
+        ],
+        "anh": "bc_binh_minh.jpg"
+      },
+      "ke": "Hội kết thúc vào chiều hôm ấy.\n\nNgười ta dọn lều, cuộn vải, gánh hàng đi. Đèn lồng tắt dần từng cái. Đến khi mặt trời lặn, thung lũng chỉ còn là một bãi đất trống, và những vệt linh khí vẫn bay lơ lửng như chưa từng có gì xảy ra.\n\nTa đứng ở rìa thung lũng, túi áo nhẹ hơn lúc tới. Trong túi chỉ còn ba thứ: một mảnh giấy ghi tên một tông môn, một viên linh thạch hạ phẩm, và thứ ta vẫn giấu.\n\nHàn Lập đứng cạnh ta. Hắn cũng qua. Hắn cũng có một mảnh giấy.\n\n“Vậy là xong,” — hắn nói.\n\n“Xong cái gì?”\n\n“Sáu ngày trước ta là tạp dịch.” — Hắn nhìn mảnh giấy trong tay. — “Giờ ta là đệ tử của một tông môn.”\n\n“Ngươi có thấy khác không?”\n\nHắn nghĩ rất lâu.\n\n“Không.” — Hắn cất mảnh giấy đi. — “Ta vẫn thấy mình là tạp dịch. Chỉ là bây giờ ta có một mảnh giấy nói khác.”\n\nTa bật cười.\n\n👁️‍🗨️ 【Hệ thống】“Chương 2 — hoàn thành. Ngươi đã có tên trong một tông môn.”",
+      "lua_chon": [
+        {
+          "chu": "Nhìn lại thung lũng lần cuối",
+          "den": "c2_c26"
+        }
+      ]
+    },
+    {
+      "id": "c2_c26",
+      "hoi": "Kết",
+      "boi_canh": "Thung lũng — hoàng hôn",
+      "hinh_anh": {
+        "tags": [
+          "hoàng hôn",
+          "thung lũng",
+          "kết chương"
+        ],
+        "anh": "bc_binh_minh.jpg"
+      },
+      "ke": "Ta nhìn lại thung lũng lần cuối.\n\nSáu ngày trước, ta bước vào đây với một túi bạc và một bí mật. Sáu ngày sau, ta bước ra với một viên linh thạch, một mảnh giấy, và một sự thật.\n\nSự thật ấy là: ta đã tu hành suốt bấy lâu mà không biết mình đang làm gì. Không biết mình ở tầng nào trong bảng phẩm cấp. Không biết có bao nhiêu kẻ mạnh hơn mình. Không biết cái giá của một viên đá xanh.\n\nGiờ ta biết. Và biết rồi thì không thể không biết nữa.\n\n“Ngươi đang nghĩ gì?” — cái thứ trong vạt áo ta hỏi.\n\n“Ta đang nghĩ,” — ta nói — “rằng ta đã tiêu cả đời để học cách sống trong một cái chợ. Và hôm nay ta mới biết cái chợ ấy chỉ là một góc của thế giới.”\n\nNó im một lúc. Rồi nó nói, giọng khẽ:\n\n“Đó là bài học đầu tiên của người tu hành. Và ngươi học nó nhanh hơn ta tưởng.”\n\nPhía trước, Hàn Lập đã đi được một quãng. Hắn không ngoái lại, nhưng bước chân hắn chậm hơn mọi khi — chậm đủ để ta theo kịp.\n\nTa bước theo.\n\n👁️‍🗨️ 【Hệ thống】“Chương hai khép lại. Con đường tu tiên — bắt đầu.”\n\n*Chương sau: Chương 3.*",
+      "lua_chon": [
+        {
+          "chu": "Khép lại Chương 2",
+          "den": "__ket_thuc__"
+        }
+      ]
+    }
+  ],
+  "ket": {
+    "boi_canh": "Chương 2 — hết",
+    "ke": "Tiểu hội Thái Nam Sơn Cốc khép lại. Thung lũng trống, đèn lồng tắt hết, chỉ còn những vệt linh khí bay lơ lửng như chưa từng có gì xảy ra.\n\nTa bước ra khỏi đó với một viên linh thạch trong túi và một mảnh giấy ghi tên một tông môn. Sáu ngày trước ta còn là kẻ ăn mày ngủ ở góc chợ Thất Huyền trấn.\n\nCon đường phía trước không còn là con đường của phàm nhân nữa.\n\n*Chương sau: Chương 3.*",
+    "hinh_anh": {
+      "tags": [
+        "hoàng hôn",
+        "thung lũng",
+        "kết chương"
+      ],
+      "anh": "bc_binh_minh.jpg"
+    },
+    "chuong_sau": 3
+  }
+}

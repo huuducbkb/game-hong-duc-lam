@@ -124,24 +124,43 @@ check("bấm khép chương lần 1", call(o7, "/api/chon", {"chi_so": 0}).get("
 check("bấm lần 2 (chạm đúp) không sập",
       call(o7, "/api/chon", {"chi_so": 0}).get("doan_id"), "__ket_thuc__")
 check("bấm lần 3 vẫn ổn", call(o7, "/api/chon", {"chi_so": 0}).get("ket_thuc"), True)
-# Chuyển chương: màn kết phải có lối ra, nhưng chương 2 chưa có thì phải khoá
+# Chuyển chương: màn kết phải có lối ra, và chương 2 nay đã có dữ liệu thật
 kq_ket = call(o7, "/api/chon", {"chi_so": 0})
 check("màn kết chỉ sang chương 2", kq_ket.get("chuong_sau"), 2)
-check("chương 2 chưa có dữ liệu → nút mờ", kq_ket.get("chuong_sau_mo"), False)
+check("chương 2 đã có dữ liệu → nút mở", kq_ket.get("chuong_sau_mo"), True)
 check("màn kết không còn là ngõ cụt im lặng: có chuong_sau",
       "chuong_sau" in kq_ket, True)
-check("chưa hết chương thì /api/sang_chuong từ chối",
-      call(o7, "/api/sang_chuong", {}).get("_http"), 400)
-check("sang chương 2 khi chưa có dữ liệu → 400",
-      call(o7, "/api/sang_chuong", {"chuong": 2}).get("loi"), "Chương 2 chưa mở")
 check("sang chương sai kiểu → 400",
       call(o7, "/api/sang_chuong", {"chuong": "hai"}).get("_http"), 400)
+check("sang chương 9 (chưa viết) → 400",
+      call(o7, "/api/sang_chuong", {"chuong": 9}).get("loi"), "Chương 9 chưa mở")
 check("bị từ chối thì vẫn ở chương 1",
       call(o7, "/api/state")["trang_thai"]["chuong"], 1)
 
+# Lùi ở màn kết: phải về đoạn cuối chương 1, không phải nhảy sang chương 2
 check("lùi ở màn kết → về đoạn cuối", call(o7, "/api/lui", {}).get("doan_id"), "c1_d17")
 check("lùi tiếp → về đoạn kế trước", call(o7, "/api/lui", {}).get("doan_id"), "c1_d16")
+check("lùi xong vẫn ở chương 1",
+      call(o7, "/api/state")["trang_thai"]["chuong"], 1)
+check("chưa hết chương thì /api/sang_chuong từ chối",
+      call(o7, "/api/sang_chuong", {}).get("_http"), 400)
 check("máy chủ vẫn sống sau tất cả", call(o7, "/api/state").get("co_phien"), True)
+
+# Đi trọn đường sang chương 2 thật
+o7b = mk()
+call(o7b, "/api/new", {"ten": "R2b", "nhom": "tan_tu"})
+for _ in range(40):
+    # `ket_thuc` có thể là cờ dữ liệu của đoạn cuối; màn kết thật là __ket_thuc__
+    if call(o7b, "/api/chon", {"chi_so": 0}).get("doan_id") == "__ket_thuc__":
+        break
+r = call(o7b, "/api/sang_chuong", {})
+check("sang chương 2 thật → đúng đoạn mở đầu tán tu", r.get("doan_id"), "c2_d01")
+check("sang chương 2 → báo tên chương mới",
+      any("Thái Nam" in t for t in (r.get("thong_bao") or [])), True)
+check("sang chương 2 → giữ nguyên cảnh giới đã luyện",
+      call(o7b, "/api/state")["trang_thai"]["chuong"], 2)
+check("chương 2 chơi tiếp được",
+      call(o7b, "/api/chon", {"chi_so": 0}).get("doan_id"), "c2_d02")
 
 print("\n=== I. Nhánh môn phái: cơ duyên + tu luyện ===")
 o8 = mk()

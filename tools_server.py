@@ -605,6 +605,13 @@ MP = _ilu.module_from_spec(_mp_spec)
 _mp_spec.loader.exec_module(MP)
 ASSETS.extend(MP.assets(STYLE_MAU))
 
+# Chương 2: bốn cảnh còn thiếu (hết hạn mức vẽ ảnh nên đang mượn ảnh chương 1).
+_c2_spec = _ilu.spec_from_file_location(
+    "xuong_chuong2", os.path.join(ROOT, "tools", "xuong_chuong2.py"))
+C2 = _ilu.module_from_spec(_c2_spec)
+_c2_spec.loader.exec_module(C2)
+ASSETS.extend(C2.assets(STYLE_MAU))
+
 # Ảnh truyện/nhân vật dùng bản tô màu điểm (彩墨) thay cho mực đen thuần.
 for _a in ASSETS:
     if _a["key"] in MAU_KEYS and _a["prompt"].startswith(STYLE):
@@ -821,6 +828,8 @@ XUONG_PHAN = [
      "mota": "Chợ sớm, miếu hoang, hộp kiếm, kiếm linh, trấn cháy, Hàn Lập."},
     {"ma": "c1-mon-phai", "icon": "⛩️", "ten": "Chương 1 · Nhánh Môn phái",
      "mota": "Tân xá đêm, ngọc cốt, Tuyết Cơ."},
+    {"ma": "c2", "icon": "🏮", "ten": "Chương 2 · Thái Nam Sơn Cốc",
+     "mota": "Bốn cảnh còn thiếu — đang mượn ảnh chương 1."},
 ]
 
 # Nhóm cảnh theo thứ tự truyện. `keys` = ảnh của nhóm; `mau` = ảnh mẫu cần
@@ -873,7 +882,7 @@ NHOM_CANH = [
     {"ma": "d-ket", "phan": "c1-tan-tu", "ten": "Kết chương — bình minh",
      "mota": "Bình minh đầu tiên rọi lên vai áo rách.",
      "keys": ["bc_binh_minh"], "mau": []},
-] + MP.NHOM_CANH
+] + MP.NHOM_CANH + C2.NHOM_CANH
 
 # key -> mã nhóm cảnh (suy từ NHOM_CANH)
 NHOM_CANH_CUA = {k: n["ma"] for n in NHOM_CANH for k in n["keys"]}
@@ -895,7 +904,7 @@ def nhom_canh(ma: str) -> dict:
 
 def so_hien_thi() -> dict:
     """key -> nhãn số hiển thị, đánh số tuần tự trong từng phần (C.x, D.x, P.x)."""
-    tien_to = {"chung": "C", "c1-tan-tu": "D", "c1-mon-phai": "P"}
+    tien_to = {"chung": "C", "c1-tan-tu": "D", "c1-mon-phai": "P", "c2": "H"}
     dem, kq = {}, {}
     for n in NHOM_CANH:
         for k in n["keys"]:

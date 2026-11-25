@@ -283,17 +283,8 @@ const doan_truoc = o.doan_hien_tai;
   // ---------------------------------------------- N. Chuyển chương
   console.log("\n=== N. Chuyển chương 1 → 2 ===");
 
-  // Chương 2 giả, đủ tối thiểu để kiểm cơ chế (không phải nội dung thật).
-  const ch2 = {
-    chuong: 2,
-    ten: "Huyết Sát Thí Luyện",
-    doan_dau_theo_nhom: { tan_tu: "c2_d01", mon_phai: "c2_p01" },
-    doan: [
-      { id: "c2_d01", boi_canh: "Cửa vào", ke: "Mở đầu tán tu.", lua_chon: [] },
-      { id: "c2_p01", boi_canh: "Cửa vào", ke: "Mở đầu môn phái.", lua_chon: [] },
-    ],
-    ket: { boi_canh: "Chương 2 — hết", ke: "Hết chương hai.", chuong_sau: 3 },
-  };
+  // Chương 2 THẬT, đọc từ đĩa — không còn chương giả.
+  const ch2 = JSON.parse(fs.readFileSync(path.join(GOC, "chuong2.json"), "utf8"));
 
   // Tới màn kết chương 1 bằng đường thật
   const o9 = mk("Chuyen", "tan_tu");
@@ -307,12 +298,8 @@ const doan_truoc = o.doan_hien_tai;
   check("tới được màn kết chương 1", r9.ket_thuc, true);
   check("màn kết không có lựa chọn nào (ngõ cụt cũ)", r9.lua_chon.length, 0);
   check("màn kết chỉ sang chương 2", r9.chuong_sau, 2);
-  check("chương 2 chưa nạp → nút mờ", r9.chuong_sau_mo, false);
-  check("chưa nạp chương 2 thì sang_chuong báo lỗi",
-        Engine.sang_chuong(o9).loi, "Chương 2 chưa mở");
-  check("báo lỗi KHÔNG đổi chương", o9.chuong, 1);
 
-  // Nạp chương 2 rồi mới sang được
+  // Nạp chương 2 thật rồi sang
   Engine.napChuong(2, JSON.parse(JSON.stringify(ch2)));
   check("nạp chương 2 → nút mở", Engine.goi_y_hien_tai(o9).chuong_sau_mo, true);
 
@@ -335,7 +322,7 @@ const doan_truoc = o.doan_hien_tai;
   check("GIỮ túi đồ", o9.tui_do.length, tuiTruoc);
   check("GIỮ kỹ năng", o9.ky_nang.length, kyNangTruoc);
   check("có thông báo tên chương mới",
-        r10.thong_bao[0].includes("Huyết Sát Thí Luyện"), true);
+        r10.thong_bao[0].includes("Thái Nam"), true);
   check("ghi nhật ký chuyển chương",
         o9.nhat_ky[o9.nhat_ky.length - 1].viec, "Sang chương 2");
   check("chơi tiếp được ở chương 2", Engine.goi_y_hien_tai(o9).chuong, 2);
@@ -353,6 +340,69 @@ const doan_truoc = o.doan_hien_tai;
   for (let i = 0; i < 40; i++) if (Engine.chon(o11, 0).doan_id === "__ket_thuc__") break;
   check("lời kết chương 1 lấy từ chuong1.json",
         Engine.goi_y_hien_tai(o11).ke.startsWith("Chương một khép lại"), true);
+
+  // ---------------------------------------------- N2. Nội dung chương 2 thật
+  console.log("\n=== N2. Nội dung chương 2 (Thái Nam Sơn Cốc) ===");
+
+  check("chương 2 nạp được, không lỗi kết cấu",
+        Engine.kiem_chuong(ch2).length, 0);
+  check("tên chương đúng canon", ch2.ten, "Tiểu hội Thái Nam Sơn Cốc");
+  check("có đủ hai lối vào theo nhóm",
+        !!(ch2.doan_dau_theo_nhom.tan_tu && ch2.doan_dau_theo_nhom.mon_phai), true);
+  check("mã đoạn theo quy ước c2_",
+        ch2.doan.every(d => d.id.startsWith("c2_")), true);
+  check("mọi đoạn đều có ảnh",
+        ch2.doan.every(d => d.hinh_anh && d.hinh_anh.anh), true);
+  check("mọi đoạn đều có chữ kể",
+        ch2.doan.every(d => (d.ke || "").length >= 300), true);
+  check("không nhắc chương sai canon cũ",
+        JSON.stringify(ch2).includes("Huyết Sát"), false);
+
+  // Mọi đoạn đều tới được màn kết, không nhánh cụt
+  const theoId = {};
+  for (const d of ch2.doan) theoId[d.id] = d;
+  function toiKet(id, tham) {
+    if (id === "__ket_thuc__") return true;
+    if (tham.has(id) || !theoId[id]) return false;
+    tham.add(id);
+    const lcs = theoId[id].lua_chon || [];
+    return lcs.length > 0 && lcs.some(l => toiKet(l.den, tham));
+  }
+  const cut = ch2.doan.filter(d => !toiKet(d.id, new Set())).map(d => d.id);
+  check("không có đoạn cụt", cut, []);
+
+  // Ảnh phải có thật trên đĩa
+  const ANH = path.join(GOC, "..", "..", "assets", "scene");
+  const thieu = [...new Set(ch2.doan.map(d => d.hinh_anh.anh))]
+    .filter(f => !fs.existsSync(path.join(ANH, f)));
+  check("mọi ảnh dùng trong chương 2 đều tồn tại", thieu, []);
+
+  // Chơi thật 200 lượt mỗi nhóm, đi ngẫu nhiên, phải luôn tới kết
+  for (const nhom of ["tan_tu", "mon_phai"]) {
+    let hong = null;
+    for (let lan = 0; lan < 200 && !hong; lan++) {
+      const st = mk("C2", nhom);
+      st.chuong = 2;
+      st.doan_hien_tai = null;
+      st.ket_thuc = false;
+      let xong = false;
+      for (let buoc = 0; buoc < 120; buoc++) {
+        const kq = Engine.goi_y_hien_tai(st);
+        if (kq.ket_thuc) { xong = true; break; }
+        const mo = kq.lua_chon.map((l, i) => [l, i]).filter(([l]) => !l.khoa);
+        if (!mo.length) { hong = `ngõ cụt ở ${kq.doan_id}`; break; }
+        const chon = mo[Math.floor(Math.random() * mo.length)][1];
+        const r = Engine.chon(st, chon);
+        if (r.loi) { hong = `lỗi chọn ở ${kq.doan_id}: ${r.loi}`; break; }
+      }
+      if (!xong && !hong) hong = "không tới được màn kết";
+    }
+    check(`nhóm ${nhom}: 200 lượt chơi đều tới kết, không ngõ cụt`, hong, null);
+  }
+
+  // Cảnh báo bạc: chương 2 phải có chỗ dạy người chơi bạc vô dụng
+  check("có đoạn nói rõ bạc không dùng được ở chợ tu sĩ",
+        ch2.doan.some(d => d.ke.includes("Bạc thì về chợ Gia Nguyên")), true);
 
   console.log("\n=== O. Bắt lỗi dữ liệu chương ===");
   check("đích trỏ vào đoạn không có → báo lỗi",
