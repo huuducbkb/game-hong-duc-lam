@@ -131,11 +131,8 @@ người chơi chen vào thí luyện tranh cơ duyên.
 
 ### Việc còn nợ của chương 1 (nên trả trước khi làm chương 2)
 
-- [ ] **`AGENTS.md` mục "NÉT VẼ: line-art" đã SAI** — prompt đã về thủy mặc ở commit
-      `14a108a`, nhưng tài liệu vẫn mô tả `NET_LIEN` / `STYLE_UI` / `NET_NGUOI` là bắt
-      buộc. Ba hằng số đó **đã xoá khỏi mã**; ai đọc tài liệu rồi làm theo sẽ tái phạm.
-      Cần viết lại mục này cho khớp thủy mặc.
-- [ ] **66 ảnh chương 1 vẽ bằng prompt cũ** (loang 0.20–0.31) — chưa vẽ lại.
+- [x] ~~`AGENTS.md` mục "NÉT VẼ" đã SAI~~ — đã viết lại theo thủy mặc (2026-11-17).
+- [ ] **60/66 ảnh chương 1 vẽ bằng prompt cũ** (trung vị loang 0.279) — chưa vẽ lại.
 - [ ] **Thiếu tiếng 2 ảnh**: `vt_kiem_hap_nhan.jpg`, `vt_ngoc_cot.jpg`.
 - [ ] **Chưa có cơ chế chuyển chương 1 → 2** (xem mục trên).
 
