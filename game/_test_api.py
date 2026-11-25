@@ -162,6 +162,17 @@ check("sang chương 2 → giữ nguyên cảnh giới đã luyện",
 check("chương 2 chơi tiếp được",
       call(o7b, "/api/chon", {"chi_so": 0}).get("doan_id"), "c2_d02")
 
+# Lời kết và đoạn dùng chung hiện cho cả hai nhánh — lộ giọng riêng là hỏng.
+import json as _json, re as _re
+_ch2 = _json.load(open("game/chapters/chuong2.json", encoding="utf-8"))
+_lo = ["ăn mày", "túi bạc", "tạp dịch"]
+_chung = [d for d in _ch2["doan"] if d["id"].startswith("c2_c")]
+_vet = [f'{d["id"]}:{t}' for d in _chung
+        for t in _lo if t in _re.sub(r"“[^”]*”", "", d["ke"])]
+check("đoạn dùng chung không lộ giọng riêng của nhánh", _vet, [])
+check("lời kết chương 2 không lộ giọng riêng của nhánh",
+      [t for t in _lo if t in _ch2["ket"]["ke"]], [])
+
 print("\n=== I. Nhánh môn phái: cơ duyên + tu luyện ===")
 o8 = mk()
 r = call(o8, "/api/new", {"ten": "MP", "nhom": "mon_phai"})

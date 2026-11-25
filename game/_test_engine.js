@@ -427,6 +427,22 @@ const doan_truoc = o.doan_hien_tai;
   catch (e) { nem = true; }
   check("nạp chương hỏng thì ném lỗi, không im lặng", nem, true);
 
+  // Lời kết và đoạn dùng chung hiện cho cả hai nhánh — lộ giọng riêng là hỏng.
+  const ch2kt = JSON.parse(fs.readFileSync(path.join(GOC, "chuong2.json"), "utf8"));
+  const loNhanh = ["ăn mày", "túi bạc", "tạp dịch"];
+  const chung = ch2kt.doan.filter((d) => /^c2_c/.test(d.id));
+  // Bỏ lời thoại trong ngoặc kép: nhân vật nói về thân phận mình là chuyện khác
+  // với người kể gán thân phận cho người chơi.
+  const loiKe = (d) => d.ke.replace(/“[^”]*”/g, "");
+  const vet = chung.flatMap((d) => loNhanh.filter((t) => loiKe(d).includes(t))
+                                  .map((t) => `${d.id}:${t}`));
+  check("đoạn dùng chung không lộ giọng riêng của nhánh", vet, []);
+  check("lời kết chương 2 không lộ giọng riêng của nhánh",
+        loNhanh.filter((t) => (ch2kt.ket?.ke || "").includes(t)), []);
+  check("lời kết không lặp câu chuyển chương đã có ở đoạn cuối",
+        (ch2kt.ket?.ke || "").includes("Chương sau") &&
+        (chung.at(-1)?.ke || "").includes("Chương sau"), false);
+
   console.log(`\n${"=".repeat(46)}\nKẾT QUẢ: ${ok} đạt, ${fail} hỏng`);
   process.exit(fail ? 1 : 0);
 })();
