@@ -66,6 +66,10 @@
   }
 
   function napChuong(so, o) {
+    const loi = kiem_chuong(o);
+    if (loi.length) {
+      throw new Error(`chuong${so}.json hỏng: ` + loi.slice(0, 5).join("; "));
+    }
     o._theo_id = {};
     for (const d of o.doan) o._theo_id[d.id] = d;
     _chuong[so] = o;
@@ -99,7 +103,16 @@
     return "tan_tu";
   }
 
-  function doan_dau_cua(nhom) {
+  function doan_dau_cua(nhom, so_chuong) {
+    if (so_chuong !== undefined && so_chuong !== null) {
+      let bang = {};
+      try {
+        bang = load_chuong(so_chuong).doan_dau_theo_nhom || {};
+      } catch (e) {
+        bang = {};
+      }
+      if (nhom in bang) return bang[nhom];
+    }
     for (const n of load_xuat_than().nhom) {
       if (n.ma === nhom) return n.doan_dau;
     }
@@ -172,13 +185,49 @@
     return _chuong[so];
   }
 
+  // Chương đã nạp trong trình duyệt chưa (bản Pages nạp lười chương 2 trở đi).
+  function co_chuong(so) {
+    return !!_chuong[so];
+  }
+
+  function kiem_chuong(data) {
+    const loi = [];
+    const ids = (data.doan || []).map((d) => d.id);
+    const co = new Set(ids);
+    const trung = [...new Set(ids.filter((i, k) => ids.indexOf(i) !== k))];
+    if (trung.length) loi.push(`mã đoạn trùng: ${trung.join(", ")}`);
+    for (const d of data.doan || []) {
+      for (const lc of d.lua_chon || []) {
+        if (lc.den !== "__ket_thuc__" && !co.has(lc.den)) {
+          loi.push(`${d.id} → '${lc.den}' không có đoạn này`);
+        }
+      }
+    }
+    for (const [nhom, did] of Object.entries(data.doan_dau_theo_nhom || {})) {
+      if (!co.has(did)) loi.push(`doan_dau_theo_nhom[${nhom}] → '${did}' không có đoạn này`);
+    }
+    return loi;
+  }
+
   function _doan(state) {
     const ch = load_chuong(state.chuong);
     let did = state.doan_hien_tai;
     if (did === null || did === undefined) {
-      did = doan_dau_cua(state.nhom_xuat_than || "tan_tu") || ch.doan[0].id;
-      if (!ch._theo_id[did]) did = ch.doan[0].id;
+      const nhom = state.nhom_xuat_than || "tan_tu";
+      did = doan_dau_cua(nhom, state.chuong) || ch.doan[0].id;
+      if (!ch._theo_id[did]) {
+        // Đoán bừa sẽ ném người chơi về đoạn 1 mà không ai biết vì sao.
+        throw new Error(
+          `Chương ${state.chuong} không có đoạn mở đầu '${did}' cho nhóm '${nhom}' ` +
+          `— kiểm doan_dau_theo_nhom trong chuong${state.chuong}.json`
+        );
+      }
       state.doan_hien_tai = did;
+    }
+    if (!ch._theo_id[did]) {
+      throw new Error(
+        `Chương ${state.chuong} không có đoạn '${did}' — bản lưu trỏ tới đoạn không tồn tại`
+      );
     }
     return ch._theo_id[did];
   }
@@ -346,24 +395,44 @@
   }
 
   function _man_ket_chuong(state) {
+    // Lời kết nằm trong chính file chương (`ket`), không viết cứng ở đây — nếu không,
+    // sang chương 2 sẽ vẫn hiện lời kết của chương 1.
+    const ch = load_chuong(state.chuong);
+    const ket = ch.ket || {};
+    const sau = ket.chuong_sau || state.chuong + 1;
     return {
       doan_id: "__ket_thuc__",
       hoi: "Kết",
-      boi_canh: "Chương 1 — hết",
+      boi_canh: ket.boi_canh || `Chương ${state.chuong} — hết`,
       chuong: state.chuong,
-      ten_chuong: load_chuong(state.chuong).ten,
-      ke:
-        "Chương một khép lại. Dã Lang Bang rút lui, Thất Huyền Môn còn đứng đó, " +
-        "dẫu tan hoang.\n\nTa đứng giữa buổi bình minh, biết rằng con đường phía trước " +
-        "còn dài hơn cả những gì ta tưởng.\n\n*Chương sau: Huyết Sát Thí Luyện.*",
-      hinh_anh: { tags: ["bình minh", "kết chương", "núi"] },
+      ten_chuong: ch.ten,
+      ke: ket.ke || `Chương ${state.chuong} khép lại.`,
+      hinh_anh: ket.hinh_anh || null,
       video: null,
       lua_chon: [],
       cho_phep_tu_do: false,
       ket_thuc: true,
+      chuong_sau: sau,
+      chuong_sau_mo: co_chuong(sau),
       thong_bao: [],
       trang_thai: _trang_thai_gon(state),
     };
+  }
+
+  function sang_chuong(state, so) {
+    // Mang nguyên nhân vật sang chương sau: chỉ đổi `chuong` + `doan_hien_tai`.
+    // Cảnh giới, bạc, túi đồ, hảo cảm, cờ sự kiện giữ nguyên.
+    if (so === undefined || so === null) {
+      so = (load_chuong(state.chuong).ket || {}).chuong_sau || state.chuong + 1;
+    }
+    if (!co_chuong(so)) return { loi: `Chương ${so} chưa mở` };
+    state.chuong = so;
+    state.doan_hien_tai = null;
+    state.ket_thuc = false;
+    _ghi_nhat_ky(state, `Sang chương ${so}`);
+    const kq = _goi_y(state);
+    kq.thong_bao = [`— Chương ${so}: ${load_chuong(so).ten} —`];
+    return kq;
   }
 
   function _goi_y(state) {
@@ -595,7 +664,8 @@
     napXuatThan, napChuong,
     load_xuat_than, ds_xuat_than, nhan_dien_xuat_than, doan_dau_cua, chi_so_dau_cua,
     trang_thai_moi, load_chuong,
-    bat_dau, goi_y_hien_tai, chon, hanh_dong_tu_do,
+    bat_dau, goi_y_hien_tai, chon, sang_chuong, hanh_dong_tu_do,
+    co_chuong, kiem_chuong,
     luu, nap, ds_luu, xoa_luu, tom_tat,
     _khong_dau, _trang_thai_gon, _boi_canh,
   };

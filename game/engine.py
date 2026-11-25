@@ -93,7 +93,19 @@ def nhan_dien_xuat_than(xuat_than: str) -> str:
     return "tan_tu"
 
 
-def doan_dau_cua(nhom: str) -> str | None:
+def doan_dau_cua(nhom: str, so_chuong: int | None = None) -> str | None:
+    """Đoạn mở đầu của một nhóm xuất thân, ưu tiên bảng khai trong chính chương.
+
+    Chương khai `doan_dau_theo_nhom` thì dùng bảng đó; không khai (chương cũ) thì
+    lùi về `doan_dau` trong xuat_than.json.
+    """
+    if so_chuong is not None:
+        try:
+            bang = load_chuong(so_chuong).get("doan_dau_theo_nhom") or {}
+        except FileNotFoundError:
+            bang = {}
+        if nhom in bang:
+            return bang[nhom]
     for n in load_xuat_than()["nhom"]:
         if n["ma"] == nhom:
             return n.get("doan_dau")
@@ -175,25 +187,67 @@ def trang_thai_moi(ten_nhan_vat: str, xuat_than: str = "", nhom: str = "") -> di
 _cache: dict[int, dict] = {}
 
 
+def kiem_chuong(data: dict) -> list[str]:
+    """Liệt kê lỗi dữ liệu của một chương: mã đoạn trùng, đích trỏ vào hư không.
+
+    Chạy ngay sau khi nạp để một chữ gõ sai báo lỗi rõ ràng, thay vì âm thầm
+    đặt `ket_thuc` và cắt ngang chương giữa đường.
+    """
+    loi: list[str] = []
+    ids = [d.get("id") for d in data.get("doan") or []]
+    trung = {i for i in ids if ids.count(i) > 1}
+    if trung:
+        loi.append(f"mã đoạn trùng: {sorted(trung)}")
+    co = set(ids)
+    for d in data.get("doan") or []:
+        for lc in d.get("lua_chon") or []:
+            den = lc.get("den")
+            if den != "__ket_thuc__" and den not in co:
+                loi.append(f"{d.get('id')} → '{den}' không có đoạn này")
+    for nhom, did in (data.get("doan_dau_theo_nhom") or {}).items():
+        if did not in co:
+            loi.append(f"doan_dau_theo_nhom[{nhom}] → '{did}' không có đoạn này")
+    return loi
+
+
 def load_chuong(so: int) -> dict:
     if so in _cache:
         return _cache[so]
     path = os.path.join(CHAPTERS_DIR, f"chuong{so}.json")
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
+    loi = kiem_chuong(data)
+    if loi:
+        raise ValueError(f"chuong{so}.json hỏng: " + "; ".join(loi[:5]))
     data["_theo_id"] = {d["id"]: d for d in data["doan"]}
     _cache[so] = data
     return data
+
+
+def co_chuong(so: int) -> bool:
+    """Chương đã có file dữ liệu chưa (dùng để khoá nút chuyển chương)."""
+    return os.path.exists(os.path.join(CHAPTERS_DIR, f"chuong{so}.json"))
 
 
 def _doan(state: dict) -> dict:
     ch = load_chuong(state["chuong"])
     did = state["doan_hien_tai"]
     if did is None:
-        did = doan_dau_cua(state.get("nhom_xuat_than") or "tan_tu") or ch["doan"][0]["id"]
+        nhom = state.get("nhom_xuat_than") or "tan_tu"
+        did = (doan_dau_cua(nhom, state["chuong"])
+               or next(iter(ch["doan"]))["id"])
         if did not in ch["_theo_id"]:
-            did = ch["doan"][0]["id"]
+            # Đoán bừa sẽ ném người chơi về đoạn 1 mà không ai biết vì sao.
+            raise KeyError(
+                f"Chương {state['chuong']} không có đoạn mở đầu '{did}' "
+                f"cho nhóm '{nhom}' — kiểm doan_dau_theo_nhom trong chuong{state['chuong']}.json"
+            )
         state["doan_hien_tai"] = did
+    if did not in ch["_theo_id"]:
+        raise KeyError(
+            f"Chương {state['chuong']} không có đoạn '{did}' — "
+            f"bản lưu trỏ tới đoạn không tồn tại"
+        )
     return ch["_theo_id"][did]
 
 
@@ -361,26 +415,50 @@ def _ke_theo_hao_cam(d: dict, state: dict) -> str:
 
 
 def _man_ket_chuong(state: dict) -> dict:
-    """Màn hình khi đã khép chương (thay vì tra đoạn không tồn tại)."""
+    """Màn hình khi đã khép chương (thay vì tra đoạn không tồn tại).
+
+    Lời kết nằm trong chính file chương (`ket`), không viết cứng ở đây — nếu không,
+    sang chương 2 sẽ vẫn hiện lời kết của chương 1.
+    """
+    ch = load_chuong(state["chuong"])
+    ket = ch.get("ket") or {}
+    sau = ket.get("chuong_sau") or state["chuong"] + 1
     return {
         "doan_id": "__ket_thuc__",
         "hoi": "Kết",
-        "boi_canh": "Chương 1 — hết",
+        "boi_canh": ket.get("boi_canh") or f"Chương {state['chuong']} — hết",
         "chuong": state["chuong"],
-        "ten_chuong": load_chuong(state["chuong"])["ten"],
-        "ke": (
-            "Chương một khép lại. Dã Lang Bang rút lui, Thất Huyền Môn còn đứng đó, "
-            "dẫu tan hoang.\n\nTa đứng giữa buổi bình minh, biết rằng con đường phía trước "
-            "còn dài hơn cả những gì ta tưởng.\n\n*Chương sau: Huyết Sát Thí Luyện.*"
-        ),
-        "hinh_anh": {"tags": ["bình minh", "kết chương", "núi"]},
+        "ten_chuong": ch["ten"],
+        "ke": ket.get("ke") or f"Chương {state['chuong']} khép lại.",
+        "hinh_anh": ket.get("hinh_anh"),
         "video": None,
         "lua_chon": [],
         "cho_phep_tu_do": False,
         "ket_thuc": True,
+        "chuong_sau": sau,
+        "chuong_sau_mo": co_chuong(sau),
         "thong_bao": [],
         "trang_thai": _trang_thai_gon(state),
     }
+
+
+def sang_chuong(state: dict, so: int | None = None) -> dict:
+    """Mang nguyên nhân vật sang chương sau, đứng ở đoạn mở đầu của nhóm mình.
+
+    Chỉ đổi `chuong` + `doan_hien_tai`; cảnh giới, bạc, túi đồ, hảo cảm, cờ sự kiện
+    giữ nguyên. `da_qua` cũng giữ nguyên vì mã đoạn có tiền tố chương nên không đụng nhau.
+    """
+    so = so if so is not None else (load_chuong(state["chuong"]).get("ket") or {}).get(
+        "chuong_sau", state["chuong"] + 1)
+    if not co_chuong(so):
+        return {"loi": f"Chương {so} chưa mở"}
+    state["chuong"] = so
+    state["doan_hien_tai"] = None
+    state["ket_thuc"] = False
+    _ghi_nhat_ky(state, f"Sang chương {so}")
+    kq = _goi_y(state)
+    kq["thong_bao"] = [f"— Chương {so}: {load_chuong(so)['ten']} —"]
+    return kq
 
 
 def _goi_y(state: dict) -> dict:

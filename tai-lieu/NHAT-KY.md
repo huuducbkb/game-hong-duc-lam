@@ -861,3 +861,46 @@ vì `game_server.py` phục vụ từ **gốc repo** chứ không phải từ `g
   số, đã bỏ). Muốn mỗi xuất thân có chỉ số riêng thì phải sửa **dữ liệu + engine** —
   người dùng đã dặn không đụng, nên **chưa làm**.
 - `docs/nhap/` là thư mục tạm để người dùng xem ảnh; **xoá được** khi không cần.
+
+---
+
+## Nút chuyển chương 1 → 2 (phương án A + C) — 17/11
+
+Người dùng chọn **A + C**: sang chương giữ nguyên nhân vật, và nút hiện mờ cho tới khi có
+`chuong2.json`. Đã làm xong cả hai bản (Python + JS) và kiểm trên trình duyệt thật.
+
+**Đã sửa:**
+
+- `game/engine.py` + `docs/game/engine.js`: thêm `sang_chuong()`, `co_chuong()`,
+  `kiem_chuong()`; màn kết đọc khối `ket` từ file chương thay vì viết cứng; `napChuong`
+  (JS) ném lỗi khi dữ liệu hỏng thay vì im lặng.
+- `game/chapters/chuong1.json` + bản sao `docs/game/du-lieu/chuong1.json`: thêm
+  `doan_dau_theo_nhom` và khối `ket`.
+- `game_server.py`: thêm `POST /api/sang_chuong`, chặn khi chưa hết chương, chặn số chương
+  sai kiểu.
+- `game/play.html` + `docs/game/play.html`: nút `#nutSangChuong` ở màn kết, dùng lại
+  `lc.khoa`/`b.disabled`. Bản JS tự dò `chuong2.json`, `chuong3.json` lúc tải.
+- Test: `game/_test_engine.js` **151 đạt** (thêm mục N chuyển chương, O bắt lỗi dữ liệu);
+  `game/_test_api.py` **171 đạt**.
+
+**Bài học / bẫy gặp phải:**
+
+- **Lỗi tự tìm ra:** gọi `/api/sang_chuong` thất bại vẫn đẩy ảnh chụp vào ngăn lùi → bấm
+  "Lùi" bị kẹt ở màn kết cũ. Sửa: kiểm `co_chuong(dich)` **trước** `_luu_lich_su()`. Test
+  cũ bắt được lỗi này (2 phép kiểm lùi hỏng) — đừng bỏ test lùi.
+- **Bẫy test:** đoạn `c1_d17`/`c1_p19` tự khai `ket_thuc: true` nhưng vẫn có một lựa chọn
+  dẫn tới `__ket_thuc__`. Vòng lặp test dừng theo `ket_thuc` sẽ dừng **sớm**, chưa tới màn
+  kết thật → phải dừng theo `doan_id === "__ket_thuc__"`.
+- **Bẫy môi trường:** máy này **không có** Python Playwright và **không có** Pillow, nhưng
+  **có** Playwright bản Node ở `node_modules/playwright` + `/usr/bin/chromium`. Dùng Node,
+  chụp thẳng `type: 'jpeg'` để khỏi cần nén.
+- Muốn kiểm nút ở trạng thái mở: `Engine.napChuong(2, {...})` trong trang, dữ liệu giả phải
+  có **đủ mọi đoạn** mà `doan_dau_theo_nhom` trỏ tới, không thì bị `kiem_chuong` chặn — đúng
+  như thiết kế.
+- Gọi thẳng `hienThi()` bỏ qua màn tạo nhân vật thì biến `st` của trang vẫn `null` và lớp
+  `#bia`/`#phimIntro` còn che. Muốn kiểm thật phải bấm đúng luồng: `#ten` → `#go` → bấm
+  `#choices button` 18 lần.
+
+**Báo cáo cho người dùng:** `docs/nhap/ket-qua-a-c.html` + 3 ảnh JPEG
+(`a-c-man-ket.jpg`, `a-c-nut-sang.jpg`, `a-c-sang-chuong-2.jpg`). Đo 320/390/768: không
+tràn ngang, ảnh tải đủ.

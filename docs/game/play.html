@@ -2158,7 +2158,45 @@ function hienThi(kq) {
     nav.appendChild(b);
   });
   $("#freebar").style.display = (kq.cho_phep_tu_do && coAI) ? "flex" : "none";
+  capNhatNutSangChuong(kq);
   capNhatTrangThai(kq.trang_thai);
+}
+
+// Nút "Sang chương N" chỉ hiện ở màn kết. Chương sau chưa có dữ liệu thì để mờ,
+// kèm lý do — thà thấy nút mờ còn hơn bấm vào rồi mới biết chưa có gì.
+function capNhatNutSangChuong(kq) {
+  const nav = $("#choices");
+  if (!nav) return;
+  const so = kq && kq.ket_thuc ? kq.chuong_sau : null;
+  if (!so) return;
+  const mo = !!kq.chuong_sau_mo;
+  const b = document.createElement("button");
+  b.className = "choice sang-chuong";
+  b.id = "nutSangChuong";
+  b.disabled = !mo;
+  b.innerHTML = mo
+    ? '<span class="idx">→</span> Sang chương ' + so
+    : '<span class="idx">·</span> Chương ' + so + ' — chưa mở' +
+      '<small style="color:var(--ink-faint)"> (đang viết)</small>';
+  if (mo) b.onclick = () => { if (dangCho) return; keTieng("bam"); sangChuong(); };
+  nav.appendChild(b);
+}
+
+async function sangChuong() {
+  if (dangCho || !st) return;
+  dangCho = true;
+  try {
+    if (keAI && coAI) baoDangKe();
+    chupLichSu();
+    const kq = await Engine.sang_chuong(st);
+    if (kq.loi) { hienThi(kq); return; }
+    luuPhien();
+    const kq2 = await keBangAI(kq);
+    await giuSangDo();
+    hienThi(kq2);
+  } finally {
+    dangCho = false;
+  }
 }
 
 function capNhatTrangThai(tt) {
@@ -2501,6 +2539,13 @@ async function luuKey() {
     ]);
     Engine.napXuatThan(xt);
     Engine.napChuong(1, ch1);
+    // Chương sau (nếu đã có file) — thiếu file là bình thường, nút sẽ hiện mờ.
+    for (const so of [2, 3]) {
+      try {
+        const r = await fetch("du-lieu/chuong" + so + ".json");
+        if (r.ok) Engine.napChuong(so, await r.json());
+      } catch (e) { /* chưa có chương này */ }
+    }
   } catch (e) {
     $("#setupLoi").textContent = "Không nạp được dữ liệu truyện. Tải lại trang giúp ta.";
     return;

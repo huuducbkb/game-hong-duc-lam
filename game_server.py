@@ -216,6 +216,24 @@ class Handler(BaseHTTPRequestHandler):
                 self._luu_lich_su()
             kq = E.chon(st, data.get("chi_so", -1))
             return self._json(_ke_ai(kq, data.get("ke_ai", True)))
+        if path == "/api/sang_chuong":
+            if not st.get("ket_thuc"):
+                return self._json({"loi": "Chưa hết chương hiện tại"}, 400)
+            so = data.get("chuong")
+            if so is not None and not isinstance(so, int):
+                return self._json({"loi": "Số chương không hợp lệ"}, 400)
+            dich = so if so is not None else (
+                (E.load_chuong(st["chuong"]).get("ket") or {}).get("chuong_sau")
+                or st["chuong"] + 1)
+            # Kiểm trước khi chụp lịch sử: chuyển hỏng mà vẫn đẩy ảnh chụp thì
+            # nút lùi bị nhiễu, bấm lùi chỉ thấy đúng màn kết cũ.
+            if not E.co_chuong(dich):
+                return self._json({"loi": f"Chương {dich} chưa mở"}, 400)
+            self._luu_lich_su()
+            kq = E.sang_chuong(st, dich)
+            if kq.get("loi"):
+                return self._json(kq, 400)
+            return self._json(_ke_ai(kq, data.get("ke_ai", True)))
         if path == "/api/tu_do":
             if not st.get("ket_thuc"):
                 self._luu_lich_su()

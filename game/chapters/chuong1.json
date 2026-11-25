@@ -2,6 +2,10 @@
   "chuong": 1,
   "ten": "Đại chiến Dã Lang Bang",
   "tom_tat": "Người chơi xuyên không tới Thất Huyền trấn ngay trước khi Dã Lang Bang tập kích Thất Huyền Môn. Trong hỗn loạn, lần đầu chạm mặt Hàn Lập — khi đó còn là một tạp dịch đệ tử gầy gò, ít nói.",
+  "doan_dau_theo_nhom": {
+    "tan_tu": "c1_d01",
+    "mon_phai": "c1_p01"
+  },
   "doan": [
     {
       "id": "c1_d01",
@@ -1769,5 +1773,17 @@
       ],
       "ket_thuc": true
     }
-  ]
+  ],
+  "ket": {
+    "boi_canh": "Chương 1 — hết",
+    "ke": "Chương một khép lại. Dã Lang Bang rút lui, Thất Huyền Môn còn đứng đó, dẫu tan hoang.\n\nTa đứng giữa buổi bình minh, biết rằng con đường phía trước còn dài hơn cả những gì ta tưởng.\n\n*Chương sau: Huyết Sát Thí Luyện.*",
+    "hinh_anh": {
+      "tags": [
+        "bình minh",
+        "kết chương",
+        "núi"
+      ]
+    },
+    "chuong_sau": 2
+  }
 }

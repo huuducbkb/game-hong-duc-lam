@@ -2110,7 +2110,48 @@ function hienThi(kq) {
     nav.appendChild(b);
   });
   $("#freebar").style.display = (kq.cho_phep_tu_do && coAI) ? "flex" : "none";
+  capNhatNutSangChuong(kq);
   capNhatTrangThai(kq.trang_thai);
+}
+
+// Nút "Sang chương N" chỉ hiện ở màn kết. Chương sau chưa có dữ liệu thì để mờ,
+// kèm lý do — thà thấy nút mờ còn hơn bấm vào rồi mới biết chưa có gì.
+function capNhatNutSangChuong(kq) {
+  const nav = $("#choices");
+  if (!nav) return;
+  const so = kq && kq.ket_thuc ? kq.chuong_sau : null;
+  if (!so) return;
+  const mo = !!kq.chuong_sau_mo;
+  const b = document.createElement("button");
+  b.className = "choice sang-chuong";
+  b.id = "nutSangChuong";
+  b.disabled = !mo;
+  b.innerHTML = mo
+    ? '<span class="idx">→</span> Sang chương ' + so
+    : '<span class="idx">·</span> Chương ' + so + ' — chưa mở' +
+      '<small style="color:var(--ink-faint)"> (đang viết)</small>';
+  if (mo) b.onclick = () => { if (dangCho) return; keTieng("bam"); sangChuong(); };
+  nav.appendChild(b);
+}
+
+async function sangChuong() {
+  if (dangCho || !st) return;
+  dangCho = true;
+  try {
+    if (keAI && coAI) baoDangKe();
+    const r = await fetch("/api/sang_chuong", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ke_ai: coAI }),
+    });
+    const kq = await r.json();
+    if (kq.loi) { hienThi(kq); return; }
+    await giuSangDo();
+    hienThi(kq);
+    soBuocLui++; capNhatNutLui();
+  } finally {
+    dangCho = false;
+  }
 }
 
 function capNhatTrangThai(tt) {

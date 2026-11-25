@@ -280,6 +280,103 @@ const doan_truoc = o.doan_hien_tai;
   check("chọn sai → lỗi", Engine.chon(o, 99).loi !== undefined, true);
   check("chọn âm → lỗi", Engine.chon(o, -1).loi !== undefined, true);
 
+  // ---------------------------------------------- N. Chuyển chương
+  console.log("\n=== N. Chuyển chương 1 → 2 ===");
+
+  // Chương 2 giả, đủ tối thiểu để kiểm cơ chế (không phải nội dung thật).
+  const ch2 = {
+    chuong: 2,
+    ten: "Huyết Sát Thí Luyện",
+    doan_dau_theo_nhom: { tan_tu: "c2_d01", mon_phai: "c2_p01" },
+    doan: [
+      { id: "c2_d01", boi_canh: "Cửa vào", ke: "Mở đầu tán tu.", lua_chon: [] },
+      { id: "c2_p01", boi_canh: "Cửa vào", ke: "Mở đầu môn phái.", lua_chon: [] },
+    ],
+    ket: { boi_canh: "Chương 2 — hết", ke: "Hết chương hai.", chuong_sau: 3 },
+  };
+
+  // Tới màn kết chương 1 bằng đường thật
+  const o9 = mk("Chuyen", "tan_tu");
+  Engine.bat_dau(o9);
+  let r9 = null;
+  for (let i = 0; i < 40; i++) {
+    r9 = Engine.chon(o9, 0);
+    // d17/p19 tu khai ket_thuc:true — phai di qua no moi toi man ket that
+    if (r9.doan_id === "__ket_thuc__") break;
+  }
+  check("tới được màn kết chương 1", r9.ket_thuc, true);
+  check("màn kết không có lựa chọn nào (ngõ cụt cũ)", r9.lua_chon.length, 0);
+  check("màn kết chỉ sang chương 2", r9.chuong_sau, 2);
+  check("chương 2 chưa nạp → nút mờ", r9.chuong_sau_mo, false);
+  check("chưa nạp chương 2 thì sang_chuong báo lỗi",
+        Engine.sang_chuong(o9).loi, "Chương 2 chưa mở");
+  check("báo lỗi KHÔNG đổi chương", o9.chuong, 1);
+
+  // Nạp chương 2 rồi mới sang được
+  Engine.napChuong(2, JSON.parse(JSON.stringify(ch2)));
+  check("nạp chương 2 → nút mở", Engine.goi_y_hien_tai(o9).chuong_sau_mo, true);
+
+  // Ghi lại vài thứ để chắc chuyển chương không làm mất nhân vật
+  o9.bac = 77;
+  o9.canh_gioi = "Luyện Khí tầng 4";
+  o9.co_su_kien = ["gap_han_lap"];
+  o9.npc = { "Hàn Lập": { hao_cam: 35, thai_do: "quen biết" } };
+  const tuiTruoc = o9.tui_do.length;
+  const kyNangTruoc = o9.ky_nang.length;
+
+  const r10 = Engine.sang_chuong(o9);
+  check("sang được chương 2", o9.chuong, 2);
+  check("đứng ở đoạn mở đầu của nhóm tán tu", r10.doan_id, "c2_d01");
+  check("hết trạng thái kết thúc", o9.ket_thuc, false);
+  check("GIỮ bạc", o9.bac, 77);
+  check("GIỮ cảnh giới", o9.canh_gioi, "Luyện Khí tầng 4");
+  check("GIỮ cờ sự kiện", o9.co_su_kien, ["gap_han_lap"]);
+  check("GIỮ hảo cảm NPC", o9.npc["Hàn Lập"].hao_cam, 35);
+  check("GIỮ túi đồ", o9.tui_do.length, tuiTruoc);
+  check("GIỮ kỹ năng", o9.ky_nang.length, kyNangTruoc);
+  check("có thông báo tên chương mới",
+        r10.thong_bao[0].includes("Huyết Sát Thí Luyện"), true);
+  check("ghi nhật ký chuyển chương",
+        o9.nhat_ky[o9.nhat_ky.length - 1].viec, "Sang chương 2");
+  check("chơi tiếp được ở chương 2", Engine.goi_y_hien_tai(o9).chuong, 2);
+
+  // Môn phái phải vào đúng nhánh của mình, không rơi về đoạn đầu tiên
+  const o10 = mk("Phai", "mon_phai");
+  Engine.bat_dau(o10);
+  for (let i = 0; i < 40; i++) if (Engine.chon(o10, 0).doan_id === "__ket_thuc__") break;
+  Engine.sang_chuong(o10);
+  check("nhóm môn phái vào đúng đoạn mở chương 2", o10.doan_hien_tai, "c2_p01");
+
+  // Lời kết đọc từ dữ liệu chương, không viết cứng
+  const o11 = mk("Ket", "tan_tu");
+  Engine.bat_dau(o11);
+  for (let i = 0; i < 40; i++) if (Engine.chon(o11, 0).doan_id === "__ket_thuc__") break;
+  check("lời kết chương 1 lấy từ chuong1.json",
+        Engine.goi_y_hien_tai(o11).ke.startsWith("Chương một khép lại"), true);
+
+  console.log("\n=== O. Bắt lỗi dữ liệu chương ===");
+  check("đích trỏ vào đoạn không có → báo lỗi",
+        Engine.kiem_chuong({
+          doan: [{ id: "x1", lua_chon: [{ chu: "đi", den: "x2" }] }],
+        }).length, 1);
+  check("thông báo lỗi nêu đúng mã sai",
+        Engine.kiem_chuong({
+          doan: [{ id: "x1", lua_chon: [{ chu: "đi", den: "x2" }] }],
+        })[0].includes("x2"), true);
+  check("mã đoạn trùng → báo lỗi",
+        Engine.kiem_chuong({ doan: [{ id: "x1" }, { id: "x1" }] })[0].includes("trùng"), true);
+  check("đoạn mở đầu trỏ sai → báo lỗi",
+        Engine.kiem_chuong({
+          doan: [{ id: "x1" }], doan_dau_theo_nhom: { tan_tu: "x9" },
+        })[0].includes("x9"), true);
+  check("chương 1 thật không có lỗi",
+        Engine.kiem_chuong(
+          JSON.parse(fs.readFileSync(path.join(GOC, "chuong1.json"), "utf8"))).length, 0);
+  let nem = false;
+  try { Engine.napChuong(9, { doan: [{ id: "a", lua_chon: [{ chu: "x", den: "b" }] }] }); }
+  catch (e) { nem = true; }
+  check("nạp chương hỏng thì ném lỗi, không im lặng", nem, true);
+
   console.log(`\n${"=".repeat(46)}\nKẾT QUẢ: ${ok} đạt, ${fail} hỏng`);
   process.exit(fail ? 1 : 0);
 })();

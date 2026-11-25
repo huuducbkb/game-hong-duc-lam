@@ -124,6 +124,21 @@ check("bấm khép chương lần 1", call(o7, "/api/chon", {"chi_so": 0}).get("
 check("bấm lần 2 (chạm đúp) không sập",
       call(o7, "/api/chon", {"chi_so": 0}).get("doan_id"), "__ket_thuc__")
 check("bấm lần 3 vẫn ổn", call(o7, "/api/chon", {"chi_so": 0}).get("ket_thuc"), True)
+# Chuyển chương: màn kết phải có lối ra, nhưng chương 2 chưa có thì phải khoá
+kq_ket = call(o7, "/api/chon", {"chi_so": 0})
+check("màn kết chỉ sang chương 2", kq_ket.get("chuong_sau"), 2)
+check("chương 2 chưa có dữ liệu → nút mờ", kq_ket.get("chuong_sau_mo"), False)
+check("màn kết không còn là ngõ cụt im lặng: có chuong_sau",
+      "chuong_sau" in kq_ket, True)
+check("chưa hết chương thì /api/sang_chuong từ chối",
+      call(o7, "/api/sang_chuong", {}).get("_http"), 400)
+check("sang chương 2 khi chưa có dữ liệu → 400",
+      call(o7, "/api/sang_chuong", {"chuong": 2}).get("loi"), "Chương 2 chưa mở")
+check("sang chương sai kiểu → 400",
+      call(o7, "/api/sang_chuong", {"chuong": "hai"}).get("_http"), 400)
+check("bị từ chối thì vẫn ở chương 1",
+      call(o7, "/api/state")["trang_thai"]["chuong"], 1)
+
 check("lùi ở màn kết → về đoạn cuối", call(o7, "/api/lui", {}).get("doan_id"), "c1_d17")
 check("lùi tiếp → về đoạn kế trước", call(o7, "/api/lui", {}).get("doan_id"), "c1_d16")
 check("máy chủ vẫn sống sau tất cả", call(o7, "/api/state").get("co_phien"), True)
