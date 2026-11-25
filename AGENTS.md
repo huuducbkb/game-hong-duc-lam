@@ -1414,3 +1414,34 @@ thêm mục tiếng, kiểm `anh` trỏ đúng file của chính cảnh đó.
 được 24/66 đoạn. Muốn kiểm nhánh môn phái phải chọn xuất thân `mon_phai` ở
 màn tạo nhân vật (`.xt-the[data-ma=mon_phai]`), không thì không bao giờ tới
 `c1_p16b`. Đừng kết luận "nút hỏng" khi thực ra đi sai cây.
+
+### Deploy Pages hỏng: đừng "chạy lại job", phải dispatch lượt mới
+
+Đã gặp hai lần liên tiếp với cùng một commit. Triệu chứng: `actions/deploy-pages@v4`
+báo `No artifacts named "github-pages" were found` dù bước upload ngay trước đó
+**thành công** và đã đẩy 80 MB.
+
+Nguyên nhân thật là lỗi tạm thời của API GitHub (bước deploy hỏi danh sách artifact
+và nhận 0). Nếu chạy lại job (`rerun-failed-jobs`) thì **hỏng kiểu khác**:
+`Multiple artifacts named "github-pages" were unexpectedly found. Artifact count is 2`
+— vì lượt chạy lại sinh thêm artifact thứ hai cùng tên trong cùng một run, và
+`deploy-pages` không biết chọn cái nào. Chạy lại lần nữa cũng không cứu được run đó.
+
+Cách sửa đúng — tạo **lượt chạy mới hoàn toàn**, không dính artifact cũ:
+
+```bash
+curl -s -X POST -H "Authorization: Bearer $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  https://api.github.com/repos/huuducbkb/game-hong-duc-lam/actions/workflows/pages.yml/dispatches \
+  -d '{"ref":"main"}'
+```
+
+Rồi kiểm bằng dữ liệu thật, đừng tin "push xong là xong":
+
+```bash
+curl -s "https://huuducbkb.github.io/game-hong-duc-lam/game/du-lieu/chuong2.json?v=$(date +%s)" | ...
+```
+
+Bài học: **push thành công ≠ web đã cập nhật.** Pages có CDN `max-age=600`, nên bản
+cũ vẫn trả về bình thường trong 10 phút. Luôn kiểm `workflow_runs` xem lượt deploy
+của đúng commit đó có `conclusion: success` không, trước khi kết luận là đã lên mạng.
