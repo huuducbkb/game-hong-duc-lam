@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gợi ý cơ chế chuyển chương 1 → 2</title>
+<style>
+  :root{--giay:#f4ecd8;--muc:#241c14;--son:#8a3a20}
+  *{box-sizing:border-box}
+  body{margin:0;background:#14100b;color:var(--muc);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       line-height:1.62;-webkit-text-size-adjust:100%}
+  .khung{max-width:720px;margin:0 auto;padding:20px 16px 64px}
+  .to{background:var(--giay);border-radius:14px;padding:22px 18px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  h1{font-size:23px;line-height:1.3;margin:0 0 6px;color:var(--son)}
+  .phu{font-size:13px;color:#6b5b48;margin:0 0 18px}
+  h2{font-size:17px;margin:26px 0 10px;color:var(--son);
+     border-bottom:1px solid rgba(138,58,32,.25);padding-bottom:5px}
+  h3{font-size:15px;margin:20px 0 8px;color:#5a3a22}
+  p{font-size:15px;margin:10px 0}
+  .hop{background:rgba(138,58,32,.07);border-left:3px solid var(--son);
+       border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .hop b{color:var(--son)}
+  .canh{background:rgba(63,125,78,.10);border-left:3px solid #3f7d4e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .canh b{color:#2f6340}
+  .nguy{background:rgba(150,40,30,.09);border-left:3px solid #96281e;
+        border-radius:0 8px 8px 0;padding:11px 13px;margin:14px 0;font-size:14px}
+  .nguy b{color:#96281e}
+  ul,ol{font-size:15px;padding-left:20px;margin:10px 0}
+  li{margin:8px 0}
+  code{background:rgba(36,28,20,.09);padding:1px 5px;border-radius:4px;
+       font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  pre{background:rgba(36,28,20,.08);border-radius:8px;padding:12px;
+      white-space:pre-wrap;overflow-wrap:anywhere;font-size:12.5px;line-height:1.5;
+      font-family:ui-monospace,Menlo,monospace;margin:12px 0}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0;
+        table-layout:fixed}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid rgba(36,28,20,.14);
+        vertical-align:top;overflow-wrap:anywhere;word-break:break-word}
+  td code,th code{overflow-wrap:anywhere;word-break:break-all;white-space:normal}
+  th{font-size:12px;color:#6b5b48;text-transform:uppercase;letter-spacing:.5px}
+  .so{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+  .nut{display:block;text-align:center;background:var(--son);color:#fdf9ef;
+       text-decoration:none;padding:14px;border-radius:10px;font-weight:600;
+       font-size:16px;margin-top:10px}
+  .chon{display:inline-block;background:var(--son);color:#fdf9ef;font-size:11px;
+        padding:2px 8px;border-radius:20px;vertical-align:2px;margin-left:6px}
+  .bl{background:rgba(36,28,20,.06);border-radius:8px;padding:10px 12px;margin:12px 0;
+      font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="khung">
+  <div class="to">
+    <h1>Gợi ý cơ chế chuyển chương 1 → 2</h1>
+    <p class="phu">Ba cách, chi phí khác nhau. Đọc mục 4 để chọn.</p>
+
+    <h2>1. Hiện trạng — em kiểm trong mã, không đoán</h2>
+    <p>Chương 1 đã có sẵn một chỗ "cắm" rất tiện: <b>hai đoạn kết đã trỏ tới
+       <code>__ket_thuc__</code></b> — một mã không phải đoạn thật. Em đếm được đúng 2 chỗ
+       dùng mã này, cả hai đều là đoạn kết:</p>
+    <table>
+      <tr><th>Đoạn</th><th>Nhánh</th><th>Lựa chọn</th></tr>
+      <tr><td><code>c1_d17</code></td><td>tán tu</td><td>“Khép lại Chương 1” → <code>__ket_thuc__</code></td></tr>
+      <tr><td><code>c1_p19</code></td><td>môn phái</td><td>“Khép lại Chương 1” → <code>__ket_thuc__</code></td></tr>
+    </table>
+    <div class="canh">
+      <b>Tin tốt:</b> nút bấm đã có, chữ đã có, dữ liệu đã có. Không phải thiết kế lại
+      giao diện. Chỉ thiếu phần <b>đổi chương</b> phía sau nút đó.
+    </div>
+
+    <h2>2. Điều kiện tiên quyết — chưa ai nhắc tới</h2>
+    <div class="nguy">
+      <b>Có HAI engine, và bản anh đang chơi trên điện thoại là bản JS.</b>
+      <table>
+        <tr><th>Bản</th><th>Engine</th><th>Dữ liệu</th><th>Ai dùng</th></tr>
+        <tr><td><code>game/play.html</code></td><td><code>engine.py</code><br>qua <code>/api/chon</code></td><td><code>game/chapters/</code></td><td>khi chạy server trên máy</td></tr>
+        <tr><td><code>docs/game/play.html</code></td><td><code>engine.js</code><br>chạy trong máy</td><td><code>docs/game/du-lieu/</code></td><td><b>GitHub Pages — bản anh chơi</b></td></tr>
+      </table>
+      Sửa một bên là bản còn lại vẫn "Chương 1 — hết". Dữ liệu thì đang <b>chép tay hai nơi</b>
+      (<code>xuong_tu_dong.py</code> có danh sách cứng 2 đường dẫn), nên chương 2 phải chép sang
+      <b>cả hai</b> — và phải có test chặn lệch.
+    </div>
+
+    <h2>3. Ba cách làm</h2>
+
+    <h3>Cách A — Nút “Sang chương 2” trên màn kết <span class="chon">em khuyên</span></h3>
+    <p>Màn kết chương không còn là ngõ cụt: có thêm một nút. Bấm vào thì state đổi sang chương 2,
+       và <b>giữ nguyên nhân vật</b> — cảnh giới, bạc, túi đồ, hảo cảm, cờ sự kiện đều mang theo.</p>
+    <pre>// engine.js — thêm vào màn kết
+function sang_chuong(state, so) {
+  state.chuong = so;
+  state.doan_hien_tai = null;   // để _doan() tự lấy đoạn mở đầu
+  state.ket_thuc = false;
+  return _goi_y(state);
+}</pre>
+    <p>Đoạn mở đầu chương 2 lấy theo <code>nhom_xuat_than</code> — cơ chế này <b>đã có sẵn</b>
+       (<code>doan_dau_cua()</code>), chỉ cần bảng đoạn đầu biết nói "chương 2 thì mở ở đâu".</p>
+    <div class="hop">
+      <b>Ưu:</b> rõ ràng, người chơi chủ động, dễ kiểm. Lùi được (state cũ nằm trong ngăn xếp lùi).
+      <br><b>Nhược:</b> thêm một nút; và nếu chương 2 chưa viết xong thì nút này dẫn vào chỗ trống
+      — nên phải làm cùng lúc với ít nhất vài đoạn đầu của chương 2.
+    </div>
+
+    <h3>Cách B — Tự chuyển, không nút</h3>
+    <p>Đi tới <code>__ket_thuc__</code> thì engine tự nạp chương sau và nhảy vào đoạn mở đầu. Người chơi
+       thấy liền mạch như một cuốn truyện.</p>
+    <div class="hop">
+      <b>Ưu:</b> mượt nhất, không phải bấm gì.
+      <br><b>Nhược:</b> mất màn "Chương 1 — hết", mà màn đó đang <b>là chỗ duy nhất</b> cho người chơi
+      biết mình vừa xong một chương. Và lùi một bước sẽ nhảy ngược qua ranh giới chương — dễ lỗi.
+    </div>
+
+    <h3>Cách C — Màn kết có “Chương 2 (chưa mở)”</h3>
+    <p>Làm sẵn cơ chế, nhưng cổng chương 2 khoá cho tới khi dữ liệu chương 2 có thật. Nút hiện
+       “Chương 2 — sắp mở”.</p>
+    <div class="hop">
+      <b>Ưu:</b> làm cơ chế trước, viết truyện sau, không bao giờ dẫn người chơi vào chỗ trống.
+      <br><b>Nhược:</b> thêm một trạng thái nữa phải kiểm.
+    </div>
+
+    <h2>4. Em khuyên: A, kèm một phần của C</h2>
+    <p>Làm <b>Cách A</b> nhưng nút chỉ hiện khi chương 2 <b>nạp được thật</b>. Nếu chưa có
+      <code>chuong2.json</code> thì nút hiện mờ, chữ “Chương 2 — chưa mở”. Như vậy:</p>
+    <ul>
+      <li>Làm cơ chế <b>ngay bây giờ</b>, không phải chờ viết xong 60 đoạn.</li>
+      <li>Không bao giờ dẫn người chơi vào màn trắng — đúng bài học "kiểm hành vi, không kiểm tín hiệu".</li>
+      <li>Viết xong đoạn đầu chương 2 là nút tự sáng, không phải sửa mã lần nữa.</li>
+    </ul>
+
+    <h2>5. Chi tiết phải sửa, kèm số dòng thật</h2>
+    <table>
+      <tr><th>Chỗ</th><th>Vấn đề</th></tr>
+      <tr><td><code>engine.py:368</code><br><code>engine.js:352</code></td>
+          <td>Màn kết <b>viết cứng</b> <code>"Chương 1 — hết"</code> và câu “*Chương sau: Huyết Sát Thí Luyện.*”.
+              Chương 2 xong sẽ hiện sai. Phải đổi thành theo <code>state.chuong</code>.</td></tr>
+      <tr><td><code>engine.py:194</code><br><code>engine.js:179</code></td>
+          <td><code>_doan()</code> lấy đoạn đầu qua <code>doan_dau_cua(nhom)</code>, mà trường này trong
+              <code>xuat_than.json</code> đang trỏ <code>c1_d01</code> / <code>c1_p01</code>. Cần bảng
+              <b>đoạn đầu theo từng chương</b>, đừng sửa đè lên giá trị của chương 1.</td></tr>
+      <tr><td><code>xuat_than.json</code></td>
+          <td>Thêm <code>doan_dau_theo_chuong: {"2": {"tan_tu": "c2_d01", "mon_phai": "c2_p01"}}</code>.
+              Giữ <code>doan_dau</code> cũ để chương 1 không đổi hành vi.</td></tr>
+      <tr><td><code>docs/game/play.html:2500</code></td>
+          <td>Chỉ <code>fetch("du-lieu/chuong1.json")</code>. Phải nạp thêm chương 2 — và nạp <b>lười</b>
+              (chỉ khi cần) để không phình trang.</td></tr>
+    </table>
+
+    <h2>6. Cạm bẫy em thấy trong mã, nên chặn bằng test</h2>
+    <table>
+      <tr><th>Cạm bẫy</th><th>Vì sao nguy</th></tr>
+      <tr><td><code>_doan()</code> có nhánh dự phòng: nếu mã đoạn không có trong chương thì
+              <b>lặng lẽ</b> lấy <code>ch.doan[0]</code></td>
+          <td>Nhánh dự phòng này chỉ chạy khi <code>doan_hien_tai</code> còn trống — đúng trường hợp
+              lúc chuyển chương (em cho đặt về trống để <code>_doan()</code> tự lấy đoạn đầu).
+              Nên gõ sai mã đoạn đầu chương 2 là người chơi <b>lặng lẽ</b> rơi vào đoạn 1 của chương 2,
+              không có thông báo nào.</td></tr>
+      <tr><td><code>_chuyen_doan()</code> đặt <code>ket_thuc = true</code> khi mã đích không tồn tại</td>
+          <td>Nghĩa là <b>một chữ gõ sai trong <code>chuong2.json</code> sẽ kết thúc chương 2 giữa đường</b>,
+              im lặng. Hiện chưa có test nào kiểm mọi <code>den</code> có trỏ tới đoạn thật.</td></tr>
+      <tr><td>Dữ liệu chép tay hai nơi</td>
+          <td>Quên chép là bản live thiếu chương 2, bản server thì có. Cần test so <code>md5</code> hai file.</td></tr>
+      <tr><td>Bản lưu cũ trong <code>localStorage</code></td>
+          <td>Người chơi đang dở chương 1, state không có gì về chương 2 — vẫn phải chạy được.
+              Đừng đọc <code>state["chuong"]</code> mà không có giá trị mặc định.</td></tr>
+    </table>
+    <div class="canh">
+      <b>Ba test nên viết trước khi viết truyện chương 2:</b>
+      <ol>
+        <li>Mọi <code>den</code> trong mọi chương đều trỏ tới đoạn thật, hoặc đúng <code>__ket_thuc__</code>.</li>
+        <li>Chuyển chương giữ nguyên nhân vật: cảnh giới, bạc, túi đồ, hảo cảm, cờ sự kiện không đổi.</li>
+        <li>Hai file dữ liệu (<code>game/chapters/</code> và <code>docs/game/du-lieu/</code>) giống nhau từng byte.</li>
+      </ol>
+    </div>
+
+    <h2>7. Nếu anh chọn A — thứ tự làm</h2>
+    <ol>
+      <li>Thêm hàm <code>sang_chuong()</code> vào <b>cả hai</b> engine.</li>
+      <li>Bảng đoạn đầu theo chương trong <code>xuat_than.json</code>.</li>
+      <li>Nút trên màn kết, hiện mờ khi chương chưa có dữ liệu.</li>
+      <li>Bỏ chữ viết cứng “Chương 1 — hết”.</li>
+      <li>Ba test ở mục 6.</li>
+      <li>Viết 3–5 đoạn mở đầu chương 2, chép sang <code>docs/</code>, kiểm nút tự sáng.</li>
+    </ol>
+    <p>Bước 1–5 không cần một dòng truyện nào. Làm xong là có thể kiểm bằng máy, rồi mới ngồi viết.</p>
+
+    <a class="nut" href="../game/play.html">Vào game xem màn kết chương 1 hiện tại</a>
+    <p class="phu" style="margin-top:14px">Trang này chỉ để anh đọc và chọn. Em chưa sửa mã nào.</p>
+  </div>
+</div>
+</body>
+</html>

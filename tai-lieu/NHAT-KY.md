@@ -10,6 +10,73 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-17 (tiếp) · Gợi ý cơ chế chuyển chương — chỉ báo cáo, KHÔNG sửa mã
+
+Người dùng: "gợi ý cơ chế chuyển chương tôi xem thử." Đã làm **trang báo cáo để chọn**,
+**chưa đụng một dòng mã game nào**.
+
+**File:** `docs/nhap/co-che-chuyen-chuong.html` (báo cáo), ảnh
+`docs/nhap/chuyen-chuong-toan-trang.jpg`.
+
+### Phát hiện quan trọng nhất — có HAI engine, bản live là bản JS
+
+Trước đây tài liệu chỉ nói về `game/engine.py`. Sai thiếu. Thực tế:
+
+| Bản | Engine | Dữ liệu | Dùng khi nào |
+|---|---|---|---|
+| `game/play.html` | `engine.py` qua `/api/chon` | `game/chapters/` | chạy `game_server.py` trên máy |
+| `docs/game/play.html` | `engine.js`, chạy trong máy | `docs/game/du-lieu/` | **GitHub Pages — bản người dùng chơi** |
+
+→ Mọi thay đổi cơ chế chương phải sửa **cả hai**, và chép `chuong2.json` sang **cả hai**
+thư mục dữ liệu. Đây là chi phí thật, không phải chi tiết phụ.
+
+### Điểm thuận lợi: chỗ cắm đã có sẵn
+
+Hai đoạn kết chương 1 đã trỏ tới mã không phải đoạn thật `__ket_thuc__` (đếm được đúng 2 chỗ):
+`c1_d17` (tán tu) và `c1_p19` (môn phái), cả hai có lựa chọn "Khép lại Chương 1".
+Nút, chữ, dữ liệu đều có — chỉ thiếu phần đổi `state.chuong`.
+
+### Ba phương án đã trình bày
+
+- **A — nút "Sang chương 2" trên màn kết.** Giữ nguyên nhân vật. Em khuyên cách này.
+- **B — tự chuyển, không nút.** Mượt nhưng mất màn kết và lùi qua ranh giới chương dễ lỗi.
+- **C — khoá chương 2 tới khi có dữ liệu.** Làm cơ chế trước, viết truyện sau.
+
+**Đề xuất chốt: A + một phần C** — nút hiện mờ "Chương 2 — chưa mở" khi chưa nạp được
+`chuong2.json`. Làm cơ chế ngay được, mà không dẫn người chơi vào màn trắng.
+
+### Chỗ phải sửa (số dòng đã kiểm lại bằng grep, không đoán)
+
+| File:dòng | Vấn đề |
+|---|---|
+| `game/engine.py:368` + `docs/game/engine.js:352` | **viết cứng** `"Chương 1 — hết"` và câu "Chương sau: Huyết Sát Thí Luyện" |
+| `game/engine.py:194` + `docs/game/engine.js:179-180` | `_doan()` có nhánh dự phòng lặng lẽ lấy `doan[0]` khi mã không có |
+| `game/engine.py:570` | `_chuyen_doan()` đặt `ket_thuc = true` khi mã đích không tồn tại → gõ sai một chữ là kết thúc chương giữa đường, im lặng |
+| `docs/game/play.html:2500` | chỉ `fetch("du-lieu/chuong1.json")` |
+| `game/xuat_than.json` | `doan_dau` đang trỏ `c1_d01`/`c1_p01` → cần bảng đoạn đầu **theo chương**, đừng sửa đè |
+
+### Ba test nên viết trước khi viết truyện chương 2
+
+1. Mọi `den` trong mọi chương trỏ tới đoạn thật, hoặc đúng `__ket_thuc__`.
+2. Chuyển chương giữ nguyên nhân vật (cảnh giới, bạc, túi đồ, hảo cảm, cờ sự kiện).
+3. Hai file dữ liệu `game/chapters/` và `docs/game/du-lieu/` giống nhau từng byte.
+
+Hiện **chưa có test nào** kiểm `den` có trỏ tới đoạn thật — đã grep, 0 kết quả.
+
+### Đo kiểm trang báo cáo (bắt được 2 lỗi thật của chính trang)
+
+- **Bảng tràn ngang:** `scrollWidth` 511px trên màn 390px. Nguyên nhân: `table-layout` mặc
+  định + mã dài trong ô. Sửa `table-layout:fixed` + `overflow-wrap:anywhere` → **390/390**.
+- **Khối `<pre>` tràn:** 506px trong ô 322px, phải vuốt ngang mới đọc hết mã. Sửa
+  `white-space:pre-wrap` → không còn phần tử nào bị cắt chữ.
+- Ba màn 320 / 390 / 768 đều `scrollWidth` = đúng bề rộng, không tràn.
+
+**Bài học:** báo cáo cho người dùng điện thoại cũng phải đo như giao diện game. Bảng và
+khối mã là hai chỗ tràn ngang dễ nhất, và mắt thường không thấy vì trang vẫn "hiện ra".
+
+---
+
+
 ## 2026-11-17 · CHỐT CHƯƠNG 1 — bàn giao sang chương 2
 
 Người dùng: "chương 1 đã xong, ghi nhớ những gì đã làm để sang chương 2." Đây là mục
