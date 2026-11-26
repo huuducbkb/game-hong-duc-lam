@@ -1446,18 +1446,28 @@ màn tạo nhân vật (`.xt-the[data-ma=mon_phai]`), không thì không bao gi�
 báo `No artifacts named "github-pages" were found` dù bước upload ngay trước đó
 **thành công** và đã đẩy 80 MB.
 
-Nguyên nhân **chưa chắc chắn**. Ghi chú cũ ở đây nói là "lỗi tạm thời của API GitHub",
-nhưng ngày 2026-11-26 lỗi này lặp **ba lượt liền** trên ba run khác nhau
-(`push`, `workflow_dispatch`, `push`) — lỗi tạm thời thì không lặp đều như vậy.
-Cùng workflow đó đã chạy **thành công** lúc 15:59 cùng ngày, nên không phải workflow
-hỏng sẵn. Thêm `actions: read` vào `permissions` thì lượt dispatch kế tiếp **thành công**.
+Nguyên nhân **chưa rõ**. Ghi chú cũ ở đây nói "lỗi tạm thời của API GitHub" — đúng một
+phần, nhưng chưa đủ. Dữ liệu thật ngày 2026-11-26, cùng một commit:
 
-Chưa tách được hai khả năng: (a) thiếu `actions: read` thật, (b) GitHub hết lỗi cùng lúc.
-Nên khi gặp lại, **thử theo thứ tự**:
+| Run | Kiểu | Kết quả |
+|---|---|---|
+| 45864987603 | `push` | hỏng |
+| 45866224033 | `workflow_dispatch` | hỏng |
+| 45866497562 | `push` | hỏng |
+| 45866802692 | `workflow_dispatch` | **thành công** |
+| 45867201111 | `push` | hỏng |
+| 45867328706 | `workflow_dispatch` (cùng commit `54c0fe1`) | **thành công** |
 
-1. Dispatch lượt mới (không chạy lại job — xem lý do bên dưới).
-2. Nếu vẫn hỏng: thêm `actions: read` vào `permissions` của `pages.yml` rồi dispatch lại.
-3. Vẫn hỏng: chờ 15–30 phút rồi dispatch lại.
+Hai kết luận rút ra:
+
+- **`actions: read` không phải nguyên nhân.** Em đã thêm quyền đó vào `permissions`,
+  và lượt `push` sau đó **vẫn hỏng y hệt**. Giữ quyền đó cũng vô hại (deploy-pages có
+  đọc artifact), nhưng đừng tin nó là cách sửa.
+- **`workflow_dispatch` là đường thoát.** Cùng commit, `push` hỏng mà `dispatch`
+  thành công. Có lần dispatch đầu cũng hỏng — **dispatch lại lần nữa là được**.
+
+Nên khi gặp lỗi này: **dispatch, hỏng thì dispatch lại**. Đừng chạy lại job
+(xem lý do bên dưới), đừng mất thời gian mò quyền.
 
 Nếu chạy lại job (`rerun-failed-jobs`) thì **hỏng kiểu khác**:
 `Multiple artifacts named "github-pages" were unexpectedly found. Artifact count is 2`
