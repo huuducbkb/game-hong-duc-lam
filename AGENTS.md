@@ -1538,3 +1538,53 @@ Ba chi tiết dễ làm hỏng:
 
 Đọc chữ ra để kiểm: `#storyBody` (không phải `#storyText` — không tồn tại), và
 `#storyChapter` cho tên chương.
+
+## Lời kể nói "Nhận:" thì dữ liệu đoạn phải thật sự thêm đồ
+
+Chương 2 từng có sáu đoạn kể "Nhận: Thăng Tiên Lệnh" nhưng `lua_chon[].hieu_ung` không có
+`them_vat`. Người chơi đọc thấy nhận đồ, mở túi ra trống; lựa chọn cần `co_vat: "Thăng Tiên Lệnh"`
+lại bị khoá. Lỗi này **không** hiện ra khi chỉ đọc mã — chỉ hiện khi chơi hết một lượt rồi mở túi.
+
+Ba luật rút ra:
+
+1. **Lời kể không phải hiệu ứng.** Chữ "Nhận:" trong `ke` là văn, không phải lệnh. Món đồ chỉ
+   vào túi khi `lua_chon[].hieu_ung.them_vat` có thật. Viết đoạn có nhận đồ thì phải gắn
+   `them_vat`, và test phải canh: đoạn nào có `"Nhận:"` trong `ke` **và** có `lua_chon`
+   thì phải có ít nhất một `them_vat`.
+2. **Gộp theo `tên + trạng thái`** (`_nhan_vat` trong `engine.py`, `_ap_hieu_ung` trong
+   `engine.js`). Nhận hai lần cùng món mà push thẳng là túi hiện hai dòng trùng tên,
+   người chơi tưởng hai món khác nhau.
+3. **Đọc kỹ ai là người nhận.** `c2_c24b` kể *Hàn Lập tự tay nhét lệnh vào vạt áo hắn* —
+   người chơi không nhận gì. Gắn `them_vat` theo phản xạ là sai cả truyện lẫn túi.
+
+## Nhánh kết xấu phải có điều kiện hảo cảm
+
+`c2_c24c_xau` kể Hàn Lập bỏ đi, người chơi ra khỏi cốc một mình — nhưng lựa chọn dẫn vào
+không có `dieu_kien`. Người chơi hảo cảm 75 ("thân thiết") vẫn vào được và đọc một đoạn
+sai hoàn toàn với mối quan hệ đã dựng. Nay khoá bằng `dieu_kien.hao_cam_max` (`< 40`).
+
+Điều kiện `hao_cam_max` là **mới** — `_dieu_kien_hop()` trong `engine.py` và `_kiem_dieu_kien`
+trong `engine.js` phải cùng có, nếu không bản Python và bản web khoá khác nhau.
+
+Khi sửa một đoạn kết, phải đọc **cả câu cuối** của nó: `c2_c24c_xau` từng viết "Trong tay ta
+không có tấm lệnh nào" trong khi người chơi vừa được đặt một tấm vào tay.
+
+## Kiểm vật phẩm: chơi thật rồi mở bảng Túi
+
+```js
+// trong Playwright, dùng chính engine của trang
+const st = Engine.trang_thai_moi('T','', 'tan_tu');
+st.chuong = 2; Engine.bat_dau(st);
+for (const i of duongToi(st.doan_hien_tai, 'c2_c25b')) Engine.chon(st, i);
+localStorage.setItem('hdttl_phien', JSON.stringify(st));
+// reload → #openSys → .tab[data-tab="tui"] → đọc #dTuiDo
+```
+
+- Tab túi: `.tab[data-tab="tui"]`, nội dung ở `#dTuiDo`. Tab NPC: `.tab[data-tab="npc"]`, `#dNpc`.
+- Đọc `textContent` để kiểm, đừng chỉ nhìn ảnh chụp.
+- Trang thử dùng `waitUntil: 'domcontentloaded'`; `networkidle` treo vì trang có tiếng/fetch nền.
+
+## Nhánh kết và hảo cảm: kiểm bằng hai mức, không kiểm một
+
+Test chỉ thử mức hảo cảm cao sẽ không thấy nhánh kết xấu bị khoá nhầm. Luôn kiểm **cả hai**:
+hảo cảm cao → kết xấu khoá; hảo cảm thấp → kết xấu mở.
