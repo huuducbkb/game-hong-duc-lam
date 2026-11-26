@@ -277,6 +277,10 @@ def _dieu_kien_hop(state: dict, dk: dict | None) -> bool:
         for ten, toi_thieu in dk["hao_cam"].items():
             if state["npc"].get(ten, {}).get("hao_cam", 0) < toi_thieu:
                 return False
+    if "hao_cam_max" in dk:
+        for ten, toi_da in dk["hao_cam_max"].items():
+            if state["npc"].get(ten, {}).get("hao_cam", 0) > toi_da:
+                return False
     return True
 
 
@@ -341,7 +345,7 @@ def _ap_hieu_ung(state: dict, hu: dict | None) -> list[str]:
             tb.append(_doi_hao_cam(state, ten, delta))
     if "them_vat" in hu:
         for v in hu["them_vat"]:
-            state["tui_do"].append(copy.deepcopy(v))
+            _nhan_vat(state, v)
             tb.append(f"Nhận: {v['ten']}")
     if "doi_trang_thai" in hu:
         for ten, tt_moi in hu["doi_trang_thai"].items():
@@ -356,6 +360,19 @@ def _ap_hieu_ung(state: dict, hu: dict | None) -> list[str]:
                 state["ky_nang"].append(k)
                 tb.append(f"Học được: {k}")
     return tb
+
+
+def _nhan_vat(state: dict, v: dict) -> None:
+    """Thêm vật phẩm vào túi, gộp số lượng nếu đã có món cùng tên cùng trạng thái."""
+    if not isinstance(v, dict) or not (v.get("ten") or "").strip():
+        return
+    for cu in state["tui_do"]:
+        if cu.get("ten") == v["ten"] and cu.get("trang_thai") == v.get("trang_thai"):
+            cu["so"] = (cu.get("so") or 0) + (v.get("so") or 1)
+            return
+    moi = copy.deepcopy(v)
+    moi.setdefault("so", 1)
+    state["tui_do"].append(moi)
 
 
 def _thang_cap(state: dict, tb: list[str]) -> None:
@@ -396,21 +413,32 @@ def _ke_theo_hao_cam(d: dict, state: dict) -> str:
     bts = d.get("bien_the") or []
     if not bts:
         return d.get("ke", "")
-    thu_tu = [m[2] for m in MUC_HAO_CAM]  # người dưng … tri kỷ
+    thu_tu = [m[2] for m in MUC_HAO_CAM]  # tử địch … tri kỷ
     tot_nhat = None
-    hang_tot_nhat = -1
+    hang_tot_nhat = -99
     for bt in bts:
         npc = bt.get("npc")
         if npc and npc not in state["npc"]:
             continue
         diem = state["npc"].get(npc, {}).get("hao_cam", 0) if npc else 0
         muc_hien = muc_hao_cam(diem)
-        if bt.get("muc") != muc_hien:
+        if bt.get("muc") not in thu_tu:
             continue
-        hang = thu_tu.index(muc_hien) if muc_hien in thu_tu else 0
-        if hang > hang_tot_nhat:
+        hang = thu_tu.index(bt["muc"])
+        # Khớp đúng thì luôn thắng; không có khớp đúng thì lấy bậc thấp hơn gần
+        # nhất — nhờ vậy một đoạn chỉ cần vài biến thể, không cần đủ sáu bậc.
+        if hang <= thu_tu.index(muc_hien) and hang > hang_tot_nhat:
             hang_tot_nhat = hang
             tot_nhat = bt
+    if tot_nhat is None:
+        # NPC không có mặt trong cảnh (chưa từng gặp) thì dùng văn bản gốc; chỉ
+        # khi NPC CÓ mặt mà hảo cảm còn thấp hơn biến thể thấp nhất mới lấy biến
+        # thể thấp nhất.
+        thu = [bt for bt in bts
+               if (not bt.get("npc") or bt["npc"] in state["npc"])
+               and bt.get("muc") in thu_tu]
+        if thu:
+            tot_nhat = min(thu, key=lambda bt: thu_tu.index(bt["muc"]))
     return tot_nhat["ke"] if tot_nhat else d.get("ke", "")
 
 
@@ -461,6 +489,34 @@ def sang_chuong(state: dict, so: int | None = None) -> dict:
     return kq
 
 
+def _npc_trong_canh(d: dict, state: dict) -> list[dict]:
+    """NPC của đoạn kèm mức hảo cảm hiện tại.
+
+    Nguồn: `npc` khai báo ở đoạn, cộng mọi NPC mà `bien_the` nhắm tới — đoạn có
+    biến thể giọng mà quên khai `npc` vẫn phải báo đúng thái độ cho AI kể.
+    """
+    ten = []
+    for t in d.get("npc") or []:
+        if t not in ten:
+            ten.append(t)
+    for bt in d.get("bien_the") or []:
+        t = bt.get("npc")
+        if t and t not in ten:
+            ten.append(t)
+    ra = []
+    for t in ten:
+        info = state["npc"].get(t)
+        if info is None:
+            # Chưa gặp thì chưa có thái độ — đừng bịa mức "người dưng".
+            continue
+        ra.append({
+            "ten": t,
+            "hao_cam": info.get("hao_cam", 0),
+            "thai_do": info.get("thai_do") or muc_hao_cam(info.get("hao_cam", 0)),
+        })
+    return ra
+
+
 def _goi_y(state: dict) -> dict:
     """Trả về đoạn hiện tại ở dạng cho giao diện (giấu thông tin nội bộ)."""
     if state.get("ket_thuc"):
@@ -482,6 +538,7 @@ def _goi_y(state: dict) -> dict:
         "chuong": state["chuong"],
         "ten_chuong": load_chuong(state["chuong"])["ten"],
         "ke": _ke_theo_hao_cam(d, state),
+        "npc_trong_canh": _npc_trong_canh(d, state),
         "hinh_anh": d.get("hinh_anh"),
         "video": d.get("video"),
         "lua_chon": lua_chon,

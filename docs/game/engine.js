@@ -255,6 +255,12 @@
         if (hc < toi_thieu) return false;
       }
     }
+    if ("hao_cam_max" in dk) {
+      for (const [ten, toi_da] of Object.entries(dk.hao_cam_max)) {
+        const hc = (state.npc[ten] || {}).hao_cam || 0;
+        if (hc > toi_da) return false;
+      }
+    }
     return true;
   }
 
@@ -323,8 +329,13 @@
       }
     }
     if ("them_vat" in hu) {
+      // Gộp theo tên + trạng thái: hai lần nhận cùng món là một dòng "×2", không
+      // phải hai dòng trùng tên trong túi.
       for (const v of hu.them_vat) {
-        state.tui_do.push(_saoChepSau(v));
+        if (!v || typeof v !== "object" || !(v.ten || "").trim()) continue;
+        const cu = state.tui_do.find((x) => x.ten === v.ten && x.trang_thai === v.trang_thai);
+        if (cu) { cu.so = (cu.so || 0) + (v.so || 1); }
+        else { const moi = _saoChepSau(v); if (moi.so === undefined) moi.so = 1; state.tui_do.push(moi); }
         tb.push(`Nhận: ${v.ten}`);
       }
     }
@@ -373,22 +384,35 @@
     return _goi_y(state);
   }
 
+  // Chọn biến thể đoạn kể theo mức hảo cảm. Khớp đúng thì thắng; không có khớp
+  // đúng thì lấy bậc thấp hơn gần nhất, nhờ vậy một đoạn chỉ cần vài biến thể.
   function _ke_theo_hao_cam(d, state) {
     const bts = d.bien_the || [];
     if (!bts.length) return d.ke || "";
     const thu_tu = MUC_HAO_CAM.map((m) => m[2]);
     let tot_nhat = null;
-    let hang_tot_nhat = -1;
+    let hang_tot_nhat = -99;
     for (const bt of bts) {
       const npc = bt.npc;
       if (npc && !(npc in state.npc)) continue;
+      if (!thu_tu.includes(bt.muc)) continue;
       const diem = npc ? (state.npc[npc] || {}).hao_cam || 0 : 0;
       const muc_hien = muc_hao_cam(diem);
-      if (bt.muc !== muc_hien) continue;
-      const hang = thu_tu.includes(muc_hien) ? thu_tu.indexOf(muc_hien) : 0;
-      if (hang > hang_tot_nhat) {
+      const hang = thu_tu.indexOf(bt.muc);
+      if (hang <= thu_tu.indexOf(muc_hien) && hang > hang_tot_nhat) {
         hang_tot_nhat = hang;
         tot_nhat = bt;
+      }
+    }
+    if (!tot_nhat) {
+      // NPC không có mặt trong cảnh (chưa từng gặp) thì dùng văn bản gốc; chỉ khi
+      // NPC CÓ mặt mà hảo cảm còn thấp hơn biến thể thấp nhất mới lấy biến thể
+      // thấp nhất.
+      const thu = bts.filter((bt) => (!bt.npc || bt.npc in state.npc)
+                                   && thu_tu.includes(bt.muc));
+      if (thu.length) {
+        tot_nhat = thu.reduce((a, b) =>
+          thu_tu.indexOf(a.muc) <= thu_tu.indexOf(b.muc) ? a : b);
       }
     }
     return tot_nhat ? tot_nhat.ke : d.ke || "";
@@ -435,6 +459,29 @@
     return kq;
   }
 
+  // NPC của đoạn kèm mức hảo cảm hiện tại. Nguồn: `npc` khai báo ở đoạn, cộng mọi
+  // NPC mà `bien_the` nhắm tới — đoạn có biến thể giọng mà quên khai `npc` vẫn phải
+  // báo đúng thái độ cho AI kể.
+  function _npc_trong_canh(d, state) {
+    const ten = [];
+    (d.npc || []).forEach((t) => { if (!ten.includes(t)) ten.push(t); });
+    (d.bien_the || []).forEach((bt) => {
+      if (bt.npc && !ten.includes(bt.npc)) ten.push(bt.npc);
+    });
+    const ra = [];
+    for (const t of ten) {
+      const info = state.npc[t];
+      // Chưa gặp thì chưa có thái độ — đừng bịa mức "người dưng".
+      if (!info) continue;
+      ra.push({
+        ten: t,
+        hao_cam: info.hao_cam || 0,
+        thai_do: info.thai_do || muc_hao_cam(info.hao_cam || 0),
+      });
+    }
+    return ra;
+  }
+
   function _goi_y(state) {
     if (state.ket_thuc) return _man_ket_chuong(state);
     const d = _doan(state);
@@ -455,6 +502,7 @@
       chuong: state.chuong,
       ten_chuong: load_chuong(state.chuong).ten,
       ke: _ke_theo_hao_cam(d, state),
+      npc_trong_canh: _npc_trong_canh(d, state),
       hinh_anh: d.hinh_anh,
       video: d.video,
       lua_chon: lua_chon,

@@ -119,6 +119,16 @@
     "Hùng Bá", "Hợp Hoan Tông", "tân xá", "ngọc cốt", "hậu sơn",
     "hắc quáng động"];
 
+  // Giọng kể phải đổi theo thái độ, nhưng sự kiện thì không được đổi — nếu không,
+  // người chơi hảo cảm thấp sẽ đọc một cốt truyện khác hẳn.
+  const GIONG_THEO_THAI_DO = {
+    "tử địch": "căm thù, dè chừng, muốn tránh xa",
+    "thù địch": "lạnh nhạt, cộc, không giải thích, không đùa",
+    "người dưng": "dè dặt, lịch sự nhưng xa cách",
+    "quen biết": "thoải mái vừa phải, đã bớt cảnh giác",
+    "thân thiết": "ấm áp, tin nhau, nói thẳng",
+    "tri kỷ": "thân tình, hiểu nhau không cần nói hết",
+  };
   const _cache_ke = new Map();
   const CACHE_TOI_DA = 500;
 
@@ -220,12 +230,32 @@
     return dung ? moi : "";
   }
 
-  async function ke_lai_tien_hiep(doan_ke, boi_canh, hanh_dong) {
+  function _phan_thai_do(npc) {
+    if (!npc || !npc.length) return "";
+    const dong = npc.map((n) => {
+      const thai_do = n.thai_do || "người dưng";
+      const giong = GIONG_THEO_THAI_DO[thai_do] || GIONG_THEO_THAI_DO["người dưng"];
+      return `- ${n.ten || ""}: thái độ với người kể là “${thai_do}” → ${giong} ` +
+             `(hảo cảm ${n.hao_cam || 0})`;
+    });
+    return (
+      "\nTHÁI ĐỘ NHÂN VẬT TRONG CẢNH (bắt buộc đổi giọng theo):\n" +
+      dong.join("\n") + "\n" +
+      "- Đổi CÁCH NÓI của nhân vật đó và cách người kể nhìn họ cho khớp thái độ.\n" +
+      "- TUYỆT ĐỐI không đổi sự việc: cùng hành động, cùng ai làm gì, cùng kết quả.\n" +
+      "- Không thêm lời thoại mới, không bớt lời thoại cũ; chỉ đổi sắc thái câu chữ.\n"
+    );
+  }
+
+  async function ke_lai_tien_hiep(doan_ke, boi_canh, hanh_dong, npc) {
     doan_ke = (doan_ke || "").trim();
     if (!doan_ke) return "";
+    npc = npc || [];
     boi_canh = boi_canh || "";
     hanh_dong = hanh_dong || "";
-    const khoa = doan_ke + "\u0000" + hanh_dong;
+    const khoa_npc = npc.map((n) => (n.ten || "") + "\u0001" + (n.thai_do || ""))
+      .sort().join("\u0002");
+    const khoa = doan_ke + "\u0000" + hanh_dong + "\u0000" + khoa_npc;
     if (_cache_ke.has(khoa)) return _cache_ke.get(khoa);
 
     const ten = TEN_RIENG.join(", ");
@@ -245,8 +275,9 @@
       "'triệt ngộ', 'nguyệt thăng', 'tùng hình', 'u lan', 'mai táng', 'vị tằng', " +
       "'phương tri', 'nhất lũ'. Đúng: 'im lặng', 'mùi lạ', 'mũi', 'hiểu ra', " +
       "'trăng lên', 'theo nàng mà tới', 'chưa từng', 'mới biết', 'một'.\n" +
-      "- 'mai táng' chỉ dùng cho chôn người chết. Chôn đồ vật thì dùng 'chôn', 'vùi', 'lấp đất'.\n\n" +
-      "Viết trọn câu, kết thúc bằng dấu chấm. Chỉ trả về đoạn kể, không giải thích.\n\n" +
+      "- 'mai táng' chỉ dùng cho chôn người chết. Chôn đồ vật thì dùng 'chôn', 'vùi', 'lấp đất'.\n" +
+      _phan_thai_do(npc) +
+      "\nViết trọn câu, kết thúc bằng dấu chấm. Chỉ trả về đoạn kể, không giải thích.\n\n" +
       `ĐOẠN GỐC:\n${doan_ke}${phan_boi_canh}${phan_hanh_dong}`;
     let ket_qua;
     try {

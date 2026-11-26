@@ -2074,7 +2074,9 @@ function doiKeAI() {
 async function keBangAI(kq) {
   if (!keAI || !coAI || !kq || kq.ket_thuc || !kq.ke) return kq;
   try {
-    const moi = await AI.ke_lai_tien_hiep(kq.ke, kq.boi_canh || "");
+    const moi = await AI.ke_lai_tien_hiep(kq.ke, kq.boi_canh || "",
+                                          kq.hanh_dong || "",
+                                          kq.npc_trong_canh || []);
     if (moi) return Object.assign({}, kq, { ke: moi, ke_ai: true });
   } catch (e) { /* AI lỗi → dùng văn bản gốc */ }
   return kq;

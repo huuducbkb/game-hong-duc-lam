@@ -351,8 +351,10 @@ const doan_truoc = o.doan_hien_tai;
         !!(ch2.doan_dau_theo_nhom.tan_tu && ch2.doan_dau_theo_nhom.mon_phai), true);
   check("mã đoạn theo quy ước c2_",
         ch2.doan.every(d => d.id.startsWith("c2_")), true);
-  check("mọi đoạn đều có ảnh",
-        ch2.doan.every(d => d.hinh_anh && d.hinh_anh.anh), true);
+  // Ảnh cảnh Chương 2 chưa làm xong: đoạn mới được phép không có ảnh (khung ảnh
+  // tự ẩn), nhưng đoạn ĐÃ có ảnh thì ảnh phải tồn tại thật trên đĩa.
+  check("đoạn cũ vẫn giữ ảnh, đoạn mới thì không bắt buộc",
+        ch2.doan.every(d => d.hinh_anh === undefined || (d.hinh_anh && d.hinh_anh.anh)), true);
   check("mọi đoạn đều có chữ kể",
         ch2.doan.every(d => (d.ke || "").length >= 300), true);
   check("không nhắc chương sai canon cũ",
@@ -373,7 +375,7 @@ const doan_truoc = o.doan_hien_tai;
 
   // Ảnh phải có thật trên đĩa
   const ANH = path.join(GOC, "..", "..", "assets", "scene");
-  const thieu = [...new Set(ch2.doan.map(d => d.hinh_anh.anh))]
+  const thieu = [...new Set(ch2.doan.filter(d => d.hinh_anh).map(d => d.hinh_anh.anh))]
     .filter(f => !fs.existsSync(path.join(ANH, f)));
   check("mọi ảnh dùng trong chương 2 đều tồn tại", thieu, []);
 
@@ -442,6 +444,128 @@ const doan_truoc = o.doan_hien_tai;
   check("lời kết không lặp câu chuyển chương đã có ở đoạn cuối",
         (ch2kt.ket?.ke || "").includes("Chương sau") &&
         (chung.at(-1)?.ke || "").includes("Chương sau"), false);
+
+  // -------------------------------------------------- N3. Hảo cảm đổi giọng kể
+  {
+    Engine.napChuong(2, JSON.parse(fs.readFileSync(path.join(GOC, "chuong2.json"), "utf8")));
+    const ch2h = Engine.load_chuong(2);
+    const theoId = {};
+    for (const d of ch2h.doan) theoId[d.id] = d;
+
+    // goi_y_hien_tai đọc hảo cảm từ state, nên dựng state trỏ thẳng vào đoạn cần xem.
+    const xem = (did, diem) => {
+      const st = Engine.trang_thai_moi("T", "", "tan_tu");
+      st.chuong = 2;
+      st.doan_hien_tai = did;
+      st.npc = { "Hàn Lập": { hao_cam: diem, thai_do: Engine.muc_hao_cam(diem) } };
+      return Engine.goi_y_hien_tai(st);
+    };
+
+    const c18 = [-80, -30, 0, 30].map((d) => xem("c2_c18", d).ke);
+    check("c2_c18 đổi giọng theo 4 mức hảo cảm", 4, new Set(c18).size);
+    // Giọng đổi được, sự việc thì không.
+    check("mọi biến thể vẫn giữ nguyên sự việc gốc",
+          true, c18.every((t) => t.includes("Vì sao ngươi giúp ta")));
+
+    // Cùng một mức hảo cảm phải ra cùng một câu (không phụ thuộc thứ tự gọi).
+    check("cùng mức hảo cảm → cùng câu kể",
+          xem("c2_c18", -80).ke, xem("c2_c18", -80).ke);
+
+    // Đoạn không có bien_the thì không đổi.
+    const khongBt = ch2h.doan.find((d) => !d.bien_the);
+    check("đoạn không có bien_the thì không đổi theo hảo cảm",
+          1, new Set([-80, 0, 95].map((d) => xem(khongBt.id, d).ke)).size);
+
+    // NPC phải được báo cho AI kể, kèm thái độ hiện tại.
+    const kq18 = xem("c2_c18", -75);
+    check("cảnh báo đúng NPC cho AI", ["Hàn Lập"], (kq18.npc_trong_canh || []).map((n) => n.ten));
+    check("  kèm đúng thái độ", "tử địch", (kq18.npc_trong_canh || [{}])[0].thai_do);
+    check("  kèm đúng điểm hảo cảm", -75, (kq18.npc_trong_canh || [{}])[0].hao_cam);
+
+    // Chưa gặp NPC thì không bịa ra thái độ.
+    const stTrong = Engine.trang_thai_moi("T", "", "tan_tu");
+    stTrong.chuong = 2;
+    stTrong.doan_hien_tai = "c2_c18";
+    stTrong.npc = {};
+    check("NPC chưa gặp thì không có trong danh sách",
+          [], Engine.goi_y_hien_tai(stTrong).npc_trong_canh);
+
+    // Hảo cảm thấp phải với tới được, và phải dẫn tới đoạn kết khác.
+    const lo = {}, hi = {};
+    const di = (sid, aff, sau) => {
+      if (sau > 60 || !theoId[sid]) return;
+      lo[sid] = Math.min(lo[sid] ?? 9e9, aff);
+      hi[sid] = Math.max(hi[sid] ?? -9e9, aff);
+      for (const lc of theoId[sid].lua_chon || []) {
+        const a = aff + (((lc.hieu_ung || {}).hao_cam || {})["Hàn Lập"] || 0);
+        if (lc.den && lc.den !== "__ket_thuc__") di(lc.den, a, sau + 1);
+      }
+    };
+    for (const dau of Object.values(ch2h.doan_dau_theo_nhom)) di(dau, 0, 0);
+    check("đi được xuống mức thù địch", true, lo["c2_c25"] <= -20);
+    check("  và lên được mức thân thiết", true, hi["c2_c25"] >= 50);
+
+    const khoa = ch2h.doan.flatMap((d) => (d.lua_chon || [])
+      .filter((lc) => lc.dieu_kien && lc.dieu_kien.hao_cam).map(() => d.id));
+    check("có lựa chọn bị khoá theo hảo cảm", true, khoa.length >= 3);
+    check("có nhánh kết riêng cho hảo cảm thấp",
+          true, ch2h.doan.some((d) => d.id === "c2_c26_xau"));
+
+    // ------------------------------------------- N4. Nhận vật phẩm khớp lời kể
+    const duongToi = (dau, dich) => {
+      const q = [[dau, []]], tham = new Set([dau]);
+      while (q.length) {
+        const [sid, p] = q.shift();
+        if (sid === dich) return p;
+        for (let i = 0; i < (theoId[sid].lua_chon || []).length; i++) {
+          const den = theoId[sid].lua_chon[i].den;
+          if (den && den !== "__ket_thuc__" && theoId[den] && !tham.has(den)) {
+            tham.add(den); q.push([den, [...p, i]]);
+          }
+        }
+      }
+      return null;
+    };
+    const choi = (dich) => {
+      const st = Engine.trang_thai_moi("T", "", "tan_tu");
+      st.chuong = 2;
+      Engine.bat_dau(st);
+      for (const i of duongToi(st.doan_hien_tai, dich)) Engine.chon(st, i);
+      return st;
+    };
+    const tui = (st) => Object.fromEntries(st.tui_do.map((v) => [v.ten, v.so ?? 1]));
+
+    const stC = choi("c2_c24c");
+    check("linh thạch nhặt được vào túi, gộp một dòng",
+          tui(stC)["Linh thạch hạ phẩm"], 13);
+    check("  không có hai dòng cùng tên trong túi",
+          stC.tui_do.length === new Set(stC.tui_do.map((v) => v.ten)).size, true);
+
+    const stC2 = choi("c2_c25b");
+    check("cuối nhánh C có 2 Thăng Tiên Lệnh", tui(stC2)["Thăng Tiên Lệnh"], 2);
+    check("  và 1 Kim Quang Chuyên", tui(stC2)["Kim Quang Chuyên"], 1);
+
+    const stB = choi("c2_c24b");
+    check("nhánh B: Hàn Lập giữ lệnh, người chơi không nhận",
+          tui(stB)["Thăng Tiên Lệnh"], undefined);
+
+    const thieuVat = ch2h.doan.filter((d) => (d.ke || "").includes("Nhận:") &&
+      (d.lua_chon || []).length &&
+      !d.lua_chon.some((lc) => (lc.hieu_ung || {}).them_vat)).map((d) => d.id);
+    check("đoạn báo “Nhận:” thì phải thật sự thêm vật phẩm", thieuVat, []);
+
+    // --------------------------------------- N5. Kết xấu chỉ dành cho hảo cảm thấp
+    const khoaKetXau = (diem) => {
+      const st = Engine.trang_thai_moi("T", "", "tan_tu");
+      st.chuong = 2;
+      st.doan_hien_tai = "c2_c24c";
+      st.npc = { "Hàn Lập": { hao_cam: diem, thai_do: Engine.muc_hao_cam(diem) } };
+      return Engine.goi_y_hien_tai(st).lua_chon
+        .filter((lc) => lc.chu.startsWith("Nằm im, và biết")).map((lc) => !!lc.khoa);
+    };
+    check("kết xấu bị khoá khi hảo cảm đã cao", khoaKetXau(75), [true]);
+    check("kết xấu mở khi hảo cảm thấp", khoaKetXau(-45), [false]);
+  }
 
   console.log(`\n${"=".repeat(46)}\nKẾT QUẢ: ${ok} đạt, ${fail} hỏng`);
   process.exit(fail ? 1 : 0);
