@@ -47,7 +47,9 @@ def _ke_ai(kq: dict, bat: bool) -> dict:
     if not van_goc:
         return kq
     try:
-        moi = AI.ke_lai_tien_hiep(van_goc, kq.get("boi_canh") or "")
+        moi = AI.ke_lai_tien_hiep(van_goc, kq.get("boi_canh") or "",
+                                  kq.get("hanh_dong") or "",
+                                  kq.get("npc_trong_canh") or [])
     except Exception:  # noqa: BLE001 - AI lỗi thì dùng văn bản gốc
         moi = ""
     if moi:

@@ -669,5 +669,179 @@ check("không prompt nào vượt 450 ký tự", _qua, {})
 check("prompt cảnh nghỉ đêm đều có câu tiếng Hoa",
       all("「" in v for k, v in _PA.PROMPT.items() if k.endswith("_nghi_dem")), True)
 
+print("\n=== J. Hảo cảm đổi giọng kể, không đổi sự việc ===")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import engine as _E2
+
+_ch2b = _E2.load_chuong(2)
+_ds2 = {x["id"]: x for x in _ch2b["doan"]}
+
+def _ke(did, diem):
+    st = {"npc": {"Hàn Lập": {"hao_cam": diem, "thai_do": _E2.muc_hao_cam(diem)}}}
+    return _E2._ke_theo_hao_cam(_ds2[did], st)
+
+# Đoạn có bien_the phải ra văn bản KHÁC nhau ở các mức hảo cảm khác nhau.
+_c18 = [_ke("c2_c18", d) for d in (-80, -30, 0, 30)]
+check("c2_c18 đổi giọng theo 4 mức hảo cảm", len(set(_c18)), 4)
+# Nhưng sự việc gốc phải giữ: câu hỏi trung tâm vẫn y nguyên.
+check("mọi biến thể vẫn giữ nguyên sự việc gốc",
+      all("Vì sao ngươi giúp ta" in t for t in _c18), True)
+
+# Không có bien_the -> luôn trả `ke` gốc, không phụ thuộc hảo cảm.
+_khong_bt = [x["id"] for x in _ch2b["doan"] if not x.get("bien_the")][0]
+check("đoạn không có bien_the thì không đổi theo hảo cảm",
+      len({_ke(_khong_bt, d) for d in (-80, 0, 95)}), 1)
+
+# Bậc thấp hơn gần nhất: chỉ khai báo "quen biết" thì mức "tri kỷ" vẫn dùng nó,
+# thay vì rơi về giọng trung tính của `ke`.
+_x = {"ke": "GỐC", "bien_the": [
+    {"npc": "Hàn Lập", "muc": "quen biết", "ke": "QB"},
+    {"npc": "Hàn Lập", "muc": "tử địch", "ke": "TD"}]}
+check("hảo cảm cao hơn biến thể cao nhất → dùng biến thể cao nhất",
+      _E2._ke_theo_hao_cam(_x, {"npc": {"Hàn Lập": {"hao_cam": 95}}}), "QB")
+check("hảo cảm thấp hơn biến thể thấp nhất → dùng biến thể thấp nhất",
+      _E2._ke_theo_hao_cam(_x, {"npc": {"Hàn Lập": {"hao_cam": -95}}}), "TD")
+check("mức giữa hai biến thể → lấy bậc thấp hơn gần nhất",
+      _E2._ke_theo_hao_cam(_x, {"npc": {"Hàn Lập": {"hao_cam": 30}}}), "QB")
+
+# NPC chưa gặp thì biến thể của NPC đó không được chọn.
+check("biến thể của NPC chưa gặp không được dùng",
+      _E2._ke_theo_hao_cam(_x, {"npc": {}}), "GỐC")
+
+print("\n=== K. Hảo cảm vào được tới prompt kể chuyện ===")
+import ai as _AI
+_p = _AI._phan_thai_do([{"ten": "Hàn Lập", "hao_cam": -75, "thai_do": "tử địch"},
+                        {"ten": "Tuyết Cơ", "hao_cam": 90, "thai_do": "tri kỷ"}])
+check("prompt nêu tên và thái độ từng NPC", ("Hàn Lập" in _p, "Tuyết Cơ" in _p), (True, True))
+check("prompt nói rõ giọng theo thái độ", "tử địch" in _p and "tri kỷ" in _p, True)
+check("NPC không có mặt thì không vào prompt", _AI._phan_thai_do([]), "")
+# Giọng kể đổi được, sự kiện thì không — phải nói rõ trong prompt.
+check("prompt cấm đổi sự việc", "không" in _p.lower() and "sự việc" in _p.lower(), True)
+
+# Cache phải tách theo NPC: cùng đoạn, khác thái độ → không được dùng chung kết quả.
+check("khoá cache tách theo NPC",
+      _AI._khoa_cache("ke", "", (("Hàn Lập", -80),)) !=
+      _AI._khoa_cache("ke", "", (("Hàn Lập", 90),)), True)
+check("khoá cache không có NPC vẫn ổn định",
+      _AI._khoa_cache("ke", "", ()) == _AI._khoa_cache("ke", "", ()), True)
+
+print("\n=== L. Hảo cảm thấp phải với tới được, và có hậu quả ===")
+_lo, _hi = {}, {}
+def _walk(sid, aff, _sâu=0):
+    if _sâu > 60 or sid not in _ds2:
+        return
+    _lo[sid] = min(_lo.get(sid, 9e9), aff)
+    _hi[sid] = max(_hi.get(sid, -9e9), aff)
+    for lc in (_ds2[sid].get("lua_chon") or []):
+        a = aff + (((lc.get("hieu_ung") or {}).get("hao_cam") or {}).get("Hàn Lập", 0))
+        den = lc.get("den")
+        if den and den != "__ket_thuc__":
+            _walk(den, a, _sâu + 1)
+for _dau in _ch2b["doan_dau_theo_nhom"].values():
+    _walk(_dau, 0)
+
+check("đi được xuống mức thù địch trong chương 2", _lo.get("c2_c25", 0) <= -20, True)
+check("  và lên được mức thân thiết", _hi.get("c2_c25", 0) >= 50, True)
+check("  hai đầu cách nhau đủ xa để đổi giọng",
+      _hi.get("c2_c25", 0) - _lo.get("c2_c25", 0) >= 60, True)
+
+# Lựa chọn khoá theo hảo cảm phải thật sự chặn được.
+_khoa = [x["id"] for x in _ch2b["doan"]
+         for lc in (x.get("lua_chon") or [])
+         if "hao_cam" in ((lc.get("dieu_kien") or {}))]
+check("có lựa chọn bị khoá theo hảo cảm", len(_khoa) >= 3, True)
+
+# Hảo cảm thấp phải dẫn tới đoạn kết KHÁC, không chỉ khác lời kể.
+check("có nhánh kết riêng cho hảo cảm thấp",
+      any(x["id"] == "c2_c26_xau" for x in _ch2b["doan"]), True)
+_den_xau = [lc.get("den") for lc in (_ds2["c2_c24c"].get("lua_chon") or [])
+            if lc.get("den") == "c2_c24c_xau"]
+check("  và nhánh đó đi tới được từ c2_c24c", len(_den_xau) >= 1, True)
+
+print("\n=== M. Dữ liệu deploy và ảnh ===")
+# Bản chạy thật đọc docs/game/du-lieu/ — quên đồng bộ là sửa mà không lên mạng.
+import hashlib as _hl
+for _f in ("chuong1.json", "chuong2.json"):
+    _a = _hl.md5(open(os.path.join("game", "chapters", _f), "rb").read()).hexdigest()
+    _b = _hl.md5(open(os.path.join("docs", "game", "du-lieu", _f), "rb").read()).hexdigest()
+    check(f"{_f} trong game/ và docs/ giống nhau từng byte", _a, _b)
+
+# Ảnh cảnh Chương 2 chưa làm — đoạn mới không được mượn ảnh Chương 1.
+_moi = {"c2_c24c_xau", "c2_c26_xau"}
+check("đoạn mới không gắn ảnh (Chương 2 chưa có ảnh)",
+      [x["id"] for x in _ch2b["doan"]
+       if x["id"] in _moi and x.get("hinh_anh")], [])
+
+print("\n=== N. Nhận vật phẩm phải khớp lời kể ===")
+from collections import deque as _dq
+
+def _duong(dau, dich, nhom="tan_tu"):
+    st = _E2.trang_thai_moi("T", "", nhom)
+    st["chuong"] = 2
+    _E2.bat_dau(st)
+    q = _dq([(st["doan_hien_tai"], [])])
+    tham = {st["doan_hien_tai"]}
+    while q:
+        sid, path = q.popleft()
+        if sid == dich:
+            return path
+        for i, lc in enumerate(_ds2[sid].get("lua_chon") or []):
+            den = lc.get("den")
+            if den and den != "__ket_thuc__" and den in _ds2 and den not in tham:
+                tham.add(den)
+                q.append((den, path + [i]))
+    return None
+
+def _choi(dich, nhom="tan_tu"):
+    st = _E2.trang_thai_moi("T", "", nhom)
+    st["chuong"] = 2
+    _E2.bat_dau(st)
+    for i in _duong(st["doan_hien_tai"], dich, nhom):
+        r = _E2.chon(st, i)
+    return st, r
+
+def _tui(st):
+    return {v["ten"]: v.get("so", 1) for v in st["tui_do"]}
+
+# Món nào lời kể nói "Nhận" thì phải có trong túi, và không có dòng trùng tên.
+_st, _ = _choi("c2_c24c")
+_t = _tui(_st)
+check("linh thạch nhặt được vào túi, gộp một dòng", _t.get("Linh thạch hạ phẩm"), 13)
+check("  không có hai dòng cùng tên trong túi",
+      len([v["ten"] for v in _st["tui_do"]]) - len(set(v["ten"] for v in _st["tui_do"])), 0)
+
+_st2, _ = _choi("c2_c25b")
+_t2 = _tui(_st2)
+check("tới cuối nhánh C có 2 Thăng Tiên Lệnh", _t2.get("Thăng Tiên Lệnh"), 2)
+check("  và 1 Kim Quang Chuyên", _t2.get("Kim Quang Chuyên"), 1)
+
+# Nhánh B: Hàn Lập tự cất lệnh — người chơi không được nhận gì.
+_st3, _ = _choi("c2_c24b")
+check("nhánh B: Hàn Lập giữ lệnh, người chơi không nhận",
+      _tui(_st3).get("Thăng Tiên Lệnh"), None)
+
+# Mọi lựa chọn có "Nhận:" trong lời kể của đoạn đích phải có hiệu ứng them_vat.
+_thieu = []
+for x in _ch2b["doan"]:
+    if "Nhận:" in (x.get("ke") or ""):
+        co = any(((lc.get("hieu_ung") or {}).get("them_vat")) for lc in (x.get("lua_chon") or []))
+        # đoạn kết không có lựa chọn thì bỏ qua
+        if (x.get("lua_chon") or []) and not co:
+            _thieu.append(x["id"])
+check("đoạn báo “Nhận:” thì phải thật sự thêm vật phẩm", _thieu, [])
+
+print("\n=== O. Kết xấu chỉ dành cho hảo cảm thấp ===")
+def _goi_y_khoa(diem):
+    st = _E2.trang_thai_moi("T", "", "tan_tu")
+    st["chuong"] = 2
+    st["doan_hien_tai"] = "c2_c24c"
+    st["npc"] = {"Hàn Lập": {"hao_cam": diem, "thai_do": _E2.muc_hao_cam(diem)}}
+    return _E2._goi_y(st)["lua_chon"]
+
+check("kết xấu bị khoá khi hảo cảm đã cao",
+      [lc["khoa"] for lc in _goi_y_khoa(75) if lc["chu"].startswith("Nằm im, và biết")], [True])
+check("kết xấu mở khi hảo cảm thấp",
+      [lc["khoa"] for lc in _goi_y_khoa(-45) if lc["chu"].startswith("Nằm im, và biết")], [False])
+
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)

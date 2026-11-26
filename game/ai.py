@@ -148,8 +148,42 @@ _cache_ke: dict = {}
 CACHE_TOI_DA = 500
 
 
-def _khoa_cache(doan_ke: str, hanh_dong: str) -> tuple:
-    return (doan_ke, hanh_dong)
+def _khoa_cache(doan_ke: str, hanh_dong: str, npc: tuple = ()) -> tuple:
+    return (doan_ke, hanh_dong, npc)
+
+
+# Giọng kể phải đổi theo thái độ, nhưng sự kiện thì không được đổi — nếu không,
+# người chơi hảo cảm thấp sẽ đọc một cốt truyện khác hẳn.
+_GIONG_THEO_THAI_DO = {
+    "tử địch": "căm thù, dè chừng, muốn tránh xa",
+    "thù địch": "lạnh nhạt, cộc, không giải thích, không đùa",
+    "người dưng": "dè dặt, lịch sự nhưng xa cách",
+    "quen biết": "thoải mái vừa phải, đã bớt cảnh giác",
+    "thân thiết": "ấm áp, tin nhau, nói thẳng",
+    "tri kỷ": "thân tình, hiểu nhau không cần nói hết",
+}
+
+
+def _phan_thai_do(npc) -> str:
+    """Khối prompt mô tả thái độ hiện tại của NPC trong cảnh."""
+    if not npc:
+        return ""
+    dong = []
+    for n in npc:
+        ten = n.get("ten") or ""
+        thai_do = n.get("thai_do") or "người dưng"
+        giong = _GIONG_THEO_THAI_DO.get(thai_do, _GIONG_THEO_THAI_DO["người dưng"])
+        dong.append(f"- {ten}: thái độ với người kể là “{thai_do}” → {giong} "
+                    f"(hảo cảm {n.get('hao_cam', 0)})")
+    if not dong:
+        return ""
+    return (
+        "\nTHÁI ĐỘ NHÂN VẬT TRONG CẢNH (bắt buộc đổi giọng theo):\n"
+        + "\n".join(dong) + "\n"
+        "- Đổi CÁCH NÓI của nhân vật đó và cách người kể nhìn họ cho khớp thái độ.\n"
+        "- TUYỆT ĐỐI không đổi sự việc: cùng hành động, cùng ai làm gì, cùng kết quả.\n"
+        "- Không thêm lời thoại mới, không bớt lời thoại cũ; chỉ đổi sắc thái câu chữ.\n"
+    )
 
 
 # ------------------------------------------- chặn AI viết hỏng (Hán-Việt rác)
@@ -256,16 +290,22 @@ def van_ban_dung(ban_ai: str, ban_goc: str) -> tuple[bool, str]:
     return True, ""
 
 
-def ke_lai_tien_hiep(doan_ke: str, boi_canh: str = "", hanh_dong: str = "") -> str:
+def ke_lai_tien_hiep(doan_ke: str, boi_canh: str = "", hanh_dong: str = "",
+                     npc=None) -> str:
     """AI kể lại một đoạn cốt truyện theo văn phong tiên hiệp (GIỮ NGUYÊN sự kiện).
 
-    Kết quả được NHỚ theo (đoạn, hành động) — chơi lại cùng đường không tốn thêm
-    lần gọi API nào. Lỗi mạng/API → trả "" để nơi gọi dùng lại văn bản gốc.
+    `npc` là danh sách {ten, hao_cam, thai_do} của cảnh: AI đổi GIỌNG lời thoại theo
+    thái độ, nhưng không được đổi sự việc. Kết quả được NHỚ theo (đoạn, hành động,
+    thái độ) — cùng đoạn với hai mức hảo cảm khác nhau phải ra hai bản khác nhau.
+    Lỗi mạng/API → trả "" để nơi gọi dùng lại văn bản gốc.
     """
     doan_ke = (doan_ke or "").strip()
     if not doan_ke:
         return ""
-    khoa = _khoa_cache(doan_ke, hanh_dong)
+    npc = npc or []
+    khoa_npc = tuple(sorted((n.get("ten") or "", n.get("thai_do") or "")
+                            for n in npc))
+    khoa = _khoa_cache(doan_ke, hanh_dong, khoa_npc)
     if khoa in _cache_ke:
         return _cache_ke[khoa]
 
@@ -286,8 +326,9 @@ def ke_lai_tien_hiep(doan_ke: str, boi_canh: str = "", hanh_dong: str = "") -> s
         "'triệt ngộ', 'nguyệt thăng', 'tùng hình', 'u lan', 'mai táng', 'vị tằng', "
         "'phương tri', 'nhất lũ'. Đúng: 'im lặng', 'mùi lạ', 'mũi', 'hiểu ra', "
         "'trăng lên', 'theo nàng mà tới', 'chưa từng', 'mới biết', 'một'.\n"
-        "- 'mai táng' chỉ dùng cho chôn người chết. Chôn đồ vật thì dùng 'chôn', 'vùi', 'lấp đất'.\n\n"
-        "Viết trọn câu, kết thúc bằng dấu chấm. Chỉ trả về đoạn kể, không giải thích.\n\n"
+        "- 'mai táng' chỉ dùng cho chôn người chết. Chôn đồ vật thì dùng 'chôn', 'vùi', 'lấp đất'.\n"
+        + _phan_thai_do(npc) +
+        "\nViết trọn câu, kết thúc bằng dấu chấm. Chỉ trả về đoạn kể, không giải thích.\n\n"
         f"ĐOẠN GỐC:\n{doan_ke}{phan_boi_canh}{phan_hanh_dong}"
     )
     try:
