@@ -74,6 +74,40 @@ Hệ quả phải giữ cho khớp:
 
 ---
 
+## 5b. QUYẾT ĐỊNH CỦA NGƯỜI DÙNG (chốt 2026-11-17)
+
+### Chưởng Thiên Bình: chọn (b) — GIEO MẦM ngay trong Chương 2
+Hàn Lập có "một cái bình nhỏ màu xanh" nhặt được hồi ở Thất Huyền Môn, **chưa biết
+công dụng**. Chương 2 chỉ gieo mầm: hắn khoe/để lộ ra, hoặc người chơi thoáng thấy.
+**KHÔNG** giải thích công dụng trong chương này.
+
+### Cao trào tà tu: chọn (a) — ĐƯA NGUYÊN CẢNH
+Có chết chóc. Tà tu phong toả Thái Nam Cốc, cướp tài vật, bắt tu sĩ làm lô đỉnh.
+Hàn Lập hạ sát Kim Quang Thượng Nhân, đoạt túi trữ vật (thêm Thăng Tiên Lệnh + Kim
+Quang Chuyên). Đây là lần đầu Hàn Lập giết người trong giới tu tiên.
+
+### Người chơi: KHÔNG có Thăng Tiên Lệnh
+Chỉ Hàn Lập có. Người chơi đi theo và chứng kiến.
+
+## 5c. HAI ĐƯỜNG VÀO TÔNG MÔN TU TIÊN (canon, người dùng cung cấp)
+
+| Đường | Điều kiện | Kết quả |
+|---|---|---|
+| **1. Thăng Tiên Lệnh** | Có lệnh bài | Vào **ngoại môn** — đường đơn giản nhất, không cần khảo hạch |
+| **2. Có linh căn** | Xét theo **số loại linh căn** | Xem bảng dưới |
+
+### Xếp loại theo linh căn
+
+| Loại | Số linh căn | Vào |
+|---|---|---|
+| **Thiên linh căn** | 1 | **Chân truyền đệ tử** |
+| **Song linh căn** | 2 | **Nội môn** |
+| **Tam linh căn** | 3 | **Ngoại môn** |
+| **Tứ linh căn** | 4 | **Tạp dịch** |
+| **Ngũ hành linh căn** | 5 | **Tạp dịch** |
+
+> Ghi nhớ: **càng ít loại linh căn càng quý**. Nhiều loại = tạp = đáy.
+
 ## 6. Việc phải sửa trong Chương 2 (đang làm)
 
 | Đoạn | Sai gì | Sửa thành |
