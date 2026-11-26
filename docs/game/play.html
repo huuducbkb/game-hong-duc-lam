@@ -2568,6 +2568,29 @@ ganNutCanh();
   }
   capNhatTrangThaiKey();
 
+  // Vào thẳng một chương bằng ?chuong=N — để thử chương mới mà không phải
+  // chơi lại từ đầu. Chỉ dùng khi CHƯA có phiên; có phiên thì tôn trọng phiên.
+  const _q = new URLSearchParams(location.search);
+  const _soVao = parseInt(_q.get("chuong"), 10);
+  if (_soVao > 1 && Engine.co_chuong(_soVao)) {
+    const _cu = docPhien();
+    const _daDung = _cu && _cu.chuong === _soVao;
+    if (!_daDung) {
+      // Phiên đang có (nếu có) được giữ ở khoá riêng, không xoá hẳn: lỡ bấm
+      // nhầm link thử chương thì vẫn lấy lại được tiến trình cũ.
+      if (_cu) { try { localStorage.setItem("hdttl_phien_cu", JSON.stringify(_cu)); } catch (e) {} }
+      const _nhom = _q.get("nhom") === "mon_phai" ? "mon_phai" : "tan_tu";
+      st = Engine.trang_thai_moi(_q.get("ten") || "Vô Danh", "kẻ vô danh", _nhom);
+      Engine.sang_chuong(st, _soVao);
+      luuPhien();
+    } else {
+      st = _cu;
+    }
+    if (window.vaoThangNhanh) window.vaoThangNhanh();
+    hienThi(Engine.goi_y_hien_tai(st));
+    return;
+  }
+
   // khôi phục phiên đang chơi
   const cu = docPhien();
   if (cu) {
