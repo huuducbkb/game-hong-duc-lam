@@ -108,7 +108,7 @@ Chỉ Hàn Lập có. Người chơi đi theo và chứng kiến.
 
 > Ghi nhớ: **càng ít loại linh căn càng quý**. Nhiều loại = tạp = đáy.
 
-## 6. Việc phải sửa trong Chương 2 (đang làm)
+## 6. Những gì đã sửa trong Chương 2 (XONG)
 
 | Đoạn | Sai gì | Sửa thành |
 |---|---|---|
@@ -122,3 +122,27 @@ Chỉ Hàn Lập có. Người chơi đi theo và chứng kiến.
 | `c2_c25` | "có tên trong một tông môn" | Có **Thăng Tiên Lệnh** → đường vào Hoàng Phong Cốc |
 | `c2_d08` | Vạn Tiểu Sơn = "gã thanh niên sáng sủa, cười tươi" | **Tán tu lớn tuổi, kiêu ngạo, Luyện Khí tầng 8** |
 | `c2_c03`…`c2_c12` | Thiếu Thăng Tiên Lệnh, Chưởng Thiên Bình | Gieo mầm: linh thảo, hạt giống, Thăng Tiên Lệnh |
+
+
+## 7. Trạng thái sau khi sửa (chốt 2026-11-17)
+
+Đã làm xong cả 6 mục trên, cộng thêm:
+
+| Đoạn | Trước | Sau |
+|---|---|---|
+| `c2_c13` | Hàn Lập "thuỷ linh căn, tạp, yếu" | Hàn Lập **tứ linh căn**; người chơi **thiên linh căn** |
+| `c2_c14a` | Bà lão nói mơ hồ "nên giấu" | Bà giảng thẳng bảng xếp loại 1→5 loại |
+| `c2_c20` | Bà chỉ nói có hội tuyển | Bà giảng **hai đường**: linh căn / Thăng Tiên Lệnh |
+| `c2_c22` | Không có Chưởng Thiên Bình | Hàn Lập lấy bình nhỏ xanh ra, **chưa biết công dụng** |
+| `c2_c24a` | Lên đài thi | **Tà tu phong toả**; nghe Kim Quang giết người giành lệnh |
+| `c2_c24b` | — | **MỚI**: Hàn Lập hạ sát Kim Quang, đoạt lệnh + Kim Quang Chuyên |
+| `c2_c24c` | — | Hàn Lập đưa lệnh cho người chơi, tự bước ra |
+| `c2_c24c2` | — | Hàn Lập bị thương, người chơi đỡ hắn đi |
+| `c2_c25` | "có tên trong tông môn" | Hàn Lập đi Hoàng Phong Cốc; người chơi **không có lệnh**, có linh căn |
+| `ket` | "một mảnh giấy ghi tên một tông môn" | Bỏ. Kết theo hướng mở |
+
+Tổng: **57 đoạn** (trước 55), **76 lựa chọn**. Test 180 + 163 đạt. Bốn nhánh kết chơi hết được trên trình duyệt.
+
+### Còn để ngỏ cho Chương 3
+- Người chơi đi đường nào: dùng thiên linh căn xin vào tông môn, hay đi theo Hàn Lập tới Hoàng Phong Cốc?
+- Hàn Lập bị thương ở nhánh `c2_c24c2` — nếu anh muốn nhánh đó là canon thì Chương 3 phải mở bằng cảnh dưỡng thương.

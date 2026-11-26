@@ -1509,7 +1509,12 @@ chung in một lần**. Hàm in chuỗi rẽ phải nhận danh sách đoạn "�
 để dừng lại. Kiểm bằng số đếm: đúng **55** thẻ `<article class="doan">`, không
 đoạn nào trùng, và không đoạn nào thiếu.
 
-### Vào thẳng một chương để thử: `?chuong=N`
+### Báo cáo / trang đọc cho người dùng
+- `docs/nhap/chuong2-canon.html` — báo cáo sửa Chương 2 (ảnh chụp trong `docs/nhap/chuong2-canon/`).
+- `docs/nhap/cot-truyen-chuong2.html` — toàn văn Chương 2, sinh bằng `python3 tools/tao_trang_cot_truyen.py`.
+- Trang báo cáo mới luôn đặt trong `docs/nhap/`, tiếng Việt, khổ 390px.
+
+## Vào thẳng một chương để thử: `?chuong=N`
 
 Chơi lại Chương 1 (36 đoạn) chỉ để xem Chương 2 là quá phiền. Nay
 `docs/game/play.html` nhận tham số URL:
