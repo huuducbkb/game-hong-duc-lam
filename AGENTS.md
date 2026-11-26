@@ -1483,3 +1483,28 @@ Cách đúng: chia trang làm ba phần — lối vào tán tu, lối vào môn 
 chung in một lần**. Hàm in chuỗi rẽ phải nhận danh sách đoạn "đã in ở nơi khác"
 để dừng lại. Kiểm bằng số đếm: đúng **55** thẻ `<article class="doan">`, không
 đoạn nào trùng, và không đoạn nào thiếu.
+
+### Vào thẳng một chương để thử: `?chuong=N`
+
+Chơi lại Chương 1 (36 đoạn) chỉ để xem Chương 2 là quá phiền. Nay
+`docs/game/play.html` nhận tham số URL:
+
+```
+/game/play.html?chuong=2                 # vào thẳng chương 2, xuất thân tán tu
+/game/play.html?chuong=2&nhom=mon_phai   # nhánh môn phái
+/game/play.html?chuong=2&ten=Hồng Đức     # đặt tên nhân vật
+```
+
+Ba chi tiết dễ làm hỏng:
+
+1. **Bản mạng là `docs/game/play.html`, KHÔNG phải `game/play.html`.** Hai bản đã
+   tách nhau (bản docs có thêm Cài đặt/avatar/key, 2695 dòng so với 2549). Sửa
+   `game/play.html` rồi tưởng đã xong là mất công cả buổi.
+2. **Phải gọi `window.vaoThangNhanh()`**, không chỉ ẩn `#setup`. Đường vào này
+   không đi qua nút "Vào game" nên chưa có cú chạm nào mở khoá tiếng; thiếu nó
+   thì cả phiên im.
+3. **Đừng xoá phiên cũ.** Link thử chương mà xoá sạch `hdttl_phien` là người chơi
+   mất tiến trình thật. Cất sang `hdttl_phien_cu` trước.
+
+Đọc chữ ra để kiểm: `#storyBody` (không phải `#storyText` — không tồn tại), và
+`#storyChapter` cho tên chương.
