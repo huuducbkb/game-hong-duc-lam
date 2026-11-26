@@ -606,29 +606,39 @@ if not NEN_OK:
     print("  (bỏ qua: chưa cài Pillow)")
 else:
     # Ảnh lớn (900×1200, có nhiễu như ảnh thật) lưu vào game phải NHẸ hơn gốc.
-    # Dùng một key nháp rồi xoá: ghi vào key thật sẽ đè mất ảnh vẽ của người dùng.
+    # Ghi đè lên một key thật rồi phục hồi — phải sao lưu CẢ HAI nơi, vì máy chủ
+    # ghi vào assets/scene/ và docs/assets/scene/. Chỉ sao lưu một nơi là bản còn
+    # lại bị đè bằng ảnh nhiễu của test.
     _goc = _png_nhieu(900, 1200)
     _k = "bc_cho_01"
-    _duong = "/workspace/game-hong-duc-lam/assets/scene/" + _k + ".jpg"
-    _sao = _duong + ".test-goc"
-    _co_cu = os.path.isfile(_duong)
-    if _co_cu:
-        import shutil as _sh
-        _sh.copy2(_duong, _sao)
+    import shutil as _sh
+    _dss = ["/workspace/game-hong-duc-lam/assets/scene/" + _k + ".jpg",
+            "/workspace/game-hong-duc-lam/docs/assets/scene/" + _k + ".jpg"]
+    _sao = []
+    for _d in _dss:
+        if os.path.isfile(_d):
+            _sh.copy2(_d, _d + ".test-goc")
+            _sao.append(_d)
     try:
         _post_raw("/luu_loat", {"ds": [{"key": _k, "data": _b64(_goc)}]})
-        _luu = os.path.getsize(_duong) if os.path.isfile(_duong) else 0
+        _luu = os.path.getsize(_dss[0]) if os.path.isfile(_dss[0]) else 0
         check("ảnh lưu ra nhẹ hơn ảnh gốc", _luu > 0 and _luu < len(_goc), True)
     finally:
-        if _co_cu:
-            import shutil as _sh
-            _sh.move(_sao, _duong)
+        for _d in _sao:
+            _sh.move(_d + ".test-goc", _d)
     # Ảnh giữ trong suốt (seal) phải vẫn là PNG
-    kq = _post_raw("/luu_loat", {"ds": [{"key": "seal", "data": _b64(_png(1024, 1024))}]})
     _seal = "/workspace/game-hong-duc-lam/assets/ui/seal.png"
-    with open(_seal, "rb") as _f:
-        _hdr = _f.read(26)
-    check("ảnh seal vẫn là PNG", _hdr[:8] == b"\x89PNG\r\n\x1a\n", True)
+    import shutil as _sh2
+    if os.path.isfile(_seal):
+        _sh2.copy2(_seal, _seal + ".test-goc")
+    try:
+        _post_raw("/luu_loat", {"ds": [{"key": "seal", "data": _b64(_png(1024, 1024))}]})
+        with open(_seal, "rb") as _f:
+            _hdr = _f.read(26)
+        check("ảnh seal vẫn là PNG", _hdr[:8] == b"\x89PNG\r\n\x1a\n", True)
+    finally:
+        if os.path.isfile(_seal + ".test-goc"):
+            _sh2.move(_seal + ".test-goc", _seal)
 
 _restore(_snap)
 

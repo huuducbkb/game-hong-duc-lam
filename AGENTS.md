@@ -1445,3 +1445,41 @@ curl -s "https://huuducbkb.github.io/game-hong-duc-lam/game/du-lieu/chuong2.json
 Bài học: **push thành công ≠ web đã cập nhật.** Pages có CDN `max-age=600`, nên bản
 cũ vẫn trả về bình thường trong 10 phút. Luôn kiểm `workflow_runs` xem lượt deploy
 của đúng commit đó có `conclusion: success` không, trước khi kết luận là đã lên mạng.
+
+### Test ghi đè ảnh thật: phải sao lưu ĐỦ mọi đường, và máy chủ đang chạy giữ cache
+
+Hai lỗi liên tiếp trong `_test_api.py`, cả hai đều ngốn thời gian:
+
+**1. Sao lưu thiếu đường.** Phép kiểm nén ảnh ghi đè `bc_cho_01` rồi phục hồi,
+nhưng chỉ sao lưu `assets/scene/`, quên `docs/assets/scene/` — nơi máy chủ cũng
+ghi. Kết quả: `docs/assets/scene/bc_cho_01.jpg` bị thay bằng ảnh nhiễu của test
+(3,2 MB thay vì 190 KB). Ảnh hỏng vẫn "chạy" nên rất dễ lọt. Khi test cần ghi đè
+file thật, phải sao lưu **mọi** đường mà code ghi tới, và `git status` phải sạch
+sau khi chạy test — đó là cách phát hiện.
+
+**2. Máy chủ giữ trạng thái lúc khởi động.** Cài Pillow xong nhưng `game_server.py`
+đang chạy từ trước vẫn tưởng không có Pillow, nên bỏ qua đường nén: ảnh lưu ra
+đúng bằng kích thước gốc và phép kiểm "nhẹ hơn ảnh gốc" hỏng. Không phải lỗi
+code. Sửa: khởi động lại máy chủ sau khi cài thư viện.
+
+Ngoài ra `_test_api.py` cần server ở cổng 12001:
+
+```bash
+python3 game_server.py &        # rồi mới chạy python3 game/_test_api.py
+node game/_test_engine.js       # bộ JS không cần server
+```
+
+Bỏ Pillow thì bộ Python chỉ còn 178 phép kiểm (hai phép ảnh bị bỏ qua) — **con số
+180 chỉ đúng khi đã cài Pillow**.
+
+### Trang đọc truyện: hai lối vào in riêng, mạch chung in MỘT lần
+
+`docs/nhap/cot-truyen-chuong2.html` sinh từ `tools/tao_trang_cot_truyen.py`.
+Lần đầu viết, trang in trọn mạch chung cho cả hai nhánh: 105 đoạn, cao 76.000 px,
+dài gấp đôi cần thiết. Nguyên nhân: đoạn rẽ cuối mỗi lối vào ("Xuống thung lũng")
+dẫn thẳng vào mạch chung, nên hàm in chuỗi rẽ chạy tuốt qua cả chương còn lại.
+
+Cách đúng: chia trang làm ba phần — lối vào tán tu, lối vào môn phái, rồi **mạch
+chung in một lần**. Hàm in chuỗi rẽ phải nhận danh sách đoạn "đã in ở nơi khác"
+để dừng lại. Kiểm bằng số đếm: đúng **55** thẻ `<article class="doan">`, không
+đoạn nào trùng, và không đoạn nào thiếu.
