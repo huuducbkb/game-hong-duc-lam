@@ -350,6 +350,31 @@ ra từ liên kết, nên tự đúng cho mọi nhánh.
 "linh dược viên", "cống phẩm linh thạch"; cho người chơi lộ tu vi công khai.
 
 
+### Canon Thái Nam Tiểu Hội — ĐỌC `tai-lieu/CANON-THAI-NAM.md` TRƯỚC KHI VIẾT
+
+Đã từng viết sai **11/55 đoạn Chương 2** vì dựng Thái Nam thành "ba tông môn dựng đài
+tuyển đệ tử". **Sai hoàn toàn.**
+
+| Điều | Canon ĐÚNG |
+|---|---|
+| Thái Nam Tiểu Hội | **Hội chợ giao dịch tự phát** của **tán tu** + đệ tử cấp thấp của **gia tộc nhỏ**. **KHÔNG phải môn phái, KHÔNG tuyển đệ tử.** |
+| Nhịp tổ chức | **Vài năm một lần** (không phải mỗi năm, không phải "bảy ngày hội") |
+| Mục đích tới đây | Trao đổi tài nguyên, mua bán đan dược/pháp khí/phù lục, **nghe ngóng tin tức** |
+| Vạn Tiểu Sơn | Tán tu **lớn tuổi**, **Luyện Khí tầng 8**, tính **kiêu ngạo** — KHÔNG phải "gã thanh niên cười tươi" |
+| Thăng Tiên Lệnh | Lệnh bài **bái nhập trực tiếp** một trong Thất Đại Môn Phái của Việt Quốc, không qua khảo hạch, kèm **Trúc Cơ Đan**. Là động cơ chính của Hàn Lập |
+| Chưởng Thiên Bình | Bình nhỏ màu xanh, **thúc chín linh thảo**. Hàn Lập mua **hạt giống rẻ** → bán **một lượng nhỏ** thảo dược lâu năm. Tuyệt đối giữ bí mật |
+| Cao trào | **Tà tu phong toả Thái Nam Cốc** cướp tài vật, bắt tu sĩ làm **lô đỉnh**. Hàn Lập hạ sát **Kim Quang Thượng Nhân**, đoạt túi trữ vật (thêm một Thăng Tiên Lệnh + Kim Quang Chuyên) |
+| Sau hội | Vào **Hoàng Phong Cốc** nhờ Thăng Tiên Lệnh |
+| Tu vi Hàn Lập lúc này | **Luyện Khí kỳ trung kỳ**, Trường Xuân Công **tầng 6–7** |
+
+**Ngoại lệ đã chốt cho game này:** canon gốc Hàn Lập **giết** Mạc Đại Phu. Game giữ
+**Mạc Đại Phu chết vì trận Dã Lang Bang**, là người tốt, Hàn Lập không giết. Động cơ tới
+Thái Nam là **di nguyện** của ông. Đừng viết lại thành Hàn Lập giết thầy.
+
+**Quy tắc rút ra:** trước khi viết bất kỳ sự kiện nào có thật trong nguyên tác, phải tra
+`tai-lieu/CANON-*.md` trước. Không có file thì **hỏi người dùng**, đừng tự suy ra từ
+"nghe hợp lý". Văn hay mà sai canon là vô giá trị.
+
 ## Xuất thân = nhánh truyện (đã làm)
 
 Mỗi xuất thân KHÔNG chỉ là nhãn — nó quyết định **hành trình riêng** tới lúc gặp Hàn Lập.
