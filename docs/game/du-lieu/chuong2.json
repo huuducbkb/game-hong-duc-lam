@@ -1,7 +1,7 @@
 {
   "chuong": 2,
   "ten": "Tiểu hội Thái Nam Sơn Cốc",
-  "tom_tat": "Mạc Đại Phu chết sau trận Dã Lang Bang. Hàn Lập mang di vật về Mạc phủ ở Gia Nguyên thành, và từ miệng khách viếng nghe được hai chữ 'Thái Nam'. Người chơi theo hắn tới Tiểu hội Thái Nam Sơn Cốc — nơi lần đầu chạm mặt giới tu tiên: linh thạch, linh căn, tông môn. Kết chương, cả hai qua hội tuyển và bước qua cánh cửa từ phàm nhân sang người tu hành.",
+  "tom_tat": "Mạc Đại Phu chết sau trận Dã Lang Bang. Hàn Lập mang di vật về Mạc phủ ở Gia Nguyên thành, và từ miệng khách viếng nghe được hai chữ 'Thái Nam'. Người chơi theo hắn tới Thái Nam Tiểu Hội — hội chợ tự phát của tán tu, nơi lần đầu chạm mặt giới tu tiên: linh thạch, linh căn, Thăng Tiên Lệnh. Ngày cuối, tà tu phong toả Thái Nam Cốc; Hàn Lập hạ sát Kim Quang Thượng Nhân và đoạt Thăng Tiên Lệnh. Kết chương, hắn đi Hoàng Phong Cốc, còn người chơi đi con đường riêng.",
   "doan_dau_theo_nhom": {
     "tan_tu": "c2_d01",
     "mon_phai": "c2_p01"
@@ -1105,8 +1105,7 @@
       "hinh_anh": {
         "tags": [
           "bà lão",
-          "chiều",
-          "hội tuyển"
+          "chiều"
         ],
         "anh": "bc_san_tap_ngay.jpg"
       },

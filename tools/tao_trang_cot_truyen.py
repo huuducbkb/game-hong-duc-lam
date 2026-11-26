@@ -216,7 +216,7 @@ def sinh():
 
     o.append('<h2 id="mach-chung">Mạch chung</h2>')
     o.append('<p class="ghi">Từ đây hai nhánh đi cùng một đường: tới Thái Nam sơn, '
-             'xuống hội, qua hội tuyển.</p>')
+             'xuống hội chợ, rồi tới ngày cuối.</p>')
     o.append(the_mach(D, mach_chung, xong))
 
     # Lời kết
