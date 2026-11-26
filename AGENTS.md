@@ -1446,8 +1446,20 @@ màn tạo nhân vật (`.xt-the[data-ma=mon_phai]`), không thì không bao gi�
 báo `No artifacts named "github-pages" were found` dù bước upload ngay trước đó
 **thành công** và đã đẩy 80 MB.
 
-Nguyên nhân thật là lỗi tạm thời của API GitHub (bước deploy hỏi danh sách artifact
-và nhận 0). Nếu chạy lại job (`rerun-failed-jobs`) thì **hỏng kiểu khác**:
+Nguyên nhân **chưa chắc chắn**. Ghi chú cũ ở đây nói là "lỗi tạm thời của API GitHub",
+nhưng ngày 2026-11-26 lỗi này lặp **ba lượt liền** trên ba run khác nhau
+(`push`, `workflow_dispatch`, `push`) — lỗi tạm thời thì không lặp đều như vậy.
+Cùng workflow đó đã chạy **thành công** lúc 15:59 cùng ngày, nên không phải workflow
+hỏng sẵn. Thêm `actions: read` vào `permissions` thì lượt dispatch kế tiếp **thành công**.
+
+Chưa tách được hai khả năng: (a) thiếu `actions: read` thật, (b) GitHub hết lỗi cùng lúc.
+Nên khi gặp lại, **thử theo thứ tự**:
+
+1. Dispatch lượt mới (không chạy lại job — xem lý do bên dưới).
+2. Nếu vẫn hỏng: thêm `actions: read` vào `permissions` của `pages.yml` rồi dispatch lại.
+3. Vẫn hỏng: chờ 15–30 phút rồi dispatch lại.
+
+Nếu chạy lại job (`rerun-failed-jobs`) thì **hỏng kiểu khác**:
 `Multiple artifacts named "github-pages" were unexpectedly found. Artifact count is 2`
 — vì lượt chạy lại sinh thêm artifact thứ hai cùng tên trong cùng một run, và
 `deploy-pages` không biết chọn cái nào. Chạy lại lần nữa cũng không cứu được run đó.
@@ -1470,6 +1482,24 @@ curl -s "https://huuducbkb.github.io/game-hong-duc-lam/game/du-lieu/chuong2.json
 Bài học: **push thành công ≠ web đã cập nhật.** Pages có CDN `max-age=600`, nên bản
 cũ vẫn trả về bình thường trong 10 phút. Luôn kiểm `workflow_runs` xem lượt deploy
 của đúng commit đó có `conclusion: success` không, trước khi kết luận là đã lên mạng.
+
+### Ảnh chụp màn hình cho báo cáo: PNG chụp 2x là quá nặng, dùng JPEG
+
+Ảnh chụp 390×844 ở `deviceScaleFactor: 2` lưu PNG nặng **1,1–1,7 MB mỗi ảnh**.
+Bốn ảnh thành 4,2 MB — trên điện thoại 3G là mấy chục giây, và mỗi lần deploy
+Pages phải đẩy thêm chừng ấy.
+
+Đổi sang JPEG `quality=82`, **giữ nguyên 780 px** (2x cho màn retina): còn
+117–240 KB, giảm 7 lần, chữ vẫn đọc rõ. Đừng hạ xuống 390 px — chữ mờ trên
+điện thoại thật.
+
+```python
+from PIL import Image
+im = Image.open(p).convert('RGB')          # giu 780px = 2x
+im.save(out, 'JPEG', quality=82, optimize=True, progressive=True)
+```
+
+Nhớ `convert('RGB')` — PNG có alpha mà lưu thẳng sang JPEG sẽ lỗi.
 
 ### Test ghi đè ảnh thật: phải sao lưu ĐỦ mọi đường, và máy chủ đang chạy giữ cache
 
