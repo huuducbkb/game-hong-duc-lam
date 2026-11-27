@@ -1570,8 +1570,20 @@ dẫn thẳng vào mạch chung, nên hàm in chuỗi rẽ chạy tuốt qua c�
 
 Cách đúng: chia trang làm ba phần — lối vào tán tu, lối vào môn phái, rồi **mạch
 chung in một lần**. Hàm in chuỗi rẽ phải nhận danh sách đoạn "đã in ở nơi khác"
-để dừng lại. Kiểm bằng số đếm: đúng **59** thẻ `<article class="doan">`, không
-đoạn nào trùng, và không đoạn nào thiếu.
+để dừng lại.
+
+**Nhưng dừng lại thôi chưa đủ — nhánh lồng trong nhánh còn bị bỏ sót.** Ngày
+2026-11-27 kiểm lại trang này mới thấy nó in 60 bài mà **thiếu hai kết xấu**
+(`c2_c24c_xau`, `c2_c26_xau`) và **trùng ba đoạn**. Lý do: hàm cũ duyệt nhánh rẽ
+bằng một vòng `for` phẳng, chỉ in các đoạn của *chuỗi* rẽ, không gọi lại chính nó.
+Kết xấu nằm sâu hai lớp (mạch chung → `c2_c24c` → `c2_c24c_xau`) nên không bao giờ
+được in. Cách sửa: cho hàm **gọi lại chính nó** cho mỗi nhánh rẽ, và **cập nhật tập
+`da_in` ngay khi in từng đoạn** (không phải sau khi in xong cả mạch) — nếu không,
+hai nhánh rẽ khác nhau sẽ cùng in một đoạn.
+
+Kiểm bằng số: `article.doan` phải là **60** (59 đoạn + "Lời kết chương"), **59 id
+duy nhất**, không id nào trùng, và **không đoạn nào trong JSON bị thiếu**. Kiểm cả
+hai id kết xấu có mặt trên trang.
 
 ### Sơ đồ cốt truyện: mỗi hành động một thẻ
 
