@@ -1787,3 +1787,31 @@ Kiểm nhanh trước khi commit:
  if b['ke'].strip()==v['ke'].strip()]
 [b['ke'].count('“')!=b['ke'].count('”') for b in ...]
 ```
+
+## Biến thể giọng kể không được bịa lore mới
+
+Lỗi đã mắc ở `c2_p08` (Tuyết Cơ, mức tri kỷ): tôi viết *"Ta đã có chủ"* để giải thích
+vì sao nàng dạy người chơi. Câu này **mâu thuẫn trực tiếp với canon**:
+- `c1_p09`: "Khế ước nô lệ — ngươi làm chủ, ta làm tớ."
+- `c1_p10`: "Từ giờ, ngươi là chủ, ta là tớ."
+- Toàn bộ chương 1–2 **không có chủ nào khác**. "chủ trước" duy nhất là của Hồng Trần
+  (`c2_d12`), không liên quan Tuyết Cơ.
+
+Quy tắc: biến thể chỉ được **đổi cách nói và cách đối xử**, không được thêm sự kiện,
+nhân vật, hay quan hệ mới. Muốn NPC có lý do riêng thì lấy lý do **đã có trong canon**:
+- Tuyết Cơ: "Ta không muốn tỉnh dậy trong một cái xác không còn ai gọi ta" (`c1_p13`).
+- Hàn Lập: "Ta không muốn nghĩ tới chuyện ngươi chết ở một chỗ ta không biết."
+
+Trước khi thêm một câu khẳng định về quá khứ vào biến thể, grep canon xem có không:
+```bash
+grep -o "chủ cũ\|chủ trước\|bản tôn\|chủ nhân\|sư phụ ta" game/chapters/*.json
+```
+
+Cũng đừng dùng hình ảnh trừu tượng thay cho nghĩa cụ thể. "Tớ không được để chủ chết ở
+một cái chợ" — "chết ở chợ" không phải thành ngữ, người đọc không hiểu. Viết thẳng:
+"Tớ để chủ chết giữa chợ thì cả cái chợ biết tớ vô dụng."
+
+## Tài liệu giọng NPC sinh từ dữ liệu, không sửa tay
+
+`TAI_LIEU_GIONG_NPC_6_MUC.md` do `tools/tao_tai_lieu_giong_npc.py` sinh. Sửa truyện xong
+thì chạy lại tool. File `.md` 4 mức cũ đã xoá — đừng khôi phục.
