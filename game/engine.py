@@ -94,22 +94,31 @@ def nhan_dien_xuat_than(xuat_than: str) -> str:
 
 
 def doan_dau_cua(nhom: str, so_chuong: int | None = None) -> str | None:
-    """Đoạn mở đầu của một nhóm xuất thân, ưu tiên bảng khai trong chính chương.
+    """Đoạn mở đầu của một nhóm xuất thân trong một chương.
 
-    Chương khai `doan_dau_theo_nhom` thì dùng bảng đó; không khai (chương cũ) thì
-    lùi về `doan_dau` trong xuat_than.json.
+    Thứ tự dò: bảng `doan_dau_theo_nhom[nhóm]` của chương → khoá `chung` của bảng
+    (chương đã gộp nhánh) → `doan_dau` của nhóm trong xuat_than.json → đoạn đầu
+    tiên của chương. Bậc cuối là để chương gộp nhánh không làm chết người chơi.
     """
-    if so_chuong is not None:
-        try:
-            bang = load_chuong(so_chuong).get("doan_dau_theo_nhom") or {}
-        except FileNotFoundError:
-            bang = {}
-        if nhom in bang:
-            return bang[nhom]
+    if so_chuong is None:
+        for n in load_xuat_than()["nhom"]:
+            if n["ma"] == nhom:
+                return n.get("doan_dau")
+        return None
+    try:
+        ch = load_chuong(so_chuong)
+    except FileNotFoundError:
+        return None
+    bang = ch.get("doan_dau_theo_nhom") or {}
+    if nhom in bang:
+        return bang[nhom]
+    if "chung" in bang:
+        return bang["chung"]
     for n in load_xuat_than()["nhom"]:
-        if n["ma"] == nhom:
-            return n.get("doan_dau")
-    return None
+        if n["ma"] == nhom and n.get("doan_dau") in ch["_theo_id"]:
+            return n["doan_dau"]
+    dau = ch["doan"]
+    return dau[0]["id"] if dau else None
 
 
 # Chỉ số khởi đầu dùng chung khi nhóm không khai `chi_so_dau` (vd nhóm ẩn).
@@ -248,7 +257,25 @@ def _doan(state: dict) -> dict:
             f"Chương {state['chuong']} không có đoạn '{did}' — "
             f"bản lưu trỏ tới đoạn không tồn tại"
         )
-    return ch["_theo_id"][did]
+    d = ch["_theo_id"][did]
+    _ap_hieu_ung_vao(state, d)
+    return d
+
+
+def _ap_hieu_ung_vao(state: dict, d: dict) -> None:
+    """Hiệu ứng của chính đoạn, áp đúng một lần khi người chơi bước vào.
+
+    Dùng cho thứ phải có mặt NGAY lúc mở đoạn — bạn đồng hành xuất hiện trong
+    sổ NPC, cờ sự kiện bật sẵn — chứ không phải đợi bấm lựa chọn đầu tiên.
+    """
+    hu = d.get("hieu_ung_vao")
+    if not hu:
+        return
+    da_ap = state.setdefault("da_ap_vao", [])
+    if d["id"] in da_ap:
+        return
+    da_ap.append(d["id"])
+    _ap_hieu_ung(state, hu)
 
 
 # ---------------------------------------------------------------- tiện ích

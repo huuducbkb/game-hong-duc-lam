@@ -104,19 +104,26 @@
   }
 
   function doan_dau_cua(nhom, so_chuong) {
-    if (so_chuong !== undefined && so_chuong !== null) {
-      let bang = {};
-      try {
-        bang = load_chuong(so_chuong).doan_dau_theo_nhom || {};
-      } catch (e) {
-        bang = {};
+    if (so_chuong === undefined || so_chuong === null) {
+      for (const n of load_xuat_than().nhom) {
+        if (n.ma === nhom) return n.doan_dau;
       }
-      if (nhom in bang) return bang[nhom];
+      return null;
     }
+    let ch;
+    try {
+      ch = load_chuong(so_chuong);
+    } catch (e) {
+      return null;
+    }
+    const bang = ch.doan_dau_theo_nhom || {};
+    if (nhom in bang) return bang[nhom];
+    if ("chung" in bang) return bang.chung;
+    const theo_id = new Set((ch.doan || []).map((d) => d.id));
     for (const n of load_xuat_than().nhom) {
-      if (n.ma === nhom) return n.doan_dau;
+      if (n.ma === nhom && theo_id.has(n.doan_dau)) return n.doan_dau;
     }
-    return null;
+    return ch.doan && ch.doan.length ? ch.doan[0].id : null;
   }
 
   // Chỉ số khởi đầu dùng chung khi nhóm không khai `chi_so_dau` (vd nhóm ẩn).
@@ -229,7 +236,21 @@
         `Chương ${state.chuong} không có đoạn '${did}' — bản lưu trỏ tới đoạn không tồn tại`
       );
     }
-    return ch._theo_id[did];
+    const d = ch._theo_id[did];
+    _ap_hieu_ung_vao(state, d);
+    return d;
+  }
+
+  // Hiệu ứng của chính đoạn, áp đúng một lần khi người chơi bước vào — dùng cho
+  // thứ phải có mặt NGAY lúc mở đoạn (bạn đồng hành trong sổ NPC, cờ sự kiện),
+  // chứ không đợi bấm lựa chọn đầu tiên.
+  function _ap_hieu_ung_vao(state, d) {
+    const hu = d.hieu_ung_vao;
+    if (!hu) return;
+    if (!state.da_ap_vao) state.da_ap_vao = [];
+    if (state.da_ap_vao.includes(d.id)) return;
+    state.da_ap_vao.push(d.id);
+    _ap_hieu_ung(state, hu);
   }
 
   // ---------------------------------------------------------------- tiện ích

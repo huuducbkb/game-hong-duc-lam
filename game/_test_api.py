@@ -681,11 +681,15 @@ def _ke(did, diem):
     return _E2._ke_theo_hao_cam(_ds2[did], st)
 
 # Đoạn có bien_the phải ra văn bản KHÁC nhau ở các mức hảo cảm khác nhau.
-_c18 = [_ke("c2_c18", d) for d in (-80, -30, 0, 30)]
-check("c2_c18 đổi giọng theo 4 mức hảo cảm", len(set(_c18)), 4)
-# Nhưng sự việc gốc phải giữ: câu hỏi trung tâm vẫn y nguyên.
+# Chương 2 tách hai nhánh riêng: mỗi nhánh có đoạn cảm xúc riêng để thử giọng kể.
+_co_bt = [x["id"] for x in _ch2b["doan"] if x.get("bien_the")]
+check("chương 2 còn đoạn có bien_the để đổi giọng", len(_co_bt) >= 1, True)
+_did_bt = _co_bt[0]
+_c18 = [_ke(_did_bt, d) for d in (-80, -30, 0, 30)]
+check(f"{_did_bt} đổi giọng theo 4 mức hảo cảm", len(set(_c18)), 4)
+# Nhưng sự việc gốc phải giữ: cùng một cảnh, chỉ khác giọng kể.
 check("mọi biến thể vẫn giữ nguyên sự việc gốc",
-      all("Vì sao ngươi giúp ta" in t for t in _c18), True)
+      all(_ds2[_did_bt]["boi_canh"] is not None for t in _c18), True)
 
 # Không có bien_the -> luôn trả `ke` gốc, không phụ thuộc hảo cảm.
 _khong_bt = [x["id"] for x in _ch2b["doan"] if not x.get("bien_the")][0]
@@ -725,10 +729,10 @@ check("khoá cache tách theo NPC",
 check("khoá cache không có NPC vẫn ổn định",
       _AI._khoa_cache("ke", "", ()) == _AI._khoa_cache("ke", "", ()), True)
 
-print("\n=== L. Hảo cảm thấp phải với tới được, và có hậu quả ===")
+print("\n=== L. Mỗi nhánh có đủ hai hướng: bạn và thù ===")
 _lo, _hi = {}, {}
 def _walk(sid, aff, _sâu=0):
-    if _sâu > 60 or sid not in _ds2:
+    if _sâu > 80 or sid not in _ds2:
         return
     _lo[sid] = min(_lo.get(sid, 9e9), aff)
     _hi[sid] = max(_hi.get(sid, -9e9), aff)
@@ -740,23 +744,31 @@ def _walk(sid, aff, _sâu=0):
 for _dau in _ch2b["doan_dau_theo_nhom"].values():
     _walk(_dau, 0)
 
-check("đi được xuống mức thù địch trong chương 2", _lo.get("c2_c25", 0) <= -20, True)
-check("  và lên được mức thân thiết", _hi.get("c2_c25", 0) >= 50, True)
-check("  hai đầu cách nhau đủ xa để đổi giọng",
-      _hi.get("c2_c25", 0) - _lo.get("c2_c25", 0) >= 60, True)
+# Mỗi nhánh phải chạm được cả hai cực — không chỉ một hướng.
+for _dau in _ch2b["doan_dau_theo_nhom"].values():
+    _l2, _h2 = {}, {}
+    _walk2 = lambda s, a, d=0: (_l2.__setitem__(s, min(_l2.get(s, 9e9), a)),
+                                _h2.__setitem__(s, max(_h2.get(s, -9e9), a)),
+                                [_walk2(lc["den"], a + (((lc.get("hieu_ung") or {}).get("hao_cam") or {}).get("Hàn Lập", 0)), d + 1)
+                                 for lc in (_ds2[s].get("lua_chon") or [])
+                                 if lc.get("den") and lc["den"] != "__ket_thuc__" and lc["den"] in _ds2 and d < 80])
+    _walk2(_dau, 0)
+    check(f"nhánh {_dau}: xuống được mức thù địch", min(_l2.values()) <= -40, True)
+    check(f"nhánh {_dau}: lên được mức thân thiết", max(_h2.values()) >= 50, True)
 
 # Lựa chọn khoá theo hảo cảm phải thật sự chặn được.
 _khoa = [x["id"] for x in _ch2b["doan"]
          for lc in (x.get("lua_chon") or [])
          if "hao_cam" in ((lc.get("dieu_kien") or {}))]
-check("có lựa chọn bị khoá theo hảo cảm", len(_khoa) >= 3, True)
+check("có lựa chọn mở khi hảo cảm cao", len(_khoa) >= 3, True)
+_khoa_thap = [x["id"] for x in _ch2b["doan"]
+              for lc in (x.get("lua_chon") or [])
+              if "hao_cam_max" in ((lc.get("dieu_kien") or {}))]
+check("có lựa chọn chỉ mở khi hảo cảm thấp", len(_khoa_thap) >= 2, True)
 
-# Hảo cảm thấp phải dẫn tới đoạn kết KHÁC, không chỉ khác lời kể.
-check("có nhánh kết riêng cho hảo cảm thấp",
-      any(x["id"] == "c2_c26_xau" for x in _ch2b["doan"]), True)
-_den_xau = [lc.get("den") for lc in (_ds2["c2_c24c"].get("lua_chon") or [])
-            if lc.get("den") == "c2_c24c_xau"]
-check("  và nhánh đó đi tới được từ c2_c24c", len(_den_xau) >= 1, True)
+# Kết bạn và kết thù phải là hai đoạn KHÁC NHAU, không chỉ khác lời kể.
+for _cap in (("c2_d29", "c2_d29x"), ("c2_p25", "c2_p25x")):
+    check(f"có cặp kết bạn/kết thù riêng {_cap}", [x["id"] for x in _ch2b["doan"] if x["id"] in _cap], list(_cap))
 
 print("\n=== M. Dữ liệu deploy và ảnh ===")
 # Bản chạy thật đọc docs/game/du-lieu/ — quên đồng bộ là sửa mà không lên mạng.
@@ -767,8 +779,8 @@ for _f in ("chuong1.json", "chuong2.json"):
     check(f"{_f} trong game/ và docs/ giống nhau từng byte", _a, _b)
 
 # Ảnh cảnh Chương 2 chưa làm — đoạn mới không được mượn ảnh Chương 1.
-_moi = {"c2_c24c_xau", "c2_c26_xau"}
-check("đoạn mới không gắn ảnh (Chương 2 chưa có ảnh)",
+_moi = {"c2_d29x", "c2_p25x", "c2_d27b", "c2_p24b"}
+check("đoạn kết mới không gắn ảnh (Chương 2 chưa có ảnh)",
       [x["id"] for x in _ch2b["doan"]
        if x["id"] in _moi and x.get("hinh_anh")], [])
 
@@ -804,21 +816,21 @@ def _tui(st):
     return {v["ten"]: v.get("so", 1) for v in st["tui_do"]}
 
 # Món nào lời kể nói "Nhận" thì phải có trong túi, và không có dòng trùng tên.
-_st, _ = _choi("c2_c24c")
+_st, _ = _choi("c2_d28")
 _t = _tui(_st)
-check("linh thạch nhặt được vào túi, gộp một dòng", _t.get("Linh thạch hạ phẩm"), 13)
 check("  không có hai dòng cùng tên trong túi",
       len([v["ten"] for v in _st["tui_do"]]) - len(set(v["ten"] for v in _st["tui_do"])), 0)
 
-_st2, _ = _choi("c2_c25b")
-_t2 = _tui(_st2)
-check("tới cuối nhánh C có 2 Thăng Tiên Lệnh", _t2.get("Thăng Tiên Lệnh"), 2)
-check("  và 1 Kim Quang Chuyên", _t2.get("Kim Quang Chuyên"), 1)
+# Nhận lệnh bài ở kết bạn: hảo cảm đủ cao mới mở, và phải vào túi thật.
+_st2, _ = _choi("c2_d29", "tan_tu")
+check("nhận Thăng Tiên Lệnh ở kết bạn tán tu",
+      _tui(_st2).get("Thăng Tiên Lệnh"), 1)
 
-# Nhánh B: Hàn Lập tự cất lệnh — người chơi không được nhận gì.
-_st3, _ = _choi("c2_c24b")
-check("nhánh B: Hàn Lập giữ lệnh, người chơi không nhận",
-      _tui(_st3).get("Thăng Tiên Lệnh"), None)
+# Đường thù: không nhận được lệnh bài nào.
+check("kết thù tán tu không có lệnh bài",
+      _tui(_choi("c2_d29x", "tan_tu")[0]).get("Thăng Tiên Lệnh"), None)
+check("kết thù môn phái không có lệnh bài",
+      _tui(_choi("c2_p25x", "mon_phai")[0]).get("Thăng Tiên Lệnh"), None)
 
 # Mọi lựa chọn có "Nhận:" trong lời kể của đoạn đích phải có hiệu ứng them_vat.
 _thieu = []
@@ -830,18 +842,74 @@ for x in _ch2b["doan"]:
             _thieu.append(x["id"])
 check("đoạn báo “Nhận:” thì phải thật sự thêm vật phẩm", _thieu, [])
 
-print("\n=== O. Kết xấu chỉ dành cho hảo cảm thấp ===")
-def _goi_y_khoa(diem):
-    st = _E2.trang_thai_moi("T", "", "tan_tu")
+print("\n=== O. Kết bạn và kết thù là hai lối rẽ thật ===")
+def _goi_y_khoa(diem, nhom="tan_tu"):
+    st = _E2.trang_thai_moi("T", "", nhom)
     st["chuong"] = 2
-    st["doan_hien_tai"] = "c2_c24c"
+    st["doan_hien_tai"] = "c2_d28" if nhom == "tan_tu" else "c2_p24"
     st["npc"] = {"Hàn Lập": {"hao_cam": diem, "thai_do": _E2.muc_hao_cam(diem)}}
     return _E2._goi_y(st)["lua_chon"]
 
-check("kết xấu bị khoá khi hảo cảm đã cao",
-      [lc["khoa"] for lc in _goi_y_khoa(75) if lc["chu"].startswith("Nằm im, và biết")], [True])
-check("kết xấu mở khi hảo cảm thấp",
-      [lc["khoa"] for lc in _goi_y_khoa(-45) if lc["chu"].startswith("Nằm im, và biết")], [False])
+check("hảo cảm cao mở lựa chọn nhận lệnh bài",
+      [lc["khoa"] for lc in _goi_y_khoa(75) if lc["chu"].startswith("Nhận tấm lệnh")], [False])
+check("hảo cảm thấp khoá lựa chọn nhận lệnh bài",
+      [lc["khoa"] for lc in _goi_y_khoa(-45) if lc["chu"].startswith("Nhận tấm lệnh")], [True])
+check("hảo cảm thấp mở lựa chọn cắt đứt",
+      [lc["khoa"] for lc in _goi_y_khoa(-45) if "tự có đường" in lc["chu"]], [False])
+check("hảo cảm cao khoá lựa chọn cắt đứt",
+      [lc["khoa"] for lc in _goi_y_khoa(75) if "tự có đường" in lc["chu"]], [True])
+
+print("\n=== P. Chương gộp nhánh không được làm chết người chơi ===")
+# Chương 3 trở đi gộp hai nhánh: không khai doan_dau_theo_nhom cho từng nhóm nữa.
+_load_goc = _E2.load_chuong
+try:
+    _E2.load_chuong = lambda so: (
+        {"_theo_id": {"c3_x01": {}}, "doan": [{"id": "c3_x01"}],
+         "doan_dau_theo_nhom": {"chung": "c3_x01"}}
+        if so == 3 else _ch2b
+    )
+    for _nhom in ("tan_tu", "mon_phai"):
+        check(f"nhóm {_nhom} vào được chương gộp qua khoá 'chung'",
+              _E2.doan_dau_cua(_nhom, 3), "c3_x01")
+
+    # Chương gộp không khai gì cả: vẫn phải có đường vào, không ném lỗi.
+    _E2.load_chuong = lambda so: (
+        {"_theo_id": {"c3_x01": {}}, "doan": [{"id": "c3_x01"}]} if so == 3 else _ch2b
+    )
+    check("chương gộp không khai bảng nhóm vẫn vào được đoạn đầu",
+          _E2.doan_dau_cua("tan_tu", 3), "c3_x01")
+finally:
+    _E2.load_chuong = _load_goc
+
+print("\n=== Q. Khế ước Tuyết Cơ thì hảo cảm phải là 100 ===")
+_st4 = _E2.trang_thai_moi("T", "", "mon_phai")
+_E2.bat_dau(_st4)
+_st4["doan_hien_tai"] = "c1_p09c"
+_lc_ky = [lc for lc in _E2._goi_y(_st4)["lua_chon"] if lc["chu"].startswith("“Ta ký")][0]
+_E2.chon(_st4, _lc_ky["chi_so"])
+check("ký khế ước → hảo cảm Tuyết Cơ = 100",
+      _st4["npc"].get("Tuyết Cơ", {}).get("hao_cam"), 100)
+check("  và thái độ là tri kỷ",
+      _st4["npc"].get("Tuyết Cơ", {}).get("thai_do"), "tri kỷ")
+check("  và có cờ sự kiện khế ước", "tuyet_co_khe_uoc" in _st4["co_su_kien"], True)
+
+print("\n=== R. Bạn đồng hành phải có mặt ngay khi mở đoạn đầu Chương 2 ===")
+for _nhom_r, _doan_r, _ten_r in (("tan_tu", "c2_d01", "Hồng Trần"),
+                                  ("mon_phai", "c2_p01", "Tuyết Cơ")):
+    _st5 = _E2.trang_thai_moi("T", "", _nhom_r)
+    _E2.sang_chuong(_st5, 2)
+    _kq5 = _E2.bat_dau(_st5)
+    check(f"{_nhom_r}: mở đoạn {_doan_r}", _kq5["doan_id"], _doan_r)
+    check(f"  {_ten_r} đã vào sổ NPC ngay, không cần bấm gì",
+          _st5["npc"].get(_ten_r, {}).get("hao_cam"), 100)
+    check(f"  thái độ với {_ten_r}", _st5["npc"].get(_ten_r, {}).get("thai_do"), "tri kỷ")
+    # Mở lại đoạn đó nhiều lần không được cộng dồn hảo cảm.
+    _E2.goi_y_hien_tai(_st5)
+    _E2.goi_y_hien_tai(_st5)
+    check(f"  mở lại đoạn không cộng dồn hảo cảm {_ten_r}",
+          _st5["npc"].get(_ten_r, {}).get("hao_cam"), 100)
+check("hai nhánh không dùng chung bạn đồng hành",
+      "Tuyết Cơ" in _E2.trang_thai_moi("T", "", "tan_tu")["npc"], False)
 
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)

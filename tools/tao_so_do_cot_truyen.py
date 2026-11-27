@@ -500,8 +500,8 @@ bấm một bước để mở nguyên văn</p>
     o.append('<div class="luoi">')
     o.append(f'<div><b>{so_buoc1}</b>chặng tán tu · C1</div>')
     o.append(f'<div><b>{so_buoc1b}</b>chặng môn phái · C1</div>')
-    o.append(f'<div><b>{gap_a}</b>lối vào tán tu · C2</div>')
-    o.append(f'<div><b>{gap_b}</b>lối vào môn phái · C2</div>')
+    o.append(f'<div><b>{len(t1)}</b>đoạn tán tu · C2</div>')
+    o.append(f'<div><b>{len(t2)}</b>đoạn môn phái · C2</div>')
     o.append("</div>")
 
     o.append('<div class="nen"><a href="#c1">Chương 1</a>'
@@ -510,10 +510,11 @@ bấm một bước để mở nguyên văn</p>
 
     o.append('<div class="tomtat" style="border-left-color:#2f5d7c;'
              'background:rgba(47,93,124,.08)">'
-             '<b>Khác biệt lớn nhất giữa hai nhánh:</b> Chương 1 hai nhánh đi hai '
-             'đường <b>hoàn toàn khác</b> và không gặp nhau — tán tu nhận '
-             '<b>kiếm linh</b> trong miếu hoang, môn phái nhận <b>Tuyết Cơ</b> trong '
-             'khối ngọc. Chương 2 hai nhánh <b>nhập lại</b> ở chợ Thái Nam.</div>')
+             '<b>Khác biệt lớn nhất giữa hai nhánh:</b> hai nhánh <b>không gặp nhau</b> ở '
+             'bất kỳ đâu — không phải Chương 1, cũng không phải Chương 2. Tán tu nhận '
+             '<b>kiếm linh Hồng Trần</b> trong miếu hoang, môn phái nhận <b>Tuyết Cơ</b> '
+             'trong khối ngọc. Chương 2 là <b>hai lần chơi riêng biệt</b>: mỗi bên có '
+             'đường đi, bạn đồng hành và kết thúc của riêng mình.</div>')
 
     # ---- Chương 1 ----
     o.append('<h2 id="c1">Chương 1 — Đại chiến Dã Lang Bang</h2>')
@@ -525,25 +526,20 @@ bấm một bước để mở nguyên văn</p>
     o.append('<h2 id="c2">Chương 2 — Tiểu hội Thái Nam Sơn Cốc</h2>')
     o.append(f'<p class="phu">{html.escape(d2.get("tom_tat") or "")}</p>')
 
-    o.append(f'<div class="tomtat">Chương 2 có ba phần: <b>lối vào tán tu</b> '
-             f'({len(chi_a)} đoạn), <b>lối vào môn phái</b> ({len(chi_b)} đoạn), '
-             f'rồi <b>mạch chung</b> ({len(chung)} đoạn) từ chợ Thái Nam trở đi.'
-             f'</div>')
+    o.append(f'<div class="tomtat">Chương 2 là <b>hai lần chơi độc lập</b>: '
+             f'<b>tán tu</b> ({len(t1)} đoạn) và <b>môn phái</b> ({len(t2)} đoạn). '
+             f'Hai bên <b>không chia sẻ một đoạn nào</b> — chơi nhánh này không mở '
+             f'khóa gì cho nhánh kia, và mỗi nhánh có kết thúc riêng.</div>')
 
-    # Mỗi nhóm chỉ in phần riêng; phần chung in một lần ở dưới.
-    o.append(sinh_nhanh(d2, "tan_tu", 2, dung=mach_chung,
-                        tieu_de="Lối vào — Tán tu",
-                        ghi_chu="Từ Gia Nguyên tới chân Thái Nam sơn. Đi hết phần này "
-                                "thì nhập mạch chung bên dưới."))
-    o.append(sinh_nhanh(d2, "mon_phai", 2, dung=mach_chung,
-                        tieu_de="Lối vào — Môn phái",
-                        ghi_chu="Từ Thất Huyền Môn xuống núi. Đi hết phần này "
-                                "thì nhập mạch chung bên dưới."))
-
-    o.append(sinh_nhanh(d2, "tan_tu", 2, mach_san=mach_chung,
-                        tieu_de="Mạch chung — từ chợ Thái Nam",
-                        ghi_chu="Hai nhánh đã nhập làm một. Cả hai xuất thân đi đúng "
-                                "đoạn đường này, chỉ khác hảo cảm Hàn Lập mang theo."))
+    # Mỗi nhóm in trọn nhánh mình, không có phần chung.
+    o.append(sinh_nhanh(d2, "tan_tu", 2,
+                        tieu_de="Nhánh Tán tu — trọn vẹn",
+                        ghi_chu="Từ Gia Nguyên tới chân Thái Nam sơn rồi ra khỏi cốc. "
+                                "Bạn đồng hành: kiếm linh Hồng Trần, hảo cảm 100 từ đầu."))
+    o.append(sinh_nhanh(d2, "mon_phai", 2,
+                        tieu_de="Nhánh Môn phái — trọn vẹn",
+                        ghi_chu="Từ Thất Huyền Môn xuống núi rồi ra khỏi cốc. "
+                                "Bạn đồng hành: Tuyết Cơ, hảo cảm 100 từ đầu."))
 
     o.append('<p class="dai">Sinh từ <code>game/chapters/chuong1.json</code> và '
              '<code>chuong2.json</code> bằng <code>tools/tao_so_do_cot_truyen.py</code>. '
@@ -568,7 +564,7 @@ document.getElementById('mo-het').addEventListener('click', function(){
     return RA, {
         "c1_tan_tu": so_buoc1, "c1_mon_phai": so_buoc1b,
         "c2_tan_tu": so_buoc2, "c2_mon_phai": so_buoc2b,
-        "chung": len(chung), "rieng_a": len(chi_a), "rieng_b": len(chi_b),
+        "doan_chung": len(chung),
     }
 
 

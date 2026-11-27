@@ -1119,6 +1119,9 @@
           "chu": "Hỏi thẳng: “Ngươi muốn gì ở ta?”",
           "den": "c1_p09"
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1139,6 +1142,9 @@
           "chu": "Nghe nàng nói rõ thân phận và điều kiện",
           "den": "c1_p09"
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1163,6 +1169,9 @@
           "chu": "Do dự: “Ta cần biết rõ hơn — ngươi sẽ đòi gì?”",
           "den": "c1_p09b"
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1183,6 +1192,9 @@
           "chu": "Suy nghĩ thật kỹ trước khi quyết",
           "den": "c1_p09c"
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1205,7 +1217,15 @@
           "hieu_ung": {
             "doi_trang_thai": {
               "Ngọc cốt bí ẩn": "đã khế ước · đang hồi phục"
-            }
+            },
+            "gap_npc": {
+              "Tuyết Cơ": {
+                "hao_cam": 100
+              }
+            },
+            "co_su_kien": [
+              "tuyet_co_khe_uoc"
+            ]
           }
         }
       ]
@@ -1231,6 +1251,9 @@
             "sinh_luc": -8
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1252,6 +1275,9 @@
           "chu": "Ngồi dậy, nghe Tuyết Cơ hướng dẫn tu luyện",
           "den": "c1_p11"
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1278,6 +1304,9 @@
             ]
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1301,6 +1330,9 @@
             "tu_vi": 30
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1324,6 +1356,9 @@
             "tu_vi": 30
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1345,6 +1380,9 @@
           "den": "c1_p13",
           "hieu_ung": {}
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1369,6 +1407,9 @@
           "chu": "Chạy về phía tiếng kêu cứu",
           "den": "c1_p15"
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1418,6 +1459,9 @@
             ]
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1441,6 +1485,9 @@
             "sinh_luc": -6
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1467,6 +1514,9 @@
             ]
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1490,6 +1540,9 @@
             "tu_vi": 8
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1510,6 +1563,9 @@
           "chu": "Nấp vào bóng tối, chờ trận lắng",
           "den": "c1_p16"
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1530,6 +1586,9 @@
           "chu": "Rút khỏi đám cháy, tìm nơi an toàn",
           "den": "c1_p16"
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1615,6 +1674,9 @@
             ]
           }
         }
+      ],
+      "npc": [
+        "Tuyết Cơ"
       ]
     },
     {
@@ -1771,7 +1833,10 @@
           "den": "__ket_thuc__"
         }
       ],
-      "ket_thuc": true
+      "ket_thuc": true,
+      "npc": [
+        "Tuyết Cơ"
+      ]
     }
   ],
   "ket": {
