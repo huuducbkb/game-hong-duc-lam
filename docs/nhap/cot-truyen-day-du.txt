@@ -4364,8 +4364,9 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
 
                         “Nàng dạy ta những thứ này từ bao giờ?” — ta hỏi khẽ.
 
-                        “Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ta là tớ
-                        của ngươi. Tớ không được để chủ chết ở một cái chợ.”
+                        “Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ngươi là
+                        chủ, ta là tớ. Tớ để chủ chết giữa chợ thì cả cái chợ biết tớ vô dụng. Ta
+                        không muốn ai biết ta vô dụng.”
 
                         » GIỌNG KỂ KHÁC khi Tuyết Cơ ở mức “tri kỷ”:
                           Cái chợ này không giống bất kỳ cái chợ nào ta từng biết.
@@ -4390,11 +4391,17 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
 
                           “Nàng dạy ta những thứ này từ bao giờ?” — ta hỏi khẽ.
 
-                          “Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ta là tớ
-                          của ngươi. Tớ không được để chủ chết ở một cái chợ.”
+                          “Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ngươi là
+                          chủ, ta là tớ. Tớ để chủ chết giữa chợ thì cả cái chợ biết tớ vô dụng. Ta
+                          không muốn ai biết ta vô dụng.”
 
-                          Rồi nàng nói thêm, nhỏ hơn: “Nhưng ta dạy ngươi kỹ thế này không phải vì
-                          ngươi là chủ. Ta đã có chủ. Ta không muốn có thêm một cái xác.”
+                          Rồi nàng nói thêm, nhỏ hơn: “Nhưng ta dạy ngươi kỹ thế này không phải vì khế
+                          ước. Khế ước buộc ta dạy. Nó không buộc ta dạy cho ngươi sống.”
+
+                          Nàng im một nhịp.
+
+                          “Ta ngủ ngàn năm trong khối ngọc này. Ta không muốn tỉnh dậy lần nữa và thấy
+                          mình vừa mất một người.”
 
                           1. Hỏi nàng về linh thạch
                              → c2_p09
