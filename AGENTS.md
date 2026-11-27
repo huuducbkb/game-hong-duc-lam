@@ -1831,3 +1831,24 @@ thì chạy lại tool. File `.md` 4 mức cũ đã xoá — đừng khôi phụ
 Chương 1 và chương 2 đã được **người dùng duyệt là đạt** về cốt truyện và giọng kể NPC.
 Đừng tự ý viết lại văn bản đã duyệt. Chỉ sửa khi người dùng chỉ ra đúng câu, đúng đoạn.
 Sửa xong thì chạy lại `tools/tao_tai_lieu_giong_npc.py` và `tools/tao_so_do_cot_truyen.py`.
+
+## Lựa chọn khác nhau phải ra cảnh khác nhau (2026-11-27)
+
+Lỗi người dùng báo: ở `c2_d19` bấm "Hỏi: kẻ nào đang giữ?" hay "Cúi đầu, rời đi"
+đều ra y hệt một cảnh. Không có gì cho biết mình vừa chọn gì.
+
+Nguyên nhân: nhiều lựa chọn cùng trỏ `den` về một đoạn (để khỏi nhân bản cảnh),
+mà lược đồ dữ liệu chỉ có `den` — không có chỗ ghi kết quả riêng. Toàn bộ chương
+1 và 2 có **28 đoạn** như vậy, **73 lựa chọn**.
+
+Cách sửa: thêm `lua_chon[].ket_qua` (một câu), engine nối câu đó vào đầu `ke`
+của đoạn kế. Đã sửa cả hai engine: `game/engine.py` và `docs/game/engine.js`
+(bản chạy trên GitHub Pages). Hàm: `_noi_chuyen_tiep`.
+
+Quy tắc khi viết chương mới:
+- Lựa chọn cùng `den` thì **bắt buộc** có `ket_qua`, và các câu phải **khác nhau**.
+- `ket_qua` là hành động của người chơi, không phải tóm tắt cảnh kế.
+- Không dùng `ket_qua` để nhắc lại nguyên văn lựa chọn một cách máy móc.
+
+Đã có test chặn tái phát trong `game/_test_engine.js`: quét mọi đoạn, báo lỗi nếu
+lựa chọn trùng đích thiếu `ket_qua` hoặc hai lựa chọn dùng chung một câu.

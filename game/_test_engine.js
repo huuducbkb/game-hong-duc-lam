@@ -583,6 +583,58 @@ const doan_truoc = o.doan_hien_tai;
           khoaKetXau("c2_p24", "“Đi đi", 20), [false]);
   }
 
+  // ---- lựa chọn khác nhau nhưng cùng một đích phải ra chữ khác nhau
+  {
+    const E = Engine;
+    const dem = (so) => {
+      const ch = E.load_chuong(so);
+      const thieu = [], trung = [];
+      for (const x of ch.doan) {
+        const lc = x.lua_chon || [];
+        if (lc.length < 2) continue;
+        const theoDich = {};
+        lc.forEach((l, i) => {
+          (theoDich[l.den] = theoDich[l.den] || []).push(i);
+        });
+        const coTrung = Object.values(theoDich).some((v) => v.length >= 2);
+        if (!coTrung) continue;
+        lc.forEach((l, i) => {
+          if (!(l.ket_qua || "").trim()) thieu.push(`${x.id}[${i}]`);
+        });
+        for (const idxs of Object.values(theoDich)) {
+          if (idxs.length < 2) continue;
+          const da = {};
+          for (const i of idxs) {
+            const k = (lc[i].ket_qua || "").trim();
+            if (k in da) trung.push(`${x.id}[${da[k]}]==[${i}]`);
+            da[k] = i;
+          }
+        }
+      }
+      return { thieu, trung };
+    };
+    for (const so of [1, 2]) {
+      const r = dem(so);
+      check(`chương ${so}: không lựa chọn trùng đích nào thiếu câu chuyển tiếp`, r.thieu, []);
+      check(`chương ${so}: hai lựa chọn cùng đích không dùng chung một câu`, r.trung, []);
+    }
+    // bấm thử: hai lựa chọn của c2_d19 phải ra văn bản khác nhau
+    const ch2 = E.load_chuong(2);
+    const x19 = ch2.doan.find((z) => z.id === "c2_d19");
+    const ra = x19.lua_chon.map((_, i) => {
+      const st = E.trang_thai_moi("T", "", "tan_tu");
+      st.chuong = 2;
+      st.doan_hien_tai = "c2_d19";
+      return E.chon(st, i).ke;
+    });
+    check("c2_d19: Hỏi và Rời đi ra hai văn bản khác nhau", ra[0] !== ra[1], true);
+    check("c2_d19: văn bản có câu chuyển tiếp của lựa chọn vừa bấm",
+          ra[0].includes(x19.lua_chon[0].ket_qua), true);
+    const d20 = ch2.doan.find((z) => z.id === "c2_d20");
+    check("c2_d19: đoạn kế vẫn còn nguyên sau câu chuyển tiếp",
+          ra[0].includes(d20.ke.slice(0, 60)), true);
+  }
+
   console.log(`\n${"=".repeat(46)}\nKẾT QUẢ: ${ok} đạt, ${fail} hỏng`);
   process.exit(fail ? 1 : 0);
 })();

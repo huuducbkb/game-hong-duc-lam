@@ -168,7 +168,8 @@
             "co_su_kien": [
               "bi_khinh_o_mac_phu"
             ]
-          }
+          },
+          "ket_qua": "Ta cúi đầu, nuốt câu ấy vào. Ta đã nuốt nhiều câu như thế rồi."
         },
         {
           "chu": "Nói một câu cho hắn đỡ nhục",
@@ -180,7 +181,8 @@
             "co_su_kien": [
               "benh_han_lap_o_mac_phu"
             ]
-          }
+          },
+          "ket_qua": "Ta mở miệng, nói một câu. Không to. Đủ để hắn nghe."
         },
         {
           "chu": "Quay đi, để hắn tự chịu một mình",
@@ -192,7 +194,8 @@
             "co_su_kien": [
               "bo_mac_han_lap_o_mac_phu"
             ]
-          }
+          },
+          "ket_qua": "Ta quay mặt đi. Ta không muốn nhìn nữa."
         }
       ],
       "bien_the": [
@@ -240,7 +243,8 @@
               "biet_tieu_hoi",
               "ke_cho_han_lap"
             ]
-          }
+          },
+          "ket_qua": "Sáng hôm sau ta tìm hắn, kể hết những gì nghe được."
         },
         {
           "chu": "Giữ trong lòng, xem hắn có tự biết không",
@@ -250,7 +254,8 @@
               "biet_tieu_hoi",
               "giu_kin_chuyen_tieu_hoi"
             ]
-          }
+          },
+          "ket_qua": "Ta giữ trong lòng. Ta muốn xem hắn có tự biết không."
         }
       ]
     },
@@ -423,7 +428,8 @@
             "co_su_kien": [
               "han_lap_ke_truong_xuan"
             ]
-          }
+          },
+          "ket_qua": "“Vì ngươi cần một người biết.” — ta đáp, và ta không nghĩ trước."
         },
         {
           "chu": "Im lặng, chỉ đứng cạnh hắn",
@@ -435,7 +441,8 @@
             "co_su_kien": [
               "han_lap_ke_truong_xuan"
             ]
-          }
+          },
+          "ket_qua": "Ta không đáp. Ta chỉ ngồi xuống cạnh hắn."
         },
         {
           "chu": "“Vì ta cũng từng mất một người thầy.”",
@@ -450,7 +457,8 @@
             "hao_cam": {
               "Hàn Lập": 6
             }
-          }
+          },
+          "ket_qua": "“Vì ta cũng từng mất một người thầy.” — ta nói, và đó là thật."
         }
       ],
       "bien_the": [
@@ -497,7 +505,8 @@
             "co_su_kien": [
               "hua_di_cung_han_lap"
             ]
-          }
+          },
+          "ket_qua": "“Ta đi cùng ngươi.” — ta nói, không để hắn kịp hỏi lại."
         },
         {
           "chu": "“Ngươi đi trước đi. Ta còn phải thu xếp.”",
@@ -506,7 +515,8 @@
             "co_su_kien": [
               "de_han_lap_di_truoc"
             ]
-          }
+          },
+          "ket_qua": "“Ngươi đi trước đi. Ta còn phải thu xếp.” — ta nói, và ta thấy hắn gật đầu."
         }
       ]
     },
@@ -673,7 +683,8 @@
             "hao_cam": {
               "Hàn Lập": 4
             }
-          }
+          },
+          "ket_qua": "Ta đi theo hắn."
         },
         {
           "chu": "Đứng lại, để hắn đi",
@@ -682,7 +693,8 @@
             "hao_cam": {
               "Hàn Lập": -8
             }
-          }
+          },
+          "ket_qua": "Ta đứng lại. Ta để hắn đi."
         }
       ]
     },
@@ -731,11 +743,13 @@
             "hao_cam": {
               "Hàn Lập": 8
             }
-          }
+          },
+          "ket_qua": "Ta hỏi. Ta hỏi thẳng tên ấy."
         },
         {
           "chu": "Không hỏi gì, ngồi im",
-          "den": "c2_d17"
+          "den": "c2_d17",
+          "ket_qua": "Ta không hỏi. Ta ngồi im, nhìn lửa."
         }
       ]
     },
@@ -768,14 +782,16 @@
           "hieu_ung": {
             "tu_vi": 40,
             "sinh_luc": -6
-          }
+          },
+          "ket_qua": "Ta nghiến răng, dẫn tới cùng. Rát thì rát."
         },
         {
           "chu": "Dừng lại khi thấy rát",
           "den": "c2_d18",
           "hieu_ung": {
             "tu_vi": 15
-          }
+          },
+          "ket_qua": "Ta dừng lại ngay khi thấy rát."
         }
       ]
     },
@@ -808,11 +824,13 @@
             "co_su_kien": [
               "biet_ba_tam_lenh"
             ]
-          }
+          },
+          "ket_qua": "“Kẻ nào đang giữ?” — ta hỏi, và ta thấy lão nhìn ta lâu hơn một nhịp."
         },
         {
           "chu": "Cúi đầu, rời đi",
-          "den": "c2_d20"
+          "den": "c2_d20",
+          "ket_qua": "Ta cúi đầu, rồi quay đi. Câu hỏi ấy ta giữ lại trong bụng."
         }
       ]
     },
@@ -841,7 +859,8 @@
             "hao_cam": {
               "Hàn Lập": 10
             }
-          }
+          },
+          "ket_qua": "“Vì ta cũng cần một người hiểu ta.” — ta nói."
         },
         {
           "chu": "“Vì ta ghét bị trả giá.”",
@@ -850,7 +869,8 @@
             "hao_cam": {
               "Hàn Lập": 6
             }
-          }
+          },
+          "ket_qua": "“Vì ta ghét bị trả giá.” — ta nói."
         },
         {
           "chu": "Đứng nhìn, để hắn tự trả giá",
@@ -859,7 +879,8 @@
             "hao_cam": {
               "Hàn Lập": -10
             }
-          }
+          },
+          "ket_qua": "Ta không đáp. Ta đứng nhìn, để hắn tự trả giá."
         },
         {
           "chu": "“Vì ngươi có thứ ta cần.”",
@@ -868,7 +889,8 @@
             "hao_cam": {
               "Hàn Lập": -15
             }
-          }
+          },
+          "ket_qua": "“Vì ngươi có thứ ta cần.” — ta nói, và ta thấy vai hắn đổi."
         }
       ],
       "bien_the": [
@@ -944,15 +966,18 @@
       "lua_chon": [
         {
           "chu": "“Vậy thì cùng nhau ra khỏi đây.”",
-          "den": "c2_d23"
+          "den": "c2_d23",
+          "ket_qua": "“Vậy thì cùng nhau ra khỏi đây.” — ta nói."
         },
         {
           "chu": "“Ta không cần ngươi hiểu ta.”",
-          "den": "c2_d23"
+          "den": "c2_d23",
+          "ket_qua": "“Ta không cần ngươi hiểu ta.” — ta nói, và ta không nhìn hắn."
         },
         {
           "chu": "“Ta sẽ không để ngươi chết một mình.”",
-          "den": "c2_d23"
+          "den": "c2_d23",
+          "ket_qua": "“Ta sẽ không để ngươi chết một mình.” — ta nói."
         }
       ]
     },
@@ -1002,7 +1027,8 @@
             "co_su_kien": [
               "thay_han_lap_giao_dich"
             ]
-          }
+          },
+          "ket_qua": "Ta bỏ đi. Ta không hỏi."
         },
         {
           "chu": "Bước tới, hỏi thẳng",
@@ -1014,7 +1040,8 @@
             "co_su_kien": [
               "hoi_thang_han_lap"
             ]
-          }
+          },
+          "ket_qua": "Ta bước tới. Ta hỏi thẳng."
         }
       ]
     },
@@ -1079,7 +1106,8 @@
             "hao_cam": {
               "Hàn Lập": 10
             }
-          }
+          },
+          "ket_qua": "Ta gọi kiếm linh."
         },
         {
           "chu": "“Ta không đọc được vật.”",
@@ -1088,7 +1116,8 @@
             "hao_cam": {
               "Hàn Lập": -5
             }
-          }
+          },
+          "ket_qua": "“Ta không đọc được vật.” — ta nói, và đó là thật."
         },
         {
           "chu": "“Giấu nó đi. Đừng cho ai thấy.”",
@@ -1100,7 +1129,8 @@
             "co_su_kien": [
               "khuyen_giau_binh"
             ]
-          }
+          },
+          "ket_qua": "“Giấu nó đi. Đừng cho ai thấy.” — ta nói."
         }
       ]
     },
@@ -1124,11 +1154,13 @@
       "lua_chon": [
         {
           "chu": "Ra ngoài xem",
-          "den": "c2_d27"
+          "den": "c2_d27",
+          "ket_qua": "Ta đứng dậy, ra ngoài."
         },
         {
           "chu": "Nằm im, chờ",
-          "den": "c2_d27"
+          "den": "c2_d27",
+          "ket_qua": "Ta nằm im. Ta chờ."
         }
       ]
     },
@@ -1145,11 +1177,13 @@
             "hao_cam": {
               "Hàn Lập": 5
             }
-          }
+          },
+          "ket_qua": "“Ngươi vừa giết người.” — ta nói."
         },
         {
           "chu": "Đứng nhìn, không nói gì",
-          "den": "c2_d28"
+          "den": "c2_d28",
+          "ket_qua": "Ta đứng nhìn. Ta không nói gì."
         },
         {
           "chu": "“Vậy thì ta đi cùng ngươi.”",
@@ -1158,7 +1192,8 @@
             "hao_cam": {
               "Hàn Lập": 12
             }
-          }
+          },
+          "ket_qua": "“Vậy thì ta đi cùng ngươi.” — ta nói."
         },
         {
           "chu": "“Ngươi là kẻ giết người.”",
@@ -1167,7 +1202,8 @@
             "hao_cam": {
               "Hàn Lập": -20
             }
-          }
+          },
+          "ket_qua": "“Ngươi là kẻ giết người.” — ta nói, và ta không hạ giọng."
         }
       ]
     },
@@ -1196,7 +1232,8 @@
             "hao_cam": {
               "Hàn Lập": 50
             }
-          }
+          },
+          "ket_qua": "Ta đưa tay ra, nhận."
         },
         {
           "chu": "Không nhận, bảo hắn giữ đủ ba tấm",
@@ -1210,7 +1247,8 @@
             "hao_cam": {
               "Hàn Lập": 50
             }
-          }
+          },
+          "ket_qua": "Ta không đưa tay ra. “Ngươi giữ đủ ba tấm.” — ta nói."
         },
         {
           "chu": "“Ngươi giữ đi. Ta tự có đường.”",
@@ -1224,7 +1262,8 @@
             "hao_cam_max": {
               "Hàn Lập": 49
             }
-          }
+          },
+          "ket_qua": "Ta lắc đầu. “Ngươi giữ đi. Ta tự có đường.” — ta nói, và ta thấy tay hắn khựng lại."
         }
       ],
       "bien_the": [
@@ -1427,7 +1466,8 @@
             "hao_cam": {
               "Hàn Lập": 4
             }
-          }
+          },
+          "ket_qua": "Ta đi theo hắn."
         },
         {
           "chu": "Đứng lại, để hắn đi",
@@ -1436,7 +1476,8 @@
             "hao_cam": {
               "Hàn Lập": -8
             }
-          }
+          },
+          "ket_qua": "Ta đứng lại. Ta để hắn đi."
         }
       ]
     },
@@ -1497,11 +1538,13 @@
             "hao_cam": {
               "Hàn Lập": 8
             }
-          }
+          },
+          "ket_qua": "Ta hỏi. Ta hỏi thẳng tên ấy."
         },
         {
           "chu": "Không hỏi gì, ngồi im",
-          "den": "c2_p14"
+          "den": "c2_p14",
+          "ket_qua": "Ta không hỏi. Ta ngồi im, nhìn lửa."
         }
       ]
     },
@@ -1536,7 +1579,8 @@
             "co_su_kien": [
               "hoc_nen_khi_tuc"
             ]
-          }
+          },
+          "ket_qua": "Ta chọn cách nén. Ta giấu khí tức xuống đáy."
         },
         {
           "chu": "Học cách hấp thu nhanh",
@@ -1546,7 +1590,8 @@
             "co_su_kien": [
               "hoc_hap_thu_nhanh"
             ]
-          }
+          },
+          "ket_qua": "Ta chọn cách hấp thu. Ta muốn nhanh."
         }
       ]
     },
@@ -1579,11 +1624,13 @@
             "co_su_kien": [
               "biet_ba_tam_lenh"
             ]
-          }
+          },
+          "ket_qua": "“Kẻ nào đang giữ?” — ta hỏi, và ta thấy lão nhìn ta lâu hơn một nhịp."
         },
         {
           "chu": "Cúi đầu, rời đi",
-          "den": "c2_p17"
+          "den": "c2_p17",
+          "ket_qua": "Ta cúi đầu, rồi quay đi. Câu hỏi ấy ta giữ lại trong bụng."
         }
       ]
     },
@@ -1612,7 +1659,8 @@
             "hao_cam": {
               "Hàn Lập": 10
             }
-          }
+          },
+          "ket_qua": "“Vì ta cũng cần một người hiểu ta.” — ta nói."
         },
         {
           "chu": "“Vì ta ghét bị trả giá.”",
@@ -1621,7 +1669,8 @@
             "hao_cam": {
               "Hàn Lập": 6
             }
-          }
+          },
+          "ket_qua": "“Vì ta ghét bị trả giá.” — ta nói."
         },
         {
           "chu": "Đứng nhìn, để hắn tự trả giá",
@@ -1630,7 +1679,8 @@
             "hao_cam": {
               "Hàn Lập": -10
             }
-          }
+          },
+          "ket_qua": "Ta không đáp. Ta đứng nhìn, để hắn tự trả giá."
         },
         {
           "chu": "“Vì ngươi có thứ ta cần.”",
@@ -1639,7 +1689,8 @@
             "hao_cam": {
               "Hàn Lập": -15
             }
-          }
+          },
+          "ket_qua": "“Vì ngươi có thứ ta cần.” — ta nói, và ta thấy vai hắn đổi."
         }
       ],
       "bien_the": [
@@ -1715,15 +1766,18 @@
       "lua_chon": [
         {
           "chu": "“Vậy thì cùng nhau ra khỏi đây.”",
-          "den": "c2_p20"
+          "den": "c2_p20",
+          "ket_qua": "“Vậy thì cùng nhau ra khỏi đây.” — ta nói."
         },
         {
           "chu": "“Ta không cần ngươi hiểu ta.”",
-          "den": "c2_p20"
+          "den": "c2_p20",
+          "ket_qua": "“Ta không cần ngươi hiểu ta.” — ta nói, và ta không nhìn hắn."
         },
         {
           "chu": "“Ta sẽ không để ngươi chết một mình.”",
-          "den": "c2_p20"
+          "den": "c2_p20",
+          "ket_qua": "“Ta sẽ không để ngươi chết một mình.” — ta nói."
         }
       ]
     },
@@ -1773,7 +1827,8 @@
             "co_su_kien": [
               "thay_han_lap_giao_dich"
             ]
-          }
+          },
+          "ket_qua": "Ta bỏ đi. Ta không hỏi."
         },
         {
           "chu": "Bước tới, hỏi thẳng",
@@ -1785,7 +1840,8 @@
             "co_su_kien": [
               "hoi_thang_han_lap"
             ]
-          }
+          },
+          "ket_qua": "Ta bước tới. Ta hỏi thẳng."
         }
       ]
     },
@@ -1851,7 +1907,8 @@
               "khuyen_giau_binh",
               "thay_chuong_thien_binh"
             ]
-          }
+          },
+          "ket_qua": "“Giấu nó đi. Đừng cho ai thấy.” — ta nói."
         },
         {
           "chu": "“Ta không đọc được vật.”",
@@ -1860,7 +1917,8 @@
             "hao_cam": {
               "Hàn Lập": -5
             }
-          }
+          },
+          "ket_qua": "“Ta không đọc được vật.” — ta nói, và đó là thật."
         },
         {
           "chu": "“Đưa nó cho ta giữ.”",
@@ -1869,7 +1927,8 @@
             "hao_cam": {
               "Hàn Lập": -20
             }
-          }
+          },
+          "ket_qua": "“Đưa nó cho ta giữ.” — ta nói."
         }
       ]
     },
@@ -1898,11 +1957,13 @@
             "hao_cam": {
               "Hàn Lập": 5
             }
-          }
+          },
+          "ket_qua": "“Ngươi vừa giết người.” — ta nói."
         },
         {
           "chu": "Đứng nhìn, không nói gì",
-          "den": "c2_p24"
+          "den": "c2_p24",
+          "ket_qua": "Ta đứng nhìn. Ta không nói gì."
         },
         {
           "chu": "“Vậy thì ta đi cùng ngươi.”",
@@ -1911,7 +1972,8 @@
             "hao_cam": {
               "Hàn Lập": 12
             }
-          }
+          },
+          "ket_qua": "“Vậy thì ta đi cùng ngươi.” — ta nói."
         },
         {
           "chu": "“Ngươi là kẻ giết người.”",
@@ -1920,7 +1982,8 @@
             "hao_cam": {
               "Hàn Lập": -20
             }
-          }
+          },
+          "ket_qua": "“Ngươi là kẻ giết người.” — ta nói, và ta không hạ giọng."
         }
       ]
     },

@@ -207,11 +207,13 @@
       "lua_chon": [
         {
           "chu": "Lùi lại, hỏi: “Ngươi là ai?”",
-          "den": "c1_d06"
+          "den": "c1_d06",
+          "ket_qua": "Ta lùi một bước, lưng chạm vách gỗ. “Ngươi là ai?” — giọng ta run, và ta không giấu được."
         },
         {
           "chu": "Im lặng, chờ đợi xem nó nói gì",
-          "den": "c1_d06"
+          "den": "c1_d06",
+          "ket_qua": "Ta không nói. Ta đứng im, hai tay buông, chờ xem nó nói gì tiếp."
         }
       ]
     },
@@ -560,11 +562,13 @@
             "hao_cam": {
               "Hàn Lập": 10
             }
-          }
+          },
+          "ket_qua": "Ta nói thẳng. Chữ vừa ra khỏi miệng, ta mới thấy mình vừa đặt cược tất cả vào một câu."
         },
         {
           "chu": "Cười trừ: “Ta chỉ là kẻ tình cờ ở đây.”",
-          "den": "c1_d16"
+          "den": "c1_d16",
+          "ket_qua": "Ta cười trừ, gãi đầu, đẩy câu chuyện sang chỗ khác. Hắn không cười theo."
         },
         {
           "chu": "Hỏi ngược: “Vậy ngươi là ai?”",
@@ -573,7 +577,8 @@
             "hao_cam": {
               "Hàn Lập": 5
             }
-          }
+          },
+          "ket_qua": "Ta không đáp. Ta hỏi lại."
         },
         {
           "chu": "Im lặng, đưa hắn bầu nước của mình",
@@ -582,7 +587,8 @@
             "hao_cam": {
               "Hàn Lập": 8
             }
-          }
+          },
+          "ket_qua": "Ta không đáp. Ta tháo bầu nước bên hông, đưa tới trước mặt hắn."
         }
       ]
     },
@@ -608,11 +614,13 @@
             "hao_cam": {
               "Hàn Lập": 5
             }
-          }
+          },
+          "ket_qua": "Ta nói câu ấy rồi quay đi, không để hắn thấy mặt mình."
         },
         {
           "chu": "Im lặng gật đầu rồi rời đi",
-          "den": "c1_d17"
+          "den": "c1_d17",
+          "ket_qua": "Ta không nói gì. Ta gật đầu, rồi đi."
         }
       ],
       "bien_the": [
@@ -1135,11 +1143,13 @@
       "lua_chon": [
         {
           "chu": "Lùi lại, hỏi thân phận: “Ngươi là ai? Sao ở trong ngọc?”",
-          "den": "c1_p08"
+          "den": "c1_p08",
+          "ket_qua": "Ta lùi lại, lưng chạm vách gỗ. “Ngươi là ai? Sao lại ở trong ngọc?”"
         },
         {
           "chu": "Im lặng quan sát, chờ nàng nói tiếp",
-          "den": "c1_p08"
+          "den": "c1_p08",
+          "ket_qua": "Ta không lùi, cũng không đáp. Ta đứng im nhìn, chờ nàng nói tiếp."
         }
       ]
     },

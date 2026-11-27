@@ -469,6 +469,21 @@ def _ke_theo_hao_cam(d: dict, state: dict) -> str:
     return tot_nhat["ke"] if tot_nhat else d.get("ke", "")
 
 
+
+def _noi_chuyen_tiep(ket_qua: dict, lc: dict) -> None:
+    """Nối câu chuyển tiếp của lựa chọn vào đầu đoạn kế.
+
+    Nhiều lựa chọn cùng trỏ về một đoạn (để khỏi nhân bản cảnh). Không có câu
+    nối thì người chơi bấm "Hỏi" hay "Rời đi" đều thấy y hệt một cảnh, không
+    biết mình vừa chọn gì. Câu nối lấy từ `lua_chon[].ket_qua`.
+    """
+    noi = (lc.get("ket_qua") or "").strip()
+    if not noi:
+        return
+    ke = ket_qua.get("ke") or ""
+    ket_qua["ke"] = f"{noi}\n\n{ke}" if ke else noi
+
+
 def _man_ket_chuong(state: dict) -> dict:
     """Màn hình khi đã khép chương (thay vì tra đoạn không tồn tại).
 
@@ -627,6 +642,7 @@ def chon(state: dict, chi_so: int) -> dict:
 
     ket_qua = _goi_y(state)
     ket_qua["thong_bao"] = tb
+    _noi_chuyen_tiep(ket_qua, lc)
     return ket_qua
 
 
