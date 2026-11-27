@@ -1841,14 +1841,29 @@ Nguyên nhân: nhiều lựa chọn cùng trỏ `den` về một đoạn (để 
 mà lược đồ dữ liệu chỉ có `den` — không có chỗ ghi kết quả riêng. Toàn bộ chương
 1 và 2 có **28 đoạn** như vậy, **73 lựa chọn**.
 
-Cách sửa: thêm `lua_chon[].ket_qua` (một câu), engine nối câu đó vào đầu `ke`
-của đoạn kế. Đã sửa cả hai engine: `game/engine.py` và `docs/game/engine.js`
-(bản chạy trên GitHub Pages). Hàm: `_noi_chuyen_tiep`.
+Cách sửa (đã làm, thay cho cách `ket_qua` cũ): **mỗi lựa chọn có một cảnh riêng**.
+Chèn một đoạn mới cho từng lựa chọn, đoạn đó nối tiếp vào đích chung. Nhờ vậy
+người chơi đọc được cảnh của chính mình chọn, không phải một câu nối gắn vào cảnh
+dùng chung. Trường `lua_chon[].ket_qua` và hàm `_noi_chuyen_tiep` đã **bỏ** khỏi
+`game/engine.py` và `docs/game/engine.js`.
+
+Kết quả: chương 1 có 76 đoạn (thêm 10), chương 2 có 142 đoạn (thêm 62).
+Không còn cặp lựa chọn nào trong một đoạn trỏ về cùng một đích.
 
 Quy tắc khi viết chương mới:
-- Lựa chọn cùng `den` thì **bắt buộc** có `ket_qua`, và các câu phải **khác nhau**.
-- `ket_qua` là hành động của người chơi, không phải tóm tắt cảnh kế.
-- Không dùng `ket_qua` để nhắc lại nguyên văn lựa chọn một cách máy móc.
+- Trong một đoạn, hai lựa chọn **không được** cùng `den`. Muốn chung đích thì
+  mỗi lựa chọn đi qua một cảnh riêng rồi cảnh đó mới nối vào đích.
+- Cảnh riêng phải dài tối thiểu 300 ký tự và mở đầu **trung tính**: không giả định
+  người chơi vừa làm một hành động cụ thể (vì cảnh dùng chung có thể tới từ nhánh
+  khác).
+- Giữ nguyên biến thể, ảnh, hiệu ứng của lựa chọn gốc khi tách cảnh.
 
-Đã có test chặn tái phát trong `game/_test_engine.js`: quét mọi đoạn, báo lỗi nếu
-lựa chọn trùng đích thiếu `ket_qua` hoặc hai lựa chọn dùng chung một câu.
+Công cụ trong `tools/`:
+- `tach_canh.py` — chèn cảnh riêng theo định nghĩa trong `canh_c2_*.py`.
+- `kiem_dau.py` — soát lỗi dấu tiếng Việt (dùng kho ngữ liệu đã duyệt làm từ điển).
+- `kiem_noi_tiep.py` — soát đầu ra trùng nhau giữa các lựa chọn.
+- `sua_gia_dinh.py` — làm trung tính các câu mở đầu giả định hành động trước đó.
+
+Test chặn tái phát: `game/_test_engine.js` và `game/_test_api.py` quét mọi đoạn,
+báo lỗi nếu hai lựa chọn cùng đích, nếu cảnh riêng ngắn hơn 300 ký tự, hoặc nếu
+đích không tồn tại.
