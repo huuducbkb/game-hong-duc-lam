@@ -1825,3 +1825,9 @@ nhận biết hàng giả) thì đừng đưa chết chóc, mất mạng, nhục
 
 `TAI_LIEU_GIONG_NPC_6_MUC.md` do `tools/tao_tai_lieu_giong_npc.py` sinh. Sửa truyện xong
 thì chạy lại tool. File `.md` 4 mức cũ đã xoá — đừng khôi phục.
+
+## Trạng thái duyệt nội dung (2026-11-27)
+
+Chương 1 và chương 2 đã được **người dùng duyệt là đạt** về cốt truyện và giọng kể NPC.
+Đừng tự ý viết lại văn bản đã duyệt. Chỉ sửa khi người dùng chỉ ra đúng câu, đúng đoạn.
+Sửa xong thì chạy lại `tools/tao_tai_lieu_giong_npc.py` và `tools/tao_so_do_cot_truyen.py`.
