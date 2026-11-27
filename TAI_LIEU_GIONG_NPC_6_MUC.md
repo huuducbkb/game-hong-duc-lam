@@ -1235,7 +1235,7 @@ Và ta thấy nàng nói đúng. Người đàn bà bán đan ở dãy thứ hai
 
 “Nàng dạy ta những thứ này từ bao giờ?” — ta hỏi khẽ.
 
-“Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ngươi là chủ, ta là tớ. Tớ để chủ chết giữa chợ thì cả cái chợ biết tớ vô dụng. Ta không muốn ai biết ta vô dụng.”
+“Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ngươi là chủ, ta là tớ. Chủ mà bị lừa sạch tiền ngay giữa chợ thì tớ này mất mặt. Ta không muốn mất mặt.”
 
 </details>
 
@@ -1257,13 +1257,13 @@ Và ta thấy nàng nói đúng. Người đàn bà bán đan ở dãy thứ hai
 
 “Nàng dạy ta những thứ này từ bao giờ?” — ta hỏi khẽ.
 
-“Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ngươi là chủ, ta là tớ. Tớ để chủ chết giữa chợ thì cả cái chợ biết tớ vô dụng. Ta không muốn ai biết ta vô dụng.”
+“Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ngươi là chủ, ta là tớ. Chủ mà bị lừa sạch tiền ngay giữa chợ thì tớ này mất mặt. Ta không muốn mất mặt.”
 
-Rồi nàng nói thêm, nhỏ hơn: “Nhưng ta dạy ngươi kỹ thế này không phải vì khế ước. Khế ước buộc ta dạy. Nó không buộc ta dạy cho ngươi sống.”
+Rồi nàng nói thêm, nhỏ hơn, giọng bớt đùa: “Nhưng ta dạy ngươi kỹ thế này không phải vì khế ước. Khế ước chỉ buộc ta dạy. Ta dạy kỹ vì ta muốn ngươi học được.”
 
-Nàng im một nhịp.
+“Học được gì?”
 
-“Ta ngủ ngàn năm trong khối ngọc này. Ta không muốn tỉnh dậy lần nữa và thấy mình vừa mất một người.”
+“Nhìn tay người bán, biết ai thật ai giả.” — Nàng ngừng một nhịp. — “Cái chợ này là chỗ dễ bị lừa nhất, cũng là chỗ dạy người ta nhìn người nhanh nhất. Ngươi nhìn được tay kẻ bán hàng thì sau này nhìn được tay kẻ đang tính lừa ngươi. Đó là thứ ta muốn ngươi mang theo, không phải mấy đồng bạc.”
 
 ## 3. `[c2_p21b]` · Chương 2 — Giữa thung lũng — sáng ngày cuối
 

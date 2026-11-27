@@ -1807,9 +1807,19 @@ Trước khi thêm một câu khẳng định về quá khứ vào biến thể,
 grep -o "chủ cũ\|chủ trước\|bản tôn\|chủ nhân\|sư phụ ta" game/chapters/*.json
 ```
 
-Cũng đừng dùng hình ảnh trừu tượng thay cho nghĩa cụ thể. "Tớ không được để chủ chết ở
-một cái chợ" — "chết ở chợ" không phải thành ngữ, người đọc không hiểu. Viết thẳng:
-"Tớ để chủ chết giữa chợ thì cả cái chợ biết tớ vô dụng."
+Cũng đừng dùng hình ảnh trừu tượng thay cho nghĩa cụ thể, và đừng kéo tông cảnh lên nặng
+hơn nó vốn có. "Tớ không được để chủ chết ở một cái chợ" — "chết ở chợ" không phải thành
+ngữ, người đọc không hiểu. Nhưng sửa thành "chủ chết giữa chợ thì cả chợ biết tớ vô dụng"
+cũng sai: cảnh `c2_p08` là nàng dạy cách nhìn tay người bán để không bị lừa — nhẹ, có
+chút đùa ("giọng gần như cười"). Kéo chữ "chết" và "vô dụng" vào là lạc tông.
+
+Đúng phải là: giữ nguyên việc nàng đang dạy gì, chỉ nói rõ ý. Bản đã chốt:
+"Chủ mà bị lừa sạch tiền ngay giữa chợ thì tớ này mất mặt. Ta không muốn mất mặt."
+Mức tri kỷ thêm: khế ước chỉ buộc nàng dạy, nàng dạy kỹ vì muốn người chơi học được cách
+nhìn người — "Đó là thứ ta muốn ngươi mang theo, không phải mấy đồng bạc."
+
+Trước khi sửa một câu, hỏi: cảnh này đang nói về việc gì? Nếu là chuyện nhỏ (trả giá,
+nhận biết hàng giả) thì đừng đưa chết chóc, mất mạng, nhục nhã vào.
 
 ## Tài liệu giọng NPC sinh từ dữ liệu, không sửa tay
 
