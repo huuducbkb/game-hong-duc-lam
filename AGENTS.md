@@ -1758,3 +1758,32 @@ localStorage.setItem('hdttl_phien', JSON.stringify(st));
 
 Test chỉ thử mức hảo cảm cao sẽ không thấy nhánh kết xấu bị khoá nhầm. Luôn kiểm **cả hai**:
 hảo cảm cao → kết xấu khoá; hảo cảm thấp → kết xấu mở.
+
+## Giọng kể NPC theo hảo cảm: đổi cách đối xử, không chỉ đổi lời miêu tả
+
+Biến thể `bien_the` phải khác nhau ở **hành động**, không phải ở vài chữ miêu tả. Đo bằng
+`difflib.SequenceMatcher` giữa mọi cặp mức: cặp nào trên 85% là chưa đạt.
+
+Lỗi đã mắc và cách sửa:
+- Mức "người dưng" từng **giống hệt bản gốc từng chữ** (4 đoạn) → vô dụng, người chơi không thấy gì đổi.
+- `c1_p17` thù địch/người dưng từng giống 96,2% (khác 2 câu) → viết lại toàn bộ 6 mức.
+- Mức tử địch từng mở bằng "Chúng ta ra khỏi cốc" → tử địch không thể đi cùng nhau.
+
+Mỗi mức phải trả lời: NPC **có giúp hay không, có nói thật hay không, có chia đồ hay không**.
+- tử địch: doạ giết, không chia, bắt đi trước mặt
+- tri kỷ: cho đồ không tính lời, nói rõ mình cũng đang giấu thứ gì
+
+Dùng từ trực tiếp, **không nói giảm/nói tránh**. "Kẻ sắp bị loại" đã bị đổi thành
+"kẻ sắp chết" — nói giảm làm nhạt đúng chỗ quan hệ cần gắt.
+
+Phần cảnh gốc (sự kiện bắt buộc giữ) vẫn chiếm 78–81% ở `c1_d16`. **Đây là mức chấp nhận
+được — người dùng đã chốt "giữ để không phá cốt truyện"**, đừng hạ tiếp bằng cách đổi câu
+thoại gốc.
+
+Kiểm nhanh trước khi commit:
+```python
+# 0 bản trùng gốc, 0 ngoặc lệch, cặp gần nhất < 85%
+[f'{k}/{b["muc"]}' for k,v in d.items() for b in (v.get('bien_the') or [])
+ if b['ke'].strip()==v['ke'].strip()]
+[b['ke'].count('“')!=b['ke'].count('”') for b in ...]
+```
