@@ -8,6 +8,16 @@
 
 ## 🔴 ĐANG LÀM
 
+- [ ] **Chương 2 — gắn lại `bien_the` (đổi giọng kể theo hảo cảm)**
+  - Bản tách hai nhánh viết lại phần Thái Nam → cơ chế chỉ còn ở `c2_d06`, `c2_p02`
+  - Cần gắn lại vào đoạn mới: `c2_d22`, `c2_d23`, `c2_p19`, `c2_p20` (chỗ tương ứng cảnh cũ)
+  - ⚠ Đây là **viết nội dung** → hỏi người dùng trước khi làm
+  - Đo được: `python3 -c "import json;d=json.load(open('game/chapters/chuong2.json'));print(sum(1 for x in d['doan'] if x.get('bien_the')))"` → hiện **2**, mục tiêu ≥ 8
+
+- [ ] **Trang báo cáo `docs/nhap/ban-dong-hanh.html` — người dùng tự bổ sung ảnh cảnh**
+  - Trang hiện chỉ có chữ (theo yêu cầu). Mục "Ảnh cảnh" để trống chờ
+  - Sinh lại trang: `python3 tools/tao_bao_cao_ban_dong_hanh.py`
+
 - [~] **Phần ảnh — Xưởng TỰ ĐỘNG trên GitHub** (thay quy trình cũ)
   - [x] **Xưởng tĩnh trên Pages** ✓ — `docs/xuong/index.html`, bố cục theo từng chương,
         prompt từng ảnh + nút copy + trạng thái ảnh, không cần server

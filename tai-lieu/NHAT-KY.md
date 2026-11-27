@@ -10,6 +10,51 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-17 (tiếp) · Bạn đồng hành xuất hiện ngay khi vào đoạn — ĐÃ XONG, ĐÃ ĐẨY
+
+Người dùng: "bạn đồng hành phải xuất hiện ngay khi vào đoạn, không đợi bấm lựa chọn".
+Sau đó: "khi viết ảnh các cảnh không cần thêm tôi sẽ tự bổ sung sau" → trang báo cáo
+**chỉ có chữ**, không ảnh cảnh.
+
+### Đã sửa
+
+| File | Việc |
+|---|---|
+| `game/engine.py` | `_doan()` gọi `_ap_hieu_ung_vao(state, d)`. Hàm mới áp `hieu_ung_vao` của chính đoạn, ghi vào `state["da_ap_vao"]` nên **mỗi đoạn chỉ áp một lần** |
+| `docs/game/engine.js` | `_doan()` gọi `_ap_hieu_ung_vao(state, d)` — đồng bộ bản web |
+| `tools/lap_chuong2.py` | gắn `hieu_ung_vao` cho `c2_d01` (Hồng Trần) và `c2_p01` (Tuyết Cơ), hảo cảm 100 |
+| `game/_test_api.py` | thêm mục **R**: có mặt ngay, không cộng dồn khi mở lại, hai nhánh khác NPC |
+| `game/_test_engine.js` | trỏ 4 phép kiểm từ nhóm `c2_c*` (đã bỏ khi tách nhánh) về đoạn của từng nhánh |
+| `tools/tao_bao_cao_ban_dong_hanh.py` | sinh `docs/nhap/ban-dong-hanh.html`; mỗi đường chơi **mô phỏng bằng chính engine** nên số liệu không chép tay |
+
+### Số đo kiểm chứng
+
+- Python `game/_test_api.py`: **227 đạt, 0 hỏng**
+- JS `game/_test_engine.js`: **185 đạt, 0 hỏng** (trước khi sửa: 171 đạt / 4 hỏng / 1 crash)
+- Bản live, engine thật trong trình duyệt: `c2_d01` → **Hồng Trần 100 tri kỷ**;
+  `c2_p01` → **Tuyết Cơ 100 tri kỷ** — có mặt trước khi bấm gì
+- Trang báo cáo live: 6 đường, 160 bước, 0 tràn ngang ở khổ 390, 0 lỗi JS
+- Commit `46fcb63`, đã push `main`, Pages trả 200
+
+### CHƯA LÀM — việc còn treo cho phiên sau
+
+1. **`bien_the` rơi 8/10 đoạn.** Bản tách hai nhánh viết lại phần Thái Nam nên cơ chế
+   đổi giọng kể theo hảo cảm chỉ còn ở `c2_d06` và `c2_p02`. Cần gắn lại vào đoạn mới
+   của hai nhánh (`c2_d22`, `c2_d23`, `c2_p19`, `c2_p20`… là chỗ tương ứng cảnh cũ).
+   Đây là **viết nội dung**, không phải sửa lỗi — phải hỏi người dùng trước khi làm.
+2. **Ảnh cảnh trang báo cáo** — người dùng tự bổ sung. 164 ảnh em chụp đã dời ra
+   `/tmp/anh-c2/` (chưa từng vào git), không đụng 112 ảnh có sẵn trong `docs/nhap/`.
+
+### Bài học cho phiên sau
+
+- **Đừng chụp ảnh cảnh khi chưa được yêu cầu.** Người dùng tự làm việc đó.
+- Bộ test JS trỏ theo id đoạn cụ thể → **tách nhánh là hỏng test**, dù engine không sai.
+  Kiểm nhanh: `node game/_test_engine.js | grep -c "✗"`.
+- Trang báo cáo phải sinh bằng script (`tools/tao_bao_cao_ban_dong_hanh.py`), không viết
+  tay — dữ liệu đổi là chạy lại, số liệu tự khớp.
+
+---
+
 ## 2026-11-17 (tiếp) · Gợi ý cơ chế chuyển chương — chỉ báo cáo, KHÔNG sửa mã
 
 Người dùng: "gợi ý cơ chế chuyển chương tôi xem thử." Đã làm **trang báo cáo để chọn**,
