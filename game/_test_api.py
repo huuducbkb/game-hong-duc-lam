@@ -36,6 +36,17 @@ def check(ten, dieu, thuc):
     else:
         fail += 1; print(f"  ✗ {ten}\n      mong đợi: {dieu!r}\n      nhận được: {thuc!r}")
 
+def toi(o, dich, chi_so=0, toi_da=80):
+    """Bấm lựa chọn cho tới khi tới đoạn `dich` (không phụ thuộc số bước)."""
+    r = call(o, "/api/doan")
+    for _ in range(toi_da):
+        if r.get("doan_id") == dich:
+            return r
+        r = call(o, "/api/chon", {"chi_so": chi_so})
+        if r.get("ket_thuc") or r.get("loi"):
+            return r
+    return r
+
 print("=== A. Endpoint cơ bản ===")
 o = mk()
 check("/api/xuat_than đủ 2 nhóm chơi được",
@@ -139,7 +150,10 @@ check("bị từ chối thì vẫn ở chương 1",
 
 # Lùi ở màn kết: phải về đoạn cuối chương 1, không phải nhảy sang chương 2
 check("lùi ở màn kết → về đoạn cuối", call(o7, "/api/lui", {}).get("doan_id"), "c1_d17")
-check("lùi tiếp → về đoạn kế trước", call(o7, "/api/lui", {}).get("doan_id"), "c1_d16")
+_lui = call(o7, "/api/lui", {}).get("doan_id")
+while _lui not in ("c1_d16", None) and _lui.startswith("c1_"):
+    _lui = call(o7, "/api/lui", {}).get("doan_id")
+check("lùi tiếp → về đoạn kế trước", _lui, "c1_d16")
 check("lùi xong vẫn ở chương 1",
       call(o7, "/api/state")["trang_thai"]["chuong"], 1)
 check("chưa hết chương thì /api/sang_chuong từ chối",
@@ -189,9 +203,8 @@ r = call(o8, "/api/chon", {"chi_so": 0})   # đào lên, giữ ngọc
 st = call(o8, "/api/state")["trang_thai"]
 check("nhận Ngọc cốt bí ẩn", any(v["ten"] == "Ngọc cốt bí ẩn" for v in st["tui_do"]), True)
 check("cờ co_ngoc_cot", "co_ngoc_cot" in st["co_su_kien"], True)
-# p07 → p08 → p08b → p09 → p09b → p09c (do dự) → p10 (ký) → p10b (song tu) → p11 (tu luyện)
-for _ in range(6):
-    r = call(o8, "/api/chon", {"chi_so": 0})
+# p07 → p08 (qua cảnh riêng) → p08b → p09 → p09b → p09c (do dự) → p10 (ký) → p10b (song tu) → p11
+r = toi(o8, "c1_p10b")
 check("tới đoạn song tu p10b", r["doan_id"], "c1_p10b")
 r = call(o8, "/api/chon", {"chi_so": 0})
 check("tới đoạn tu luyện p11", r["doan_id"], "c1_p11")
@@ -464,11 +477,17 @@ for cs, ten, coco, hc in [(0, "thành thật", "noi_that_han_lap", 10), (1, "cư
     r = toi(ot, "c1_d15")
     check(f"tới d15 (gặp Hàn Lập)", r["doan_id"], "c1_d15")
     r = call(ot, "/api/chon", {"chi_so": cs})
-    check(f"d15 {ten} → d16", r["doan_id"], "c1_d16")
+    # Mỗi lựa chọn đi qua một cảnh riêng rồi mới nối vào d16.
+    check(f"d15 {ten} → cảnh riêng", r["doan_id"], f"c1_d16_{cs}")
+    check(f"  {ten}: cảnh riêng đủ dài", len(r.get("ke") or "") >= 300, True)
     st = call(ot, "/api/state")["trang_thai"]
     check(f"  {ten}: hảo cảm Hàn Lập = {hc}", st["npc"].get("Hàn Lập", {}).get("hao_cam", 0), hc)
     if coco:
         check(f"  {ten}: cờ {coco}", coco in st["co_su_kien"], True)
+    r = call(ot, "/api/chon", {"chi_so": 0})
+    check(f"  {ten} → d16", r["doan_id"], "c1_d16")
+    r = call(ot, "/api/chon", {"chi_so": 0})
+    check(f"  {ten} → cảnh riêng d17", r["doan_id"], "c1_d17_0")
     r = call(ot, "/api/chon", {"chi_so": 0})
     check(f"  {ten} → kết d17", r["doan_id"], "c1_d17")
 
@@ -804,12 +823,15 @@ def _duong(dau, dich, nhom="tan_tu"):
                 q.append((den, path + [i]))
     return None
 
-def _choi(dich, nhom="tan_tu"):
+def _choi(dich, nhom="tan_tu", hao_cam=None):
     st = _E2.trang_thai_moi("T", "", nhom)
     st["chuong"] = 2
     _E2.bat_dau(st)
     for i in _duong(st["doan_hien_tai"], dich, nhom):
         r = _E2.chon(st, i)
+    # Đường ngắn nhất có thể không đủ hảo cảm; đoạn kết cần mức cao thì đặt trước.
+    if hao_cam is not None and "Hàn Lập" in st["npc"]:
+        st["npc"]["Hàn Lập"]["hao_cam"] = hao_cam
     return st, r
 
 def _tui(st):
@@ -822,7 +844,8 @@ check("  không có hai dòng cùng tên trong túi",
       len([v["ten"] for v in _st["tui_do"]]) - len(set(v["ten"] for v in _st["tui_do"])), 0)
 
 # Nhận lệnh bài ở kết bạn: hảo cảm đủ cao mới mở, và phải vào túi thật.
-_st2, _ = _choi("c2_d29", "tan_tu")
+_st2, _ = _choi("c2_d28", "tan_tu", hao_cam=100)
+_E2.chon(_st2, 0)   # "Nhận tấm lệnh"
 check("nhận Thăng Tiên Lệnh ở kết bạn tán tu",
       _tui(_st2).get("Thăng Tiên Lệnh"), 1)
 

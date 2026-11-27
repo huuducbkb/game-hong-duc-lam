@@ -578,16 +578,7 @@
     _chuyen_doan(state, lc.den);
     const ket_qua = _goi_y(state);
     ket_qua.thong_bao = tb;
-    _noi_chuyen_tiep(ket_qua, lc);
     return ket_qua;
-  }
-
-  function _noi_chuyen_tiep(ket_qua, lc) {
-    // Nhiều lựa chọn cùng trỏ về một đoạn; câu nối cho biết người chơi vừa chọn gì.
-    const noi = (lc.ket_qua || "").trim();
-    if (!noi) return;
-    const ke = ket_qua.ke || "";
-    ket_qua.ke = ke ? `${noi}\n\n${ke}` : noi;
   }
 
   function _boi_canh(state) {
