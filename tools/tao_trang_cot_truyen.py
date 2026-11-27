@@ -78,27 +78,31 @@ def nhan_chon(chu):
     return "“" + html.escape(chu) + "”"
 
 
-def the_mach(D, mach, xong):
+def the_mach(D, mach, da_in):
     """In một mạch liền mạch; mỗi đoạn rẽ in gọn trong thẻ mở được.
 
-    `xong` là mọi đoạn thuộc bất kỳ mạch nào đã in, để chuỗi rẽ dừng lại thay vì
-    chạy tuốt sang phần đã in ở nơi khác.
+    `da_in` là tập đoạn đã in ở bất kỳ đâu. Nó vừa để chuỗi rẽ dừng lại thay vì
+    chạy tuốt sang phần đã in, vừa được cập nhật ngay khi in để hai nhánh rẽ khác
+    nhau không in trùng cùng một đoạn. Nhánh lồng trong nhánh cũng được in, nếu
+    không thì các kết xấu nằm sâu hai lớp sẽ mất hẳn khỏi trang.
     """
     o = []
     for vi_tri, ma in enumerate(mach):
         o.append(the_doan(D, ma))
+        da_in.add(ma)
         ke_tiep = mach[vi_tri + 1] if vi_tri + 1 < len(mach) else None
         for chon in D[ma].get("lua_chon") or []:
             if chon["den"] == ke_tiep:
                 continue
-            re_ = chuoi_re(D, chon["den"], xong)
-            if not re_:
-                continue
-            o.append('<details class="nhanh-phu">')
-            o.append(f'<summary>Chọn: {nhan_chon(chon["chu"])}</summary>')
-            for ma_re in re_:
-                o.append(the_doan(D, ma_re))
-            o.append("</details>")
+            re_ = chuoi_re(D, chon["den"], da_in)
+            if re_:
+                o.append('<details class="nhanh-phu">')
+                o.append(f'<summary>Chọn: {nhan_chon(chon["chu"])}</summary>')
+                o.append(the_mach(D, re_, da_in))
+                o.append("</details>")
+            elif chon["den"] in D:
+                o.append(f'<p class="ghi">Chọn: {nhan_chon(chon["chu"])} → '
+                         f'<a href="#{chon["den"]}">đoạn đã in ở trên</a></p>')
     return "\n".join(o)
 
 
@@ -202,9 +206,9 @@ def sinh():
     mach_chung = [ma for ma in machs["tan_tu"][machs["tan_tu"].index(diem_gap):]
                   if ma in chung]
 
-    xong = set(mach_chung)
+    da_in = set(mach_chung)
     for m in machs.values():
-        xong |= set(m)
+        da_in |= set(m)
 
     for nhom in ("tan_tu", "mon_phai"):
         mach = machs[nhom]
@@ -212,12 +216,12 @@ def sinh():
         o.append(f'<h2 id="{nhom.replace("_", "-")}">'
                  f'Lối vào — {TEN_NHOM[nhom]} '
                  f'<span class="ghi">({len(rieng)} đoạn, rồi nhập mạch chung)</span></h2>')
-        o.append(the_mach(D, rieng, xong))
+        o.append(the_mach(D, rieng, da_in))
 
     o.append('<h2 id="mach-chung">Mạch chung</h2>')
     o.append('<p class="ghi">Từ đây hai nhánh đi cùng một đường: tới Thái Nam sơn, '
              'xuống hội chợ, rồi tới ngày cuối.</p>')
-    o.append(the_mach(D, mach_chung, xong))
+    o.append(the_mach(D, mach_chung, da_in))
 
     # Lời kết
     o.append('<h2>Lời kết chương</h2>')

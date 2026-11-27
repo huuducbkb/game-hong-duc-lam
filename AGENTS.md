@@ -256,7 +256,7 @@ Workflow Pages upload **cả** `docs/`. Nên:
 - Chỉ để trong `docs/` những gì người chơi được thấy (game, ảnh, trang chủ, bản thảo để đọc).
 - Tài liệu nội bộ, kế hoạch, báo cáo → để ở `tai-lieu/` (ngoài `docs/`).
 - File test (`_test_engine.js`) → để ở `game/`, không để trong `docs/game/`.
-- Kiểm tra nhanh: `curl -o /dev/null -w '%{http_code}' https://huuducbkb.github.io/game-hong-duc-lam/<đường-dẫn>` — 200 nghĩa là đang public.
+- Kiểm tra nhanh: `curl -o /dev/null -w '%{http_code}' https://huuducbkb.github.io/game-hong-duc-lam/<đường-dẫn>` — 200 nghĩa là đang public. **`docs/` là gốc web**, nên `docs/nhap/a.html` → `/nhap/a.html` (bỏ tiền tố `docs/`).
 - Lưu ý: repo là **public**, nên file ở `tai-lieu/` vẫn xem được trên GitHub; chỉ là hết public trên *web Pages*.
 
 ## Chạy game
@@ -1442,12 +1442,20 @@ màn tạo nhân vật (`.xt-the[data-ma=mon_phai]`), không thì không bao gi�
 
 ### Deploy Pages hỏng: đừng "chạy lại job", phải dispatch lượt mới
 
-Đã gặp hai lần liên tiếp với cùng một commit. Triệu chứng: `actions/deploy-pages@v4`
-báo `No artifacts named "github-pages" were found` dù bước upload ngay trước đó
-**thành công** và đã đẩy 80 MB.
+Đã gặp nhiều lần. Triệu chứng: `actions/deploy-pages@v4` báo
+`Fetching artifact metadata failed` rồi
+`No artifacts named "github-pages" were found` — dù bước upload ngay trước đó
+**thành công** và đã đẩy cả trăm MB.
 
-Nguyên nhân **chưa rõ**. Ghi chú cũ ở đây nói "lỗi tạm thời của API GitHub" — đúng một
-phần, nhưng chưa đủ. Dữ liệu thật ngày 2026-11-26, cùng một commit:
+**Nguyên nhân thật (tìm ra 2026-11-27 bằng log của run 45867201111):** không phải
+quyền, không phải code. Đây là lỗi hạ tầng của API GitHub. Log ghi rõ
+`error_count: 10`, `timeout: 600000`, kèm câu
+`Is githubstatus.com reporting issues with API requests, Pages, or Actions?` —
+tức `deploy-pages` gọi API để lấy metadata artifact, bị lỗi mạng/API phía GitHub,
+nên **không thấy** artifact dù artifact có thật. Upload và deploy là hai lời gọi
+API khác nhau; cái sau hỏng không nói gì về cái trước.
+
+Dữ liệu thật, cùng một commit `54c0fe1`:
 
 | Run | Kiểu | Kết quả |
 |---|---|---|
@@ -1456,7 +1464,7 @@ phần, nhưng chưa đủ. Dữ liệu thật ngày 2026-11-26, cùng một com
 | 45866497562 | `push` | hỏng |
 | 45866802692 | `workflow_dispatch` | **thành công** |
 | 45867201111 | `push` | hỏng |
-| 45867328706 | `workflow_dispatch` (cùng commit `54c0fe1`) | **thành công** |
+| 45867328706 | `workflow_dispatch` (cùng commit) | **thành công** |
 
 Hai kết luận rút ra:
 
@@ -1473,6 +1481,22 @@ Nếu chạy lại job (`rerun-failed-jobs`) thì **hỏng kiểu khác**:
 `Multiple artifacts named "github-pages" were unexpectedly found. Artifact count is 2`
 — vì lượt chạy lại sinh thêm artifact thứ hai cùng tên trong cùng một run, và
 `deploy-pages` không biết chọn cái nào. Chạy lại lần nữa cũng không cứu được run đó.
+
+**Đừng kết luận "push không kích hoạt deploy" chỉ vì thấy 404.** Ngày 2026-11-27 em
+poll 20 lần × 15 giây thấy 404 và tưởng push không chạy; thật ra run `push` đã chạy và
+**thành công** (`45958939342`), chỉ là em đang thử **sai đường dẫn**. Trước khi
+dispatch, hãy xem danh sách run:
+
+```bash
+curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+  "https://api.github.com/repos/huuducbkb/game-hong-duc-lam/actions/runs?per_page=6" \
+  | python3 -c "import json,sys; [print(r['id'],r['event'],r['head_sha'][:7],r['status'],r['conclusion']) for r in json.load(sys.stdin)['workflow_runs']]"
+```
+
+**Và nhớ: `docs/` là GỐC của web Pages, không phải thư mục con.** Workflow upload
+`path: docs`, nên `docs/nhap/a.html` chạy ở `/nhap/a.html`, **không** phải
+`/docs/nhap/a.html`. Thử sai tiền tố sẽ ra 404 y như file không tồn tại. Đây chính là
+cái bẫy đã làm em mất 5 phút ngày 2026-11-27.
 
 Cách sửa đúng — tạo **lượt chạy mới hoàn toàn**, không dính artifact cũ:
 
@@ -1546,8 +1570,32 @@ dẫn thẳng vào mạch chung, nên hàm in chuỗi rẽ chạy tuốt qua c�
 
 Cách đúng: chia trang làm ba phần — lối vào tán tu, lối vào môn phái, rồi **mạch
 chung in một lần**. Hàm in chuỗi rẽ phải nhận danh sách đoạn "đã in ở nơi khác"
-để dừng lại. Kiểm bằng số đếm: đúng **55** thẻ `<article class="doan">`, không
+để dừng lại. Kiểm bằng số đếm: đúng **59** thẻ `<article class="doan">`, không
 đoạn nào trùng, và không đoạn nào thiếu.
+
+### Sơ đồ cốt truyện: mỗi hành động một thẻ
+
+`docs/nhap/so-do-cot-truyen.html` sinh từ `tools/tao_so_do_cot_truyen.py`, đọc
+thẳng `game/chapters/chuong1.json` + `chuong2.json`. Cùng lỗi in trùng như trên
+đã tái diễn ở đây: 137 thẻ nhưng chỉ 125 đoạn, vì khối "mạch chung" tự dò lại
+mạch chính từ đầu thay vì nhận danh sách đoạn đã in. Cách sửa: `sinh_nhanh()`
+nhận tham số `mach_san` (danh sách đoạn của mạch chung) và dùng luôn, không dò lại.
+
+Ba chi tiết dễ sai, đã kiểm bằng máy:
+
+- **Số liệu trên đầu trang phải khớp thứ đang in.** Ban đầu em ghi "38 chặng tán
+  tu · C2" — con số ấy là cả mạch (lối vào + chung), gộp hai thứ khác nhau vào một
+  nhãn. Nay tách: `10 lối vào tán tu · C2`, `6 lối vào môn phái · C2`.
+- **`id` của `<h2>` phải duy nhất.** Ba khối Chương 2 dùng chung khuôn id
+  `nhom-<nhóm>-c<chương>` nên khối "mạch chung" trùng id với "lối vào tán tu";
+  bấm link nhảy sai chỗ. Nay khối chung có id riêng `chung`.
+- **Đừng gọi lựa chọn đầu là "mạch chính" nếu nó có điều kiện.** Lựa chọn đầu mà
+  khoá sau hảo cảm thì người chơi chưa đủ điều kiện sẽ đi nhánh khác. Nay chỉ đánh
+  dấu `→` khi lựa chọn đầu **không** kèm `dieu_kien`.
+
+Kiểm bằng số, đừng nhìn mắt: đếm `<details>`, đếm `id` duy nhất, rồi so với danh
+sách id trong JSON của cả hai chương — phải ra **125 / 125 / 0 thiếu**. Kèm kiểm
+`document.documentElement.scrollWidth > clientWidth` phải là `false` ở khổ 390px.
 
 ### Báo cáo / trang đọc cho người dùng
 - `docs/nhap/chuong2-canon.html` — báo cáo sửa Chương 2 (ảnh chụp trong `docs/nhap/chuong2-canon/`).
