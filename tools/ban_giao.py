@@ -6,11 +6,20 @@ Chạy TRƯỚC khi báo xong cho người dùng:
     python3 tools/ban_giao.py --tu HEAD~3     # gộp 3 commit gần nhất
     python3 tools/ban_giao.py --khong-kiem    # in link, không gọi mạng
 
-Script làm bốn việc, để không phải nhớ bằng trí:
-1. Liệt kê trang `.html` đã đổi dưới `docs/` (gốc của GitHub Pages).
-2. Đổi đường dẫn tệp thành URL công khai.
-3. Gọi thử từng URL và báo mã trả về — không gửi link chết cho người dùng.
-4. Nhắc nếu `tai-lieu/NHAT-KY.md` chưa có mục của hôm nay.
+Người dùng muốn một danh sách **cố định năm link**, không phải link trang đã
+đổi — họ mở đúng năm chỗ đó để làm việc. Script in đúng năm, theo thứ tự:
+
+  1. Xưởng âm thanh
+  2. Xưởng ảnh
+  3. Xưởng video
+  4. Game để chơi
+  5. Sơ đồ cốt truyện
+
+Việc script làm:
+1. Dựng URL của năm chỗ đó.
+2. Gọi thử từng URL và báo mã trả về — không gửi link chết cho người dùng.
+3. In link commit của khoảng đang báo.
+4. Nhắc nếu nhật ký / sổ việc chưa được commit cùng phiên.
 
 Người dùng chỉ có điện thoại, không có terminal: link chết là mất luôn khả năng
 kiểm chứng. Vì vậy bước 3 không được bỏ.
@@ -30,7 +39,6 @@ from pathlib import Path
 GOC = Path(__file__).resolve().parent.parent
 PAGES = "https://huuducbkb.github.io/game-hong-duc-lam"
 REPO = "https://github.com/huuducbkb/game-hong-duc-lam"
-THU_MUC_WEB = "docs"  # docs/ là gốc Pages
 
 
 def git(*args: str) -> str:
@@ -53,31 +61,19 @@ def commit_trong_khoang(tu: str | None) -> list[tuple[str, str]]:
     return ra
 
 
-def trang_da_doi(tu: str | None) -> list[str]:
-    """Đường dẫn các tệp .html đã đổi dưới docs/, mới nhất trước."""
-    if tu:
-        pham_vi = [f"{tu}..HEAD"]
-    else:
-        pham_vi = ["HEAD~1..HEAD"]
-    try:
-        ra = git("diff", "--name-only", *pham_vi).splitlines()
-    except subprocess.CalledProcessError:
-        ra = []
-    if not ra:
-        ra = git("show", "--name-only", "--pretty=format:", "HEAD").splitlines()
-
-    tep = []
-    for d in ra:
-        d = d.strip()
-        if d.startswith(f"{THU_MUC_WEB}/") and d.endswith(".html"):
-            if d not in tep:
-                tep.append(d)
-    return tep
+# Năm chỗ người dùng mở để làm việc. Đây là danh sách gửi cuối phiên, không
+# phải "mọi trang vừa đổi" — người dùng đã nói rõ như vậy.
+NAM_LINK = [
+    ("Xưởng âm thanh", "xuong-am/"),
+    ("Xưởng ảnh", "xuong/"),
+    ("Xưởng video", "xuong-video/"),
+    ("Game để chơi", "game/"),
+    ("Sơ đồ cốt truyện", "nhap/so-do-cot-truyen.html"),
+]
 
 
 def thanh_url(duong_dan: str) -> str:
-    con = duong_dan[len(THU_MUC_WEB) + 1:]
-    return f"{PAGES}/{con}"
+    return f"{PAGES}/{duong_dan}"
 
 
 def kiem(url: str, so_lan: int = 3, cho: int = 12) -> int | str:
@@ -135,20 +131,23 @@ def main() -> None:
     a = ap.parse_args()
 
     commits = commit_trong_khoang(a.tu)
-    trang = trang_da_doi(a.tu)
 
     print("## Link bàn giao\n")
-    if not trang:
-        print("_Không có trang .html nào đổi trong khoảng này._\n")
-    for d in trang:
-        url = thanh_url(d)
+    hong = []
+    for ten, duong_dan in NAM_LINK:
+        url = thanh_url(duong_dan)
         if a.khong_kiem:
-            print(f"- {url}")
+            print(f"- **{ten}** — {url}")
+            continue
+        ma = kiem(url)
+        if ma == 200:
+            print(f"- **{ten}** — {url}")
         else:
-            ma = kiem(url)
-            dau = "OK" if ma == 200 else f"**{ma}**"
-            print(f"- [{ma}] {url}")
+            print(f"- **{ten}** — {url}  ⚠ [{ma}]")
+            hong.append(ten)
     print()
+    if hong:
+        print(f"⚠ Link hỏng: {', '.join(hong)} — Pages có thể chưa deploy xong.\n")
 
     if commits:
         print("## Commit\n")

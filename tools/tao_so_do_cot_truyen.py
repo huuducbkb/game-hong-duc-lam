@@ -178,6 +178,180 @@ def doc(chuong: int) -> dict:
         return json.load(f)
 
 
+# ---------------------------------------------------------------- xuất TXT
+# Người dùng chỉ có điện thoại: cần một tệp tải về đọc được offline, không
+# phụ thuộc JS hay mạng. Tệp sinh sẵn lúc build, không sinh trong trình duyệt.
+
+def _dk_chu(dk: dict | None) -> str:
+    """Điều kiện thành câu chữ thường, không mã HTML."""
+    if not dk:
+        return ""
+    phan = []
+    for ten, muc in (dk.get("hao_cam") or {}).items():
+        phan.append(f"hảo cảm {ten} ≥ {muc}")
+    for ten, muc in (dk.get("hao_cam_max") or {}).items():
+        phan.append(f"hảo cảm {ten} ≤ {muc}")
+    for sk in dk.get("co_su_kien") or []:
+        phan.append(f"đã có sự kiện {sk}")
+    for sk in dk.get("khong_su_kien") or []:
+        phan.append(f"chưa có sự kiện {sk}")
+    for vt in dk.get("co_vat") or []:
+        phan.append(f"trong túi có {vt}")
+    return "; ".join(phan)
+
+
+def _hu_chu(hu: dict | None) -> str:
+    if not hu:
+        return ""
+    phan = []
+    for ten, muc in (hu.get("hao_cam") or {}).items():
+        phan.append(f"{ten} {'+' if muc >= 0 else ''}{muc}")
+    for vt in hu.get("them_vat") or []:
+        phan.append(f"nhận {vt.get('ten')} ×{vt.get('so', 1)}")
+    for sk in hu.get("su_kien") or []:
+        phan.append(f"mở sự kiện {sk}")
+    return "; ".join(phan)
+
+
+def _ngat(chu: str, rong: int = 78) -> str:
+    """Ngắt dòng theo từ, để tệp đọc được trên màn hình hẹp.
+
+    Bỏ dấu `*` của in nghiêng: văn bản thuần không có kiểu chữ, giữ lại chỉ
+    thành nhiễu.
+    """
+    # In nghiêng có thể mở ở đoạn này, đóng ở đoạn kia, nên phải bắt trước khi
+    # cắt đoạn; dấu sao còn lẻ thì bỏ luôn.
+    chu = re.sub(r"\*([^*]+?)\*", r"\1", chu or "", flags=re.S)
+    chu = chu.replace("*", "")
+    ra = []
+    for doan in (chu or "").split("\n\n"):
+        doan = doan.strip()
+        if not doan:
+            continue
+        dong, dai = [], 0
+        for tu in doan.split():
+            if dai + len(tu) + 1 > rong and dong:
+                ra.append(" ".join(dong))
+                dong, dai = [tu], len(tu)
+            else:
+                dong.append(tu)
+                dai += len(tu) + 1
+        if dong:
+            ra.append(" ".join(dong))
+        ra.append("")
+    return "\n".join(ra)
+
+
+def _xuat_nhanh(o: list[str], ds: dict, dau: str, ten_nhanh: str,
+                so_chuong: int) -> None:
+    """In trọn một nhánh theo thứ tự đọc, mỗi đoạn một lần."""
+    o.append("")
+    o.append("=" * 78)
+    o.append(f"NHÁNH {ten_nhanh.upper()} — CHƯƠNG {so_chuong}")
+    o.append("=" * 78)
+    o.append("")
+
+    da_in: set[str] = set()
+
+    def di(did: str, sau: int) -> None:
+        if not did or did not in ds or did in da_in:
+            return
+        da_in.add(did)
+        d = ds[did]
+        le = "    " * min(sau, 6)
+
+        o.append("")
+        o.append(f"{le}── [{did}]" + (f" · {d.get('boi_canh')}" if d.get("boi_canh") else ""))
+        o.append("")
+        than = _ngat(d.get("ke") or "").rstrip()
+        for dong in than.split("\n"):
+            o.append(f"{le}{dong}" if dong else "")
+
+        for bt in d.get("bien_the") or []:
+            o.append("")
+            o.append(f"{le}» GIỌNG KỂ KHÁC khi {bt.get('npc')} ở mức "
+                     f"“{bt.get('muc')}”:")
+            for dong in _ngat(bt.get("ke") or "").rstrip().split("\n"):
+                o.append(f"{le}  {dong}" if dong else "")
+
+        lua_chon = d.get("lua_chon") or []
+        if lua_chon:
+            o.append("")
+        for i, lc in enumerate(lua_chon, 1):
+            den = lc.get("den")
+            dich = "KẾT THÚC CHƯƠNG" if den == "__ket_thuc__" else den
+            o.append(f"{le}  {i}. {lc.get('chu', '').strip()}")
+            o.append(f"{le}     → {dich}")
+            dk, hu = _dk_chu(lc.get("dieu_kien")), _hu_chu(lc.get("hieu_ung"))
+            if dk:
+                o.append(f"{le}     [cần: {dk}]")
+            if hu:
+                o.append(f"{le}     [đổi: {hu}]")
+
+        for lc in lua_chon:
+            den = lc.get("den")
+            if den and den != "__ket_thuc__":
+                di(den, sau + 1)
+
+    di(dau, 0)
+
+
+def xuat_txt(d1: dict, d2: dict) -> str:
+    """Sinh toàn bộ cốt truyện thành văn bản thuần, trả về đường dẫn tệp."""
+    o: list[str] = []
+    o.append("=" * 78)
+    o.append("HỒNG ĐỨC TU TIÊN LỘ — TOÀN BỘ CỐT TRUYỆN")
+    o.append("=" * 78)
+    o.append("")
+    o.append("Tệp sinh tự động từ dữ liệu game. Sửa truyện thì chạy lại")
+    o.append("tools/tao_so_do_cot_truyen.py, đừng sửa tay tệp này.")
+    o.append("")
+    o.append("Quy ước đọc:")
+    o.append("  [mã đoạn]  là mã đoạn trong dữ liệu game")
+    o.append("  »          là giọng kể đổi theo mức hảo cảm")
+    o.append("  [cần: …]   là điều kiện phải đủ mới chọn được")
+    o.append("  [đổi: …]   là thay đổi khi chọn")
+    o.append("")
+    o.append("Mỗi mã đoạn in một lần. Chỗ khác cùng dẫn tới đoạn đó thì chỉ ghi")
+    o.append("mã — tra mã trong tệp là thấy nguyên văn.")
+    o.append("")
+
+    for so, d in ((1, d1), (2, d2)):
+        o.append("")
+        o.append("#" * 78)
+        o.append(f"# CHƯƠNG {so} — {d.get('ten', '')}")
+        o.append("#" * 78)
+        o.append("")
+        for dong in _ngat(d.get("tom_tat") or "").rstrip().split("\n"):
+            o.append(dong)
+        ds = {x["id"]: x for x in d["doan"]}
+        for nhom, ten in (("tan_tu", "Tán tu"), ("mon_phai", "Môn phái")):
+            dau = (d.get("doan_dau_theo_nhom") or {}).get(nhom)
+            if dau:
+                _xuat_nhanh(o, ds, dau, ten, so)
+        ket = d.get("ket") or {}
+        if ket.get("ke"):
+            o.append("")
+            o.append("-" * 78)
+            o.append("LỜI KẾT CHƯƠNG")
+            o.append("-" * 78)
+            o.append("")
+            for dong in _ngat(ket["ke"]).rstrip().split("\n"):
+                o.append(dong)
+
+    o.append("")
+    o.append("=" * 78)
+    o.append("HẾT")
+    o.append("=" * 78)
+
+    dich = os.path.join(GOC, "docs", "nhap", "cot-truyen-day-du.txt")
+    os.makedirs(os.path.dirname(dich), exist_ok=True)
+    with open(dich, "w", encoding="utf-8") as f:
+        f.write("\n".join(o))
+    return dich
+
+
+
 def nhan(did: str, doan: dict) -> str:
     if did in NHAN:
         return NHAN[did]
@@ -437,6 +611,10 @@ def sinh() -> tuple[str, dict]:
           border-radius:9px;border:1px solid rgba(138,58,32,.3);
           background:rgba(138,58,32,.08);color:var(--son);
           font-size:13.5px;font-weight:600;font-family:inherit}
+  .mo-het.tai{display:block;text-align:center;text-decoration:none;
+          border-color:rgba(47,107,69,.4);background:rgba(47,107,69,.1);
+          color:var(--luc);margin-top:8px}
+  .ghi-tai{font-size:11.5px;color:#8b7a63;margin:6px 0 0;text-align:center}
 
   /* dải số bước */
   .dai-so{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 8px}
@@ -507,6 +685,10 @@ bấm một bước để mở nguyên văn</p>
     o.append('<div class="nen"><a href="#c1">Chương 1</a>'
              '<a class="b" href="#c2">Chương 2</a></div>')
     o.append('<button class="mo-het" id="mo-het">Mở tất cả nguyên văn</button>')
+    o.append('<a class="mo-het tai" id="tai-txt" download '
+             'href="cot-truyen-day-du.txt">⬇ Tải toàn bộ cốt truyện (.txt)</a>')
+    o.append('<p class="ghi-tai">Tệp văn bản thuần, đọc offline được. Trên iPhone '
+             'nếu tệp mở thành trang chữ, bấm <b>Chia sẻ → Lưu vào Tệp</b>.</p>')
 
     o.append('<div class="tomtat" style="border-left-color:#2f5d7c;'
              'background:rgba(47,93,124,.08)">'
@@ -561,6 +743,8 @@ document.getElementById('mo-het').addEventListener('click', function(){
     with open(RA, "w", encoding="utf-8") as f:
         f.write("\n".join(o))
 
+    tep_txt = xuat_txt(d1, d2)
+
     return RA, {
         "c1_tan_tu": so_buoc1, "c1_mon_phai": so_buoc1b,
         "c2_tan_tu": so_buoc2, "c2_mon_phai": so_buoc2b,
@@ -571,5 +755,6 @@ document.getElementById('mo-het').addEventListener('click', function(){
 if __name__ == "__main__":
     ra, so = sinh()
     print(f"Đã ghi {ra}")
+    print(f"Đã ghi {os.path.join(GOC, 'docs', 'nhap', 'cot-truyen-day-du.txt')}")
     for k, v in so.items():
         print(f"  {k}: {v}")

@@ -10,6 +10,44 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-27 (tiếp) · Nút tải toàn bộ cốt truyện (.txt) + sửa danh sách link bàn giao
+
+Người dùng nói rõ hai việc:
+
+1. **Danh sách link cuối phiên sai.** Không phải "các trang vừa đổi", mà là **năm
+   link cố định**: xưởng âm thanh · xưởng ảnh · xưởng video · game để chơi · sơ đồ
+   cốt truyện. Cơ chế bàn giao thì cứ ghi trong repo là được.
+2. **Trang sơ đồ cốt truyện cần nút xuất toàn bộ cốt truyện ra .txt để tải về.**
+
+### Đã làm
+
+| File | Việc |
+|---|---|
+| `tools/tao_so_do_cot_truyen.py` | Thêm `xuat_txt()`: sinh `docs/nhap/cot-truyen-day-du.txt` cùng lúc với trang sơ đồ. Có ngắt dòng 78 cột, bỏ dấu `*` in nghiêng, in cả giọng kể khác (`bien_the`), điều kiện lựa chọn và hiệu ứng |
+| `docs/nhap/so-do-cot-truyen.html` | Thêm nút **⬇ Tải toàn bộ cốt truyện (.txt)**, kèm gợi ý iPhone: *Chia sẻ → Lưu vào Tệp* |
+| `tools/ban_giao.py` | Đổi từ "liệt kê trang đã đổi" sang **in đúng năm link cố định**, gọi thử từng cái, in ⚠ nếu khác 200 |
+| `AGENTS.md` | Ghi bảng năm link + ví dụ khối link cuối phiên |
+
+### Số đo kiểm chứng
+
+- **Đủ đoạn**: 144/144 đoạn (C1 66 + C2 78), không thiếu mã nào
+- **Kích thước**: 256.669 byte · 4.533 dòng
+- **Có đủ phần**: lời kết chương ✓ · giọng kể khác ✓ · điều kiện `[cần:` ✓
+- **Không còn dấu `*`**: 0 dòng (đã sửa lỗi in nghiêng mở/đóng khác đoạn)
+- **Bấm thật trên Chromium 390×844**: tải về `cot-truyen-day-du.txt` 256.669 byte ✓
+- **Bố cục**: nút rộng 344px, mép phải 367/390 → **không tràn ngang** ✓
+- **Lỗi JS**: 0
+- **Test**: Python **227/227** · JS **185/185**
+- **Năm link**: cả 5 trả **200**
+
+### Lỗi đã gặp và cách sửa
+
+Dấu `*` in nghiêng có thể **mở ở đoạn này, đóng ở đoạn kia**. Regex theo từng dòng
+không bắt được, còn 12 dấu sót. Sửa: chạy regex với `flags=re.S` **trước** khi cắt
+đoạn, rồi xoá dấu `*` lẻ còn lại.
+
+---
+
 ## 2026-11-27 (tiếp) · Thiết lập cơ chế BÀN GIAO + sửa ngày nhật ký lệch
 
 Người dùng: "sau mỗi phiên làm việc hãy nhớ thêm việc này vào repo để có 1 ngày khung

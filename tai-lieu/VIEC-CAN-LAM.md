@@ -8,6 +8,21 @@
 
 ## 🔴 ĐANG LÀM
 
+### ✅ XONG 2026-11-27 — Nút tải toàn bộ cốt truyện (.txt)
+
+Trang `docs/nhap/so-do-cot-truyen.html` có nút **⬇ Tải toàn bộ cốt truyện (.txt)**.
+Tệp `docs/nhap/cot-truyen-day-du.txt` sinh tự động, 144/144 đoạn, 256.669 byte.
+
+Đo lại: `python3 tools/tao_so_do_cot_truyen.py` rồi
+`grep -o '── \[[a-z0-9_]*\]' docs/nhap/cot-truyen-day-du.txt | wc -l` → phải ra **144**.
+
+### ✅ XONG 2026-11-27 — Danh sách link bàn giao đúng năm chỗ
+
+`tools/ban_giao.py` in đúng năm link cố định (xưởng âm · xưởng ảnh · xưởng video ·
+game · sơ đồ cốt truyện), không phải "trang vừa đổi". Đo lại:
+`python3 tools/ban_giao.py --khong-kiem` → phải ra đúng **5 dòng** link.
+
+
 - [ ] **Chương 2 — gắn lại `bien_the` (đổi giọng kể theo hảo cảm)**
   - Bản tách hai nhánh viết lại phần Thái Nam → cơ chế chỉ còn ở `c2_d06`, `c2_p02`
   - Cần gắn lại vào đoạn mới: `c2_d22`, `c2_d23`, `c2_p19`, `c2_p20` (chỗ tương ứng cảnh cũ)

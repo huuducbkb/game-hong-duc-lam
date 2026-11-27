@@ -35,25 +35,43 @@ kèm **lệnh đo được** để phiên sau biết khi nào xong.
 **3. Chạy `python3 tools/ban_giao.py --tu HEAD~N`** rồi **gửi nguyên danh sách link
 cho người dùng trong câu trả lời cuối**. Đây là bước hay bị quên nhất.
 
+Danh sách là **năm link cố định**, đúng thứ tự này, không phải "mọi trang vừa đổi":
+
+| # | Tên | Đường dẫn |
+|---|---|---|
+| 1 | Xưởng âm thanh | `xuong-am/` |
+| 2 | Xưởng ảnh | `xuong/` |
+| 3 | Xưởng video | `xuong-video/` |
+| 4 | Game để chơi | `game/` |
+| 5 | Sơ đồ cốt truyện | `nhap/so-do-cot-truyen.html` |
+
+Người dùng đã nói rõ: họ mở đúng năm chỗ đó để làm việc, nên gửi link trang khác
+là trả lời sai câu hỏi. Script đã in sẵn năm link kèm mã HTTP.
+
 ```bash
 python3 tools/ban_giao.py --tu HEAD~3   # N = số commit của phiên này
 ```
 
-Script in ra: link Pages của mọi trang `.html` đã đổi (có gọi thử, **chỉ gửi link trả
-200**), link commit trên GitHub, và cảnh báo nếu nhật ký / sổ việc chưa được commit.
-Script thoát mã 1 khi còn cảnh báo — nghĩa là **bàn giao chưa xong**.
+Script in ra: **năm link cố định** (gọi thử từng cái), link commit trên GitHub, và
+cảnh báo nếu nhật ký / sổ việc chưa được commit. Script thoát mã 1 khi còn cảnh báo
+— nghĩa là **bàn giao chưa xong**. Link nào trả mã khác 200 thì in kèm ⚠, đừng gửi
+link đó như thể nó sống.
 
 ### Gửi link là bắt buộc, không phải tuỳ chọn
 
 Người dùng không mở được terminal để tự tìm trang. Không gửi link nghĩa là họ không
-kiểm chứng được gì. Cuối mỗi phiên, câu trả lời **phải** có một khối link như:
+kiểm chứng được gì. Cuối mỗi phiên, câu trả lời **phải** có đủ năm link, dạng:
 
 ```
-**Trang:** https://huuducbkb.github.io/game-hong-duc-lam/nhap/ban-dong-hanh.html
-**Commit:** https://github.com/huuducbkb/game-hong-duc-lam/commit/46fcb63
+**Xưởng âm thanh** — https://huuducbkb.github.io/game-hong-duc-lam/xuong-am/
+**Xưởng ảnh** — https://huuducbkb.github.io/game-hong-duc-lam/xuong/
+**Xưởng video** — https://huuducbkb.github.io/game-hong-duc-lam/xuong-video/
+**Game để chơi** — https://huuducbkb.github.io/game-hong-duc-lam/game/
+**Sơ đồ cốt truyện** — https://huuducbkb.github.io/game-hong-duc-lam/nhap/so-do-cot-truyen.html
 ```
 
-Đừng gửi link chưa gọi thử. Đừng gửi link của trang không đổi trong phiên này.
+Đừng gửi link chưa gọi thử. Gửi đủ năm, kể cả phiên chỉ sửa một chỗ — người dùng
+dùng danh sách này như bảng điều khiển, không phải như báo cáo thay đổi.
 
 ### Đừng dựa vào ngày để kiểm bàn giao
 
