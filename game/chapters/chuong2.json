@@ -596,6 +596,13 @@
           "chu": "Đi thẳng vào dãy hàng phía đông",
           "den": "c2_d13"
         }
+      ],
+      "bien_the": [
+        {
+          "npc": "Hồng Trần",
+          "muc": "tri kỷ",
+          "ke": "Cái chợ này không giống bất kỳ cái chợ nào ta từng biết.\n\nKhông ai rao. Không ai mặc cả to tiếng. Người ta ngồi sau tấm vải, hàng hoá bày trước mặt, và khi có khách thì nói rất khẽ — khẽ đến mức ta phải nín thở mới nghe được.\n\nTa đi qua mấy dãy hàng. Không ai nhìn ta quá một nhịp. Đó là điều lạ nhất. Ở chợ phàm, một kẻ áo rách đi vào là bị nhìn từ cổng tới cuối dãy.\n\n“Họ không thấy ngươi,” — kiếm linh nói — “vì ngươi chưa đáng để thấy. Đừng lấy làm may.”\n\nTrước mặt ta, một người đàn ông đặt lên vải một viên đá trắng đục, nhỏ bằng đầu ngón tay. Người mua trả bằng ba viên khác, cũng trắng đục, nhưng sáng hơn.\n\n“Linh thạch,” — ta nói khẽ.\n\n“Linh thạch.” — Kiếm linh lặp lại, và lần này trong giọng nó có gì đó gần như dịu lại. — “Thứ tiền của người tu hành. Một viên hạ phẩm bằng cả căn nhà ở Gia Nguyên. Ngươi ôm hai thanh kiếm trong vạt áo mà chưa biết mình đang nghèo đến mức nào. Cũng chưa biết mình đang giàu đến mức nào.”\n\nY ngừng, rồi nói tiếp, chậm hơn — như thể câu này y đã giữ rất lâu mới chịu nói: “Ta từng đứng trong cái chợ này với người chủ trước. Y cũng hỏi ta câu đó. Ta đáp y như ta vừa đáp ngươi. Y chết ba tháng sau.” — Y ngừng. — “Ta muốn lần này ta đáp khác.”"
+        }
       ]
     },
     {
@@ -863,6 +870,38 @@
             }
           }
         }
+      ],
+      "bien_the": [
+        {
+          "npc": "Hàn Lập",
+          "muc": "tử địch",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết. Rồi hắn cất thuốc đi, chậm, và khi quay lại thì ánh mắt đã đổi — không còn là người vừa mặc cả, mà là người đang tính xem ta đã nghe được bao nhiêu.\n\n“Vì sao ngươi đi với ta?” — hắn hỏi, giọng phẳng như mặt bàn. — “Đi theo ta ba dãy rồi. Đừng nói là trùng đường.”\n\nCâu hỏi ấy không dành cho bà bán đan."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "thù địch",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\nHắn cất thuốc vào ngực áo rồi mới quay sang, và cái quay ấy chậm hơn cần thiết — như thể hắn muốn ta thấy rõ hắn biết ta đứng đó từ lâu.\n\n“Vì sao ngươi đi với ta?” — hắn hỏi bất ngờ, không quay lại hẳn.\n\nCâu hỏi ấy không dành cho bà bán đan. Và cái cách hắn hỏi — nửa quay, nửa không — cho thấy hắn đã chuẩn bị sẵn một câu để đáp lại nếu ta trả lời sai."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "người dưng",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\n“Vì sao ngươi đi với ta?” — hắn hỏi bất ngờ, không quay lại.\n\nCâu hỏi ấy không dành cho bà bán đan."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "quen biết",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\nRồi hắn nói, giọng nhỏ để bà kia không nghe: “Ngươi đứng đó đi. Bà ta bớt giá khi có người nhìn.”\n\n“Vì sao ngươi đi với ta?” — hắn hỏi bất ngờ, không quay lại.\n\nCâu hỏi ấy không dành cho bà bán đan."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "thân thiết",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\nRồi hắn làm một việc ta không ngờ: hắn đẩy một lọ về phía bà ta. “Bốn. Viên này hơi kém lửa, ta không bán năm cho bà.” Bà ta nhìn lọ thuốc, nhìn hắn, rồi trả tiền.\n\n“Vì sao ngươi đi với ta?” — hắn hỏi, khi bà ta đã khuất. — “Ta không hỏi để thử. Ta chỉ muốn biết mình nên tính ngươi vào khoản nào.”\n\nCâu hỏi ấy không dành cho bà bán đan."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "tri kỷ",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\nRồi hắn nói, không hề hạ giọng: “Bốn. Và ta nói cho bà biết vì sao. Viên thứ năm ta để dành cho người đứng sau lưng ta. Người đó cần hơn bà.”\n\nBà ta nhìn ta. Ta nhìn hắn. Hắn không quay lại, nhưng ta biết hắn đang chờ xem ta có phá câu đó không.\n\n“Vì sao ngươi đi với ta?” — hắn hỏi sau đó, khi chỉ còn hai người, và lần này hắn quay hẳn lại.\n\nCâu hỏi ấy không dành cho bà bán đan."
+        }
       ]
     },
     {
@@ -1014,6 +1053,13 @@
         {
           "chu": "Tự tìm chỗ nấp",
           "den": "c2_d25b"
+        }
+      ],
+      "bien_the": [
+        {
+          "npc": "Hồng Trần",
+          "muc": "tri kỷ",
+          "ke": "Sáng ngày cuối, cái chợ đổi tính.\n\nNgười ta dọn hàng nhanh hơn. Những tấm vải cuốn lại, lều hạ xuống, và ai cũng đi thành nhóm ba bốn người, không đi một mình.\n\n“Sao vậy?” — ta hỏi gã bán bánh khô.\n\n“Tà tu,” — gã nói, không ngẩng lên. — “Chúng phong toả cốc từ đêm qua. Không cho ai ra. Bắt người làm lô đỉnh. Ngươi muốn sống thì tìm chỗ nấp, đừng tìm đường ra.”\n\nKiếm linh trong vạt áo khẽ rung.\n\n“Đây là lúc ta nói thật với ngươi,” — nó nói, giọng lạnh hơn mọi khi. — “Ngươi mới Luyện Khí tầng hai. Một tên tà tu thấp nhất ở đây cũng tầng năm. Ngươi không thắng được. Ngươi chỉ có thể chọn cách sống sót.”\n\nRồi giọng y đổi — không lạnh nữa, mà là cái giọng của kẻ vừa quyết một việc mà y biết là dại: “Ta sẽ đánh cùng ngươi. Ta nói trước cho ngươi biết: ta đánh thì kiếm nguyên của ta cạn, và ta sẽ ngủ. Có thể một năm. Có thể không tỉnh.”\n\nY ngừng, rồi nói câu cuối, rất khẽ: “Nhưng ta đã chờ ngàn năm để gặp một người không bỏ chạy. Ta không định đứng nhìn người đó chết.”\n\nPhía đông, khói bắt đầu bốc lên."
         }
       ]
     },
@@ -1180,6 +1226,38 @@
             }
           }
         }
+      ],
+      "bien_the": [
+        {
+          "npc": "Hàn Lập",
+          "muc": "tử địch",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối. Bàn tay hắn đặt trên túi trữ vật, không rời.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta, và cái nhìn ấy không phải để chia tay — mà để đo xem ta có đứng gần túi hắn quá không.\n\n“Đường ai nấy đi,” — hắn nói. — “Ta không đưa ngươi tấm nào. Ba tấm này là ba mạng, ta không chia mạng cho người ta chưa từng tin.”\n\nHắn quay lưng, bước vào khe núi, và không nhìn lại lần nào."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "thù địch",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn cất kỹ ba tấm lệnh vào trong áo, ấn xuống, và nói như đang tự nhắc mình: “Ta đi trước. Ngươi tự lo phần ngươi.”\n\nKhông có tấm nào được rút ra. Không có lời nào nhắc tới chuyện đã qua."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "người dưng",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn làm một việc ta không ngờ: hắn rút ra một tấm lệnh, đưa về phía ta.\n\n“Cầm.”\n\n“Ta không có gì đổi lại.”\n\n“Ta không đổi.” — Hắn vẫn cầm tấm lệnh. — “Ngươi đã đứng chắn trước tấm vải của ta hôm đầu. Ngươi đã nói cho ta biết cuốn sách viết gì. Ta không quên.”"
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "quen biết",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn làm một việc ta không ngờ: hắn rút ra một tấm lệnh, đưa về phía ta.\n\n“Cầm.”\n\n“Ta không có gì đổi lại.”\n\n“Ta không đổi.” — Hắn vẫn cầm tấm lệnh, và lần này hắn nói thêm một câu mà hắn thường không nói. — “Ngươi đã đứng chắn trước tấm vải của ta hôm đầu. Ngươi đã nói cho ta biết cuốn sách viết gì. Ta không quên. Người như ta không quên nhiều thứ, nhưng thứ này ta chọn để nhớ.”"
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "thân thiết",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối. Rồi hắn nhìn ta lâu hơn cần thiết.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn làm một việc ta không ngờ: hắn rút ra một tấm lệnh, đưa về phía ta.\n\n“Cầm.”\n\n“Ta không có gì đổi lại.”\n\n“Ta không đổi.” — Hắn vẫn cầm tấm lệnh. — “Ngươi đã đứng chắn trước tấm vải của ta hôm đầu. Ngươi đã nói cho ta biết cuốn sách viết gì. Ta không quên.”\n\nHắn ngừng, rồi nói thêm, giọng thấp hẳn: “Ba tấm là ba mạng. Ta đưa ngươi một tấm, nghĩa là ta tính mạng ngươi vào loại đáng giữ. Đừng làm ta tính sai.”"
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "tri kỷ",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối. Rồi hắn làm một việc hắn chưa từng làm suốt những ngày qua: hắn thở ra, và vai hắn xuống thấp một chút.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn rút ra một tấm lệnh, đưa về phía ta — nhưng lần này hắn không nói “Cầm” ngay. Hắn chờ.\n\n“Ta không có gì đổi lại.”\n\n“Ta không đổi.” — Hắn vẫn cầm tấm lệnh. — “Ngươi đã đứng chắn trước tấm vải của ta hôm đầu. Ngươi đã nói cho ta biết cuốn sách viết gì. Ta không quên.”\n\nHắn nhìn tấm lệnh trong tay, rồi nhìn ta, và nói câu mà sau này ta sẽ nhớ lâu hơn cả tấm lệnh: “Ta đi một mình tới giờ vì ta chưa gặp ai mà ta dám chia mạng. Ngươi là người đầu tiên. Đừng để ta hối.”"
+        }
       ]
     },
     {
@@ -1243,6 +1321,13 @@
         {
           "chu": "Đi thẳng vào dãy hàng phía đông",
           "den": "c2_p10"
+        }
+      ],
+      "bien_the": [
+        {
+          "npc": "Tuyết Cơ",
+          "muc": "tri kỷ",
+          "ke": "Cái chợ này không giống bất kỳ cái chợ nào ta từng biết.\n\nKhông ai rao. Không ai mặc cả to tiếng. Người ta ngồi sau tấm vải, hàng hoá bày trước mặt, và khi có khách thì nói rất khẽ.\n\n“Đừng nhìn hàng,” — Tuyết Cơ nói. — “Nhìn tay người bán.”\n\n“Vì sao?”\n\n“Vì hàng thì ai cũng bày được. Tay mới nói thật.” — Nàng chậm lại. — “Kẻ bán đan dược thật thì ngón tay có vết chai ở đầu ngón giữa, vì phải nghiền thuốc. Kẻ bán pháp khí thật thì tay áo bên phải sờn hơn bên trái, vì phải lau khí mỗi ngày. Kẻ không có gì trong tay thì nói to nhất.”\n\nTa nhìn lại cái chợ bằng con mắt khác.\n\nVà ta thấy nàng nói đúng. Người đàn bà bán đan ở dãy thứ hai có vết chai ở ngón giữa. Gã bán pháp khí ở dãy thứ tư có tay áo phải sờn. Còn gã đứng giữa chợ, nói to nhất, tay áo phẳng lì, thì trước mặt chỉ có một tấm vải trống.\n\n“Nàng dạy ta những thứ này từ bao giờ?” — ta hỏi khẽ.\n\n“Từ lúc ngươi ký khế ước.” — Giọng nàng có gì đó gần như cười. — “Ta là tớ của ngươi. Tớ không được để chủ chết ở một cái chợ.”\n\nRồi nàng nói thêm, nhỏ hơn: “Nhưng ta dạy ngươi kỹ thế này không phải vì ngươi là chủ. Ta đã có chủ. Ta không muốn có thêm một cái xác.”"
         }
       ]
     },
@@ -1556,6 +1641,38 @@
             }
           }
         }
+      ],
+      "bien_the": [
+        {
+          "npc": "Hàn Lập",
+          "muc": "tử địch",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết. Rồi hắn cất thuốc đi, chậm, và khi quay lại thì ánh mắt đã đổi — không còn là người vừa mặc cả, mà là người đang tính xem ta đã nghe được bao nhiêu.\n\n“Vì sao ngươi đi theo ta?” — hắn hỏi, giọng phẳng như mặt bàn. — “Đi theo ta ba dãy rồi. Đừng nói là trùng đường.”\n\nCâu hỏi ấy không dành cho bà bán đan."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "thù địch",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\nHắn cất thuốc vào ngực áo rồi mới quay sang, và cái quay ấy chậm hơn cần thiết — như thể hắn muốn ta thấy rõ hắn biết ta đứng đó từ lâu.\n\n“Vì sao ngươi đi theo ta?” — hắn hỏi bất ngờ, không quay lại hẳn.\n\nCâu hỏi ấy không dành cho bà bán đan. Và cái cách hắn hỏi — nửa quay, nửa không — cho thấy hắn đã chuẩn bị sẵn một câu để đáp lại nếu ta trả lời sai."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "người dưng",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\n“Vì sao ngươi đi theo ta?” — hắn hỏi bất ngờ, không quay lại.\n\nCâu hỏi ấy không dành cho bà bán đan."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "quen biết",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\nRồi hắn nói, giọng nhỏ để bà kia không nghe: “Ngươi đứng đó đi. Bà ta bớt giá khi có người nhìn.”\n\n“Vì sao ngươi đi theo ta?” — hắn hỏi bất ngờ, không quay lại.\n\nCâu hỏi ấy không dành cho bà bán đan."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "thân thiết",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\nRồi hắn làm một việc ta không ngờ: hắn đẩy một lọ về phía bà ta. “Bốn. Viên này hơi kém lửa, ta không bán năm cho bà.” Bà ta nhìn lọ thuốc, nhìn hắn, rồi trả tiền.\n\n“Vì sao ngươi đi theo ta?” — hắn hỏi, khi bà ta đã khuất. — “Ta không hỏi để thử. Ta chỉ muốn biết mình nên tính ngươi vào khoản nào.”\n\nCâu hỏi ấy không dành cho bà bán đan."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "tri kỷ",
+          "ke": "Ta tìm thấy Hàn Lập ở dãy hàng phía bắc, trước một quầy bán đan dược.\n\nHắn đang nói chuyện với một người đàn bà trung niên, mặt lạnh, tay cầm một cái cân nhỏ. Trước mặt họ là mấy lọ thuốc của Mạc Đại Phu.\n\n“Ba viên,” — bà ta nói. — “Không hơn.”\n\n“Năm.” — Hàn Lập không nhấc mắt. — “Thuốc này ta tự tay pha. Bà biết nó đáng bao nhiêu.”\n\n“Ta biết ngươi đang cần tiền.” — Bà ta cười. — “Đó là lý do ngươi chỉ được ba.”\n\nHàn Lập im. Ta thấy vai hắn hơi siết.\n\nRồi hắn nói, không hề hạ giọng: “Bốn. Và ta nói cho bà biết vì sao. Viên thứ năm ta để dành cho người đứng sau lưng ta. Người đó cần hơn bà.”\n\nBà ta nhìn ta. Ta nhìn hắn. Hắn không quay lại, nhưng ta biết hắn đang chờ xem ta có phá câu đó không.\n\n“Vì sao ngươi đi theo ta?” — hắn hỏi sau đó, khi chỉ còn hai người, và lần này hắn quay hẳn lại.\n\nCâu hỏi ấy không dành cho bà bán đan."
+        }
       ]
     },
     {
@@ -1708,6 +1825,13 @@
           "chu": "Tự tìm chỗ nấp",
           "den": "c2_p22b"
         }
+      ],
+      "bien_the": [
+        {
+          "npc": "Tuyết Cơ",
+          "muc": "tri kỷ",
+          "ke": "Sáng ngày cuối, cái chợ đổi tính.\n\nNgười ta dọn hàng nhanh hơn. Những tấm vải cuốn lại, lều hạ xuống, và ai cũng đi thành nhóm ba bốn người, không đi một mình.\n\n“Sao vậy?” — ta hỏi gã bán bánh khô.\n\n“Tà tu,” — gã nói, không ngẩng lên. — “Chúng phong toả cốc từ đêm qua. Không cho ai ra. Bắt người làm lô đỉnh. Ngươi muốn sống thì tìm chỗ nấp, đừng tìm đường ra.”\n\nKhối ngọc cốt trong ngực ta khẽ rung.\n\n“Đây là lúc ta nói thật với ngươi,” — Tuyết Cơ nói, giọng lạnh hơn mọi khi. — “Ngươi mới Luyện Khí tầng hai. Một tên tà tu thấp nhất ở đây cũng tầng năm. Ngươi không thắng được. Ngươi chỉ có thể chọn cách sống sót.”\n\n“Còn nàng?”\n\n“Ta đang ngủ dở.” — Nàng ngừng. — “Ta chỉ tỉnh được nửa canh giờ nữa. Sau đó ngọc cốt sẽ tối. Ngươi phải chọn trước khi ta ngủ lại.”\n\nTa chờ nàng nói tiếp, và nàng nói — giọng đã khác, không còn cái lạnh của lần đầu gặp: “Nửa canh giờ. Ta đã tiêu gần hết phần dương khí ngươi cho ta để giữ mình tỉnh tới đây. Đừng để ta tỉnh lại và thấy ngươi đã chọn sai.”\n\nPhía đông, khói bắt đầu bốc lên."
+        }
       ]
     },
     {
@@ -1833,6 +1957,38 @@
               "Hàn Lập": 49
             }
           }
+        }
+      ],
+      "bien_the": [
+        {
+          "npc": "Hàn Lập",
+          "muc": "tử địch",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối. Bàn tay hắn đặt trên túi trữ vật, không rời.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta, và cái nhìn ấy không phải để chia tay — mà để đo xem ta có đứng gần túi hắn quá không.\n\n“Ta không đưa ngươi tấm nào,” — hắn nói. — “Ba tấm này là ba mạng. Ta không chia mạng cho người ta chưa từng tin. Ngươi muốn có lệnh thì tự đi mà đoạt.”\n\nHắn quay lưng, bước vào khe núi, và không nhìn lại lần nào."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "thù địch",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn cất kỹ ba tấm lệnh vào trong áo, ấn xuống.\n\n“Ta đi trước,” — hắn nói. — “Ngươi tự lo phần ngươi. Đừng đi theo ta quá gần.”\n\nKhông có tấm nào được rút ra. Không có lời nào nhắc tới chuyện đã qua."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "người dưng",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn rút ra một tấm lệnh, đưa về phía ta.\n\n“Cầm.”\n\n“Ta không cần.” — Ta nói, và ta thấy mặt hắn đổi.\n\n“Không cần?”\n\n“Ta có thứ khác.” — Ta đặt tay lên ngực, chỗ khối ngọc cốt. — “Ta có thiên linh căn. Ta không cần lệnh bài để được nhận. Ta chỉ cần tới đúng cửa.”\n\nHàn Lập nhìn ta rất lâu.\n\n“Thiên linh căn.” — Hắn lặp lại, và trong giọng hắn có gì đó ta không đọc được. — “Vậy thì ngươi là thứ mà cả cái cốc này giết nhau để có.”\n\n“Ta biết.”\n\n“Và ngươi vẫn nói cho ta biết.”\n\n“Vì ngươi đã nói cho ta biết ngươi có Trường Xuân Công.” — Ta nhún vai. — “Ta nợ ngươi một lần. Giờ trả xong.”"
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "quen biết",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn rút ra một tấm lệnh, đưa về phía ta.\n\n“Cầm.”\n\n“Ta không cần.” — Ta nói, và ta thấy mặt hắn đổi.\n\n“Không cần?”\n\n“Ta có thứ khác.” — Ta đặt tay lên ngực, chỗ khối ngọc cốt. — “Ta có thiên linh căn. Ta không cần lệnh bài để được nhận. Ta chỉ cần tới đúng cửa.”\n\nHàn Lập nhìn ta rất lâu.\n\n“Thiên linh căn.” — Hắn lặp lại, và trong giọng hắn có gì đó ta không đọc được. — “Vậy thì ngươi là thứ mà cả cái cốc này giết nhau để có.”\n\n“Ta biết.”\n\n“Và ngươi vẫn nói cho ta biết.”\n\n“Vì ngươi đã nói cho ta biết ngươi có Trường Xuân Công.” — Ta nhún vai. — “Ta nợ ngươi một lần. Giờ trả xong.”\n\nHắn cầm tấm lệnh, không cất đi ngay. Rồi hắn gật đầu một cái, chậm — cái gật của người vừa ghi nhận một món nợ theo hướng ngược lại."
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "thân thiết",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn rút ra một tấm lệnh, đưa về phía ta.\n\n“Cầm.”\n\n“Ta không cần.” — Ta nói, và ta thấy mặt hắn đổi.\n\n“Không cần?”\n\n“Ta có thứ khác.” — Ta đặt tay lên ngực, chỗ khối ngọc cốt. — “Ta có thiên linh căn. Ta không cần lệnh bài để được nhận. Ta chỉ cần tới đúng cửa.”\n\nHàn Lập nhìn ta rất lâu.\n\n“Thiên linh căn.” — Hắn lặp lại, và trong giọng hắn có gì đó ta không đọc được. — “Vậy thì ngươi là thứ mà cả cái cốc này giết nhau để có.”\n\n“Ta biết.”\n\n“Và ngươi vẫn nói cho ta biết.”\n\n“Vì ngươi đã nói cho ta biết ngươi có Trường Xuân Công.” — Ta nhún vai. — “Ta nợ ngươi một lần. Giờ trả xong.”\n\nHắn nhìn tấm lệnh trong tay mình, rồi cất đi. “Vậy thì ta giữ tấm này,” — hắn nói — “nhưng ngươi nhớ: ta nợ ngươi. Ta không thích nợ.”"
+        },
+        {
+          "npc": "Hàn Lập",
+          "muc": "tri kỷ",
+          "ke": "Chúng ta ra khỏi cốc khi trời đã tối hẳn.\n\nPhía sau, Thái Nam Cốc vẫn còn cháy. Không phải cháy lớn — chỉ là mấy đám lửa nhỏ ở rìa, chỗ những lều bị đốt. Đủ để thấy đường mà đi.\n\nHàn Lập dừng lại ở miệng một khe núi, quay đầu nhìn lần cuối. Rồi hắn thở ra, và vai hắn xuống thấp một chút.\n\n“Ba tấm lệnh,” — hắn nói. — “Ta có ba tấm. Cả cái cốc này có ba tấm.”\n\n“Vậy ngươi sẽ đi đâu?”\n\n“Hoàng Phong Cốc.” — Hắn nói, không do dự. — “Một trong Thất Đại Môn Phái. Ở đó có người dạy ta cách dùng thứ này.”\n\nHắn nhìn ta. Rồi hắn rút ra một tấm lệnh, đưa về phía ta — và lần này hắn không nói “Cầm” ngay. Hắn chờ.\n\n“Ta không cần.” — Ta nói, và ta thấy mặt hắn đổi.\n\n“Không cần?”\n\n“Ta có thứ khác.” — Ta đặt tay lên ngực, chỗ khối ngọc cốt. — “Ta có thiên linh căn. Ta không cần lệnh bài để được nhận. Ta chỉ cần tới đúng cửa.”\n\nHàn Lập nhìn ta rất lâu. Lâu đến mức ta tưởng hắn sẽ không nói gì nữa.\n\n“Thiên linh căn.” — Hắn lặp lại, và trong giọng hắn có gì đó ta không đọc được. — “Vậy thì ngươi là thứ mà cả cái cốc này giết nhau để có.”\n\n“Ta biết.”\n\n“Và ngươi vẫn nói cho ta biết.”\n\n“Vì ngươi đã nói cho ta biết ngươi có Trường Xuân Công.” — Ta nhún vai. — “Ta nợ ngươi một lần. Giờ trả xong.”\n\nHắn nhìn tấm lệnh trong tay rất lâu, rồi cất đi, chậm. “Ngươi vừa trả một món nợ,” — hắn nói — “và vừa tạo một món khác. Ta sẽ nhớ. Ta nhớ giỏi hơn ngươi tưởng.”"
         }
       ]
     },
