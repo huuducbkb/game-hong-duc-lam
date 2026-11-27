@@ -2,7 +2,7 @@
 
 > **Sổ việc sống.** Cập nhật mỗi khi có việc mới hoặc xong việc.
 > Quy ước: `[ ]` chưa làm · `[~]` đang làm · `[x]` xong.
-> Cập nhật lần cuối: **2026-11-17**
+> Cập nhật lần cuối: **2026-11-27**
 
 ---
 

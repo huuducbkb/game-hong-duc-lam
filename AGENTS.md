@@ -17,6 +17,58 @@ ngày · người dùng yêu cầu gì · đã sửa file nào · **số đo ki�
 
 Ghi nhật ký **trước khi** báo xong cho người dùng, để lần sau không phải dựng lại từ chat.
 
+## 🔁 BÀN GIAO — kết thúc MỌI phiên làm việc, không chờ ai nhắc
+
+Người dùng chỉ có điện thoại, không có terminal, và đã nhiều lần phải mở khung chat mới
+giữa việc. Chat mới **không nhớ hội thoại cũ**, chỉ nhớ repo. Vì vậy kết thúc phiên là
+phải đóng gói đủ để một AI khác (hoặc chính mình ở chat mới) làm tiếp được ngay.
+
+### Ba bước, làm đủ, không bỏ bước nào
+
+**1. Ghi việc vào `tai-lieu/NHAT-KY.md`** — mục mới nhất trên cùng. Phải có:
+ngày · người dùng yêu cầu gì · đã sửa file nào · **số đo kiểm chứng** · còn treo gì.
+Ghi cái đo được, không ghi "đã làm đẹp hơn".
+
+**2. Cập nhật `tai-lieu/VIEC-CAN-LAM.md`** — việc mới vào mục 🔴 ĐANG LÀM,
+kèm **lệnh đo được** để phiên sau biết khi nào xong.
+
+**3. Chạy `python3 tools/ban_giao.py --tu HEAD~N`** rồi **gửi nguyên danh sách link
+cho người dùng trong câu trả lời cuối**. Đây là bước hay bị quên nhất.
+
+```bash
+python3 tools/ban_giao.py --tu HEAD~3   # N = số commit của phiên này
+```
+
+Script in ra: link Pages của mọi trang `.html` đã đổi (có gọi thử, **chỉ gửi link trả
+200**), link commit trên GitHub, và cảnh báo nếu nhật ký / sổ việc chưa được commit.
+Script thoát mã 1 khi còn cảnh báo — nghĩa là **bàn giao chưa xong**.
+
+### Gửi link là bắt buộc, không phải tuỳ chọn
+
+Người dùng không mở được terminal để tự tìm trang. Không gửi link nghĩa là họ không
+kiểm chứng được gì. Cuối mỗi phiên, câu trả lời **phải** có một khối link như:
+
+```
+**Trang:** https://huuducbkb.github.io/game-hong-duc-lam/nhap/ban-dong-hanh.html
+**Commit:** https://github.com/huuducbkb/game-hong-duc-lam/commit/46fcb63
+```
+
+Đừng gửi link chưa gọi thử. Đừng gửi link của trang không đổi trong phiên này.
+
+### Đừng dựa vào ngày để kiểm bàn giao
+
+Đồng hồ máy chạy và ngày trong phiên chat **lệch nhau** (đã gặp: máy ghi `2026-11-27`,
+phiên ghi `2026-11-17`). Nên `ban_giao.py` kiểm theo **tệp có trong commit hay không**,
+không so ngày. Đừng "sửa" nó về cách so ngày.
+
+### Câu người dùng sẽ dán vào chat mới
+
+> Đọc `tai-lieu/NHAT-KY.md` và `tai-lieu/VIEC-CAN-LAM.md` trước, rồi tiếp tục.
+
+`AGENTS.md` tự nạp ở mọi chat, nên chỉ cần câu đó là đủ mạch. Việc của phiên trước là
+làm cho câu đó **đúng** — nhật ký không có mục mới nhất thì câu đó vô dụng.
+
+
 ## QUY TẮC BẮT BUỘC: dùng phương pháp PIC-IN-GAME
 
 **Mọi việc đụng đến thiết kế giao diện, tạo hình ảnh, hoặc video ngắn → PHẢI dùng

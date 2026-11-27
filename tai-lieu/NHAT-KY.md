@@ -10,7 +10,45 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
-## 2026-11-17 (tiếp) · Bạn đồng hành xuất hiện ngay khi vào đoạn — ĐÃ XONG, ĐÃ ĐẨY
+## 2026-11-27 (tiếp) · Thiết lập cơ chế BÀN GIAO + sửa ngày nhật ký lệch
+
+Người dùng: "sau mỗi phiên làm việc hãy nhớ thêm việc này vào repo để có 1 ngày khung
+chat này bị lỗi hoặc bạn bị lỗi tôi có thể mở khung chat mới hoặc AI khác nó vẫn có thể
+tiếp tục làm việc thay bạn — điều này gọi là bàn giao, hãy thiết lập cơ chế này."
+Và nhắc: "bạn quên 1 việc đó là tôi có nhắc sau mỗi phiên làm việc gửi cho tôi các link
+bạn đã không làm" → **đúng, phiên trước em đã không gửi danh sách link cuối phiên.**
+
+### Đã làm
+
+| File | Việc |
+|---|---|
+| `AGENTS.md` | Thêm mục **🔁 BÀN GIAO** ngay sau phần nhật ký: ba bước bắt buộc (ghi `NHAT-KY.md` → cập nhật `VIEC-CAN-LAM.md` → chạy `ban_giao.py` và **gửi link**), kèm lý do và câu người dùng dán vào chat mới |
+| `tools/ban_giao.py` | Script mới: liệt kê trang `.html` đã đổi → đổi thành URL Pages → **gọi thử từng link** (chỉ gửi link trả 200) → in link commit → cảnh báo nếu nhật ký/sổ việc chưa commit. Thoát mã 1 khi còn cảnh báo |
+| `tai-lieu/NHAT-KY.md` | Sửa **3 mục ghi sai ngày**: mục hôm nay `11-17` → `11-27`; hai mục "Gợi ý cơ chế chuyển chương" và "CHỐT CHƯƠNG 1" ghi `11-17` nhưng commit thật là `11-25` |
+
+### Phát hiện: đồng hồ máy và ngày trong phiên chat LỆCH NHAU
+
+Đầu phiên ghi `2026-11-17`, nhưng `date -u` và ngày commit đều là **`2026-11-27`** — lệch
+10 ngày. Vì vậy `ban_giao.py` **không so ngày** để kiểm bàn giao, mà kiểm
+**tệp có nằm trong commit của khoảng đang báo hay không**. Đừng "sửa" nó về cách so ngày.
+
+Đã kiểm đường cảnh báo: `kiem_nhat_ky('0f71b76')` (khoảng rỗng) trả về đúng 2 cảnh báo.
+
+### Số đo kiểm chứng
+
+- `python3 tools/ban_giao.py --tu HEAD~2` → 3 link Pages, **cả 3 trả 200**, 2 link commit
+- Đường cảnh báo: khoảng không đụng nhật ký → in 2 nhắc, `exit 1` ✓
+- Thứ tự ngày nhật ký sau khi sửa: `11-27 → 11-25 → 11-25 → 11-21 …` ✓
+
+### Cách dùng từ nay
+
+```bash
+python3 tools/ban_giao.py --tu HEAD~N   # N = số commit của phiên
+```
+
+---
+
+## 2026-11-27 · Bạn đồng hành xuất hiện ngay khi vào đoạn — ĐÃ XONG, ĐÃ ĐẨY
 
 Người dùng: "bạn đồng hành phải xuất hiện ngay khi vào đoạn, không đợi bấm lựa chọn".
 Sau đó: "khi viết ảnh các cảnh không cần thêm tôi sẽ tự bổ sung sau" → trang báo cáo
@@ -55,7 +93,7 @@ Sau đó: "khi viết ảnh các cảnh không cần thêm tôi sẽ tự bổ s
 
 ---
 
-## 2026-11-17 (tiếp) · Gợi ý cơ chế chuyển chương — chỉ báo cáo, KHÔNG sửa mã
+## 2026-11-25 · Gợi ý cơ chế chuyển chương — chỉ báo cáo, KHÔNG sửa mã
 
 Người dùng: "gợi ý cơ chế chuyển chương tôi xem thử." Đã làm **trang báo cáo để chọn**,
 **chưa đụng một dòng mã game nào**.
@@ -145,7 +183,7 @@ thì `completed success`, sau đó cả hai URL trả 200.
 ---
 
 
-## 2026-11-17 · CHỐT CHƯƠNG 1 — bàn giao sang chương 2
+## 2026-11-25 · CHỐT CHƯƠNG 1 — bàn giao sang chương 2
 
 Người dùng: "chương 1 đã xong, ghi nhớ những gì đã làm để sang chương 2." Đây là mục
 bàn giao. Đọc mục này là đủ để bắt đầu chương 2 mà không cần dựng lại từ chat cũ.
