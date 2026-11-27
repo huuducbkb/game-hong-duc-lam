@@ -426,6 +426,16 @@ def the_buoc(ds: dict, did: str, so: int, lop: str, da_ve: set[str]) -> str:
     o.append(f'<div class="than"><p class="ma">{html.escape(did)}</p>')
     o.append(f'<div class="van">{doan_van(d.get("ke"))}</div>')
 
+    bts = d.get("bien_the") or []
+    if bts:
+        o.append(f'<p class="nhan-nh">Giọng kể khác · {len(bts)} bản</p>')
+        o.append('<ul class="giong">')
+        for bt in bts:
+            o.append(f'<li><span class="muc">{html.escape(str(bt.get("muc") or ""))}</span>'
+                     f'<span class="ai">{html.escape(str(bt.get("npc") or ""))}</span>'
+                     f'<div class="van">{doan_van(bt.get("ke"))}</div></li>')
+        o.append("</ul>")
+
     if did in GHI_CHU:
         o.append(f'<p class="chugiai">◆ {html.escape(GHI_CHU[did])}</p>')
 
@@ -594,6 +604,13 @@ def sinh() -> tuple[str, dict]:
   .nhan-nh{font-size:11px;text-transform:uppercase;letter-spacing:.7px;
            color:#8b7a63;margin:14px 0 5px}
   ul.chon{list-style:none;margin:0;padding:0}
+  ul.giong{list-style:none;margin:0;padding:0}
+  ul.giong li{padding:10px 11px;border-radius:8px;margin-bottom:7px;
+               background:rgba(138,58,32,.05);border:1px solid rgba(138,58,32,.16)}
+  ul.giong .muc{display:inline-block;font-size:11.5px;font-weight:700;color:#fff;
+                background:var(--son);border-radius:99px;padding:2px 9px}
+  ul.giong .ai{font-size:11.5px;color:#7a4a1e;margin-left:7px}
+  ul.giong .van p{font-size:13.5px}
   ul.chon li{font-size:13.5px;padding:7px 9px;border-radius:8px;margin-bottom:5px;
              background:rgba(36,28,20,.045);border:1px solid rgba(36,28,20,.08)}
   ul.chon li.dich-chinh{background:rgba(138,58,32,.09);
