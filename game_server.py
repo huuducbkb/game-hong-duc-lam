@@ -262,6 +262,7 @@ class Handler(BaseHTTPRequestHandler):
                 "cho": lambda: {"ok": True, "ds": E.tl_cho(st)},
                 "luyen_dan": lambda: E.tl_luyen_dan(st, data.get("ma") or ""),
                 "mua": lambda: E.tl_mua(st, data.get("ma") or ""),
+                "ban": lambda: E.tl_ban(st, data.get("ten") or "", data.get("so") or 1),
             }
             if hanh not in VIEC:
                 return self._json({"loi": "Hành động không có trong động phủ"}, 400)

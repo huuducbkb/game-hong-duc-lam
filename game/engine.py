@@ -138,6 +138,17 @@ TL_CHO_HANG = [
     {"ma": "banh_nuong", "ten": "Bánh nướng", "gia": 1, "so": 1, "mo_ta": "Ăn hồi 3 sinh lực."},
 ]
 
+# Giá BÁN lại. Chợ mua của ngươi rẻ hơn giá bán ra, nên không lấy chợ làm máy in bạc.
+# Đây là đường để nguyên liệu săn được biến thành bạc — trước đây săn xong chỉ có
+# một đống nguyên liệu nằm chết trong túi vì chợ chỉ bán mà không thu.
+TL_BAN_GIA = {
+    "Nanh sói": 1,
+    "Mật xà": 1,
+    "Linh thảo": 1,
+    "Tụ Khí Đan": 6,
+    "Hồi Lực Đan": 8,
+}
+
 
 def _hat_giong(ten: str, ngay: int) -> int:
     """Băm FNV-1a 32 bit — bản JS phải cho đúng cùng một số."""
@@ -173,11 +184,19 @@ def _tl(state: dict) -> dict:
 
 
 def _tl_ngau(state: dict) -> float:
-    """Số ngẫu nhiên kế tiếp của lượt hiện tại (theo số ngày đã dùng)."""
+    """Số ngẫu nhiên kế tiếp. Mỗi lần gọi là một số MỚI.
+
+    Trước đây khoá theo `ngay_da_dung` và số dòng nhật ký. Hai thứ đó chỉ đổi khi
+    tốn ngày, nên "Đổi con khác" (không tốn ngày) trả về đúng một số — bấm 20 lần
+    vẫn ra cùng con. Bộ đếm `luot_ngau` tách rời khỏi ngày, và vẫn ghi vào hạt
+    giống để chơi lại cùng tên vẫn ra cùng dãy.
+    """
     tl = _tl(state)
+    luot = tl.get("luot_ngau", 0)
+    tl["luot_ngau"] = luot + 1
     return _ngau_nhien(
         _hat_giong(state.get("ten_nhan_vat", ""), tl["ngay_da_dung"]),
-        len(tl["nhat_ky"]),
+        luot,
     )
 
 
@@ -298,6 +317,16 @@ def _tl_con_thua(state: dict) -> list[str]:
     return list(_tl(state).get("da_thua", []))
 
 
+def _tl_xao(state: dict, hat: int) -> float:
+    """Xáo một số ngẫu nhiên mà KHÔNG đụng bộ đếm `luot_ngau`.
+
+    Dùng khi cần nhiều số trong cùng một lượt (chọn hạng rồi chọn con). Nếu gọi
+    `_tl_ngau` hai lần thì mỗi lượt đổi con lại nhảy hai bước, dãy ra bị xen kẽ
+    đều đặn — nhìn như "chỉ có 2 con".
+    """
+    return _ngau_nhien(hat, 7919)
+
+
 def _tl_chon_thu(state: dict) -> dict:
     """Chọn yêu thú cho lượt này.
 
@@ -344,7 +373,8 @@ def _tl_chon_thu(state: dict) -> dict:
     trong_hang = [t for t in ung_vien if t["hang"] == chon_hang]
     if not trong_hang:  # hạng này vừa thua hết — lấy tạm hạng khác còn ứng viên
         trong_hang = ung_vien
-    r2 = _tl_ngau(state)
+    # Bước chọn con dùng số phái sinh từ `r`, không lấy thêm số mới.
+    r2 = _tl_xao(state, int(r * 4294967296))
     thu = trong_hang[int(r2 * len(trong_hang)) % len(trong_hang)]
     tl["muc_tieu"] = thu["ma"]
     tl["vua_gap"] = thu["ma"]
@@ -505,6 +535,42 @@ def tl_mua(state: dict, ma: str) -> dict:
     tb = []
     return {"ok": True, "thong_bao": [f"Mua {hang['ten']} (-{hang['gia']} bạc)"] + tb,
             "chi_so": _tl_chi_so(state)}
+
+
+def tl_ban(state: dict, ten: str, so: int = 1) -> dict:
+    """Bán nguyên liệu hoặc đan dược lấy bạc.
+
+    Chợ trước đây chỉ bán ra, nên mọi thứ săn được đều nằm chết trong túi: người
+    chơi có 20 nanh sói mà không có bạc để mua linh thảo luyện đan. Đó là ngõ cụt
+    kinh tế, không phải chuyện cân bằng.
+    """
+    so = max(1, int(so or 1))
+    if state.get("ket_thuc"):
+        return {"loi": "Chương đã khép lại — không tu luyện được nữa"}
+    gia = TL_BAN_GIA.get(ten)
+    if gia is None:
+        return {"loi": f"Chợ không thu {ten}"}
+    if not _tl_con_ngay(state, TL_VIEC["cho"]["ngay"]):
+        return {"loi": "Không đủ ngày"}
+    co = _tl_co(state, ten)
+    if co < so:
+        return {"loi": f"Không đủ {ten} (cần {so}, có {co})"}
+    _tl_ghi(state, f"bán {ten} x{so}", TL_VIEC["cho"]["ngay"])
+    _tl_bot(state, ten, so)
+    state["bac"] += gia * so
+    return {"ok": True, "thong_bao": [f"Bán {ten} x{so} (+{gia * so} bạc)"],
+            "chi_so": _tl_chi_so(state)}
+
+
+def tl_ban_duoc(state: dict) -> list[dict]:
+    """Những thứ trong túi mà chợ thu, kèm giá — để giao diện hiện trước khi bấm."""
+    ra = []
+    for v in state.get("tui_do", []):
+        ten, so = v.get("ten"), v.get("so") or 0
+        gia = TL_BAN_GIA.get(ten)
+        if gia is not None and so > 0:
+            ra.append({"ten": ten, "so": so, "gia": gia})
+    return ra
 
 
 def tl_do_la(state: dict) -> dict:

@@ -2,7 +2,7 @@
 
 > **Sổ việc sống.** Cập nhật mỗi khi có việc mới hoặc xong việc.
 > Quy ước: `[ ]` chưa làm · `[~]` đang làm · `[x]` xong.
-> Cập nhật lần cuối: **2026-11-29**
+> Cập nhật lần cuối: **2026-11-29 (tiếp 2)**
 
 ---
 
@@ -13,6 +13,29 @@
 | 1. Mục tiêu săn lặp lại, không đổi được | **xong** | 10 yêu thú; 10 vòng thử, **0 lần** gặp lại con vừa thua; Python↔JS khớp từng ký tự |
 | 3. Nút Hệ Thống nhảy lên trên | **xong** | Lỗi thật ở **414–430px** (iPhone Pro Max). Sau sửa: 320/360/390/414/430 đều giống nhau giữa 2 chương |
 | 2. Bế tắc không lên được tầng | **xong (chọn B)** | Đả tọa 30 ngày giờ lên **tầng 2**; mỗi trận mất 10.8 thay vì 21.5; thắng **giữ 18%** |
+
+## ✅ XONG 2026-11-29 (tiếp 2) — Ba lỗi bạn báo tiếp
+
+| Lỗi | Trước | Sau |
+|---|---|---|
+| 1. "random 20 lần ra đúng 2 con" | tái hiện được: 20 lần → **2 con** xen kẽ | **600 lần → 5 con, 0 lần lặp** |
+| 2. Chợ chỉ mua, không bán | nguyên liệu nằm chết trong túi | **thêm mục BÁN LẠI**, chỉ hiện thứ đang có |
+| 3. Hết 30 ngày vẫn không lên tầng | hết ngày là **kẹt thật**, không nút nào bấm | **nút "Sang chương N — nhận 30 ngày mới"** |
+
+### Nguyên nhân thật của lỗi 1 (khác lần sửa trước)
+
+`_tl_ngau` khoá hạt giống theo `ngay_da_dung` và số dòng nhật ký — **chỉ đổi khi tốn
+ngày**. "Đổi con khác" không tốn ngày nên trả về **cùng một số** mỗi lần. Thêm nữa
+`_tl_chon_thu` gọi máy ngẫu nhiên hai lần một lượt, mà hai số liên tiếp của LCG gần
+như đối nhau → xen kẽ đều. Sửa: bộ đếm `luot_ngau` tách khỏi ngày + số phái sinh.
+
+### Việc còn để ngỏ — cần bạn chốt
+
+- **Vũ khí / phù lục / công pháp**: chưa tồn tại trong game (không có mã vật phẩm,
+  không có chỗ dùng). Chưa làm. Muốn làm thì nói, nhưng đây là **hệ thống mới**,
+  không phải sửa lỗi.
+- **Săn là đường phụ**: chơi 30 ngày chỉ săn thì vẫn không lên tầng (đúng phương án B
+  bạn chọn). Muốn săn cũng lên tầng thì phải đổi cân bằng tiếp.
 
 ## ✅ XONG 2026-11-29 — Lỗi 2: cân bằng tu vi (bạn chọn B)
 

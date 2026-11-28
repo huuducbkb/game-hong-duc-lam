@@ -1176,6 +1176,49 @@ _sn["chi_so"]["sinh_luc"]["hien"] = 2
 _E.tl_nghi(_sn)
 check("nghỉ 1 ngày hồi 12 sinh lực", _sn["chi_so"]["sinh_luc"]["hien"], 14)
 
+print("\n=== TL1d. Ba lỗi người dùng báo ===")
+# Lỗi 1: bấm "Đổi con khác" 20 lần chỉ ra 2 con. _tl_ngau từng khoá theo ngày và
+# số dòng nhật ký — hai thứ đó không đổi khi không tốn ngày.
+_d1 = _E.trang_thai_moi("DoiCon", "tán tu", "tan_tu")
+_d1["chuong"] = 2
+_E.vao_dong(_d1)
+_ds = []
+for _i in range(20):
+    _d1["tu_luyen"]["muc_tieu"] = None
+    _x = _E.tl_dau(_d1)
+    if _x.get("loi"):
+        break
+    _ds.append(_x["tran"]["ma"])
+check("20 lần đổi con ra NHIỀU hơn 2 con", len(set(_ds)) > 2, True)
+_lap = sum(1 for i in range(1, len(_ds)) if _ds[i] == _ds[i - 1])
+check("đổi con không lặp lại con vừa xem", _lap, 0)
+
+# Lỗi 2: chợ chỉ mua, không bán được nguyên liệu săn được.
+_b = _E.trang_thai_moi("BanHang", "tán tu", "tan_tu")
+_b["chuong"] = 2
+_E.vao_dong(_b)
+_b["tui_do"].append({"ten": "Nanh sói", "so": 3})
+_bd = _E.tl_ban_duoc(_b)
+check("chợ thấy Nanh sói để bán", any(v["ten"] == "Nanh sói" and v["so"] == 3 for v in _bd), True)
+check("chợ KHÔNG thu bạc", any(v["ten"] == "Bạc vụn" for v in _bd), False)
+_tr = _b["bac"]
+_r = _E.tl_ban(_b, "Nanh sói", 2)
+check("bán 2 nanh sói được +2 bạc", _b["bac"] - _tr, 2)
+check("bán xong túi còn 1 nanh sói", _E._tl_co(_b, "Nanh sói"), 1)
+check("bán xong báo thông báo", "Nanh sói" in " ".join(_r["thong_bao"]), True)
+check("bán thứ không có thì báo lỗi", bool(_E.tl_ban(_b, "Vũ khí thần", 1).get("loi")), True)
+
+# Lỗi 3: hết 30 ngày là hết vĩnh viễn ở màn tu luyện, không có nút sang chương.
+_h = _E.trang_thai_moi("HetNgay", "tán tu", "tan_tu")
+_h["chuong"] = 1
+_E.vao_dong(_h)
+while _h["tu_luyen"]["ngay_con"] >= 3:
+    _E.tl_da_toa(_h)
+check("dùng hết ngày thì còn 0", _h["tu_luyen"]["ngay_con"], 0)
+check("hết ngày thì đả tọa bị chặn", bool(_E.tl_da_toa(_h).get("loi")), True)
+_E.sang_chuong(_h)
+check("sang chương cấp lại 30 ngày", _h["tu_luyen"]["ngay_con"], 30)
+
 print("\n=== TL2. Bản Python và bản JS phải ra CÙNG dãy số ngẫu nhiên ===")
 # Nếu hai bản lệch nhau, người chơi thấy kết quả khác nhau tuỳ chơi web hay
 # chơi bản Python — lỗi câm, không ai báo. Neo bằng số đo thật của bản Python.

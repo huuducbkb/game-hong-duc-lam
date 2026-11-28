@@ -90,6 +90,14 @@
     { ma: "banh_nuong", ten: "Bánh nướng", gia: 1, so: 1, mo_ta: "Ăn hồi 3 sinh lực." },
   ];
 
+  // Giá BÁN lại. Mua vào rẻ hơn giá bán ra nên không lấy chợ làm máy in bạc. Đây
+  // là đường biến nguyên liệu săn được thành bạc — trước đây chợ chỉ thu mà không
+  // bán, nên nguyên liệu nằm chết trong túi.
+  const TL_BAN_GIA = {
+    "Nanh sói": 1, "Mật xà": 1, "Linh thảo": 1,
+    "Tụ Khí Đan": 6, "Hồi Lực Đan": 8,
+  };
+
   function _hat_giong(ten, ngay) {
     let h = 2166136261;
     const s = String(ten) + "|" + String(ngay);
@@ -123,9 +131,14 @@
     return tl;
   }
 
+  // Mỗi lần gọi là một số MỚI. Trước đây khoá theo ngay_da_dung và số dòng nhật
+  // ký, mà hai thứ đó chỉ đổi khi tốn ngày — nên "Đổi con khác" (không tốn ngày)
+  // trả về đúng một số, bấm 20 lần vẫn ra cùng con.
   function _tl_ngau(state) {
     const tl = _tl(state);
-    return _ngau_nhien(_hat_giong(state.ten_nhan_vat || "", tl.ngay_da_dung), tl.nhat_ky.length);
+    const luot = tl.luot_ngau || 0;
+    tl.luot_ngau = luot + 1;
+    return _ngau_nhien(_hat_giong(state.ten_nhan_vat || "", tl.ngay_da_dung), luot);
   }
 
   function _tl_ghi(state, viec, ngay) {
@@ -238,6 +251,13 @@
     return (state.tu_luyen && state.tu_luyen.da_thua) ? state.tu_luyen.da_thua.slice() : [];
   }
 
+  // Xáo một số ngẫu nhiên mà KHÔNG đụng bộ đếm luot_ngau. Dùng khi cần nhiều số
+  // trong cùng một lượt; nếu gọi _tl_ngau hai lần thì mỗi lượt đổi con nhảy hai
+  // bước, dãy ra xen kẽ đều đặn — nhìn như "chỉ có 2 con".
+  function _tl_xao(state, hat) {
+    return _ngau_nhien(hat, 7919);
+  }
+
   // Chọn yêu thú: không gặp lại con vừa thua, hạng theo cảnh giới.
   function _tl_chon_thu(state) {
     const tl = _tl(state);
@@ -268,7 +288,7 @@
     }
     let trong_hang = ung_vien.filter(t => t.hang === chon_hang);
     if (!trong_hang.length) trong_hang = ung_vien;
-    const r2 = _tl_ngau(state);
+    const r2 = _tl_xao(state, Math.floor(r * 4294967296));
     const thu = trong_hang[Math.floor(r2 * trong_hang.length) % trong_hang.length];
     tl.muc_tieu = thu.ma;
     tl.vua_gap = thu.ma;
@@ -398,6 +418,32 @@
     _tl_ghi(state, `mua ${hang.ten}`, TL_VIEC.cho.ngay);
     _ap_hieu_ung(state, { them_vat: [{ ten: hang.ten, so: hang.so }] });
     return { ok: true, thong_bao: [`Mua ${hang.ten} (-${hang.gia} bạc)`], chi_so: _tl_chi_so(state) };
+  }
+
+  function tl_ban(state, ten, so) {
+    so = Math.max(1, parseInt(so, 10) || 1);
+    if (state.ket_thuc) return { loi: "Chương đã khép lại — không tu luyện được nữa" };
+    const gia = TL_BAN_GIA[ten];
+    if (gia === undefined) return { loi: `Chợ không thu ${ten}` };
+    if (!_tl_con_ngay(state, TL_VIEC.cho.ngay)) return { loi: "Không đủ ngày" };
+    const co = _tl_co(state, ten);
+    if (co < so) return { loi: `Không đủ ${ten} (cần ${so}, có ${co})` };
+    _tl_ghi(state, `bán ${ten} x${so}`, TL_VIEC.cho.ngay);
+    _tl_bot(state, ten, so);
+    state.bac += gia * so;
+    return { ok: true, thong_bao: [`Bán ${ten} x${so} (+${gia * so} bạc)`],
+      chi_so: _tl_chi_so(state) };
+  }
+
+  // Những thứ trong túi mà chợ thu, kèm giá — để giao diện hiện trước khi bấm.
+  function tl_ban_duoc(state) {
+    const ra = [];
+    for (const v of (state.tui_do || [])) {
+      const ten = v.ten, so = v.so || 0;
+      const gia = TL_BAN_GIA[ten];
+      if (gia !== undefined && so > 0) ra.push({ ten: ten, so: so, gia: gia });
+    }
+    return ra;
   }
 
   function tl_do_la(state) {
@@ -1218,8 +1264,8 @@
     trang_thai_moi, load_chuong,
     bat_dau, goi_y_hien_tai, chon, sang_chuong, hanh_dong_tu_do,
     tl_moi, tl_trang_thai, tl_da_toa, tl_san, tl_dau, tl_danh, tl_cong_thuc,
-    tl_luyen_dan, tl_cho, tl_mua, tl_do_la, tl_nghi, vao_dong, ra_dong,
-    TL_VIEC, TL_YEU_THU, TL_CONG_THUC, TL_TIN, TL_CHO_HANG, TRAN_CANH_GIOI,
+    tl_luyen_dan, tl_cho, tl_mua, tl_ban, tl_ban_duoc, tl_do_la, tl_nghi, vao_dong, ra_dong,
+    TL_VIEC, TL_YEU_THU, TL_CONG_THUC, TL_TIN, TL_CHO_HANG, TL_BAN_GIA, TRAN_CANH_GIOI,
     NGAY_MOI_CHUONG, _hat_giong, _ngau_nhien,
     co_chuong, kiem_chuong,
     luu, nap, ds_luu, xoa_luu, tom_tat,

@@ -275,6 +275,11 @@ body{
   border-radius:0 8px 8px 0;padding:8px 10px;margin-bottom:12px}
 .tl-nhat div{margin-bottom:3px}
 .tl-nhat div:last-child{margin-bottom:0}
+.tl-nhan{font-size:9.5px;letter-spacing:.9px;color:var(--ink-faint);
+  text-transform:uppercase;margin:4px 0 7px;font-weight:600}
+.tl-viec.ban .gia{color:#2f7a4a}
+.tl-viec.ban{border-color:rgba(47,122,74,.35);
+  background:rgba(244,251,246,.85)}
 .tl-nut{width:100%;font-family:var(--serif);font-size:13.5px;padding:13px;
   border-radius:11px;border:1px solid var(--edge);background:rgba(255,253,246,.85);
   color:var(--ink);margin-top:6px}
@@ -2801,8 +2806,13 @@ function tlVe(v) {
     "</div>";
 
   if (c.ngay_con <= 0) {
-    h += '<div class="tl-het">Hết ngày của chương này. Xuất động để về truyện — ' +
-      "sang chương sau mới có ngày mới.</div>";
+    // Nút sang chương trước đây chỉ nằm ở màn truyện. Người chơi ở trong động phủ
+    // thấy "hết ngày" mà không có nút nào bấm — tưởng kẹt vĩnh viễn, dù ngày chỉ
+    // hồi khi sang chương. Nên đặt nút ngay đây.
+    h += '<div class="tl-het">Hết ngày của chương này. Ngày mới chỉ cấp khi sang ' +
+      "chương sau — bấm nút dưới để sang.</div>";
+    h += '<button class="tl-nut chinh" id="tlSangChuong">Sang chương ' +
+      ((st.chuong || 1) + 1) + " — nhận 30 ngày mới</button>";
   }
 
   for (const vc of v.viec) {
@@ -2833,6 +2843,7 @@ function tlVe(v) {
   o.innerHTML = h;
 
   gan("#tlXuatDong", "onclick", tlXuatDong);
+  tlGanSangChuong();
   document.querySelectorAll("#tlThan .tl-viec").forEach(b => {
     b.onclick = () => tlLam(b.dataset.viec);
   });
@@ -2936,12 +2947,25 @@ function tlGanDan() {
 
 function tlManCho() {
   const ds = Engine.tl_cho();
-  let h = "";
+  let h = '<div class="tl-nhan">CHỢ BÁN</div>';
   for (const hh of ds) {
     h += '<button class="tl-viec" data-mua="' + hh.ma + '">' +
       '<span class="trai"><span class="ten">' + esc(hh.ten) + "</span>" +
       '<span class="ghi">' + esc(hh.mo_ta) + "</span></span>" +
       '<span class="gia">1 ngày · ' + hh.gia + " bạc</span></button>";
+  }
+  // Bán lại: chỉ hiện thứ đang có trong túi, kèm giá bán để biết trước khi bấm.
+  const ban = Engine.tl_ban_duoc(st);
+  if (ban.length) {
+    h += '<div class="tl-nhan">BÁN LẠI — thứ ngươi có trong túi</div>';
+    for (const v of ban) {
+      h += '<button class="tl-viec ban" data-ban="' + esc(v.ten) + '">' +
+        '<span class="trai"><span class="ten">' + esc(v.ten) + " ×" + v.so + "</span>" +
+        '<span class="ghi">Bán 1 cái</span></span>' +
+        '<span class="gia">1 ngày · +' + v.gia + " bạc</span></button>";
+    }
+  } else {
+    h += '<div class="tl-nhat">Túi chưa có gì bán được. Săn yêu thú để lấy nguyên liệu.</div>';
   }
   h += '<div id="tlChoKq">' + tlKqHtml + "</div>";
   h += '<button class="tl-nut" id="tlQuay">← Quay lại động phủ</button>';
@@ -2953,6 +2977,14 @@ function tlGanCho() {
   document.querySelectorAll("#tlThan [data-mua]").forEach(b => {
     b.onclick = () => {
       const r = Engine.tl_mua(st, b.dataset.mua);
+      if (r.loi) { $("#tlChoKq").innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
+      tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
+      tlCapNhat(); tlNap();
+    };
+  });
+  document.querySelectorAll("#tlThan [data-ban]").forEach(b => {
+    b.onclick = () => {
+      const r = Engine.tl_ban(st, b.dataset.ban, 1);
       if (r.loi) { $("#tlChoKq").innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
       tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
       tlCapNhat(); tlNap();
@@ -2978,6 +3010,25 @@ function tlGanDoLa() {
     tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
     tlCapNhat(); tlNap();
   });
+}
+
+function tlGanSangChuong() {
+  const b = $("#tlSangChuong");
+  if (!b) return;
+  b.onclick = async () => {
+    if (dangCho) return;
+    dangCho = true;
+    try {
+      const r = await Engine.sang_chuong(st);
+      if (r.loi) { b.textContent = r.loi; return; }
+      tlKqHtml = "";
+      luuPhien();
+      tlNap();
+      hienThi(r);
+    } finally {
+      dangCho = false;
+    }
+  };
 }
 
 function tlLam(ma) {

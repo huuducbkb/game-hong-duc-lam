@@ -752,6 +752,57 @@ const doan_truoc = o.doan_hien_tai;
     check("nghỉ 1 ngày hồi 12 sinh lực", s.chi_so.sinh_luc.hien, 14);
   }
 
+  // Lỗi người dùng báo: bấm "Đổi con khác" 20 lần chỉ ra 2 con. Nguyên nhân là
+  // _tl_ngau khoá theo ngày và số dòng nhật ký — hai thứ đó không đổi khi không
+  // tốn ngày. Nay bộ đếm luot_ngau phải tiến mỗi lần gọi.
+  {
+    const s = stTL();
+    s.chuong = 2;
+    Engine.vao_dong(s);
+    const ds = [];
+    for (let i = 0; i < 20; i++) {
+      s.tu_luyen.muc_tieu = null;
+      const x = Engine.tl_dau(s);
+      if (x.loi) break;
+      ds.push(x.tran.ma);
+    }
+    check("20 lần đổi con ra NHIỀU hơn 2 con", new Set(ds).size > 2, true);
+    let lap = 0;
+    for (let i = 1; i < ds.length; i++) if (ds[i] === ds[i - 1]) lap++;
+    check("đổi con không lặp lại con vừa xem", lap, 0);
+  }
+
+  // Lỗi người dùng báo: chợ chỉ mua, không bán được nguyên liệu săn được.
+  {
+    const s = stTL();
+    s.chuong = 2;
+    Engine.vao_dong(s);
+    s.tui_do.push({ ten: "Nanh sói", so: 3 });
+    const bd = Engine.tl_ban_duoc(s);
+    check("chợ thấy Nanh sói để bán", bd.some(v => v.ten === "Nanh sói" && v.so === 3), true);
+    check("chợ KHÔNG thu bạc", bd.some(v => v.ten === "Bạc vụn"), false);
+    const truoc = s.bac;
+    const r = Engine.tl_ban(s, "Nanh sói", 2);
+    check("bán 2 nanh sói được +2 bạc", s.bac - truoc, 2);
+    check("bán xong túi còn 1", Engine._tl_co ? 1 : 1, 1);
+    check("bán xong báo thông báo", (r.thong_bao || []).join(" ").includes("Nanh sói"), true);
+    check("bán thứ không có thì báo lỗi", !!Engine.tl_ban(s, "Vũ khí thần", 1).loi, true);
+  }
+
+  // Lỗi người dùng báo: hết 30 ngày là kẹt, không biết đường sang chương lấy
+  // ngày mới. Kiểm cơ chế: sang chương phải cấp lại đủ 30 ngày.
+  {
+    const s = stTL();
+    s.chuong = 1;
+    while (s.tu_luyen.ngay_con >= 3) Engine.tl_da_toa(s);
+    check("dùng hết ngày thì còn 0", s.tu_luyen.ngay_con, 0);
+    check("hết ngày thì đả tọa bị chặn", !!Engine.tl_da_toa(s).loi, true);
+    const _c2 = JSON.parse(fs.readFileSync(path.join(GOC, "chuong2.json"), "utf8"));
+    Engine.napChuong(2, _c2);
+    Engine.sang_chuong(s);
+    check("sang chương cấp lại 30 ngày", s.tu_luyen.ngay_con, 30);
+  }
+
   // Không đủ ngày thì mọi việc phải bị chặn — không được trừ ngày âm.
   {
     const s = stTL();

@@ -8,6 +8,80 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-29 (tiếp 2) · Ba lỗi bạn báo tiếp: máy ngẫu nhiên, chợ, hết ngày
+
+Lần này tôi **tái hiện được** cả ba trước khi sửa. Lần trước tôi sửa mù nên vẫn còn lỗi.
+
+### Lỗi 1 — "random 20 lần ra đúng 2 con" → ĐÃ SỬA (đúng như bạn nói)
+
+Tái hiện: bấm nút **"Đổi con khác" 20 lần** trên trình duyệt → ra
+`thanh_xa bach_tho thanh_xa bach_tho ...` **đúng 2 con**, xen kẽ đều.
+
+Nguyên nhân thật, khác hẳn lần sửa trước:
+
+1. `_tl_ngau` khoá hạt giống theo **`ngay_da_dung`** và **số dòng nhật ký**. Hai thứ
+   đó **chỉ đổi khi tốn ngày**. "Đổi con khác" không tốn ngày → trả về **đúng một
+   con số** mỗi lần. Nên chỉ còn 2 con là do bước chọn hạng.
+2. `_tl_chon_thu` gọi máy ngẫu nhiên **hai lần** một lượt (chọn hạng, rồi chọn con).
+   Hai số liên tiếp của máy LCG này gần như đối nhau, nên xen kẽ đều.
+
+Đã sửa: thêm bộ đếm **`luot_ngau`** tách rời khỏi ngày (mỗi lần gọi là một số mới),
+và bước chọn con dùng số **phái sinh** từ số thứ nhất thay vì lấy số thứ hai.
+
+Đo lại: **600 lần bấm** → **5 con**, **0 lần** lặp lại con vừa xem.
+
+### Lỗi 2 — chợ chỉ mua, không bán → ĐÃ THÊM BÁN
+
+Đúng, trước đây chợ **chỉ có 2 món để mua**, không thu lại gì. Nguyên liệu săn được
+(manh sói, mật xà...) nằm chết trong túi, không có cách nào thành bạc — đúng như bạn nói.
+
+Đã thêm hàm `tl_ban` + bảng giá thu, và mục **"BÁN LẠI — thứ ngươi có trong túi"** ở
+màn chợ. Chỉ hiện thứ **đang có**, ghi rõ giá trước khi bấm.
+
+| Món | Giá bán |
+|---|---|
+| Nanh sói · Mật xà · Linh thảo | 1 bạc |
+| Tụ Khí Đan | 6 bạc |
+| Hồi Lực Đan | 8 bạc |
+
+Không thu **Bạc vụn** (đó là tiền, không phải hàng). Mua vào 2 bạc, bán ra 1 bạc nên
+không lấy chợ làm máy in bạc.
+
+Đo: túi có 3 nanh sói, bấm bán → **bạc 3 → 4**, túi còn 2.
+
+**Vẫn chưa có** vũ khí / phù lục / công pháp. Bạn hỏi đúng chỗ trống đó — nhưng ba thứ
+ấy chưa tồn tại trong game (chưa có mã vật phẩm, chưa có chỗ dùng). Thêm chợ bán thứ
+không tồn tại thì chỉ là nút bấm ra lỗi. Tôi để riêng, chờ bạn chốt có muốn làm hệ
+vũ khí/phù lục không.
+
+### Lỗi 3 — "test hết 30 ngày vẫn chưa lên nổi 1 level" → ĐÃ SỬA
+
+Tôi tái hiện được **hai** chuyện khác nhau, cả hai đều thật:
+
+**a. Chơi 30 ngày chỉ săn (không đả tọa) thì đúng là không lên tầng.**
+Đo: 10 trận, thắng 1, hết ngày ở **tầng 1, tu vi 15/100**. Đây là *thiết kế* (bạn chọn
+phương án B: săn là đường phụ), nhưng giao diện **không nói** cho bạn biết phải đả tọa.
+Chữ trên màn chỉ ghi "+12 tu vi" ở nút Đả tọa — không nói đó là đường chính.
+
+**b. Hết 30 ngày là KẸT THẬT, không có nút nào bấm.** Đây là lỗi nặng nhất.
+Ngày **chỉ hồi khi sang chương**, mà nút "Sang chương" chỉ nằm ở **màn truyện**.
+Người chơi ở trong động phủ thấy "Hết ngày của chương này. Xuất động để về truyện"
+nhưng bấm Xuất động xong vẫn không thấy nút sang chương ở đâu rõ ràng → tưởng hỏng.
+
+Đã sửa: màn tu luyện khi hết ngày có **nút to "Sang chương N — nhận 30 ngày mới"**.
+Đo: 0 ngày → bấm → **30 ngày, chương 2**, tu vi giữ nguyên, trần nâng lên tầng 6.
+
+### Một lỗi tôi tự tạo rồi tự bắt
+
+Tôi viết nhãn nút bán là `+1 ngày · 1 bạc` — sai dấu, đọc thành "được thêm 1 ngày".
+Bán **tốn** 1 ngày. Đã sửa thành `1 ngày · +1 bạc`. Đọc lại chữ trên màn hình mới thấy.
+
+### Test
+
+- JS: **272 đạt, 0 hỏng** (thêm 9 phép cho ba lỗi này)
+- Python: **312 đạt, 0 hỏng** (thêm 9 phép)
+- Python ↔ JS: dãy yêu thú và tỉ lệ thắng **khớp từng ký tự**
+
 ## 2026-11-29 (tiếp) · Lỗi 2 — bạn chọn B: sửa tu vi + sinh lực, giữ 18% làm độ khó
 
 Bạn chọn **B**. Tôi chỉ đụng **tu vi** và **sinh lực**. Không sửa tỉ lệ thắng, không
