@@ -67,6 +67,24 @@ mở một đường khác nhau. Đã ra tin rồi thì không ra lại tin đó
 - Số cân bằng (8 tu vi / 3 ngày, 45% thắng…) là **đoán** — chơi thử rồi chỉnh.
 - Chưa có ảnh cho màn Động phủ; đang dùng nền giấy sẵn có.
 
+## 🟡 CHỜ NGƯỜI DÙNG QUYẾT — cổng chặn kỹ thuật cho bước bàn giao
+
+Tôi đã quên gửi danh sách năm link cuối phiên **hai lần** (2026-11-27 và 2026-11-28).
+Luật đã có trong `AGENTS.md`, script `tools/ban_giao.py` đã có, mà vẫn quên — vì bước
+đó nằm cuối và chỉ dựa vào trí nhớ. Cần biến nó thành thứ máy tự kiểm.
+
+**Chưa làm cách nào. Đổi cơ chế thì phải hỏi trước.** Ba cách:
+
+| # | Cách | Đánh đổi |
+|---|---|---|
+| 1 | Thêm kiểm vào `game/_test_api.py`: commit mới nhất phải kèm `NHAT-KY.md` + `VIEC-CAN-LAM.md`, thiếu thì test **hỏng** | Rẻ, chặn đúng lúc chạy test trước khi báo xong. Nhưng chỉ bắt được phần "có ghi nhật ký", **không** bắt được "đã gửi link" |
+| 2 | Git hook `post-commit` trong `.githooks/`, bật bằng `core.hooksPath` → tự in khối năm link sau mỗi commit | Nhắc ngay tại chỗ. Nhưng `.git/config` không đi theo repo, máy khác phải bật tay |
+| 3 | Đưa bước bàn giao lên **đầu** `AGENTS.md` thành mục 0 "trước khi báo xong" | Chỉ sửa chữ. Rẻ nhất, nhưng vẫn là dựa vào việc đọc |
+
+**Tôi nghiêng về 1 + 3.** Cần người dùng chọn: làm cách nào, hay làm cả ba?
+
+---
+
 ## 🔴 ĐANG LÀM
 
 ### ✅ XONG 2026-11-28 — Chương 2 nhánh tán tu: đủ 58 cảnh + ảnh vào được game
