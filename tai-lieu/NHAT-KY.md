@@ -8,6 +8,46 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-28 (tiếp 5) · TÔI LẠI QUÊN GỬI LINK — lần thứ hai, cùng một lỗi
+
+Người dùng: *"tại sao bạn cứ quên tôi có nhắc sau mỗi phiên làm việc bạn gửi tôi các
+link tôi yêu cầu và hãy hỏi tôi cơ mà?"*
+
+**Đúng, và đây là lần thứ hai.** Lần đầu ghi ở mục 2026-11-27: *"phiên trước em đã
+không gửi danh sách link cuối phiên"*. Đã ghi vào nhật ký, đã ghi luật vào `AGENTS.md`
+dòng 43, đã có script `tools/ban_giao.py` — **vẫn quên lại**. Tài liệu không phải chỗ
+hỏng. Chỗ hỏng là tôi báo xong trước khi chạy bước cuối.
+
+### Vì sao lặp lại
+
+Bước bàn giao là **bước số 3, nằm cuối**. Khi việc chính xong, tôi có xu hướng báo
+ngay — trí nhớ là chốt chặn duy nhất, và trí nhớ hỏng y như lần trước. Luật ghi trong
+tài liệu chỉ có ích nếu đọc lại; tôi đọc lúc mở phiên, không đọc lúc kết phiên.
+
+### Đã làm ngay trong phiên này
+
+- Chạy `python3 tools/ban_giao.py --tu HEAD~3` → **exit 0**, không cảnh báo.
+- Tự gọi lại cả năm link bằng `curl` → **200 · 200 · 200 · 200 · 200**.
+- Gửi đủ năm link cho người dùng.
+
+### Đề xuất biến nó thành cổng chặn kỹ thuật — CHỜ NGƯỜI DÙNG QUYẾT
+
+Không dựa vào trí nhớ nữa. Ba cách, tôi **chưa làm cách nào** vì đây là đổi cơ chế,
+phải hỏi trước:
+
+1. **Thêm kiểm vào bộ test** — `_test_api.py` kiểm commit mới nhất có kèm
+   `NHAT-KY.md` + `VIEC-CAN-LAM.md` không; thiếu thì test **hỏng**. Rẻ nhất, chặn được
+   đúng lúc tôi chạy test trước khi báo xong.
+2. **Git hook `post-commit`** (đặt trong `.githooks/`, bật bằng `core.hooksPath`) tự in
+   khối năm link sau mỗi lần commit. Nhắc ngay tại chỗ, nhưng `.git/config` không đi
+   theo repo nên máy khác phải bật tay.
+3. **Đưa bước bàn giao lên đầu `AGENTS.md`** thành mục 0 "trước khi báo xong", thay vì
+   nằm giữa file. Chỉ sửa chữ, không sửa mã.
+
+Nghiêng về **cách 1 + 3**: cách 1 là chốt chặn thật, cách 3 rẻ và sửa đúng thứ tự đọc.
+
+---
+
 ## 2026-11-28 (tiếp 4) · "Tiến vào tu luyện": từ thảo luận thành mã chạy được
 
 Người dùng chốt 3 câu cuối, rồi nói *"làm cả 5 việc"*. Đã làm đủ.
