@@ -2,11 +2,49 @@
 
 > **Sổ việc sống.** Cập nhật mỗi khi có việc mới hoặc xong việc.
 > Quy ước: `[ ]` chưa làm · `[~]` đang làm · `[x]` xong.
-> Cập nhật lần cuối: **2026-11-27**
+> Cập nhật lần cuối: **2026-11-28**
 
 ---
 
 ## 🔴 ĐANG LÀM
+
+### ✅ XONG 2026-11-28 — Chương 2 nhánh tán tu: đủ 58 cảnh + ảnh vào được game
+
+- [x] `tools/xuong_chuong2.py` viết lại: **58 cảnh**, mỗi cảnh đúng **một** đoạn
+  (trường `doan`), 19 nhóm cảnh, `doan_cua_anh()` suy từ `doan` → không thể lệch.
+- [x] **Sửa lỗi 1**: prompt Chương 2 trước đây không có ánh xạ đoạn → up ảnh không ai nhận.
+- [x] **Sửa lỗi 2**: `xuong_tu_dong.CHUONG_FILES` chỉ có `chuong1.json` → ảnh Chương 2
+  không được ghi vào dữ liệu chương. Đã thêm cả 2 bản của `chuong2.json`.
+- [x] Bảng danh sách ảnh trong Xưởng hết tràn ngang ở khổ 390 (`table-layout:fixed`).
+- [x] Chốt chặn: khối **S** trong `game/_test_api.py` (7 phép kiểm).
+
+Đo lại — cả hai phải **0 hỏng**, mã thoát 0:
+
+```bash
+node game/_test_engine.js      # -> 207 đạt, 0 hỏng
+python3 game/_test_api.py      # -> 258 đạt, 0 hỏng  (cần game_server.py chạy cổng 12001)
+```
+
+Kiểm phủ cảnh Chương 2 (phải ra `0`):
+
+```bash
+python3 -c "
+import json, importlib.util as u
+s=u.spec_from_file_location('c2','tools/xuong_chuong2.py'); m=u.module_from_spec(s); s.loader.exec_module(m)
+d=json.load(open('game/chapters/chuong2.json',encoding='utf-8'))
+thieu={x['id'] for x in d['doan'] if x['id'].startswith('c2_d') and not (x.get('hinh_anh') or {}).get('anh')}
+print(len(thieu - {c['doan'] for c in m.SCENES}), len(m.SCENES))   # -> 0 58"
+```
+
+- [ ] **Chương 2 nhánh môn phái — 56 cảnh chờ khai** (`c2_p07` → `c2_p24b`)
+  - Làm y hệt nhánh tán tu: mỗi cảnh một đoạn, khai trong `tools/xuong_chuong2.py`
+    (hoặc module riêng `xuong_chuong2_monphai.py`), thêm nhóm cảnh, rồi dựng lại Xưởng.
+  - Đo được: `python3 -c "import json;d=json.load(open('game/chapters/chuong2.json'));print(sum(1 for x in d['doan'] if x['id'].startswith('c2_p') and not (x.get('hinh_anh') or {}).get('anh')))"`
+    → hiện **56**, mục tiêu **0**
+
+- [ ] **Chương 2 — vẽ 58 cảnh nhánh tán tu** (người dùng làm, Xưởng đã có prompt)
+  - Đo được: Xưởng ghi `Chương 2 · Thái Nam Sơn Cốc` → **0/58 đã có**, mục tiêu **58/58**
+
 
 ### ✅ XONG 2026-11-27 — Chốt chặn "lựa chọn khác nhau phải ra cảnh khác nhau"
 

@@ -8,6 +8,56 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-28 · Chương 2 nhánh tán tu: đủ 58 cảnh + sửa 2 lỗi ảnh không vào game
+
+Người dùng: *"xây dựng game: bạn vào github tôi tiếp tục công việc"* → tiếp mục còn treo
+trong sổ việc: **ảnh Chương 2** (nhánh tán tu trắng ảnh từ `c2_d11` trở đi).
+
+### Phát hiện hai lỗi thật (ảnh ch2 không bao giờ vào game)
+
+1. **Prompt Chương 2 không có ánh xạ đoạn.** `tools/xuong_chuong2.py` có 4 cảnh nhưng
+   không có `doan_cua_anh()`, và `tools_server.py` chỉ `DOAN_CUA_ANH.update(MP...)`.
+   Hệ quả: up ảnh xong **không đoạn nào nhận ảnh**.
+2. **`xuong_tu_dong.CHUONG_FILES` chỉ có `chuong1.json`.** Nên kể cả có ánh xạ, ảnh
+   Chương 2 vẫn **không được ghi vào dữ liệu chương**. Đây là lỗi nặng nhất tìm được
+   trong phiên — toàn bộ đường up ảnh của ch2 là vô dụng trước khi sửa.
+
+### Đã làm
+
+| File | Việc |
+|---|---|
+| `tools/xuong_chuong2.py` | Viết lại: **58 cảnh**, mỗi cảnh có trường `doan` (đúng 1 đoạn), 19 nhóm cảnh, `doan_cua_anh()` suy từ `doan` nên không thể lệch. Bỏ `bc_dai_tuyen` (cả ch2 không có đoạn "đài tuyển" nào → cảnh mồ côi). Sửa `use` của `bc_mac_phu_tang` (c2_d06) và `nv_do_linh_can` (c2_d23c) |
+| `tools_server.py` | `DOAN_CUA_ANH.update(C2.doan_cua_anh())`; mô tả phần Chương 2 trong Xưởng |
+| `xuong_tu_dong.py` | `CHUONG_FILES` thêm `game/chapters/chuong2.json` + `docs/game/du-lieu/chuong2.json` |
+| `tools/build_xuong.py` | Bảng danh sách ảnh: `table-layout:fixed` + `overflow-wrap:anywhere` (mã ảnh mới dài làm bảng tràn ngang 6px ở khổ 390) |
+| `game/_test_api.py` | Khối **S**: cảnh↔đoạn↔tệp dữ liệu (7 phép kiểm) |
+| `docs/xuong/index.html` | Dựng lại |
+
+### Số đo kiểm chứng
+
+- **Cảnh Chương 2**: 58 cảnh · 58 đoạn khác nhau · 0 đoạn không tồn tại · 0 đoạn hai cảnh
+- **Phủ ảnh nhánh tán tu**: 57/57 đoạn thiếu ảnh đều có cảnh (0 thiếu)
+- **Nhóm cảnh**: 58/58 cảnh có nhóm, 0 key trùng
+- **Xưởng**: 135 prompt · 131 thẻ (4 ảnh mẫu nằm ở thư viện riêng) · phần Chương 2 **58 thẻ**
+- **Trang Xưởng ở khổ 390**: `scrollWidth` 375 = `clientWidth` 375 → **không tràn ngang**,
+  0 phần tử vượt khung, 262 thẻ có `data-key`
+- **Test JS**: `node game/_test_engine.js` → **207 đạt, 0 hỏng**
+- **Test Python**: `python3 game/_test_api.py` → **258 đạt, 0 hỏng**, mã thoát 0
+- **Chứng minh chốt chặn S bắt được lỗi**: bỏ 2 dòng `chuong2` khỏi `CHUONG_FILES`
+  → `✗ Xưởng ghép ảnh vào cả hai bản dữ liệu Chương 2`, **257 đạt / 1 hỏng**, thoát mã **1**.
+  Khôi phục xong trở lại 258/0
+- **Ghép thử trên dữ liệu thật** (không ghi đĩa): `_gan_doan(chuong2, "bc_c2_cho_linh_thach", …)`
+  → `['c2_d12']`, đoạn `c2_d12` nhận `hinh_anh.anh = bc_c2_cho_linh_thach.jpg`
+- `python3 tools/kiem_prompt_anh.py` → **SACH** (0 prompt chứa cụm gây loang)
+
+### Còn treo
+
+- **Nhánh môn phái Chương 2: 56 đoạn chưa có cảnh** (`c2_p07` → `c2_p24b`). Đo được:
+  `python3 -c "import json;d=json.load(open('game/chapters/chuong2.json'));print(sum(1 for x in d['doan'] if x['id'].startswith('c2_p') and not (x.get('hinh_anh') or {}).get('anh')))"`
+  → hiện **56**, mục tiêu **0**.
+- 58 cảnh Chương 2 vẫn **chờ vẽ** (Xưởng đã có prompt + nút 📁 Up từng cảnh).
+- `bien_the` Chương 2 vẫn 2/≥8 (việc viết nội dung, phải hỏi người dùng trước).
+
 ---
 
 ## 2026-11-27 (tiếp 2) · Ghi nhớ lỗi "lựa chọn khác nhau ra cùng một cảnh" + chốt chặn thật

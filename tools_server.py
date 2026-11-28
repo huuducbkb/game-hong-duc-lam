@@ -605,7 +605,7 @@ MP = _ilu.module_from_spec(_mp_spec)
 _mp_spec.loader.exec_module(MP)
 ASSETS.extend(MP.assets(STYLE_MAU))
 
-# Chương 2: bốn cảnh còn thiếu (hết hạn mức vẽ ảnh nên đang mượn ảnh chương 1).
+# Chương 2 nhánh tán tu: đủ cảnh cho 57 đoạn (xem tools/xuong_chuong2.py).
 _c2_spec = _ilu.spec_from_file_location(
     "xuong_chuong2", os.path.join(ROOT, "tools", "xuong_chuong2.py"))
 C2 = _ilu.module_from_spec(_c2_spec)
@@ -790,6 +790,8 @@ DOAN_CUA_ANH = {
 }
 # ─ Nhánh môn phái: mỗi đoạn một cảnh riêng (35 cảnh mới + 6 cảnh đã có) ─
 DOAN_CUA_ANH.update(MP.doan_cua_anh())
+# ─ Chương 2 nhánh tán tu: 57 cảnh, mỗi cảnh đúng một đoạn ─
+DOAN_CUA_ANH.update(C2.doan_cua_anh())
 
 # Bố cục Xưởng: nhóm theo chương / công dụng để dễ nhìn.
 NHOM_BO_CUC = [
@@ -829,7 +831,8 @@ XUONG_PHAN = [
     {"ma": "c1-mon-phai", "icon": "⛩️", "ten": "Chương 1 · Nhánh Môn phái",
      "mota": "Tân xá đêm, ngọc cốt, Tuyết Cơ."},
     {"ma": "c2", "icon": "🏮", "ten": "Chương 2 · Thái Nam Sơn Cốc",
-     "mota": "Bốn cảnh còn thiếu — đang mượn ảnh chương 1."},
+     "mota": "58 cảnh: 57 đoạn nhánh tán tu + cảnh đầu chương dùng chung. "
+             "Nhánh môn phái (56 đoạn) làm sau."},
 ]
 
 # Nhóm cảnh theo thứ tự truyện. `keys` = ảnh của nhóm; `mau` = ảnh mẫu cần

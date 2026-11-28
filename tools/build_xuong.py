@@ -372,8 +372,11 @@ button{font-family:inherit;font-size:13.5px;font-weight:600;border:0;border-radi
 .item img{width:100%;height:150px;object-fit:cover;display:block;background:#0a1220}
 .item .cap{padding:8px;font-size:12px;display:flex;flex-direction:column;gap:5px}
 .inbox-khoi{margin:14px 0}
-table{width:100%;border-collapse:collapse;font-size:12.5px}
-th,td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;table-layout:fixed}
+th,td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+td code{overflow-wrap:anywhere}
+th:nth-child(1),td:nth-child(1){width:2.4em}
+th:nth-child(5),td:nth-child(5){width:3.6em}
 th{color:var(--muted);font-weight:600;font-size:11.5px}
 ol{padding-left:20px}
 ol li{margin:5px 0}
