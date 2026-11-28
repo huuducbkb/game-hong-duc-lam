@@ -88,19 +88,40 @@ TL_TU_VI_DA_TOA = 12
 # `nguy_hiem` là % bị cắn mỗi lần săn. `tu_vi` là tu vi khi giết được.
 TL_YEU_THU = [
     # --- Thường: vào được ngay từ Luyện Khí tầng 1 ---
-    {"ma": "son_tru", "ten": "Sơn Trư", "hang": "thuong", "bac": 1, "vat": "Nanh sói", "so_vat": 1, "tu_vi": 14, "nguy_hiem": 25},
-    {"ma": "thanh_xa", "ten": "Thanh Xà", "hang": "thuong", "bac": 1, "vat": "Mật xà", "so_vat": 1, "tu_vi": 14, "nguy_hiem": 30},
-    {"ma": "bach_tho", "ten": "Bạch Thố Tinh", "hang": "thuong", "bac": 1, "vat": "Linh thảo", "so_vat": 2, "tu_vi": 12, "nguy_hiem": 15},
-    {"ma": "da_lang", "ten": "Dã Lang", "hang": "thuong", "bac": 2, "vat": "Nanh sói", "so_vat": 2, "tu_vi": 16, "nguy_hiem": 35},
-    {"ma": "hac_thu", "ten": "Hắc Thử", "hang": "thuong", "bac": 1, "vat": "Bạc vụn", "so_vat": 2, "tu_vi": 12, "nguy_hiem": 20},
-    # --- Tinh anh: cần Luyện Khí tầng 3 trở lên mới nên đụng ---
-    {"ma": "hac_lang", "ten": "Hắc Lang Tinh Anh", "hang": "tinh_anh", "bac": 3, "vat": "Nanh sói", "so_vat": 3, "tu_vi": 26, "nguy_hiem": 40},
-    {"ma": "thiet_giap", "ten": "Thiết Giáp Thử", "hang": "tinh_anh", "bac": 3, "vat": "Mật xà", "so_vat": 2, "tu_vi": 26, "nguy_hiem": 40},
-    {"ma": "xich_vien", "ten": "Xích Viên Tinh Anh", "hang": "tinh_anh", "bac": 4, "vat": "Linh thảo", "so_vat": 3, "tu_vi": 30, "nguy_hiem": 45},
-    # --- Yêu vương: chỉ nên đánh khi đã Luyện Khí tầng 5-6 ---
-    {"ma": "bach_lang_vuong", "ten": "Bạch Lang Yêu Vương", "hang": "yeu_vuong", "bac": 5, "vat": "Nanh sói", "so_vat": 5, "tu_vi": 48, "nguy_hiem": 55},
-    {"ma": "hac_xa_vuong", "ten": "Hắc Xà Yêu Vương", "hang": "yeu_vuong", "bac": 6, "vat": "Mật xà", "so_vat": 5, "tu_vi": 56, "nguy_hiem": 60},
+    {"ma": "son_tru", "ten": "Sơn Trư", "hang": "thuong", "bac": 1, "vat": "Nanh sói", "so_vat": 1,
+     "tu_vi": 14, "nguy_hiem": 25, "he": "tho", "sinh_luc": 22, "tan_cong": 4, "phong_thu": 2, "toc_do": 8},
+    {"ma": "thanh_xa", "ten": "Thanh Xà", "hang": "thuong", "bac": 1, "vat": "Mật xà", "so_vat": 1,
+     "tu_vi": 14, "nguy_hiem": 30, "he": "doc", "sinh_luc": 32, "tan_cong": 3, "phong_thu": 1, "toc_do": 12},
+    {"ma": "bach_tho", "ten": "Bạch Thố Tinh", "hang": "thuong", "bac": 1, "vat": "Linh thảo", "so_vat": 2,
+     "tu_vi": 12, "nguy_hiem": 15, "he": "moc", "sinh_luc": 30, "tan_cong": 2, "phong_thu": 2, "toc_do": 14},
+    {"ma": "da_lang", "ten": "Dã Lang", "hang": "thuong", "bac": 2, "vat": "Nanh sói", "so_vat": 2,
+     "tu_vi": 16, "nguy_hiem": 35, "he": "phong", "sinh_luc": 42, "tan_cong": 4, "phong_thu": 3, "toc_do": 13},
+    {"ma": "hac_thu", "ten": "Hắc Thử", "hang": "thuong", "bac": 1, "vat": "Bạc vụn", "so_vat": 2,
+     "tu_vi": 12, "nguy_hiem": 20, "he": "doc", "sinh_luc": 22, "tan_cong": 4, "phong_thu": 1, "toc_do": 15},
+    # --- Tinh anh: gặp được từ tầng 1, nhưng chỉ nên đánh khi đã khá. ---
+    {"ma": "hac_lang", "ten": "Hắc Lang Tinh Anh", "hang": "tinh_anh", "bac": 3, "vat": "Nanh sói", "so_vat": 3,
+     "tu_vi": 26, "nguy_hiem": 40, "he": "phong", "sinh_luc": 18, "tan_cong": 8, "phong_thu": 3, "toc_do": 14},
+    {"ma": "thiet_giap", "ten": "Thiết Giáp Thử", "hang": "tinh_anh", "bac": 3, "vat": "Mật xà", "so_vat": 2,
+     "tu_vi": 26, "nguy_hiem": 40, "he": "kim", "sinh_luc": 16, "tan_cong": 9, "phong_thu": 7, "toc_do": 9},
+    {"ma": "xich_vien", "ten": "Xích Viên Tinh Anh", "hang": "tinh_anh", "bac": 4, "vat": "Linh thảo", "so_vat": 4,
+     "tu_vi": 30, "nguy_hiem": 45, "he": "hoa", "sinh_luc": 32, "tan_cong": 8, "phong_thu": 4, "toc_do": 13},
+    # --- Yêu vương: thưởng lớn, đánh rất khó. Chỉ thắng được khi đã tầng 5-6
+    #     hoặc có pháp bảo tốt / dùng Tuyết Cơ - Kiếm Linh. ---
+    {"ma": "bach_lang_vuong", "ten": "Bạch Lang Yêu Vương", "hang": "yeu_vuong", "bac": 5, "vat": "Nanh sói", "so_vat": 6,
+     "tu_vi": 95, "nguy_hiem": 55, "he": "phong", "sinh_luc": 52, "tan_cong": 10, "phong_thu": 6, "toc_do": 16, "bao_kich": 80},
+    {"ma": "hac_xa_vuong", "ten": "Hắc Xà Yêu Vương", "hang": "yeu_vuong", "bac": 6, "vat": "Mật xà", "so_vat": 5,
+     "tu_vi": 105, "nguy_hiem": 60, "he": "doc", "sinh_luc": 50, "tan_cong": 10, "phong_thu": 7, "toc_do": 15, "bao_kich": 90},
 ]
+
+# Tà tu phong toả Thái Nam Cốc (chương 2, ngày cuối). Không nằm trong vòng săn
+# thường — hắn có chỉ số đầy đủ như người chơi, nên trận được tính bằng cách so
+# từng chỉ số chứ không chỉ so bậc cảnh giới.
+TL_TA_TU = {
+    "ma": "ta_tu_tang5", "ten": "Tà tu áo xám", "hang": "ta_tu", "bac": 5,
+    "he": "kim", "sinh_luc": 98, "tan_cong": 6, "phong_thu": 6, "toc_do": 12,
+    "bao_kich": 70, "chi_mang": 3, "xuyen_giap": 10,
+    "vat": "Phù lục chưa dùng", "so_vat": 1, "tu_vi": 80,
+}
 
 # Tu vi khi THUA: cọ xát cũng ngộ đạo, nhưng ít hơn thắng nhiều. Nhờ đây mà đường
 # săn tự lên được tầng, không phải chỉ đả tọa. Xem cách tính trong tl_danh.
@@ -111,7 +132,252 @@ TL_GAP = {"thuong": 62, "tinh_anh": 30, "yeu_vuong": 8}
 
 # Hạng nào thì cần cảnh giới nào mới săn được. Dưới ngưỡng vẫn gặp nhưng tỉ lệ
 # thắng rất thấp — không chặn cứng, để người chơi tự thấy mình yếu.
-TL_NGUONG = {"thuong": 0, "tinh_anh": 2, "yeu_vuong": 4}
+
+# Hạ ngưỡng gặp: tầng nào cũng có cơ hội gặp tinh anh/yêu vương. Vẫn rất khó
+# thắng nếu yếu — nhưng gặp được, để buff Tuyết Cơ/Kiếm Linh có chỗ dùng.
+TL_NGUONG = {"thuong": 0, "tinh_anh": 0, "yeu_vuong": 0}
+
+# ---------------------------------------------------------------- 9 hệ nguyên tố
+#
+# 5 hệ chính khắc vòng tròn: kim → mộc → thổ → thủy → hỏa → kim.
+# 4 hệ phụ (lôi/phong/băng/độc) không khắc ai, nhưng xuyên kháng: kháng của địch
+# chỉ còn một nửa khi bị hệ phụ đánh.
+HE_NGUYEN_TO = ["kim", "moc", "thuy", "hoa", "tho", "loi", "phong", "bang", "doc"]
+KHAC_CHE = {"kim": "moc", "moc": "tho", "tho": "thuy", "thuy": "hoa", "hoa": "kim"}
+HE_PHU = ("loi", "phong", "bang", "doc")
+
+# Sát thương nhân hệ số này để con số đủ lớn mà đánh nhau (tan_cong 3-13).
+# Đổi số này là đổi nhịp trận: to hơn thì trận ngắn hơn.
+TL_SAT_THUONG_K = 4
+
+# Máu chiến đấu TÁCH KHỎI sinh lực. Sinh lực là sức lao động trong ngày (26 điểm,
+# mỗi trận tiêu vài điểm); máu là thứ quyết định thắng thua trong một trận. Gộp
+# hai thứ làm một thì trận nào cũng chỉ hai đòn là xong — mọi tỉ lệ thắng nhảy
+# 0% hoặc 100%, không điều chỉnh được.
+TL_MAU_HE_SO = 6
+
+# Sinh lực mất sau trận = máu đã mất quy đổi, tối thiểu 1.
+TL_SINH_LUC_SAU_TRAN = 5
+# Trận đánh tối đa bao nhiêu hiệp trước khi phân thắng bại theo máu còn lại.
+TL_SO_HIEP_TOI_DA = 30
+
+# Người bạn đồng hành ra tay. Mỗi chương được 2 lần, giết chắc một con.
+# Nhánh tán tu có Kiếm Linh, nhánh môn phái có Tuyết Cơ — chương 2 viết hai nhánh
+# riêng, không ai có cả hai (xem `doan_dau_theo_nhom` trong chuong2.json).
+TL_BUFF_MOI_CHUONG = 2
+_TL_BUFF_TEN = {"kiem_linh": "Kiếm Linh", "tuyet_co": "Tuyết Cơ"}
+
+
+def _tl_buff(state: dict) -> dict:
+    """Lượt ra tay còn lại của bạn đồng hành trong chương này."""
+    bp = state.get("buff")
+    if not isinstance(bp, dict):
+        bp = {}
+        state["buff"] = bp
+    bp.setdefault("kiem_linh", TL_BUFF_MOI_CHUONG)
+    bp.setdefault("tuyet_co", TL_BUFF_MOI_CHUONG)
+    return bp
+
+
+def buff_cua_minh(state: dict) -> str | None:
+    """Nhánh nào thì bạn đồng hành nấy: tán tu → Kiếm Linh, môn phái → Tuyết Cơ."""
+    nhom = state.get("nhom_xuat_than") or ""
+    if nhom == "mon_phai":
+        return "tuyet_co"
+    if nhom == "tan_tu":
+        return "kiem_linh"
+    return None
+
+
+def _he_he_so(he_tc: str, he_pt: str) -> float:
+    """Hệ tấn công khắc hệ phòng thủ thì 1.5, bị khắc thì 0.8."""
+    if not he_tc or not he_pt:
+        return 1.0
+    if KHAC_CHE.get(he_tc) == he_pt:
+        return 1.5
+    if KHAC_CHE.get(he_pt) == he_tc:
+        return 0.8
+    return 1.0
+
+
+def _sat_thuong(cs_tc: dict, cs_pt: dict, he_tc: str) -> int:
+    """Sát thương một đòn. Bốn lớp: công, kháng hệ, phòng thủ (xuyên giáp), khắc hệ."""
+    he_pt = cs_pt.get("he") or ""
+    cong_phep = cs_tc.get("tan_cong_phep") or {}
+    goc = (cs_tc.get("tan_cong", 0) + cong_phep.get(he_tc, 0)) * TL_SAT_THUONG_K
+    # 1. Kháng hệ. Hệ phụ xuyên kháng nên chỉ còn nửa.
+    khang = (cs_pt.get("khang_phep") or {}).get(he_tc, 0)
+    if he_tc in HE_PHU:
+        khang = khang / 2
+    goc *= (100 - min(80, khang)) / 100
+    # 2. Phòng thủ giảm theo tỉ lệ (không trừ thẳng, nếu trừ thẳng thì đòn nhỏ
+    #    luôn về 1 và chỉ số phòng thủ thành vô nghĩa). Xuyên giáp bỏ qua một phần.
+    pt = cs_pt.get("phong_thu", 0) * (1 - cs_tc.get("xuyen_giap", 0) / 100)
+    goc *= 100 / (100 + pt * 10)
+    # 3. Khắc hệ.
+    goc *= _he_he_so(he_tc, he_pt)
+    return max(1, int(round(goc)))
+
+
+def _danh_mot_don(cs_tc: dict, cs_pt: dict, ngau) -> int:
+    """Một đòn, có thể bạo kích. `ngau` là hàm trả số [0,1)."""
+    he = cs_tc.get("he") or cs_tc.get("he_tan_cong") or ""
+    st = _sat_thuong(cs_tc, cs_pt, he)
+    if ngau() * 1000 < cs_tc.get("bao_kich", 0):
+        st = st * 2 + cs_tc.get("chi_mang", 0)
+    return st
+
+
+def _mo_phong_tran(cs_minh: dict, cs_dich: dict, ngau) -> dict:
+    """Mô phỏng trận tới khi một bên gục. Trả về thắng/thua + nhật ký hiệp.
+
+    Không ai chết: `sinh_luc` về 0 nghĩa là bị thương nặng, không phải chết.
+    Quá `TL_SO_HIEP_TOI_DA` hiệp thì xét theo phần trăm máu còn lại.
+    """
+    hp_minh = cs_minh.get("mau") or cs_minh["sinh_luc"]["max"] * TL_MAU_HE_SO
+    hp_dich = cs_dich.get("mau") or cs_dich["sinh_luc"]["max"]
+    max_minh = max(1, hp_minh)
+    max_dich = max(1, hp_dich)
+    dong = []
+    # Ai nhanh hơn đánh trước. Bằng nhau thì người chơi đánh trước.
+    minh_truoc = cs_minh.get("toc_do", 0) >= cs_dich.get("toc_do", 0)
+    hiep = 0
+    while hp_minh > 0 and hp_dich > 0 and hiep < TL_SO_HIEP_TOI_DA:
+        hiep += 1
+        thu_tu = ["minh", "dich"] if minh_truoc else ["dich", "minh"]
+        for ben in thu_tu:
+            if hp_minh <= 0 or hp_dich <= 0:
+                break
+            if ben == "minh":
+                st = _danh_mot_don(cs_minh, cs_dich, ngau)
+                hp_dich -= st
+                dong.append(f"Hiệp {hiep}: ngươi đánh trúng, {st} sát thương "
+                            f"(địch còn {max(0, hp_dich)})")
+            else:
+                st = _danh_mot_don(cs_dich, cs_minh, ngau)
+                hp_minh -= st
+                dong.append(f"Hiệp {hiep}: địch đánh trúng, {st} sát thương "
+                            f"(ngươi còn {max(0, hp_minh)})")
+    if hp_dich <= 0:
+        thang = True
+    elif hp_minh <= 0:
+        thang = False
+    else:
+        thang = (hp_minh / max_minh) > (hp_dich / max_dich)
+    return {"thang": thang, "dong": dong, "hiep": hiep,
+            "hp_minh": max(0, hp_minh), "hp_dich": max(0, hp_dich)}
+
+
+def _ngau_mo_phong(hat: int):
+    """Bộ ngẫu nhiên RIÊNG cho mô phỏng ước lượng.
+
+    Không dùng `_tl_ngau` vì mỗi lần gọi sẽ đẩy bộ đếm của ván chơi thật — chạy
+    thử 200 trận để hiện tỉ lệ thắng mà lại làm lệch dãy số thật là sai. Hạt
+    giống cố định để bản Python và bản JS ra cùng kết quả.
+    """
+    trang_thai = {"hat": hat & 0xFFFFFFFF, "buoc": 0}
+
+    def ngau() -> float:
+        trang_thai["buoc"] += 1
+        return _ngau_nhien(trang_thai["hat"], trang_thai["buoc"])
+
+    return ngau
+
+
+def _cs_hieu_dung(state: dict) -> dict:
+    """Chỉ số chiến đấu thật: chỉ số gốc + pháp bảo đang mặc."""
+    cs = dict(state["chi_so"])
+    cs = {k: (dict(v) if isinstance(v, dict) else v) for k, v in cs.items()}
+    bp = state.get("trang_bi") or {}
+    ma = bp.get("phap_bao")
+    pb = next((x for x in TL_PHAP_BAO if x["ma"] == ma), None)
+    if pb:
+        cs["tan_cong"] = cs.get("tan_cong", 0) + pb.get("tan_cong", 0)
+        cs["phong_thu"] = cs.get("phong_thu", 0) + pb.get("phong_thu", 0)
+        cs["bao_kich"] = cs.get("bao_kich", 0) + pb.get("bao_kich", 0)
+        cs["chi_mang"] = cs.get("chi_mang", 0) + pb.get("chi_mang", 0)
+        cs["xuyen_giap"] = cs.get("xuyen_giap", 0) + pb.get("xuyen_giap", 0)
+        cs["toc_do"] = cs.get("toc_do", 0) + pb.get("toc_do", 0)
+        if pb.get("he"):
+            cs["he"] = pb["he"]
+    cs["mau"] = cs["sinh_luc"]["max"] * TL_MAU_HE_SO
+    return cs
+
+
+def _cs_cua_thu(thu: dict) -> dict:
+    """Chỉ số chiến đấu của quái — cùng khuôn với người chơi để so được.
+
+    `mau` của quái là `sinh_luc` khai trong bảng, nhân cùng hệ số với người chơi
+    để hai bên cùng thang đo.
+    """
+    bac = thu.get("bac", 1)
+    mau = thu.get("sinh_luc", 20 + bac * 6) * TL_MAU_HE_SO
+    return {
+        "sinh_luc": {"hien": mau, "max": mau},
+        "mau": mau,
+        "tan_cong": thu.get("tan_cong", 2 + bac * 2),
+        "phong_thu": thu.get("phong_thu", 1 + bac),
+        "bao_kich": thu.get("bao_kich", 50),
+        "chi_mang": thu.get("chi_mang", 1),
+        "xuyen_giap": thu.get("xuyen_giap", 0),
+        "toc_do": thu.get("toc_do", 8 + bac),
+        "he": thu.get("he", ""),
+        "tan_cong_phep": thu.get("tan_cong_phep") or {},
+        "khang_phep": thu.get("khang_phep") or {},
+    }
+
+
+def _ti_le_thang(state: dict, thu: dict, so_lan: int = 200) -> int:
+    """Ước lượng tỉ lệ thắng bằng cách chạy thử `so_lan` trận.
+
+    Trước đây là công thức một dòng. Nay trận đánh có bạo kích, khắc hệ, tốc độ,
+    phòng thủ — không còn suy ra bằng một công thức được nữa.
+    """
+    cs_minh = _cs_hieu_dung(state)
+    cs_dich = _cs_cua_thu(thu)
+    hat = _hat_giong("tile|" + thu.get("ma", "") + "|" + state.get("canh_gioi", ""), 0)
+    thang = 0
+    for i in range(so_lan):
+        ngau = _ngau_mo_phong(hat + i * 7919)
+        if _mo_phong_tran(cs_minh, cs_dich, ngau)["thang"]:
+            thang += 1
+    return max(0, min(100, int(round(thang * 100 / so_lan))))
+
+# ---------------------------------------------------------------- pháp bảo
+#
+# Pháp bảo là vũ khí: mặc vào thì cộng chỉ số. `he` là hệ nguyên tố của đòn đánh
+# (9 hệ ở HE_NGUYEN_TO). Rơi từ quái và bán ở chợ.
+TL_PHAP_BAO = [
+    {"ma": "thanh_moc_kiet", "ten": "Thanh Mộc Kiếm", "he": "moc", "gia": 12,
+     "tan_cong": 3, "bao_kich": 30, "mo_ta": "Kiếm gỗ linh khí, đòn đánh hệ mộc."},
+    {"ma": "huyen_thiet_dao", "ten": "Huyền Thiết Đao", "he": "kim", "gia": 18,
+     "tan_cong": 5, "xuyen_giap": 15, "mo_ta": "Đao nặng, xuyên giáp 15%."},
+    {"ma": "hoa_van_phu", "ten": "Hỏa Vân Chủy", "he": "hoa", "gia": 20,
+     "tan_cong": 4, "chi_mang": 4, "bao_kich": 40, "mo_ta": "Chủy lửa, bạo kích mạnh."},
+    {"ma": "huyen_thuy_cham", "ten": "Huyền Thủy Châm", "he": "thuy", "gia": 22,
+     "tan_cong": 3, "toc_do": 6, "mo_ta": "Châm nước, đánh trước."},
+    {"ma": "thach_giap_thuong", "ten": "Thạch Giáp Thuẫn", "he": "tho", "gia": 16,
+     "tan_cong": 1, "phong_thu": 6, "mo_ta": "Thuẫn đá, phòng thủ cao."},
+    {"ma": "loi_dinh_chuy", "ten": "Lôi Đình Chùy", "he": "loi", "gia": 30,
+     "tan_cong": 7, "xuyen_giap": 25, "mo_ta": "Chùy sấm, xuyên kháng hệ phụ."},
+    {"ma": "phong_van_dai", "ten": "Phong Vân Đái", "he": "phong", "gia": 24,
+     "tan_cong": 3, "toc_do": 10, "bao_kich": 50, "mo_ta": "Đai gió, nhanh và hiểm."},
+    {"ma": "bang_tam_cham", "ten": "Băng Tâm Châm", "he": "bang", "gia": 26,
+     "tan_cong": 5, "chi_mang": 3, "mo_ta": "Châm băng, xuyên kháng."},
+    {"ma": "doc_long_chu", "ten": "Độc Long Châu", "he": "doc", "gia": 28,
+     "tan_cong": 6, "bao_kich": 35, "mo_ta": "Châu độc, sát thương cao."},
+]
+
+# Phù lục dùng được trong một trận, tiêu hao. `sat_thuong` cộng thẳng vào đòn
+# đánh, `he` là hệ để tính khắc chế.
+TL_PHU_LUC = [
+    {"ma": "bao_viem_phu", "ten": "Bạo Viêm Phù", "he": "hoa", "sat_thuong": 14,
+     "mo_ta": "Ném ra một luồng lửa: +14 sát thương hệ hỏa trong trận."},
+    {"ma": "loi_hoa_phu", "ten": "Lôi Hỏa Phù", "he": "loi", "sat_thuong": 18,
+     "mo_ta": "Sấm lửa: +18 sát thương, xuyên kháng."},
+    {"ma": "kim_quang_phu", "ten": "Kim Quang Phù", "he": "kim", "sat_thuong": 12,
+     "mo_ta": "Ánh kim: +12 sát thương hệ kim."},
+]
 
 # Công thức luyện đan. `can` là nguyên liệu, `bac` là tiền, `ti_le` là % thành công.
 TL_CONG_THUC = [
@@ -415,20 +681,14 @@ def tl_dau(state: dict) -> dict:
     }
 
 
-def _ti_le_thang(state: dict, thu: dict) -> int:
-    """Tỉ lệ thắng 0–95: chênh cảnh giới là yếu tố chính, cộng tấn công."""
-    cs = state["chi_so"]
-    bac_minh = CANH_GIOI.index(state["canh_gioi"])
-    chenh = bac_minh - thu["bac"]
-    goc = 50 + chenh * 22 + (cs["tan_cong"] - 5) * 3
-    return max(5, min(95, goc))
+def tl_danh(state: dict, so_hiep: int = 3, dung_buff: str | None = None,
+            dung_phu: str | None = None) -> dict:
+    """Đánh con đang nhắm bằng mô phỏng trận thật.
 
+    Thua thì bị thương (không chết) và KHÔNG gặp lại con đó ngay.
 
-def tl_danh(state: dict, so_hiep: int = 3) -> dict:
-    """Đánh con đang nhắm. Thua thì bị thương, không chết, và KHÔNG gặp lại nó.
-
-    Điểm quan trọng: thua xong thì con đó vào sổ `da_thua`, lượt sau bốc con khác.
-    Người chơi không bao giờ bị kẹt với đúng con mình không đánh lại được.
+    `dung_buff`: "kiem_linh" | "tuyet_co" — ra tay giết chắc trận này (2 lần/chương).
+    `dung_phu`: mã phù lục — cộng sát thương một trận, tiêu hao.
     """
     loi = _tl_kiem_tra(state, "san")
     if loi:
@@ -438,45 +698,119 @@ def tl_danh(state: dict, so_hiep: int = 3) -> dict:
     thu = next((t for t in TL_YEU_THU if t["ma"] == ma), None)
     if thu is None or ma in _tl_con_thua(state):
         thu = _tl_chon_thu(state)
-    ti_le = _ti_le_thang(state, thu)
+
+    # Phù lục: cộng sát thương cho trận này.
+    phu = None
+    if dung_phu:
+        phu = next((x for x in TL_PHU_LUC if x["ma"] == dung_phu), None)
+        if phu is None:
+            return {"loi": "Phù lục không có"}
+        if _tl_co(state, phu["ten"]) < 1:
+            return {"loi": f"Không có {phu['ten']} trong túi"}
+
     _tl_ghi(state, f"đánh {thu['ten']}", TL_VIEC["san"]["ngay"])
-    cs = state["chi_so"]["sinh_luc"]
     dong = []
-    thang = _tl_ngau(state) * 100 < ti_le
-    for i in range(so_hiep):
-        # Mỗi hiệp 1–2 sinh lực. Ba hiệp mất 3–6, một trận cả thua lẫn nghỉ vẫn
-        # đánh tiếp được. Đo: 30 ngày săn thuần lên được tầng 2 ở 33/40 ván.
-        tru = 1 + int(_tl_ngau(state) * 2)
-        cs["hien"] = max(1, cs["hien"] - tru)
-        dong.append(f"Hiệp {i + 1}: ngươi bị cắn, sinh lực -{tru} (còn {cs['hien']})")
-        if cs["hien"] <= cs["max"] * 0.3:
-            break
+    cs_minh = _cs_hieu_dung(state)
+    cs_dich = _cs_cua_thu(thu)
+    if phu:
+        cs_minh = dict(cs_minh)
+        cs_minh["tan_cong"] = cs_minh.get("tan_cong", 0) + phu["sat_thuong"]
+        cs_minh["he"] = phu["he"]
+        _tl_bot(state, phu["ten"], 1)
+        dong.append(f"Ngươi ném {phu['ten']} — +{phu['sat_thuong']} sát thương hệ {phu['he']}")
+
+    # Tuyết Cơ / Kiếm Linh ra tay: giết chắc, trừ một lượt.
+    buff_da_dung = None
+    if dung_buff:
+        bp = _tl_buff(state)
+        if bp.get(dung_buff, 0) <= 0:
+            return {"loi": "Hết lượt ra tay của người bạn đồng hành trong chương này"}
+        buff_da_dung = dung_buff
+        bp[dung_buff] = bp[dung_buff] - 1
+        ten_buff = _TL_BUFF_TEN[dung_buff]
+        tran = {"thang": True, "dong": [], "hiep": 1, "hp_minh": cs_minh["sinh_luc"]["hien"], "hp_dich": 0}
+        dong.append(f"{ten_buff} ra tay. Một đòn, {thu['ten']} gục tại chỗ.")
+    else:
+        hat = _hat_giong(state.get("ten_nhan_vat", ""), 0) + tl.get("luot_ngau", 0) * 2654435761
+        ngau = _ngau_mo_phong(hat)
+        tran = _mo_phong_tran(cs_minh, cs_dich, ngau)
+        dong += tran["dong"]
+
+    thang = tran["thang"]
+    # Sinh lực tiêu theo TỈ LỆ máu đã mất, không gán thẳng máu vào sinh lực:
+    # hai thang đo khác nhau (máu ~ sinh_lực.max × TL_MAU_HE_SO).
+    sl = state["chi_so"]["sinh_luc"]
+    mau_max = max(1, cs_minh.get("mau") or 1)
+    mat = TL_SINH_LUC_SAU_TRAN * (1 - tran["hp_minh"] / mau_max)
+    sl["hien"] = max(1, sl["hien"] - max(1, int(round(mat))))
+
     tb = []
     if thang:
-        _ap_hieu_ung(state, {"them_vat": [{"ten": thu["vat"], "so": thu["so_vat"]}]})
-        tb = _ap_hieu_ung(state, {"tu_vi": thu["tu_vi"]})
-        dong.append(f"— THẮNG: {thu['ten']} gục, {thu['vat']} +{thu['so_vat']}")
+        tb += _ap_hieu_ung(state, {"them_vat": [{"ten": thu["vat"], "so": thu["so_vat"]}]})
+        tb += _ap_hieu_ung(state, {"tu_vi": thu["tu_vi"]})
+        dong.append(f"— THẮNG: {thu['ten']} gục sau {tran['hiep']} hiệp, "
+                    f"{thu['vat']} +{thu['so_vat']}, tu vi +{thu['tu_vi']}")
+        # Yêu vương rơi pháp bảo.
+        if thu["hang"] == "yeu_vuong":
+            pb = TL_PHAP_BAO[min(len(TL_PHAP_BAO) - 1, thu["bac"] - 1)]
+            tb += _ap_hieu_ung(state, {"them_vat": [{"ten": pb["ten"], "so": 1}]})
+            dong.append(f"Đoạt được pháp bảo: {pb['ten']}")
         if thu["ma"] in tl.get("da_thua", []):
             tl["da_thua"].remove(thu["ma"])
         tl["muc_tieu"] = None
     else:
-        mat = 3
-        cs["hien"] = max(1, cs["hien"] - mat)
+        sl["hien"] = max(1, sl["hien"] - 3)
         da_thua = tl.setdefault("da_thua", [])
         if thu["ma"] not in da_thua:
             da_thua.append(thu["ma"])
         tl["muc_tieu"] = None
-        # Thua vẫn được tu vi: sống sót qua một trận là học được điều gì đó. Nếu
-        # không có phần này thì săn cả 30 ngày chỉ được ~19 tu vi (cần 100) và
-        # người chơi kẹt ở tầng 1 mãi.
-        tb = _ap_hieu_ung(state, {"tu_vi": TL_TU_VI_THUA})
-        dong.append(f"— THUA: bị thương, sinh lực -{mat}, tu vi +{TL_TU_VI_THUA}. "
-                    "Lượt sau sẽ gặp con khác.")
+        tb += _ap_hieu_ung(state, {"tu_vi": TL_TU_VI_THUA})
+        dong.append(f"— THUA: bị thương, tu vi +{TL_TU_VI_THUA}. Lượt sau sẽ gặp con khác.")
+
     goi_y = _tl_chon_thu(state)
     return {"ok": True, "thang": thang, "dong": dong,
             "thong_bao": tb, "chi_so": _tl_chi_so(state),
+            "buff_da_dung": buff_da_dung,
             "muc_tieu_sau": {"ten": goi_y["ten"], "hang": goi_y["hang"],
                              "ti_le": _ti_le_thang(state, goi_y)}}
+
+
+def danh_nhan_vat(state: dict, doi_thu: dict) -> dict:
+    """Đánh một NHÂN VẬT có chỉ số đầy đủ (tà tu), không phải quái cày.
+
+    Dùng đúng công thức của `tl_danh`, nhưng đối thủ không lấy từ bảng săn. Nhờ
+    vậy pháp bảo, phù lục, khắc hệ và từng chỉ số đều tính — đúng ý "nếu cùng
+    tầng 5 thì căn cứ vào chỉ số và pháp bảo để quyết thắng thua".
+    """
+    cs_minh = _cs_hieu_dung(state)
+    cs_dich = _cs_cua_thu(doi_thu)
+    # Dùng phù lục nếu có: ném hết một cái cho trận này.
+    phu_da_dung = None
+    for phu in TL_PHU_LUC:
+        if _tl_co(state, phu["ten"]) >= 1:
+            phu_da_dung = phu
+            _tl_bot(state, phu["ten"], 1)
+            cs_minh = dict(cs_minh)
+            cs_minh["tan_cong"] = cs_minh.get("tan_cong", 0) + phu["sat_thuong"]
+            cs_minh["he"] = phu["he"]
+            break
+    hat = _hat_giong("nhv|" + doi_thu["ma"] + "|" + state.get("canh_gioi", ""), 0)
+    tran = _mo_phong_tran(cs_minh, cs_dich, _ngau_mo_phong(hat))
+    dong = []
+    if phu_da_dung:
+        dong.append(f"Ngươi ném {phu_da_dung['ten']} — +{phu_da_dung['sat_thuong']} sát thương")
+    dong += tran["dong"]
+    sl = state["chi_so"]["sinh_luc"]
+    mau_max = max(1, cs_minh.get("mau") or 1)
+    mat = TL_SINH_LUC_SAU_TRAN * (1 - tran["hp_minh"] / mau_max)
+    sl["hien"] = max(1, sl["hien"] - max(1, int(round(mat))))
+    return {"ok": True, "thang": tran["thang"], "dong": dong, "hiep": tran["hiep"],
+            "phu_da_dung": phu_da_dung["ten"] if phu_da_dung else None}
+
+
+def tl_ta_tu_ti_le(state: dict) -> int:
+    """Tỉ lệ thắng tà tu — để hiện cho người chơi biết trước khi liều."""
+    return _ti_le_thang(state, TL_TA_TU)
 
 
 def tl_cong_thuc(state: dict) -> list[dict]:
@@ -512,22 +846,90 @@ def tl_luyen_dan(state: dict, ma: str) -> dict:
     state["bac"] -= ct["bac"]
     _tl_ghi(state, f"luyện {ct['ten']}", ct["ngay"])
     if _tl_ngau(state) * 100 < ct["ti_le"]:
-        tb = []
-        hieu = {}
-        if "tu_vi" in ct:
-            hieu["tu_vi"] = ct["tu_vi"]
-        if "sinh_luc" in ct:
-            hieu["sinh_luc"] = ct["sinh_luc"]
-        hieu["them_vat"] = [{"ten": ct["ten"], "so": 1}]
-        tb += _ap_hieu_ung(state, hieu)
+        # Ra lò thì đan NẰM TRONG TÚI, chưa cộng gì. Phải uống mới có tác dụng
+        # (tl_uong) — trước đây ra lò là cộng tu vi ngay, không mang theo được.
+        _nhan_vat(state, {"ten": ct["ten"], "so": 1, "mo_ta": ct.get("mo_ta", "")})
         return {"ok": True, "thanh_cong": True,
-                "thong_bao": [f"Ra lò {ct['ten']}!"] + tb, "chi_so": _tl_chi_so(state)}
+                "thong_bao": [f"Ra lò {ct['ten']}! Đan đã vào túi — uống mới có tác dụng."],
+                "chi_so": _tl_chi_so(state)}
     return {"ok": True, "thanh_cong": False,
             "thong_bao": [f"Mẻ {ct['ten']} hỏng — mất nguyên liệu"], "chi_so": _tl_chi_so(state)}
 
 
+def _tl_dan_theo_ten(ten: str) -> dict | None:
+    return next((c for c in TL_CONG_THUC if c["ten"] == ten), None)
+
+
+def tl_uong(state: dict, ten: str) -> dict:
+    """Uống một đan trong túi. Đan mất, hiệu ứng áp ngay."""
+    ct = _tl_dan_theo_ten(ten)
+    if ct is None:
+        return {"loi": f"{ten} không phải đan uống được"}
+    if _tl_co(state, ten) < 1:
+        return {"loi": f"Không có {ten} trong túi"}
+    _tl_bot(state, ten, 1)
+    hieu = {}
+    if "tu_vi" in ct:
+        hieu["tu_vi"] = ct["tu_vi"]
+    if "sinh_luc" in ct:
+        hieu["sinh_luc"] = ct["sinh_luc"]
+    tb = [f"Uống {ten}."] + _ap_hieu_ung(state, hieu or None)
+    _ghi_nhat_ky(state, f"uống {ten}")
+    return {"ok": True, "thong_bao": tb, "chi_so": _tl_chi_so(state)}
+
+
+def tl_dan_uong_duoc(state: dict) -> list[dict]:
+    """Đan trong túi uống được, kèm tác dụng để hiện nút."""
+    ra = []
+    for ct in TL_CONG_THUC:
+        so = _tl_co(state, ct["ten"])
+        if so > 0:
+            ra.append({"ten": ct["ten"], "so": so, "ma": ct["ma"],
+                       "tu_vi": ct.get("tu_vi", 0), "sinh_luc": ct.get("sinh_luc", 0),
+                       "mo_ta": ct.get("mo_ta", "")})
+    return ra
+
+
+def tl_phap_bao_co(state: dict) -> list[dict]:
+    """Pháp bảo đang có trong túi."""
+    ra = []
+    for pb in TL_PHAP_BAO:
+        so = _tl_co(state, pb["ten"])
+        if so > 0:
+            ra.append(dict(pb, so=so))
+    return ra
+
+
+def tl_mac(state: dict, ma: str) -> dict:
+    """Mặc pháp bảo theo mã. Mã rỗng = tháo ra."""
+    bp = state.setdefault("trang_bi", {})
+    if not ma:
+        bp["phap_bao"] = None
+        return {"ok": True, "thong_bao": ["Đã tháo pháp bảo"], "chi_so": _tl_chi_so(state)}
+    pb = next((x for x in TL_PHAP_BAO if x["ma"] == ma), None)
+    if pb is None:
+        return {"loi": "Pháp bảo không có"}
+    if _tl_co(state, pb["ten"]) < 1:
+        return {"loi": f"Không có {pb['ten']} trong túi"}
+    bp["phap_bao"] = ma
+    _ghi_nhat_ky(state, f"mặc {pb['ten']}")
+    return {"ok": True, "thong_bao": [f"Đã mặc {pb['ten']}"], "chi_so": _tl_chi_so(state)}
+
+
+def tl_phap_bao_dang_mac(state: dict) -> dict | None:
+    ma = (state.get("trang_bi") or {}).get("phap_bao")
+    if not ma:
+        return None
+    return next((dict(x) for x in TL_PHAP_BAO if x["ma"] == ma), None)
+
+
 def tl_cho(state: dict) -> list[dict]:
-    return [dict(h) for h in TL_CHO_HANG]
+    """Hàng chợ: nguyên liệu, đồ ăn, và pháp bảo bán sẵn."""
+    ra = [dict(h) for h in TL_CHO_HANG]
+    for pb in TL_PHAP_BAO:
+        ra.append({"ma": pb["ma"], "ten": pb["ten"], "gia": pb["gia"], "so": 1,
+                   "mo_ta": pb["mo_ta"], "la_phap_bao": True})
+    return ra
 
 
 def tl_mua(state: dict, ma: str) -> dict:
@@ -757,6 +1159,8 @@ def trang_thai_moi(ten_nhan_vat: str, xuat_than: str = "", nhom: str = "") -> di
             {"ten": "Bạc vụn", "so": dau["bac"], "mo_ta": "Tiền tệ nơi phàm trần."},
         ],
         "ky_nang": list(dau["ky_nang"]),
+        "trang_bi": {"phap_bao": None},
+        "buff": {"kiem_linh": TL_BUFF_MOI_CHUONG, "tuyet_co": TL_BUFF_MOI_CHUONG},
         "co_su_kien": [],
         "npc": {},
         "nhat_ky": [],
@@ -789,6 +1193,14 @@ def kiem_chuong(data: dict) -> list[str]:
     co = set(ids)
     for d in data.get("doan") or []:
         for lc in d.get("lua_chon") or []:
+            # Lựa chọn có `tran_dau` thì rẽ theo thắng/thua, không có `den`.
+            tran = lc.get("tran_dau")
+            if tran:
+                for khoa in ("thang", "thua"):
+                    if tran.get(khoa) not in co:
+                        loi.append(f"{d.get('id')} → tran_dau.{khoa} "
+                                   f"'{tran.get(khoa)}' không có đoạn này")
+                continue
             den = lc.get("den")
             if den != "__ket_thuc__" and den not in co:
                 loi.append(f"{d.get('id')} → '{den}' không có đoạn này")
@@ -1116,6 +1528,10 @@ def sang_chuong(state: dict, so: int | None = None) -> dict:
     tl = _tl(state)
     tl["ngay_con"] = NGAY_MOI_CHUONG
     tl["nhat_ky"].append(f"— Chương {so}: ngày mới, {NGAY_MOI_CHUONG} ngày —")
+    # Bạn đồng hành được ra tay lại ở chương mới: 2 lần mỗi chương.
+    bp = _tl_buff(state)
+    for k in bp:
+        bp[k] = TL_BUFF_MOI_CHUONG
     _ghi_nhat_ky(state, f"Sang chương {so}")
     kq = _goi_y(state)
     kq["thong_bao"] = [f"— Chương {so}: {load_chuong(so)['ten']} —"]
@@ -1275,8 +1691,22 @@ def chon(state: dict, chi_so: int) -> dict:
 
     tb = _ap_hieu_ung(state, lc.get("hieu_ung"))
     _ghi_nhat_ky(state, f"Chọn: {lc['chu']}")
-    _chuyen_doan(state, lc["den"])
 
+    tran = lc.get("tran_dau")
+    if tran:
+        # Lựa chọn dẫn vào một trận đánh thật. Thắng/thua rẽ sang hai đoạn khác
+        # nhau, nên KHÔNG đi thẳng tới `den`.
+        doi_thu = TL_TA_TU if tran.get("doi_thu") == TL_TA_TU["ma"] else None
+        if doi_thu is None:
+            return {"loi": f"Không tìm thấy đối thủ {tran.get('doi_thu')}"}
+        kq_tran = danh_nhan_vat(state, doi_thu)
+        _chuyen_doan(state, tran["thang"] if kq_tran["thang"] else tran["thua"])
+        ket_qua = _goi_y(state)
+        ket_qua["thong_bao"] = tb
+        ket_qua["tran"] = kq_tran
+        return ket_qua
+
+    _chuyen_doan(state, lc["den"])
     ket_qua = _goi_y(state)
     ket_qua["thong_bao"] = tb
     return ket_qua

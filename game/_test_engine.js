@@ -394,7 +394,13 @@ const doan_truoc = o.doan_hien_tai;
   const thuaIds = ch2.doan.filter(d => d.thua).map(d => d.id);
   const toiDuoc = new Set();
   for (const d of ch2.doan) {
-    for (const l of d.lua_chon || []) if (l.den !== "__ket_thuc__") toiDuoc.add(l.den);
+    for (const l of d.lua_chon || []) {
+      // Nhánh thua của một trận (`tran_dau`) là đường vào hợp lệ.
+      if (l.tran_dau) {
+        toiDuoc.add(l.tran_dau.thang);
+        toiDuoc.add(l.tran_dau.thua);
+      } else if (l.den !== "__ket_thuc__") toiDuoc.add(l.den);
+    }
   }
   check("mọi đoạn kết thua đều có đường vào", thuaIds.filter(x => !toiDuoc.has(x)), []);
 
@@ -631,9 +637,15 @@ const doan_truoc = o.doan_hien_tai;
     check(`${ten}: không có hai lựa chọn cùng đích`, trung, []);
 
     const ids = new Set(du.doan.map((d) => d.id));
-    const thieu = [...new Set(
-      du.doan.flatMap((d) => (d.lua_chon || []).map((lc) => lc.den))
-        .filter((den) => den !== "__ket_thuc__" && !ids.has(den)))];
+    const dich = [];
+    for (const d of du.doan) {
+      for (const lc of d.lua_chon || []) {
+        if (lc.tran_dau) {
+          dich.push(lc.tran_dau.thang, lc.tran_dau.thua);
+        } else dich.push(lc.den);
+      }
+    }
+    const thieu = [...new Set(dich.filter((den) => den !== "__ket_thuc__" && !ids.has(den)))];
     check(`${ten}: mọi đích đều tồn tại`, thieu, []);
 
     const ngan = du.doan.filter((d) => (d.ke || "").length < 300).map((d) => d.id);
@@ -649,6 +661,10 @@ const doan_truoc = o.doan_hien_tai;
       thay.add(x);
       const d = du.doan.find((y) => y.id === x);
       for (const lc of d.lua_chon || []) {
+        if (lc.tran_dau) {
+          hang.push(lc.tran_dau.thang, lc.tran_dau.thua);
+          continue;
+        }
         if (lc.den !== "__ket_thuc__") hang.push(lc.den);
       }
     }
@@ -922,12 +938,15 @@ const doan_truoc = o.doan_hien_tai;
     const s = stTL();
     s.canh_gioi = "Luyện Khí tầng 1";
     let coYeuVuong = false;
-    for (let i = 0; i < 40; i++) {
+    // 40 lần là quá ít: yêu vương chỉ chiếm ~8% số trận, 40 lần vẫn có ~4% khả
+    // năng không gặp con nào — test chập chờn. 300 lần thì gần như chắc chắn gặp.
+    for (let i = 0; i < 300; i++) {
       s.tu_luyen.muc_tieu = null;
       const x = Engine.tl_dau(s);
       if (!x.loi && x.tran.hang === "yeu_vuong") coYeuVuong = true;
     }
-    check("tầng 1: KHÔNG gặp yêu vương", coYeuVuong, false);
+    // Người dùng chốt: bỏ ngưỡng cảnh giới — tầng nào cũng có cơ hội gặp yêu vương.
+    check("tầng 1: CÓ gặp yêu vương (bỏ ngưỡng)", coYeuVuong, true);
   }
 
   // Đấu pháp: tỉ lệ thắng phải nằm trong 5–95 và hiện được trước khi đánh.
@@ -935,7 +954,9 @@ const doan_truoc = o.doan_hien_tai;
     const s = stTL();
     const r = Engine.tl_dau(s);
     check("xem trận không trả lỗi", !!r.loi, false);
-    check("tỉ lệ thắng trong 5–95", r.tran.ti_le >= 5 && r.tran.ti_le <= 95, true);
+    // Tỉ lệ giờ là KẾT QUẢ MÔ PHỎNG THẬT, không phải công thức kẹp 5–95:
+    // yếu hẳn thì 0%, mạnh hẳn thì 100% — đó là thông tin đúng, không phải lỗi.
+    check("tỉ lệ thắng là số thật 0–100", r.tran.ti_le >= 0 && r.tran.ti_le <= 100, true);
     check("xem trận KHÔNG trừ ngày", s.tu_luyen.ngay_con, 30);
     check("xem trận KHÔNG đổi sinh lực", s.chi_so.sinh_luc.hien, s.chi_so.sinh_luc.max);
   }

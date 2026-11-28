@@ -1586,3 +1586,75 @@ Người dùng chọn **A + C**: sang chương giữ nguyên nhân vật, và n�
 **Báo cáo cho người dùng:** `docs/nhap/ket-qua-a-c.html` + 3 ảnh JPEG
 (`a-c-man-ket.jpg`, `a-c-nut-sang.jpg`, `a-c-sang-chuong-2.jpg`). Đo 320/390/768: không
 tràn ngang, ảnh tải đủ.
+
+---
+
+## 2026-11-17 — Hệ thống chiến đấu: 4 lớp chỉ số, pháp bảo, phù lục, tà tu
+
+Người dùng yêu cầu trận đánh "có chiều sâu" thay vì chỉ một phép so sánh. Đã dựng lại
+toàn bộ đường đánh, và **bỏ ngưỡng cảnh giới** khi gặp tinh anh / yêu vương.
+
+**Bốn lớp chỉ số (thay cho một `tan_cong`):**
+
+| Lớp | Vai trò |
+|---|---|
+| `tan_cong` / `phong_thu` | sát thương cơ bản |
+| `xuyen_giap` | bỏ qua một phần phòng thủ địch |
+| `toc_do` | quyết định ai đánh trước mỗi hiệp |
+| `mau` = `sinh_luc × TL_MAU_HE_SO (6)` | máu trong trận |
+
+**Nguyên tắc đã sửa:** `sinh_luc` là **sức lao động** (đả tọa, luyện đan tốn nó), **không
+phải máu trận đấu**. Trước đây `tl_danh` gán thẳng HP trận vào `sinh_luc` — sai. Nay trừ
+theo **tỉ lệ HP đã mất** (`TL_SINH_LUC_SAU_TRAN = 5`), sàn 1, mất ít nhất 1.
+
+**Cơ chế mới thêm:**
+
+- `TL_YEU_THU` — 10 yêu thú, 3 hạng (thường / tinh anh / yêu vương), mỗi con có hệ và
+  nguyên liệu rơi riêng.
+- `KHAC_CHE` — bảng khắc chế hệ (kim→mộc→thổ→thủy→hỏa→kim), nhân sát thương.
+- `TL_PHAP_BAO` — 2 pháp bảo mặc được; `tl_mac()` gắn/tháo, chỉ số cộng vào
+  `_cs_hieu_dung()`.
+- `TL_PHU_LUC` — phù lục dùng **một lần**, cộng sát thương hiệp đầu.
+- `TL_TA_TU` — nhánh tà tu: thắng nhanh hơn nhưng bị phản phệ.
+- Buff đồng hành (`kiem_linh` / `tuyet_co`), 2 lượt mỗi chương, thắng chắc một trận.
+- `tran_dau: {thang, thua}` trong dữ liệu truyện — thua trận đi nhánh riêng, không
+  `den: null`. `kiem_chuong()` và `chon()` hai bản đều hiểu.
+
+**Lỗi tự tìm ra trong phiên (đáng nhớ):**
+
+1. **Hàm cũ ghi đè hàm mới (JS)** — `_ti_le_thang` được viết lại bằng mô phỏng thật, nhưng
+   bản công thức cũ `50 + chenh*22 + ...` vẫn còn **phía sau** trong cùng file, nên
+   JavaScript lấy bản sau. Triệu chứng: mặc Huyền Thiết Đao, `tan_cong` 3→8, tỉ lệ **vẫn
+   22%**. Đếm trực tiếp 200 trận ra 56% — chứng minh hàm trả số khác. Đã xoá bản cũ.
+   *Bài học: khi port, phải `grep` tên hàm sau khi sửa, không chỉ sửa chỗ mình thấy.*
+2. `Engine.tl_co` không tồn tại (tên thật `_tl_co`) — UI `play.html` chết màn săn.
+   Phát hiện nhờ bắt `pageerror` của Playwright, không phải nhìn màn hình.
+3. `_nhan_vat` không tồn tại — phải dùng `_ap_hieu_ung(state, {them_vat: [...]})`.
+4. Test "tầng 1 gặp yêu vương" chập chờn: yêu vương chỉ ~8% số trận, 40 lần thử vẫn có
+   ~4% không gặp. Tăng lên 300 lần.
+
+**Đo được (Python và JS khớp tuyệt đối):**
+
+| Cảnh giới | Sơn Trư | Dã Lang | Bạch Lang Vương |
+|---|---|---|---|
+| Tầng 1 | 56% | 0% | 0% |
+| Tầng 5 | 100% | 100% | 50% |
+
+Hạt giống FNV-1a và LCG: `0.568700356176`, `0.590531152673` — hai bản ra **cùng dãy số**.
+Tà tu tầng 5: Python 44%, JS 46% (khác hạt giống mô phỏng, cùng mức).
+
+**Giao diện mới (`docs/game/play.html`):**
+
+- Màn săn có khối **Pháp bảo** (chip chọn/tháo), **Phù lục** (chọn 1 tấm), **người bạn
+  đồng hành** (kèm số lượt còn lại). Chọn xong thì xoá sau trận.
+- Màn **Uống đan** (0 ngày) trong động phủ — đan luyện ra nằm trong túi, uống mới có tác
+  dụng. Trước đây luyện xong là mất hút.
+- `TL_VIEC` thêm `uong_dan`, tự disable khi túi không có đan.
+
+**Test:** `game/_test_engine.js` **277 đạt / 0 hỏng**; `game/_test_api.py` **350 đạt**
+(còn 1 đỏ là chốt bàn giao — chính phiên này giải).
+
+**Kiểm bằng trình duyệt (máy ảo 390×844, Playwright + chromium):** vào game → tu luyện →
+săn → nhờ Kiếm Linh ra tay → **thắng 1 đòn**, lượt 2→1 → nhắm con mới. Uống Tụ Khí Đan
+×2 → còn ×1, tu vi +15. Mặc Huyền Thiết Đao → tỉ lệ đổi từ 22% lên đúng theo chỉ số mới.
+**0 lỗi console.**

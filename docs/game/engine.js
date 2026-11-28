@@ -42,30 +42,334 @@
     luyen_dan: { ten: "Luyện đan", ngay: 1 },
     cho: { ten: "Đi chợ", ngay: 1 },
     do_la: { ten: "Dò la", ngay: 2 },
+    uong_dan: { ten: "Uống đan", ngay: 0 },
   };
 
   // 8 chỉ cho 80 tu vi trong 30 ngày, mà cần 88 để lên tầng 2. 12 cho 120.
   const TL_TU_VI_DA_TOA = 12;
 
   const TL_YEU_THU = [
-    { ma: "son_tru", ten: "Sơn Trư", hang: "thuong", bac: 1, vat: "Nanh sói", so_vat: 1, tu_vi: 14, nguy_hiem: 25 },
-    { ma: "thanh_xa", ten: "Thanh Xà", hang: "thuong", bac: 1, vat: "Mật xà", so_vat: 1, tu_vi: 14, nguy_hiem: 30 },
-    { ma: "bach_tho", ten: "Bạch Thố Tinh", hang: "thuong", bac: 1, vat: "Linh thảo", so_vat: 2, tu_vi: 12, nguy_hiem: 15 },
-    { ma: "da_lang", ten: "Dã Lang", hang: "thuong", bac: 2, vat: "Nanh sói", so_vat: 2, tu_vi: 16, nguy_hiem: 35 },
-    { ma: "hac_thu", ten: "Hắc Thử", hang: "thuong", bac: 1, vat: "Bạc vụn", so_vat: 2, tu_vi: 12, nguy_hiem: 20 },
-    { ma: "hac_lang", ten: "Hắc Lang Tinh Anh", hang: "tinh_anh", bac: 3, vat: "Nanh sói", so_vat: 3, tu_vi: 26, nguy_hiem: 40 },
-    { ma: "thiet_giap", ten: "Thiết Giáp Thử", hang: "tinh_anh", bac: 3, vat: "Mật xà", so_vat: 2, tu_vi: 26, nguy_hiem: 40 },
-    { ma: "xich_vien", ten: "Xích Viên Tinh Anh", hang: "tinh_anh", bac: 4, vat: "Linh thảo", so_vat: 3, tu_vi: 30, nguy_hiem: 45 },
-    { ma: "bach_lang_vuong", ten: "Bạch Lang Yêu Vương", hang: "yeu_vuong", bac: 5, vat: "Nanh sói", so_vat: 5, tu_vi: 48, nguy_hiem: 55 },
-    { ma: "hac_xa_vuong", ten: "Hắc Xà Yêu Vương", hang: "yeu_vuong", bac: 6, vat: "Mật xà", so_vat: 5, tu_vi: 56, nguy_hiem: 60 },
+    // --- Thường: vào được ngay từ Luyện Khí tầng 1 ---
+    { ma: "son_tru", ten: "Sơn Trư", hang: "thuong", bac: 1, vat: "Nanh sói", so_vat: 1,
+      tu_vi: 14, nguy_hiem: 25, he: "tho", sinh_luc: 22, tan_cong: 4, phong_thu: 2, toc_do: 8 },
+    { ma: "thanh_xa", ten: "Thanh Xà", hang: "thuong", bac: 1, vat: "Mật xà", so_vat: 1,
+      tu_vi: 14, nguy_hiem: 30, he: "doc", sinh_luc: 32, tan_cong: 3, phong_thu: 1, toc_do: 12 },
+    { ma: "bach_tho", ten: "Bạch Thố Tinh", hang: "thuong", bac: 1, vat: "Linh thảo", so_vat: 2,
+      tu_vi: 12, nguy_hiem: 15, he: "moc", sinh_luc: 30, tan_cong: 2, phong_thu: 2, toc_do: 14 },
+    { ma: "da_lang", ten: "Dã Lang", hang: "thuong", bac: 2, vat: "Nanh sói", so_vat: 2,
+      tu_vi: 16, nguy_hiem: 35, he: "phong", sinh_luc: 42, tan_cong: 4, phong_thu: 3, toc_do: 13 },
+    { ma: "hac_thu", ten: "Hắc Thử", hang: "thuong", bac: 1, vat: "Bạc vụn", so_vat: 2,
+      tu_vi: 12, nguy_hiem: 20, he: "doc", sinh_luc: 22, tan_cong: 4, phong_thu: 1, toc_do: 15 },
+    // --- Tinh anh: gặp được từ tầng 1, nhưng chỉ nên đánh khi đã khá. ---
+    { ma: "hac_lang", ten: "Hắc Lang Tinh Anh", hang: "tinh_anh", bac: 3, vat: "Nanh sói", so_vat: 3,
+      tu_vi: 26, nguy_hiem: 40, he: "phong", sinh_luc: 18, tan_cong: 8, phong_thu: 3, toc_do: 14 },
+    { ma: "thiet_giap", ten: "Thiết Giáp Thử", hang: "tinh_anh", bac: 3, vat: "Mật xà", so_vat: 2,
+      tu_vi: 26, nguy_hiem: 40, he: "kim", sinh_luc: 16, tan_cong: 9, phong_thu: 7, toc_do: 9 },
+    { ma: "xich_vien", ten: "Xích Viên Tinh Anh", hang: "tinh_anh", bac: 4, vat: "Linh thảo", so_vat: 4,
+      tu_vi: 30, nguy_hiem: 45, he: "hoa", sinh_luc: 32, tan_cong: 8, phong_thu: 4, toc_do: 13 },
+    // --- Yêu vương: thưởng lớn, đánh rất khó. Chỉ thắng được khi đã tầng 5-6
+    //     hoặc có pháp bảo tốt / dùng Tuyết Cơ - Kiếm Linh. ---
+    { ma: "bach_lang_vuong", ten: "Bạch Lang Yêu Vương", hang: "yeu_vuong", bac: 5,
+      vat: "Nanh sói", so_vat: 6, tu_vi: 95, nguy_hiem: 55,
+      he: "phong", sinh_luc: 52, tan_cong: 10, phong_thu: 6, toc_do: 16, bao_kich: 80 },
+    { ma: "hac_xa_vuong", ten: "Hắc Xà Yêu Vương", hang: "yeu_vuong", bac: 6,
+      vat: "Mật xà", so_vat: 5, tu_vi: 105, nguy_hiem: 60,
+      he: "doc", sinh_luc: 50, tan_cong: 10, phong_thu: 7, toc_do: 15, bao_kich: 90 },
   ];
+
+  // Tà tu phong toả Thái Nam Cốc (chương 2, ngày cuối). Không nằm trong vòng săn
+  // thường — hắn có chỉ số đầy đủ như người chơi, nên trận được tính bằng cách so
+  // từng chỉ số chứ không chỉ so bậc cảnh giới.
+  const TL_TA_TU = {
+    ma: "ta_tu_tang5", ten: "Tà tu áo xám", hang: "ta_tu", bac: 5,
+    he: "kim", sinh_luc: 98, tan_cong: 6, phong_thu: 6, toc_do: 12,
+    bao_kich: 70, chi_mang: 3, xuyen_giap: 10,
+    vat: "Phù lục chưa dùng", so_vat: 1, tu_vi: 80,
+  };
 
   // Tu vi khi THUA: cọ xát cũng ngộ đạo, nhưng ít hơn thắng nhiều. Nếu không có
   // phần này thì săn cả 30 ngày chỉ được ~19 tu vi (cần 100) và kẹt ở tầng 1.
   const TL_TU_VI_THUA = 7;
 
   const TL_GAP = { thuong: 62, tinh_anh: 30, yeu_vuong: 8 };
-  const TL_NGUONG = { thuong: 0, tinh_anh: 2, yeu_vuong: 4 };
+  // Người dùng chốt: bỏ ngưỡng — tầng nào cũng có cơ hội gặp tinh anh/yêu vương.
+  const TL_NGUONG = { thuong: 0, tinh_anh: 0, yeu_vuong: 0 };
+
+  // ---------------------------------------------------------------- chiến đấu
+  //
+  // 5 hệ chính khắc vòng tròn: kim → mộc → thổ → thủy → hỏa → kim.
+  // 4 hệ phụ không khắc ai nhưng xuyên kháng (kháng địch chỉ còn nửa).
+  const KHAC_CHE = { kim: "moc", moc: "tho", tho: "thuy", thuy: "hoa", hoa: "kim" };
+  const HE_PHU = ["loi", "phong", "bang", "doc"];
+
+  const TL_SAT_THUONG_K = 4;
+  // Máu chiến đấu TÁCH KHỎI sinh lực. Gộp hai thứ làm một thì trận nào cũng chỉ
+  // hai đòn là xong — mọi tỉ lệ thắng nhảy 0% hoặc 100%.
+  const TL_MAU_HE_SO = 6;
+  const TL_SINH_LUC_SAU_TRAN = 5;
+  const TL_SO_HIEP_TOI_DA = 30;
+
+  // Người bạn đồng hành ra tay. Mỗi chương 2 lần, giết chắc một con.
+  // Tán tu → Kiếm Linh, môn phái → Tuyết Cơ (chương 2 viết hai nhánh riêng).
+  const TL_BUFF_MOI_CHUONG = 2;
+  const _TL_BUFF_TEN = { kiem_linh: "Kiếm Linh", tuyet_co: "Tuyết Cơ" };
+
+  const TL_PHAP_BAO = [
+    { ma: "thanh_moc_kiet", ten: "Thanh Mộc Kiếm", he: "moc", gia: 12,
+      tan_cong: 3, bao_kich: 30, mo_ta: "Kiếm gỗ linh khí, đòn đánh hệ mộc." },
+    { ma: "huyen_thiet_dao", ten: "Huyền Thiết Đao", he: "kim", gia: 18,
+      tan_cong: 5, xuyen_giap: 15, mo_ta: "Đao nặng, xuyên giáp 15%." },
+    { ma: "hoa_van_phu", ten: "Hỏa Vân Chủy", he: "hoa", gia: 20,
+      tan_cong: 4, chi_mang: 4, bao_kich: 40, mo_ta: "Chủy lửa, bạo kích mạnh." },
+    { ma: "huyen_thuy_cham", ten: "Huyền Thủy Châm", he: "thuy", gia: 22,
+      tan_cong: 3, toc_do: 6, mo_ta: "Châm nước, đánh trước." },
+    { ma: "thach_giap_thuong", ten: "Thạch Giáp Thuẫn", he: "tho", gia: 16,
+      tan_cong: 1, phong_thu: 6, mo_ta: "Thuẫn đá, phòng thủ cao." },
+    { ma: "loi_dinh_chuy", ten: "Lôi Đình Chùy", he: "loi", gia: 30,
+      tan_cong: 7, xuyen_giap: 25, mo_ta: "Chùy sấm, xuyên kháng hệ phụ." },
+    { ma: "phong_van_dai", ten: "Phong Vân Đái", he: "phong", gia: 24,
+      tan_cong: 3, toc_do: 10, bao_kich: 50, mo_ta: "Đai gió, nhanh và hiểm." },
+    { ma: "bang_tam_cham", ten: "Băng Tâm Châm", he: "bang", gia: 26,
+      tan_cong: 5, chi_mang: 3, mo_ta: "Châm băng, xuyên kháng." },
+    { ma: "doc_long_chu", ten: "Độc Long Châu", he: "doc", gia: 28,
+      tan_cong: 6, bao_kich: 35, mo_ta: "Châu độc, sát thương cao." },
+  ];
+
+  // Phù lục dùng được một trận, tiêu hao.
+  const TL_PHU_LUC = [
+    { ma: "bao_viem_phu", ten: "Bạo Viêm Phù", he: "hoa", sat_thuong: 14,
+      mo_ta: "Ném ra một luồng lửa: +14 sát thương hệ hỏa trong trận." },
+    { ma: "loi_hoa_phu", ten: "Lôi Hỏa Phù", he: "loi", sat_thuong: 18,
+      mo_ta: "Sấm lửa: +18 sát thương, xuyên kháng." },
+    { ma: "kim_quang_phu", ten: "Kim Quang Phù", he: "kim", sat_thuong: 12,
+      mo_ta: "Ánh kim: +12 sát thương hệ kim." },
+  ];
+
+  function _he_he_so(he_tc, he_pt) {
+    if (!he_tc || !he_pt) return 1;
+    if (KHAC_CHE[he_tc] === he_pt) return 1.5;
+    if (KHAC_CHE[he_pt] === he_tc) return 0.8;
+    return 1;
+  }
+
+  // Sát thương một đòn: công, kháng hệ, phòng thủ (xuyên giáp), khắc hệ.
+  function _sat_thuong(cs_tc, cs_pt, he_tc) {
+    const he_pt = cs_pt.he || "";
+    const cong_phep = cs_tc.tan_cong_phep || {};
+    let goc = ((cs_tc.tan_cong || 0) + (cong_phep[he_tc] || 0)) * TL_SAT_THUONG_K;
+    let khang = (cs_pt.khang_phep || {})[he_tc] || 0;
+    if (HE_PHU.indexOf(he_tc) >= 0) khang = khang / 2;
+    goc *= (100 - Math.min(80, khang)) / 100;
+    // Phòng thủ giảm theo tỉ lệ; trừ thẳng thì đòn nhỏ luôn về 1.
+    const pt = (cs_pt.phong_thu || 0) * (1 - (cs_tc.xuyen_giap || 0) / 100);
+    goc *= 100 / (100 + pt * 10);
+    goc *= _he_he_so(he_tc, he_pt);
+    return Math.max(1, Math.round(goc));
+  }
+
+  function _danh_mot_don(cs_tc, cs_pt, ngau) {
+    const he = cs_tc.he || cs_tc.he_tan_cong || "";
+    let st = _sat_thuong(cs_tc, cs_pt, he);
+    if (ngau() * 1000 < (cs_tc.bao_kich || 0)) {
+      st = st * 2 + (cs_tc.chi_mang || 0);
+    }
+    return st;
+  }
+
+  // Mô phỏng trận tới khi một bên gục. Không ai chết: máu 0 là bị thương nặng.
+  function _mo_phong_tran(cs_minh, cs_dich, ngau) {
+    let hp_minh = cs_minh.mau || cs_minh.sinh_luc.max * TL_MAU_HE_SO;
+    let hp_dich = cs_dich.mau || cs_dich.sinh_luc.max;
+    const max_minh = Math.max(1, hp_minh);
+    const max_dich = Math.max(1, hp_dich);
+    const dong = [];
+    const minh_truoc = (cs_minh.toc_do || 0) >= (cs_dich.toc_do || 0);
+    let hiep = 0;
+    while (hp_minh > 0 && hp_dich > 0 && hiep < TL_SO_HIEP_TOI_DA) {
+      hiep += 1;
+      const thu_tu = minh_truoc ? ["minh", "dich"] : ["dich", "minh"];
+      for (const ben of thu_tu) {
+        if (hp_minh <= 0 || hp_dich <= 0) break;
+        if (ben === "minh") {
+          const st = _danh_mot_don(cs_minh, cs_dich, ngau);
+          hp_dich -= st;
+          dong.push(`Hiệp ${hiep}: ngươi đánh trúng, ${st} sát thương (địch còn ${Math.max(0, hp_dich)})`);
+        } else {
+          const st = _danh_mot_don(cs_dich, cs_minh, ngau);
+          hp_minh -= st;
+          dong.push(`Hiệp ${hiep}: địch đánh trúng, ${st} sát thương (ngươi còn ${Math.max(0, hp_minh)})`);
+        }
+      }
+    }
+    let thang;
+    if (hp_dich <= 0) thang = true;
+    else if (hp_minh <= 0) thang = false;
+    else thang = (hp_minh / max_minh) > (hp_dich / max_dich);
+    return { thang, dong, hiep, hp_minh: Math.max(0, hp_minh), hp_dich: Math.max(0, hp_dich) };
+  }
+
+  // Bộ ngẫu nhiên RIÊNG cho ước lượng tỉ lệ thắng: không đụng bộ đếm của ván thật.
+  function _ngau_mo_phong(hat) {
+    let buoc = 0;
+    return function () {
+      buoc += 1;
+      return _ngau_nhien(hat >>> 0, buoc);
+    };
+  }
+
+  function _cs_hieu_dung(state) {
+    const cs = {};
+    for (const k of Object.keys(state.chi_so)) {
+      cs[k] = (state.chi_so[k] && typeof state.chi_so[k] === "object")
+        ? Object.assign({}, state.chi_so[k]) : state.chi_so[k];
+    }
+    const bp = state.trang_bi || {};
+    const pb = TL_PHAP_BAO.find((x) => x.ma === bp.phap_bao);
+    if (pb) {
+      cs.tan_cong = (cs.tan_cong || 0) + (pb.tan_cong || 0);
+      cs.phong_thu = (cs.phong_thu || 0) + (pb.phong_thu || 0);
+      cs.bao_kich = (cs.bao_kich || 0) + (pb.bao_kich || 0);
+      cs.chi_mang = (cs.chi_mang || 0) + (pb.chi_mang || 0);
+      cs.xuyen_giap = (cs.xuyen_giap || 0) + (pb.xuyen_giap || 0);
+      cs.toc_do = (cs.toc_do || 0) + (pb.toc_do || 0);
+      if (pb.he) cs.he = pb.he;
+    }
+    cs.mau = cs.sinh_luc.max * TL_MAU_HE_SO;
+    return cs;
+  }
+
+  function _cs_cua_thu(thu) {
+    const bac = thu.bac || 1;
+    const mau = (thu.sinh_luc || 20 + bac * 6) * TL_MAU_HE_SO;
+    return {
+      sinh_luc: { hien: mau, max: mau },
+      mau,
+      tan_cong: thu.tan_cong || 2 + bac * 2,
+      phong_thu: thu.phong_thu || 1 + bac,
+      bao_kich: thu.bao_kich || 50,
+      chi_mang: thu.chi_mang || 1,
+      xuyen_giap: thu.xuyen_giap || 0,
+      toc_do: thu.toc_do || 8 + bac,
+      he: thu.he || "",
+      tan_cong_phep: thu.tan_cong_phep || {},
+      khang_phep: thu.khang_phep || {},
+    };
+  }
+
+  // Ước lượng tỉ lệ thắng bằng cách chạy thử nhiều trận.
+  function _ti_le_thang(state, thu, so_lan) {
+    so_lan = so_lan || 200;
+    const cs_minh = _cs_hieu_dung(state);
+    const cs_dich = _cs_cua_thu(thu);
+    const hat = _hat_giong("tile|" + (thu.ma || "") + "|" + (state.canh_gioi || ""), 0);
+    let thang = 0;
+    for (let i = 0; i < so_lan; i++) {
+      if (_mo_phong_tran(cs_minh, cs_dich, _ngau_mo_phong(hat + i * 7919)).thang) thang += 1;
+    }
+    return Math.max(0, Math.min(100, Math.round(thang * 100 / so_lan)));
+  }
+
+  function _tl_buff(state) {
+    if (!state.buff || typeof state.buff !== "object") state.buff = {};
+    if (state.buff.kiem_linh === undefined) state.buff.kiem_linh = TL_BUFF_MOI_CHUONG;
+    if (state.buff.tuyet_co === undefined) state.buff.tuyet_co = TL_BUFF_MOI_CHUONG;
+    return state.buff;
+  }
+
+  function buff_cua_minh(state) {
+    const nhom = state.nhom_xuat_than || "";
+    if (nhom === "mon_phai") return "tuyet_co";
+    if (nhom === "tan_tu") return "kiem_linh";
+    return null;
+  }
+
+  function tl_uong(state, ten) {
+    const ct = TL_CONG_THUC.find((c) => c.ten === ten);
+    if (!ct) return { loi: `${ten} không phải đan uống được` };
+    if (_tl_co(state, ten) < 1) return { loi: `Không có ${ten} trong túi` };
+    _tl_bot(state, ten, 1);
+    const hieu = {};
+    if (ct.tu_vi) hieu.tu_vi = ct.tu_vi;
+    if (ct.sinh_luc) hieu.sinh_luc = ct.sinh_luc;
+    const tb = [`Uống ${ten}.`].concat(_ap_hieu_ung(state, hieu));
+    _ghi_nhat_ky(state, `uống ${ten}`);
+    return { ok: true, thong_bao: tb, chi_so: _tl_chi_so(state) };
+  }
+
+  function tl_dan_uong_duoc(state) {
+    const ra = [];
+    for (const ct of TL_CONG_THUC) {
+      const so = _tl_co(state, ct.ten);
+      if (so > 0) {
+        ra.push({ ten: ct.ten, so, ma: ct.ma, tu_vi: ct.tu_vi || 0,
+          sinh_luc: ct.sinh_luc || 0, mo_ta: ct.mo_ta || "" });
+      }
+    }
+    return ra;
+  }
+
+  function tl_phap_bao_co(state) {
+    const ra = [];
+    for (const pb of TL_PHAP_BAO) {
+      const so = _tl_co(state, pb.ten);
+      if (so > 0) ra.push(Object.assign({}, pb, { so }));
+    }
+    return ra;
+  }
+
+  function tl_mac(state, ma) {
+    if (!state.trang_bi) state.trang_bi = {};
+    if (!ma) {
+      state.trang_bi.phap_bao = null;
+      return { ok: true, thong_bao: ["Đã tháo pháp bảo"], chi_so: _tl_chi_so(state) };
+    }
+    const pb = TL_PHAP_BAO.find((x) => x.ma === ma);
+    if (!pb) return { loi: "Pháp bảo không có" };
+    if (_tl_co(state, pb.ten) < 1) return { loi: `Không có ${pb.ten} trong túi` };
+    state.trang_bi.phap_bao = ma;
+    _ghi_nhat_ky(state, `mặc ${pb.ten}`);
+    return { ok: true, thong_bao: [`Đã mặc ${pb.ten}`], chi_so: _tl_chi_so(state) };
+  }
+
+  function tl_phap_bao_dang_mac(state) {
+    const ma = (state.trang_bi || {}).phap_bao;
+    if (!ma) return null;
+    const pb = TL_PHAP_BAO.find((x) => x.ma === ma);
+    return pb ? Object.assign({}, pb) : null;
+  }
+
+  function danh_nhan_vat(state, doi_thu) {
+    let cs_minh = _cs_hieu_dung(state);
+    const cs_dich = _cs_cua_thu(doi_thu);
+    let phu_da_dung = null;
+    for (const phu of TL_PHU_LUC) {
+      if (_tl_co(state, phu.ten) >= 1) {
+        phu_da_dung = phu;
+        _tl_bot(state, phu.ten, 1);
+        cs_minh = Object.assign({}, cs_minh);
+        cs_minh.tan_cong = (cs_minh.tan_cong || 0) + phu.sat_thuong;
+        cs_minh.he = phu.he;
+        break;
+      }
+    }
+    const hat = _hat_giong("nhv|" + doi_thu.ma + "|" + (state.canh_gioi || ""), 0);
+    const tran = _mo_phong_tran(cs_minh, cs_dich, _ngau_mo_phong(hat));
+    const dong = [];
+    if (phu_da_dung) {
+      dong.push(`Ngươi ném ${phu_da_dung.ten} — +${phu_da_dung.sat_thuong} sát thương`);
+    }
+    for (const d of tran.dong) dong.push(d);
+    const sl = state.chi_so.sinh_luc;
+    const mau_max = Math.max(1, cs_minh.mau || 1);
+    const mat = TL_SINH_LUC_SAU_TRAN * (1 - tran.hp_minh / mau_max);
+    sl.hien = Math.max(1, sl.hien - Math.max(1, Math.round(mat)));
+    return { ok: true, thang: tran.thang, dong, hiep: tran.hiep,
+      phu_da_dung: phu_da_dung ? phu_da_dung.ten : null };
+  }
+
+  function tl_ta_tu_ti_le(state) {
+    return _ti_le_thang(state, TL_TA_TU);
+  }
 
   const TL_CONG_THUC = [
     {
@@ -221,6 +525,11 @@
       if (ma === "luyen_dan") ghi_chu = `${TL_CONG_THUC.length} công thức`;
       if (ma === "cho") ghi_chu = `${TL_CHO_HANG.length} món bán`;
       if (ma === "do_la") ghi_chu = "Có thể nghe tin về kẻ gác cổng";
+      if (ma === "uong_dan") {
+        const co = tl_dan_uong_duoc(state).length;
+        ghi_chu = co ? `${co} loại đan trong túi` : "Không có đan nào uống được";
+        duoc = co > 0;
+      }
       viec.push({ ma, ten: v.ten, ngay: v.ngay, ghi_chu, duoc });
     }
     return { chi_so: chi, viec };
@@ -303,14 +612,6 @@
     return tl_danh(state);
   }
 
-  function _ti_le_thang(state, thu) {
-    const cs = state.chi_so;
-    const bac_minh = CANH_GIOI.indexOf(state.canh_gioi);
-    const chenh = bac_minh - thu.bac;
-    const goc = 50 + chenh * 22 + (cs.tan_cong - 5) * 3;
-    return Math.max(5, Math.min(95, goc));
-  }
-
   // Xem trận KHÔNG tốn ngày và KHÔNG khoá khi bị thương — chỉ đánh mới cần sức.
   function tl_dau(state) {
     if (state.ket_thuc) return { loi: "Chương đã khép lại — không tu luyện được nữa" };
@@ -322,45 +623,81 @@
       vat: thu.vat, so_vat: thu.so_vat } };
   }
 
-  function tl_danh(state, so_hiep) {
-    so_hiep = so_hiep || 3;
+  function tl_danh(state, so_hiep, dung_buff, dung_phu) {
     const loi = _tl_kiem_tra(state, "san");
     if (loi) return loi;
     const tl = _tl(state);
-    let thu = TL_YEU_THU.find(t => t.ma === tl.muc_tieu);
-    if (!thu || _tl_con_thua(state).includes(tl.muc_tieu)) thu = _tl_chon_thu(state);
-    const ti_le = _ti_le_thang(state, thu);
-    _tl_ghi(state, `đánh ${thu.ten}`, TL_VIEC.san.ngay);
-    const cs = state.chi_so.sinh_luc;
-    const dong = [];
-    const thang = _tl_ngau(state) * 100 < ti_le;
-    for (let i = 0; i < so_hiep; i++) {
-      // Mỗi hiệp 1–2 sinh lực. Ba hiệp mất 3–6, đánh tiếp được ngay sau một trận
-      // thua. Đo: 30 ngày săn thuần lên tầng 2 ở 33/40 ván.
-      const tru = 1 + Math.floor(_tl_ngau(state) * 2);
-      cs.hien = Math.max(1, cs.hien - tru);
-      dong.push(`Hiệp ${i + 1}: ngươi bị cắn, sinh lực -${tru} (còn ${cs.hien})`);
-      if (cs.hien <= cs.max * 0.3) break;
+    let thu = TL_YEU_THU.find((t) => t.ma === tl.muc_tieu);
+    if (!thu || _tl_con_thua(state).indexOf(tl.muc_tieu) >= 0) thu = _tl_chon_thu(state);
+
+    let phu = null;
+    if (dung_phu) {
+      phu = TL_PHU_LUC.find((x) => x.ma === dung_phu);
+      if (!phu) return { loi: "Phù lục không có" };
+      if (_tl_co(state, phu.ten) < 1) return { loi: `Không có ${phu.ten} trong túi` };
     }
+
+    _tl_ghi(state, `đánh ${thu.ten}`, TL_VIEC.san.ngay);
+    const dong = [];
+    let cs_minh = _cs_hieu_dung(state);
+    const cs_dich = _cs_cua_thu(thu);
+    if (phu) {
+      cs_minh = Object.assign({}, cs_minh);
+      cs_minh.tan_cong = (cs_minh.tan_cong || 0) + phu.sat_thuong;
+      cs_minh.he = phu.he;
+      _tl_bot(state, phu.ten, 1);
+      dong.push(`Ngươi ném ${phu.ten} — +${phu.sat_thuong} sát thương hệ ${phu.he}`);
+    }
+
+    let tran;
+    let buff_da_dung = null;
+    if (dung_buff) {
+      const bp = _tl_buff(state);
+      if ((bp[dung_buff] || 0) <= 0) {
+        return { loi: "Hết lượt ra tay của người bạn đồng hành trong chương này" };
+      }
+      buff_da_dung = dung_buff;
+      bp[dung_buff] = bp[dung_buff] - 1;
+      tran = { thang: true, dong: [], hiep: 1, hp_minh: cs_minh.mau, hp_dich: 0 };
+      dong.push(`${_TL_BUFF_TEN[dung_buff]} ra tay. Một đòn, ${thu.ten} gục tại chỗ.`);
+    } else {
+      const hat = (_hat_giong(state.ten_nhan_vat || "", 0)
+        + Math.imul(tl.luot_ngau || 0, 2654435761)) >>> 0;
+      tran = _mo_phong_tran(cs_minh, cs_dich, _ngau_mo_phong(hat));
+      for (const d of tran.dong) dong.push(d);
+    }
+
+    const sl = state.chi_so.sinh_luc;
+    const mau_max = Math.max(1, cs_minh.mau || 1);
+    const mat = TL_SINH_LUC_SAU_TRAN * (1 - tran.hp_minh / mau_max);
+    sl.hien = Math.max(1, sl.hien - Math.max(1, Math.round(mat)));
+
     let tb = [];
-    if (thang) {
-      _ap_hieu_ung(state, { them_vat: [{ ten: thu.vat, so: thu.so_vat }] });
-      tb = _ap_hieu_ung(state, { tu_vi: thu.tu_vi });
-      dong.push(`— THẮNG: ${thu.ten} gục, ${thu.vat} +${thu.so_vat}`);
-      if ((tl.da_thua || []).includes(thu.ma)) tl.da_thua = tl.da_thua.filter(m => m !== thu.ma);
+    if (tran.thang) {
+      tb = tb.concat(_ap_hieu_ung(state, { them_vat: [{ ten: thu.vat, so: thu.so_vat }] }));
+      tb = tb.concat(_ap_hieu_ung(state, { tu_vi: thu.tu_vi }));
+      dong.push(`— THẮNG: ${thu.ten} gục sau ${tran.hiep} hiệp, ${thu.vat} +${thu.so_vat}, tu vi +${thu.tu_vi}`);
+      if (thu.hang === "yeu_vuong") {
+        const pb = TL_PHAP_BAO[Math.min(TL_PHAP_BAO.length - 1, thu.bac - 1)];
+        tb = tb.concat(_ap_hieu_ung(state, { them_vat: [{ ten: pb.ten, so: 1 }] }));
+        dong.push(`Đoạt được pháp bảo: ${pb.ten}`);
+      }
+      if ((tl.da_thua || []).indexOf(thu.ma) >= 0) {
+        tl.da_thua = tl.da_thua.filter((m) => m !== thu.ma);
+      }
       tl.muc_tieu = null;
     } else {
-      cs.hien = Math.max(1, cs.hien - 3);
+      sl.hien = Math.max(1, sl.hien - 3);
       tl.da_thua = tl.da_thua || [];
-      if (!tl.da_thua.includes(thu.ma)) tl.da_thua.push(thu.ma);
+      if (tl.da_thua.indexOf(thu.ma) < 0) tl.da_thua.push(thu.ma);
       tl.muc_tieu = null;
-      // Thua vẫn được tu vi: sống sót qua một trận là học được điều gì đó.
-      tb = _ap_hieu_ung(state, { tu_vi: TL_TU_VI_THUA });
-      dong.push(`— THUA: bị thương, sinh lực -3, tu vi +${TL_TU_VI_THUA}. ` +
-        "Lượt sau sẽ gặp con khác.");
+      tb = tb.concat(_ap_hieu_ung(state, { tu_vi: TL_TU_VI_THUA }));
+      dong.push(`— THUA: bị thương, tu vi +${TL_TU_VI_THUA}. Lượt sau sẽ gặp con khác.`);
     }
+
     const goi_y = _tl_chon_thu(state);
-    return { ok: true, thang, dong, thong_bao: tb, chi_so: _tl_chi_so(state),
+    return { ok: true, thang: tran.thang, dong, thong_bao: tb, chi_so: _tl_chi_so(state),
+      buff_da_dung,
       muc_tieu_sau: { ten: goi_y.ten, hang: goi_y.hang, ti_le: _ti_le_thang(state, goi_y) } };
   }
 
@@ -395,13 +732,12 @@
     state.bac -= ct.bac;
     _tl_ghi(state, `luyện ${ct.ten}`, ct.ngay);
     if (_tl_ngau(state) * 100 < ct.ti_le) {
-      const hieu = { them_vat: [{ ten: ct.ten, so: 1 }] };
-      if (ct.tu_vi !== undefined) hieu.tu_vi = ct.tu_vi;
-      if (ct.sinh_luc !== undefined) hieu.sinh_luc = ct.sinh_luc;
-      const tb = _ap_hieu_ung(state, hieu);
+      // Ra lò thì đan NẰM TRONG TÚI, chưa cộng gì — uống mới có tác dụng.
+      _ap_hieu_ung(state, { them_vat: [{ ten: ct.ten, so: 1 }] });
       return {
         ok: true, thanh_cong: true,
-        thong_bao: [`Ra lò ${ct.ten}!`].concat(tb), chi_so: _tl_chi_so(state),
+        thong_bao: [`Ra lò ${ct.ten}! Đan đã vào túi — uống mới có tác dụng.`],
+        chi_so: _tl_chi_so(state),
       };
     }
     return {
@@ -411,7 +747,12 @@
   }
 
   function tl_cho() {
-    return TL_CHO_HANG.map((h) => Object.assign({}, h));
+    const ra = TL_CHO_HANG.map((h) => Object.assign({}, h));
+    for (const pb of TL_PHAP_BAO) {
+      ra.push({ ma: pb.ma, ten: pb.ten, gia: pb.gia, so: 1,
+        mo_ta: pb.mo_ta, la_phap_bao: true });
+    }
+    return ra;
   }
 
   function tl_mua(state, ma) {
@@ -641,6 +982,8 @@
         { ten: "Bạc vụn", so: dau.bac, mo_ta: "Tiền tệ nơi phàm trần." },
       ],
       ky_nang: dau.ky_nang.slice(),
+      trang_bi: { phap_bao: null },
+      buff: { kiem_linh: TL_BUFF_MOI_CHUONG, tuyet_co: TL_BUFF_MOI_CHUONG },
       co_su_kien: [],
       npc: {},
       nhat_ky: [],
@@ -673,6 +1016,16 @@
     if (trung.length) loi.push(`mã đoạn trùng: ${trung.join(", ")}`);
     for (const d of data.doan || []) {
       for (const lc of d.lua_chon || []) {
+        // Lựa chọn có `tran_dau` thì rẽ theo thắng/thua, không có `den`.
+        if (lc.tran_dau) {
+          for (const khoa of ["thang", "thua"]) {
+            const dich = lc.tran_dau[khoa];
+            if (!co.has(dich)) {
+              loi.push(`${d.id} → tran_dau.${khoa} '${dich}' không có đoạn này`);
+            }
+          }
+          continue;
+        }
         if (lc.den !== "__ket_thuc__" && !co.has(lc.den)) {
           loi.push(`${d.id} → '${lc.den}' không có đoạn này`);
         }
@@ -969,6 +1322,9 @@
     const tl = _tl(state);
     tl.ngay_con = NGAY_MOI_CHUONG;
     tl.nhat_ky.push(`— Chương ${so}: ngày mới, ${NGAY_MOI_CHUONG} ngày —`);
+    // Bạn đồng hành được ra tay lại ở chương mới: 2 lần mỗi chương.
+    const bp = _tl_buff(state);
+    for (const k of Object.keys(bp)) bp[k] = TL_BUFF_MOI_CHUONG;
     _ghi_nhat_ky(state, `Sang chương ${so}`);
     const kq = _goi_y(state);
     kq.thong_bao = [`— Chương ${so}: ${load_chuong(so).ten} —`];
@@ -1111,6 +1467,17 @@
     }
     const tb = _ap_hieu_ung(state, lc.hieu_ung);
     _ghi_nhat_ky(state, `Chọn: ${lc.chu}`);
+    if (lc.tran_dau) {
+      // Lựa chọn dẫn vào một trận đánh thật: thắng/thua rẽ hai đoạn khác nhau.
+      const doi_thu = (lc.tran_dau.doi_thu === TL_TA_TU.ma) ? TL_TA_TU : null;
+      if (!doi_thu) return { loi: `Không tìm thấy đối thủ ${lc.tran_dau.doi_thu}` };
+      const kq_tran = danh_nhan_vat(state, doi_thu);
+      _chuyen_doan(state, kq_tran.thang ? lc.tran_dau.thang : lc.tran_dau.thua);
+      const kq = _goi_y(state);
+      kq.thong_bao = tb;
+      kq.tran = kq_tran;
+      return kq;
+    }
     _chuyen_doan(state, lc.den);
     const ket_qua = _goi_y(state);
     ket_qua.thong_bao = tb;
@@ -1274,6 +1641,15 @@
     tl_luyen_dan, tl_cho, tl_mua, tl_ban, tl_ban_duoc, tl_do_la, tl_nghi, vao_dong, ra_dong,
     TL_VIEC, TL_YEU_THU, TL_CONG_THUC, TL_TIN, TL_CHO_HANG, TL_BAN_GIA, TL_TU_VI_THUA, TRAN_CANH_GIOI,
     NGAY_MOI_CHUONG, _hat_giong, _ngau_nhien,
+    // chiến đấu
+    TL_PHAP_BAO, TL_PHU_LUC, TL_TA_TU, KHAC_CHE, HE_PHU, HE_PHAP,
+    TL_SAT_THUONG_K, TL_MAU_HE_SO, TL_SINH_LUC_SAU_TRAN, TL_SO_HIEP_TOI_DA,
+    TL_BUFF_MOI_CHUONG, TL_NGUONG, TL_GAP,
+    _sat_thuong, _danh_mot_don, _mo_phong_tran, _ngau_mo_phong,
+    _cs_hieu_dung, _cs_cua_thu, _ti_le_thang, _tl_buff, buff_cua_minh,
+    danh_nhan_vat, tl_ta_tu_ti_le,
+    tl_uong, tl_dan_uong_duoc, tl_phap_bao_co, tl_mac, tl_phap_bao_dang_mac,
+    _tl_co, _tl_chi_so, tl_nghi, tl_danh, tl_dau, _ap_hieu_ung,
     co_chuong, kiem_chuong,
     luu, nap, ds_luu, xoa_luu, tom_tat,
     _khong_dau, _trang_thai_gon, _boi_canh, _thang_cap, _dieu_kien_hop,

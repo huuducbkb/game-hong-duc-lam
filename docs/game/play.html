@@ -297,6 +297,16 @@ body{
   border:1px solid rgba(168,53,42,.3);border-radius:9px;padding:9px 11px;margin-bottom:9px}
 .tl-tran{font-size:13px;text-align:center;margin-bottom:9px;line-height:1.5}
 .tl-tran .tyle{font-size:22px;font-weight:600;color:var(--seal);display:block;line-height:1.2}
+/* Chip chọn pháp bảo / phù lục: một hàng cuộn ngang, chạm là chọn. */
+.tl-chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--serif);
+  font-size:12px;padding:8px 11px;border-radius:999px;border:1px solid var(--edge);
+  background:rgba(255,253,246,.85);color:var(--ink);margin:0 5px 5px 0;
+  max-width:100%;white-space:nowrap}
+.tl-chip.on{border:1.4px solid var(--seal);background:rgba(168,53,42,.13);
+  color:var(--seal-dam);font-weight:600}
+.tl-chip .he{font-size:10px;opacity:.75}
+.tl-dong{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+.tl-dong::-webkit-scrollbar{display:none}
 @media (max-height:600px){.tl-viec{min-height:44px;padding:9px 11px}}
 
 @media (max-height:640px){
@@ -2761,6 +2771,8 @@ function gan(sel, ev, fn) {
 let tlDangMo = false;
 let tlManCon = null;   // null = màn Động phủ; "san" | "dan" | "cho" | "do_la" = màn phụ
 let tlKqHtml = "";     // kết quả của lần bấm trước — giữ lại qua mỗi lần vẽ lại
+let tlPhuChon = null;  // mã phù lục đang chọn cho trận tới (chỉ 1, dùng là mất)
+let tlBuffChon = null; // "kiem_linh" | "tuyet_co" — người bạn ra tay
 
 function tlNap() {
   if (!st) return;
@@ -2787,6 +2799,7 @@ function tlVe(v) {
   if (tlManCon === "dan") { h = tlManDan(v); o.innerHTML = h; tlGanDan(); return; }
   if (tlManCon === "cho") { h = tlManCho(); o.innerHTML = h; tlGanCho(); return; }
   if (tlManCon === "do_la") { h = tlManDoLa(); o.innerHTML = h; tlGanDoLa(); return; }
+  if (tlManCon === "uong") { h = tlManUong(); o.innerHTML = h; tlGanUong(); return; }
 
   const pcTuVi = Math.min(100, Math.round(c.tu_vi.hien / c.tu_vi.max * 100));
   const pcSinh = Math.min(100, Math.round(c.sinh_luc.hien / c.sinh_luc.max * 100));
@@ -2876,6 +2889,7 @@ function tlManSan() {
       '<span class="tyle">' + tr.ti_le + "% thắng</span></div>" +
       '<div style="font-size:11px;color:var(--ink-faint);text-align:center">' +
       esc(tr.bac) + " · rơi " + esc(tr.vat) + " ×" + tr.so_vat + "</div></div>" +
+      (biThuong ? "" : tlKhoiTrangBi()) +
       // Đang bị thương thì không hiện nút Đánh — bấm vào chỉ ra lỗi, vô nghĩa.
       (biThuong ? "" : '<button class="tl-nut chinh" id="tlDanh">Đánh (2 ngày)</button>') +
       '<button class="tl-nut" id="tlDoiThu">Đổi con khác (không tốn ngày)</button>';
@@ -2890,7 +2904,79 @@ function tlManSan() {
     '<button class="tl-nut" id="tlQuay">← Quay lại động phủ</button>';
 }
 
+function tlKhoiTrangBi() {
+  // Pháp bảo: chỉ hiện thứ đang có trong túi, chọn là mặc luôn.
+  const dsPb = Engine.tl_phap_bao_co(st);
+  const dangMac = Engine.tl_phap_bao_dang_mac(st);
+  let h = "";
+  if (dsPb.length) {
+    h += '<div class="tl-o"><div class="top"><span class="k">Pháp bảo</span>' +
+      '<span class="v">' + (dangMac ? esc(dangMac.ten) : "tay không") + "</span></div>" +
+      '<div class="tl-dong">';
+    for (const pb of dsPb) {
+      const on = dangMac && dangMac.ma === pb.ma;
+      h += '<button class="tl-chip' + (on ? " on" : "") + '" data-pb="' + pb.ma + '">' +
+        esc(pb.ten) + '<span class="he">' + esc(pb.he.toUpperCase()) + "</span></button>";
+    }
+    if (dangMac) h += '<button class="tl-chip" data-pb="">Tháo</button>';
+    h += "</div></div>";
+  }
+
+  // Phù lục: chọn một tấm cho trận tới. Dùng là mất.
+  const dsPhu = Engine.TL_PHU_LUC.filter(x => Engine._tl_co(st, x.ten) > 0);
+  if (dsPhu.length) {
+    h += '<div class="tl-o"><div class="top"><span class="k">Phù lục</span>' +
+      '<span class="v">' + (tlPhuChon ? "đã chọn 1" : "không dùng") + "</span></div>" +
+      '<div class="tl-dong">';
+    for (const ph of dsPhu) {
+      h += '<button class="tl-chip' + (tlPhuChon === ph.ma ? " on" : "") +
+        '" data-phu="' + ph.ma + '">' + esc(ph.ten) +
+        ' <span class="he">+' + ph.sat_thuong + "</span></button>";
+    }
+    if (tlPhuChon) h += '<button class="tl-chip" data-phu="">Bỏ chọn</button>';
+    h += "</div></div>";
+  }
+
+  // Người bạn đồng hành: 2 lượt mỗi chương, thắng chắc một trận.
+  const ma = Engine.buff_cua_minh(st);
+  if (ma) {
+    const con = Engine._tl_buff(st)[ma] || 0;
+    const ten = ma === "kiem_linh" ? "Kiếm Linh" : "Tuyết Cơ";
+    h += '<div class="tl-o"><div class="top"><span class="k">' + esc(ten) + "</span>" +
+      '<span class="v">còn ' + con + " lượt</span></div>" +
+      '<div class="tl-dong"><button class="tl-chip' + (tlBuffChon === ma ? " on" : "") +
+      '" data-buff="' + ma + '"' + (con > 0 ? "" : " disabled") + ">Nhờ " + esc(ten) +
+      " ra tay</button>" + (tlBuffChon ? '<button class="tl-chip" data-buff="">Bỏ chọn</button>' : "") +
+      "</div></div>";
+  }
+  return h;
+}
+
+function tlGanTrangBi() {
+  document.querySelectorAll("#tlThan [data-pb]").forEach(b => {
+    b.onclick = () => {
+      const r = Engine.tl_mac(st, b.dataset.pb || null);
+      if (r.loi) { tlKqHtml = '<div class="tl-loi">' + esc(r.loi) + "</div>"; }
+      else tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
+      tlCapNhat(); tlNap();
+    };
+  });
+  document.querySelectorAll("#tlThan [data-phu]").forEach(b => {
+    b.onclick = () => {
+      tlPhuChon = b.dataset.phu || null;
+      tlNap();
+    };
+  });
+  document.querySelectorAll("#tlThan [data-buff]").forEach(b => {
+    b.onclick = () => {
+      tlBuffChon = b.dataset.buff || null;
+      tlNap();
+    };
+  });
+}
+
 function tlGanSan() {
+  tlGanTrangBi();
   gan("#tlQuay", "onclick", () => { tlManCon = null; tlKqHtml = ""; tlNap(); });
   // "Đổi con khác": chọn lại mục tiêu, không tốn ngày, để không phải đánh con
   // mình chắc chắn thua.
@@ -2905,10 +2991,14 @@ function tlGanSan() {
       : '<div class="tl-kq">' + tlThongBao(k.thong_bao) + "</div>";
     tlCapNhat(); tlNap();
   });
-  gan("#tlDanh", "onclick", () => {
-    const k = Engine.tl_danh(st);
+  gan("#tlDanh", "onclick", async () => {
+    // Phù lục và người bạn đồng hành là lựa chọn của MỘT trận: dùng xong thì xoá,
+    // không thì trận sau vẫn tưởng còn.
+    const k = await Engine.tl_danh(st, undefined, tlBuffChon, tlPhuChon);
     const hop = $("#tlTran");
     if (k.loi) { if (hop) hop.innerHTML = '<div class="tl-loi">' + esc(k.loi) + "</div>"; return; }
+    tlPhuChon = null;
+    if (k.buff_da_dung) tlBuffChon = null;
     tlKqHtml = '<div class="tl-kq">' + k.dong.map(t => "<div>" + esc(t) + "</div>").join("") +
       tlThongBao(k.thong_bao) + "</div>";
     tlCapNhat(); tlNap();
@@ -2939,6 +3029,40 @@ function tlGanDan() {
     b.onclick = () => {
       const r = Engine.tl_luyen_dan(st, b.dataset.dan);
       if (r.loi) { $("#tlDanKq").innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
+      tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
+      tlCapNhat(); tlNap();
+    };
+  });
+}
+
+function tlManUong() {
+  // Đan ra lò nằm trong túi — uống mới có tác dụng. Màn này là chỗ uống.
+  const ds = Engine.tl_dan_uong_duoc(st);
+  let h = "";
+  if (!ds.length) {
+    h += '<div class="tl-nhat"><div>Trong túi không có đan nào uống được.</div>' +
+      '<div>Luyện đan ở động phủ rồi quay lại đây.</div></div>';
+  }
+  for (const d of ds) {
+    const tac = [];
+    if (d.tu_vi) tac.push("+" + d.tu_vi + " tu vi");
+    if (d.sinh_luc) tac.push("+" + d.sinh_luc + " sinh lực");
+    h += '<button class="tl-viec" data-uong="' + esc(d.ten) + '">' +
+      '<span class="trai"><span class="ten">' + esc(d.ten) + " ×" + d.so + "</span>" +
+      '<span class="ghi">' + esc(tac.join(" · ")) + "</span></span>" +
+      '<span class="gia">uống</span></button>';
+  }
+  h += '<div id="tlUongKq">' + tlKqHtml + "</div>";
+  h += '<button class="tl-nut" id="tlQuay">← Quay lại động phủ</button>';
+  return h;
+}
+
+function tlGanUong() {
+  gan("#tlQuay", "onclick", () => { tlManCon = null; tlKqHtml = ""; tlNap(); });
+  document.querySelectorAll("#tlThan [data-uong]").forEach(b => {
+    b.onclick = () => {
+      const r = Engine.tl_uong(st, b.dataset.uong);
+      if (r.loi) { $("#tlUongKq").innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
       tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
       tlCapNhat(); tlNap();
     };
@@ -3032,7 +3156,7 @@ function tlGanSangChuong() {
 }
 
 function tlLam(ma) {
-  const MAN = { san: "san", luyen_dan: "dan", cho: "cho", do_la: "do_la" };
+  const MAN = { san: "san", luyen_dan: "dan", cho: "cho", do_la: "do_la", uong_dan: "uong" };
   if (MAN[ma]) {
     tlManCon = MAN[ma];
     tlKqHtml = "";

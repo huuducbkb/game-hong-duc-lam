@@ -2,9 +2,34 @@
 
 > **Sổ việc sống.** Cập nhật mỗi khi có việc mới hoặc xong việc.
 > Quy ước: `[ ]` chưa làm · `[~]` đang làm · `[x]` xong.
-> Cập nhật lần cuối: **2026-11-30**
+> Cập nhật lần cuối: **2026-11-17**
 
 ---
+
+## ✅ XONG 2026-11-17 — Trận đánh có chiều sâu (4 lớp chỉ số)
+
+| Việc | Trạng thái | Bằng chứng |
+|---|---|---|
+| Trận đánh chỉ so một con số | **xong** | 4 lớp: sát thương / xuyên giáp / tốc độ / máu riêng; mô phỏng từng hiệp |
+| Pháp bảo | **xong** | 2 món mặc được, cộng chỉ số thật (mặc đao: tấn công 3→8, tỉ lệ 22%→100%) |
+| Phù lục | **xong** | dùng 1 lần, cộng sát thương hiệp đầu |
+| Người bạn đồng hành | **xong** | Kiếm Linh / Tuyết Cơ, 2 lượt mỗi chương, thắng chắc 1 trận |
+| Nhánh tà tu | **xong** | thắng nhanh hơn, bị phản phệ |
+| Thua trận trong truyện | **xong** | `tran_dau: {thang, thua}` — thua đi nhánh riêng, không kẹt |
+| Uống đan | **xong** | màn Uống đan (0 ngày); trước đây luyện xong là mất hút |
+| `sinh_luc` bị dùng làm máu trận | **xong** | nay là sức lao động; trừ theo tỉ lệ HP mất, sàn 1 |
+
+Đo được (Python và JS **khớp tuyệt đối**):
+
+| Cảnh giới | Sơn Trư | Dã Lang | Bạch Lang Vương |
+|---|---|---|---|
+| Tầng 1 | 56% | 0% | 0% |
+| Tầng 5 | 100% | 100% | 50% |
+
+Ngưỡng cảnh giới gặp tinh anh / yêu vương đã **bỏ** theo yêu cầu — tầng nào cũng gặp
+được, nhưng tỉ lệ thắng vẫn thấp nếu chưa đủ mạnh.
+
+**Test:** JS 277 đạt / 0 hỏng · Python 350 đạt.
 
 ## ✅ XONG 2026-11-29 — Hai trong ba lỗi bạn báo
 

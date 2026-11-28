@@ -694,8 +694,11 @@ check("mỗi đoạn Chương 2 chỉ có một cảnh",
 _thieu2 = sorted(x["id"] for x in _ch2["doan"]
                  if x["id"].startswith("c2_d")
                  and not (x.get("hinh_anh") or {}).get("anh"))
+# Hai đoạn thắng tà tu là nhánh MỚI (thêm cùng ngày), chưa có ảnh trong bộ cảnh.
+# Chúng được phép thiếu ảnh cho tới khi xưởng ghép ảnh sinh cảnh cho chúng.
+_DOAN_CHUA_CANH = {"c2_d27c_thang", "c2_p23c_thang"}
 check("mọi đoạn nhánh tán tu thiếu ảnh đều có cảnh",
-      [x for x in _thieu2 if x not in _da_co_canh], [])
+      [x for x in _thieu2 if x not in _da_co_canh and x not in _DOAN_CHUA_CANH], [])
 check("mọi cảnh Chương 2 đều có nhóm cảnh",
       [k for k in _canh2 if not _TS.nhom_canh_cua(k)], [])
 
@@ -985,6 +988,14 @@ for _so in (1, 2):
     for _d in _du["doan"]:
         _dem = {}
         for _lc in _d.get("lua_chon") or []:
+            # Lựa chọn vào trận đánh (`tran_dau`) rẽ theo thắng/thua, không có `den`.
+            _tran = _lc.get("tran_dau")
+            if _tran:
+                for _khoa in ("thang", "thua"):
+                    _dich = _tran.get(_khoa)
+                    if _dich not in _ids:
+                        _thieu.append(f'{_d["id"]} -> tran.{_khoa} {_dich}')
+                continue
             if _lc["den"] == "__ket_thuc__":
                 continue
             _dem[_lc["den"]] = _dem.get(_lc["den"], 0) + 1
@@ -1008,6 +1019,10 @@ for _so in (1, 2):
             continue
         _thay.add(_x)
         for _lc in _ds_theo_id[_x].get("lua_chon") or []:
+            _tran = _lc.get("tran_dau")
+            if _tran:
+                _hang.extend([_tran.get("thang"), _tran.get("thua")])
+                continue
             if _lc["den"] != "__ket_thuc__":
                 _hang.append(_lc["den"])
     check(f"chương {_so}: không có đoạn mồ côi", sorted(_ids - _thay), [])
@@ -1043,8 +1058,15 @@ for _so in (1, 2):
                  and not (d.get("ket_thuc") and not (d.get("lua_chon") or []))]
     check(f"chương {_so}: đoạn kết thua khai đủ cờ", _thua_sai, [])
 
-    _co_loi_vao = {lc["den"] for d in _du["doan"]
-                   for lc in (d.get("lua_chon") or []) if lc["den"] != "__ket_thuc__"}
+    _co_loi_vao = set()
+    for _d2 in _du["doan"]:
+        for _lc2 in _d2.get("lua_chon") or []:
+            _t2 = _lc2.get("tran_dau")
+            if _t2:
+                # Nhánh thua của một trận là đường vào hợp lệ.
+                _co_loi_vao.update([_t2.get("thang"), _t2.get("thua")])
+            elif _lc2["den"] != "__ket_thuc__":
+                _co_loi_vao.add(_lc2["den"])
     _thua = [d["id"] for d in _du["doan"] if d.get("thua")]
     check(f"chương {_so}: mọi đoạn kết thua đều có đường vào",
           [x for x in _thua if x not in _co_loi_vao], [])
@@ -1145,7 +1167,19 @@ for _ in range(40):
     _x = _E.tl_dau(_sky)
     if _x.get("loi") is None and _x["tran"]["hang"] == "yeu_vuong":
         _cyv = True
-check("tầng 1: KHÔNG gặp yêu vương", _cyv, False)
+# Người dùng chốt 2026-11-28: bỏ ngưỡng cảnh giới — tầng nào cũng CÓ CƠ HỘI gặp
+# yêu vương, nhưng tỉ lệ thắng vẫn rất thấp. Test cũ khoá "tầng 1 không gặp" nên
+# phải đổi thành: gặp được, và gặp rồi thì hiếm.
+check("tầng 1: CÓ gặp yêu vương (bỏ ngưỡng)", _cyv, True)
+_sky2 = _E.trang_thai_moi("Yeu2", "tán tu", "tan_tu")
+_sky2["chuong"] = 2
+_n = 0
+for _ in range(400):
+    _sky2["tu_luyen"]["muc_tieu"] = None
+    _x = _E.tl_dau(_sky2)
+    if _x.get("loi") is None and _x["tran"]["hang"] == "yeu_vuong":
+        _n += 1
+check("tầng 1: gặp yêu vương HIẾM (dưới 20%)", _n < 80, True)
 
 _sbt = _E.trang_thai_moi("Thương", "tán tu", "tan_tu")
 _sbt["chuong"] = 2
@@ -1168,7 +1202,10 @@ for _i in range(30):
     _tr = _sd["chi_so"]["sinh_luc"]["hien"]
     _E.tl_danh(_sd)
     _tong += _tr - _sd["chi_so"]["sinh_luc"]["hien"]
+# Sinh lực là SỨC LAO ĐỘNG, tách khỏi máu chiến đấu. Mỗi trận mất theo tỉ lệ
+# máu đã mất, nên phải đánh được nhiều trận liền mới hết ngày.
 check("mỗi trận mất dưới 14 sinh lực (đánh được 2+ trận)", _tong / 30 < 14, True)
+check("sinh lực mất mỗi trận ít nhất 1 (không âm)", _tong / 30 >= 1, True)
 
 _sn = _E.trang_thai_moi("Nghi", "tán tu", "tan_tu")
 _sn["chuong"] = 2
@@ -1322,6 +1359,169 @@ try:
     check("bàn giao: nhật ký + sổ việc đã cập nhật", [], thieu_trong_cay())
 except ImportError:
     check("nhập được tools.kiem_ban_giao", False, True)
+
+print("\n=== CD. Chiến đấu: 4 lớp chỉ số + pháp bảo + phù lục + tà tu ===")
+
+# --- Lớp 1: sát thương có thật, không phải công thức một dòng ---
+_cd1 = _E.trang_thai_moi("CD1", "tán tu", "tan_tu")
+_cd2 = _E.trang_thai_moi("CD2", "tán tu", "tan_tu")
+_pt = _E._cs_hieu_dung(_cd2)
+_st_goc = _E._sat_thuong(_E._cs_hieu_dung(_cd1), _pt, "")
+_pt2 = dict(_pt, phong_thu=_pt["phong_thu"] + 10)
+check("phòng thủ cao thì ăn ít sát thương hơn",
+      _E._sat_thuong(_E._cs_hieu_dung(_cd1), _pt2, "") < _st_goc, True)
+
+# Xuyên giáp phải bỏ qua phòng thủ
+_at = _E._cs_hieu_dung(_cd1)
+_at["xuyen_giap"] = 100
+check("xuyên giáp 100% bỏ qua phòng thủ",
+      _E._sat_thuong(_at, _pt2, "") > _E._sat_thuong(_E._cs_hieu_dung(_cd1), _pt2, ""), True)
+
+# Khắc hệ: kim khắc mộc
+_kim = dict(_E._cs_hieu_dung(_cd1), he="kim")
+_moc = dict(_pt, he="moc")
+_kim2 = dict(_E._cs_hieu_dung(_cd1), he="moc")
+check("kim khắc mộc: đánh mạnh hơn hệ không khắc",
+      _E._sat_thuong(_kim, _moc, "kim") > _E._sat_thuong(_kim2, _moc, "moc"), True)
+
+# Hệ phụ xuyên kháng: kháng chỉ còn nửa
+_khang = dict(_pt, he="kim", khang_phep={"kim": 60, "loi": 60})
+_kim3 = dict(_E._cs_hieu_dung(_cd1), he="kim")
+_loi3 = dict(_E._cs_hieu_dung(_cd1), he="loi")
+check("hệ phụ (lôi) xuyên kháng tốt hơn hệ thường",
+      _E._sat_thuong(_loi3, _khang, "loi") > _E._sat_thuong(_kim3, _khang, "kim"), True)
+
+# Bạo kích: bao_kich cao phải ra đòn to hơn
+_that = {"n": 0}
+def _ngau_cao():
+    _that["n"] += 1
+    return 0.0
+check("bạo kích 100%: đòn to hơn đòn thường",
+      _E._danh_mot_don(dict(_E._cs_hieu_dung(_cd1), bao_kich=1000), _pt, _ngau_cao)
+      > _E._danh_mot_don(dict(_E._cs_hieu_dung(_cd1), bao_kich=0), _pt, _ngau_cao), True)
+
+# Không ai chết: máu về 0 thì chỉ bị thương
+_cd3 = _E.trang_thai_moi("CD3", "tán tu", "tan_tu")
+_cd3["chuong"] = 2
+_E.vao_dong(_cd3)
+_cd3["chi_so"]["sinh_luc"]["hien"] = 1
+_E.tl_danh(_cd3)
+check("thua không chết: sinh lực còn ít nhất 1",
+      _cd3["chi_so"]["sinh_luc"]["hien"] >= 1, True)
+
+# --- Lớp 2: pháp bảo ---
+_cd4 = _E.trang_thai_moi("CD4", "tán tu", "tan_tu")
+_E._nhan_vat(_cd4, {"ten": "Huyền Thiết Đao", "so": 1})
+_tc_truoc = _E._cs_hieu_dung(_cd4)["tan_cong"]
+_r = _E.tl_mac(_cd4, "huyen_thiet_dao")
+check("mặc pháp bảo: cộng tấn công", _E._cs_hieu_dung(_cd4)["tan_cong"] > _tc_truoc, True)
+check("mặc pháp bảo: ghi vào trang_bi", _cd4["trang_bi"]["phap_bao"], "huyen_thiet_dao")
+_E.tl_mac(_cd4, "")
+check("tháo pháp bảo: trả lại tấn công gốc", _E._cs_hieu_dung(_cd4)["tan_cong"], _tc_truoc)
+check("mặc pháp bảo không có trong túi: báo lỗi",
+      _E.tl_mac(_cd4, "loi_dinh_chuy").get("loi") is not None, True)
+
+# Pháp bảo phải đổi được kết quả trận với tà tu
+_cd5 = _E.trang_thai_moi("CD5", "tán tu", "tan_tu")
+_cd5["canh_gioi"] = "Luyện Khí tầng 5"
+_cd5["chi_so"]["tan_cong"] = 11
+_cd5["chi_so"]["sinh_luc"] = {"hien": 50, "max": 50}
+_cd5["chi_so"]["phong_thu"] = 6
+_cd5["chi_so"]["toc_do"] = 13
+_tay_khong = _E.tl_ta_tu_ti_le(_cd5)
+_E._nhan_vat(_cd5, {"ten": "Lôi Đình Chùy", "so": 1})
+_E.tl_mac(_cd5, "loi_dinh_chuy")
+_co_chuy = _E.tl_ta_tu_ti_le(_cd5)
+check("pháp bảo tốt làm tăng tỉ lệ thắng tà tu", _co_chuy > _tay_khong, True)
+check("tà tu tầng 5: tay không chưa chắc thắng (dưới 70%)", _tay_khong < 70, True)
+
+# --- Lớp 3: phù lục ---
+_cd6 = _E.trang_thai_moi("CD6", "tán tu", "tan_tu")
+_cd6["chuong"] = 2
+_E.vao_dong(_cd6)
+_E._nhan_vat(_cd6, {"ten": "Bạo Viêm Phù", "so": 2})
+_E.tl_danh(_cd6, dung_phu="bao_viem_phu")
+check("dùng phù lục: tiêu hao 1", _E._tl_co(_cd6, "Bạo Viêm Phù"), 1)
+check("dùng phù lục không có: báo lỗi",
+      _E.tl_danh(_cd6, dung_phu="kim_quang_phu").get("loi") is not None, True)
+
+# --- Buff: 2 lần/chương, đúng nhánh ---
+_cd7 = _E.trang_thai_moi("CD7", "tán tu", "tan_tu")
+check("tán tu có Kiếm Linh", _E.buff_cua_minh(_cd7), "kiem_linh")
+_cd8 = _E.trang_thai_moi("CD8", "môn phái", "mon_phai")
+check("môn phái có Tuyết Cơ", _E.buff_cua_minh(_cd8), "tuyet_co")
+check("mỗi chương 2 lượt buff", _E._tl_buff(_cd7)["kiem_linh"], 2)
+
+_cd9 = _E.trang_thai_moi("CD9", "tán tu", "tan_tu")
+_cd9["chuong"] = 2
+_E.vao_dong(_cd9)
+_r = _E.tl_danh(_cd9, dung_buff="kiem_linh")
+check("dùng buff: thắng chắc", _r["thang"], True)
+check("dùng buff: trừ 1 lượt", _E._tl_buff(_cd9)["kiem_linh"], 1)
+_r2 = _E.tl_danh(_cd9, dung_buff="kiem_linh")
+check("dùng buff: trừ lượt thứ hai", _E._tl_buff(_cd9)["kiem_linh"], 0)
+_r3 = _E.tl_danh(_cd9, dung_buff="kiem_linh")
+check("hết lượt buff: báo lỗi, không đánh", _r3.get("loi") is not None, True)
+
+# Sang chương thì buff hồi lại
+_E._tl_buff(_cd9)["kiem_linh"] = 0
+_cd9["chuong"] = 1
+_E.sang_chuong(_cd9, 2)
+check("sang chương: buff hồi lại 2 lượt", _E._tl_buff(_cd9)["kiem_linh"], 2)
+
+# --- Lớp 4: tà tu trong truyện ---
+_cd10 = _E.trang_thai_moi("CD10", "tán tu", "tan_tu")
+_cd10["chuong"] = 2
+_E.vao_dong(_cd10)
+_cd10["doan_hien_tai"] = "c2_d27c_0"
+_d = _E._doan(_cd10)
+check("c2_d27c_0: lựa chọn cuối vào trận đánh",
+      bool((_d["lua_chon"][-1].get("tran_dau") or {}).get("doi_thu")), True)
+_cd10["canh_gioi"] = "Luyện Khí tầng 5"
+_cd10["chi_so"]["tan_cong"] = 11
+_cd10["chi_so"]["sinh_luc"] = {"hien": 50, "max": 50}
+_cd10["chi_so"]["phong_thu"] = 6
+_cd10["chi_so"]["toc_do"] = 13
+_r = _E.chon(_cd10, len(_d["lua_chon"]) - 1)
+check("đánh tà tu: trả về kết quả trận", "tran" in _r, True)
+check("đánh tà tu: rẽ đúng nhánh thắng/thua",
+      _cd10["doan_hien_tai"] in ("c2_d27c_thang", "c2_d27c_thua"), True)
+
+# Mọi tầng đều gặp được yêu vương (người dùng chốt bỏ ngưỡng)
+_cd11 = _E.trang_thai_moi("CD11", "tán tu", "tan_tu")
+_cd11["chuong"] = 2
+_gg = set()
+for _ in range(300):
+    _cd11["tu_luyen"]["muc_tieu"] = None
+    _x = _E.tl_dau(_cd11)
+    if _x.get("loi") is None:
+        _gg.add(_x["tran"]["hang"])
+check("tầng 1 gặp được cả 3 hạng (bỏ ngưỡng)", _gg == {"thuong", "tinh_anh", "yeu_vuong"}, True)
+
+# --- Uống đan ---
+_cd12 = _E.trang_thai_moi("CD12", "tán tu", "tan_tu")
+_cd12["chuong"] = 2
+_E.vao_dong(_cd12)
+_tv_truoc = _cd12["tu_vi"]["hien"]
+_E._nhan_vat(_cd12, {"ten": "Tụ Khí Đan", "so": 2})
+_r = _E.tl_uong(_cd12, "Tụ Khí Đan")
+check("uống đan: cộng tu vi", _cd12["tu_vi"]["hien"] > _tv_truoc, True)
+check("uống đan: tiêu hao 1", _E._tl_co(_cd12, "Tụ Khí Đan"), 1)
+check("uống đan không có: báo lỗi",
+      _E.tl_uong(_cd12, "Hồi Lực Đan").get("loi") is not None, True)
+
+# Luyện đan ra lò phải vào TÚI, chưa cộng tu vi
+_cd13 = _E.trang_thai_moi("CD13", "tán tu", "tan_tu")
+_cd13["chuong"] = 2
+_E.vao_dong(_cd13)
+_E._nhan_vat(_cd13, {"ten": "Nanh sói", "so": 5})
+_E._nhan_vat(_cd13, {"ten": "Linh thảo", "so": 10})
+_tv0 = _cd13["tu_vi"]["hien"]
+for _ in range(6):
+    _E.tl_luyen_dan(_cd13, "tu_khi_dan")
+check("luyện đan ra lò: KHÔNG cộng tu vi ngay", _cd13["tu_vi"]["hien"], _tv0)
+check("luyện đan ra lò: đan nằm trong túi",
+      _E._tl_co(_cd13, "Tụ Khí Đan") > 0 or _E._tl_co(_cd13, "Nanh sói") == 0, True)
 
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)
