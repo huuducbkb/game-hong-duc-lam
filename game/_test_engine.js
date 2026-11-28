@@ -754,6 +754,57 @@ const doan_truoc = o.doan_hien_tai;
         Engine._ngau_nhien(Engine._hat_giong("Hồng Đức", 7), 2),
         Engine._ngau_nhien(Engine._hat_giong("Hồng Đức", 7), 2));
 
+  // --- Lỗi báo 2026-11-28: kẹt đúng con vừa thua ---
+  check("có 10 yêu thú", Engine.TL_YEU_THU.length, 10);
+  check("có 5 con hạng thường", Engine.TL_YEU_THU.filter(t => t.hang === "thuong").length, 5);
+  check("có 3 con tinh anh", Engine.TL_YEU_THU.filter(t => t.hang === "tinh_anh").length, 3);
+  check("có 2 yêu vương", Engine.TL_YEU_THU.filter(t => t.hang === "yeu_vuong").length, 2);
+  {
+    // Thua xong thì con đó KHÔNG được trả về nữa.
+    const s = stTL();
+    let soLanThua = 0, viPham = 0, soLanDanh = 0;
+    for (let vong = 0; vong < 10; vong++) {
+      const x = Engine.tl_dau(s);
+      const r = Engine.tl_danh(s);
+      if (!r.loi) {
+        soLanDanh++;
+        if (!r.thang) soLanThua++;
+      }
+      while (s.chi_so.sinh_luc.hien <= s.chi_so.sinh_luc.max * 0.35 && s.tu_luyen.ngay_con > 0)
+        Engine.tl_nghi(s);
+      // Đúng điều người dùng báo: THUA xong thì lượt kế phải là con KHÁC.
+      if (!r.loi && !r.thang) {
+        const sau = Engine.tl_dau(s);
+        if (!sau.loi && sau.tran.ma === x.tran.ma) viPham++;
+      }
+    }
+    check("có ít nhất 1 trận để kiểm", soLanDanh >= 1, true);
+    check("thua xong KHÔNG gặp lại đúng con đó", viPham, 0);
+  }
+  {
+    // Bị thương thì VẪN xem được trận (chỉ đánh mới bị chặn) — trước đây hàm
+    // xem trận cũng bị khoá, nên người chơi kẹt không thấy con khác.
+    const s = stTL();
+    s.chi_so.sinh_luc.hien = 3;
+    const x = Engine.tl_dau(s);
+    check("bị thương: VẪN xem được trận", !!x.loi, false);
+    check("bị thương: có tên con", typeof x.tran.ten, "string");
+    const r = Engine.tl_danh(s);
+    check("bị thương: chặn ĐÁNH", !!r.loi, true);
+  }
+  {
+    // Yêu vương không xuất hiện khi còn yếu (dưới Luyện Khí tầng 5).
+    const s = stTL();
+    s.canh_gioi = "Luyện Khí tầng 1";
+    let coYeuVuong = false;
+    for (let i = 0; i < 40; i++) {
+      s.tu_luyen.muc_tieu = null;
+      const x = Engine.tl_dau(s);
+      if (!x.loi && x.tran.hang === "yeu_vuong") coYeuVuong = true;
+    }
+    check("tầng 1: KHÔNG gặp yêu vương", coYeuVuong, false);
+  }
+
   // Đấu pháp: tỉ lệ thắng phải nằm trong 5–95 và hiện được trước khi đánh.
   {
     const s = stTL();

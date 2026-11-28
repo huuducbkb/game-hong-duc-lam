@@ -47,11 +47,20 @@
   const TL_TU_VI_DA_TOA = 8;
 
   const TL_YEU_THU = [
-    { ma: "hac_lang", ten: "Hắc Lang", bac: 2, vat: "Nanh sói", so_vat: 1 },
-    { ma: "thanh_xa", ten: "Thanh Xà", bac: 1, vat: "Mật xà", so_vat: 1 },
-    { ma: "son_tru", ten: "Sơn Trư", bac: 1, vat: "Nanh sói", so_vat: 1 },
-    { ma: "thiet_giap_thu", ten: "Thiết Giáp Thử", bac: 3, vat: "Mật xà", so_vat: 1 },
+    { ma: "son_tru", ten: "Sơn Trư", hang: "thuong", bac: 1, vat: "Nanh sói", so_vat: 1, tu_vi: 4, nguy_hiem: 25 },
+    { ma: "thanh_xa", ten: "Thanh Xà", hang: "thuong", bac: 1, vat: "Mật xà", so_vat: 1, tu_vi: 4, nguy_hiem: 30 },
+    { ma: "bach_tho", ten: "Bạch Thố Tinh", hang: "thuong", bac: 1, vat: "Linh thảo", so_vat: 2, tu_vi: 3, nguy_hiem: 15 },
+    { ma: "da_lang", ten: "Dã Lang", hang: "thuong", bac: 2, vat: "Nanh sói", so_vat: 2, tu_vi: 5, nguy_hiem: 35 },
+    { ma: "hac_thu", ten: "Hắc Thử", hang: "thuong", bac: 1, vat: "Bạc vụn", so_vat: 2, tu_vi: 3, nguy_hiem: 20 },
+    { ma: "hac_lang", ten: "Hắc Lang Tinh Anh", hang: "tinh_anh", bac: 3, vat: "Nanh sói", so_vat: 3, tu_vi: 9, nguy_hiem: 40 },
+    { ma: "thiet_giap", ten: "Thiết Giáp Thử", hang: "tinh_anh", bac: 3, vat: "Mật xà", so_vat: 2, tu_vi: 9, nguy_hiem: 40 },
+    { ma: "xich_vien", ten: "Xích Viên Tinh Anh", hang: "tinh_anh", bac: 4, vat: "Linh thảo", so_vat: 3, tu_vi: 11, nguy_hiem: 45 },
+    { ma: "bach_lang_vuong", ten: "Bạch Lang Yêu Vương", hang: "yeu_vuong", bac: 5, vat: "Nanh sói", so_vat: 5, tu_vi: 20, nguy_hiem: 55 },
+    { ma: "hac_xa_vuong", ten: "Hắc Xà Yêu Vương", hang: "yeu_vuong", bac: 6, vat: "Mật xà", so_vat: 5, tu_vi: 24, nguy_hiem: 60 },
   ];
+
+  const TL_GAP = { thuong: 62, tinh_anh: 30, yeu_vuong: 8 };
+  const TL_NGUONG = { thuong: 0, tinh_anh: 2, yeu_vuong: 4 };
 
   const TL_CONG_THUC = [
     {
@@ -224,21 +233,49 @@
     };
   }
 
-  function tl_san(state) {
-    const loi = _tl_kiem_tra(state, "san");
-    if (loi) return loi;
-    const r = _tl_ngau(state);
-    const thu = TL_YEU_THU[Math.floor(r * TL_YEU_THU.length) % TL_YEU_THU.length];
-    _tl_ghi(state, `săn ${thu.ten}`, TL_VIEC.san.ngay);
-    _ap_hieu_ung(state, { them_vat: [{ ten: thu.vat, so: thu.so_vat }] });
-    const tb = _ap_hieu_ung(state, { tu_vi: 3 });
-    if (r < 0.35) {
-      const cs = state.chi_so.sinh_luc;
-      cs.hien = Math.max(1, cs.hien - 8);
-      tb.push(`Bị ${thu.ten} cắn — sinh lực -8`);
+  function _tl_con_thua(state) {
+    return (state.tu_luyen && state.tu_luyen.da_thua) ? state.tu_luyen.da_thua.slice() : [];
+  }
+
+  // Chọn yêu thú: không gặp lại con vừa thua, hạng theo cảnh giới.
+  function _tl_chon_thu(state) {
+    const tl = _tl(state);
+    const da_thua = _tl_con_thua(state);
+    const bac_minh = CANH_GIOI.indexOf(state.canh_gioi);
+    let hop = Object.keys(TL_NGUONG).filter(h => bac_minh >= TL_NGUONG[h]);
+    if (!hop.length) hop = ["thuong"];
+    // Bỏ con vừa đánh (dù thắng hay thua) — gặp lại y nguyên con cũ ngay lượt sau
+    // là đúng cái người dùng báo là "kẹt".
+    const vua = tl.vua_gap;
+    const loai = da_thua.concat(vua ? [vua] : []);
+    let ung_vien = TL_YEU_THU.filter(t => hop.includes(t.hang) && !loai.includes(t.ma));
+    if (!ung_vien.length) {
+      // Thua hết cả nhóm. Ban vĩnh viễn là sai: bảng sẽ cạn và quay lại đúng con
+      // vừa thua. Cho thử lại từ đầu nhưng VẪN tránh con vừa đánh.
+      tl.da_thua = [];
+      ung_vien = TL_YEU_THU.filter(t => hop.includes(t.hang) && t.ma !== vua);
     }
-    tb.push(`Giết ${thu.ten}: ${thu.vat} +${thu.so_vat}`);
-    return { ok: true, thong_bao: tb, chi_so: _tl_chi_so(state) };
+    if (!ung_vien.length) ung_vien = TL_YEU_THU.filter(t => t.hang === "thuong" && t.ma !== vua);
+    if (!ung_vien.length) ung_vien = TL_YEU_THU.slice();
+    const r = _tl_ngau(state);
+    const tong = hop.reduce((a, h) => a + TL_GAP[h], 0) || 1;
+    let diem = r * tong;
+    let chon_hang = hop[0];
+    for (const h of hop) {
+      diem -= TL_GAP[h];
+      if (diem <= 0) { chon_hang = h; break; }
+    }
+    let trong_hang = ung_vien.filter(t => t.hang === chon_hang);
+    if (!trong_hang.length) trong_hang = ung_vien;
+    const r2 = _tl_ngau(state);
+    const thu = trong_hang[Math.floor(r2 * trong_hang.length) % trong_hang.length];
+    tl.muc_tieu = thu.ma;
+    tl.vua_gap = thu.ma;
+    return thu;
+  }
+
+  function tl_san(state) {
+    return tl_danh(state);
   }
 
   function _ti_le_thang(state, thu) {
@@ -249,20 +286,24 @@
     return Math.max(5, Math.min(95, goc));
   }
 
+  // Xem trận KHÔNG tốn ngày và KHÔNG khoá khi bị thương — chỉ đánh mới cần sức.
   function tl_dau(state) {
-    const loi = _tl_kiem_tra(state, "san");
-    if (loi) return loi;
-    const r = _tl_ngau(state);
-    const thu = TL_YEU_THU[Math.floor(r * TL_YEU_THU.length) % TL_YEU_THU.length];
-    return { ok: true, tran: { ten: thu.ten, bac: CANH_GIOI[thu.bac], ti_le: _ti_le_thang(state, thu) } };
+    if (state.ket_thuc) return { loi: "Chương đã khép lại — không tu luyện được nữa" };
+    const tl = _tl(state);
+    let thu = TL_YEU_THU.find(t => t.ma === tl.muc_tieu);
+    if (!thu || _tl_con_thua(state).includes(tl.muc_tieu)) thu = _tl_chon_thu(state);
+    return { ok: true, tran: { ma: thu.ma, ten: thu.ten, hang: thu.hang,
+      bac: CANH_GIOI[thu.bac], ti_le: _ti_le_thang(state, thu),
+      vat: thu.vat, so_vat: thu.so_vat } };
   }
 
   function tl_danh(state, so_hiep) {
     so_hiep = so_hiep || 3;
     const loi = _tl_kiem_tra(state, "san");
     if (loi) return loi;
-    const r = _tl_ngau(state);
-    const thu = TL_YEU_THU[Math.floor(r * TL_YEU_THU.length) % TL_YEU_THU.length];
+    const tl = _tl(state);
+    let thu = TL_YEU_THU.find(t => t.ma === tl.muc_tieu);
+    if (!thu || _tl_con_thua(state).includes(tl.muc_tieu)) thu = _tl_chon_thu(state);
     const ti_le = _ti_le_thang(state, thu);
     _tl_ghi(state, `đánh ${thu.ten}`, TL_VIEC.san.ngay);
     const cs = state.chi_so.sinh_luc;
@@ -277,13 +318,20 @@
     let tb = [];
     if (thang) {
       _ap_hieu_ung(state, { them_vat: [{ ten: thu.vat, so: thu.so_vat }] });
-      tb = _ap_hieu_ung(state, { tu_vi: 6 });
+      tb = _ap_hieu_ung(state, { tu_vi: thu.tu_vi });
       dong.push(`— THẮNG: ${thu.ten} gục, ${thu.vat} +${thu.so_vat}`);
+      if ((tl.da_thua || []).includes(thu.ma)) tl.da_thua = tl.da_thua.filter(m => m !== thu.ma);
+      tl.muc_tieu = null;
     } else {
       cs.hien = Math.max(1, cs.hien - 6);
-      dong.push("— THUA: bị thương, sinh lực -6. Nghỉ vài ngày rồi tính lại.");
+      tl.da_thua = tl.da_thua || [];
+      if (!tl.da_thua.includes(thu.ma)) tl.da_thua.push(thu.ma);
+      tl.muc_tieu = null;
+      dong.push("— THUA: bị thương, sinh lực -6. Lượt sau sẽ gặp con khác.");
     }
-    return { ok: true, thang, dong, thong_bao: tb, chi_so: _tl_chi_so(state) };
+    const goi_y = _tl_chon_thu(state);
+    return { ok: true, thang, dong, thong_bao: tb, chi_so: _tl_chi_so(state),
+      muc_tieu_sau: { ten: goi_y.ten, hang: goi_y.hang, ti_le: _ti_le_thang(state, goi_y) } };
   }
 
   function tl_cong_thuc(state) {

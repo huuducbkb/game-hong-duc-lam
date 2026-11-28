@@ -2,9 +2,35 @@
 
 > **Sổ việc sống.** Cập nhật mỗi khi có việc mới hoặc xong việc.
 > Quy ước: `[ ]` chưa làm · `[~]` đang làm · `[x]` xong.
-> Cập nhật lần cuối: **2026-11-28 (tiếp 3)**
+> Cập nhật lần cuối: **2026-11-29**
 
 ---
+
+## ✅ XONG 2026-11-29 — Hai trong ba lỗi bạn báo
+
+| Lỗi | Trạng thái | Bằng chứng |
+|---|---|---|
+| 1. Mục tiêu săn lặp lại, không đổi được | **xong** | 10 yêu thú; 10 vòng thử, **0 lần** gặp lại con vừa thua; Python↔JS khớp từng ký tự |
+| 3. Nút Hệ Thống nhảy lên trên | **xong** | Lỗi thật ở **414–430px** (iPhone Pro Max). Sau sửa: 320/360/390/414/430 đều giống nhau giữa 2 chương |
+| 2. Bế tắc không lên được tầng | **chờ bạn chọn** | Đo: đả tọa 30 ngày = 80 tu vi (cần 88); mỗi trận mất 21.5/26 sinh lực; thắng 18% |
+
+## ⏳ ĐANG CHỜ BẠN CHỌN — Lỗi 2: cân bằng tu vi
+
+Ba số đo cho thấy ba nút thắt độc lập, sửa một cái không đủ:
+
+| Nút thắt | Số hiện tại | Đề xuất |
+|---|---|---|
+| Đả tọa quá chậm | 8 tu vi/lượt × 10 lượt = **80**, cần **88** | nâng lên **12/lượt** (120 cho 30 ngày) |
+| Sinh lực cạn sau 1 trận | mất **21.5/26** | giảm còn khoảng **8–10/trận** |
+| Thắng quá ít ở tầng 1 | **18%** | nâng nền tầng 1 lên khoảng **45–50%** |
+| Không có thu nhập | bạc 3, chợ bán 2 món | thêm **bán nguyên liệu** ở chợ |
+
+Ba cách, bạn chọn một:
+
+- **A. Sửa cả bốn** theo bảng trên — chơi mượt ngay, nhưng dễ thành quá dễ.
+- **B. Chỉ sửa tu vi + sinh lực**, để tỉ lệ thắng 18% làm "độ khó thật" — cày lâu hơn
+  nhưng vẫn thoát được bế tắc.
+- **C. Bạn tự chơi thử rồi chỉ số** — tôi để nguyên, chờ bạn nói con số bạn muốn.
 
 ## ✅ XONG 2026-11-28 (tiếp 4) — "Tiến vào tu luyện": RPG cày cuốc đã chạy được
 

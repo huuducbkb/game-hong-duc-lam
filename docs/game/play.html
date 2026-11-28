@@ -59,7 +59,11 @@ body{
   .topbar{flex-wrap:wrap;gap:8px 9px}
   .avatar-wrap{width:42px;height:42px}
   .titles{order:0;flex:1 1 auto;min-width:0}
-  .topbar .sys-btn{order:1;flex:1 1 auto;padding:8px 6px;font-size:11.5px;white-space:nowrap}
+  /* Bốn nút nằm trong MỘT khối chiếm trọn hàng dưới. Trước đây mỗi nút tự co
+     giãn nên ở 414–430px nút "Hệ Thống" chen lên hàng của tiêu đề (chương 2
+     có nhãn dài hơn nên lệch hẳn lên trên so với chương 1). */
+  .topbar-nut{order:1;flex:1 1 100%;display:flex;gap:9px;align-items:center}
+  .topbar .sys-btn{flex:1 1 0;min-width:0;padding:8px 6px;font-size:11.5px;white-space:nowrap}
 }
 /* nút loa: icon nhỏ, không co giãn, để 4 nút vẫn vừa một hàng ở màn 320px.
    Giữ vùng chạm 44px cho dễ bấm trên điện thoại. */
@@ -731,10 +735,12 @@ body{
       <h1>Hồng Đức Tu Tiên Lộ</h1>
       <div class="sub" id="chuongSub">Chương 1 · Đại chiến Dã Lang Bang</div>
     </div>
-    <button class="sys-btn" id="openSys">Hệ Thống</button>
-    <button class="sys-btn" id="nutKeAI" title="Bật/tắt AI kể lại đoạn truyện">AI kể: Bật</button>
-    <button class="sys-btn" id="openReset">Chơi lại</button>
-    <button class="sys-btn tieng" id="nutTieng" aria-label="Tắt tiếng">🔊</button>
+    <div class="topbar-nut">
+      <button class="sys-btn" id="openSys">Hệ Thống</button>
+      <button class="sys-btn" id="nutKeAI" title="Bật/tắt AI kể lại đoạn truyện">AI kể: Bật</button>
+      <button class="sys-btn" id="openReset">Chơi lại</button>
+      <button class="sys-btn tieng" id="nutTieng" aria-label="Tắt tiếng">🔊</button>
+    </div>
   </header>
 
   <!-- bảng truyện -->
@@ -2833,33 +2839,68 @@ function tlVe(v) {
 }
 
 function tlManSan() {
-  return '<div class="tl-o"><div class="top"><span class="k">Săn yêu thú</span>' +
-    '<span class="v">2 ngày</span></div>' +
-    '<div style="font-size:12px;color:var(--ink-soft);margin-top:6px">' +
-    "Đi săn lấy nguyên liệu luyện đan. Có thể bị thương.</div></div>" +
-    '<button class="tl-nut chinh" id="tlXemTran">Xem trận trước (không tốn ngày)</button>' +
-    '<div id="tlTran">' + tlKqHtml + "</div>" +
+  // Hiện sẵn con đang nhắm ngay khi mở màn — người chơi thấy mình sắp đánh ai,
+  // tỉ lệ bao nhiêu, TRƯỚC khi tốn 2 ngày. Đây là chỗ trước đây bị kẹt: bấm Săn
+  // mà vẫn ra đúng con cũ vừa thua.
+  const t = Engine.tl_dau(st);
+  let dau = "";
+  // Bị thương thì đánh không được — phải có nút nghỉ NGAY ĐÂY, không bắt người
+  // chơi quay ra động phủ tìm. Trước đây màn này chỉ báo lỗi, thành ngõ cụt.
+  const sl = st.chi_so.sinh_luc;
+  const biThuong = sl.hien <= sl.max * 0.3;
+  if (biThuong) {
+    dau = '<div class="tl-loi">Đang bị thương nặng — sinh lực ' + sl.hien + "/" + sl.max +
+      ". Nghỉ cho hồi sức rồi hẵng đánh.</div>" +
+      '<button class="tl-nut chinh" id="tlNghiSuc">Nghỉ cho hồi sức (1 ngày)</button>';
+  }
+  if (t.loi) {
+    dau += '<div class="tl-loi">' + esc(t.loi) + "</div>";
+  } else {
+    const tr = t.tran;
+    const nhan = tr.hang === "yeu_vuong" ? "YÊU VƯƠNG"
+      : tr.hang === "tinh_anh" ? "TINH ANH" : "thường";
+    dau += '<div class="tl-o"><div class="top"><span class="k">Đang nhắm</span>' +
+      '<span class="v">' + esc(nhan) + "</span></div>" +
+      '<div class="tl-tran" style="margin:6px 0 0">' + esc(tr.ten) +
+      '<span class="tyle">' + tr.ti_le + "% thắng</span></div>" +
+      '<div style="font-size:11px;color:var(--ink-faint);text-align:center">' +
+      esc(tr.bac) + " · rơi " + esc(tr.vat) + " ×" + tr.so_vat + "</div></div>" +
+      // Đang bị thương thì không hiện nút Đánh — bấm vào chỉ ra lỗi, vô nghĩa.
+      (biThuong ? "" : '<button class="tl-nut chinh" id="tlDanh">Đánh (2 ngày)</button>') +
+      '<button class="tl-nut" id="tlDoiThu">Đổi con khác (không tốn ngày)</button>';
+  }
+  const dsThua = (st.tu_luyen && st.tu_luyen.da_thua) || [];
+  let ghiThua = "";
+  if (dsThua.length) {
+    ghiThua = '<div class="tl-nhat"><div>Đã thua: ' + dsThua.length +
+      " con — chúng không xuất hiện lại cho tới khi ngươi thắng được.</div></div>";
+  }
+  return dau + ghiThua + '<div id="tlTran">' + tlKqHtml + "</div>" +
     '<button class="tl-nut" id="tlQuay">← Quay lại động phủ</button>';
 }
 
 function tlGanSan() {
   gan("#tlQuay", "onclick", () => { tlManCon = null; tlKqHtml = ""; tlNap(); });
-  gan("#tlXemTran", "onclick", () => {
-    const r = Engine.tl_dau(st);
+  // "Đổi con khác": chọn lại mục tiêu, không tốn ngày, để không phải đánh con
+  // mình chắc chắn thua.
+  gan("#tlDoiThu", "onclick", () => {
+    if (st.tu_luyen) st.tu_luyen.muc_tieu = null;
+    tlKqHtml = "";
+    tlNap();
+  });
+  gan("#tlNghiSuc", "onclick", () => {
+    const k = Engine.tl_nghi(st);
+    tlKqHtml = k.loi ? '<div class="tl-loi">' + esc(k.loi) + "</div>"
+      : '<div class="tl-kq">' + tlThongBao(k.thong_bao) + "</div>";
+    tlCapNhat(); tlNap();
+  });
+  gan("#tlDanh", "onclick", () => {
+    const k = Engine.tl_danh(st);
     const hop = $("#tlTran");
-    if (r.loi) { hop.innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
-    hop.innerHTML = '<div class="tl-kq"><div class="tl-tran">' + esc(r.tran.ten) +
-      " · " + esc(r.tran.bac) + '<span class="tyle">' + r.tran.ti_le + "% thắng</span></div>" +
-      '<button class="tl-nut chinh" id="tlDanh">Đánh (2 ngày)</button>' +
-      '<button class="tl-nut" id="tlRut">Rút (không tốn ngày)</button></div>';
-    gan("#tlRut", "onclick", () => { tlKqHtml = ""; hop.innerHTML = ""; });
-    gan("#tlDanh", "onclick", () => {
-      const k = Engine.tl_danh(st);
-      if (k.loi) { hop.innerHTML = '<div class="tl-loi">' + esc(k.loi) + "</div>"; return; }
-      tlKqHtml = '<div class="tl-kq">' + k.dong.map(t => "<div>" + esc(t) + "</div>").join("") +
-        tlThongBao(k.thong_bao) + "</div>";
-      tlCapNhat(); tlNap();
-    });
+    if (k.loi) { if (hop) hop.innerHTML = '<div class="tl-loi">' + esc(k.loi) + "</div>"; return; }
+    tlKqHtml = '<div class="tl-kq">' + k.dong.map(t => "<div>" + esc(t) + "</div>").join("") +
+      tlThongBao(k.thong_bao) + "</div>";
+    tlCapNhat(); tlNap();
   });
 }
 

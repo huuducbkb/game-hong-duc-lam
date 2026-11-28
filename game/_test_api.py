@@ -1112,6 +1112,47 @@ check("hành động lạ: bị chặn", _r.get("_http"), 400)
 _r = call(_o, "/api/tu_luyen", {"hanh": "ra"})
 check("xuất động: trả về đoạn truyện", bool(_r.get("doan_id")), True)
 
+print("\n=== TL1b. Yêu thú: 10 con, không kẹt đúng con vừa thua (lỗi báo 2026-11-28) ===")
+from game import engine as _E
+_t = _E.TL_YEU_THU
+check("có 10 yêu thú", len(_t), 10)
+check("có 5 con hạng thường", len([x for x in _t if x["hang"] == "thuong"]), 5)
+check("có 3 con tinh anh", len([x for x in _t if x["hang"] == "tinh_anh"]), 3)
+check("có 2 yêu vương", len([x for x in _t if x["hang"] == "yeu_vuong"]), 2)
+
+_sk = _E.trang_thai_moi("Kẹt", "tán tu", "tan_tu")
+_sk["chuong"] = 2
+_vp = 0
+for _v in range(10):
+    _x = _E.tl_dau(_sk)
+    _kq = _E.tl_danh(_sk)
+    if _kq.get("loi") is None and _kq["thang"] is False:
+        _sau = _E.tl_dau(_sk)
+        if _sau.get("loi") is None and _sau["tran"]["ma"] == _x["tran"]["ma"]:
+            _vp += 1
+    while (_sk["chi_so"]["sinh_luc"]["hien"]
+           <= _sk["chi_so"]["sinh_luc"]["max"] * 0.35
+           and _sk["tu_luyen"]["ngay_con"] > 0):
+        _E.tl_nghi(_sk)
+check("thua xong KHÔNG gặp lại đúng con đó", _vp, 0)
+
+_sky = _E.trang_thai_moi("Yếu", "tán tu", "tan_tu")
+_sky["chuong"] = 2
+_sky["canh_gioi"] = "Luyện Khí tầng 1"
+_cyv = False
+for _ in range(40):
+    _sky["tu_luyen"]["muc_tieu"] = None
+    _x = _E.tl_dau(_sky)
+    if _x.get("loi") is None and _x["tran"]["hang"] == "yeu_vuong":
+        _cyv = True
+check("tầng 1: KHÔNG gặp yêu vương", _cyv, False)
+
+_sbt = _E.trang_thai_moi("Thương", "tán tu", "tan_tu")
+_sbt["chuong"] = 2
+_sbt["chi_so"]["sinh_luc"]["hien"] = 3
+check("bị thương: VẪN xem được trận", _E.tl_dau(_sbt).get("loi"), None)
+check("bị thương: chặn ĐÁNH", _E.tl_danh(_sbt).get("loi") is not None, True)
+
 print("\n=== TL2. Bản Python và bản JS phải ra CÙNG dãy số ngẫu nhiên ===")
 # Nếu hai bản lệch nhau, người chơi thấy kết quả khác nhau tuỳ chơi web hay
 # chơi bản Python — lỗi câm, không ai báo. Neo bằng số đo thật của bản Python.

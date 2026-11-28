@@ -8,6 +8,69 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-29 · Ba lỗi bạn báo: sửa 2, đo xong 1 còn chờ bạn chọn
+
+Bạn báo ba lỗi trong màn "Tiến vào tu luyện". Tôi đo từng cái bằng số trước khi sửa,
+vì hai lần trước tôi đoán sai nguyên nhân.
+
+### Lỗi 1 — "mục tiêu cứ lặp lại một con, không đổi được" → ĐÃ SỬA
+
+Nguyên nhân thật **không phải** máy ngẫu nhiên. Gieo hạt vẫn đúng. Có ba chỗ cộng lại:
+
+1. Bảng chỉ có **4 con**, nên 1/4 khả năng gặp lại y con cũ.
+2. `tl_dau` (xem trận) **cũng bị khoá khi bị thương** — mà nó là đường duy nhất để
+   xem con khác. Bị thương là mù luôn.
+3. `tlKqHtml` giữ kết quả trận cũ khi quay lại màn Săn, nên thấy y nguyên chữ cũ.
+
+Đã sửa:
+
+| Việc | Trước | Sau |
+|---|---|---|
+| Số yêu thú | 4 | **10** (5 thường, 3 tinh anh, 2 yêu vương) |
+| Hạng theo cảnh giới | không có | tầng 1–2 chỉ gặp thường; tinh anh từ tầng 3; **yêu vương từ tầng 5** |
+| Con vừa đánh | gặp lại ngay | **không bao giờ trả lại y con vừa đánh** |
+| Thua hết cả nhóm | kẹt vĩnh viễn | cho thử lại từ đầu, **vẫn tránh con vừa đánh** |
+| Xem trận khi bị thương | bị chặn | **vẫn xem được**, chỉ Đánh mới cần sức |
+| Màn Săn khi bị thương | chỉ báo lỗi, ngõ cụt | **có nút Nghỉ tại chỗ**, ẩn nút Đánh |
+| Đổi mục tiêu | không có | **nút "Đổi con khác"**, không tốn ngày |
+| Tu vi mỗi con | cố định 6 | theo con: 3–24 (yêu vương thưởng lớn) |
+
+Kiểm bằng số: chạy 10 vòng "xem → đánh → nghỉ", **0 lần** gặp lại đúng con vừa thua.
+Bản Python và bản JS ra **cùng một dãy** (so từng ký tự, khớp tuyệt đối).
+
+Một lỗi phụ tôi tự tạo rồi tự bắt: tôi viết `dau =` thay vì `dau +=` trong `tlManSan`,
+làm cảnh báo bị thương bị ghi đè nên nút Nghỉ không hiện. Test trình duyệt bắt được.
+
+### Lỗi 3 — nút "Hệ Thống" nhảy lên trên → ĐÃ SỬA
+
+Tôi **đo được** chứ không đoán. Quét 9 độ rộng màn hình, so vị trí nút giữa chương 1
+và chương 2:
+
+| Rộng | Trước | Sau |
+|---|---|---|
+| 320px | lệch | **giống** (y=115) |
+| 360 / 390px | giống | giống (y=65) |
+| **414px** | **LỆCH: chương 1 y=13, chương 2 y=65** | **giống** (y=65) |
+| **430px** | **LỆCH** | **giống** (y=65) |
+| 431px+ | giống | giống |
+
+Đúng cỡ **iPhone Pro Max (430px)**. Nguyên nhân: mỗi nút tự co giãn riêng, nên khi nhãn
+chương dài (chương 2 dài hơn chương 1) thì nút Hệ Thống bị đẩy lên hàng của tiêu đề.
+Sửa: gộp 4 nút vào một khối `.topbar-nut` chiếm trọn một hàng, chia đều `flex:1 1 0`.
+
+### Lỗi 2 — bế tắc, không lên được tầng → ĐÃ ĐO, CHƯA SỬA (chờ bạn chọn)
+
+Đây là **đổi cân bằng**, không phải sửa bug, nên tôi dừng lại hỏi. Ba số đo:
+
+| Số đo | Giá trị | Nghĩa |
+|---|---|---|
+| Đả tọa 30 ngày | **80 tu vi** | cần **88** để lên tầng 2 → **không lên nổi tầng nào** |
+| Sinh lực mất mỗi trận | **21.5 / 26** | đánh được **1.2 trận** là kiệt sức |
+| Tỉ lệ thắng ở tầng 1 | **18%** | thua 5 lần mới thắng 1 lần |
+
+Cộng lại: đả tọa thì không lên tầng, đánh thì kiệt sức sau 1 trận, thắng chỉ 18%, mà
+bạc chỉ có 3 và chợ chỉ bán 2 món — không có đường nào thoát.
+
 ## 2026-11-28 (tiếp 6) · Ba chốt chặn cho bước bàn giao (người dùng chọn "cả 3")
 
 Người dùng trả lời ba câu tôi hỏi: **1. cả 3** · **2. đợi tôi đọc rồi chỉ định** ·
