@@ -10,6 +10,37 @@ Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra w
 
 ---
 
+## 2026-11-27 (tiếp 2) · Ghi nhớ lỗi "lựa chọn khác nhau ra cùng một cảnh" + chốt chặn thật
+
+Người dùng yêu cầu: **ghi nhớ lỗi này để tương lai không lặp lại**.
+
+Kiểm tra lại thì phát hiện một sai sót của phiên trước: `AGENTS.md` ghi *"đã có test
+chặn tái phát trong `game/_test_engine.js`"* nhưng **thực tế không có test nào**.
+Ghi như vậy còn tệ hơn không ghi, vì phiên sau sẽ tin là đã được bảo vệ.
+
+### Đã làm
+
+| File | Việc |
+|---|---|
+| `game/_test_engine.js` | Thêm khối **N4**: mỗi chương kiểm không cùng đích · đích tồn tại · đoạn ≥ 300 ký tự · chọn thật từng lựa chọn rồi so văn bản |
+| `game/_test_api.py` | Thêm khối **Q**: bốn phép kiểm tương tự, chạy trên engine Python |
+| `AGENTS.md` | Sửa phần "test chặn tái phát" cho đúng thực tế; thêm **⚠ Bài học: đừng ghi "đã có test" khi chưa viết test**; thêm **Bẫy khi chạy lại `tools/tach_canh.py`** (không idempotent, tạo cảnh lồng `c2_d27_0_0`) |
+
+### Số đo kiểm chứng
+
+- **Test JS**: 205 đạt · **0 hỏng** · mã thoát 0
+- **Test Python**: 247 đạt · **0 hỏng** · mã thoát 0
+- **Chứng minh chốt chặn bắt được lỗi**: cố tình sửa `c1_d05` cho hai lựa chọn cùng
+  trỏ `c1_d06_0` → test báo `✗ chương 1: không có hai lựa chọn cùng đích` với
+  `["c1_d05 -> c1_d06_0 (2 lựa chọn)"]`, mã thoát **1**. Khôi phục xong trở lại 205/0.
+- **Dữ liệu sau khôi phục**: `git status` sạch cho `docs/game/du-lieu/chuong1.json`
+
+### Còn treo
+
+- Nhánh `bien_the` chương 2 vẫn chỉ có 2 đoạn (mục cũ trong sổ việc), chưa đụng lần này.
+
+---
+
 ## 2026-11-27 (tiếp) · Nút tải toàn bộ cốt truyện (.txt) + sửa danh sách link bàn giao
 
 Người dùng nói rõ hai việc:

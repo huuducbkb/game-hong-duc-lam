@@ -1864,6 +1864,28 @@ Công cụ trong `tools/`:
 - `kiem_noi_tiep.py` — soát đầu ra trùng nhau giữa các lựa chọn.
 - `sua_gia_dinh.py` — làm trung tính các câu mở đầu giả định hành động trước đó.
 
-Test chặn tái phát: `game/_test_engine.js` và `game/_test_api.py` quét mọi đoạn,
-báo lỗi nếu hai lựa chọn cùng đích, nếu cảnh riêng ngắn hơn 300 ký tự, hoặc nếu
-đích không tồn tại.
+Test chặn tái phát — **đã có thật**, chạy được, và đã thử cố tình tạo lỗi để xem
+nó có bắt không:
+
+- `game/_test_engine.js` khối **N4**, `game/_test_api.py` khối **Q**.
+- Mỗi chương kiểm bốn thứ: hai lựa chọn không cùng đích · mọi `den` đều tồn tại ·
+  mọi đoạn ≥ 300 ký tự · **chọn thật từng lựa chọn rồi so văn bản** — hai lựa chọn
+  khác nhau phải ra hai đoạn văn khác nhau.
+- Đo lại: `node game/_test_engine.js` và `python3 game/_test_api.py` → cả hai phải
+  **0 hỏng**, mã thoát 0.
+
+### ⚠ Bài học: đừng ghi "đã có test" khi chưa viết test
+
+Lần đầu sửa lỗi này, `AGENTS.md` được ghi là "đã có test chặn tái phát trong
+`game/_test_engine.js`" — nhưng **không hề có test nào**. Câu đó sai, và nếu phiên
+sau tin vào nó thì lỗi sẽ quay lại mà không ai biết. Khi viết vào tài liệu rằng
+"đã có test", phải chạy test đó ngay và dán số đo thật vào. Tốt hơn nữa: cố tình
+tạo lỗi một lần để chứng minh test **bắt được** lỗi (đã làm: sửa `c1_d05` cho hai
+lựa chọn cùng đích → test báo `c1_d05 -> c1_d06_0 (2 lựa chọn)` và thoát mã 1).
+
+### Bẫy khi chạy lại `tools/tach_canh.py`
+
+Script này **không idempotent**: chạy hai lần lên cùng dữ liệu sẽ tạo cảnh lồng
+nhau (`c2_d27_0_0`). Trước khi chạy lại phải `git checkout game/chapters/*.json`
+để về bản gốc, rồi chạy đúng một lượt. Sau khi chạy, kiểm ngay: không có mã đoạn
+lặp `.json` hai lần dạng `_0_0`.

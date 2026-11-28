@@ -588,6 +588,64 @@ const doan_truoc = o.doan_hien_tai;
           khoaKetXau("c2_p24", "“Đi đi", 20), [false]);
   }
 
+  console.log("\n=== N4. Mỗi lựa chọn phải ra một cảnh riêng ===");
+  // Lỗi đã gặp: hai lựa chọn trong cùng một đoạn cùng trỏ `den` về một đoạn, nên
+  // người chơi bấm cách nào cũng đọc y nguyên một đoạn văn.
+  for (const [so, ten] of [[1, "chương 1"], [2, "chương 2"]]) {
+    const du = JSON.parse(fs.readFileSync(path.join(GOC, `chuong${so}.json`), "utf8"));
+    const trung = [];
+    for (const d of du.doan) {
+      const dem = {};
+      for (const lc of d.lua_chon || []) {
+        if (lc.den === "__ket_thuc__") continue;
+        dem[lc.den] = (dem[lc.den] || 0) + 1;
+      }
+      for (const [den, n] of Object.entries(dem)) {
+        if (n > 1) trung.push(`${d.id} -> ${den} (${n} lựa chọn)`);
+      }
+    }
+    check(`${ten}: không có hai lựa chọn cùng đích`, trung, []);
+
+    const ids = new Set(du.doan.map((d) => d.id));
+    const thieu = [...new Set(
+      du.doan.flatMap((d) => (d.lua_chon || []).map((lc) => lc.den))
+        .filter((den) => den !== "__ket_thuc__" && !ids.has(den)))];
+    check(`${ten}: mọi đích đều tồn tại`, thieu, []);
+
+    const ngan = du.doan.filter((d) => (d.ke || "").length < 300).map((d) => d.id);
+    check(`${ten}: mọi đoạn dài từ 300 ký tự`, ngan, []);
+  }
+
+  // Kiểm hành vi thật: chọn từng lựa chọn của mọi đoạn nhiều lựa chọn, hai lựa
+  // chọn khác nhau phải cho ra văn bản khác nhau.
+  for (const [so, ten] of [[1, "chương 1"], [2, "chương 2"]]) {
+    Engine.napChuong(so, JSON.parse(fs.readFileSync(path.join(GOC, `chuong${so}.json`), "utf8")));
+    const du = JSON.parse(fs.readFileSync(path.join(GOC, `chuong${so}.json`), "utf8"));
+    const giong = [];
+    for (const d of du.doan) {
+      const lc = d.lua_chon || [];
+      if (lc.length < 2) continue;
+      const ra = [];
+      for (let i = 0; i < lc.length; i++) {
+        const st = Engine.trang_thai_moi("T", "", "tan_tu");
+        st.chuong = so;
+        st.doan_hien_tai = d.id;
+        st.npc = { "Hàn Lập": { hao_cam: 100, thai_do: Engine.muc_hao_cam(100) } };
+        const kq = Engine.chon(st, i);
+        if (kq.loi) continue;
+        ra.push([i, (kq.ke || "").trim()]);
+      }
+      for (let a = 0; a < ra.length; a++) {
+        for (let b = a + 1; b < ra.length; b++) {
+          if (ra[a][1] && ra[a][1] === ra[b][1]) {
+            giong.push(`${d.id}: lựa chọn ${ra[a][0]} và ${ra[b][0]} ra cùng văn bản`);
+          }
+        }
+      }
+    }
+    check(`${ten}: lựa chọn khác nhau ra cảnh khác nhau`, giong, []);
+  }
+
   console.log(`\n${"=".repeat(46)}\nKẾT QUẢ: ${ok} đạt, ${fail} hỏng`);
   process.exit(fail ? 1 : 0);
 })();

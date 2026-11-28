@@ -8,6 +8,24 @@
 
 ## 🔴 ĐANG LÀM
 
+### ✅ XONG 2026-11-27 — Chốt chặn "lựa chọn khác nhau phải ra cảnh khác nhau"
+
+Đã có test thật (trước đó tài liệu ghi nhầm là đã có): khối **N4** trong
+`game/_test_engine.js`, khối **Q** trong `game/_test_api.py`.
+
+Đo lại — cả hai phải **0 hỏng**, mã thoát 0:
+
+```bash
+node game/_test_engine.js      # -> 205 đạt, 0 hỏng
+python3 game/_test_api.py      # -> 247 đạt, 0 hỏng  (cần game_server.py chạy cổng 12001)
+```
+
+Chứng minh chốt chặn bắt được lỗi: cho `c1_d05` hai lựa chọn cùng trỏ `c1_d06_0`
+→ test báo `c1_d05 -> c1_d06_0 (2 lựa chọn)` và thoát mã 1.
+
+⚠ `tools/tach_canh.py` **không idempotent** — chạy lại phải `git checkout
+game/chapters/*.json` trước, nếu không sẽ sinh cảnh lồng `c2_d27_0_0`.
+
 ### ✅ XONG 2026-11-27 — Nút tải toàn bộ cốt truyện (.txt)
 
 Trang `docs/nhap/so-do-cot-truyen.html` có nút **⬇ Tải toàn bộ cốt truyện (.txt)**.

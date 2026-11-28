@@ -934,5 +934,51 @@ for _nhom_r, _doan_r, _ten_r in (("tan_tu", "c2_d01", "Hồng Trần"),
 check("hai nhánh không dùng chung bạn đồng hành",
       "Tuyết Cơ" in _E2.trang_thai_moi("T", "", "tan_tu")["npc"], False)
 
+print("\n=== Q. Mỗi lựa chọn phải ra một cảnh riêng ===")
+# Lỗi đã gặp: hai lựa chọn trong cùng một đoạn cùng trỏ `den` về một đoạn, nên
+# người chơi bấm cách nào cũng đọc y nguyên một đoạn văn.
+for _so in (1, 2):
+    _du = _E2.load_chuong(_so)
+    _ids = {x["id"] for x in _du["doan"]}
+    _trung, _thieu, _ngan = [], [], []
+    for _d in _du["doan"]:
+        _dem = {}
+        for _lc in _d.get("lua_chon") or []:
+            if _lc["den"] == "__ket_thuc__":
+                continue
+            _dem[_lc["den"]] = _dem.get(_lc["den"], 0) + 1
+            if _lc["den"] not in _ids:
+                _thieu.append(f'{_d["id"]} -> {_lc["den"]}')
+        for _den, _n in _dem.items():
+            if _n > 1:
+                _trung.append(f'{_d["id"]} -> {_den} ({_n} lựa chọn)')
+        if len(_d.get("ke") or "") < 300:
+            _ngan.append(_d["id"])
+    check(f"chương {_so}: không có hai lựa chọn cùng đích", _trung, [])
+    check(f"chương {_so}: mọi đích đều tồn tại", _thieu, [])
+    check(f"chương {_so}: mọi đoạn dài từ 300 ký tự", _ngan, [])
+
+    # Kiểm hành vi thật: chọn từng lựa chọn, hai lựa chọn khác nhau phải ra văn bản khác nhau.
+    _giong = []
+    for _d in _du["doan"]:
+        _lcs = _d.get("lua_chon") or []
+        if len(_lcs) < 2:
+            continue
+        _ra = []
+        for _i in range(len(_lcs)):
+            _st = _E2.trang_thai_moi("T", "", "tan_tu")
+            _st["chuong"] = _so
+            _st["doan_hien_tai"] = _d["id"]
+            _st["npc"] = {"Hàn Lập": {"hao_cam": 100, "thai_do": _E2.muc_hao_cam(100)}}
+            _kq = _E2.chon(_st, _i)
+            if _kq.get("loi"):
+                continue
+            _ra.append((_i, (_kq.get("ke") or "").strip()))
+        for _a in range(len(_ra)):
+            for _b in range(_a + 1, len(_ra)):
+                if _ra[_a][1] and _ra[_a][1] == _ra[_b][1]:
+                    _giong.append(f'{_d["id"]}: lựa chọn {_ra[_a][0]} và {_ra[_b][0]} ra cùng văn bản')
+    check(f"chương {_so}: lựa chọn khác nhau ra cảnh khác nhau", _giong, [])
+
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)
