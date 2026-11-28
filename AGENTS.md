@@ -1883,6 +1883,33 @@ sau tin vào nó thì lỗi sẽ quay lại mà không ai biết. Khi viết và
 tạo lỗi một lần để chứng minh test **bắt được** lỗi (đã làm: sửa `c1_d05` cho hai
 lựa chọn cùng đích → test báo `c1_d05 -> c1_d06_0 (2 lựa chọn)` và thoát mã 1).
 
+### ⚠ Tách cảnh dễ để lại cảnh mồ côi
+
+Khi tách cảnh, cảnh CŨ vẫn nằm trong JSON nếu không xoá — người chơi không bao giờ
+tới được, nhưng nó vẫn tốn chỗ, vẫn lọt vào sơ đồ cốt truyện và bản xuất .txt, và
+làm người đọc tưởng có nhánh chưa viết. Đã gặp: `c2_p04_0` và `c2_p23_2` mồ côi sau
+lần tách cảnh đầu tiên (đã xoá, chương 2 còn 140 đoạn).
+
+Cách kiểm — duyệt từ `doan_dau_theo_nhom`, đoạn nào không tới được là mồ côi:
+
+```bash
+python3 - <<'EOF'
+import json, io
+for so in (1, 2):
+    d = json.load(io.open(f'game/chapters/chuong{so}.json', encoding='utf-8'))
+    D = {x['id']: x for x in d['doan']}
+    thay, hang = set(), list(d['doan_dau_theo_nhom'].values())
+    while hang:
+        x = hang.pop()
+        if x in thay or x not in D: continue
+        thay.add(x)
+        hang += [l['den'] for l in D[x].get('lua_chon') or [] if l['den'] != '__ket_thuc__']
+    print(f'chuong{so}: {len(D)} doan, mo coi: {sorted(set(D) - thay)}')
+EOF
+```
+
+Cả hai chương phải in `mo coi: []`. Test **N4/Q** đã kiểm tự động điều này.
+
 ### Bẫy khi chạy lại `tools/tach_canh.py`
 
 Script này **không idempotent**: chạy hai lần lên cùng dữ liệu sẽ tạo cảnh lồng

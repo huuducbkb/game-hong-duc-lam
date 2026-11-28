@@ -958,6 +958,19 @@ for _so in (1, 2):
     check(f"chương {_so}: mọi đích đều tồn tại", _thieu, [])
     check(f"chương {_so}: mọi đoạn dài từ 300 ký tự", _ngan, [])
 
+    # Đoạn không ai trỏ tới là dữ liệu chết: người chơi không bao giờ đọc được.
+    _ds_theo_id = {y["id"]: y for y in _du["doan"]}
+    _thay, _hang = set(), list(set((_du.get("doan_dau_theo_nhom") or {}).values()))
+    while _hang:
+        _x = _hang.pop()
+        if _x in _thay or _x not in _ids:
+            continue
+        _thay.add(_x)
+        for _lc in _ds_theo_id[_x].get("lua_chon") or []:
+            if _lc["den"] != "__ket_thuc__":
+                _hang.append(_lc["den"])
+    check(f"chương {_so}: không có đoạn mồ côi", sorted(_ids - _thay), [])
+
     # Kiểm hành vi thật: chọn từng lựa chọn, hai lựa chọn khác nhau phải ra văn bản khác nhau.
     _giong = []
     for _d in _du["doan"]:

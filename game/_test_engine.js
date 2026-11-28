@@ -614,6 +614,22 @@ const doan_truoc = o.doan_hien_tai;
 
     const ngan = du.doan.filter((d) => (d.ke || "").length < 300).map((d) => d.id);
     check(`${ten}: mọi đoạn dài từ 300 ký tự`, ngan, []);
+
+    // Đoạn không ai trỏ tới là dữ liệu chết: người chơi không bao giờ đọc được.
+    // Đã gặp khi tách cảnh: cảnh cũ ở lại làm mồ côi.
+    const thay = new Set();
+    const hang = [...new Set(Object.values(du.doan_dau_theo_nhom || {}))];
+    while (hang.length) {
+      const x = hang.pop();
+      if (thay.has(x) || !ids.has(x)) continue;
+      thay.add(x);
+      const d = du.doan.find((y) => y.id === x);
+      for (const lc of d.lua_chon || []) {
+        if (lc.den !== "__ket_thuc__") hang.push(lc.den);
+      }
+    }
+    check(`${ten}: không có đoạn mồ côi`,
+          [...ids].filter((x) => !thay.has(x)).sort(), []);
   }
 
   // Kiểm hành vi thật: chọn từng lựa chọn của mọi đoạn nhiều lựa chọn, hai lựa

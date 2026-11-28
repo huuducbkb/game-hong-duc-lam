@@ -220,8 +220,31 @@ thấy trong mấy trò chơi ở thế giới cũ.
                         thanh kiếm: “Ngươi… khác bọn chúng.”
 
                           1. Lùi lại, hỏi: “Ngươi là ai?”
-                             → c1_d06
+                             → c1_d06_0
                           2. Im lặng, chờ đợi xem nó nói gì
+                             → c1_d06_1
+
+                        ── [c1_d06_0] · Trong miếu — chạm vào hộp kiếm
+
+                        Ta bật ngửa ra sau, lưng đập vào cột miếu. Bụi rơi lả tả từ xà nhà xuống vai
+                        ta.
+
+                        “Ngươi là ai?” — ta hỏi, giọng vỡ ra như có ai bóp nghẹn cổ họng. “Sao lại
+                        nói trong đầu ta?”
+
+                        Không ai đáp. Trong miếu chỉ có hai thanh kiếm nằm trên nền đá, lưỡi sáng lên
+                        dưới ánh trăng chéo qua mái rách.
+
+                        Rồi một tiếng cười khẽ. Không vui, không ác — như tiếng đá lạnh cạ vào đá
+                        lạnh.
+
+                        “Ngươi lùi lại,” — giọng ấy nói. — “Nhưng tay ngươi vẫn còn trên nắp hộp. Kẻ
+                        sợ thì không làm vậy.”
+
+                        Ta nhìn xuống. Đúng thế thật. Tay ta vẫn đặt trên thành hộp, như có thứ gì
+                        khác đã giữ tay ta lại.
+
+                          1. Nghe tiếng nói ấy
                              → c1_d06
 
                         ── [c1_d06] · Kiếm linh hiện hình
@@ -467,16 +490,37 @@ thấy trong mấy trò chơi ở thế giới cũ.
                         nói sai, có thể đổi cả tương lai.
 
                           1. Thành thật: “Ta biết tương lai của ngươi.”
-                             → c1_d16
+                             → c1_d16_0
                              [đổi: Hàn Lập +10]
                           2. Cười trừ: “Ta chỉ là kẻ tình cờ ở đây.”
-                             → c1_d16
+                             → c1_d16_1
                           3. Hỏi ngược: “Vậy ngươi là ai?”
-                             → c1_d16
+                             → c1_d16_2
                              [đổi: Hàn Lập +5]
                           4. Im lặng, đưa hắn bầu nước của mình
-                             → c1_d16
+                             → c1_d16_3
                              [đổi: Hàn Lập +8]
+
+                        ── [c1_d16_0] · Gặp Hàn Lập — hậu sơn
+
+                        Ta không cười, không đánh lưng. Ta nhìn thẳng vào hắn và nói thật — không
+                        phải nửa sự thật, mà là tất cả.
+
+                        “Ta biết tương lai của ngươi.”
+
+                        Gió ngừng. Hắn không đổi sắc mặt, nhưng bàn tay phải khẽ dừng lại.
+
+                        “Ngươi biết gì?”
+
+                        “Ta biết ngươi sẽ đứng trên đỉnh của thế gian này.” — ta nói. — “Ta biết
+                        ngươi sẽ mất rất nhiều thứ trước khi tới được đó. Và ta biết, trong tất cả
+                        những kẻ ở đây, chỉ có ngươi là còn sống khi những người này đã chết.”
+
+                        Lần này hắn nhìn ta lâu hơn. Trong mắt hắn có thứ gì đó lạnh hơn cả sự khinh
+                        ngạc.
+
+                          1. Nghe hắn nói tiếp
+                             → c1_d16
 
                         ── [c1_d16] · Đối thoại với Hàn Lập
 
@@ -631,9 +675,27 @@ thấy trong mấy trò chơi ở thế giới cũ.
                           cũng đang nhìn theo bóng người ấy, và lần này không nói gì.
 
                           1. “Vậy hẹn gặp lại khi ngươi mạnh hơn.”
-                             → c1_d17
+                             → c1_d17_0
                              [đổi: Hàn Lập +5]
                           2. Im lặng gật đầu rồi rời đi
+                             → c1_d17_1
+
+                        ── [c1_d17_0] · Đối thoại với Hàn Lập
+
+                        Ta đứng dậy, phủi bụi trên vạt áo.
+
+                        “Vậy hẹn gặp lại khi ngươi mạnh hơn.” — ta nói.
+
+                        Hắn ngước lên nhìn ta. Lần đầu tiên trong mắt hắn có gì đó không phải lạnh.
+
+                        “Ngươi chắc?” — hắn hỏi.
+
+                        “Chắc.” — ta đáp. — “Ta sẽ còn ở đây khi ngươi quay lại.”
+
+                        Hắn không cười, không gật, chỉ nhìn ta một lúc rồi cúi xuống tiếp tục lau vết
+                        máu. Ta quay đi. Đêm còn lại phía sau.
+
+                          1. Rời hậu sơn
                              → c1_d17
 
                         ── [c1_d17] · Kết chương — bình minh Thất Huyền trấn
@@ -663,6 +725,75 @@ thấy trong mấy trò chơi ở thế giới cũ.
 
                           1. Khép lại Chương 1
                              → KẾT THÚC CHƯƠNG
+
+                        ── [c1_d17_1] · Đối thoại với Hàn Lập
+
+                        Ta không nói gì. Ta gật đầu, một cái gật nhẹ, rồi quay đi.
+
+                        Sau lưng, ta nghe tiếng hắn dừng tay lại — một nhịp, rồi tiếp tục. Hắn không
+                        gọi ta lại.
+
+                        Ta đi dọc theo bức tường hậu sơn, tay sờ vào vách đá lạnh. Trong đêm ấy, ta
+                        đã học được một điều: có những người không cần lời hứa, họ chỉ cần người khác
+                        đứng đây.
+
+                          1. Rời hậu sơn
+                             → c1_d17
+
+                        ── [c1_d16_1] · Gặp Hàn Lập — hậu sơn
+
+                        Ta bật cười. Một nụ cười nhẹ, không tới mắt — thứ cười ta đã tập đủ nhiều lần
+                        để không ai thấy ta đang sợ.
+
+                        “Ta chỉ là kẻ tình cờ ở đây.” — ta nói, giọng nhẹ như không có gì. — “Đi
+                        ngang thì lạc đường, đứng lại thì nghe chuyện. Chỉ thế thôi.”
+
+                        Hắn nhìn ta. Không đáp. Ánh mắt ấy không đổi, nhưng ta biết hắn không tin một
+                        chữ nào trong câu ta vừa nói.
+
+                        “Tình cờ,” — hắn nhắc lại, chậm rãi. — “Tình cờ thì không đứng đây nghe người
+                        ta nói chuyện.”
+
+                        Ta không đáp được. Hắn đã bắt đúng chỗ ta không nói.
+
+                          1. Nghe hắn nói tiếp
+                             → c1_d16
+
+                        ── [c1_d16_2] · Gặp Hàn Lập — hậu sơn
+
+                        Ta không trả lời. Ta hỏi ngược.
+
+                        “Vậy ngươi là ai?” — ta nói. — “Ngươi biết ta đang giấu thứ gì, còn ta thì
+                        chỉ biết ngươi là đệ tử Thất Huyền Môn. Thế thì không công bằng.”
+
+                        Hắn khẽ nhích mày. Lần đầu tiên, có gì đó trong mắt hắn đổi — không phải
+                        giận, mà như một thứ ta không ngờ tới.
+
+                        “Ngươi không sợ người,” — hắn nói. — “Người ở đây không hỏi thẳng như thế.”
+
+                        Rồi hắn im. Và trong cái im ấy, ta nghe rõ hơn tiếng áo hắn sột soạt qua lớp
+                        vải mỏng.
+
+                          1. Nghe hắn nói tiếp
+                             → c1_d16
+
+                        ── [c1_d16_3] · Gặp Hàn Lập — hậu sơn
+
+                        Ta không nói. Ta không biết phải nói gì.
+
+                        Thay vào đó, ta tháo cái bầu nước ở thắt lưng ra, đưa tới trước mặt hắn. Bầu
+                        bằng gốm, đậy nắp, còn ấm. Ta đã hứng nó từ sáng, chưa uống ngụm nào.
+
+                        Hắn nhìn cái bầu, rồi nhìn ta. Một lúc lâu.
+
+                        Rồi hắn cầm lấy. Hắn uống — không vội, mà từng ngụm một, như người ta uống
+                        thứ quý giá.
+
+                        “Ngươi không sợ người,” — hắn nói, giọng khàn hơn trước. Rồi hắn đưa bầu lại,
+                        và im.
+
+                          1. Nghe hắn nói tiếp
+                             → c1_d16
 
                         ── [c1_d14b] · Miếu hoang — một mình trong đêm
 
@@ -753,6 +884,26 @@ thấy trong mấy trò chơi ở thế giới cũ.
 
                           1. Nghe y nói rõ thân phận và điều kiện
                              → c1_d07
+
+                        ── [c1_d06_1] · Trong miếu — chạm vào hộp kiếm
+
+                        Ta không lùi, cũng không đáp. Ta đứng nguyên tại chỗ, hai tay buông, mắt
+                        không rời hai lưỡi kiếm.
+
+                        Trong miếu im đến mức ta nghe được tiếng máu mình chạy trong tai. Một hạt bụi
+                        rơi từ xà nhà, chạm xuống nắp hộp, kêu một tiếng khẽ đến mức không đáng kể.
+
+                        Ta chờ. Ta đã học được cách chờ — chờ qua đêm, chờ người ta khinh rẻ, chờ cho
+                        cơn đau dịu xuống.
+
+                        “Ngươi không sợ,” — giọng ấy lên tiếng, và lần này nó chậm hơn, như đã quyết
+                        định. — “Bọn chúng lùi lại, hoặc bỏ chạy. Ngươi đứng im.”
+
+                        Một lưỡi kiếm khẽ nhích trên nền đá. Không phải ta làm. Ta vẫn không nhúc
+                        nhích.
+
+                          1. Nghe tiếng nói ấy
+                             → c1_d06
 
             ── [c1_d04] · Ngoài miếu — quan sát
 
@@ -984,22 +1135,31 @@ Ta nghiến răng ngồi dậy. Muốn sống, trước hết phải hiểu mìn
                     cũng tới rồi.”
 
                       1. Lùi lại, hỏi thân phận: “Ngươi là ai? Sao ở trong ngọc?”
-                         → c1_p08
+                         → c1_p08_0
                       2. Im lặng quan sát, chờ nàng nói tiếp
-                         → c1_p08
+                         → c1_p08_1
 
-                        ── [c1_p08] · Ngọc cốt — người trong ngọc
+                        ── [c1_p08_0] · Tân xá — đêm, khối ngọc phát sáng
 
-                        Ta lùi lại một bước, lưng chạm vào vách gỗ. “Ngươi… ngươi là ai? Sao lại ở
-                        trong khối ngọc này?”
+                        Ta lùi lại một bước, lưng chạm vào vách gỗ.
+
+                        “Ngươi… ngươi là ai? Sao lại ở trong khối ngọc này?”
 
                         Nàng không bước ra khỏi khối ngọc, chỉ nghiêng đầu nhìn ta. Đôi mắt nàng sáng
                         như sao, nhưng sâu hun hút như vực thẳm.
 
-                        “Ta hỏi ngươi trước — ngươi là ai?” — nàng nói, rồi khẽ nhíu mày, như đang
-                        lắng nghe thứ gì đó trong ta. “Lạ thật… Hồn phách ngươi không giống người ở
-                        đây. Nó sạch — sạch đến lạ. Như thể ngươi vừa mới sinh ra, mà cũng như thể… đã
-                        sống ở một nơi rất xa.”
+                        “Ngươi hỏi ta trước à.” — Nàng khẽ cười, một nụ cười không ấm. — “Kẻ lạc vào
+                        đây thường sợ đến mức không hỏi được gì.”
+
+                          1. Nghe nàng nói
+                             → c1_p08
+
+                        ── [c1_p08] · Ngọc cốt — người trong ngọc
+
+                        “Trước hết — ngươi là ai?” — nàng nói, rồi khẽ nhíu mày, như đang lắng nghe
+                        thứ gì đó trong ta. “Lạ thật… Hồn phách ngươi không giống người ở đây. Nó sạch
+                        — sạch đến lạ. Như thể ngươi vừa mới sinh ra, mà cũng như thể… đã sống ở một
+                        nơi rất xa.”
 
                         Nàng cảm nhận được. Tim ta đập mạnh. Nhưng nàng chỉ biết hồn ta khác thường —
                         nàng không biết ta từ đâu tới. Không được để nàng biết.
@@ -1991,6 +2151,27 @@ Ta nghiến răng ngồi dậy. Muốn sống, trước hết phải hiểu mìn
                           1. Suy nghĩ thật kỹ trước khi quyết
                              → c1_p09c
 
+                        ── [c1_p08_1] · Tân xá — đêm, khối ngọc phát sáng
+
+                        Ta không lùi, cũng không hỏi. Ta ngồi im, khối ngọc trên lòng bàn tay, mắt
+                        không rời bóng người trong ấy.
+
+                        Nàng cũng không nói. Hai bên im, và trong cái im ấy, khối ngọc sáng lên nhấp
+                        nháy như có mạch đập.
+
+                        Rồi nàng nghiêng đầu.
+
+                        “Ngươi không sợ người,” — nàng nói, giọng như rót mật. — “Ta đợi ngươi hỏi,
+                        mà ngươi ngồi im. Người ta thường thấy lạ thì hỏi trước.”
+
+                        “Ta không biết phải hỏi gì.” — ta nói thật.
+
+                        “Vậy thì để ta mở lời.” — Nàng nhìn ta, mắt sáng lên. — “Ngươi có biết mình
+                        đang cầm thứ gì trong tay không?”
+
+                          1. Nghe nàng nói
+                             → c1_p08
+
                     ── [c1_p03e] · Sân sau — chôn trả lại
 
                     Ta vội vàng lấp đất lại, tay run đến mức lá mục văng cả ra ngoài. Không phải
@@ -2576,14 +2757,31 @@ bước vào… không phải con đường võ lâm.”
                       Hắn nói xong thì im, như hối đã nói nhiều hơn mình định nói.
 
                       1. Im lặng chịu đựng
-                         → c2_d07
+                         → c2_d07_0
                          [đổi: Hàn Lập +5]
                       2. Nói một câu cho hắn đỡ nhục
-                         → c2_d07
+                         → c2_d07_1
                          [đổi: Hàn Lập +8]
                       3. Quay đi, để hắn tự chịu một mình
-                         → c2_d07
+                         → c2_d07_2
                          [đổi: Hàn Lập -12]
+
+                        ── [c2_d07_0] · Mạc phủ — sân trong
+
+                        Ta cúi đầu, nuốt câu ấy vào. Ta đã nuốt nhiều câu như thế rồi — từ thuở còn
+                        ngồi ở góc chợ, người ta đi ngang và nói những điều họ không nghĩ là ta nghe
+                        thấy.
+
+                        Nhưng lần này khác. Lần này ta nuốt vì hắn, không phải vì ta.
+
+                        Bà ta nói tiếp mấy câu nữa. Ta không nghe rõ. Ta chỉ nhìn bàn tay Hàn Lập đặt
+                        trên đầu gối — những ngón tay siết chặt đến mức đốt trắng ra.
+
+                        Hắn không đứng dậy. Hắn không nói. Hắn quỳ đó, như một pho tượng đá, cho đến
+                        khi bà ta nói xong.
+
+                          1. Ra hiên sau
+                             → c2_d07
 
                         ── [c2_d07] · Mạc phủ — hiên sau, đêm
 
@@ -2612,8 +2810,26 @@ bước vào… không phải con đường võ lâm.”
                         👁️‍🗨️ 【Hệ thống】“Từ khoá mới: Tiểu hội Thái Nam Sơn Cốc.”
 
                           1. Đem chuyện này nói với Hàn Lập
-                             → c2_d08
+                             → c2_d08_0
                           2. Giữ trong lòng, xem hắn có tự biết không
+                             → c2_d08_1
+
+                        ── [c2_d08_0] · Mạc phủ — hiên sau, đêm
+
+                        Sáng hôm sau, ta tìm Hàn Lập trước khi hắn ra khỏi phòng.
+
+                        Ta kể hết. Từng mảnh, đúng như ta nghe được — người đàn ông lạ, câu chuyện về
+                        lão Mạc, hai chữ “trốn” và “chết”, và cái tên Thái Nam sơn.
+
+                        Hắn nghe hết, không ngắt lời. Khi ta nói xong, hắn im rất lâu.
+
+                        “Ngươi ngồi ngoài hiên bao lâu rồi?” — cuối cùng hắn hỏi.
+
+                        “Đủ lâu.”
+
+                        Hắn gật đầu, chậm. Rồi hắn nói một câu ta không ngờ: “Cảm ơn.”
+
+                          1. Đi tới chợ
                              → c2_d08
 
                         ── [c2_d08] · Quán nước đầu phố — sáng hôm sau
@@ -2965,9 +3181,29 @@ bước vào… không phải con đường võ lâm.”
                         Hắn nhớ hết. Ta tin câu đó. Ta không biết vì sao, nhưng ta tin.
 
                           1. Hỏi hắn về Mạc Đại Phu
-                             → c2_d17
+                             → c2_d17_0
                              [đổi: Hàn Lập +8]
                           2. Không hỏi gì, ngồi im
+                             → c2_d17_1
+
+                        ── [c2_d17_0] · Góc chợ — tối
+
+                        “Mạc Đại Phu là ai?”
+
+                        Hàn Lập không đáp ngay. Hắn nhìn xuống cuốn sách trong tay, rồi nhìn lên.
+
+                        “Ông ấy nuôi ta từ năm ta bảy tuổi,” — hắn nói. — “Dạy ta bốc thuốc, dạy ta
+                        đọc. Ông ấy nói ông ấy là lang y.”
+
+                        “Nhưng ông ấy không phải.”
+
+                        “Không.” — Hắn lật một trang sách. — “Ông ấy có một cái tên khác. Ta chỉ biết
+                        nửa cái tên. Và ta biết, trước khi tới đây, ông ấy đã từng ở một nơi mà người
+                        ta không nhắc tới tên ông ấy nữa.”
+
+                        Hắn ngừng. Rồi hắn nói thêm, rất khẽ: “Ta sợ cái ta sẽ tìm ra.”
+
+                          1. Về chỗ nghỉ
                              → c2_d17
 
                         ── [c2_d17] · Rìa thung lũng — đêm
@@ -3001,8 +3237,28 @@ bước vào… không phải con đường võ lâm.”
                         mát như linh khí, mà nóng, hơi rát, như uống rượu mạnh.
 
                           1. Dẫn tới cùng, chịu đau
-                             → c2_d18
+                             → c2_d18_0
                           2. Dừng lại khi thấy rát
+                             → c2_d18_1
+
+                        ── [c2_d18_0] · Rìa thung lũng — đêm
+
+                        Ta dẫn tới cùng.
+
+                        Cảm giác ấy bắt đầu ở đan điền như một sợi chỉ nóng, rồi mảnh dần, rồi thành
+                        một lưỡi dao. Ta nghiến răng và vẫn dẫn.
+
+                        “Đủ rồi,” — kiếm linh nói.
+
+                        Ta không dừng. Ta dẫn thêm một nhịp nữa, và cái đau ấy bùng lên tới mức mắt
+                        ta tối lại.
+
+                        Rồi nó dịu xuống. Không phải biến mất — dịu xuống, như nước rút.
+
+                        “Ngươi đi quá một nhịp,” — kiếm linh nói, giọng có gì đó không phải trách
+                        móc. — “Nhưng ngươi đã học được giới hạn của mình bằng cách đi qua nó.”
+
+                          1. Sáng hôm sau
                              → c2_d18
 
                         ── [c2_d18] · Giữa thung lũng — sáng sớm
@@ -3065,8 +3321,29 @@ bước vào… không phải con đường võ lâm.”
                         trong mấy ngày tới.”
 
                           1. Hỏi: kẻ nào đang giữ?
-                             → c2_d20
+                             → c2_d20_0
                           2. Cúi đầu, rời đi
+                             → c2_d20_1
+
+                        ── [c2_d20_0] · Bục đá — sáng
+
+                        “Kẻ nào đang giữ?”
+
+                        Ta hỏi, và ta thấy lão nhìn ta lâu hơn một nhịp. Đám đông sau lưng ta không
+                        ai nói, nhưng ta nghe được tiếng thở của họ đổi.
+
+                        “Ngươi hỏi thẳng,” — Vạn Tiểu Sơn nói. — “Ta thích kẻ hỏi thẳng. Kẻ hỏi thẳng
+                        thì hoặc rất ngu, hoặc đã chuẩn bị để chết.”
+
+                        Lão gõ gậy xuống bục một tiếng nữa.
+
+                        “Kẻ đang giữ tấm thứ hai đứng trong đám đông này. Lão ta đã đứng đó từ sáng,
+                        nghe hết những gì ta nói, và biết ta đang nói về lão.”
+
+                        Cả đám đông khẽ nhích ra. Và ta thấy, ở rìa đám người, một bóng áo xám khẽ
+                        quay đi.
+
+                          1. Rời bục đá
                              → c2_d20
 
                         ── [c2_d20] · Dãy hàng phía bắc — trưa
@@ -3242,17 +3519,37 @@ bước vào… không phải con đường võ lâm.”
                           Câu hỏi ấy không dành cho bà bán đan.
 
                           1. “Vì ta cũng cần một người hiểu ta.”
-                             → c2_d21
+                             → c2_d21_0
                              [đổi: Hàn Lập +10]
                           2. “Vì ta ghét bị trả giá.”
-                             → c2_d21
+                             → c2_d21_1
                              [đổi: Hàn Lập +6]
                           3. Đứng nhìn, để hắn tự trả giá
-                             → c2_d21
+                             → c2_d21_2
                              [đổi: Hàn Lập -10]
                           4. “Vì ngươi có thứ ta cần.”
-                             → c2_d21
+                             → c2_d21_3
                              [đổi: Hàn Lập -15]
+
+                        ── [c2_d21_0] · Dãy hàng phía bắc — trưa
+
+                        “Vì ta cũng cần một người hiểu ta.”
+
+                        Bà bán đan ngừng tay. Hàn Lập quay lại nhìn ta — lần đầu trong ngày hôm ấy
+                        hắn thật sự nhìn ta.
+
+                        “Ngươi nói thật?” — hắn hỏi.
+
+                        “Ta không giỏi nói dối.”
+
+                        Hắn im. Rồi hắn quay sang bà bán đan và nói, giọng bình thản: “Năm viên.
+                        Không thì ta đi.”
+
+                        Bà ta trả năm viên. Hắn nhận tiền, cất đi, và đi ngang qua ta. Khi đi ngang,
+                        hắn nói rất khẽ: “Ta cũng cần.”
+
+                          1. Ba ngày sau
+                             → c2_d21
 
                         ── [c2_d21] · Rìa thung lũng — chiều ngày thứ ba
 
@@ -3304,10 +3601,27 @@ bước vào… không phải con đường võ lâm.”
                         Hắn im lâu đến mức ta tưởng hắn không trả lời.
 
                           1. “Vậy thì cùng nhau ra khỏi đây.”
-                             → c2_d23
+                             → c2_d23_0
                           2. “Ta không cần ngươi hiểu ta.”
-                             → c2_d23
+                             → c2_d23_1
                           3. “Ta sẽ không để ngươi chết một mình.”
+                             → c2_d23_2
+
+                        ── [c2_d23_0] · Khe đá — đêm
+
+                        “Vậy thì cùng nhau ra khỏi đây.”
+
+                        Hắn không đáp. Nhưng trong bóng tối, ta nghe hắn thở ra — một hơi dài, như
+                        thứ đã bị giữ lâu lắm.
+
+                        “Ngươi nói như thể ra khỏi đây là chuyện dễ.”
+
+                        “Ta không nói dễ. Ta nói cùng nhau.”
+
+                        Ngoài khe đá, tiếng chân đã xa. Hắn vẫn ngồi im, lưng tựa vách. Rồi hắn nói:
+                        “Được.”
+
+                          1. Nghe hắn nói
                              → c2_d23
 
                         ── [c2_d23] · Khe đá — gần sáng
@@ -3409,21 +3723,44 @@ bước vào… không phải con đường võ lâm.”
                         “Ngươi có thứ giúp ngươi đọc sách. Thứ đó có đọc được cái này không?”
 
                           1. Nhờ kiếm linh xem giúp
-                             → c2_d26
+                             → c2_d26_0
                              [đổi: Hàn Lập +10]
                           2. “Ta không đọc được vật.”
-                             → c2_d26
+                             → c2_d26_1
                              [đổi: Hàn Lập -5]
                           3. “Giấu nó đi. Đừng cho ai thấy.”
-                             → c2_d26
+                             → c2_d26_2
                              [đổi: Hàn Lập +15]
+
+                        ── [c2_d26_0] · Khe đá — chạng vạng
+
+                        “Để ta nhờ kiếm linh xem.”
+
+                        Ta đặt tay lên cái bình. Kiếm linh im rất lâu — lâu đến mức ta tưởng nó không
+                        trả lời.
+
+                        Rồi nó nói, và giọng nó khác hẳn mọi khi.
+
+                        “Cất nó đi. Đừng cho ai thấy.”
+
+                        “Nó là gì?”
+
+                        “Là thứ mà nếu người ta biết ngươi có, thì cái cốc này sẽ không còn đủ chỗ
+                        cho xác ngươi.”
+
+                        Ta rút tay lại. Cái bình vẫn nằm trên tảng đá, men xanh, sứt một miếng, nhỏ
+                        như một đốt ngón tay.
+
+                          1. Đêm xuống
+                             → c2_d26
 
                         ── [c2_d26] · Khe đá — đêm ngày cuối
 
-                        Kiếm linh im rất lâu khi nhìn cái bình.
+                        Cái bình nằm trên tảng đá. Nhỏ, men xanh, sứt một miếng — và nó không phản
+                        chiếu ánh lửa như mọi thứ khác trong khe đá này.
 
-                        Rồi nó nói, và giọng nó khác hẳn mọi khi — không lạnh, không khô, mà như có
-                        gì đó bị nén lại:
+                        Rồi kiếm linh nói, và giọng nó khác hẳn mọi khi — không lạnh, không khô, mà
+                        như có gì đó bị nén lại:
 
                         “Cất nó đi. Đừng cho ai thấy. Đừng nói với ai — kể cả ta, sau này.”
 
@@ -3443,8 +3780,30 @@ bước vào… không phải con đường võ lâm.”
                         vật nặng đổ.
 
                           1. Ra ngoài xem
-                             → c2_d27
+                             → c2_d27_0
                           2. Nằm im, chờ
+                             → c2_d27_1
+
+                        ── [c2_d27_0] · Khe đá — đêm ngày cuối
+
+                        Ta ra ngoài xem.
+
+                        Khói dày đến mức ta phải cúi thấp. Ta bò ra khỏi miệng khe, tay chạm đá, và
+                        ta thấy xác người cách đó mười bước.
+
+                        Hàn Lập ra sau ta. Hắn không nói gì. Hắn chỉ đi tới, và quỳ xuống.
+
+                        Ta đứng lại phía sau hắn, và ta nghe tiếng khói đi qua tai mình. Không ai nói
+                        gì trong một lúc lâu.
+
+                        “Ngươi có thấy ai không?” — ta hỏi.
+
+                        “Không.” — Hắn luồn tay dưới người chết. — “Hắn đi một mình. Kẻ đi một mình
+                        trong cái cốc này thì hoặc rất mạnh, hoặc rất tuyệt vọng.”
+
+                        Hắn rút tay ra. Trong tay hắn là một cái túi vải nhỏ màu xám.
+
+                          1. Nhìn kỹ
                              → c2_d27
 
                         ── [c2_d27] · Ngoài khe đá — chạng vạng
@@ -3472,16 +3831,46 @@ bước vào… không phải con đường võ lâm.”
                         “Không có gì khác.”
 
                           1. “Ngươi vừa giết người.”
-                             → c2_d28
+                             → c2_d28_0
                              [đổi: Hàn Lập +5]
                           2. Đứng nhìn, không nói gì
-                             → c2_d28
+                             → c2_d28_1
                           3. “Vậy thì ta đi cùng ngươi.”
-                             → c2_d28
+                             → c2_d28_2
                              [đổi: Hàn Lập +12]
                           4. “Ngươi là kẻ giết người.”
-                             → c2_d28
+                             → c2_d28_3
                              [đổi: Hàn Lập -20]
+
+                        ── [c2_d28_0] · Ngoài khe đá — chạng vạng
+
+                        “Ngươi vừa giết người.”
+
+                        Hàn Lập không ngẩng lên. Hắn vẫn quỳ đó, tay còn trong túi vải.
+
+                        “Ta biết.”
+
+                        “Ngươi nói như thể không có gì.”
+
+                        “Vì không có gì.” — Hắn đứng dậy, phủi bụi trên đầu gối. — “Hắn định giết ta.
+                        Hắn chậm hơn ta một nhịp. Nếu hắn nhanh hơn, người nằm đây là ta, và ngươi sẽ
+                        không hỏi hắn câu ấy.”
+
+                        Ta không đáp được. Hắn nói đúng, và ta ghét việc hắn nói đúng.
+
+                        Ta nhìn xuống cái xác. Áo xám đã bạc màu, một vùng sẫm loang từ vai xuống
+                        hông, và bàn tay vẫn còn nắm hờ — bàn tay của kẻ vừa định rút kiếm.
+
+                        “Ngươi có biết tên hắn không?” — ta hỏi.
+
+                        “Kim Quang Thượng Nhân. Luyện Khí tầng chín.” — Hàn Lập nhét túi vải vào áo.
+                        — “Hắn có một tấm Thăng Tiên Lệnh. Và hắn định lấy tấm thứ hai của ta.”
+
+                        Hắn đứng dậy, phủi đất trên đầu gối, và đi. Ta đi theo sau, và ta không nói
+                        thêm câu nào về chuyện vừa xảy ra.
+
+                          1. Rời thung lũng
+                             → c2_d28
 
                         ── [c2_d28] · Rìa thung lũng — đêm ngày cuối
 
@@ -3670,17 +4059,34 @@ bước vào… không phải con đường võ lâm.”
                           mạng. Ngươi là người đầu tiên. Đừng để ta hối.”
 
                           1. Nhận tấm lệnh
-                             → c2_d29
+                             → c2_d29_0
                              [cần: hảo cảm Hàn Lập ≥ 50]
                              [đổi: Hàn Lập +20; nhận Thăng Tiên Lệnh ×1]
                           2. Không nhận, bảo hắn giữ đủ ba tấm
-                             → c2_d29
+                             → c2_d29_1
                              [cần: hảo cảm Hàn Lập ≥ 50]
                              [đổi: Hàn Lập +25]
                           3. “Ngươi giữ đi. Ta tự có đường.”
                              → c2_d29x
                              [cần: hảo cảm Hàn Lập ≤ 49]
                              [đổi: Hàn Lập -15]
+
+                        ── [c2_d29_0] · Rìa thung lũng — đêm ngày cuối
+
+                        Ta cầm tấm lệnh.
+
+                        Nó nhẹ hơn ta tưởng. Một miếng kim loại mỏng, lạnh, khắc hình một cánh cổng.
+
+                        “Ngươi không hỏi ta vì sao?” — hắn nói.
+
+                        “Vì sao?”
+
+                        “Vì ngươi là người duy nhất trong cái cốc này đã không hỏi ta đòi gì trước
+                        khi giúp.” — Hắn cất tấm lệnh thứ ba vào áo. — “Đi thôi. Trời sáng là tới chân
+                        núi.”
+
+                          1. Ra tới chân núi
+                             → c2_d29
 
                         ── [c2_d29] · Chân núi — gần sáng
 
@@ -3715,6 +4121,24 @@ bước vào… không phải con đường võ lâm.”
                           1. Khép lại Chương 2
                              → KẾT THÚC CHƯƠNG
 
+                        ── [c2_d29_1] · Rìa thung lũng — đêm ngày cuối
+
+                        Ta đẩy tấm lệnh lại về phía hắn.
+
+                        “Giữ đủ ba tấm. Ngươi cần cả ba hơn ta.”
+
+                        Hàn Lập nhìn tấm lệnh trong tay, rồi nhìn ta.
+
+                        “Ngươi biết tấm này đáng giá bao nhiêu không?”
+
+                        “Biết.” — Ta nói. — “Và ta vẫn không nhận.”
+
+                        Hắn im rất lâu. Rồi hắn cất tấm lệnh đi, chậm, và nói: “Ta sẽ nhớ chuyện này.
+                        Lâu hơn ngươi nghĩ.”
+
+                          1. Ra tới chân núi
+                             → c2_d29
+
                         ── [c2_d29x] · Chân núi — gần sáng
 
                         “Ngươi giữ đi,” — ta nói. — “Ta tự có đường.”
@@ -3748,6 +4172,118 @@ bước vào… không phải con đường võ lâm.”
 
                           1. Khép lại Chương 2
                              → KẾT THÚC CHƯƠNG
+
+                        ── [c2_d28_1] · Ngoài khe đá — chạng vạng
+
+                        Ta đứng nhìn. Ta không nói gì.
+
+                        Hàn Lập quỳ đó rất lâu. Hắn không run, không vội, và cái cách hắn lục túi
+                        người chết thành thạo đến mức ta hiểu: đây không phải lần đầu.
+
+                        Hắn đứng dậy, cầm túi vải, và nhìn ta. Ta vẫn không nói.
+
+                        “Ngươi không hỏi gì?” — hắn nói.
+
+                        “Ngươi có muốn ta hỏi không?”
+
+                        Hắn im. Rồi hắn đi ngang qua ta. Và khi đi ngang, vai hắn khẽ chạm vai ta —
+                        một cái chạm rất nhẹ, có thể là vô tình.
+
+                          1. Rời thung lũng
+                             → c2_d28
+
+                        ── [c2_d28_2] · Ngoài khe đá — chạng vạng
+
+                        “Vậy thì ta đi cùng ngươi.”
+
+                        Hàn Lập ngẩng lên. Trong mắt hắn có gì đó ta chưa từng thấy — không phải biết
+                        ơn, mà gần như sợ.
+
+                        “Ngươi vừa thấy ta lục túi một cái xác.”
+
+                        “Ta thấy.”
+
+                        “Và ngươi vẫn đi cùng ta.”
+
+                        “Ta thấy ngươi lục túi một kẻ vừa định giết ngươi.” — Ta nói. — “Đó không
+                        phải cùng một chuyện.”
+
+                        Hắn nhìn ta rất lâu. Rồi hắn đứng dậy, và đi. Ta đi bên cạnh hắn, không đi
+                        sau.
+
+                          1. Rời thung lũng
+                             → c2_d28
+
+                        ── [c2_d28_3] · Ngoài khe đá — chạng vạng
+
+                        “Ngươi là kẻ giết người.”
+
+                        Hàn Lập đứng yên. Hắn không phản bác, không giải thích.
+
+                        “Ừ.” — Hắn nói.
+
+                        Chỉ một chữ. Và cái chữ ấy nặng hơn mọi lời hắn có thể nói.
+
+                        Hắn cất túi vải vào áo, nhìn ta lần cuối, rồi đi về phía rìa thung lũng. Ta
+                        đứng lại một lúc — lâu hơn ta muốn — rồi ta đi theo. Vì ta không biết đi đâu
+                        khác.
+
+                          1. Rời thung lũng
+                             → c2_d28
+
+                        ── [c2_d27_1] · Khe đá — đêm ngày cuối
+
+                        Ta nằm im.
+
+                        Bên ngoài, tiếng chân chạy qua, rồi tiếng một vật nặng đổ, rồi im. Ta nằm đó,
+                        mắt mở, đếm từng nhịp thở của mình.
+
+                        “Đừng ra,” — kiếm linh nói. — “Chưa tới lúc.”
+
+                        Ta nằm im. Một lúc lâu. Rồi bên ngoài có tiếng rên — rất khẽ, rồi tắt.
+
+                        Hàn Lập đứng dậy trước ta. Hắn bước ra, và ta biết ta không thể nằm thêm được
+                        nữa. Ta đi theo hắn.
+
+                          1. Nhìn kỹ
+                             → c2_d27
+
+                        ── [c2_d26_1] · Khe đá — chạng vạng
+
+                        “Ta không đọc được vật.”
+
+                        Hàn Lập gật đầu, như đã đoán trước.
+
+                        “Vậy thì ta giữ nó.” — Hắn cầm cái bình lên, xoay một vòng, rồi cất vào áo. —
+                        “Nó theo ta từ Thất Huyền Môn. Nó chọn ta, hay ta chọn nó, ta cũng không
+                        biết.”
+
+                        “Ngươi không sợ?”
+
+                        “Sợ.” — Hắn nói, không chút ngại. — “Nhưng ta sợ nhiều thứ hơn thế này rồi.”
+
+                        Đêm xuống rất nhanh trong khe đá.
+
+                          1. Đêm xuống
+                             → c2_d26
+
+                        ── [c2_d26_2] · Khe đá — chạng vạng
+
+                        “Giấu nó đi. Đừng cho ai thấy.”
+
+                        Hàn Lập nhìn ta.
+
+                        “Ngươi nói câu ấy nhanh quá.” — Hắn cầm cái bình lên. — “Ngươi biết nó là
+                        gì?”
+
+                        “Ta không biết.” — Ta nói thật. — “Nhưng ta biết có những thứ người ta giết
+                        nhau để lấy. Và ta biết cái bình này không bán được ở cái chợ này.”
+
+                        Hắn im. Rồi hắn gói cái bình vào một mảnh vải, rất chậm, và cất sâu vào trong
+                        áo.
+
+                          1. Đêm xuống
+                             → c2_d26
 
                         ── [c2_d25b] · Hốc đá phía tây — chạng vạng
 
@@ -3802,6 +4338,42 @@ bước vào… không phải con đường võ lâm.”
                           1. Khép lại Chương 2
                              → KẾT THÚC CHƯƠNG
 
+                        ── [c2_d23_1] · Khe đá — đêm
+
+                        “Ta không cần ngươi hiểu ta.”
+
+                        Câu ấy ra khỏi miệng ta lạnh hơn ta tưởng.
+
+                        Hàn Lập không đổi giọng. “Vậy thì tốt. Ta cũng không định hiểu.”
+
+                        Hai người ngồi im trong khe đá. Bên ngoài, tiếng chân đã xa hẳn. Ta nghe hắn
+                        thở đều, và ta biết hắn đang đợi ta nói tiếp — nhưng ta không nói.
+
+                        Rồi hắn nói trước. Và câu hắn nói làm ta ngạc nhiên.
+
+                          1. Nghe hắn nói
+                             → c2_d23
+
+                        ── [c2_d23_2] · Khe đá — đêm
+
+                        “Ta sẽ không để ngươi chết một mình.”
+
+                        Hắn quay sang. Trong bóng tối ta chỉ thấy được nửa mặt hắn.
+
+                        “Ngươi mới biết ta mấy ngày.”
+
+                        “Ta biết.”
+
+                        “Ngươi không biết ta là ai. Ngươi không biết ta đã làm gì.”
+
+                        “Ta biết ngươi vừa đặt tay lên vai ta suốt một canh giờ để ta khỏi run.” — Ta
+                        nói. — “Thế là đủ.”
+
+                        Hắn im rất lâu. Rồi hắn nói, giọng khàn: “Ngươi ngốc lắm.”
+
+                          1. Nghe hắn nói
+                             → c2_d23
+
                         ── [c2_d22b] · Gờ đá — đêm
 
                         “Ta tự lo được,” — ta nói.
@@ -3845,10 +4417,49 @@ bước vào… không phải con đường võ lâm.”
                         Ta đứng lại. Ta không bước tới.
 
                           1. Bỏ đi, không hỏi
-                             → c2_d24b
+                             → c2_d24b_0
                           2. Bước tới, hỏi thẳng
-                             → c2_d24b
+                             → c2_d24b_1
                              [đổi: Hàn Lập -10]
+
+                        ── [c2_d24b_0] · Thung lũng — sáng ngày thứ tư
+
+                        Ta bỏ đi.
+
+                        Ta quay lưng, đi về phía dãy hàng phía nam, và ta không quay lại nhìn. Ta tự
+                        nhủ: chuyện của hắn, hắn tự lo. Ta đã theo hắn bốn ngày, và bốn ngày ấy đủ để
+                        ta biết hắn không cần ta biết hết.
+
+                        Nhưng khi ta đi được mười bước, kiếm linh nói: “Ngươi vừa bỏ đi đúng lúc. Và
+                        ngươi sẽ nhớ mãi cái lúc này.”
+
+                        Ta không đáp. Ta đi tiếp.
+
+                          1. Sáng ngày cuối
+                             → c2_d24b
+
+                        ── [c2_d24b_1] · Thung lũng — sáng ngày thứ tư
+
+                        Ta bước tới.
+
+                        “Ngươi đưa hắn cái gì?”
+
+                        Hàn Lập quay lại rất nhanh. Lần đầu tiên ta thấy hắn giật mình.
+
+                        “Ngươi đi theo ta?”
+
+                        “Ta tìm ngươi suốt buổi sáng.”
+
+                        Hắn nhìn ta một lúc. Kẻ áo xám đã đi xa, không quay lại. Rồi hắn nói, giọng
+                        thấp: “Một tấm lệnh. Ta đổi một tấm lệnh lấy một con đường.”
+
+                        “Ngươi đổi thứ ngươi cần nhất.”
+
+                        “Ta đổi thứ ta cần nhất để có thứ ta cần hơn.” — Hắn nhìn thẳng vào ta. —
+                        “Đừng hỏi nữa.”
+
+                          1. Sáng ngày cuối
+                             → c2_d24b
 
                         ── [c2_d23c] · Rìa thung lũng — chiều ngày thứ tư
 
@@ -3879,6 +4490,80 @@ bước vào… không phải con đường võ lâm.”
                           1. Cúi đầu cảm ơn, đi
                              → c2_d24b
 
+                        ── [c2_d21_1] · Dãy hàng phía bắc — trưa
+
+                        “Vì ta ghét bị trả giá.”
+
+                        Hàn Lập khựng lại. Rồi hắn cười — một tiếng cười ngắn, khô, và ta biết đó là
+                        lần đầu ta thấy hắn cười.
+
+                        “Vậy thì ngươi đứng đây mà ghét.” — Hắn quay lại bà bán đan. — “Năm viên. Ta
+                        chờ.”
+
+                        Bà ta nhìn hắn, nhìn ta, rồi trả năm viên. Hắn nhận, không nói thêm, và bước
+                        đi.
+
+                        Ta đi theo. Ta không biết vì sao. Có lẽ vì hắn cũng ghét bị trả giá.
+
+                          1. Ba ngày sau
+                             → c2_d21
+
+                        ── [c2_d21_2] · Dãy hàng phía bắc — trưa
+
+                        Ta đứng nhìn.
+
+                        Ta không nói một câu nào. Ta đứng đó, cách quầy ba bước, và để hắn tự mặc cả.
+
+                        Hắn mặc cả rất lâu. Bà ta không nhượng. Cuối cùng hắn nhận ba viên, gói thuốc
+                        lại, và đi.
+
+                        Đi ngang qua ta, hắn không nhìn. Nhưng hắn nói: “Ngươi đứng đó lâu thế, không
+                        mỏi chân à?”
+
+                        “Không.”
+
+                        “Vậy thì đi.” — Hắn đi trước, không đợi. — “Ngươi đứng nhìn giỏi. Đi theo
+                        cũng phải giỏi.”
+
+                          1. Ba ngày sau
+                             → c2_d21
+
+                        ── [c2_d21_3] · Dãy hàng phía bắc — trưa
+
+                        “Vì ngươi có thứ ta cần.”
+
+                        Hàn Lập dừng tay trên mấy lọ thuốc. Hắn không quay lại.
+
+                        “Thứ gì?”
+
+                        “Ngươi biết đường tới Hoàng Phong Cốc. Ta thì không.”
+
+                        Bà bán đan khẽ nhếch mép, như nghe được một câu chuyện cũ. Hàn Lập vẫn không
+                        quay lại, nhưng vai hắn hạ xuống một chút.
+
+                        “Ít ra ngươi thành thật,” — hắn nói. — “Ta ghét kẻ nói vì tình nghĩa rồi đòi
+                        thứ khác.”
+
+                        Hắn nhận ba viên, và đi.
+
+                          1. Ba ngày sau
+                             → c2_d21
+
+                        ── [c2_d20_1] · Bục đá — sáng
+
+                        Ta cúi đầu. Ta không hỏi thêm.
+
+                        Câu hỏi ấy ta giữ lại trong bụng — và ta biết mình vừa bỏ qua thứ gì. Nhưng
+                        có những câu hỏi, hỏi ra trước mấy trăm người là tự đưa cổ vào dao.
+
+                        Ta lùi lại, và đám đông khép lại trước mặt ta như nước khép trên một hòn đá.
+
+                        Khi ta quay đi, ta nghe Vạn Tiểu Sơn nói sau lưng, giọng vẫn đều: “Kẻ thứ ba
+                        đã hỏi xong. Ai hỏi tiếp?”
+
+                          1. Rời bục đá
+                             → c2_d20
+
                         ── [c2_d19b] · Rìa đám đông — sáng
 
                         Ta đứng ngoài nghe, và học được nhiều hơn một viên linh thạch đáng giá.
@@ -3894,6 +4579,44 @@ bước vào… không phải con đường võ lâm.”
 
                           1. Đi tìm Hàn Lập
                              → c2_d20
+
+                        ── [c2_d18_1] · Rìa thung lũng — đêm
+
+                        Ta dừng lại khi thấy rát.
+
+                        Sợi chỉ nóng vừa chạm tới đan điền thì ta thả ra. Cảm giác ấy tắt, và ta ngồi
+                        đó, thở, tay run nhẹ.
+
+                        “Ngươi dừng sớm,” — kiếm linh nói.
+
+                        “Ta biết.”
+
+                        “Ngươi biết, và ngươi vẫn dừng.”
+
+                        “Ta không muốn chết đêm nay.”
+
+                        Kiếm linh im một lúc. Rồi nó nói, giọng khác đi: “Đó cũng là một cách. Kẻ
+                        sống lâu không phải kẻ dám đi xa nhất. Là kẻ biết mình đi được bao xa.”
+
+                          1. Sáng hôm sau
+                             → c2_d18
+
+                        ── [c2_d17_1] · Góc chợ — tối
+
+                        Ta không hỏi gì. Ta ngồi im.
+
+                        Hàn Lập cũng không nói. Hai người ngồi trong góc chợ, giữa tiếng người mua
+                        bán đã thưa, và cái im ấy không khó chịu — nó giống như hai người cùng giữ một
+                        thứ gì đó mà không ai muốn mở ra.
+
+                        Một lúc lâu sau, hắn đứng dậy.
+
+                        “Đi thôi,” — hắn nói. — “Trời tối rồi.”
+
+                        Ta đi theo. Trên đường, hắn không nhắc tới Mạc Đại Phu nữa. Ta cũng không.
+
+                          1. Về chỗ nghỉ
+                             → c2_d17
 
                         ── [c2_d16b] · Góc chợ — tối
 
@@ -3944,11 +4667,49 @@ bước vào… không phải con đường võ lâm.”
                         Hắn không nói thêm. Nhưng câu đó ở lại với ta lâu hơn ta muốn.
 
                           1. Đi theo hắn
-                             → c2_d15
+                             → c2_d15_0
                              [đổi: Hàn Lập +4]
                           2. Đứng lại, để hắn đi
-                             → c2_d15
+                             → c2_d15_1
                              [đổi: Hàn Lập -8]
+
+                        ── [c2_d15_0] · Dãy hàng phía đông
+
+                        Ta đi theo hắn.
+
+                        Hắn không quay lại, nhưng bước chậm hơn một chút — vừa đủ để ta theo kịp mà
+                        không phải chạy. Ta biết hắn làm thế vì ta. Hắn sẽ không nói ra.
+
+                        Chúng ta đi qua mấy dãy hàng đang dọn. Người ta bán nến, bán giấy bùa, bán cả
+                        những thứ ta không gọi được tên. Không ai nhìn chúng ta quá hai nhịp.
+
+                        “Ngươi tên gì?” — hắn hỏi, không quay lại.
+
+                        Ta nói tên mình.
+
+                        Hắn gật đầu, và gọi ta bằng tên ấy một lần. Đó là lần đầu tiên có người trong
+                        thế giới này gọi ta bằng tên.
+
+                          1. Vào chợ đêm
+                             → c2_d15
+
+                        ── [c2_d15_1] · Dãy hàng phía đông
+
+                        Ta đứng lại.
+
+                        Hắn đi được mấy bước thì dừng. Không quay lại.
+
+                        Ta nhìn lưng hắn — cái lưng gầy, cái túi vải bạc màu, bước chân không vội. Ta
+                        biết nếu ta gọi, hắn sẽ dừng. Ta biết nếu ta không gọi, hắn cũng sẽ không
+                        trách.
+
+                        Ta không gọi.
+
+                        Hắn đi vào đám đông và mất hút. Ta đứng đó một lúc, giữa chợ, với ba viên
+                        linh thạch trong túi và một câu hỏi ta không trả lời được: ta đang chờ cái gì?
+
+                          1. Vào chợ đêm
+                             → c2_d15
 
                         ── [c2_d08b] · Quán nước đầu phố
 
@@ -3984,6 +4745,64 @@ bước vào… không phải con đường võ lâm.”
 
                           1. Lắc đầu, nghe tiếp
                              → c2_d09
+
+                        ── [c2_d08_1] · Mạc phủ — hiên sau, đêm
+
+                        Ta giữ trong lòng.
+
+                        Suốt đêm ấy ta nằm nhìn xà nhà, và cái tên Thái Nam sơn nằm trong ta như một
+                        hòn sỏi. Ta muốn xem hắn có tự biết không. Ta muốn xem hắn có phải là kẻ đáng
+                        để ta đi cùng hay không.
+
+                        Sáng hôm sau, hắn không nhắc gì. Hắn thu xếp đồ, buộc túi, và đi.
+
+                        Ta đi sau hắn. Ta chờ. Và ta biết mình đang thử một người bằng một cách không
+                        công bằng — nhưng ta đã thử người bằng cách khác rồi, và lần nào cũng sai.
+
+                          1. Đi tới chợ
+                             → c2_d08
+
+                        ── [c2_d07_1] · Mạc phủ — sân trong
+
+                        Ta ngẩng lên.
+
+                        “Bà ơi,” — ta nói, giọng không to, nhưng đủ cho cả gian lều nghe — “Hắn quỳ
+                        đây từ sáng. Hắn mang di vật về. Bà muốn nói gì thì nói về ta, đừng nói trước
+                        linh vị.”
+
+                        Cả gian lều im.
+
+                        Người phụ nữ ấy quay lại nhìn ta, chậm rãi, như thể lần đầu tiên bà ta thật
+                        sự thấy ta. Hai người đàn bà đang khóc ngừng khóc.
+
+                        Rồi bà ta cười. Một tiếng cười ngắn, khô, không vui.
+
+                        “Cái miệng này,” — bà ta nói — “sẽ giết ngươi sớm thôi.”
+
+                        Bà ta quay đi. Nhưng ta thấy vai Hàn Lập khẽ hạ xuống, một chút, như có thứ
+                        gì được tháo ra khỏi lưng hắn.
+
+                          1. Ra hiên sau
+                             → c2_d07
+
+                        ── [c2_d07_2] · Mạc phủ — sân trong
+
+                        Ta quay mặt đi. Ta không muốn nhìn nữa.
+
+                        Ta bước ra khỏi gian lều, xuống bậc đá, ra tới sân. Phía sau, giọng người phụ
+                        nữ ấy vẫn đều đều, và ta nghe được cả tiếng hắn vẫn quỳ, không nhúc nhích.
+
+                        Ngoài sân, trời vẫn sáng. Có người đang quét lá trước cổng. Một con mèo nằm
+                        dưới gốc cây, không buồn mở mắt.
+
+                        Ta đứng đó một lúc. Ta tự nhủ: chuyện của hắn, hắn tự chịu. Ta không phải
+                        người nhà hắn.
+
+                        Nhưng khi ta quay lại nhìn, khung cửa vẫn sáng đèn, và ta vẫn đứng nguyên chỗ
+                        cũ.
+
+                          1. Ra hiên sau
+                             → c2_d07
 
     ── [c2_d01b] · Bậc đá trước cổng trấn
 
@@ -4161,149 +4980,158 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
       hiểu: hắn đã trao cho ta một nửa, và giữ lại nửa kia.
 
       1. “Vì ngươi cần một người biết.”
-         → c2_p03
+         → c2_p03_0
          [đổi: Hàn Lập +10]
       2. Im lặng, chỉ đứng cạnh hắn
-         → c2_p03
+         → c2_p03_1
          [đổi: Hàn Lập +6]
       3. “Vì ta cũng từng mất một người thầy.”
-         → c2_p03
+         → c2_p03_2
          [cần: hảo cảm Hàn Lập ≥ 20]
          [đổi: Hàn Lập +6]
 
-        ── [c2_p03] · Sân tập — chiều muộn
+        ── [c2_p03_0] · Sân tập — trưa, sau trận
 
-        Hàn Lập ngồi xuống bậc đá, ta ngồi cạnh.
+        “Vì ngươi cần một người biết.”
 
-        “Trước khi mất, ông ấy dặn ta một câu,” — hắn nói — “Đừng ở lại đây. Đi về
-        phía nam. Tới Thái Nam sơn.”
+        Hắn nhìn ta. Đôi mắt ướt ấy không chớp.
 
-        “Thái Nam sơn là chỗ nào?”
+        “Ta biết ba năm rồi,” — hắn nói. — “Ba năm ta không nói với ai. Không phải vì
+        ta không muốn. Mà vì ta không biết nói với ai thì họ sẽ không chết.”
 
-        “Ta không biết.” — Hắn lắc đầu. — “Ông ấy chỉ nói: ở đó có một cuộc họp của
-        người tu hành. Tiểu hội Thái Nam Sơn Cốc. Và ông bảo ta mang theo cuốn sách
-        ông để lại.”
+        “Ta thì sao?”
 
-        Hắn mở túi vải, lấy ra một cuốn sách mỏng đã ố vàng, bìa không có chữ.
+        “Ngươi thì khác.” — Hắn nói, và giọng hắn lúc ấy không đều nữa. — “Ta không
+        biết vì sao. Nhưng ngươi thì khác.”
 
-        “Trường Xuân Công?”
+          1. Nghe hắn kể tiếp
+             → c2_p03
 
-        “Không phải.” — Hắn lật vài trang. — “Cuốn kia ta đã học thuộc rồi. Cuốn này…
-        ta không đọc được. Chữ lạ.”
+            ── [c2_p03] · Sân tập — chiều muộn
 
-        Ta nhìn vào trang giấy. Những nét chữ mảnh, đều, xa lạ — không phải chữ của
-        người phàm.
+            Hàn Lập ngồi xuống bậc đá, ta ngồi cạnh.
 
-        “Ta đọc được,” — Tuyết Cơ bỗng nói trong đầu ta, giọng căng thẳng — “Và ngươi
-        nên biết: cuốn sách này không phải của một lang y. Đây là sổ tay của một kẻ đã
-        từng giết người vì nó.”
+            “Trước khi mất, ông ấy dặn ta một câu,” — hắn nói — “Đừng ở lại đây. Đi về
+            phía nam. Tới Thái Nam sơn.”
 
-        👁️‍🗨️ 【Hệ thống】“Vật phẩm mới: Sổ tay Mạc Đại Phu (chưa đọc).”
+            “Thái Nam sơn là chỗ nào?”
 
-          1. “Ta đi cùng ngươi.”
-             → c2_p04
-          2. “Ngươi đi trước đi. Ta còn phải thu xếp.”
-             → c2_p04
+            “Ta không biết.” — Hắn lắc đầu. — “Ông ấy chỉ nói: ở đó có một cuộc họp của
+            người tu hành. Tiểu hội Thái Nam Sơn Cốc. Và ông bảo ta mang theo cuốn sách
+            ông để lại.”
 
-            ── [c2_p04] · Cổng môn — sáng hôm sau
+            Hắn mở túi vải, lấy ra một cuốn sách mỏng đã ố vàng, bìa không có chữ.
 
-            Hàn Lập đi từ lúc trời chưa sáng.
+            “Trường Xuân Công?”
 
-            Ta ra tới cổng môn thì chỉ còn cái bóng áo xám nhỏ dần trên đường mòn phía
-            nam, sau lưng là cái hòm gỗ.
+            “Không phải.” — Hắn lật vài trang. — “Cuốn kia ta đã học thuộc rồi. Cuốn này…
+            ta không đọc được. Chữ lạ.”
 
-            “Hắn không đợi ngươi,” — Tuyết Cơ nói.
+            Ta nhìn vào trang giấy. Những nét chữ mảnh, đều, xa lạ — không phải chữ của
+            người phàm.
 
-            “Ta biết.”
+            “Ta đọc được,” — Tuyết Cơ bỗng nói trong đầu ta, giọng căng thẳng — “Và ngươi
+            nên biết: cuốn sách này không phải của một lang y. Đây là sổ tay của một kẻ đã
+            từng giết người vì nó.”
 
-            “Ngươi có giận không?”
+            👁️‍🗨️ 【Hệ thống】“Vật phẩm mới: Sổ tay Mạc Đại Phu (chưa đọc).”
 
-            Ta nghĩ một lúc. “Không. Hắn quen đi một mình rồi.”
+              1. “Ta đi cùng ngươi.”
+                 → c2_p04di
+              2. “Ngươi đi trước đi. Ta còn phải thu xếp.”
+                 → c2_p04_1
 
-            Ta đứng ở cổng môn, nhìn bóng ấy khuất sau khúc quanh. Rồi ta quay vào, thu
-            xếp túi áo — mấy nén bạc, khối ngọc cốt, và một tấm bản đồ cũ ta mượn được ở
-            phòng quản sự.
+                ── [c2_p04di] · Cổng môn — trước khi trời sáng
 
-            Ta cũng đi về phía nam. Nhưng ta đi đường khác.
+                Chúng ta ra khỏi cổng môn khi trời còn tối.
 
-            Nếu hắn đã quen đi một mình, ta nghĩ, thì ta sẽ tới đó trước hắn.
+                Hàn Lập đi trước, bước nhanh và không ngoái lại. Ta đi sau nửa bước, cái hòm
+                gỗ trên lưng hắn, còn ta thì mang túi áo nhẹ — mấy nén bạc, khối ngọc cốt, và
+                không có gì khác.
 
-            👁️‍🗨️ 【Hệ thống】“Hành trình mới: Thái Nam sơn.”
+                “Ngươi đi chậm quá,” — hắn nói, không quay đầu.
 
-              1. Xuống núi
-                 → c2_p05
+                “Ta đi vừa sức ta.”
 
-                ── [c2_p05] · Quán nước bên đường — trưa
+                “Vậy thì ta đi chậm lại.” — Và hắn chậm lại thật.
 
-                Ta đi bộ hai ngày, ngủ nhờ trong những cái miếu ven đường. Đến trưa ngày thứ
-                ba thì ghé quán nước.
+                Chúng ta đi về phía nam, và trên đường ấy, hắn không hỏi ta một câu nào về
+                việc ta là ai. Ta biết hắn đang chờ ta tự nói.
 
-                Quán đông hơn ta tưởng. Một bàn có ba gã đàn ông ăn mặc khá giả, nói chuyện
-                to. Ta ngồi bàn góc, gọi bát nước, nghe lỏm.
+                  1. Xuống núi
+                     → c2_p05
 
-                “Tháng này hội mở sớm hơn mọi năm,” — một gã nói — “Nghe đâu có chuyện lớn.”
+                    ── [c2_p05] · Quán nước bên đường — trưa
 
-                “Chuyện gì?”
+                    Ta đi bộ hai ngày, ngủ nhờ trong những cái miếu ven đường. Đến trưa ngày thứ
+                    ba thì ghé quán nước.
 
-                “Không rõ. Nhưng mấy nhà buôn trong thành đang gom hàng. Có người bỏ cả gia
-                sản ra mua một viên thuốc nhỏ xíu.”
+                    Quán đông hơn ta tưởng. Một bàn có ba gã đàn ông ăn mặc khá giả, nói chuyện
+                    to. Ta ngồi bàn góc, gọi bát nước, nghe lỏm.
 
-                Gã thứ ba hạ giọng: “Nghe nói hội này có cả người của tông môn lớn tới. Không
-                phải hạng lang băm đâu.”
+                    “Tháng này hội mở sớm hơn mọi năm,” — một gã nói — “Nghe đâu có chuyện lớn.”
 
-                Ta cúi xuống bát nước. Tông môn. Chữ ấy ta nghe mỗi ngày — từ miệng quản sự,
-                từ bảng treo trước sân tập Thất Huyền Môn. Chỉ là ở đó, nó nghĩa là một sân
-                võ, một đám người phàm luyện quyền.
+                    “Chuyện gì?”
 
-                Còn ở đây, nó được nói bằng một giọng khác. Như thể nói tới một thứ đứng trên
-                tất cả những gì ta từng biết.
+                    “Không rõ. Nhưng mấy nhà buôn trong thành đang gom hàng. Có người bỏ cả gia
+                    sản ra mua một viên thuốc nhỏ xíu.”
 
-                “Ngươi đang nghĩ đúng đấy,” — Tuyết Cơ nói. — “Thái Nam sơn. Đó là chỗ ta
-                từng nghe tên, rất lâu rồi.”
+                    Gã thứ ba hạ giọng: “Nghe nói hội này có cả người của tông môn lớn tới. Không
+                    phải hạng lang băm đâu.”
 
-                “Nơi đó có gì?”
+                    Ta cúi xuống bát nước. Tông môn. Chữ ấy ta nghe mỗi ngày — từ miệng quản sự,
+                    từ bảng treo trước sân tập Thất Huyền Môn. Chỉ là ở đó, nó nghĩa là một sân
+                    võ, một đám người phàm luyện quyền.
 
-                “Một cái chợ.” — Nàng ngừng. — “Và những thứ mà người phàm không được nhìn
-                thấy.”
+                    Còn ở đây, nó được nói bằng một giọng khác. Như thể nói tới một thứ đứng trên
+                    tất cả những gì ta từng biết.
 
-                  1. Hỏi thăm đường lên Thái Nam
-                     → c2_p06
+                    “Ngươi đang nghĩ đúng đấy,” — Tuyết Cơ nói. — “Thái Nam sơn. Đó là chỗ ta
+                    từng nghe tên, rất lâu rồi.”
 
-                    ── [c2_p06] · Chân núi Thái Nam — chiều ngày thứ tư
+                    “Nơi đó có gì?”
 
-                    Đến chiều ngày thứ tư mới tới chân núi Thái Nam. Hai ngày đường, một ngày
-                    nghỉ vì trời mưa, và một buổi sáng lạc đường trong rừng thông.
+                    “Một cái chợ.” — Nàng ngừng. — “Và những thứ mà người phàm không được nhìn
+                    thấy.”
 
-                    Chân núi Thái Nam khác hẳn chân núi Thất Huyền.
+                      1. Hỏi thăm đường lên Thái Nam
+                         → c2_p06
 
-                    Đất ở đây ấm. Không phải ấm vì nắng — trời đang râm — mà ấm từ dưới lên, như
-                    có ai đốt lửa trong lòng đất. Cây cối thì lạ: lá óng ánh như phủ sương mỏng
-                    không tan, và có những vệt sáng nhỏ bay lơ lửng trong không khí như đom đóm
-                    ban ngày.
+                        ── [c2_p06] · Chân núi Thái Nam — chiều ngày thứ tư
 
-                    Ta đưa tay ra. Một vệt sáng chạm vào đầu ngón tay, rồi tan.
+                        Đến chiều ngày thứ tư mới tới chân núi Thái Nam. Hai ngày đường, một ngày
+                        nghỉ vì trời mưa, và một buổi sáng lạc đường trong rừng thông.
 
-                    “Linh khí,” — Tuyết Cơ nói, giọng có chút gì đó gần như xúc động — “Ta chưa
-                    thấy linh khí đậm thế này từ khi còn sống.”
+                        Chân núi Thái Nam khác hẳn chân núi Thất Huyền.
 
-                    “Đậm là tốt hay xấu?”
+                        Đất ở đây ấm. Không phải ấm vì nắng — trời đang râm — mà ấm từ dưới lên, như
+                        có ai đốt lửa trong lòng đất. Cây cối thì lạ: lá óng ánh như phủ sương mỏng
+                        không tan, và có những vệt sáng nhỏ bay lơ lửng trong không khí như đom đóm
+                        ban ngày.
 
-                    “Với ngươi thì tốt. Ngươi hấp thu linh khí nhanh gấp mấy lần người thường.” —
-                    Nàng ngừng. — “Nhưng cũng có nghĩa là ở đây có nhiều kẻ mạnh hơn ngươi rất
-                    nhiều. Đi cẩn thận.”
+                        Ta đưa tay ra. Một vệt sáng chạm vào đầu ngón tay, rồi tan.
 
-                    Trước mặt ta, con đường mòn tách ra làm hai. Một nhánh đi lên theo sườn núi,
-                    một nhánh vòng xuống thung lũng.
+                        “Linh khí,” — Tuyết Cơ nói, giọng có chút gì đó gần như xúc động — “Ta chưa
+                        thấy linh khí đậm thế này từ khi còn sống.”
 
-                    Ta chọn nhánh vòng xuống. Và khi qua khúc quanh, ta thấy nó.
+                        “Đậm là tốt hay xấu?”
 
-                    Một thung lũng đầy lều trại, đèn lồng treo khắp nơi, người đi lại như mắc
-                    cửi.
+                        “Với ngươi thì tốt. Ngươi hấp thu linh khí nhanh gấp mấy lần người thường.” —
+                        Nàng ngừng. — “Nhưng cũng có nghĩa là ở đây có nhiều kẻ mạnh hơn ngươi rất
+                        nhiều. Đi cẩn thận.”
 
-                    👁️‍🗨️ 【Hệ thống】“Đã tới: Thái Nam Sơn Cốc.”
+                        Trước mặt ta, con đường mòn tách ra làm hai. Một nhánh đi lên theo sườn núi,
+                        một nhánh vòng xuống thung lũng.
 
-                      1. Xuống thung lũng
-                         → c2_p07
+                        Ta chọn nhánh vòng xuống. Và khi qua khúc quanh, ta thấy nó.
+
+                        Một thung lũng đầy lều trại, đèn lồng treo khắp nơi, người đi lại như mắc
+                        cửi.
+
+                        👁️‍🗨️ 【Hệ thống】“Đã tới: Thái Nam Sơn Cốc.”
+
+                          1. Xuống thung lũng
+                             → c2_p07
 
                         ── [c2_p07] · Thái Nam Sơn Cốc — mép thung lũng
 
@@ -4559,9 +5387,29 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                         Hắn nhớ hết. Ta tin câu đó. Ta không biết vì sao, nhưng ta tin.
 
                           1. Hỏi hắn về Mạc Đại Phu
-                             → c2_p14
+                             → c2_p14_0
                              [đổi: Hàn Lập +8]
                           2. Không hỏi gì, ngồi im
+                             → c2_p14_1
+
+                        ── [c2_p14_0] · Góc chợ — tối
+
+                        “Mạc Đại Phu là ai?”
+
+                        Hàn Lập nhìn ta rất lâu trước khi trả lời.
+
+                        “Ta không biết hết.” — Hắn nói. — “Ông ấy nuôi ta từ nhỏ. Ông ấy dạy ta bốc
+                        thuốc. Và ông ấy chết mà không nói cho ta biết ông ấy là ai.”
+
+                        “Ngươi không hỏi?”
+
+                        “Ta hỏi.” — Hắn cúi xuống nhìn cuốn sách. — “Ông ấy nói: biết sớm thì chết
+                        sớm.”
+
+                        Tuyết Cơ khẽ nói trong ngực ta: “Hắn nói đúng. Nhưng ngươi đã biết rồi, phải
+                        không?”
+
+                          1. Về chỗ nghỉ
                              → c2_p14
 
                         ── [c2_p14] · Rìa thung lũng — đêm
@@ -4590,8 +5438,27 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                         “Cho nên đêm nay ngươi không học cách hấp thu. Ngươi học cách giấu.”
 
                           1. Học cách nén khí tức
-                             → c2_p15
+                             → c2_p15_0
                           2. Học cách hấp thu nhanh
+                             → c2_p15_1
+
+                        ── [c2_p15_0] · Rìa thung lũng — đêm
+
+                        Ta học cách nén.
+
+                        Khối ngọc cốt trong ngực ta ấm ran, và Tuyết Cơ dẫn ta từng nhịp: hít vào,
+                        giữ, ép xuống, thả ra thật chậm — như người ta ép nước ra khỏi vải.
+
+                        Lần đầu, ta ép mạnh quá và cả người ta nóng ran. Nàng cười.
+
+                        “Không phải ép cho mất. Ép cho phẳng.”
+
+                        Ta làm lại. Đến lần thứ bảy thì ta thấy nó — một lớp mỏng, như tấm vải, phủ
+                        lên khí tức của ta.
+
+                        “Đó,” — nàng nói. — “Giữ nó nguyên vẹn. Cả đêm nay. Và mỗi đêm sau đó.”
+
+                          1. Sáng hôm sau
                              → c2_p15
 
                         ── [c2_p15] · Giữa thung lũng — sáng sớm
@@ -4650,8 +5517,30 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                         trong mấy ngày tới.”
 
                           1. Hỏi: kẻ nào đang giữ?
-                             → c2_p17
+                             → c2_p17_0
                           2. Cúi đầu, rời đi
+                             → c2_p17_1
+
+                        ── [c2_p17_0] · Bục đá — sáng
+
+                        “Kẻ nào đang giữ?”
+
+                        Đám đông sau lưng ta im đến mức ta nghe được tiếng gió qua mái lều.
+
+                        Vạn Tiểu Sơn nhìn ta, rồi lão nhìn xuống vạt áo ta — chỗ khối ngọc cốt. Ánh
+                        mắt lão dừng lại ở đó lâu hơn một nhịp.
+
+                        “Ngươi hỏi thẳng,” — lão nói. — “Nhưng ngươi mang theo thứ ngươi không hiểu.
+                        Kẻ như ngươi thường chết vì câu hỏi đầu tiên.”
+
+                        “Vậy kẻ nào đang giữ?”
+
+                        Lão gõ gậy xuống bục. “Kẻ đang giữ đứng trong đám đông này. Lão ta nghe hết.
+                        Và lão ta biết ta đang nói về lão.”
+
+                        Đám đông khẽ nhích. Ở rìa, một bóng áo xám quay đi.
+
+                          1. Rời bục đá
                              → c2_p17
 
                         ── [c2_p17] · Dãy hàng phía bắc — trưa
@@ -4827,17 +5716,35 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                           Câu hỏi ấy không dành cho bà bán đan.
 
                           1. “Vì ta cũng cần một người hiểu ta.”
-                             → c2_p18
+                             → c2_p18_0
                              [đổi: Hàn Lập +10]
                           2. “Vì ta ghét bị trả giá.”
-                             → c2_p18
+                             → c2_p18_1
                              [đổi: Hàn Lập +6]
                           3. Đứng nhìn, để hắn tự trả giá
-                             → c2_p18
+                             → c2_p18_2
                              [đổi: Hàn Lập -10]
                           4. “Vì ngươi có thứ ta cần.”
-                             → c2_p18
+                             → c2_p18_3
                              [đổi: Hàn Lập -15]
+
+                        ── [c2_p18_0] · Dãy hàng phía bắc — trưa
+
+                        “Vì ta cũng cần một người hiểu ta.”
+
+                        Hàn Lập không quay lại, nhưng ta thấy bàn tay hắn dừng trên mấy lọ thuốc.
+
+                        “Ngươi nói câu ấy với ai chưa?”
+
+                        “Chưa.”
+
+                        “Vậy thì đừng nói với ai nữa.” — Hắn quay sang bà bán đan. — “Năm viên.”
+
+                        Bà ta trả năm viên. Hắn nhận tiền, và khi đi ngang ta, hắn nói khẽ: “Ta không
+                        hiểu ngươi. Nhưng ta sẽ thử.”
+
+                          1. Ba ngày sau
+                             → c2_p18
 
                         ── [c2_p18] · Rìa thung lũng — chiều ngày thứ ba
 
@@ -4889,10 +5796,29 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                         Hắn im lâu đến mức ta tưởng hắn không trả lời.
 
                           1. “Vậy thì cùng nhau ra khỏi đây.”
-                             → c2_p20
+                             → c2_p20_0
                           2. “Ta không cần ngươi hiểu ta.”
-                             → c2_p20
+                             → c2_p20_1
                           3. “Ta sẽ không để ngươi chết một mình.”
+                             → c2_p20_2
+
+                        ── [c2_p20_0] · Khe đá — đêm
+
+                        “Vậy thì cùng nhau ra khỏi đây.”
+
+                        Hắn im rất lâu. Bên ngoài khe đá, tiếng chân đã xa, và thung lũng chìm vào
+                        thứ im lặng nặng như nước.
+
+                        “Ngươi nói câu ấy dễ quá,” — cuối cùng hắn nói.
+
+                        “Ta không nói dễ. Ta nói cùng nhau.”
+
+                        Hắn quay sang. Trong bóng tối ta chỉ thấy nửa mặt hắn, và nửa mặt ấy không
+                        đọc được.
+
+                        “Được,” — hắn nói. — “Nhưng nếu tới lúc phải chọn, ngươi đi trước.”
+
+                          1. Nghe hắn nói
                              → c2_p20
 
                         ── [c2_p20] · Khe đá — gần sáng
@@ -5011,14 +5937,33 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                         Hàn Lập nhìn ta. Hắn không biết ta vừa nghe gì.
 
                           1. “Giấu nó đi. Đừng cho ai thấy.”
-                             → c2_p23
+                             → c2_p23_0
                              [đổi: Hàn Lập +15]
                           2. “Ta không đọc được vật.”
-                             → c2_p23
+                             → c2_p23_1
                              [đổi: Hàn Lập -5]
                           3. “Đưa nó cho ta giữ.”
-                             → c2_p23
+                             → c2_p23giu
                              [đổi: Hàn Lập -20]
+
+                        ── [c2_p23_0] · Khe đá — chạng vạng
+
+                        “Giấu nó đi. Đừng cho ai thấy.”
+
+                        Hàn Lập nhìn ta. Hắn không biết ta vừa nghe Tuyết Cơ nói gì, nhưng hắn biết
+                        ta vừa nghe một thứ gì đó.
+
+                        “Ngươi nói câu ấy nhanh quá.”
+
+                        “Vì ta vừa biết một điều ta không muốn biết.”
+
+                        Hắn gói cái bình vào vải, rất chậm. “Ngươi có nói cho ta biết không?”
+
+                        “Không.” — Ta nói. — “Và ngươi đừng hỏi. Đây là lần đầu ta giữ một bí mật
+                        khỏi ngươi. Ta không thích nó.”
+
+                          1. Đêm xuống
+                             → c2_p23
 
                         ── [c2_p23] · Khe đá — đêm ngày cuối
 
@@ -5056,16 +6001,38 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                         “Không có gì khác.”
 
                           1. “Ngươi vừa giết người.”
-                             → c2_p24
+                             → c2_p24_0
                              [đổi: Hàn Lập +5]
                           2. Đứng nhìn, không nói gì
-                             → c2_p24
+                             → c2_p24_1
                           3. “Vậy thì ta đi cùng ngươi.”
-                             → c2_p24
+                             → c2_p24_2
                              [đổi: Hàn Lập +12]
                           4. “Ngươi là kẻ giết người.”
-                             → c2_p24
+                             → c2_p24_3
                              [đổi: Hàn Lập -20]
+
+                        ── [c2_p24_0] · Khe đá — đêm ngày cuối
+
+                        “Ngươi vừa giết người.”
+
+                        Hàn Lập không ngẩng lên khỏi cái xác.
+
+                        “Ta biết.”
+
+                        “Ngươi không run.”
+
+                        “Ta run ở trong.” — Hắn đứng dậy. — “Ta run từ lúc ta thấy hắn rút kiếm. Ta
+                        chỉ không để nó ra ngoài.”
+
+                        Hắn cầm túi vải. Hắn nhìn ta.
+
+                        “Ngươi sẽ đi cùng ta chứ?”
+
+                        Ta không trả lời ngay. Ta nhìn cái xác, rồi nhìn hắn. Rồi ta gật đầu.
+
+                          1. Rời thung lũng
+                             → c2_p24
 
                         ── [c2_p24] · Rìa thung lũng — đêm ngày cuối
 
@@ -5393,6 +6360,103 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                           1. Khép lại Chương 2
                              → KẾT THÚC CHƯƠNG
 
+                        ── [c2_p24_1] · Khe đá — đêm ngày cuối
+
+                        Ta đứng nhìn. Ta không nói gì.
+
+                        Hắn lục túi người chết rất nhanh, rất thành thạo, và ta đứng đó nhìn từng
+                        động tác ấy. Ta không phán xét. Ta đang học.
+
+                        “Ngươi nhìn kỹ quá,” — hắn nói, không ngẩng lên.
+
+                        “Ta đang học.”
+
+                        Hắn dừng tay một nhịp. Rồi hắn tiếp tục, và giọng hắn khác đi: “Đừng học cái
+                        này.”
+
+                        “Vì sao?”
+
+                        “Vì ta học nó lúc ta bảy tuổi. Và ta không muốn ngươi học nó.”
+
+                          1. Rời thung lũng
+                             → c2_p24
+
+                        ── [c2_p24_2] · Khe đá — đêm ngày cuối
+
+                        “Vậy thì ta đi cùng ngươi.”
+
+                        Hàn Lập đứng dậy khỏi cái xác. Trong tay hắn là túi vải xám.
+
+                        “Ngươi vừa thấy ta làm gì.”
+
+                        “Ta thấy.”
+
+                        “Và ngươi vẫn đi cùng ta.”
+
+                        “Ta đi cùng người đã đặt tay lên vai ta suốt một canh giờ,” — ta nói — “không
+                        phải đi cùng kẻ vừa giết một người định giết mình.”
+
+                        Hắn nhìn ta. Rồi hắn nói, rất khẽ: “Ngươi sẽ hối hận.”
+
+                          1. Rời thung lũng
+                             → c2_p24
+
+                        ── [c2_p24_3] · Khe đá — đêm ngày cuối
+
+                        “Ngươi là kẻ giết người.”
+
+                        Hàn Lập cất túi vải vào áo. Hắn không phản bác.
+
+                        “Ừ.”
+
+                        “Chỉ thế thôi?”
+
+                        “Ngươi muốn ta nói gì?” — Hắn nhìn ta, và lần đầu tiên ta thấy hắn giận. —
+                        “Ta nói ta xin lỗi thì hắn sống lại à? Ta nói ta không cố ý thì ngươi thấy dễ
+                        chịu hơn à?”
+
+                        Hắn quay đi. Ta đứng lại một lúc, rồi ta đi theo — vì ta không biết đi đâu
+                        khác, và vì ta biết hắn nói đúng.
+
+                          1. Rời thung lũng
+                             → c2_p24
+
+                        ── [c2_p23_1] · Khe đá — chạng vạng
+
+                        “Ta không đọc được vật.”
+
+                        Hàn Lập gật đầu. “Vậy thì ta giữ.”
+
+                        Hắn cầm cái bình lên, xoay một vòng dưới ánh lửa, rồi cất vào áo.
+
+                        “Ngươi không sợ nó?” — ta hỏi.
+
+                        “Sợ.” — Hắn nói. — “Nhưng nó chọn ta. Ta đã thử bỏ nó ba lần. Thứ gì chọn
+                        ngươi ba lần thì ngươi phải nhận.”
+
+                        Tuyết Cơ khẽ nói trong ngực ta: “Hắn không biết hắn vừa nói đúng đến mức
+                        nào.”
+
+                          1. Đêm xuống
+                             → c2_p23
+
+                        ── [c2_p23giu] · Khe đá — đêm ngày cuối
+
+                        Cái bình nằm trong túi áo ta, lạnh như một viên đá sông.
+
+                        Hàn Lập không hỏi thêm. Nhưng trước khi quay đi, hắn nói: “Nếu ngươi đổi ý,
+                        cứ đưa lại. Ta không giận.”
+
+                        Bên ngoài, khói đã dày đặc. Tiếng chân người chạy qua khe đá, rồi tiếng một
+                        vật nặng đổ.
+
+                        “Ra ngoài xem,” — Hàn Lập nói, đứng dậy.
+
+                        Ta theo hắn ra. Tay ta vẫn đặt trên túi áo, chỗ cái bình.
+
+                          1. Nhìn kỹ
+                             → c2_p24
+
                         ── [c2_p22b] · Hốc đá phía tây — chạng vạng
 
                         Ta tự tìm chỗ nấp.
@@ -5456,6 +6520,46 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                           1. Khép lại Chương 2
                              → KẾT THÚC CHƯƠNG
 
+                        ── [c2_p20_1] · Khe đá — đêm
+
+                        “Ta không cần ngươi hiểu ta.”
+
+                        Hàn Lập không đáp ngay. Rồi hắn nói, giọng bình thản đến lạ: “Tốt. Người hiểu
+                        ta thường chết.”
+
+                        Câu ấy làm ta lạnh hơn cả đêm trong khe đá.
+
+                        “Ngươi nói thế là có ý gì?”
+
+                        “Là nói thật.” — Hắn tựa lưng vào vách. — “Sư phụ ta hiểu ta. Ông ấy chết.
+                        Người duy nhất ta kể chuyện Trường Xuân Công cũng chết.”
+
+                        Ta im. Ta không biết phải nói gì với một người tin rằng hiểu biết giết người.
+
+                          1. Nghe hắn nói
+                             → c2_p20
+
+                        ── [c2_p20_2] · Khe đá — đêm
+
+                        “Ta sẽ không để ngươi chết một mình.”
+
+                        Hắn quay hẳn sang. “Ngươi không có quyền chọn cái đó.”
+
+                        “Ta biết.” — Ta nói. — “Nhưng ta vẫn chọn.”
+
+                        Hắn nhìn ta rất lâu. Rồi hắn cười — tiếng cười ngắn, khô, như tiếng đá lăn.
+
+                        “Ngươi là kẻ ngốc nhất ta gặp trong cái cốc này.”
+
+                        “Ta biết.”
+
+                        “Và ngươi biết ta sẽ không đuổi ngươi đi.”
+
+                        “Ta biết.” — Ta nói. — “Vì ngươi cũng không muốn chết một mình.”
+
+                          1. Nghe hắn nói
+                             → c2_p20
+
                         ── [c2_p19b] · Gờ đá — đêm
 
                         “Ta tự lo được,” — ta nói.
@@ -5500,10 +6604,51 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                         Ta đứng lại. Ta không bước tới.
 
                           1. Bỏ đi, không hỏi
-                             → c2_p21b
+                             → c2_p21b_0
                           2. Bước tới, hỏi thẳng
-                             → c2_p21b
+                             → c2_p21b_1
                              [đổi: Hàn Lập -10]
+
+                        ── [c2_p21b_0] · Thung lũng — sáng ngày thứ tư
+
+                        Ta bỏ đi.
+
+                        Ta quay lưng và đi về phía dãy hàng phía nam, và ta không nhìn lại. Ta đã học
+                        được một điều trong cái cốc này: có những cuộc giao dịch ngươi thấy mà không
+                        được biết.
+
+                        Tuyết Cơ nói: “Ngươi chọn đúng.”
+
+                        “Ta biết.”
+
+                        “Nhưng ngươi sẽ nhớ nó.” — Nàng ngừng. — “Và cái nhớ ấy sẽ thành một cái gai.
+                        Gai thì có ích. Gai nhắc ngươi đừng ngủ quên.”
+
+                          1. Sáng ngày cuối
+                             → c2_p21b
+
+                        ── [c2_p21b_1] · Thung lũng — sáng ngày thứ tư
+
+                        Ta bước tới.
+
+                        “Ngươi đưa hắn cái gì?”
+
+                        Hàn Lập quay lại, và lần đầu tiên ta thấy hắn sợ. Không sợ ta — sợ việc ta đã
+                        thấy.
+
+                        “Ngươi không nên thấy cái đó.”
+
+                        “Ta đã thấy rồi.”
+
+                        Hắn im. Kẻ áo xám đã đi xa. Rồi hắn nói, rất thấp: “Ta đổi một tấm lệnh lấy
+                        một con đường ra khỏi đây. Ngươi có muốn tố cáo ta không?”
+
+                        “Ta không có ai để tố cáo.”
+
+                        “Vậy thì đừng hỏi nữa.” — Hắn nhìn thẳng. — “Và đừng kể cho ai.”
+
+                          1. Sáng ngày cuối
+                             → c2_p21b
 
                         ── [c2_p20c] · Rìa thung lũng — chiều ngày thứ tư
 
@@ -5538,6 +6683,81 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                           1. Cúi đầu cảm ơn, đi
                              → c2_p21b
 
+                        ── [c2_p18_1] · Dãy hàng phía bắc — trưa
+
+                        “Vì ta ghét bị trả giá.”
+
+                        Hàn Lập quay lại hẳn, và lần đầu ta thấy hắn nhìn ta không phải để đọc mặt
+                        ta.
+
+                        “Vậy thì ngươi đứng đây,” — hắn nói. — “Đứng đây và học cách người ta trả
+                        giá.”
+
+                        Hắn mặc cả thêm ba câu nữa, rồi nhận năm viên. Khi đi, hắn nói: “Ngươi thấy
+                        gì?”
+
+                        “Ta thấy bà ta không cần thuốc. Bà ta cần biết ngươi cần tiền.”
+
+                        Hắn gật đầu. “Vậy là ngươi học được rồi.”
+
+                          1. Ba ngày sau
+                             → c2_p18
+
+                        ── [c2_p18_2] · Dãy hàng phía bắc — trưa
+
+                        Ta đứng nhìn. Ta không nói.
+
+                        Ta đứng đó và ta học. Ta học cách bà ta không nhìn vào thuốc mà nhìn vào tay
+                        hắn. Ta học cách hắn không nhìn bà ta mà nhìn cái cân.
+
+                        Hắn nhận ba viên. Hắn gói thuốc, cất đi, và đi.
+
+                        Đi ngang ta, hắn nói: “Ngươi đứng nhìn giỏi hơn ta tưởng.”
+
+                        “Ta không có gì để nói.”
+
+                        “Không.” — Hắn đi trước. — “Ngươi có. Ngươi chỉ biết nói lúc nào thì được
+                        giá.”
+
+                          1. Ba ngày sau
+                             → c2_p18
+
+                        ── [c2_p18_3] · Dãy hàng phía bắc — trưa
+
+                        “Vì ngươi có thứ ta cần.”
+
+                        Hàn Lập dừng tay.
+
+                        “Thứ gì?”
+
+                        “Ngươi biết đường ra khỏi đây. Ta thì không.”
+
+                        Hắn quay lại nhìn ta. Bà bán đan khẽ nhếch mép — bà ta đã nghe câu này nhiều
+                        lần từ nhiều kẻ.
+
+                        “Ngươi thành thật,” — hắn nói. — “Ta thích kẻ thành thật. Họ dễ đoán hơn.”
+
+                        Hắn nhận ba viên và đi. Ta đi theo. Tuyết Cơ nói trong ngực ta: “Ngươi vừa
+                        nói dối một nửa. Nhưng nửa còn lại thì thật. Đó là cách tốt nhất.”
+
+                          1. Ba ngày sau
+                             → c2_p18
+
+                        ── [c2_p17_1] · Bục đá — sáng
+
+                        Ta cúi đầu và rời đi.
+
+                        Không phải vì ta sợ. Vì ta biết cái giá của việc hỏi sai người, sai lúc — ta
+                        đã trả cái giá ấy một lần, ở một nơi rất xa, và ta vẫn còn nhớ nó.
+
+                        Ta lùi ra khỏi đám đông. Đi được mấy bước, ta nghe Vạn Tiểu Sơn nói sau lưng:
+                        “Kẻ này biết giữ miệng. Kẻ biết giữ miệng thường sống lâu hơn kẻ hỏi giỏi.”
+
+                        Tuyết Cơ khẽ nói: “Lão ta đang thử ngươi. Lão đã biết ngươi là ai.”
+
+                          1. Rời bục đá
+                             → c2_p17
+
                         ── [c2_p16b] · Rìa đám đông — sáng
 
                         Ta đứng ngoài nghe, và học được nhiều hơn một viên linh thạch đáng giá.
@@ -5553,6 +6773,41 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
 
                           1. Đi tìm Hàn Lập
                              → c2_p17
+
+                        ── [c2_p15_1] · Rìa thung lũng — đêm
+
+                        Ta học cách hấp thu nhanh.
+
+                        Khối ngọc cốt trong ngực ta mở ra như một cái miệng, và linh khí trong thung
+                        lũng ùa vào — nhanh đến mức ta thấy lạnh.
+
+                        “Đủ rồi,” — Tuyết Cơ nói.
+
+                        Ta không dừng. Ta muốn thấy giới hạn của mình ở đâu.
+
+                        Rồi ta thấy. Khí tức của ta sáng lên, và ở đâu đó trong thung lũng, một luồng
+                        thần thức khác khẽ động — rất xa, rất mơ hồ, nhưng nó vừa quay về phía ta.
+
+                        “Ngươi vừa tự đánh dấu mình,” — nàng nói, giọng không còn cười.
+
+                          1. Sáng hôm sau
+                             → c2_p15
+
+                        ── [c2_p14_1] · Góc chợ — tối
+
+                        Ta không hỏi. Ta ngồi im và để hắn giữ im lặng của hắn.
+
+                        Hắn cất cuốn sách vào áo. Rồi hắn nói, không nhìn ta: “Ngươi không hỏi.”
+
+                        “Ngươi không muốn nói.”
+
+                        “Ta không muốn nói,” — hắn nhắc lại, chậm — “nhưng ta đã mong ngươi hỏi.”
+
+                        Hắn đứng dậy và đi. Ta ngồi thêm một lúc. Tuyết Cơ nói: “Ngươi vừa bỏ một cơ
+                        hội. Nhưng cũng vừa cho hắn thấy ngươi biết giữ lời.”
+
+                          1. Về chỗ nghỉ
+                             → c2_p14
 
                         ── [c2_p13b] · Góc chợ — tối
 
@@ -5602,11 +6857,49 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                         Hắn không nói thêm. Nhưng câu đó ở lại với ta lâu hơn ta muốn.
 
                           1. Đi theo hắn
-                             → c2_p12
+                             → c2_p12_0
                              [đổi: Hàn Lập +4]
                           2. Đứng lại, để hắn đi
-                             → c2_p12
+                             → c2_p12_1
                              [đổi: Hàn Lập -8]
+
+                        ── [c2_p12_0] · Dãy hàng phía đông
+
+                        Ta đi theo hắn.
+
+                        Ta không hỏi vì sao hắn bán rẻ. Ta đi sau hắn nửa bước, và ta để khoảng cách
+                        ấy nguyên vẹn — đủ gần để hắn biết ta còn đó, đủ xa để hắn không phải quay
+                        lại.
+
+                        “Ngươi mặc áo Thất Huyền Môn,” — hắn nói, không quay lại. — “Vậy mà ngươi đi
+                        bộ tới đây.”
+
+                        “Áo này ta nhặt được.”
+
+                        Hắn khựng lại nửa bước. Rồi hắn đi tiếp, và ta nghe hắn thở ra một tiếng rất
+                        khẽ — gần như một tiếng cười.
+
+                          1. Vào chợ đêm
+                             → c2_p12
+
+                        ── [c2_p12_1] · Dãy hàng phía đông
+
+                        Ta đứng lại.
+
+                        Hắn đi vào đám đông và mất hút giữa những tấm vải và lồng đèn. Ta đứng đó, áo
+                        Thất Huyền Môn trên vai, và ta biết mình vừa để một cơ hội đi qua.
+
+                        “Ngươi để hắn đi,” — Tuyết Cơ nói trong ngực ta.
+
+                        “Hắn không cần ta.”
+
+                        “Hắn cần.” — Nàng cười, giọng như rót mật. — “Nhưng ngươi chưa đủ giá để hắn
+                        quay lại. Đó là hai chuyện khác nhau.”
+
+                        Ta không đáp. Ta ghét việc nàng nói đúng.
+
+                          1. Vào chợ đêm
+                             → c2_p12
 
                         ── [c2_p11c] · Dãy hàng phía đông — chạng vạng
 
@@ -5654,6 +6947,85 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
 
                           1. Đi vào dãy hàng phía đông
                              → c2_p10
+
+                ── [c2_p04_1] · Sân tập — chiều muộn
+
+                “Ngươi đi trước đi. Ta còn phải thu xếp.”
+
+                Hắn nhìn ta một lúc.
+
+                “Được.” — Hắn nói, và ta nghe trong đó một chút gì như thất vọng, dù hắn
+                không nói ra.
+
+                Hắn cất cuốn sách vào túi vải, đứng dậy, và đi về phía cổng. Ta đứng lại.
+
+                Đêm ấy ta thu xếp đồ của mình rất chậm. Ta không có nhiều thứ để thu xếp. Ta
+                chỉ không muốn nghĩ tới việc sáng mai hắn sẽ đi mà không có ta.
+
+                  1. Sáng hôm sau
+                     → c2_p04
+
+                    ── [c2_p04] · Cổng môn — sáng hôm sau
+
+                    Hàn Lập đi từ lúc trời chưa sáng.
+
+                    Ta ra tới cổng môn thì chỉ còn cái bóng áo xám nhỏ dần trên đường mòn phía
+                    nam, sau lưng là cái hòm gỗ.
+
+                    “Hắn không đợi ngươi,” — Tuyết Cơ nói.
+
+                    “Ta biết.”
+
+                    “Ngươi có giận không?”
+
+                    Ta nghĩ một lúc. “Không. Hắn quen đi một mình rồi.”
+
+                    Ta đứng ở cổng môn, nhìn bóng ấy khuất sau khúc quanh. Rồi ta quay vào, thu
+                    xếp túi áo — mấy nén bạc, khối ngọc cốt, và một tấm bản đồ cũ ta mượn được ở
+                    phòng quản sự.
+
+                    Ta cũng đi về phía nam. Nhưng ta đi đường khác.
+
+                    Nếu hắn đã quen đi một mình, ta nghĩ, thì ta sẽ tới đó trước hắn.
+
+                    👁️‍🗨️ 【Hệ thống】“Hành trình mới: Thái Nam sơn.”
+
+                      1. Xuống núi
+                         → c2_p05
+
+        ── [c2_p03_1] · Sân tập — trưa, sau trận
+
+        Ta không nói gì. Ta chỉ đứng cạnh hắn.
+
+        Hắn đứng đó, hai tay buông thõng, nhìn xuống cái cáng phủ vải trắng. Ta đứng
+        bên cạnh, cách nửa bước, không chạm vào hắn.
+
+        Một lúc lâu. Người trong sân đi qua đi lại, không ai tới gần.
+
+        Rồi vai hắn khẽ run — một lần, rồi thôi. Hắn không khóc thành tiếng. Hắn chỉ
+        đứng, và run, và ta đứng đó cùng hắn cho đến khi hắn thôi run.
+
+        “Đi thôi,” — cuối cùng hắn nói, giọng khàn.
+
+          1. Nghe hắn kể tiếp
+             → c2_p03
+
+        ── [c2_p03_2] · Sân tập — trưa, sau trận
+
+        “Vì ta cũng từng mất một người thầy.”
+
+        Hắn quay lại nhìn ta.
+
+        “Ta không nhớ mặt ông ấy,” — ta nói. — “Ta chỉ nhớ có một người từng dạy ta
+        cách sống qua một mùa đông. Rồi ông ấy chết, và ta không biết chôn ông ấy ở
+        đâu vì ta không biết tên ông ấy.”
+
+        Đó là điều ta chưa nói với ai. Ta không hiểu vì sao ta nói với hắn.
+
+        Hắn im lặng. Rồi hắn nói: “Vậy thì chúng ta giống nhau.”
+
+          1. Nghe hắn kể tiếp
+             → c2_p03
 
     ── [c2_p01b] · Tân xá — trong phòng
 
