@@ -1153,6 +1153,29 @@ _sbt["chi_so"]["sinh_luc"]["hien"] = 3
 check("bị thương: VẪN xem được trận", _E.tl_dau(_sbt).get("loi"), None)
 check("bị thương: chặn ĐÁNH", _E.tl_danh(_sbt).get("loi") is not None, True)
 
+print("\n=== TL1c. Chống bế tắc: tu vi và sinh lực đã đủ để thoát (người dùng chọn B) ===")
+_dt = _E.trang_thai_moi("DaToa2", "tán tu", "tan_tu")
+_dt["chuong"] = 2
+while _dt["tu_luyen"]["ngay_con"] >= 3:
+    _E.tl_da_toa(_dt)
+check("đả tọa cả 30 ngày LÊN ĐƯỢC tầng", _dt["canh_gioi"] != "Luyện Khí tầng 1", True)
+check("đả tọa 30 ngày: tu vi 24/135", (_dt["tu_vi"]["hien"], _dt["tu_vi"]["max"]), (24, 135))
+
+_tong = 0
+for _i in range(30):
+    _sd = _E.trang_thai_moi("Do%d" % _i, "tán tu", "tan_tu")
+    _sd["chuong"] = 2
+    _tr = _sd["chi_so"]["sinh_luc"]["hien"]
+    _E.tl_danh(_sd)
+    _tong += _tr - _sd["chi_so"]["sinh_luc"]["hien"]
+check("mỗi trận mất dưới 14 sinh lực (đánh được 2+ trận)", _tong / 30 < 14, True)
+
+_sn = _E.trang_thai_moi("Nghi", "tán tu", "tan_tu")
+_sn["chuong"] = 2
+_sn["chi_so"]["sinh_luc"]["hien"] = 2
+_E.tl_nghi(_sn)
+check("nghỉ 1 ngày hồi 12 sinh lực", _sn["chi_so"]["sinh_luc"]["hien"], 14)
+
 print("\n=== TL2. Bản Python và bản JS phải ra CÙNG dãy số ngẫu nhiên ===")
 # Nếu hai bản lệch nhau, người chơi thấy kết quả khác nhau tuỳ chơi web hay
 # chơi bản Python — lỗi câm, không ai báo. Neo bằng số đo thật của bản Python.

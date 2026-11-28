@@ -715,8 +715,41 @@ const doan_truoc = o.doan_hien_tai;
   {
     const s = stTL();
     const r = Engine.tl_da_toa(s);
-    check("đả tọa +8 tu vi", s.tu_vi.hien, 20);
-    check("đả tọa báo tu vi", r.thong_bao.join(" ").includes("Tu vi +8"), true);
+    check("đả tọa +12 tu vi", s.tu_vi.hien, 24);
+    check("đả tọa báo tu vi", r.thong_bao.join(" ").includes("Tu vi +12"), true);
+  }
+
+  // Chống bế tắc: đả tọa cả 30 ngày PHẢI lên được ít nhất tầng 2. Trước đây
+  // 10 lượt × 8 = 80 tu vi, cần 88 nên không lên nổi tầng nào.
+  {
+    const s = stTL();
+    s.chuong = 2;
+    while (s.tu_luyen.ngay_con >= 3) Engine.tl_da_toa(s);
+    check("đả tọa cả 30 ngày LÊN ĐƯỢC tầng",
+          s.canh_gioi !== "Luyện Khí tầng 1", true);
+  }
+
+  // Chống bế tắc: phải đánh được NHIỀU hơn 1 trận trước khi kiệt sức.
+  {
+    let tong = 0, soLan = 30;
+    for (let i = 0; i < soLan; i++) {
+      const s = stTL();
+      s.chuong = 2;
+      const truoc = s.chi_so.sinh_luc.hien;
+      Engine.tl_danh(s);
+      tong += truoc - s.chi_so.sinh_luc.hien;
+    }
+    const tb = tong / soLan;
+    check("mỗi trận mất dưới 14 sinh lực (đánh được 2+ trận)", tb < 14, true);
+  }
+
+  // Chống bế tắc: nghỉ 1 ngày phải hồi đủ để đánh tiếp, không lẹt đẹt.
+  {
+    const s = stTL();
+    s.chuong = 2;
+    s.chi_so.sinh_luc.hien = 2;
+    Engine.tl_nghi(s);
+    check("nghỉ 1 ngày hồi 12 sinh lực", s.chi_so.sinh_luc.hien, 14);
   }
 
   // Không đủ ngày thì mọi việc phải bị chặn — không được trừ ngày âm.

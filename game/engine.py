@@ -78,7 +78,10 @@ TL_VIEC = {
     "do_la": {"ten": "Dò la", "ngay": 2},
 }
 
-TL_TU_VI_DA_TOA = 8
+# 8 chỉ cho 80 tu vi trong 30 ngày, mà cần 88 để lên tầng 2 — không lên nổi tầng
+# nào. 12 cho 120, đủ lên tầng 2 rồi còn 6 ngày. Giữ nguyên tỉ lệ thắng để độ khó
+# đánh nhau vẫn thật, chỉ mở đường tu luyện.
+TL_TU_VI_DA_TOA = 12
 
 # Yêu thú vùng Thái Nam Sơn Cốc. `bac` là bậc trong CANH_GIOI; `hang` chia độ khó:
 # "thuong" (dễ, cho người mới), "tinh_anh" (khá), "yeu_vuong" (boss nhỏ, thưởng lớn).
@@ -407,7 +410,9 @@ def tl_danh(state: dict, so_hiep: int = 3) -> dict:
     dong = []
     thang = _tl_ngau(state) * 100 < ti_le
     for i in range(so_hiep):
-        tru = 4 + int(_tl_ngau(state) * 5)
+        # Mỗi hiệp 2–3 sinh lực (trước là 4–8): một trận 3 hiệp mất 6–9, đánh
+        # được 3–4 trận mới phải nghỉ, thay vì kiệt sức sau 1,2 trận.
+        tru = 2 + int(_tl_ngau(state) * 2)
         cs["hien"] = max(1, cs["hien"] - tru)
         dong.append(f"Hiệp {i + 1}: ngươi bị cắn, sinh lực -{tru} (còn {cs['hien']})")
         if cs["hien"] <= cs["max"] * 0.3:
@@ -421,7 +426,7 @@ def tl_danh(state: dict, so_hiep: int = 3) -> dict:
             tl["da_thua"].remove(thu["ma"])
         tl["muc_tieu"] = None
     else:
-        mat = 6
+        mat = 4
         cs["hien"] = max(1, cs["hien"] - mat)
         da_thua = tl.setdefault("da_thua", [])
         if thu["ma"] not in da_thua:
@@ -526,7 +531,7 @@ def tl_nghi(state: dict) -> dict:
     if not _tl_con_ngay(state, 1):
         return {"loi": "Không còn ngày để nghỉ"}
     _tl_ghi(state, "nghỉ cho hồi sức", 1)
-    tb = _ap_hieu_ung(state, {"sinh_luc": 6})
+    tb = _ap_hieu_ung(state, {"sinh_luc": 12})
     return {"ok": True, "thong_bao": ["Nghỉ một ngày."] + tb, "chi_so": _tl_chi_so(state)}
 
 

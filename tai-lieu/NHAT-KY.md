@@ -8,6 +8,44 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-29 (tiếp) · Lỗi 2 — bạn chọn B: sửa tu vi + sinh lực, giữ 18% làm độ khó
+
+Bạn chọn **B**. Tôi chỉ đụng **tu vi** và **sinh lực**. Không sửa tỉ lệ thắng, không
+thêm kinh tế bạc, không thêm bán nguyên liệu — đúng phạm vi bạn chốt.
+
+### Bốn con số đã đổi
+
+| Thứ | Trước | Sau | Vì sao |
+|---|---|---|---|
+| Đả tọa mỗi lượt (3 ngày) | 8 tu vi | **12 tu vi** | 8 × 10 lượt = **80**, cần **88** → không lên nổi tầng nào. 12 × 10 = **120**, lên được tầng 2 rồi còn 6 ngày |
+| Sát thương mỗi hiệp | 4–8 | **2–3** | một trận 3 hiệp mất 6–9 thay vì 12–25 |
+| Phạt khi thua | −6 | **−4** | thua không còn bị phạt nặng gấp đôi một hiệp |
+| Nghỉ 1 ngày hồi | 6 | **12** | nghỉ 1 ngày là đánh tiếp được, không phải nghỉ 3 ngày |
+
+### Đo lại sau khi sửa
+
+| Số đo | Trước | Sau |
+|---|---|---|
+| Đả tọa 30 ngày | tầng 1, tu vi 80/100 (không lên tầng) | **tầng 2**, tu vi 24/135 |
+| Sinh lực mất mỗi trận | 21.5 (đánh được **1.2** trận) | **10.8** (đánh được **2.4** trận) |
+| Nghỉ 1 ngày | hồi 6 | **hồi 12** |
+| **Tỉ lệ thắng tầng 1** | **18%** | **18%** — **giữ nguyên**, đúng ý bạn |
+
+Tỉ lệ thắng đo lại 300 trận: **53/300 = 18%**, y như trước. Độ khó đánh nhau vẫn thật.
+
+### Chỗ vẫn còn khó — tôi nói thẳng để bạn biết
+
+Đường **săn thuần** vẫn chậm: 30 ngày săn + nghỉ chỉ được khoảng 1 nguyên liệu, không
+lên tầng. Nhưng **không còn bế tắc**, vì đả tọa là đường chính và nó đã thông. Đường
+luyện đan vẫn cần **2 linh thảo** mà bạc khởi đầu chỉ 3 (mua được 1) — đây là **kinh tế
+bạc**, nằm ngoài phạm vi B bạn chọn, nên tôi **không sửa**.
+
+### Test
+
+- JS: **261 đạt, 0 hỏng** (thêm 3 phép chống bế tắc)
+- Python: **301 đạt, 0 hỏng** (thêm 3 phép chống bế tắc)
+- Python ↔ JS: dãy yêu thú và tỉ lệ thắng **khớp từng ký tự**
+
 ## 2026-11-29 · Ba lỗi bạn báo: sửa 2, đo xong 1 còn chờ bạn chọn
 
 Bạn báo ba lỗi trong màn "Tiến vào tu luyện". Tôi đo từng cái bằng số trước khi sửa,

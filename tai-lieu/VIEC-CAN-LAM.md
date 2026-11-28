@@ -12,27 +12,31 @@
 |---|---|---|
 | 1. Mục tiêu săn lặp lại, không đổi được | **xong** | 10 yêu thú; 10 vòng thử, **0 lần** gặp lại con vừa thua; Python↔JS khớp từng ký tự |
 | 3. Nút Hệ Thống nhảy lên trên | **xong** | Lỗi thật ở **414–430px** (iPhone Pro Max). Sau sửa: 320/360/390/414/430 đều giống nhau giữa 2 chương |
-| 2. Bế tắc không lên được tầng | **chờ bạn chọn** | Đo: đả tọa 30 ngày = 80 tu vi (cần 88); mỗi trận mất 21.5/26 sinh lực; thắng 18% |
+| 2. Bế tắc không lên được tầng | **xong (chọn B)** | Đả tọa 30 ngày giờ lên **tầng 2**; mỗi trận mất 10.8 thay vì 21.5; thắng **giữ 18%** |
 
-## ⏳ ĐANG CHỜ BẠN CHỌN — Lỗi 2: cân bằng tu vi
+## ✅ XONG 2026-11-29 — Lỗi 2: cân bằng tu vi (bạn chọn B)
 
-Ba số đo cho thấy ba nút thắt độc lập, sửa một cái không đủ:
+Bạn chọn **B**: chỉ sửa tu vi + sinh lực, giữ 18% làm độ khó thật.
 
-| Nút thắt | Số hiện tại | Đề xuất |
+| Thứ | Trước | Sau |
 |---|---|---|
-| Đả tọa quá chậm | 8 tu vi/lượt × 10 lượt = **80**, cần **88** | nâng lên **12/lượt** (120 cho 30 ngày) |
-| Sinh lực cạn sau 1 trận | mất **21.5/26** | giảm còn khoảng **8–10/trận** |
-| Thắng quá ít ở tầng 1 | **18%** | nâng nền tầng 1 lên khoảng **45–50%** |
-| Không có thu nhập | bạc 3, chợ bán 2 món | thêm **bán nguyên liệu** ở chợ |
+| Đả tọa mỗi lượt | 8 tu vi | **12 tu vi** |
+| Sát thương mỗi hiệp | 4–8 | **2–3** |
+| Phạt khi thua | −6 | **−4** |
+| Nghỉ 1 ngày hồi | 6 | **12** |
+| Tỉ lệ thắng tầng 1 | 18% | **18% (giữ nguyên)** |
 
-Ba cách, bạn chọn một:
+Đo lại: đả tọa 30 ngày **lên được tầng 2** (trước: không lên nổi tầng nào). Mỗi trận
+mất **10.8** sinh lực thay vì 21.5 → đánh được **2.4 trận** trước khi phải nghỉ.
 
-- **A. Sửa cả bốn** theo bảng trên — chơi mượt ngay, nhưng dễ thành quá dễ.
-- **B. Chỉ sửa tu vi + sinh lực**, để tỉ lệ thắng 18% làm "độ khó thật" — cày lâu hơn
-  nhưng vẫn thoát được bế tắc.
-- **C. Bạn tự chơi thử rồi chỉ số** — tôi để nguyên, chờ bạn nói con số bạn muốn.
+### Còn khó nhưng KHÔNG còn bế tắc
 
-## ✅ XONG 2026-11-28 (tiếp 4) — "Tiến vào tu luyện": RPG cày cuốc đã chạy được
+- Đường săn thuần vẫn chậm: 30 ngày chỉ được ~1 nguyên liệu, không lên tầng. Phải
+  dùng đả tọa làm đường chính.
+- Luyện đan cần **2 linh thảo**, bạc khởi đầu 3 chỉ mua được 1. Đây là **kinh tế bạc**,
+  nằm ngoài phạm vi B — **chưa sửa**. Nếu bạn muốn mở, nói tôi một câu.
+
+## ✅ XONG 2026-11-28 (tiếp 4) — "Tiến vào tu luyện": RPG cày cuốc đã chạy được## ✅ XONG 2026-11-28 (tiếp 4) — "Tiến vào tu luyện": RPG cày cuốc đã chạy được
 
 Trước phiên này chỉ là **thảo luận trên giấy**. Nay đã có mã, có giao diện, có test.
 Người dùng chốt 3 câu cuối: **ngân sách cách A** · **theo bảng chi phí đề xuất** ·

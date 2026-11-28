@@ -44,7 +44,8 @@
     do_la: { ten: "Dò la", ngay: 2 },
   };
 
-  const TL_TU_VI_DA_TOA = 8;
+  // 8 chỉ cho 80 tu vi trong 30 ngày, mà cần 88 để lên tầng 2. 12 cho 120.
+  const TL_TU_VI_DA_TOA = 12;
 
   const TL_YEU_THU = [
     { ma: "son_tru", ten: "Sơn Trư", hang: "thuong", bac: 1, vat: "Nanh sói", so_vat: 1, tu_vi: 4, nguy_hiem: 25 },
@@ -310,7 +311,9 @@
     const dong = [];
     const thang = _tl_ngau(state) * 100 < ti_le;
     for (let i = 0; i < so_hiep; i++) {
-      const tru = 4 + Math.floor(_tl_ngau(state) * 5);
+      // Mỗi hiệp 2–3 sinh lực (trước là 4–8): một trận mất 6–9, đánh được 3–4
+      // trận mới phải nghỉ.
+      const tru = 2 + Math.floor(_tl_ngau(state) * 2);
       cs.hien = Math.max(1, cs.hien - tru);
       dong.push(`Hiệp ${i + 1}: ngươi bị cắn, sinh lực -${tru} (còn ${cs.hien})`);
       if (cs.hien <= cs.max * 0.3) break;
@@ -323,7 +326,7 @@
       if ((tl.da_thua || []).includes(thu.ma)) tl.da_thua = tl.da_thua.filter(m => m !== thu.ma);
       tl.muc_tieu = null;
     } else {
-      cs.hien = Math.max(1, cs.hien - 6);
+      cs.hien = Math.max(1, cs.hien - 4);
       tl.da_thua = tl.da_thua || [];
       if (!tl.da_thua.includes(thu.ma)) tl.da_thua.push(thu.ma);
       tl.muc_tieu = null;
@@ -419,7 +422,7 @@
   function tl_nghi(state) {
     if (!_tl_con_ngay(state, 1)) return { loi: "Không còn ngày để nghỉ" };
     _tl_ghi(state, "nghỉ cho hồi sức", 1);
-    const tb = _ap_hieu_ung(state, { sinh_luc: 6 });
+    const tb = _ap_hieu_ung(state, { sinh_luc: 12 });
     return { ok: true, thong_bao: ["Nghỉ một ngày."].concat(tb), chi_so: _tl_chi_so(state) };
   }
 
