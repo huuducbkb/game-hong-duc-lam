@@ -48,17 +48,21 @@
   const TL_TU_VI_DA_TOA = 12;
 
   const TL_YEU_THU = [
-    { ma: "son_tru", ten: "Sơn Trư", hang: "thuong", bac: 1, vat: "Nanh sói", so_vat: 1, tu_vi: 4, nguy_hiem: 25 },
-    { ma: "thanh_xa", ten: "Thanh Xà", hang: "thuong", bac: 1, vat: "Mật xà", so_vat: 1, tu_vi: 4, nguy_hiem: 30 },
-    { ma: "bach_tho", ten: "Bạch Thố Tinh", hang: "thuong", bac: 1, vat: "Linh thảo", so_vat: 2, tu_vi: 3, nguy_hiem: 15 },
-    { ma: "da_lang", ten: "Dã Lang", hang: "thuong", bac: 2, vat: "Nanh sói", so_vat: 2, tu_vi: 5, nguy_hiem: 35 },
-    { ma: "hac_thu", ten: "Hắc Thử", hang: "thuong", bac: 1, vat: "Bạc vụn", so_vat: 2, tu_vi: 3, nguy_hiem: 20 },
-    { ma: "hac_lang", ten: "Hắc Lang Tinh Anh", hang: "tinh_anh", bac: 3, vat: "Nanh sói", so_vat: 3, tu_vi: 9, nguy_hiem: 40 },
-    { ma: "thiet_giap", ten: "Thiết Giáp Thử", hang: "tinh_anh", bac: 3, vat: "Mật xà", so_vat: 2, tu_vi: 9, nguy_hiem: 40 },
-    { ma: "xich_vien", ten: "Xích Viên Tinh Anh", hang: "tinh_anh", bac: 4, vat: "Linh thảo", so_vat: 3, tu_vi: 11, nguy_hiem: 45 },
-    { ma: "bach_lang_vuong", ten: "Bạch Lang Yêu Vương", hang: "yeu_vuong", bac: 5, vat: "Nanh sói", so_vat: 5, tu_vi: 20, nguy_hiem: 55 },
-    { ma: "hac_xa_vuong", ten: "Hắc Xà Yêu Vương", hang: "yeu_vuong", bac: 6, vat: "Mật xà", so_vat: 5, tu_vi: 24, nguy_hiem: 60 },
+    { ma: "son_tru", ten: "Sơn Trư", hang: "thuong", bac: 1, vat: "Nanh sói", so_vat: 1, tu_vi: 14, nguy_hiem: 25 },
+    { ma: "thanh_xa", ten: "Thanh Xà", hang: "thuong", bac: 1, vat: "Mật xà", so_vat: 1, tu_vi: 14, nguy_hiem: 30 },
+    { ma: "bach_tho", ten: "Bạch Thố Tinh", hang: "thuong", bac: 1, vat: "Linh thảo", so_vat: 2, tu_vi: 12, nguy_hiem: 15 },
+    { ma: "da_lang", ten: "Dã Lang", hang: "thuong", bac: 2, vat: "Nanh sói", so_vat: 2, tu_vi: 16, nguy_hiem: 35 },
+    { ma: "hac_thu", ten: "Hắc Thử", hang: "thuong", bac: 1, vat: "Bạc vụn", so_vat: 2, tu_vi: 12, nguy_hiem: 20 },
+    { ma: "hac_lang", ten: "Hắc Lang Tinh Anh", hang: "tinh_anh", bac: 3, vat: "Nanh sói", so_vat: 3, tu_vi: 26, nguy_hiem: 40 },
+    { ma: "thiet_giap", ten: "Thiết Giáp Thử", hang: "tinh_anh", bac: 3, vat: "Mật xà", so_vat: 2, tu_vi: 26, nguy_hiem: 40 },
+    { ma: "xich_vien", ten: "Xích Viên Tinh Anh", hang: "tinh_anh", bac: 4, vat: "Linh thảo", so_vat: 3, tu_vi: 30, nguy_hiem: 45 },
+    { ma: "bach_lang_vuong", ten: "Bạch Lang Yêu Vương", hang: "yeu_vuong", bac: 5, vat: "Nanh sói", so_vat: 5, tu_vi: 48, nguy_hiem: 55 },
+    { ma: "hac_xa_vuong", ten: "Hắc Xà Yêu Vương", hang: "yeu_vuong", bac: 6, vat: "Mật xà", so_vat: 5, tu_vi: 56, nguy_hiem: 60 },
   ];
+
+  // Tu vi khi THUA: cọ xát cũng ngộ đạo, nhưng ít hơn thắng nhiều. Nếu không có
+  // phần này thì săn cả 30 ngày chỉ được ~19 tu vi (cần 100) và kẹt ở tầng 1.
+  const TL_TU_VI_THUA = 7;
 
   const TL_GAP = { thuong: 62, tinh_anh: 30, yeu_vuong: 8 };
   const TL_NGUONG = { thuong: 0, tinh_anh: 2, yeu_vuong: 4 };
@@ -331,9 +335,9 @@
     const dong = [];
     const thang = _tl_ngau(state) * 100 < ti_le;
     for (let i = 0; i < so_hiep; i++) {
-      // Mỗi hiệp 2–3 sinh lực (trước là 4–8): một trận mất 6–9, đánh được 3–4
-      // trận mới phải nghỉ.
-      const tru = 2 + Math.floor(_tl_ngau(state) * 2);
+      // Mỗi hiệp 1–2 sinh lực. Ba hiệp mất 3–6, đánh tiếp được ngay sau một trận
+      // thua. Đo: 30 ngày săn thuần lên tầng 2 ở 33/40 ván.
+      const tru = 1 + Math.floor(_tl_ngau(state) * 2);
       cs.hien = Math.max(1, cs.hien - tru);
       dong.push(`Hiệp ${i + 1}: ngươi bị cắn, sinh lực -${tru} (còn ${cs.hien})`);
       if (cs.hien <= cs.max * 0.3) break;
@@ -346,11 +350,14 @@
       if ((tl.da_thua || []).includes(thu.ma)) tl.da_thua = tl.da_thua.filter(m => m !== thu.ma);
       tl.muc_tieu = null;
     } else {
-      cs.hien = Math.max(1, cs.hien - 4);
+      cs.hien = Math.max(1, cs.hien - 3);
       tl.da_thua = tl.da_thua || [];
       if (!tl.da_thua.includes(thu.ma)) tl.da_thua.push(thu.ma);
       tl.muc_tieu = null;
-      dong.push("— THUA: bị thương, sinh lực -6. Lượt sau sẽ gặp con khác.");
+      // Thua vẫn được tu vi: sống sót qua một trận là học được điều gì đó.
+      tb = _ap_hieu_ung(state, { tu_vi: TL_TU_VI_THUA });
+      dong.push(`— THUA: bị thương, sinh lực -3, tu vi +${TL_TU_VI_THUA}. ` +
+        "Lượt sau sẽ gặp con khác.");
     }
     const goi_y = _tl_chon_thu(state);
     return { ok: true, thang, dong, thong_bao: tb, chi_so: _tl_chi_so(state),
@@ -1265,7 +1272,7 @@
     bat_dau, goi_y_hien_tai, chon, sang_chuong, hanh_dong_tu_do,
     tl_moi, tl_trang_thai, tl_da_toa, tl_san, tl_dau, tl_danh, tl_cong_thuc,
     tl_luyen_dan, tl_cho, tl_mua, tl_ban, tl_ban_duoc, tl_do_la, tl_nghi, vao_dong, ra_dong,
-    TL_VIEC, TL_YEU_THU, TL_CONG_THUC, TL_TIN, TL_CHO_HANG, TL_BAN_GIA, TRAN_CANH_GIOI,
+    TL_VIEC, TL_YEU_THU, TL_CONG_THUC, TL_TIN, TL_CHO_HANG, TL_BAN_GIA, TL_TU_VI_THUA, TRAN_CANH_GIOI,
     NGAY_MOI_CHUONG, _hat_giong, _ngau_nhien,
     co_chuong, kiem_chuong,
     luu, nap, ds_luu, xoa_luu, tom_tat,

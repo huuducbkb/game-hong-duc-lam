@@ -1219,6 +1219,51 @@ check("hết ngày thì đả tọa bị chặn", bool(_E.tl_da_toa(_h).get("loi
 _E.sang_chuong(_h)
 check("sang chương cấp lại 30 ngày", _h["tu_luyen"]["ngay_con"], 30)
 
+print("\n=== TL1e. Săn yêu thú cũng phải lên được tầng ===")
+# Trước đây 30 ngày săn thuần chỉ được ~19/100 tu vi, người chơi kẹt tầng 1 mãi.
+# Nay thua vẫn được tu vi và mỗi trận tốn ít sinh lực hơn.
+
+def _san_thuan(_ten):
+    _s = _E.trang_thai_moi(_ten, "tán tu", "tan_tu")
+    _s["chuong"] = 2
+    _E.vao_dong(_s)
+    while _s["tu_luyen"]["ngay_con"] > 0:
+        _sl = _s["chi_so"]["sinh_luc"]
+        if _sl["hien"] <= _sl["max"] * 0.35 and _s["tu_luyen"]["ngay_con"] >= 1:
+            _E.tl_nghi(_s)
+            continue
+        if _s["tu_luyen"]["ngay_con"] >= 2:
+            _E.tl_danh(_s)
+            continue
+        if _s["tu_luyen"]["ngay_con"] >= 1:
+            _E.tl_nghi(_s)
+            continue
+        break
+    return _s
+
+_vans = [_san_thuan(f"SanThuan{i}") for i in range(40)]
+_len = sum(1 for _v in _vans if _v["canh_gioi"] != "Luyện Khí tầng 1")
+check("30 ngày săn thuần lên tầng ở ÍT NHẤT 30/40 ván", _len >= 30, True)
+check("không ván nào vượt quá tầng 2 trong chương 1", 
+      all(_v["canh_gioi"] in ("Luyện Khí tầng 1", "Luyện Khí tầng 2") for _v in _vans), True)
+
+# Thua phải cho tu vi, nếu không thì lý do trên không còn đúng.
+_t = _E.trang_thai_moi("ThuaTuVi", "tán tu", "tan_tu")
+_t["chuong"] = 2
+_E.vao_dong(_t)
+_t["chi_so"]["sinh_luc"]["hien"] = 30
+_TV_TRUOC = _t["tu_vi"]["hien"]
+_r_thua = None
+for _i in range(40):
+    if _t["chi_so"]["sinh_luc"]["hien"] <= _t["chi_so"]["sinh_luc"]["max"] * 0.35:
+        _E.tl_nghi(_t)
+    _r_thua = _E.tl_danh(_t)
+    if not _r_thua.get("thang"):
+        break
+check("thua vẫn được tu vi", _t["tu_vi"]["hien"] >= _TV_TRUOC, True)
+check("thua có báo tu vi trong dòng kể", any("tu vi" in d for d in _r_thua["dong"]), True)
+check("hằng số tu vi khi thua là 7", _E.TL_TU_VI_THUA, 7)
+
 print("\n=== TL2. Bản Python và bản JS phải ra CÙNG dãy số ngẫu nhiên ===")
 # Nếu hai bản lệch nhau, người chơi thấy kết quả khác nhau tuỳ chơi web hay
 # chơi bản Python — lỗi câm, không ai báo. Neo bằng số đo thật của bản Python.

@@ -8,6 +8,42 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-30 · Săn yêu thú cũng lên được tầng
+
+Bạn nói: "tôi muốn săn yêu thú cũng lên tầng". Trước đây không được — tôi đo trước
+khi sửa: **30 ngày săn thuần chỉ được 18.8/100 tu vi**, không ván nào lên tầng.
+
+Nguyên nhân có hai, cả hai đều phải sửa:
+
+1. **Thua không được gì.** Chỉ thắng mới có tu vi. Mà tỉ lệ thắng 17–20% (bạn chọn
+   giữ độ khó), nên 30 ngày chỉ thắng được ~2 trận.
+2. **Mỗi trận tốn quá nhiều sinh lực** so với ngày. Đánh 3 hiệp mất 6–9, thua mất
+   thêm 4, nghỉ hồi 12. Nên 30 ngày chỉ đánh được ~10 trận.
+
+### Đã sửa
+
+- **Thua vẫn được tu vi** (`TL_TU_VI_THUA = 7`): cọ xát cũng ngộ đạo, ít hơn thắng
+  nhiều (thắng 12–16). Đây là chỗ chính giúp lên tầng được.
+- **Mỗi hiệp 1–2 sinh lực** (trước 2–3): một trận mất 3–6 thay vì 6–9.
+- **Thua phạt 3** (trước 4).
+- **Tu vi mỗi con tăng 2.5–3 lần**: thường 3–5 → 12–16; tinh anh 9–11 → 26–30;
+  yêu vương 20–24 → 48–56. Đây là phần thưởng cho việc đánh con mạnh.
+
+Tỉ lệ thắng **giữ nguyên 17%** — không đụng, đúng như bạn đã chọn.
+
+### Đo sau khi sửa
+
+| | Trước | Sau |
+|---|---|---|
+| Tu vi sau 30 ngày săn thuần | 18.8/100 | ~65/100 |
+| Ván lên được tầng 2 | **0/30** | **93/100** |
+| Trận đánh được trong 30 ngày | 10.8 | 12.2 |
+
+Bấm nút thật trên giao diện: **11 trận + 4 lần nghỉ → Luyện Khí tầng 2**, còn dư 4 ngày.
+
+Vẫn không dễ quá: 7/100 ván vẫn không lên tầng, và chương 1 chặn trần ở tầng 6 nên
+không thể nhảy cóc.
+
 ## 2026-11-29 (tiếp 2) · Ba lỗi bạn báo tiếp: máy ngẫu nhiên, chợ, hết ngày
 
 Lần này tôi **tái hiện được** cả ba trước khi sửa. Lần trước tôi sửa mù nên vẫn còn lỗi.

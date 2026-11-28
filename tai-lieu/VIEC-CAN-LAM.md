@@ -2,7 +2,7 @@
 
 > **Sổ việc sống.** Cập nhật mỗi khi có việc mới hoặc xong việc.
 > Quy ước: `[ ]` chưa làm · `[~]` đang làm · `[x]` xong.
-> Cập nhật lần cuối: **2026-11-29 (tiếp 2)**
+> Cập nhật lần cuối: **2026-11-30**
 
 ---
 
@@ -13,6 +13,22 @@
 | 1. Mục tiêu săn lặp lại, không đổi được | **xong** | 10 yêu thú; 10 vòng thử, **0 lần** gặp lại con vừa thua; Python↔JS khớp từng ký tự |
 | 3. Nút Hệ Thống nhảy lên trên | **xong** | Lỗi thật ở **414–430px** (iPhone Pro Max). Sau sửa: 320/360/390/414/430 đều giống nhau giữa 2 chương |
 | 2. Bế tắc không lên được tầng | **xong (chọn B)** | Đả tọa 30 ngày giờ lên **tầng 2**; mỗi trận mất 10.8 thay vì 21.5; thắng **giữ 18%** |
+
+## ✅ XONG 2026-11-30 — Săn yêu thú cũng lên được tầng
+
+Bạn yêu cầu săn cũng lên tầng. Đo trước: **18.8/100 tu vi** sau 30 ngày, **0 ván**
+lên tầng. Nay: **~65/100**, **93/100 ván lên tầng 2**.
+
+| Thay đổi | Trước | Sau |
+|---|---|---|
+| Tu vi khi THUA | 0 | 7 |
+| Sinh lực mỗi hiệp | 2–3 | 1–2 |
+| Phạt khi thua | 4 | 3 |
+| Tu vi thường / tinh anh / yêu vương | 3–5 / 9–11 / 20–24 | 12–16 / 26–30 / 48–56 |
+| Tỉ lệ thắng | 17% | **17% (giữ nguyên)** |
+
+Cần bạn xác nhận: mức này có **quá dễ** không? Nếu bạn thấy dễ, hạ `TL_TU_VI_THUA`
+từ 7 xuống 5–6 là mất khoảng 30–40% số ván lên tầng.
 
 ## ✅ XONG 2026-11-29 (tiếp 2) — Ba lỗi bạn báo tiếp
 

@@ -803,6 +803,47 @@ const doan_truoc = o.doan_hien_tai;
     check("sang chương cấp lại 30 ngày", s.tu_luyen.ngay_con, 30);
   }
 
+  // Săn phải tự lên được tầng. Trước đây 30 ngày săn thuần chỉ được ~19/100 tu vi
+  // nên người chơi kẹt tầng 1 mãi — đúng lỗi người dùng báo.
+  {
+    const sanThuan = (ten) => {
+      const s = Engine.trang_thai_moi(ten, "", "tan_tu");
+      s.chuong = 2;
+      Engine.vao_dong(s);
+      while (s.tu_luyen.ngay_con > 0) {
+        const sl = s.chi_so.sinh_luc;
+        if (sl.hien <= sl.max * 0.35 && s.tu_luyen.ngay_con >= 1) { Engine.tl_nghi(s); continue; }
+        if (s.tu_luyen.ngay_con >= 2) { Engine.tl_danh(s); continue; }
+        if (s.tu_luyen.ngay_con >= 1) { Engine.tl_nghi(s); continue; }
+        break;
+      }
+      return s;
+    };
+    const vans = [];
+    for (let i = 0; i < 40; i++) vans.push(sanThuan("SanThuan" + i));
+    const lenTang = vans.filter(v => v.canh_gioi !== "Luyện Khí tầng 1").length;
+    check("30 ngày săn thuần lên tầng ở ÍT NHẤT 30/40 ván", lenTang >= 30, true);
+    check("chương 1 không vượt quá tầng 2", vans.every(v =>
+      ["Luyện Khí tầng 1", "Luyện Khí tầng 2"].includes(v.canh_gioi)), true);
+  }
+
+  // Thua phải cho tu vi — nếu không thì lý do trên không còn đúng.
+  {
+    const s = stTL();
+    Engine.vao_dong(s);
+    s.chi_so.sinh_luc.hien = 30;
+    const truoc = s.tu_vi.hien;
+    let r = null;
+    for (let i = 0; i < 40; i++) {
+      if (s.chi_so.sinh_luc.hien <= s.chi_so.sinh_luc.max * 0.35) Engine.tl_nghi(s);
+      r = Engine.tl_danh(s);
+      if (!r.thang) break;
+    }
+    check("thua vẫn được tu vi", s.tu_vi.hien >= truoc, true);
+    check("thua có báo tu vi trong dòng kể", r.dong.some(d => d.includes("tu vi")), true);
+    check("hằng số tu vi khi thua là 7", Engine.TL_TU_VI_THUA, 7);
+  }
+
   // Không đủ ngày thì mọi việc phải bị chặn — không được trừ ngày âm.
   {
     const s = stTL();

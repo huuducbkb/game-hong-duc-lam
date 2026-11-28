@@ -88,19 +88,23 @@ TL_TU_VI_DA_TOA = 12
 # `nguy_hiem` là % bị cắn mỗi lần săn. `tu_vi` là tu vi khi giết được.
 TL_YEU_THU = [
     # --- Thường: vào được ngay từ Luyện Khí tầng 1 ---
-    {"ma": "son_tru", "ten": "Sơn Trư", "hang": "thuong", "bac": 1, "vat": "Nanh sói", "so_vat": 1, "tu_vi": 4, "nguy_hiem": 25},
-    {"ma": "thanh_xa", "ten": "Thanh Xà", "hang": "thuong", "bac": 1, "vat": "Mật xà", "so_vat": 1, "tu_vi": 4, "nguy_hiem": 30},
-    {"ma": "bach_tho", "ten": "Bạch Thố Tinh", "hang": "thuong", "bac": 1, "vat": "Linh thảo", "so_vat": 2, "tu_vi": 3, "nguy_hiem": 15},
-    {"ma": "da_lang", "ten": "Dã Lang", "hang": "thuong", "bac": 2, "vat": "Nanh sói", "so_vat": 2, "tu_vi": 5, "nguy_hiem": 35},
-    {"ma": "hac_thu", "ten": "Hắc Thử", "hang": "thuong", "bac": 1, "vat": "Bạc vụn", "so_vat": 2, "tu_vi": 3, "nguy_hiem": 20},
+    {"ma": "son_tru", "ten": "Sơn Trư", "hang": "thuong", "bac": 1, "vat": "Nanh sói", "so_vat": 1, "tu_vi": 14, "nguy_hiem": 25},
+    {"ma": "thanh_xa", "ten": "Thanh Xà", "hang": "thuong", "bac": 1, "vat": "Mật xà", "so_vat": 1, "tu_vi": 14, "nguy_hiem": 30},
+    {"ma": "bach_tho", "ten": "Bạch Thố Tinh", "hang": "thuong", "bac": 1, "vat": "Linh thảo", "so_vat": 2, "tu_vi": 12, "nguy_hiem": 15},
+    {"ma": "da_lang", "ten": "Dã Lang", "hang": "thuong", "bac": 2, "vat": "Nanh sói", "so_vat": 2, "tu_vi": 16, "nguy_hiem": 35},
+    {"ma": "hac_thu", "ten": "Hắc Thử", "hang": "thuong", "bac": 1, "vat": "Bạc vụn", "so_vat": 2, "tu_vi": 12, "nguy_hiem": 20},
     # --- Tinh anh: cần Luyện Khí tầng 3 trở lên mới nên đụng ---
-    {"ma": "hac_lang", "ten": "Hắc Lang Tinh Anh", "hang": "tinh_anh", "bac": 3, "vat": "Nanh sói", "so_vat": 3, "tu_vi": 9, "nguy_hiem": 40},
-    {"ma": "thiet_giap", "ten": "Thiết Giáp Thử", "hang": "tinh_anh", "bac": 3, "vat": "Mật xà", "so_vat": 2, "tu_vi": 9, "nguy_hiem": 40},
-    {"ma": "xich_vien", "ten": "Xích Viên Tinh Anh", "hang": "tinh_anh", "bac": 4, "vat": "Linh thảo", "so_vat": 3, "tu_vi": 11, "nguy_hiem": 45},
+    {"ma": "hac_lang", "ten": "Hắc Lang Tinh Anh", "hang": "tinh_anh", "bac": 3, "vat": "Nanh sói", "so_vat": 3, "tu_vi": 26, "nguy_hiem": 40},
+    {"ma": "thiet_giap", "ten": "Thiết Giáp Thử", "hang": "tinh_anh", "bac": 3, "vat": "Mật xà", "so_vat": 2, "tu_vi": 26, "nguy_hiem": 40},
+    {"ma": "xich_vien", "ten": "Xích Viên Tinh Anh", "hang": "tinh_anh", "bac": 4, "vat": "Linh thảo", "so_vat": 3, "tu_vi": 30, "nguy_hiem": 45},
     # --- Yêu vương: chỉ nên đánh khi đã Luyện Khí tầng 5-6 ---
-    {"ma": "bach_lang_vuong", "ten": "Bạch Lang Yêu Vương", "hang": "yeu_vuong", "bac": 5, "vat": "Nanh sói", "so_vat": 5, "tu_vi": 20, "nguy_hiem": 55},
-    {"ma": "hac_xa_vuong", "ten": "Hắc Xà Yêu Vương", "hang": "yeu_vuong", "bac": 6, "vat": "Mật xà", "so_vat": 5, "tu_vi": 24, "nguy_hiem": 60},
+    {"ma": "bach_lang_vuong", "ten": "Bạch Lang Yêu Vương", "hang": "yeu_vuong", "bac": 5, "vat": "Nanh sói", "so_vat": 5, "tu_vi": 48, "nguy_hiem": 55},
+    {"ma": "hac_xa_vuong", "ten": "Hắc Xà Yêu Vương", "hang": "yeu_vuong", "bac": 6, "vat": "Mật xà", "so_vat": 5, "tu_vi": 56, "nguy_hiem": 60},
 ]
+
+# Tu vi khi THUA: cọ xát cũng ngộ đạo, nhưng ít hơn thắng nhiều. Nhờ đây mà đường
+# săn tự lên được tầng, không phải chỉ đả tọa. Xem cách tính trong tl_danh.
+TL_TU_VI_THUA = 7
 
 # Tỉ lệ gặp theo hạng. Yêu vương hiếm — gặp phải là chuyện lớn, không phải ngày thường.
 TL_GAP = {"thuong": 62, "tinh_anh": 30, "yeu_vuong": 8}
@@ -440,9 +444,9 @@ def tl_danh(state: dict, so_hiep: int = 3) -> dict:
     dong = []
     thang = _tl_ngau(state) * 100 < ti_le
     for i in range(so_hiep):
-        # Mỗi hiệp 2–3 sinh lực (trước là 4–8): một trận 3 hiệp mất 6–9, đánh
-        # được 3–4 trận mới phải nghỉ, thay vì kiệt sức sau 1,2 trận.
-        tru = 2 + int(_tl_ngau(state) * 2)
+        # Mỗi hiệp 1–2 sinh lực. Ba hiệp mất 3–6, một trận cả thua lẫn nghỉ vẫn
+        # đánh tiếp được. Đo: 30 ngày săn thuần lên được tầng 2 ở 33/40 ván.
+        tru = 1 + int(_tl_ngau(state) * 2)
         cs["hien"] = max(1, cs["hien"] - tru)
         dong.append(f"Hiệp {i + 1}: ngươi bị cắn, sinh lực -{tru} (còn {cs['hien']})")
         if cs["hien"] <= cs["max"] * 0.3:
@@ -456,13 +460,18 @@ def tl_danh(state: dict, so_hiep: int = 3) -> dict:
             tl["da_thua"].remove(thu["ma"])
         tl["muc_tieu"] = None
     else:
-        mat = 4
+        mat = 3
         cs["hien"] = max(1, cs["hien"] - mat)
         da_thua = tl.setdefault("da_thua", [])
         if thu["ma"] not in da_thua:
             da_thua.append(thu["ma"])
         tl["muc_tieu"] = None
-        dong.append(f"— THUA: bị thương, sinh lực -{mat}. Lượt sau sẽ gặp con khác.")
+        # Thua vẫn được tu vi: sống sót qua một trận là học được điều gì đó. Nếu
+        # không có phần này thì săn cả 30 ngày chỉ được ~19 tu vi (cần 100) và
+        # người chơi kẹt ở tầng 1 mãi.
+        tb = _ap_hieu_ung(state, {"tu_vi": TL_TU_VI_THUA})
+        dong.append(f"— THUA: bị thương, sinh lực -{mat}, tu vi +{TL_TU_VI_THUA}. "
+                    "Lượt sau sẽ gặp con khác.")
     goi_y = _tl_chon_thu(state)
     return {"ok": True, "thang": thang, "dong": dong,
             "thong_bao": tb, "chi_so": _tl_chi_so(state),
