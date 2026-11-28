@@ -2109,6 +2109,15 @@ function hienThi(kq) {
     };
     nav.appendChild(b);
   });
+  // Màn kết thua: bản dev không có ngăn xếp lùi, nên chỉ mời chơi lại.
+  if (kq.thua) {
+    const bc = document.createElement("button");
+    bc.className = "choice";
+    bc.id = "nutThuaChoiLai";
+    bc.innerHTML = '<span class="idx">↺</span> Chơi lại từ đầu';
+    bc.onclick = () => location.reload();
+    nav.appendChild(bc);
+  }
   $("#freebar").style.display = (kq.cho_phep_tu_do && coAI) ? "flex" : "none";
   capNhatNutSangChuong(kq);
   capNhatTrangThai(kq.trang_thai);

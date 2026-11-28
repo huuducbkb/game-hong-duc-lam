@@ -831,8 +831,8 @@ XUONG_PHAN = [
     {"ma": "c1-mon-phai", "icon": "⛩️", "ten": "Chương 1 · Nhánh Môn phái",
      "mota": "Tân xá đêm, ngọc cốt, Tuyết Cơ."},
     {"ma": "c2", "icon": "🏮", "ten": "Chương 2 · Thái Nam Sơn Cốc",
-     "mota": "58 cảnh: 57 đoạn nhánh tán tu + cảnh đầu chương dùng chung. "
-             "Nhánh môn phái (56 đoạn) làm sau."},
+     "mota": "70 cảnh nhánh tán tu: 69 đoạn + cảnh đầu chương dùng chung, "
+             "gồm 12 cảnh chiến đấu và kết thua mới. Nhánh môn phái làm sau."},
 ]
 
 # Nhóm cảnh theo thứ tự truyện. `keys` = ảnh của nhóm; `mau` = ảnh mẫu cần

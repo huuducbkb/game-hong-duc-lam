@@ -1352,12 +1352,8 @@
    "ke": "“Ta tự lo được,” — ta nói.\n\nHàn Lập nhìn ta một lúc. Rồi hắn gật đầu, rất nhẹ, và quay đi.\n\n“Vậy thì tự lo.”\n\nĐêm ấy ta ngồi một mình dưới gờ đá, hai thanh kiếm đặt ngang đùi. Ba kẻ áo xám tới lúc gần sáng.\n\nTa không gọi ai. Ta cũng không cần gọi. Kiếm linh nói một câu duy nhất trước khi chúng tới:\n\n“Đánh thì đánh, nhưng đừng đánh như kẻ muốn thắng. Đánh như kẻ muốn sống.”\n\nTa sống. Nhưng khi trời sáng, chỗ Hàn Lập nghỉ đã trống. Hắn đi lúc nào ta không biết. Hắn không để lại gì — không một lời, không một dấu.\n\n*Hắn không đợi ta.*",
    "lua_chon": [
     {
-     "chu": "Đi tìm hắn",
-     "den": "c2_d23b"
-    },
-    {
-     "chu": "Không tìm. Đi đường của mình.",
-     "den": "c2_d23c"
+     "chu": "Đứng dậy, hai kiếm trong tay",
+     "den": "c2_d22c_0"
     }
    ]
   },
@@ -1439,12 +1435,7 @@
    "lua_chon": [
     {
      "chu": "Đi tìm Hàn Lập",
-     "den": "c2_d25",
-     "hieu_ung": {
-      "co_su_kien": [
-       "di_tim_han_lap"
-      ]
-     }
+     "den": "c2_d25c_0"
     },
     {
      "chu": "Tự tìm chỗ nấp",
@@ -1624,6 +1615,10 @@
        "Hàn Lập": -20
       }
      }
+    },
+    {
+     "chu": "Đi về phía đông, chỗ có tiếng đánh nhau",
+     "den": "c2_d27c_0"
     }
    ]
   },
@@ -1821,6 +1816,10 @@
     {
      "chu": "Khép lại Chương 2",
      "den": "__ket_thuc__"
+    },
+    {
+     "chu": "Quay lại tìm hắn",
+     "den": "c2_d27c_0"
     }
    ]
   },
@@ -2459,12 +2458,8 @@
    "ke": "“Ta tự lo được,” — ta nói.\n\nHàn Lập nhìn ta một lúc. Rồi hắn gật đầu, rất nhẹ, và quay đi.\n\n“Vậy thì tự lo.”\n\nĐêm ấy ta ngồi một mình dưới gờ đá, khối ngọc cốt trong ngực ấm ran. Ba kẻ áo xám tới lúc gần sáng.\n\nTa không gọi ai. Tuyết Cơ nói một câu duy nhất trước khi chúng tới:\n\n“Đánh thì đánh, nhưng đừng đánh như kẻ muốn thắng. Đánh như kẻ muốn sống. Và nhớ: ngươi mới tầng hai. Ngươi không thắng được ba kẻ tầng bốn. Ngươi chỉ cần chạy nhanh hơn chúng.”\n\nTa sống. Nhưng khi trời sáng, chỗ Hàn Lập nghỉ đã trống. Hắn đi lúc nào ta không biết. Hắn không để lại gì — không một lời, không một dấu.\n\n*Hắn không đợi ta.*",
    "lua_chon": [
     {
-     "chu": "Đi tìm hắn",
-     "den": "c2_p20b"
-    },
-    {
-     "chu": "Không tìm. Đi đường của mình.",
-     "den": "c2_p20c"
+     "chu": "Đứng dậy, vận quyền",
+     "den": "c2_p19c_0"
     }
    ]
   },
@@ -2546,12 +2541,7 @@
    "lua_chon": [
     {
      "chu": "Đi tìm Hàn Lập",
-     "den": "c2_p22",
-     "hieu_ung": {
-      "co_su_kien": [
-       "di_tim_han_lap"
-      ]
-     }
+     "den": "c2_p22c_0"
     },
     {
      "chu": "Tự tìm chỗ nấp",
@@ -2689,6 +2679,10 @@
        "Hàn Lập": -20
       }
      }
+    },
+    {
+     "chu": "Đi về phía đông, chỗ có tiếng đánh nhau",
+     "den": "c2_p23c_0"
     }
    ]
   },
@@ -2841,6 +2835,492 @@
     {
      "chu": "Khép lại Chương 2",
      "den": "__ket_thuc__"
+    },
+    {
+     "chu": "Quay lại tìm hắn",
+     "den": "c2_p23c_0"
+    }
+   ]
+  },
+  {
+   "id": "c2_d22c_0",
+   "hoi": "Thân",
+   "boi_canh": "Gờ đá — canh ba",
+   "ke": "Ta mở mắt trước khi chúng tới.\n\nKiếm linh đã nói trước: ba kẻ. Một tầng bốn, hai tầng ba. Chúng không đi thành hàng — một tên vòng ra sau gờ đá, ta nghe tiếng sỏi rơi ở chỗ không ai đáng phải đi.\n\nTa đặt hai thanh kiếm ngang đùi và chờ.\n\nĐiều thứ nhất ta hiểu trong đêm ấy: chúng không tới để giết. Chúng tới để bắt. Kẻ bị bắt làm lô đỉnh thì sống thêm vài tháng, và trong vài tháng ấy chủ nó lấy được nhiều hơn từ một cái xác khô.\n\nĐiều thứ hai: kẻ đi bắt phải giữ ngươi nguyên vẹn. Muốn giữ nguyên vẹn thì phải tới gần. Tới gần thì mất cái lợi thế của kẻ mạnh.\n\n“Tới đi,” — ta nói, không thành tiếng.\n\nTên thứ nhất bước vào vòng đá. Hắn thấy ta ngồi, và hắn chậm lại đúng một nhịp — hắn không nghĩ kẻ bị bắt lại đang chờ.\n\nMột nhịp ấy là tất cả những gì ta có.",
+   "lua_chon": [
+    {
+     "chu": "Chém vào cổ tay hắn — chỗ hắn cầm dây trói",
+     "den": "c2_d22c_1",
+     "hieu_ung": {
+      "sinh_luc": -8,
+      "co_su_kien": [
+       "danh_dem_ba_ke"
+      ]
+     }
+    },
+    {
+     "chu": "Lùi vào khe hẹp, bắt chúng vào một người một lúc",
+     "den": "c2_d22c_2",
+     "hieu_ung": {
+      "sinh_luc": -4,
+      "co_su_kien": [
+       "danh_dem_ba_ke"
+      ]
+     }
+    },
+    {
+     "chu": "Ném đá gây tiếng phía đông, rồi chạy",
+     "den": "c2_d22c_3",
+     "hieu_ung": {
+      "sinh_luc": -6,
+      "co_su_kien": [
+       "danh_dem_ba_ke"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2_d22c_1",
+   "hoi": "Thân",
+   "boi_canh": "Gờ đá — canh ba",
+   "ke": "Kiếm ngắn ra khỏi vỏ không kêu.\n\nTa chém vào cổ tay hắn — không phải cổ, không phải ngực, mà cổ tay, chỗ hắn cầm sợi dây để trói người. Hắn buông. Ta xoay, và thanh kiếm dài đã ở đó, đỡ một đòn từ tên thứ hai — đòn ấy nặng tới mức tay ta tê lên tận vai.\n\nTa không đánh trả. Ta lùi.\n\nKiếm linh dạy đúng: đánh như kẻ muốn sống, không đánh như kẻ muốn thắng. Ta không cần hạ ba kẻ tầng ba. Ta chỉ cần làm một trong ba mất khả năng giữ ta, rồi bước qua chỗ hắn vừa đứng.\n\nTên thứ ba hét lên. Ta nghe hắn lao tới và ta không quay lại.\n\nSau lưng, đá lở. Tiếng chân thưa dần.\n\nTa chạy tới khi hết dốc, rồi ta ngồi xuống và nôn. Hai tay ta run — không phải vì sợ. Vì ta vừa đánh ba người và ta vẫn còn sống, và ta không biết có nên thấy mừng hay không.\n\n“Mừng đi,” — kiếm linh nói. — “Rồi quên đi. Đêm nay chưa phải đêm ngươi được phép nhớ.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tìm Hàn Lập",
+     "den": "c2_d23b"
+    },
+    {
+     "chu": "Không tìm. Đi đường của mình.",
+     "den": "c2_d23c"
+    }
+   ]
+  },
+  {
+   "id": "c2_d22c_2",
+   "hoi": "Thân",
+   "boi_canh": "Khe đá — canh ba",
+   "ke": "Ta lùi vào chỗ hẹp nhất của khe.\n\nĐó là việc duy nhất một kẻ tầng hai làm được trước ba kẻ tầng ba: chọn đất đánh. Trong khe, chúng không vây được ta. Chúng chỉ vào được một người một lúc.\n\nTên thứ nhất chui vào. Hắn phải cúi. Hắn phải bỏ thanh đao dài lại phía ngoài — trong khe ấy, đao dài là của ta.\n\nTa đâm vào vai hắn, chỗ giáp hở, chỗ ta đã nhìn thấy lúc hắn cúi. Hắn gào. Tên thứ hai kéo hắn ra.\n\nRồi chúng đứng ngoài bàn bạc, giọng rất thấp. Một tên nói: “Đốt.”\n\nTa không chờ. Ta đã tính tới việc chúng đốt. Khe này có hai đầu — đầu kia hẹp tới mức ta phải bò, và ta đã nhìn thấy nó trước khi trời tối.\n\nTa bò. Đá cào rách lưng. Phía sau, lửa bùng trong khe, và ta cảm được hơi nóng trên gót chân.\n\nTa ra được đầu kia. Ta nằm trên đất, thở, nghe tiếng lửa sau lưng.\n\n“Ngươi học nhanh,” — kiếm linh nói. — “Đau không?”\n\n“Đau.”\n\n“Tốt. Nhớ cái đau này. Nó rẻ hơn nhiều so với những cái đau sau.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tìm Hàn Lập",
+     "den": "c2_d23b"
+    },
+    {
+     "chu": "Không tìm. Đi đường của mình.",
+     "den": "c2_d23c"
+    }
+   ]
+  },
+  {
+   "id": "c2_d22c_3",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đá — canh ba",
+   "ke": "Ta ném đá về phía đông, và ba kẻ ấy quay đầu.\n\nCái bẫy rẻ nhất trên đời, và nó hiệu quả — kẻ đi bắt người trong đêm luôn sợ bị bắt lại. Chúng quay đi. Ta chạy về phía tây.\n\nNhưng chúng không chia nhau đuổi theo tiếng động. Chúng chia nhau chặn đường. Một tên vòng lên, hai tên theo sau. Chúng đã làm việc này nhiều lần rồi.\n\nMột tên bắt được vạt áo ta. Ta xoay người, để vạt áo lại trong tay hắn, và chạy tiếp, và nghe hắn nguyền.\n\nRồi một tên khác chặn trước mặt.\n\nTa không dừng. Ta hạ thấp người, chui qua cánh tay hắn, và đâm — không vào người, mà vào bắp chân, chỗ duy nhất ta với tới. Hắn đổ. Ta bước qua hắn.\n\nTa chạy tới khi không còn nghe gì ngoài hơi thở của chính mình.\n\n“Ngươi vừa làm một việc rất ngu,” — kiếm linh nói. — “Rồi làm một việc rất đúng.”\n\n“Việc ngu là gì?”\n\n“Chạy khi chưa biết chúng đứng ở đâu.” — Nó ngừng. — “Việc đúng là đâm vào chân. Không ai chết vì mất một bàn chân. Nhưng cũng không ai đuổi theo ngươi với một bàn chân.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tìm Hàn Lập",
+     "den": "c2_d23b"
+    },
+    {
+     "chu": "Không tìm. Đi đường của mình.",
+     "den": "c2_d23c"
+    }
+   ]
+  },
+  {
+   "id": "c2_d25c_0",
+   "hoi": "Thân",
+   "boi_canh": "Miệng khe phía bắc — chiều ngày cuối",
+   "ke": "Ta đi về phía bắc, men theo vách đá, và ta thấy hắn trước khi hắn thấy ta.\n\nHắn ngồi dựa vách, một tay ép vào hông, máu chảy qua kẽ tay. Áo xám, thêu chỉ bạc ở cổ tay — kẻ này khác ba kẻ đêm trước. Kẻ này có chức phận.\n\nHắn ngẩng lên khi nghe đá dưới chân ta.\n\n“Luyện Khí tầng hai.” — Hắn nói, rồi cười, và cái cười làm máu chảy nhanh hơn. — “Đêm nay ta gặp vận may.”\n\nHắn không đứng dậy được. Nhưng hắn còn tay, và trong tay hắn có một tấm phù đã bóc khỏi bao.\n\nTa đứng cách hắn bốn bước. Bốn bước ấy là khoảng cách giữa một kẻ sắp chết và một kẻ có thể chết cùng hắn.",
+   "lua_chon": [
+    {
+     "chu": "Lao vào trước khi hắn kịp ném phù",
+     "den": "c2_d25c_1",
+     "hieu_ung": {
+      "sinh_luc": -12,
+      "co_su_kien": [
+       "ha_ta_tu_bi_thuong"
+      ]
+     }
+    },
+    {
+     "chu": "Nấp sau vách, chờ hắn ném phù rồi mới ra",
+     "den": "c2_d25c_2",
+     "hieu_ung": {
+      "sinh_luc": -5,
+      "co_su_kien": [
+       "ha_ta_tu_bi_thuong"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2_d25c_1",
+   "hoi": "Thân",
+   "boi_canh": "Miệng khe phía bắc — chiều ngày cuối",
+   "ke": "Bốn bước.\n\nTa lao vào trong ba bước, và tấm phù bùng sáng đúng lúc ta tới — hắn không kịp ném, nhưng nó vẫn nổ. Một luồng nóng quất ngang vai ta, và ta nghe tiếng da mình cháy.\n\nTa vẫn tới được. Kiếm ngắn vào đúng chỗ ta nhắm: dưới xương sườn, chỗ hắn đang ép tay.\n\nHắn không kêu. Hắn nhìn ta, ngạc nhiên — như nhìn một thứ không đáng phải ngạc nhiên. Rồi hắn đổ sang bên.\n\nTa ngồi xuống cạnh hắn, và ta ngồi đó rất lâu.\n\n“Ngươi vừa giết người,” — kiếm linh nói. Giọng nó không trách. Giọng nó chỉ đang nói một việc.\n\n“Hắn định giết ta.”\n\n“Ừ.” — Nó ngừng. — “Và ngươi vẫn là ngươi. Đó mới là việc phải nhớ.”\n\nTa lục áo hắn. Ta không muốn, nhưng ta đã thấy Hàn Lập làm, và ta hiểu vì sao người ở đây làm thế: kẻ chết không cần gì nữa, kẻ sống thì cần tất cả.\n\nTrong túi hắn có ba viên linh thạch và một mảnh phù chưa dùng.",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_d25"
+    }
+   ],
+   "hieu_ung_vao": {
+    "them_vat": [
+     {
+      "ten": "Phù lục chưa dùng",
+      "so": 1,
+      "mo_ta": "Mảnh phù lấy từ tà tu bị thương. Chưa biết công dụng."
+     }
+    ]
+   }
+  },
+  {
+   "id": "c2_d25c_2",
+   "hoi": "Thân",
+   "boi_canh": "Sau vách đá — chiều ngày cuối",
+   "ke": "Ta nấp sau vách và chờ.\n\nĐó là việc khó nhất ta từng làm. Hắn đang chảy máu. Hắn sẽ chết nếu ta không làm gì, và nếu ta ra thì hắn sẽ ném tấm phù, và hắn sẽ không chết một mình.\n\nHắn gọi ta hai lần. Lần thứ hai: “Ta biết ngươi ở đó. Ta nghe ngươi thở.”\n\nTa không đáp.\n\nRồi hắn làm đúng việc ta chờ: hắn ném tấm phù về phía tiếng thở. Nó nổ vào vách, đá văng vào mặt ta, và ta nghe hắn nguyền — hắn vừa ném mất thứ cuối cùng hắn có.\n\nTa đứng dậy, đi ra, và ta không chạy.\n\nHắn nhìn ta tới gần. Trong tay hắn không còn gì.\n\n“Giết ta đi,” — hắn nói.\n\n“Không.”\n\nTa lấy túi hắn rồi đi. Ta nghe hắn thở phía sau, chậm dần, và ta không quay lại. Ta không giết hắn. Ta chỉ không cứu hắn.\n\n“Đó cũng là một cách chọn,” — kiếm linh nói, rất khẽ. — “Nhưng nhớ: ngươi đã chọn đứng nhìn. Đừng gọi nó là lòng nhân.”\n\nTrong túi hắn có ba viên linh thạch và một mảnh phù chưa dùng — mảnh phù ấy đã nổ hết, chỉ còn cái vỏ.",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_d25"
+    }
+   ],
+   "hieu_ung_vao": {
+    "them_vat": [
+     {
+      "ten": "Phù lục chưa dùng",
+      "so": 1,
+      "mo_ta": "Mảnh phù lấy từ tà tu bị thương. Chưa biết công dụng."
+     }
+    ]
+   }
+  },
+  {
+   "id": "c2_d27c_0",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta đi về phía đông, chỗ có tiếng đánh nhau.\n\nTa tìm thấy hắn giữa hai tảng đá: một kẻ áo xám đứng, một xác người dưới chân hắn. Hắn đang lục túi cái xác ấy, và hắn làm rất chậm, rất kỹ — như người không sợ bị ai thấy.\n\nRồi hắn ngẩng lên.\n\n“Luyện Khí tầng ba.” — Hắn nói, không ngạc nhiên. — “Đêm nay ta gặp nhiều vận may.”\n\nHắn đứng thẳng. Hắn không vội. Đó là điều làm ta sợ nhất — kẻ không vội là kẻ biết mình thắng.\n\n“Cái túi của Hàn Lập,” — hắn nói. — “Ngươi biết hắn ở đâu.”\n\n“Không.”\n\n“Ngươi nói dối dở lắm.” — Hắn bước một bước. — “Ta không cần ngươi nói. Ta chỉ cần ngươi dẫn đường.”\n\nKiếm linh nói, rất nhanh: “Tầng năm. Ngươi không thắng được. Nghe ta: đừng đánh.”",
+   "lua_chon": [
+    {
+     "chu": "Bóc phù lục trong túi, ném vào chân hắn rồi chạy",
+     "den": "c2_d27c_1",
+     "hieu_ung": {
+      "sinh_luc": -10
+     },
+     "dieu_kien": {
+      "co_vat": "Phù lục chưa dùng"
+     },
+     "ly_do_khoa": "Trong túi không có phù lục nào"
+    },
+    {
+     "chu": "Chỉ tay về phía bắc, nói hắn đi hướng ấy",
+     "den": "c2_d27c_2",
+     "hieu_ung": {
+      "sinh_luc": -2,
+      "co_su_kien": [
+       "chi_sai_duong"
+      ]
+     }
+    },
+    {
+     "chu": "Ném đá lệch hướng rồi chạy",
+     "den": "c2_d27c_3",
+     "hieu_ung": {
+      "sinh_luc": -14
+     }
+    },
+    {
+     "chu": "Rút kiếm. Đánh tới cùng.",
+     "den": "c2_d27c_thua"
+    }
+   ]
+  },
+  {
+   "id": "c2_d27c_1",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta bóc phù bằng răng, vì tay ta đang giữ kiếm.\n\nTa ném vào chân hắn, không ném vào người — phù này nổ thành một vòng, và ta đã học đêm trước rằng cái vòng ấy không giết ai. Nó chỉ làm người ta quỳ xuống.\n\nHắn quỳ. Hắn không kêu, nhưng hắn quỳ.\n\nTa chạy. Ta không chạy về phía hắn, ta chạy vòng qua tảng đá, và ta nghe hắn nguyền phía sau — nguyền chứ không đuổi, vì một kẻ vừa bị phù nổ vào chân thì phải mất một lúc mới đứng dậy nổi.\n\n“Ngươi vừa dùng thứ cuối cùng ngươi có,” — kiếm linh nói.\n\n“Ta biết.”\n\n“Và ngươi vẫn còn sống.”\n\n“Ta biết.”\n\nTa chạy tới khi trông thấy Hàn Lập, ngồi trong khe đá, cái hòm gỗ dựng bên cạnh. Ta ngồi xuống cạnh hắn và ta không nói gì về chuyện vừa xảy ra. Hắn cũng không hỏi. Ở chỗ này, người ta không hỏi nhau những câu như thế.",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_d28"
+    }
+   ]
+  },
+  {
+   "id": "c2_d27c_2",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta chỉ tay về phía bắc.\n\n“Hắn đi hướng ấy. Có một mình. Ta thấy hắn đi lúc trời còn sáng.”\n\nĐó là một câu nói dối dở. Ta biết nó dở. Hắn cũng biết.\n\nHắn nhìn ta một lúc lâu, rồi hắn cười.\n\n“Ngươi không giỏi nói dối.” — Hắn hạ tay xuống. — “Nhưng ngươi giỏi chọn. Kẻ biết chỉ sai đường thì biết mình đang ở đâu trong câu chuyện này.”\n\nHắn đi về phía bắc.\n\nTa đứng lại rất lâu sau khi hắn khuất. Rồi ta ngồi xuống, và ta nhận ra hai chân ta đã mềm từ lúc nào.\n\n“Ngươi vừa bán một người,” — kiếm linh nói.\n\n“Ta vừa không bán ai. Ta chỉ chỉ một hướng.”\n\n“Hướng ấy có hắn.” — Nó ngừng. — “Ngươi muốn ta nói ngươi đúng, hay ngươi muốn ta nói thật?”\n\n“Nói thật.”\n\n“Thật thì: ngươi vừa làm một việc mà ngươi sẽ nhớ rất lâu. Không phải vì nó ác. Vì nó dễ.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_d28"
+    }
+   ]
+  },
+  {
+   "id": "c2_d27c_thua",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta rút kiếm.\n\nKiếm linh hét lên — lần đầu tiên trong đời nó hét. Ta không nghe rõ nó nói gì. Ta chỉ nghe tiếng máu mình.\n\nHắn không rút vũ khí. Hắn chờ ta tới.\n\nĐòn đầu tiên ta đỡ được. Đòn thứ hai ta đỡ được. Đòn thứ ba thì không — ta không kịp thấy nó, ta chỉ thấy trời nghiêng, và đá dưới lưng ta lạnh.\n\nTa nằm ngửa, nhìn lên. Hắn đứng trên ta, và hắn không vội.\n\n“Ngươi đánh cũng được,” — hắn nói, giọng như đang nhận xét một món hàng. — “Nhưng ngươi đánh như kẻ muốn thắng.”\n\n*Đánh như kẻ muốn thắng.*\n\nTa muốn nói với hắn rằng ta đã được dạy câu ấy từ trước, rằng ta biết, rằng ta đã nghe. Nhưng ta không nói được. Máu trong miệng ta nhiều hơn không khí.\n\nHắn cúi xuống, lấy hai thanh kiếm trong tay ta, rồi lấy túi ta. Hắn làm chậm, kỹ, như lúc lục cái xác kia.\n\n“Nằm đây,” — hắn nói. — “Trời sáng sẽ có người nhặt xác.”\n\nRồi hắn đi.\n\n*Ta nằm trên đá, và ta nghĩ tới câu cuối cùng của kiếm linh đêm đầu tiên: \"Đánh như kẻ muốn sống.\" Ta đã nghe câu ấy. Ta đã hiểu câu ấy. Nhưng khi tới lúc, ta vẫn rút kiếm như một kẻ muốn thắng.*\n\n*Đó là chỗ ta chết. Không phải ở cổ họng.*",
+   "lua_chon": [],
+   "ket_thuc": true,
+   "thua": true
+  },
+  {
+   "id": "c2_p19c_0",
+   "hoi": "Thân",
+   "boi_canh": "Gờ đá — canh ba",
+   "ke": "Ta mở mắt trước khi chúng tới.\n\nKhối ngọc cốt trong ngực ấm ran, và Tuyết Cơ đã nói trước: ba kẻ. Một tầng bốn, hai tầng ba. Chúng không đi thành hàng — một tên vòng ra sau gờ đá, ta nghe tiếng sỏi rơi ở chỗ không ai đáng phải đi.\n\n“Nén khí tức,” — nàng nói. — “Ta dạy ngươi rồi. Đừng đánh. Đánh là chết.”\n\nTa nén. Khí tức ta chìm xuống như đá chìm xuống nước.\n\nTên thứ nhất đi qua chỗ ta nấp, cách hai bước, và hắn không thấy ta. Hắn đi tiếp.\n\nNhưng tên thứ ba thì dừng lại.\n\n“Có người,” — hắn nói.\n\nVà hắn quay đầu về phía ta.\n\nTa không còn đường nén nữa. Ta chỉ còn đôi tay, và bộ quyền Thất Huyền đã học trong cái sân tập đầy máu ấy.",
+   "lua_chon": [
+    {
+     "chu": "Đánh vào đầu gối tên thứ ba rồi phá ra",
+     "den": "c2_p19c_1",
+     "hieu_ung": {
+      "sinh_luc": -9,
+      "co_su_kien": [
+       "danh_dem_ba_ke"
+      ]
+     }
+    },
+    {
+     "chu": "Nén khí tới cùng, chịu một đòn, không phát ra tiếng",
+     "den": "c2_p19c_2",
+     "hieu_ung": {
+      "sinh_luc": -7,
+      "co_su_kien": [
+       "danh_dem_ba_ke"
+      ]
+     }
+    },
+    {
+     "chu": "Bật dậy, lao qua khoảng trống giữa tên một và tên hai",
+     "den": "c2_p19c_3",
+     "hieu_ung": {
+      "sinh_luc": -5,
+      "co_su_kien": [
+       "danh_dem_ba_ke"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2_p19c_1",
+   "hoi": "Thân",
+   "boi_canh": "Gờ đá — canh ba",
+   "ke": "Quyền Thất Huyền không phải thứ để đánh người mạnh hơn. Ta biết điều ấy từ buổi đầu, khi sư huynh dạy ta và nói: “Bộ này để giữ mạng, không phải để thắng.”\n\nTa đánh vào đầu gối hắn — chỗ khớp, chỗ không có giáp, chỗ một cú đấm đúng lực làm người ta phải quỳ.\n\nHắn quỳ. Đòn trả của hắn vẫn tới — một cái tát vào vai ta, và vai ta tê tới cổ.\n\nTa không đánh nữa. Ta chạy.\n\nTên thứ nhất đuổi. Ta nghe hắn sau lưng, rồi ta nghe tiếng hắn ngã — hắn vấp vào chính tên vừa quỳ dưới đá.\n\nTa chạy tới khi hết dốc. Ta ngồi xuống và ta nôn, và ta nhận ra tay ta đang run.\n\n“Lần đầu,” — Tuyết Cơ nói, giọng nàng nhẹ hơn ta từng nghe. — “Ai cũng nôn lần đầu. Đừng xấu hổ.”\n\n“Ta không sợ.”\n\n“Ta không nói ngươi sợ. Ta nói ngươi nôn.” — Nàng ngừng. — “Ngươi còn sống. Đó là tất cả những gì cần đêm nay.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tìm Hàn Lập",
+     "den": "c2_p20b"
+    },
+    {
+     "chu": "Không tìm. Đi đường của mình.",
+     "den": "c2_p20c"
+    }
+   ]
+  },
+  {
+   "id": "c2_p19c_2",
+   "hoi": "Thân",
+   "boi_canh": "Gờ đá — canh ba",
+   "ke": "Ta nén khí tức tới cùng.\n\nĐó là việc khó nhất ta từng làm. Nén khí tức thì người ta phải thả lỏng, mà thả lỏng thì không đỡ được đòn. Ta chọn không đỡ.\n\nTên thứ ba đá vào sườn ta, một lần, để chắc. Ta không kêu. Ta để hơi thở mình đứt, rồi ta thở lại, rất chậm, rất nhẹ.\n\n“Không có ai,” — hắn nói với hai tên kia. — “Con thỏ.”\n\nChúng đi.\n\nTa nằm im thêm rất lâu, lâu hơn cần thiết, vì ta không chắc chân mình còn đứng được.\n\n“Ngươi vừa làm một việc mà ta không dạy,” — Tuyết Cơ nói.\n\n“Nén tới cùng?”\n\n“Chịu đòn mà không đánh trả.” — Nàng im. — “Ta đã sống ngàn năm và ta chưa từng làm được việc ấy. Ta luôn đánh trả.”\n\nTa ngồi dậy. Sườn ta đau tới mức ta phải thở bằng nửa ngực.\n\n“Ngươi học được từ đâu?” — nàng hỏi.\n\n“Từ cái sân tập,” — ta nói. — “Đứng nhìn người khác chết.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tìm Hàn Lập",
+     "den": "c2_p20b"
+    },
+    {
+     "chu": "Không tìm. Đi đường của mình.",
+     "den": "c2_p20c"
+    }
+   ]
+  },
+  {
+   "id": "c2_p19c_3",
+   "hoi": "Thân",
+   "boi_canh": "Gờ đá — canh ba",
+   "ke": "Ta bật dậy và lao qua khoảng trống giữa tên thứ nhất và tên thứ hai.\n\nKhoảng trống ấy rộng chừng hai bước. Ta đã nhìn nó từ lúc chúng vào, và ta đã chờ đúng lúc cả hai cùng quay về phía tên thứ ba đang nói.\n\nTên thứ hai chộp được vai ta. Ta xoay, để vai tuột khỏi tay hắn, và ta đánh một cú vào hông hắn bằng cùi chỏ — cú duy nhất ta đủ chỗ để đánh.\n\nHắn gập người. Ta bước qua.\n\nTa chạy vào bóng tối, và bóng tối ở đây dày hơn ta tưởng — ta đâm vào một bụi gai, ta ngã, ta đứng dậy, và ta chạy tiếp.\n\nSau lưng, tiếng chân đã thôi.\n\n“Ngươi chọn chỗ đánh tốt,” — Tuyết Cơ nói.\n\n“Ta chọn chỗ chạy.”\n\n“Đó là cùng một việc.” — Nàng ngừng. — “Ngươi biết không: kẻ mạnh chọn chỗ đánh. Kẻ sống chọn chỗ chạy. Ngàn năm nay ta gặp rất ít kẻ làm được việc thứ hai.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tìm Hàn Lập",
+     "den": "c2_p20b"
+    },
+    {
+     "chu": "Không tìm. Đi đường của mình.",
+     "den": "c2_p20c"
+    }
+   ]
+  },
+  {
+   "id": "c2_p22c_0",
+   "hoi": "Thân",
+   "boi_canh": "Miệng khe phía bắc — chiều ngày cuối",
+   "ke": "Ta đi về phía bắc, men theo vách đá, và ta thấy hắn trước khi hắn thấy ta.\n\nHắn ngồi dựa vách, một tay ép vào hông, máu chảy qua kẽ tay. Áo xám, thêu chỉ bạc ở cổ tay — kẻ này khác ba kẻ đêm trước. Kẻ này có chức phận.\n\nKhối ngọc cốt trong ngực ta đã tối dần từ sáng. Tuyết Cơ ngủ. Ta một mình.\n\nHắn ngẩng lên khi nghe đá dưới chân ta.\n\n“Luyện Khí tầng hai.” — Hắn cười, và cái cười làm máu chảy nhanh hơn. — “Đêm nay ta gặp vận may.”\n\nHắn không đứng dậy được. Nhưng hắn còn tay, và trong tay hắn có một tấm phù đã bóc khỏi bao.\n\nTa đứng cách hắn bốn bước. Bốn bước ấy là khoảng cách giữa một kẻ sắp chết và một kẻ có thể chết cùng hắn.",
+   "lua_chon": [
+    {
+     "chu": "Lao vào trước khi hắn kịp ném phù",
+     "den": "c2_p22c_1",
+     "hieu_ung": {
+      "sinh_luc": -12,
+      "co_su_kien": [
+       "ha_ta_tu_bi_thuong"
+      ]
+     }
+    },
+    {
+     "chu": "Nấp sau vách, chờ hắn ném phù rồi mới ra",
+     "den": "c2_p22c_2",
+     "hieu_ung": {
+      "sinh_luc": -5,
+      "co_su_kien": [
+       "ha_ta_tu_bi_thuong"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2_p22c_1",
+   "hoi": "Thân",
+   "boi_canh": "Miệng khe phía bắc — chiều ngày cuối",
+   "ke": "Bốn bước.\n\nTa lao vào trong ba bước, và tấm phù bùng sáng đúng lúc ta tới — hắn không kịp ném, nhưng nó vẫn nổ. Một luồng nóng quất ngang vai ta, và ta nghe tiếng da mình cháy.\n\nTa vẫn tới được. Cùi chỏ ta vào đúng chỗ ta nhắm: dưới xương sườn, chỗ hắn đang ép tay. Rồi ta đánh lần thứ hai, và lần thứ ba.\n\nHắn không kêu. Hắn nhìn ta, ngạc nhiên — như nhìn một thứ không đáng phải ngạc nhiên. Rồi hắn đổ sang bên.\n\nTa ngồi xuống cạnh hắn, và ta ngồi đó rất lâu.\n\n*Ta vừa giết người bằng tay không.*\n\nTa đã thấy người chết. Ta đã thấy Mạc Đại Phu chết ở cổng đông. Nhưng lần ấy ta đứng nhìn. Lần này ta là người làm ra nó.\n\nTa lục áo hắn. Ta không muốn, nhưng ở chỗ này kẻ chết không cần gì nữa.\n\nTrong túi hắn có ba viên linh thạch và một mảnh phù chưa dùng.\n\nKhi trời tối hẳn, khối ngọc trong ngực ta ấm lại một chút. Giọng Tuyết Cơ, rất yếu:\n\n“Ngươi làm gì ta cũng biết.” — Nàng ngừng. — “Ta không nói ngươi sai. Ta chỉ nói: đừng để nó dễ.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_p22"
+    }
+   ],
+   "hieu_ung_vao": {
+    "them_vat": [
+     {
+      "ten": "Tráo phù chưa dùng",
+      "so": 1,
+      "mo_ta": "Mảnh phù lấy từ tà tu bị thương. Chưa biết công dụng."
+     }
+    ]
+   }
+  },
+  {
+   "id": "c2_p22c_2",
+   "hoi": "Thân",
+   "boi_canh": "Sau vách đá — chiều ngày cuối",
+   "ke": "Ta nấp sau vách và chờ.\n\nĐó là việc khó nhất ta từng làm. Hắn đang chảy máu. Hắn sẽ chết nếu ta không làm gì, và nếu ta ra thì hắn sẽ ném tấm phù, và hắn sẽ không chết một mình.\n\nHắn gọi ta hai lần. Lần thứ hai: “Ta biết ngươi ở đó. Ta nghe ngươi thở.”\n\nTa không đáp.\n\nRồi hắn ném tấm phù về phía tiếng thở. Nó nổ vào vách, đá văng vào mặt ta, và ta nghe hắn nguyền — hắn vừa ném mất thứ cuối cùng hắn có.\n\nTa đứng dậy, đi ra, và ta không chạy.\n\nHắn nhìn ta tới gần. Trong tay hắn không còn gì.\n\n“Giết ta đi,” — hắn nói.\n\n“Không.”\n\nTa lấy túi hắn rồi đi. Ta nghe hắn thở phía sau, chậm dần, và ta không quay lại. Ta không giết hắn. Ta chỉ không cứu hắn.\n\nTa đi tiếp rất lâu trong im lặng, và cái im lặng ấy nặng hơn tiếng hắn gọi.\n\n*Ta không giết. Nhưng ta cũng không cứu. Ở chỗ này, hai việc ấy có khác nhau không?*\n\nTrong túi hắn có ba viên linh thạch và một mảnh phù — mảnh phù ấy đã nổ hết, chỉ còn cái vỏ.",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_p22"
+    }
+   ],
+   "hieu_ung_vao": {
+    "them_vat": [
+     {
+      "ten": "Tráo phù chưa dùng",
+      "so": 1,
+      "mo_ta": "Mảnh phù lấy từ tà tu bị thương. Chưa biết công dụng."
+     }
+    ]
+   }
+  },
+  {
+   "id": "c2_p23c_0",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta đi về phía đông, chỗ có tiếng đánh nhau.\n\nTa tìm thấy hắn giữa hai tảng đá: một kẻ áo xám đứng, một xác người dưới chân hắn. Hắn đang lục túi cái xác ấy, chậm và kỹ, như người không sợ bị ai thấy.\n\nRồi hắn ngẩng lên.\n\n“Luyện Khí tầng hai.” — Hắn nói, không ngạc nhiên. — “Đêm nay ta gặp nhiều vận may.”\n\nHắn đứng thẳng. Hắn không vội. Đó là điều làm ta sợ nhất — kẻ không vội là kẻ biết mình thắng.\n\nKhối ngọc trong ngực ta tối hẳn. Tuyết Cơ ngủ. Không có ai nói cho ta biết phải làm gì.\n\n“Cái túi của Hàn Lập,” — hắn nói. — “Ngươi biết hắn ở đâu.”\n\n“Không.”\n\n“Ngươi nói dối dở lắm.” — Hắn bước một bước. — “Ta không cần ngươi nói. Ta chỉ cần ngươi dẫn đường.”",
+   "lua_chon": [
+    {
+     "chu": "Bóc tráo phù trong túi, ném vào chân hắn rồi chạy",
+     "den": "c2_p23c_1",
+     "hieu_ung": {
+      "sinh_luc": -10
+     },
+     "dieu_kien": {
+      "co_vat": "Tráo phù chưa dùng"
+     },
+     "ly_do_khoa": "Trong túi không có phù nào"
+    },
+    {
+     "chu": "Chỉ tay về phía bắc, nói hắn đi hướng ấy",
+     "den": "c2_p23c_2",
+     "hieu_ung": {
+      "sinh_luc": -2,
+      "co_su_kien": [
+       "chi_sai_duong"
+      ]
+     }
+    },
+    {
+     "chu": "Ném đá lệch hướng rồi chạy",
+     "den": "c2_p23c_3",
+     "hieu_ung": {
+      "sinh_luc": -14
+     }
+    },
+    {
+     "chu": "Vận quyền Thất Huyền. Đánh tới cùng.",
+     "den": "c2_p23c_thua"
+    }
+   ]
+  },
+  {
+   "id": "c2_p23c_1",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta bóc tráo phù bằng răng, vì tay ta đang siết lại.\n\nTa ném vào chân hắn, không ném vào người — tráo này nổ thành một vòng, và ta đã học đêm trước rằng cái vòng ấy không giết ai. Nó chỉ làm người ta quỳ xuống.\n\nHắn quỳ. Hắn không kêu, nhưng hắn quỳ.\n\nTa chạy. Ta chạy vòng qua tảng đá, và ta nghe hắn nguyền phía sau — nguyền chứ không đuổi, vì kẻ vừa bị tráo nổ vào chân phải mất một lúc mới đứng dậy nổi.\n\n“Ngươi vừa dùng thứ cuối cùng ngươi có,” — ta nói với khối ngọc đang ngủ. Nàng không trả lời.\n\nTa chạy tới khi trông thấy Hàn Lập, ngồi trong khe đá, cái hòm gỗ dựng bên cạnh. Ta ngồi xuống cạnh hắn và ta không nói gì về chuyện vừa xảy ra. Hắn cũng không hỏi.\n\n*Ở chỗ này, người ta không hỏi nhau những câu như thế.*",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_p24"
+    }
+   ]
+  },
+  {
+   "id": "c2_p23c_2",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta chỉ tay về phía bắc.\n\n“Hắn đi hướng ấy. Có một mình. Ta thấy hắn đi lúc trời còn sáng.”\n\nĐó là một câu nói dối dở. Ta biết nó dở. Hắn cũng biết.\n\nHắn nhìn ta một lúc lâu, rồi hắn cười.\n\n“Ngươi không giỏi nói dối.” — Hắn hạ tay xuống. — “Nhưng ngươi giỏi chọn. Kẻ biết chỉ sai đường thì biết mình đang ở đâu trong câu chuyện này.”\n\nHắn đi về phía bắc.\n\nTa đứng lại rất lâu sau khi hắn khuất. Rồi ta ngồi xuống, và ta nhận ra hai chân ta đã mềm từ lúc nào.\n\n*Ta vừa chỉ đường cho một kẻ đi giết người. Ta không tự tay làm gì. Nhưng ta cũng không ngăn.*\n\nKhối ngọc trong ngực ta im. Nàng ngủ, và ta mừng vì nàng ngủ — vì nếu nàng tỉnh, nàng sẽ hỏi ta một câu mà ta không muốn trả lời.\n\n*Đó là lần đầu ta thấy mình mừng vì có người không ở đó để nhìn.*",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_p24"
+    }
+   ]
+  },
+  {
+   "id": "c2_p23c_thua",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta vận quyền Thất Huyền.\n\nBộ quyền ấy dạy ta giữ mạng, không dạy ta thắng kẻ tầng năm. Ta biết điều đó. Nhưng ta không còn gì khác — khối ngọc đã tối, và không có ai nói cho ta biết phải làm gì.\n\nHắn không rút vũ khí. Hắn chờ ta tới.\n\nĐòn đầu ta đỡ được. Đòn thứ hai ta đỡ được. Đòn thứ ba thì không — ta không kịp thấy nó, ta chỉ thấy trời nghiêng, và đá dưới lưng ta lạnh.\n\nTa nằm ngửa, nhìn lên. Hắn đứng trên ta, và hắn không vội.\n\n“Quyền pháp cũng được,” — hắn nói, giọng như đang nhận xét một món hàng. — “Nhưng ngươi đánh như kẻ muốn thắng.”\n\n*Đánh như kẻ muốn thắng.*\n\nTa muốn nói với hắn rằng ta đã được dạy khác, rằng ta biết, rằng ta đã nghe câu ấy một lần trong bóng tối khe đá. Nhưng ta không nói được. Máu trong miệng ta nhiều hơn không khí.\n\nHắn cúi xuống, lấy túi ta và cái bọc trong ngực áo ta.\n\nRồi hắn khựng lại.\n\n“Khối ngọc này…” — Hắn nhìn nó rất lâu. Rồi hắn nhìn ta, và lần này mắt hắn khác hẳn. — “Ngươi biết trong này có gì không?”\n\nTa không trả lời được.\n\n“Không sao.” — Hắn cất khối ngọc vào áo. — “Ta sẽ tự hỏi nó.”\n\nRồi hắn đi.\n\n*Ta nằm trên đá. Khối ngọc trong ngực hắn lạnh dần, và ta biết ta vừa trao cho người ta thứ mà cả giới tu tiên giết nhau để có.*\n\n*Đó là chỗ ta chết. Không phải ở cổ họng.*\n\n*Và nó còn tệ hơn.*",
+   "lua_chon": [],
+   "ket_thuc": true,
+   "thua": true
+  },
+  {
+   "id": "c2_d27c_3",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta ném đá.\n\nKhông ném vào hắn — ném vào vách đá phía sau hắn, chỗ có một hốc tối. Tiếng đá rơi ở đó, và hắn quay đầu.\n\nHắn quay đầu chỉ nửa nhịp. Nhưng nửa nhịp ấy đủ để ta bước vào bóng tối giữa hai tảng đá và không còn ở chỗ hắn đang nhìn.\n\n“Ngươi nghĩ trò ấy hiệu quả?” — hắn nói, vẫn không vội.\n\n“Không.” — Ta nói thật, vì nói dối lúc này chẳng ích gì. — “Nhưng ta chỉ cần hơn ngươi một nhịp.”\n\nTa nghe hắn bước tới. Ta nghe đá dưới chân hắn. Ta đứng im, nén khí tức, và ta chờ đúng cái nhịp mà hắn phải quay người lại để tìm ta.\n\nRồi ta chạy — không phải chạy ra xa, mà chạy vòng, men theo vách, về phía con đường mòn phía bắc.\n\nHắn đuổi theo rất lâu. Ta nghe tiếng hắn cho tới khi tiếng ấy lẫn vào tiếng lửa.\n\n“Ngươi vẫn chưa đánh,” — kiếm linh nói.\n\n“Không.”\n\n“Ngươi chỉ chạy, hai lần trong một đêm.”\n\n“Ta còn sống.”\n\n“Ừ.” — Nó ngừng, và giọng nó không chế giễu. — “Đó là toàn bộ câu trả lời. Nhớ nó.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_d28"
+    }
+   ]
+  },
+  {
+   "id": "c2_p23c_3",
+   "hoi": "Thân",
+   "boi_canh": "Sườn đông — đêm ngày cuối",
+   "ke": "Ta ném đá.\n\nKhông ném vào hắn — ném vào vách đá phía sau hắn, chỗ có một hốc tối. Tiếng đá rơi ở đó, và hắn quay đầu.\n\nHắn quay đầu chỉ nửa nhịp. Nhưng nửa nhịp ấy đủ để ta bước vào bóng tối giữa hai tảng đá và không còn ở chỗ hắn đang nhìn.\n\n“Ngươi nghĩ trò ấy hiệu quả?” — hắn nói, vẫn không vội.\n\n“Không.” — Ta nói thật. — “Nhưng ta chỉ cần hơn ngươi một nhịp.”\n\nKhối ngọc trong ngực ta tối hẳn, và không có ai nói cho ta biết phải làm gì. Ta đứng im trong bóng tối, nén khí tức — việc duy nhất ta học được trong hai ngày qua mà không cần ai dạy lại.\n\nHắn bước tới, rồi hắn quay người, và ta chạy vòng theo vách về phía con đường mòn phía bắc.\n\nHắn đuổi rất lâu. Ta nghe tiếng hắn cho tới khi tiếng ấy lẫn vào tiếng lửa.\n\nKhi trời gần sáng, khối ngọc khẽ ấm. Giọng Tuyết Cơ, rất yếu: “Ngươi chạy.”\n\n“Ừ.”\n\n“Hai lần trong một đêm.” — Nàng im. — “Ta hồi đó sẽ đánh. Ta đánh trả mọi thứ, và ta đã thua mọi thứ. Ngươi làm được việc ta không làm được.”\n\n“Ta chỉ sợ.”\n\n“Sợ cũng là một cách khôn.” — Nàng ngừng. — “Đừng để ai dạy ngươi khác.”",
+   "lua_chon": [
+    {
+     "chu": "Đi tiếp",
+     "den": "c2_p24"
     }
    ]
   }

@@ -3698,9 +3698,63 @@ bước vào… không phải con đường võ lâm.”
                           Phía đông, khói bắt đầu bốc lên.
 
                           1. Đi tìm Hàn Lập
-                             → c2_d25
+                             → c2_d25c_0
                           2. Tự tìm chỗ nấp
                              → c2_d25b
+
+                        ── [c2_d25c_0] · Miệng khe phía bắc — chiều ngày cuối
+
+                        Ta đi về phía bắc, men theo vách đá, và ta thấy hắn trước khi hắn thấy ta.
+
+                        Hắn ngồi dựa vách, một tay ép vào hông, máu chảy qua kẽ tay. Áo xám, thêu chỉ
+                        bạc ở cổ tay — kẻ này khác ba kẻ đêm trước. Kẻ này có chức phận.
+
+                        Hắn ngẩng lên khi nghe đá dưới chân ta.
+
+                        “Luyện Khí tầng hai.” — Hắn nói, rồi cười, và cái cười làm máu chảy nhanh
+                        hơn. — “Đêm nay ta gặp vận may.”
+
+                        Hắn không đứng dậy được. Nhưng hắn còn tay, và trong tay hắn có một tấm phù
+                        đã bóc khỏi bao.
+
+                        Ta đứng cách hắn bốn bước. Bốn bước ấy là khoảng cách giữa một kẻ sắp chết và
+                        một kẻ có thể chết cùng hắn.
+
+                          1. Lao vào trước khi hắn kịp ném phù
+                             → c2_d25c_1
+                          2. Nấp sau vách, chờ hắn ném phù rồi mới ra
+                             → c2_d25c_2
+
+                        ── [c2_d25c_1] · Miệng khe phía bắc — chiều ngày cuối
+
+                        Bốn bước.
+
+                        Ta lao vào trong ba bước, và tấm phù bùng sáng đúng lúc ta tới — hắn không
+                        kịp ném, nhưng nó vẫn nổ. Một luồng nóng quất ngang vai ta, và ta nghe tiếng
+                        da mình cháy.
+
+                        Ta vẫn tới được. Kiếm ngắn vào đúng chỗ ta nhắm: dưới xương sườn, chỗ hắn
+                        đang ép tay.
+
+                        Hắn không kêu. Hắn nhìn ta, ngạc nhiên — như nhìn một thứ không đáng phải
+                        ngạc nhiên. Rồi hắn đổ sang bên.
+
+                        Ta ngồi xuống cạnh hắn, và ta ngồi đó rất lâu.
+
+                        “Ngươi vừa giết người,” — kiếm linh nói. Giọng nó không trách. Giọng nó chỉ
+                        đang nói một việc.
+
+                        “Hắn định giết ta.”
+
+                        “Ừ.” — Nó ngừng. — “Và ngươi vẫn là ngươi. Đó mới là việc phải nhớ.”
+
+                        Ta lục áo hắn. Ta không muốn, nhưng ta đã thấy Hàn Lập làm, và ta hiểu vì sao
+                        người ở đây làm thế: kẻ chết không cần gì nữa, kẻ sống thì cần tất cả.
+
+                        Trong túi hắn có ba viên linh thạch và một mảnh phù chưa dùng.
+
+                          1. Đi tiếp
+                             → c2_d25
 
                         ── [c2_d25] · Khe đá — chạng vạng
 
@@ -3841,6 +3895,8 @@ bước vào… không phải con đường võ lâm.”
                           4. “Ngươi là kẻ giết người.”
                              → c2_d28_3
                              [đổi: Hàn Lập -20]
+                          5. Đi về phía đông, chỗ có tiếng đánh nhau
+                             → c2_d27c_0
 
                         ── [c2_d28_0] · Ngoài khe đá — chạng vạng
 
@@ -4231,6 +4287,177 @@ bước vào… không phải con đường võ lâm.”
                           1. Rời thung lũng
                              → c2_d28
 
+                        ── [c2_d27c_0] · Sườn đông — đêm ngày cuối
+
+                        Ta đi về phía đông, chỗ có tiếng đánh nhau.
+
+                        Ta tìm thấy hắn giữa hai tảng đá: một kẻ áo xám đứng, một xác người dưới chân
+                        hắn. Hắn đang lục túi cái xác ấy, và hắn làm rất chậm, rất kỹ — như người
+                        không sợ bị ai thấy.
+
+                        Rồi hắn ngẩng lên.
+
+                        “Luyện Khí tầng ba.” — Hắn nói, không ngạc nhiên. — “Đêm nay ta gặp nhiều vận
+                        may.”
+
+                        Hắn đứng thẳng. Hắn không vội. Đó là điều làm ta sợ nhất — kẻ không vội là kẻ
+                        biết mình thắng.
+
+                        “Cái túi của Hàn Lập,” — hắn nói. — “Ngươi biết hắn ở đâu.”
+
+                        “Không.”
+
+                        “Ngươi nói dối dở lắm.” — Hắn bước một bước. — “Ta không cần ngươi nói. Ta
+                        chỉ cần ngươi dẫn đường.”
+
+                        Kiếm linh nói, rất nhanh: “Tầng năm. Ngươi không thắng được. Nghe ta: đừng
+                        đánh.”
+
+                          1. Bóc phù lục trong túi, ném vào chân hắn rồi chạy
+                             → c2_d27c_1
+                             [cần: trong túi có P; trong túi có h; trong túi có ù; trong túi có  ; trong túi có l; trong túi có ụ; trong túi có c; trong túi có  ; trong túi có c; trong túi có h; trong túi có ư; trong túi có a; trong túi có  ; trong túi có d; trong túi có ù; trong túi có n; trong túi có g]
+                          2. Chỉ tay về phía bắc, nói hắn đi hướng ấy
+                             → c2_d27c_2
+                          3. Ném đá lệch hướng rồi chạy
+                             → c2_d27c_3
+                          4. Rút kiếm. Đánh tới cùng.
+                             → c2_d27c_thua
+
+                        ── [c2_d27c_1] · Sườn đông — đêm ngày cuối
+
+                        Ta bóc phù bằng răng, vì tay ta đang giữ kiếm.
+
+                        Ta ném vào chân hắn, không ném vào người — phù này nổ thành một vòng, và ta
+                        đã học đêm trước rằng cái vòng ấy không giết ai. Nó chỉ làm người ta quỳ
+                        xuống.
+
+                        Hắn quỳ. Hắn không kêu, nhưng hắn quỳ.
+
+                        Ta chạy. Ta không chạy về phía hắn, ta chạy vòng qua tảng đá, và ta nghe hắn
+                        nguyền phía sau — nguyền chứ không đuổi, vì một kẻ vừa bị phù nổ vào chân thì
+                        phải mất một lúc mới đứng dậy nổi.
+
+                        “Ngươi vừa dùng thứ cuối cùng ngươi có,” — kiếm linh nói.
+
+                        “Ta biết.”
+
+                        “Và ngươi vẫn còn sống.”
+
+                        “Ta biết.”
+
+                        Ta chạy tới khi trông thấy Hàn Lập, ngồi trong khe đá, cái hòm gỗ dựng bên
+                        cạnh. Ta ngồi xuống cạnh hắn và ta không nói gì về chuyện vừa xảy ra. Hắn cũng
+                        không hỏi. Ở chỗ này, người ta không hỏi nhau những câu như thế.
+
+                          1. Đi tiếp
+                             → c2_d28
+
+                        ── [c2_d27c_2] · Sườn đông — đêm ngày cuối
+
+                        Ta chỉ tay về phía bắc.
+
+                        “Hắn đi hướng ấy. Có một mình. Ta thấy hắn đi lúc trời còn sáng.”
+
+                        Đó là một câu nói dối dở. Ta biết nó dở. Hắn cũng biết.
+
+                        Hắn nhìn ta một lúc lâu, rồi hắn cười.
+
+                        “Ngươi không giỏi nói dối.” — Hắn hạ tay xuống. — “Nhưng ngươi giỏi chọn. Kẻ
+                        biết chỉ sai đường thì biết mình đang ở đâu trong câu chuyện này.”
+
+                        Hắn đi về phía bắc.
+
+                        Ta đứng lại rất lâu sau khi hắn khuất. Rồi ta ngồi xuống, và ta nhận ra hai
+                        chân ta đã mềm từ lúc nào.
+
+                        “Ngươi vừa bán một người,” — kiếm linh nói.
+
+                        “Ta vừa không bán ai. Ta chỉ chỉ một hướng.”
+
+                        “Hướng ấy có hắn.” — Nó ngừng. — “Ngươi muốn ta nói ngươi đúng, hay ngươi
+                        muốn ta nói thật?”
+
+                        “Nói thật.”
+
+                        “Thật thì: ngươi vừa làm một việc mà ngươi sẽ nhớ rất lâu. Không phải vì nó
+                        ác. Vì nó dễ.”
+
+                          1. Đi tiếp
+                             → c2_d28
+
+                        ── [c2_d27c_3] · Sườn đông — đêm ngày cuối
+
+                        Ta ném đá.
+
+                        Không ném vào hắn — ném vào vách đá phía sau hắn, chỗ có một hốc tối. Tiếng
+                        đá rơi ở đó, và hắn quay đầu.
+
+                        Hắn quay đầu chỉ nửa nhịp. Nhưng nửa nhịp ấy đủ để ta bước vào bóng tối giữa
+                        hai tảng đá và không còn ở chỗ hắn đang nhìn.
+
+                        “Ngươi nghĩ trò ấy hiệu quả?” — hắn nói, vẫn không vội.
+
+                        “Không.” — Ta nói thật, vì nói dối lúc này chẳng ích gì. — “Nhưng ta chỉ cần
+                        hơn ngươi một nhịp.”
+
+                        Ta nghe hắn bước tới. Ta nghe đá dưới chân hắn. Ta đứng im, nén khí tức, và
+                        ta chờ đúng cái nhịp mà hắn phải quay người lại để tìm ta.
+
+                        Rồi ta chạy — không phải chạy ra xa, mà chạy vòng, men theo vách, về phía con
+                        đường mòn phía bắc.
+
+                        Hắn đuổi theo rất lâu. Ta nghe tiếng hắn cho tới khi tiếng ấy lẫn vào tiếng
+                        lửa.
+
+                        “Ngươi vẫn chưa đánh,” — kiếm linh nói.
+
+                        “Không.”
+
+                        “Ngươi chỉ chạy, hai lần trong một đêm.”
+
+                        “Ta còn sống.”
+
+                        “Ừ.” — Nó ngừng, và giọng nó không chế giễu. — “Đó là toàn bộ câu trả lời.
+                        Nhớ nó.”
+
+                          1. Đi tiếp
+                             → c2_d28
+
+                        ── [c2_d27c_thua] · Sườn đông — đêm ngày cuối
+
+                        Ta rút kiếm.
+
+                        Kiếm linh hét lên — lần đầu tiên trong đời nó hét. Ta không nghe rõ nó nói
+                        gì. Ta chỉ nghe tiếng máu mình.
+
+                        Hắn không rút vũ khí. Hắn chờ ta tới.
+
+                        Đòn đầu tiên ta đỡ được. Đòn thứ hai ta đỡ được. Đòn thứ ba thì không — ta
+                        không kịp thấy nó, ta chỉ thấy trời nghiêng, và đá dưới lưng ta lạnh.
+
+                        Ta nằm ngửa, nhìn lên. Hắn đứng trên ta, và hắn không vội.
+
+                        “Ngươi đánh cũng được,” — hắn nói, giọng như đang nhận xét một món hàng. —
+                        “Nhưng ngươi đánh như kẻ muốn thắng.”
+
+                        Đánh như kẻ muốn thắng.
+
+                        Ta muốn nói với hắn rằng ta đã được dạy câu ấy từ trước, rằng ta biết, rằng
+                        ta đã nghe. Nhưng ta không nói được. Máu trong miệng ta nhiều hơn không khí.
+
+                        Hắn cúi xuống, lấy hai thanh kiếm trong tay ta, rồi lấy túi ta. Hắn làm chậm,
+                        kỹ, như lúc lục cái xác kia.
+
+                        “Nằm đây,” — hắn nói. — “Trời sáng sẽ có người nhặt xác.”
+
+                        Rồi hắn đi.
+
+                        Ta nằm trên đá, và ta nghĩ tới câu cuối cùng của kiếm linh đêm đầu tiên:
+                        "Đánh như kẻ muốn sống." Ta đã nghe câu ấy. Ta đã hiểu câu ấy. Nhưng khi tới
+                        lúc, ta vẫn rút kiếm như một kẻ muốn thắng.
+
+                        Đó là chỗ ta chết. Không phải ở cổ họng.
+
                         ── [c2_d27_1] · Khe đá — đêm ngày cuối
 
                         Ta nằm im.
@@ -4285,6 +4512,41 @@ bước vào… không phải con đường võ lâm.”
                           1. Đêm xuống
                              → c2_d26
 
+                        ── [c2_d25c_2] · Sau vách đá — chiều ngày cuối
+
+                        Ta nấp sau vách và chờ.
+
+                        Đó là việc khó nhất ta từng làm. Hắn đang chảy máu. Hắn sẽ chết nếu ta không
+                        làm gì, và nếu ta ra thì hắn sẽ ném tấm phù, và hắn sẽ không chết một mình.
+
+                        Hắn gọi ta hai lần. Lần thứ hai: “Ta biết ngươi ở đó. Ta nghe ngươi thở.”
+
+                        Ta không đáp.
+
+                        Rồi hắn làm đúng việc ta chờ: hắn ném tấm phù về phía tiếng thở. Nó nổ vào
+                        vách, đá văng vào mặt ta, và ta nghe hắn nguyền — hắn vừa ném mất thứ cuối
+                        cùng hắn có.
+
+                        Ta đứng dậy, đi ra, và ta không chạy.
+
+                        Hắn nhìn ta tới gần. Trong tay hắn không còn gì.
+
+                        “Giết ta đi,” — hắn nói.
+
+                        “Không.”
+
+                        Ta lấy túi hắn rồi đi. Ta nghe hắn thở phía sau, chậm dần, và ta không quay
+                        lại. Ta không giết hắn. Ta chỉ không cứu hắn.
+
+                        “Đó cũng là một cách chọn,” — kiếm linh nói, rất khẽ. — “Nhưng nhớ: ngươi đã
+                        chọn đứng nhìn. Đừng gọi nó là lòng nhân.”
+
+                        Trong túi hắn có ba viên linh thạch và một mảnh phù chưa dùng — mảnh phù ấy
+                        đã nổ hết, chỉ còn cái vỏ.
+
+                          1. Đi tiếp
+                             → c2_d25
+
                         ── [c2_d25b] · Hốc đá phía tây — chạng vạng
 
                         Ta tự tìm chỗ nấp.
@@ -4337,6 +4599,8 @@ bước vào… không phải con đường võ lâm.”
 
                           1. Khép lại Chương 2
                              → KẾT THÚC CHƯƠNG
+                          2. Quay lại tìm hắn
+                             → c2_d27c_0
 
                         ── [c2_d23_1] · Khe đá — đêm
 
@@ -4395,7 +4659,66 @@ bước vào… không phải con đường võ lâm.”
 
                         Hắn không đợi ta.
 
-                          1. Đi tìm hắn
+                          1. Đứng dậy, hai kiếm trong tay
+                             → c2_d22c_0
+
+                        ── [c2_d22c_0] · Gờ đá — canh ba
+
+                        Ta mở mắt trước khi chúng tới.
+
+                        Kiếm linh đã nói trước: ba kẻ. Một tầng bốn, hai tầng ba. Chúng không đi
+                        thành hàng — một tên vòng ra sau gờ đá, ta nghe tiếng sỏi rơi ở chỗ không ai
+                        đáng phải đi.
+
+                        Ta đặt hai thanh kiếm ngang đùi và chờ.
+
+                        Điều thứ nhất ta hiểu trong đêm ấy: chúng không tới để giết. Chúng tới để
+                        bắt. Kẻ bị bắt làm lô đỉnh thì sống thêm vài tháng, và trong vài tháng ấy chủ
+                        nó lấy được nhiều hơn từ một cái xác khô.
+
+                        Điều thứ hai: kẻ đi bắt phải giữ ngươi nguyên vẹn. Muốn giữ nguyên vẹn thì
+                        phải tới gần. Tới gần thì mất cái lợi thế của kẻ mạnh.
+
+                        “Tới đi,” — ta nói, không thành tiếng.
+
+                        Tên thứ nhất bước vào vòng đá. Hắn thấy ta ngồi, và hắn chậm lại đúng một
+                        nhịp — hắn không nghĩ kẻ bị bắt lại đang chờ.
+
+                        Một nhịp ấy là tất cả những gì ta có.
+
+                          1. Chém vào cổ tay hắn — chỗ hắn cầm dây trói
+                             → c2_d22c_1
+                          2. Lùi vào khe hẹp, bắt chúng vào một người một lúc
+                             → c2_d22c_2
+                          3. Ném đá gây tiếng phía đông, rồi chạy
+                             → c2_d22c_3
+
+                        ── [c2_d22c_1] · Gờ đá — canh ba
+
+                        Kiếm ngắn ra khỏi vỏ không kêu.
+
+                        Ta chém vào cổ tay hắn — không phải cổ, không phải ngực, mà cổ tay, chỗ hắn
+                        cầm sợi dây để trói người. Hắn buông. Ta xoay, và thanh kiếm dài đã ở đó, đỡ
+                        một đòn từ tên thứ hai — đòn ấy nặng tới mức tay ta tê lên tận vai.
+
+                        Ta không đánh trả. Ta lùi.
+
+                        Kiếm linh dạy đúng: đánh như kẻ muốn sống, không đánh như kẻ muốn thắng. Ta
+                        không cần hạ ba kẻ tầng ba. Ta chỉ cần làm một trong ba mất khả năng giữ ta,
+                        rồi bước qua chỗ hắn vừa đứng.
+
+                        Tên thứ ba hét lên. Ta nghe hắn lao tới và ta không quay lại.
+
+                        Sau lưng, đá lở. Tiếng chân thưa dần.
+
+                        Ta chạy tới khi hết dốc, rồi ta ngồi xuống và nôn. Hai tay ta run — không
+                        phải vì sợ. Vì ta vừa đánh ba người và ta vẫn còn sống, và ta không biết có
+                        nên thấy mừng hay không.
+
+                        “Mừng đi,” — kiếm linh nói. — “Rồi quên đi. Đêm nay chưa phải đêm ngươi được
+                        phép nhớ.”
+
+                          1. Đi tìm Hàn Lập
                              → c2_d23b
                           2. Không tìm. Đi đường của mình.
                              → c2_d23c
@@ -4489,6 +4812,75 @@ bước vào… không phải con đường võ lâm.”
 
                           1. Cúi đầu cảm ơn, đi
                              → c2_d24b
+
+                        ── [c2_d22c_2] · Khe đá — canh ba
+
+                        Ta lùi vào chỗ hẹp nhất của khe.
+
+                        Đó là việc duy nhất một kẻ tầng hai làm được trước ba kẻ tầng ba: chọn đất
+                        đánh. Trong khe, chúng không vây được ta. Chúng chỉ vào được một người một
+                        lúc.
+
+                        Tên thứ nhất chui vào. Hắn phải cúi. Hắn phải bỏ thanh đao dài lại phía ngoài
+                        — trong khe ấy, đao dài là của ta.
+
+                        Ta đâm vào vai hắn, chỗ giáp hở, chỗ ta đã nhìn thấy lúc hắn cúi. Hắn gào.
+                        Tên thứ hai kéo hắn ra.
+
+                        Rồi chúng đứng ngoài bàn bạc, giọng rất thấp. Một tên nói: “Đốt.”
+
+                        Ta không chờ. Ta đã tính tới việc chúng đốt. Khe này có hai đầu — đầu kia hẹp
+                        tới mức ta phải bò, và ta đã nhìn thấy nó trước khi trời tối.
+
+                        Ta bò. Đá cào rách lưng. Phía sau, lửa bùng trong khe, và ta cảm được hơi
+                        nóng trên gót chân.
+
+                        Ta ra được đầu kia. Ta nằm trên đất, thở, nghe tiếng lửa sau lưng.
+
+                        “Ngươi học nhanh,” — kiếm linh nói. — “Đau không?”
+
+                        “Đau.”
+
+                        “Tốt. Nhớ cái đau này. Nó rẻ hơn nhiều so với những cái đau sau.”
+
+                          1. Đi tìm Hàn Lập
+                             → c2_d23b
+                          2. Không tìm. Đi đường của mình.
+                             → c2_d23c
+
+                        ── [c2_d22c_3] · Sườn đá — canh ba
+
+                        Ta ném đá về phía đông, và ba kẻ ấy quay đầu.
+
+                        Cái bẫy rẻ nhất trên đời, và nó hiệu quả — kẻ đi bắt người trong đêm luôn sợ
+                        bị bắt lại. Chúng quay đi. Ta chạy về phía tây.
+
+                        Nhưng chúng không chia nhau đuổi theo tiếng động. Chúng chia nhau chặn đường.
+                        Một tên vòng lên, hai tên theo sau. Chúng đã làm việc này nhiều lần rồi.
+
+                        Một tên bắt được vạt áo ta. Ta xoay người, để vạt áo lại trong tay hắn, và
+                        chạy tiếp, và nghe hắn nguyền.
+
+                        Rồi một tên khác chặn trước mặt.
+
+                        Ta không dừng. Ta hạ thấp người, chui qua cánh tay hắn, và đâm — không vào
+                        người, mà vào bắp chân, chỗ duy nhất ta với tới. Hắn đổ. Ta bước qua hắn.
+
+                        Ta chạy tới khi không còn nghe gì ngoài hơi thở của chính mình.
+
+                        “Ngươi vừa làm một việc rất ngu,” — kiếm linh nói. — “Rồi làm một việc rất
+                        đúng.”
+
+                        “Việc ngu là gì?”
+
+                        “Chạy khi chưa biết chúng đứng ở đâu.” — Nó ngừng. — “Việc đúng là đâm vào
+                        chân. Không ai chết vì mất một bàn chân. Nhưng cũng không ai đuổi theo ngươi
+                        với một bàn chân.”
+
+                          1. Đi tìm Hàn Lập
+                             → c2_d23b
+                          2. Không tìm. Đi đường của mình.
+                             → c2_d23c
 
                         ── [c2_d21_1] · Dãy hàng phía bắc — trưa
 
@@ -5903,9 +6295,68 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                           Phía đông, khói bắt đầu bốc lên.
 
                           1. Đi tìm Hàn Lập
-                             → c2_p22
+                             → c2_p22c_0
                           2. Tự tìm chỗ nấp
                              → c2_p22b
+
+                        ── [c2_p22c_0] · Miệng khe phía bắc — chiều ngày cuối
+
+                        Ta đi về phía bắc, men theo vách đá, và ta thấy hắn trước khi hắn thấy ta.
+
+                        Hắn ngồi dựa vách, một tay ép vào hông, máu chảy qua kẽ tay. Áo xám, thêu chỉ
+                        bạc ở cổ tay — kẻ này khác ba kẻ đêm trước. Kẻ này có chức phận.
+
+                        Khối ngọc cốt trong ngực ta đã tối dần từ sáng. Tuyết Cơ ngủ. Ta một mình.
+
+                        Hắn ngẩng lên khi nghe đá dưới chân ta.
+
+                        “Luyện Khí tầng hai.” — Hắn cười, và cái cười làm máu chảy nhanh hơn. — “Đêm
+                        nay ta gặp vận may.”
+
+                        Hắn không đứng dậy được. Nhưng hắn còn tay, và trong tay hắn có một tấm phù
+                        đã bóc khỏi bao.
+
+                        Ta đứng cách hắn bốn bước. Bốn bước ấy là khoảng cách giữa một kẻ sắp chết và
+                        một kẻ có thể chết cùng hắn.
+
+                          1. Lao vào trước khi hắn kịp ném phù
+                             → c2_p22c_1
+                          2. Nấp sau vách, chờ hắn ném phù rồi mới ra
+                             → c2_p22c_2
+
+                        ── [c2_p22c_1] · Miệng khe phía bắc — chiều ngày cuối
+
+                        Bốn bước.
+
+                        Ta lao vào trong ba bước, và tấm phù bùng sáng đúng lúc ta tới — hắn không
+                        kịp ném, nhưng nó vẫn nổ. Một luồng nóng quất ngang vai ta, và ta nghe tiếng
+                        da mình cháy.
+
+                        Ta vẫn tới được. Cùi chỏ ta vào đúng chỗ ta nhắm: dưới xương sườn, chỗ hắn
+                        đang ép tay. Rồi ta đánh lần thứ hai, và lần thứ ba.
+
+                        Hắn không kêu. Hắn nhìn ta, ngạc nhiên — như nhìn một thứ không đáng phải
+                        ngạc nhiên. Rồi hắn đổ sang bên.
+
+                        Ta ngồi xuống cạnh hắn, và ta ngồi đó rất lâu.
+
+                        Ta vừa giết người bằng tay không.
+
+                        Ta đã thấy người chết. Ta đã thấy Mạc Đại Phu chết ở cổng đông. Nhưng lần ấy
+                        ta đứng nhìn. Lần này ta là người làm ra nó.
+
+                        Ta lục áo hắn. Ta không muốn, nhưng ở chỗ này kẻ chết không cần gì nữa.
+
+                        Trong túi hắn có ba viên linh thạch và một mảnh phù chưa dùng.
+
+                        Khi trời tối hẳn, khối ngọc trong ngực ta ấm lại một chút. Giọng Tuyết Cơ,
+                        rất yếu:
+
+                        “Ngươi làm gì ta cũng biết.” — Nàng ngừng. — “Ta không nói ngươi sai. Ta chỉ
+                        nói: đừng để nó dễ.”
+
+                          1. Đi tiếp
+                             → c2_p22
 
                         ── [c2_p22] · Khe đá — chạng vạng
 
@@ -6011,6 +6462,8 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                           4. “Ngươi là kẻ giết người.”
                              → c2_p24_3
                              [đổi: Hàn Lập -20]
+                          5. Đi về phía đông, chỗ có tiếng đánh nhau
+                             → c2_p23c_0
 
                         ── [c2_p24_0] · Khe đá — đêm ngày cuối
 
@@ -6421,6 +6874,177 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
                           1. Rời thung lũng
                              → c2_p24
 
+                        ── [c2_p23c_0] · Sườn đông — đêm ngày cuối
+
+                        Ta đi về phía đông, chỗ có tiếng đánh nhau.
+
+                        Ta tìm thấy hắn giữa hai tảng đá: một kẻ áo xám đứng, một xác người dưới chân
+                        hắn. Hắn đang lục túi cái xác ấy, chậm và kỹ, như người không sợ bị ai thấy.
+
+                        Rồi hắn ngẩng lên.
+
+                        “Luyện Khí tầng hai.” — Hắn nói, không ngạc nhiên. — “Đêm nay ta gặp nhiều
+                        vận may.”
+
+                        Hắn đứng thẳng. Hắn không vội. Đó là điều làm ta sợ nhất — kẻ không vội là kẻ
+                        biết mình thắng.
+
+                        Khối ngọc trong ngực ta tối hẳn. Tuyết Cơ ngủ. Không có ai nói cho ta biết
+                        phải làm gì.
+
+                        “Cái túi của Hàn Lập,” — hắn nói. — “Ngươi biết hắn ở đâu.”
+
+                        “Không.”
+
+                        “Ngươi nói dối dở lắm.” — Hắn bước một bước. — “Ta không cần ngươi nói. Ta
+                        chỉ cần ngươi dẫn đường.”
+
+                          1. Bóc tráo phù trong túi, ném vào chân hắn rồi chạy
+                             → c2_p23c_1
+                             [cần: trong túi có T; trong túi có r; trong túi có á; trong túi có o; trong túi có  ; trong túi có p; trong túi có h; trong túi có ù; trong túi có  ; trong túi có c; trong túi có h; trong túi có ư; trong túi có a; trong túi có  ; trong túi có d; trong túi có ù; trong túi có n; trong túi có g]
+                          2. Chỉ tay về phía bắc, nói hắn đi hướng ấy
+                             → c2_p23c_2
+                          3. Ném đá lệch hướng rồi chạy
+                             → c2_p23c_3
+                          4. Vận quyền Thất Huyền. Đánh tới cùng.
+                             → c2_p23c_thua
+
+                        ── [c2_p23c_1] · Sườn đông — đêm ngày cuối
+
+                        Ta bóc tráo phù bằng răng, vì tay ta đang siết lại.
+
+                        Ta ném vào chân hắn, không ném vào người — tráo này nổ thành một vòng, và ta
+                        đã học đêm trước rằng cái vòng ấy không giết ai. Nó chỉ làm người ta quỳ
+                        xuống.
+
+                        Hắn quỳ. Hắn không kêu, nhưng hắn quỳ.
+
+                        Ta chạy. Ta chạy vòng qua tảng đá, và ta nghe hắn nguyền phía sau — nguyền
+                        chứ không đuổi, vì kẻ vừa bị tráo nổ vào chân phải mất một lúc mới đứng dậy
+                        nổi.
+
+                        “Ngươi vừa dùng thứ cuối cùng ngươi có,” — ta nói với khối ngọc đang ngủ.
+                        Nàng không trả lời.
+
+                        Ta chạy tới khi trông thấy Hàn Lập, ngồi trong khe đá, cái hòm gỗ dựng bên
+                        cạnh. Ta ngồi xuống cạnh hắn và ta không nói gì về chuyện vừa xảy ra. Hắn cũng
+                        không hỏi.
+
+                        Ở chỗ này, người ta không hỏi nhau những câu như thế.
+
+                          1. Đi tiếp
+                             → c2_p24
+
+                        ── [c2_p23c_2] · Sườn đông — đêm ngày cuối
+
+                        Ta chỉ tay về phía bắc.
+
+                        “Hắn đi hướng ấy. Có một mình. Ta thấy hắn đi lúc trời còn sáng.”
+
+                        Đó là một câu nói dối dở. Ta biết nó dở. Hắn cũng biết.
+
+                        Hắn nhìn ta một lúc lâu, rồi hắn cười.
+
+                        “Ngươi không giỏi nói dối.” — Hắn hạ tay xuống. — “Nhưng ngươi giỏi chọn. Kẻ
+                        biết chỉ sai đường thì biết mình đang ở đâu trong câu chuyện này.”
+
+                        Hắn đi về phía bắc.
+
+                        Ta đứng lại rất lâu sau khi hắn khuất. Rồi ta ngồi xuống, và ta nhận ra hai
+                        chân ta đã mềm từ lúc nào.
+
+                        Ta vừa chỉ đường cho một kẻ đi giết người. Ta không tự tay làm gì. Nhưng ta
+                        cũng không ngăn.
+
+                        Khối ngọc trong ngực ta im. Nàng ngủ, và ta mừng vì nàng ngủ — vì nếu nàng
+                        tỉnh, nàng sẽ hỏi ta một câu mà ta không muốn trả lời.
+
+                        Đó là lần đầu ta thấy mình mừng vì có người không ở đó để nhìn.
+
+                          1. Đi tiếp
+                             → c2_p24
+
+                        ── [c2_p23c_3] · Sườn đông — đêm ngày cuối
+
+                        Ta ném đá.
+
+                        Không ném vào hắn — ném vào vách đá phía sau hắn, chỗ có một hốc tối. Tiếng
+                        đá rơi ở đó, và hắn quay đầu.
+
+                        Hắn quay đầu chỉ nửa nhịp. Nhưng nửa nhịp ấy đủ để ta bước vào bóng tối giữa
+                        hai tảng đá và không còn ở chỗ hắn đang nhìn.
+
+                        “Ngươi nghĩ trò ấy hiệu quả?” — hắn nói, vẫn không vội.
+
+                        “Không.” — Ta nói thật. — “Nhưng ta chỉ cần hơn ngươi một nhịp.”
+
+                        Khối ngọc trong ngực ta tối hẳn, và không có ai nói cho ta biết phải làm gì.
+                        Ta đứng im trong bóng tối, nén khí tức — việc duy nhất ta học được trong hai
+                        ngày qua mà không cần ai dạy lại.
+
+                        Hắn bước tới, rồi hắn quay người, và ta chạy vòng theo vách về phía con đường
+                        mòn phía bắc.
+
+                        Hắn đuổi rất lâu. Ta nghe tiếng hắn cho tới khi tiếng ấy lẫn vào tiếng lửa.
+
+                        Khi trời gần sáng, khối ngọc khẽ ấm. Giọng Tuyết Cơ, rất yếu: “Ngươi chạy.”
+
+                        “Ừ.”
+
+                        “Hai lần trong một đêm.” — Nàng im. — “Ta hồi đó sẽ đánh. Ta đánh trả mọi
+                        thứ, và ta đã thua mọi thứ. Ngươi làm được việc ta không làm được.”
+
+                        “Ta chỉ sợ.”
+
+                        “Sợ cũng là một cách khôn.” — Nàng ngừng. — “Đừng để ai dạy ngươi khác.”
+
+                          1. Đi tiếp
+                             → c2_p24
+
+                        ── [c2_p23c_thua] · Sườn đông — đêm ngày cuối
+
+                        Ta vận quyền Thất Huyền.
+
+                        Bộ quyền ấy dạy ta giữ mạng, không dạy ta thắng kẻ tầng năm. Ta biết điều đó.
+                        Nhưng ta không còn gì khác — khối ngọc đã tối, và không có ai nói cho ta biết
+                        phải làm gì.
+
+                        Hắn không rút vũ khí. Hắn chờ ta tới.
+
+                        Đòn đầu ta đỡ được. Đòn thứ hai ta đỡ được. Đòn thứ ba thì không — ta không
+                        kịp thấy nó, ta chỉ thấy trời nghiêng, và đá dưới lưng ta lạnh.
+
+                        Ta nằm ngửa, nhìn lên. Hắn đứng trên ta, và hắn không vội.
+
+                        “Quyền pháp cũng được,” — hắn nói, giọng như đang nhận xét một món hàng. —
+                        “Nhưng ngươi đánh như kẻ muốn thắng.”
+
+                        Đánh như kẻ muốn thắng.
+
+                        Ta muốn nói với hắn rằng ta đã được dạy khác, rằng ta biết, rằng ta đã nghe
+                        câu ấy một lần trong bóng tối khe đá. Nhưng ta không nói được. Máu trong miệng
+                        ta nhiều hơn không khí.
+
+                        Hắn cúi xuống, lấy túi ta và cái bọc trong ngực áo ta.
+
+                        Rồi hắn khựng lại.
+
+                        “Khối ngọc này…” — Hắn nhìn nó rất lâu. Rồi hắn nhìn ta, và lần này mắt hắn
+                        khác hẳn. — “Ngươi biết trong này có gì không?”
+
+                        Ta không trả lời được.
+
+                        “Không sao.” — Hắn cất khối ngọc vào áo. — “Ta sẽ tự hỏi nó.”
+
+                        Rồi hắn đi.
+
+                        Ta nằm trên đá. Khối ngọc trong ngực hắn lạnh dần, và ta biết ta vừa trao cho
+                        người ta thứ mà cả giới tu tiên giết nhau để có.
+
+                        Đó là chỗ ta chết. Không phải ở cổ họng.
+
+                        Và nó còn tệ hơn.
+
                         ── [c2_p23_1] · Khe đá — chạng vạng
 
                         “Ta không đọc được vật.”
@@ -6456,6 +7080,42 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
 
                           1. Nhìn kỹ
                              → c2_p24
+
+                        ── [c2_p22c_2] · Sau vách đá — chiều ngày cuối
+
+                        Ta nấp sau vách và chờ.
+
+                        Đó là việc khó nhất ta từng làm. Hắn đang chảy máu. Hắn sẽ chết nếu ta không
+                        làm gì, và nếu ta ra thì hắn sẽ ném tấm phù, và hắn sẽ không chết một mình.
+
+                        Hắn gọi ta hai lần. Lần thứ hai: “Ta biết ngươi ở đó. Ta nghe ngươi thở.”
+
+                        Ta không đáp.
+
+                        Rồi hắn ném tấm phù về phía tiếng thở. Nó nổ vào vách, đá văng vào mặt ta, và
+                        ta nghe hắn nguyền — hắn vừa ném mất thứ cuối cùng hắn có.
+
+                        Ta đứng dậy, đi ra, và ta không chạy.
+
+                        Hắn nhìn ta tới gần. Trong tay hắn không còn gì.
+
+                        “Giết ta đi,” — hắn nói.
+
+                        “Không.”
+
+                        Ta lấy túi hắn rồi đi. Ta nghe hắn thở phía sau, chậm dần, và ta không quay
+                        lại. Ta không giết hắn. Ta chỉ không cứu hắn.
+
+                        Ta đi tiếp rất lâu trong im lặng, và cái im lặng ấy nặng hơn tiếng hắn gọi.
+
+                        Ta không giết. Nhưng ta cũng không cứu. Ở chỗ này, hai việc ấy có khác nhau
+                        không?
+
+                        Trong túi hắn có ba viên linh thạch và một mảnh phù — mảnh phù ấy đã nổ hết,
+                        chỉ còn cái vỏ.
+
+                          1. Đi tiếp
+                             → c2_p22
 
                         ── [c2_p22b] · Hốc đá phía tây — chạng vạng
 
@@ -6519,6 +7179,8 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
 
                           1. Khép lại Chương 2
                              → KẾT THÚC CHƯƠNG
+                          2. Quay lại tìm hắn
+                             → c2_p23c_0
 
                         ── [c2_p20_1] · Khe đá — đêm
 
@@ -6582,7 +7244,69 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
 
                         Hắn không đợi ta.
 
-                          1. Đi tìm hắn
+                          1. Đứng dậy, vận quyền
+                             → c2_p19c_0
+
+                        ── [c2_p19c_0] · Gờ đá — canh ba
+
+                        Ta mở mắt trước khi chúng tới.
+
+                        Khối ngọc cốt trong ngực ấm ran, và Tuyết Cơ đã nói trước: ba kẻ. Một tầng
+                        bốn, hai tầng ba. Chúng không đi thành hàng — một tên vòng ra sau gờ đá, ta
+                        nghe tiếng sỏi rơi ở chỗ không ai đáng phải đi.
+
+                        “Nén khí tức,” — nàng nói. — “Ta dạy ngươi rồi. Đừng đánh. Đánh là chết.”
+
+                        Ta nén. Khí tức ta chìm xuống như đá chìm xuống nước.
+
+                        Tên thứ nhất đi qua chỗ ta nấp, cách hai bước, và hắn không thấy ta. Hắn đi
+                        tiếp.
+
+                        Nhưng tên thứ ba thì dừng lại.
+
+                        “Có người,” — hắn nói.
+
+                        Và hắn quay đầu về phía ta.
+
+                        Ta không còn đường nén nữa. Ta chỉ còn đôi tay, và bộ quyền Thất Huyền đã học
+                        trong cái sân tập đầy máu ấy.
+
+                          1. Đánh vào đầu gối tên thứ ba rồi phá ra
+                             → c2_p19c_1
+                          2. Nén khí tới cùng, chịu một đòn, không phát ra tiếng
+                             → c2_p19c_2
+                          3. Bật dậy, lao qua khoảng trống giữa tên một và tên hai
+                             → c2_p19c_3
+
+                        ── [c2_p19c_1] · Gờ đá — canh ba
+
+                        Quyền Thất Huyền không phải thứ để đánh người mạnh hơn. Ta biết điều ấy từ
+                        buổi đầu, khi sư huynh dạy ta và nói: “Bộ này để giữ mạng, không phải để
+                        thắng.”
+
+                        Ta đánh vào đầu gối hắn — chỗ khớp, chỗ không có giáp, chỗ một cú đấm đúng
+                        lực làm người ta phải quỳ.
+
+                        Hắn quỳ. Đòn trả của hắn vẫn tới — một cái tát vào vai ta, và vai ta tê tới
+                        cổ.
+
+                        Ta không đánh nữa. Ta chạy.
+
+                        Tên thứ nhất đuổi. Ta nghe hắn sau lưng, rồi ta nghe tiếng hắn ngã — hắn vấp
+                        vào chính tên vừa quỳ dưới đá.
+
+                        Ta chạy tới khi hết dốc. Ta ngồi xuống và ta nôn, và ta nhận ra tay ta đang
+                        run.
+
+                        “Lần đầu,” — Tuyết Cơ nói, giọng nàng nhẹ hơn ta từng nghe. — “Ai cũng nôn
+                        lần đầu. Đừng xấu hổ.”
+
+                        “Ta không sợ.”
+
+                        “Ta không nói ngươi sợ. Ta nói ngươi nôn.” — Nàng ngừng. — “Ngươi còn sống.
+                        Đó là tất cả những gì cần đêm nay.”
+
+                          1. Đi tìm Hàn Lập
                              → c2_p20b
                           2. Không tìm. Đi đường của mình.
                              → c2_p20c
@@ -6682,6 +7406,71 @@ bảo đệ tử mình: đừng ở lại đây. Đi về phía nam.”
 
                           1. Cúi đầu cảm ơn, đi
                              → c2_p21b
+
+                        ── [c2_p19c_2] · Gờ đá — canh ba
+
+                        Ta nén khí tức tới cùng.
+
+                        Đó là việc khó nhất ta từng làm. Nén khí tức thì người ta phải thả lỏng, mà
+                        thả lỏng thì không đỡ được đòn. Ta chọn không đỡ.
+
+                        Tên thứ ba đá vào sườn ta, một lần, để chắc. Ta không kêu. Ta để hơi thở mình
+                        đứt, rồi ta thở lại, rất chậm, rất nhẹ.
+
+                        “Không có ai,” — hắn nói với hai tên kia. — “Con thỏ.”
+
+                        Chúng đi.
+
+                        Ta nằm im thêm rất lâu, lâu hơn cần thiết, vì ta không chắc chân mình còn
+                        đứng được.
+
+                        “Ngươi vừa làm một việc mà ta không dạy,” — Tuyết Cơ nói.
+
+                        “Nén tới cùng?”
+
+                        “Chịu đòn mà không đánh trả.” — Nàng im. — “Ta đã sống ngàn năm và ta chưa
+                        từng làm được việc ấy. Ta luôn đánh trả.”
+
+                        Ta ngồi dậy. Sườn ta đau tới mức ta phải thở bằng nửa ngực.
+
+                        “Ngươi học được từ đâu?” — nàng hỏi.
+
+                        “Từ cái sân tập,” — ta nói. — “Đứng nhìn người khác chết.”
+
+                          1. Đi tìm Hàn Lập
+                             → c2_p20b
+                          2. Không tìm. Đi đường của mình.
+                             → c2_p20c
+
+                        ── [c2_p19c_3] · Gờ đá — canh ba
+
+                        Ta bật dậy và lao qua khoảng trống giữa tên thứ nhất và tên thứ hai.
+
+                        Khoảng trống ấy rộng chừng hai bước. Ta đã nhìn nó từ lúc chúng vào, và ta đã
+                        chờ đúng lúc cả hai cùng quay về phía tên thứ ba đang nói.
+
+                        Tên thứ hai chộp được vai ta. Ta xoay, để vai tuột khỏi tay hắn, và ta đánh
+                        một cú vào hông hắn bằng cùi chỏ — cú duy nhất ta đủ chỗ để đánh.
+
+                        Hắn gập người. Ta bước qua.
+
+                        Ta chạy vào bóng tối, và bóng tối ở đây dày hơn ta tưởng — ta đâm vào một bụi
+                        gai, ta ngã, ta đứng dậy, và ta chạy tiếp.
+
+                        Sau lưng, tiếng chân đã thôi.
+
+                        “Ngươi chọn chỗ đánh tốt,” — Tuyết Cơ nói.
+
+                        “Ta chọn chỗ chạy.”
+
+                        “Đó là cùng một việc.” — Nàng ngừng. — “Ngươi biết không: kẻ mạnh chọn chỗ
+                        đánh. Kẻ sống chọn chỗ chạy. Ngàn năm nay ta gặp rất ít kẻ làm được việc thứ
+                        hai.”
+
+                          1. Đi tìm Hàn Lập
+                             → c2_p20b
+                          2. Không tìm. Đi đường của mình.
+                             → c2_p20c
 
                         ── [c2_p18_1] · Dãy hàng phía bắc — trưa
 

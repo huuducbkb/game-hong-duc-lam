@@ -652,6 +652,133 @@ SCENES = [
         "smoke. Cold grey sky, bare rock, mist in the folds of the ground. Composition keeps the upper "
         "part calm and open for game text. Alone, upward, unrepentant.",
     },
+    # ─ Ba kẻ áo xám đêm: ba cách đánh (tán tu) ─
+    {
+        "key": "bc_c2_ba_ke_ao_xam_dem",
+        "name": "Ba kẻ áo xám — chặn giữa đường đêm",
+        "doan": "c2_d22c_0",
+        "use": "Ba kẻ áo xám chặn người chơi giữa đường đêm, chưa rút vũ khí (c2_d22c_0).",
+        "body": "Night on a narrow mountain path: three men in coarse grey robes stand across the way, "
+        "spaced apart, faces half in shadow, hands empty and loose at their sides. Behind them a dark "
+        "slope and low mist; a thin cold moonlight from one side. A ragged youth stands facing them, "
+        "small and tense. Composition keeps the upper part dark and calm for game text. Outnumbered, "
+        "quiet, about to turn violent.",
+    },
+    {
+        "key": "bc_c2_da_lenh_dem",
+        "name": "Đá lệch hướng — né rồi chạy",
+        "doan": "c2_d22c_1",
+        "use": "Người chơi ném đá lệch hướng rồi chạy; ba kẻ áo xám quay đầu theo tiếng (c2_d22c_1).",
+        "body": "Night on a rocky slope, seen low and wide: a small stone still in the air above the "
+        "rocks, three grey-robed figures turning their heads toward the sound, one already stepping "
+        "that way. In the near foreground the back of a ragged youth slipping between two boulders. "
+        "Cold moonlight, long shadows, dust in the air. Composition keeps the upper part calm and dark "
+        "for game text. Quick, clever, barely breathing.",
+    },
+    {
+        "key": "bc_c2_khe_da_danh_vo",
+        "name": "Khe đá hẹp — đánh vào chỗ hở rồi lách",
+        "doan": "c2_d22c_2",
+        "use": "Người chơi lách vào khe hẹp, đánh vào đầu gối kẻ thứ nhất rồi chen qua (c2_d22c_2).",
+        "body": "Inside a narrow rock crevice at night: one grey-robed man bent forward, clutching a "
+        "knee, his face twisted; a ragged youth squeezing past him through a gap too narrow for two. "
+        "Two more grey figures behind, blocked by the first. Thin silver light from the crack above, "
+        "grey stone close on both sides. Composition keeps the upper part dark and calm for game text. "
+        "Cramped, violent, escaping.",
+    },
+    {
+        "key": "bc_c2_ba_ke_bo_di",
+        "name": "Ba kẻ áo xám bỏ đi — không ai đuổi",
+        "doan": "c2_d22c_3",
+        "use": "Người chơi chỉ tay về phía bắc nói hắn đi lối đó; ba kẻ áo xám bỏ đi (c2_d22c_3).",
+        "body": "Night on a mountain path: three grey-robed men walking away down a slope, seen from "
+        "behind, one glancing back over his shoulder. In the foreground a ragged youth stands still, "
+        "one arm half raised as if he has just pointed. Cold moonlight, mist between rocks. Composition "
+        "keeps the upper part calm and empty for game text. A lie told well, and the cost of it still to come.",
+    },
+    # ─ Tà tu bị thương ở miệng khe (tán tu) ─
+    {
+        "key": "bc_c2_ta_tu_bi_thuong",
+        "name": "Tà tu bị thương — ngồi dựa vách khe",
+        "doan": "c2_d25c_0",
+        "use": "Tà tu bị thương nặng ngồi dựa vách khe, thở dốc, kiếm gãy bên cạnh (c2_d25c_0).",
+        "body": "Inside a rock crevice at dusk: a man in a torn dark robe sits slumped against the stone "
+        "wall, one hand pressed to a wound at his side, breath shallow, a broken sword on the ground "
+        "beside him. His robe has a faded sect mark. Dust, cold grey light from the crevice mouth. "
+        "Composition keeps the upper part dark and calm for game text. Dangerous even now, and dying.",
+    },
+    {
+        "key": "bc_c2_ta_tu_cheo_mieng_khe",
+        "name": "Tà tu lết tới miệng khe",
+        "doan": "c2_d25c_1",
+        "use": "Tà tu lết tới miệng khe, để lại vệt máu trên đá (c2_d25c_1).",
+        "body": "A rock crevice at dusk seen from inside: a dark-robed man dragging himself toward the "
+        "bright mouth of the crevice, one hand over his side, a wet smear of blood left along the grey "
+        "stone behind him. A ragged youth stands further back in shadow, watching him go. Cold light, "
+        "dust. Composition keeps the upper part calm and empty for game text. Pity and caution at once.",
+    },
+    {
+        "key": "bc_c2_lay_kiem_ta_tu",
+        "name": "Lấy kiếm của tà tu — tra vào vỏ",
+        "doan": "c2_d25c_2",
+        "use": "Người chơi lấy thanh kiếm gãy của tà tu, tra vào vỏ bên hông (c2_d25c_2).",
+        "body": "Close view at dusk: a hand lifting a broken sword from grey stone, the snapped edge "
+        "catching a thin line of light, an empty scabbard held open by another hand. Behind, blurred, "
+        "the dark wall of a crevice and the hem of a dark robe. Dust in the air. Composition centred "
+        "with calm dark space above for game text. Practical, cold, not quite theft.",
+    },
+    # ─ Bị chặn đường ở sườn đông (tán tu) ─
+    {
+        "key": "bc_c2_suon_dong_chan_duong",
+        "name": "Sườn đông — bị chặn đường lúc rời cốc",
+        "doan": "c2_d27c_0",
+        "use": "Người chơi bị chặn ở sườn đông khi rời cốc; phía sau là lửa, phía trước là người (c2_d27c_0).",
+        "body": "A rocky eastern slope above a valley at night: fires glow far below and behind, while "
+        "two grey-robed figures stand ahead on the narrow path, blocking it, faces unreadable in the "
+        "dark. A ragged youth stands between fire and men, a thin sword just drawn, moonlight on the "
+        "blade. Smoke drifting. Composition keeps the upper part dark and calm for game text. Cornered, "
+        "adrenaline, no way but through.",
+    },
+    {
+        "key": "bc_c2_lui_lai_suon_dong",
+        "name": "Lùi lại sườn đông — nhường đường",
+        "doan": "c2_d27c_1",
+        "use": "Người chơi lùi lại nhường đường, hai kẻ áo xám đi qua rồi khuất (c2_d27c_1).",
+        "body": "Night on a narrow rock path: two grey-robed men walking past, close, one turning his "
+        "head slightly toward the viewer; a ragged youth pressed back against the rock wall to let them "
+        "pass, sword lowered. Fires far below, mist. Composition keeps the upper part dark and calm for "
+        "game text. Held breath, humiliated, alive.",
+    },
+    {
+        "key": "bc_c2_menh_lenh_bai_doi_duong",
+        "name": "Đưa lệnh bài đổi đường đi",
+        "doan": "c2_d27c_2",
+        "use": "Người chơi đưa tấm lệnh bài để đổi lấy đường đi; một kẻ áo xám cầm lấy (c2_d27c_2).",
+        "body": "Night on rock: a small dark token held out on an open palm, a grey-robed man's hand "
+        "closing over it, both hands lit by thin moonlight. Behind, a second grey figure waits, and a "
+        "ragged youth watches his own hand give the thing away. Fires below, mist. Composition keeps the "
+        "upper part dark and calm for game text. A trade that costs more than it looks.",
+    },
+    {
+        "key": "bc_c2_rut_kiem_danh_toi_cung",
+        "name": "Rút kiếm — đánh tới cùng",
+        "doan": "c2_d27c_3",
+        "use": "Người chơi rút kiếm đánh tới cùng trên sườn đông; kiếm linh hét lên (c2_d27c_3).",
+        "body": "Night on a rocky slope, close and violent: a thin sword swung hard, its edge catching "
+        "firelight from below, a grey-robed figure recoiling with an arm up. A ragged youth behind the "
+        "blade, mouth open, eyes wide. Smoke, sparks, cold mist. Composition keeps the upper part dark "
+        "and crowded only at the bottom for game text. Desperate, too committed, no plan left.",
+    },
+    {
+        "key": "bc_c2_nga_xuong_suon_dong",
+        "name": "Ngã xuống sườn đông — đêm khép lại",
+        "doan": "c2_d27c_thua",
+        "use": "Kết thua: người chơi ngã xuống sườn đông, kiếm rời tay, lửa xa dần (c2_d27c_thua).",
+        "body": "A rocky slope at night seen from very low, almost at ground level: a thin sword lying "
+        "loose on the stones out of reach, a dark shape of a body fallen on its side, dust settling. Far "
+        "below, the valley fires burn small and distant. Grey moonlight, mist creeping along the ground. "
+        "Composition leaves the upper part vast, dark and calm for game text. Stillness, finality, quiet.",
+    },
 ]
 
 # Nhóm cảnh theo nhịp truyện. `keys` = ảnh của nhóm; `mau` = ảnh mẫu cần đính
@@ -734,6 +861,24 @@ NHOM_CANH = [
      "mota": "Cốc sau lưng im; hai thanh kiếm ấm; mỗi người đi đường mình.",
      "keys": ["bc_c2_chan_nui_chia_tay", "bc_c2_khong_ngoai_lai", "bc_c2_duong_mon_phia_bac"],
      "mau": ["nv_chinh_mau", "nv_han_lap"]},
+    # ─ Ba cảnh chiến đấu + kết thua (thêm cùng nhánh kết thua) ─
+    {"ma": "c2-ba-ke-ao-xam", "phan": "c2", "ten": "Ba kẻ áo xám đêm — ba cách đánh",
+     "mota": "Chặn giữa đường đêm: ném đá lệch hướng, lách khe hẹp đánh đầu gối, hoặc chỉ tay nói dối.",
+     "keys": ["bc_c2_ba_ke_ao_xam_dem", "bc_c2_da_lenh_dem", "bc_c2_khe_da_danh_vo",
+              "bc_c2_ba_ke_bo_di"],
+     "mau": ["nv_chinh_mau"]},
+    {"ma": "c2-ta-tu-bi-thuong", "phan": "c2", "ten": "Tà tu bị thương ở miệng khe",
+     "mota": "Kẻ tà tu thở dốc dựa vách; lết ra miệng khe; thanh kiếm gãy còn đó.",
+     "keys": ["bc_c2_ta_tu_bi_thuong", "bc_c2_ta_tu_cheo_mieng_khe", "bc_c2_lay_kiem_ta_tu"],
+     "mau": ["nv_chinh_mau"]},
+    {"ma": "c2-chan-duong", "phan": "c2", "ten": "Sườn đông — bị chặn đường lúc rời cốc",
+     "mota": "Lửa phía sau, người phía trước: lùi lại, đưa lệnh bài, hay rút kiếm đánh tới cùng.",
+     "keys": ["bc_c2_suon_dong_chan_duong", "bc_c2_lui_lai_suon_dong",
+              "bc_c2_menh_lenh_bai_doi_duong", "bc_c2_rut_kiem_danh_toi_cung"],
+     "mau": ["nv_chinh_mau"]},
+    {"ma": "c2-ket-thua", "phan": "c2", "ten": "Kết thua — ngã xuống sườn đông",
+     "mota": "Kiếm rời tay, đêm khép lại; lửa dưới thung lũng xa dần.",
+     "keys": ["bc_c2_nga_xuong_suon_dong"], "mau": []},
 ]
 
 

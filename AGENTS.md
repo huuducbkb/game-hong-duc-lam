@@ -1911,6 +1911,33 @@ EOF
 
 Cả hai chương phải in `mo coi: []`. Test **N4/Q** đã kiểm tự động điều này.
 
+### Kết thua: đoạn khai hai cờ, không phải "đoạn cụt"
+
+Từ chương 2 có kết thua (`c2_d27c_thua`, `c2_p23c_thua`). Một đoạn kết thua phải khai
+**cả `ket_thuc: true` và `thua: true`**, và **không có `lua_chon`**:
+
+- Thiếu `ket_thuc` → engine coi như cảnh thường, `_goi_y` trả về danh sách lựa chọn rỗng
+  và người chơi kẹt ở một màn im lặng, không biết mình đã chết.
+- Thiếu `thua` → engine coi là **khép chương**: hiện nút "Sang chương 3", tức là người
+  chơi chết mà vẫn đi tiếp.
+- Có `lua_chon` → đó là cảnh thường, không phải kết.
+
+`_goi_y` đặt `state["ket_thuc"] = True` khi bước vào đoạn thua, để bản lưu và payload
+khớp nhau. `_man_ket_thua` trả `thua: true`, `chuong_sau: None`, `lua_chon: []`,
+`cho_phep_tu_do: false`; giao diện dựa vào `kq.thua` để bày nút lùi / chơi lại.
+
+Hai bẫy đã gặp khi thêm kết thua:
+
+- **Test "không có đoạn cụt" báo hỏng** vì nó coi mọi đoạn không có lựa chọn là cụt.
+  Phải cho đoạn `ket_thuc && thua` đi qua — nhưng vẫn kiểm nó khai đủ cờ.
+- **Đường đi trong test phải là đường bấm được.** Hàm tìm đường (`_duong` / `duongToi`)
+  duyệt mọi cạnh, kể cả lựa chọn bị khoá và đoạn thua, nên "tới được" trên giấy mà người
+  chơi thật không tới được. Đã sửa: bỏ cạnh có `dieu_kien` và cạnh dẫn vào đoạn `thua`.
+
+Khi thêm cảnh làm tăng số nhánh, coi chừng **bộ test treo** chứ không hỏng: hàm duyệt hảo
+cảm ở mục L từng đệ quy không có tập đã thăm, thêm vài nhánh là số đường nổ theo cấp số
+nhân (đo được >5 triệu lần gọi). Đã đổi sang duyệt theo cặp `(đoạn, hảo cảm)` đã thăm.
+
 ### Bẫy khi chạy lại `tools/tach_canh.py`
 
 Script này **không idempotent**: chạy hai lần lên cùng dữ liệu sẽ tạo cảnh lồng

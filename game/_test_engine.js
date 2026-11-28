@@ -365,18 +365,38 @@ const doan_truoc = o.doan_hien_tai;
   check("không nhắc chương sai canon cũ",
         JSON.stringify(ch2).includes("Huyết Sát"), false);
 
-  // Mọi đoạn đều tới được màn kết, không nhánh cụt
+  // Mọi đoạn đều tới được màn kết, không nhánh cụt.
+  // Đoạn kết thua (`ket_thuc: true` + `thua: true`) cũng là kết có chủ ý — nhưng
+  // phải khai đủ cả hai cờ, để một đoạn quên viết lựa chọn không lọt qua.
   const theoId = {};
   for (const d of ch2.doan) theoId[d.id] = d;
   function toiKet(id, tham) {
     if (id === "__ket_thuc__") return true;
     if (tham.has(id) || !theoId[id]) return false;
     tham.add(id);
-    const lcs = theoId[id].lua_chon || [];
+    const d = theoId[id];
+    if (d.ket_thuc && d.thua) return true;
+    const lcs = d.lua_chon || [];
     return lcs.length > 0 && lcs.some(l => toiKet(l.den, tham));
   }
   const cut = ch2.doan.filter(d => !toiKet(d.id, new Set())).map(d => d.id);
   check("không có đoạn cụt", cut, []);
+
+  // Một đoạn khai `thua` mà thiếu `ket_thuc` sẽ hiện ra như cảnh cụt im lặng.
+  // `ket_thuc` một mình là đoạn khép chương — hợp lệ. Chỉ đoạn khai `thua` mới
+  // phải đủ cả hai cờ và không có lựa chọn.
+  const thuaThieu = ch2.doan
+    .filter(d => d.thua && !(d.ket_thuc && !(d.lua_chon || []).length))
+    .map(d => d.id);
+  check("đoạn kết thua khai đủ cờ và không có lựa chọn", thuaThieu, []);
+
+  // Người chơi phải tới được đoạn thua bằng cách chơi thật, không chỉ nằm đó.
+  const thuaIds = ch2.doan.filter(d => d.thua).map(d => d.id);
+  const toiDuoc = new Set();
+  for (const d of ch2.doan) {
+    for (const l of d.lua_chon || []) if (l.den !== "__ket_thuc__") toiDuoc.add(l.den);
+  }
+  check("mọi đoạn kết thua đều có đường vào", thuaIds.filter(x => !toiDuoc.has(x)), []);
 
   // Ảnh phải có thật trên đĩa
   const ANH = path.join(GOC, "..", "..", "assets", "scene");
@@ -530,7 +550,11 @@ const doan_truoc = o.doan_hien_tai;
         const [sid, p] = q.shift();
         if (sid === dich) return p;
         for (let i = 0; i < (theoId[sid].lua_chon || []).length; i++) {
-          const den = theoId[sid].lua_chon[i].den;
+          const lc = theoId[sid].lua_chon[i];
+          const den = lc.den;
+          // Bỏ qua lựa chọn bị khoá và đoạn kết thua: đường đi thử nghiệm phải
+          // là đường người chơi thật sự bấm được, không phải đường trên giấy.
+          if (lc.dieu_kien || theoId[den] && theoId[den].thua) continue;
           if (den && den !== "__ket_thuc__" && theoId[den] && !tham.has(den)) {
             tham.add(den); q.push([den, [...p, i]]);
           }

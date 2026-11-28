@@ -780,29 +780,29 @@ check("khoá cache không có NPC vẫn ổn định",
       _AI._khoa_cache("ke", "", ()) == _AI._khoa_cache("ke", "", ()), True)
 
 print("\n=== L. Mỗi nhánh có đủ hai hướng: bạn và thù ===")
-_lo, _hi = {}, {}
-def _walk(sid, aff, _sâu=0):
-    if _sâu > 80 or sid not in _ds2:
-        return
-    _lo[sid] = min(_lo.get(sid, 9e9), aff)
-    _hi[sid] = max(_hi.get(sid, -9e9), aff)
-    for lc in (_ds2[sid].get("lua_chon") or []):
-        a = aff + (((lc.get("hieu_ung") or {}).get("hao_cam") or {}).get("Hàn Lập", 0))
-        den = lc.get("den")
-        if den and den != "__ket_thuc__":
-            _walk(den, a, _sâu + 1)
-for _dau in _ch2b["doan_dau_theo_nhom"].values():
-    _walk(_dau, 0)
+# Duyệt đồ thị theo cặp (đoạn, hảo cảm) đã thăm. Không có tập đã thăm thì số
+# đường đi tăng theo cấp số nhân mỗi lần thêm cảnh — bộ test sẽ treo, không hỏng.
+def _hai_cuc(dau):
+    lo, hi = {}, {}
+    tham = set()
+    hang = [(dau, 0)]
+    while hang:
+        sid, aff = hang.pop()
+        if sid not in _ds2 or (sid, aff) in tham:
+            continue
+        tham.add((sid, aff))
+        lo[sid] = min(lo.get(sid, 9e9), aff)
+        hi[sid] = max(hi.get(sid, -9e9), aff)
+        for lc in (_ds2[sid].get("lua_chon") or []):
+            a = aff + (((lc.get("hieu_ung") or {}).get("hao_cam") or {}).get("Hàn Lập", 0))
+            den = lc.get("den")
+            if den and den != "__ket_thuc__":
+                hang.append((den, a))
+    return lo, hi
 
 # Mỗi nhánh phải chạm được cả hai cực — không chỉ một hướng.
 for _dau in _ch2b["doan_dau_theo_nhom"].values():
-    _l2, _h2 = {}, {}
-    _walk2 = lambda s, a, d=0: (_l2.__setitem__(s, min(_l2.get(s, 9e9), a)),
-                                _h2.__setitem__(s, max(_h2.get(s, -9e9), a)),
-                                [_walk2(lc["den"], a + (((lc.get("hieu_ung") or {}).get("hao_cam") or {}).get("Hàn Lập", 0)), d + 1)
-                                 for lc in (_ds2[s].get("lua_chon") or [])
-                                 if lc.get("den") and lc["den"] != "__ket_thuc__" and lc["den"] in _ds2 and d < 80])
-    _walk2(_dau, 0)
+    _l2, _h2 = _hai_cuc(_dau)
     check(f"nhánh {_dau}: xuống được mức thù địch", min(_l2.values()) <= -40, True)
     check(f"nhánh {_dau}: lên được mức thân thiết", max(_h2.values()) >= 50, True)
 
@@ -837,7 +837,13 @@ check("đoạn kết mới không gắn ảnh (Chương 2 chưa có ảnh)",
 print("\n=== N. Nhận vật phẩm phải khớp lời kể ===")
 from collections import deque as _dq
 
-def _duong(dau, dich, nhom="tan_tu"):
+def _duong(dau, dich, nhom="tan_tu", cho_khoa=False):
+    """Đường ngắn nhất tới `dich`.
+
+    Mặc định chỉ đi lựa chọn người chơi thật sự bấm được. `cho_khoa=True` mở cả
+    lựa chọn bị khoá — dùng khi cần với tới đoạn kết mà chỉ hảo cảm mới mở được.
+    Đoạn kết thua luôn bị loại: nó là ngõ cụt, không dẫn tiếp đi đâu.
+    """
     st = _E2.trang_thai_moi("T", "", nhom)
     st["chuong"] = 2
     _E2.bat_dau(st)
@@ -849,10 +855,14 @@ def _duong(dau, dich, nhom="tan_tu"):
             return path
         for i, lc in enumerate(_ds2[sid].get("lua_chon") or []):
             den = lc.get("den")
+            if den in _ds2 and _ds2[den].get("thua"):
+                continue
+            if lc.get("dieu_kien") and not cho_khoa:
+                continue
             if den and den != "__ket_thuc__" and den in _ds2 and den not in tham:
                 tham.add(den)
                 q.append((den, path + [i]))
-    return None
+    return None if cho_khoa else _duong(dau, dich, nhom, cho_khoa=True)
 
 def _choi(dich, nhom="tan_tu", hao_cam=None):
     st = _E2.trang_thai_moi("T", "", nhom)
@@ -1023,6 +1033,33 @@ for _so in (1, 2):
                 if _ra[_a][1] and _ra[_a][1] == _ra[_b][1]:
                     _giong.append(f'{_d["id"]}: lựa chọn {_ra[_a][0]} và {_ra[_b][0]} ra cùng văn bản')
     check(f"chương {_so}: lựa chọn khác nhau ra cảnh khác nhau", _giong, [])
+
+    # Kết thua phải khai đủ cờ và không có lựa chọn — thiếu `ket_thuc` thì đoạn ấy
+    # hiện ra như cảnh cụt im lặng, người chơi không biết mình đã chết.
+    # `ket_thuc` một mình là đoạn khép chương — hợp lệ. Chỉ đoạn khai `thua` mới
+    # phải đủ cả hai cờ và không có lựa chọn.
+    _thua_sai = [d["id"] for d in _du["doan"]
+                 if d.get("thua")
+                 and not (d.get("ket_thuc") and not (d.get("lua_chon") or []))]
+    check(f"chương {_so}: đoạn kết thua khai đủ cờ", _thua_sai, [])
+
+    _co_loi_vao = {lc["den"] for d in _du["doan"]
+                   for lc in (d.get("lua_chon") or []) if lc["den"] != "__ket_thuc__"}
+    _thua = [d["id"] for d in _du["doan"] if d.get("thua")]
+    check(f"chương {_so}: mọi đoạn kết thua đều có đường vào",
+          [x for x in _thua if x not in _co_loi_vao], [])
+
+    # Màn kết thua phải trả về cờ `thua`, không kèm nút sang chương, để giao diện
+    # biết đây là thua mà mời lùi lại.
+    for _tid in _thua:
+        _st = _E2.trang_thai_moi("T", "", "tan_tu")
+        _st["chuong"] = _so
+        _st["doan_hien_tai"] = _tid
+        _st["ket_thuc"] = True
+        _kq = _E2.goi_y_hien_tai(_st)
+        check(f"chương {_so}: {_tid} trả màn kết thua đúng",
+              [_kq.get("thua"), _kq.get("chuong_sau"), len(_kq.get("lua_chon") or [])],
+              [True, None, 0])
 
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)

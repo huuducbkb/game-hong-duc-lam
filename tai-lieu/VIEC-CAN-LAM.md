@@ -2,7 +2,7 @@
 
 > **Sổ việc sống.** Cập nhật mỗi khi có việc mới hoặc xong việc.
 > Quy ước: `[ ]` chưa làm · `[~]` đang làm · `[x]` xong.
-> Cập nhật lần cuối: **2026-11-28**
+> Cập nhật lần cuối: **2026-11-28 (tiếp 2)**
 
 ---
 
@@ -18,14 +18,35 @@
 - [x] Bảng danh sách ảnh trong Xưởng hết tràn ngang ở khổ 390 (`table-layout:fixed`).
 - [x] Chốt chặn: khối **S** trong `game/_test_api.py` (7 phép kiểm).
 
+### ✅ XONG 2026-11-27 (tiếp 3) — Cảnh chiến đấu chương 2 + nhánh "kết thua"
+
+Trước: chương 2 **không có cảnh nào người chơi thật sự đánh nhau**; cao trào chỉ là đứng
+nhìn Hàn Lập giết người. Nay mỗi nhánh có **3 cảnh đánh** và **1 nhánh thua**.
+
+Chương 2: **140 → 164 đoạn** (thêm 24).
+
+| Nhánh | Cảnh | Mã đoạn |
+|---|---|---|
+| Tán tu | Ba kẻ áo xám đêm (3 cách đánh) | `c2_d22c_0/1/2/3` |
+| Tán tu | Tà tu bị thương ở miệng khe | `c2_d25c_0/1/2` |
+| Tán tu | Bị chặn đường (4 lựa chọn) | `c2_d27c_0/1/2/3` + `c2_d27c_thua` |
+| Môn phái | Ba kẻ áo xám đêm | `c2_p19c_0/1/2/3` |
+| Môn phái | Tà tu bị thương | `c2_p22c_0/1/2` |
+| Môn phái | Bị chặn đường | `c2_p23c_0/1/2/3` + `c2_p23c_thua` |
+
+Kết thua khai `ket_thuc: true` + `thua: true`, **không có `lua_chon`**; giao diện bày nút
+"Lùi lại, đánh khác" và "Chơi lại từ đầu". Canon: người chơi Luyện Khí tầng 1–3 **không
+giết được tà tu tầng cao** — mọi cảnh đánh là thoát thân/chọn địa hình, trừ tà tu đã bị
+thương nặng (và đó là lựa chọn của người chơi).
+
 Đo lại — cả hai phải **0 hỏng**, mã thoát 0:
 
 ```bash
-node game/_test_engine.js      # -> 207 đạt, 0 hỏng
-python3 game/_test_api.py      # -> 258 đạt, 0 hỏng  (cần game_server.py chạy cổng 12001)
+node game/_test_engine.js      # -> 209 đạt, 0 hỏng
+python3 game/_test_api.py      # -> 262 đạt, 0 hỏng  (cần game_server.py chạy cổng 12001)
 ```
 
-Kiểm phủ cảnh Chương 2 (phải ra `0`):
+Kiểm phủ cảnh Chương 2 (phải ra `0` / `0 70`):
 
 ```bash
 python3 -c "
@@ -45,6 +66,11 @@ print(len(thieu - {c['doan'] for c in m.SCENES}), len(m.SCENES))   # -> 0 58"
 - [ ] **Chương 2 — vẽ 58 cảnh nhánh tán tu** (người dùng làm, Xưởng đã có prompt)
   - Đo được: Xưởng ghi `Chương 2 · Thái Nam Sơn Cốc` → **0/58 đã có**, mục tiêu **58/58**
 
+
+Xưởng ảnh: 12 cảnh chiến đấu mới **đã khai** trong `tools/xuong_chuong2.py`
+(**70 cảnh**, 23 nhóm) để khối **S** không báo hỏng — ảnh chưa vẽ, chỉ mới có prompt.
+
+Sơ đồ + txt đã xuất lại: **240 thẻ**, 10 mã cảnh mới, không tràn ngang ở 390.
 
 ### ✅ XONG 2026-11-27 — Chốt chặn "lựa chọn khác nhau phải ra cảnh khác nhau"
 

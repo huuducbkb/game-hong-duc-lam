@@ -2159,6 +2159,23 @@ function hienThi(kq) {
     };
     nav.appendChild(b);
   });
+  // Màn kết thua: người chơi phải có lối ra ngay tại chỗ, không phải tự đoán
+  // là bấm thanh "Lùi" bên dưới. Nút lùi ở đây gọi cùng một đường với thanh dưới.
+  if (kq.thua) {
+    const bl = document.createElement("button");
+    bl.className = "choice";
+    bl.id = "nutLuiThua";
+    bl.innerHTML = '<span class="idx">↩</span> Lùi lại, đánh khác';
+    bl.disabled = lichSu.length <= 0;
+    bl.onclick = () => { if (!dangCho && lichSu.length > 0) $("#nutLui").click(); };
+    nav.appendChild(bl);
+
+    const bc = document.createElement("button");
+    bc.className = "choice";
+    bc.innerHTML = '<span class="idx">↺</span> Chơi lại từ đầu';
+    bc.onclick = () => $("#openReset").click();
+    nav.appendChild(bc);
+  }
   $("#freebar").style.display = (kq.cho_phep_tu_do && coAI) ? "flex" : "none";
   capNhatNutSangChuong(kq);
   capNhatTrangThai(kq.trang_thai);

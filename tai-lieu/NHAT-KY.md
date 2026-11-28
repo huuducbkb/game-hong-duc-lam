@@ -60,6 +60,73 @@ trong sổ việc: **ảnh Chương 2** (nhánh tán tu trắng ảnh từ `c2_d
 
 ---
 
+## 2026-11-27 (tiếp 3) · Chương 2 có cảnh chiến đấu thật + nhánh "kết thua"
+
+Người dùng nêu: **chương 2 không có cảnh nào người chơi thật sự đánh nhau**. Trước đó
+cao trào là người chơi đứng nhìn Hàn Lập giết Kim Quang Thượng Nhân — hoàn toàn thụ động.
+Người dùng chọn: thêm **nhánh kết thua**, và ưu tiên làm việc này trước (ý tưởng RPG
+grind để sau).
+
+**Ràng buộc canon:** người chơi chỉ Luyện Khí tầng 1–3, **không thể giết tà tu**. Nên
+mọi cảnh đánh đều viết theo hướng: thoát thân, chọn địa hình, đánh vào chỗ hở rồi chạy —
+không có cảnh "chém chết tà tu tầng năm". Chỉ hai chỗ người chơi thật sự giết được:
+tà tu **đã bị thương nặng** (tầng thấp, sắp chết), và đó là lựa chọn của người chơi,
+không phải mặc định.
+
+**Đã thêm 24 đoạn** (chương 2: 140 → 164):
+
+- Tán tu: `c2_d22c_0/1/2/3` (ba kẻ áo xám đêm, 3 cách đánh), `c2_d25c_0/1/2` (tà tu bị
+  thương ở miệng khe), `c2_d27c_0/1/2/3` + `c2_d27c_thua` (chặn đường, 4 lựa chọn).
+- Môn phái: `c2_p19c_0/1/2/3`, `c2_p22c_0/1/2`, `c2_p23c_0/1/2/3` + `c2_p23c_thua`.
+
+**Cơ chế mới trong engine:** đoạn kết thua khai `ket_thuc: true` + `thua: true`, không có
+`lua_chon`. `_doan_thua` / `_man_ket_thua` trong `game/engine.py` và `docs/game/engine.js`
+trả `thua: true, chuong_sau: null, cho_phep_tu_do: false`. Giao diện bày nút lùi lại và
+chơi lại ngay trong màn thua, để người chơi không kẹt ở một màn chữ trơ.
+
+**Kiểm chứng (số đo thật):**
+
+```
+node game/_test_engine.js    -> 209 đạt, 0 hỏng
+python3 game/_test_api.py    -> 262 đạt, 0 hỏng
+```
+
+Chứng minh chốt chặn bắt được lỗi, mỗi lần đều thoát mã 1 rồi khôi phục:
+
+- Bỏ `ket_thuc` khỏi `c2_d27c_thua` → `✗ đoạn kết thua khai đủ cờ ... mong đợi: ["c2_d27c_thua"]`
+- Cho mọi cạnh trỏ khỏi `c2_d27c_thua` → `✗ mọi đoạn kết thua đều có đường vào`
+
+Chơi thật trên trình duyệt 390×844 (Playwright + chromium), cả hai nhóm:
+
+- tán tu: `c2_d27 → c2_d27c_0 → c2_d27c_thua`, hiện 2 nút, không có nút sang chương,
+  không tràn ngang (`scrollWidth` 390).
+- môn phái: `c2_p23 → c2_p23c_0 → c2_p23c_thua`, bấm "Lùi lại" về đúng `c2_p23c_0`
+  với đủ 4 lựa chọn.
+- Gọi API thật (`/api/new` → chơi hết chương 1 → `/api/sang_chuong` → tới `c2_d27c_thua`):
+  payload `thua: true`, `chuong_sau: None`, `cho_phep_tu_do: False`, 0 lựa chọn; thử
+  `/api/sang_chuong` khi đang thua bị từ chối đúng.
+
+**Lỗi tự tìm ra khi làm (ghi lại để khỏi lặp):**
+
+1. **Nhánh "tự tìm chỗ nấp" không có phù** → ở ngã ba chỉ còn "chỉ tay phản bạn" hoặc
+   "chết". Thêm lựa chọn thứ ba trung tính (ném đá lệch hướng) để mọi nhánh đều có lối
+   thoát không phải phản bội.
+2. **Test treo chứ không hỏng**: mục L duyệt hảo cảm đệ quy không có tập đã thăm; thêm
+   nhánh là số đường nổ theo cấp số nhân — đo được **>5 triệu lần gọi**. Đổi sang duyệt
+   theo cặp `(đoạn, hảo cảm)` đã thăm.
+3. **Test đi đường trên giấy**: hàm tìm đường duyệt cả lựa chọn bị khoá và đoạn thua, nên
+   báo "tới được" trong khi người chơi thật không tới. Đã bỏ hai loại cạnh đó.
+4. **Khối S (thêm từ commit khác) đòi mọi đoạn tán tu thiếu ảnh phải khai cảnh trong
+   Xưởng.** Mười hai cảnh chiến đấu mới chưa khai → test hỏng. Đã khai đủ (Xưởng: 58 → 70
+   cảnh, 19 → 23 nhóm). Ảnh thì chưa vẽ, chỉ mới có prompt.
+5. **Bản `game/play.html` không có `lichSu`** (cơ chế lùi là riêng của bản `docs/`), nên
+   khối màn thua chép sang bị `ReferenceError`. Bản dev chỉ mời "Chơi lại từ đầu".
+
+Sơ đồ cốt truyện + bản txt đã xuất lại: **240 thẻ** (trước 216), 10 mã cảnh mới có mặt,
+không tràn ngang ở 390, nút tải .txt còn.
+
+---
+
 ## 2026-11-27 (tiếp 2) · Ghi nhớ lỗi "lựa chọn khác nhau ra cùng một cảnh" + chốt chặn thật
 
 Người dùng yêu cầu: **ghi nhớ lỗi này để tương lai không lặp lại**.

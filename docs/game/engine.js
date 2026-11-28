@@ -503,9 +503,50 @@
     return ra;
   }
 
+  function _doan_thua(state) {
+    // Đoạn kết thua là đoạn có `ket_thuc: true` + `thua: true` nằm trong chương,
+    // khác màn khép chương. Trả null khi đang ở màn khép chương bình thường.
+    if (!state.ket_thuc) return null;
+    const ch = load_chuong(state.chuong);
+    const d = ch._theo_id ? ch._theo_id[state.doan_hien_tai] : null;
+    return d && d.ket_thuc && d.thua ? d : null;
+  }
+
+  function _man_ket_thua(state, d) {
+    // Không có nút sang chương: người chơi lùi lại đánh khác, hoặc chơi lại từ đầu.
+    return {
+      doan_id: d.id,
+      hoi: d.hoi || "Kết",
+      boi_canh: d.boi_canh,
+      chuong: state.chuong,
+      ten_chuong: load_chuong(state.chuong).ten,
+      ke: d.ke || "",
+      hinh_anh: d.hinh_anh || null,
+      video: d.video || null,
+      lua_chon: [],
+      cho_phep_tu_do: false,
+      ket_thuc: true,
+      thua: true,
+      chuong_sau: null,
+      chuong_sau_mo: false,
+      thong_bao: [],
+      trang_thai: _trang_thai_gon(state),
+    };
+  }
+
   function _goi_y(state) {
-    if (state.ket_thuc) return _man_ket_chuong(state);
+    if (state.ket_thuc) {
+      const dThua = _doan_thua(state);
+      if (dThua) return _man_ket_thua(state, dThua);
+      return _man_ket_chuong(state);
+    }
     const d = _doan(state);
+    if (d.thua && d.ket_thuc) {
+      // Đặt cờ để bản lưu và payload khớp nhau; `_doan_thua` dựa vào cờ này.
+      state.ket_thuc = true;
+      return _man_ket_thua(state, d);
+    }
+
     const lua_chon = [];
     (d.lua_chon || []).forEach((lc, i) => {
       const hop = _dieu_kien_hop(state, lc.dieu_kien);

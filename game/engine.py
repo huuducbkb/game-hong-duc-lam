@@ -544,11 +544,57 @@ def _npc_trong_canh(d: dict, state: dict) -> list[dict]:
     return ra
 
 
+def _doan_thua(state: dict) -> dict | None:
+    """Đoạn kết thua đang đứng, nếu có.
+
+    Kết thua là đoạn khai `ket_thuc: true` (+ `thua: true`) nằm trong chương,
+    khác màn khép chương. Trả None khi đang ở màn khép chương bình thường.
+    """
+    if not state.get("ket_thuc"):
+        return None
+
+    ch = load_chuong(state["chuong"])
+    d = ch["_theo_id"].get(state.get("doan_hien_tai"))
+    if d and d.get("ket_thuc") and d.get("thua"):
+        return d
+    return None
+
+
+def _man_ket_thua(state: dict, d: dict) -> dict:
+    """Màn kết thua: không có nút sang chương, chỉ có lùi lại hoặc chơi lại."""
+    return {
+        "doan_id": d["id"],
+        "hoi": d.get("hoi") or "Kết",
+        "boi_canh": d.get("boi_canh"),
+        "chuong": state["chuong"],
+        "ten_chuong": load_chuong(state["chuong"])["ten"],
+        "ke": d.get("ke", ""),
+        "hinh_anh": d.get("hinh_anh"),
+        "video": d.get("video"),
+        "lua_chon": [],
+        "cho_phep_tu_do": False,
+        "ket_thuc": True,
+        "thua": True,
+        "chuong_sau": None,
+        "chuong_sau_mo": False,
+        "thong_bao": [],
+        "trang_thai": _trang_thai_gon(state),
+    }
+
+
 def _goi_y(state: dict) -> dict:
     """Trả về đoạn hiện tại ở dạng cho giao diện (giấu thông tin nội bộ)."""
     if state.get("ket_thuc"):
+        d_thua = _doan_thua(state)
+        if d_thua:
+            return _man_ket_thua(state, d_thua)
         return _man_ket_chuong(state)
     d = _doan(state)
+    if d.get("thua") and d.get("ket_thuc"):
+        # Đặt cờ để bản lưu và payload khớp nhau; `_doan_thua` dựa vào cờ này.
+        state["ket_thuc"] = True
+        return _man_ket_thua(state, d)
+
     lua_chon = []
     for i, lc in enumerate(d.get("lua_chon", [])):
         hop = _dieu_kien_hop(state, lc.get("dieu_kien"))
