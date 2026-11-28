@@ -8,6 +8,63 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-28 (tiếp) · Bàn giao: đã đẩy lên live, xác nhận bằng trang thật
+
+Người dùng: *"hãy cập nhập lên repo để tôi chuyển sang khung chat khác làm việc để bạn có
+thể tiếp tục hiểu và làm tiếp"* → phiên này chỉ để **đóng gói bàn giao**, không thêm tính năng.
+
+### Trạng thái thật lúc bàn giao (đã kiểm, không phải suy đoán)
+
+| Thứ | Số đo |
+|---|---|
+| Chương 2 | **164 đoạn** (tán tu 86 · môn phái 78, đếm theo tiền tố `c2_d` / `c2_p`) |
+| Đoạn kết thua | 2 — `c2_d27c_thua`, `c2_p23c_thua` |
+| Test JS | `node game/_test_engine.js` → **209 đạt, 0 hỏng** |
+| Test Python | `python3 game/_test_api.py` → **262 đạt, 0 hỏng** |
+| Xưởng ảnh | **70 cảnh**, 23 nhóm — 12 cảnh chiến đấu mới **đã khai, chưa vẽ** |
+| Sơ đồ cốt truyện | **240 thẻ** |
+| Trang live | `game/du-lieu/chuong2.json` trả **164 đoạn + 2 đoạn thua** (gọi thật, có `?x=` chống cache) |
+
+### Đã đẩy lên `main` trong phiên này
+
+- `680d647` — Chương 2: 24 đoạn mới, engine hai bản, màn thua ở hai bản `play.html`,
+  khai 12 cảnh trong Xưởng, dựng lại sơ đồ + txt, cập nhật AGENTS/NHẬT-KÝ/SỔ VIỆC.
+- `49ccfb9` — `docs/nhap/ket-thua-chuong-2.html` + 3 ảnh chụp **từ trang live** (390×844 @2x).
+
+Rebase hai lần vì remote có commit mới giữa lúc làm (`b4ec622`, `4a73675`). Xung đột chỉ ở
+`tai-lieu/VIEC-CAN-LAM.md` và `docs/xuong/index.html` — giữ cả hai bên, số cảnh lấy theo
+thực tế 70 (remote ghi 58).
+
+### Chơi thử trên chính trang live (không phải bản trên máy)
+
+Playwright + chromium, context 390×844 `deviceScaleFactor: 2`, mở
+`https://huuducbkb.github.io/game-hong-duc-lam/game/play.html`:
+
+- `c2_d27c_0` → bấm "Đánh tới cùng" → `c2_d27c_thua`
+- 2 nút: "↩ Lùi lại, đánh khác" + "↺ Chơi lại từ đầu"; **0** nút sang chương
+- `scrollWidth` **390** (không tràn ngang), **0** pageerror, **0** request hỏng
+
+### Sửa số liệu sai trong tài liệu (việc của phiên này)
+
+Sổ việc ghi "nhánh môn phái còn **56** đoạn chưa có cảnh" — đo lại được **67**. Nguyên nhân
+lệch: phiên này thêm 12 đoạn môn phái (66 → 78 đoạn, trong đó 55 → 67 đoạn thiếu ảnh), mà
+con số 56 trong sổ việc đã cũ từ trước. `AGENTS.md` mục *Cần làm tiếp* còn ghi chương 2
+"140 đoạn" và "tán tu 57 · môn phái 56" — đã sửa thành 164 / 86 / 78. Lần sau đọc số ở đây
+là số đo lại, không phải số chép tay.
+
+### Câu cho khung chat mới
+
+> Đọc `tai-lieu/NHAT-KY.md` và `tai-lieu/VIEC-CAN-LAM.md` trước, rồi tiếp tục.
+
+### Còn treo (nguyên văn trong sổ việc)
+
+- **67 đoạn nhánh môn phái chương 2 chưa khai cảnh** trong Xưởng.
+- **70 cảnh nhánh tán tu chưa vẽ** tấm nào (prompt đã có).
+- Ý tưởng RPG grind/tu luyện: người dùng hẹn thảo luận sau, đừng tự làm.
+
+---
+
+
 ## 2026-11-28 · Chương 2 nhánh tán tu: đủ 58 cảnh + sửa 2 lỗi ảnh không vào game
 
 Người dùng: *"xây dựng game: bạn vào github tôi tiếp tục công việc"* → tiếp mục còn treo

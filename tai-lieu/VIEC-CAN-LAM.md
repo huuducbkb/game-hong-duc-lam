@@ -54,18 +54,19 @@ import json, importlib.util as u
 s=u.spec_from_file_location('c2','tools/xuong_chuong2.py'); m=u.module_from_spec(s); s.loader.exec_module(m)
 d=json.load(open('game/chapters/chuong2.json',encoding='utf-8'))
 thieu={x['id'] for x in d['doan'] if x['id'].startswith('c2_d') and not (x.get('hinh_anh') or {}).get('anh')}
-print(len(thieu - {c['doan'] for c in m.SCENES}), len(m.SCENES))   # -> 0 58"
+print(len(thieu - {c['doan'] for c in m.SCENES}), len(m.SCENES))   # -> 0 70"
 ```
 
-- [ ] **Chương 2 nhánh môn phái — 56 cảnh chờ khai** (`c2_p07` → `c2_p24b`)
+- [ ] **Chương 2 nhánh môn phái — 67 đoạn chờ khai cảnh** (`c2_p07` → `c2_p23c_thua`)
   - Làm y hệt nhánh tán tu: mỗi cảnh một đoạn, khai trong `tools/xuong_chuong2.py`
     (hoặc module riêng `xuong_chuong2_monphai.py`), thêm nhóm cảnh, rồi dựng lại Xưởng.
+  - **Chặn cứng**: khối **S** trong `game/_test_api.py` đòi mọi đoạn thiếu ảnh phải có cảnh,
+    nên thêm đoạn mới mà không khai cảnh là test hỏng ngay (đã gặp 2026-11-27).
   - Đo được: `python3 -c "import json;d=json.load(open('game/chapters/chuong2.json'));print(sum(1 for x in d['doan'] if x['id'].startswith('c2_p') and not (x.get('hinh_anh') or {}).get('anh')))"`
-    → hiện **56**, mục tiêu **0**
+    → hiện **67**, mục tiêu **0**
 
-- [ ] **Chương 2 — vẽ 58 cảnh nhánh tán tu** (người dùng làm, Xưởng đã có prompt)
-  - Đo được: Xưởng ghi `Chương 2 · Thái Nam Sơn Cốc` → **0/58 đã có**, mục tiêu **58/58**
-
+- [ ] **Chương 2 — vẽ 70 cảnh nhánh tán tu** (người dùng làm, Xưởng đã có prompt)
+  - Đo được: Xưởng ghi `Chương 2 · Thái Nam Sơn Cốc` → **0/70 đã có**, mục tiêu **70/70**
 
 Xưởng ảnh: 12 cảnh chiến đấu mới **đã khai** trong `tools/xuong_chuong2.py`
 (**70 cảnh**, 23 nhóm) để khối **S** không báo hỏng — ảnh chưa vẽ, chỉ mới có prompt.

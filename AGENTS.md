@@ -540,10 +540,14 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 3. ~~**Chương 1** (Dã Lang Bang)~~ ✅ **XONG 2026-11-17** — 66 đoạn, 2 nhánh
    (tán tu 24 · môn phái 42), 95 lựa chọn, 66 ảnh riêng, test 166 đạt.
    Bàn giao chi tiết: `tai-lieu/NHAT-KY.md` mục *"CHỐT CHƯƠNG 1"*.
-4. ~~**Chương 2** (Huyết Sát Thí Luyện)~~ ✅ **XONG nội dung** — 140 đoạn, 2 nhánh
-   (tán tu 57 · môn phái 56 + phần chung), cơ chế chuyển chương đã có.
-   **Còn thiếu ảnh**: nhánh tán tu đã đủ **58 cảnh** (prompt + ánh xạ, 2026-11-28),
-   nhánh môn phái còn **56 đoạn chưa có cảnh** — xem `tai-lieu/VIEC-CAN-LAM.md`.
+4. ~~**Chương 2** (Huyết Sát Thí Luyện)~~ ✅ **XONG nội dung** — **164 đoạn**, 2 nhánh
+   (tán tu 86 · môn phái 78 — đo bằng `x['id'].startswith('c2_d')` / `'c2_p'`),
+   cơ chế chuyển chương đã có.
+   Mỗi nhánh có **3 cảnh đánh + 1 nhánh thua** (2026-11-27): `c2_d22c_*` · `c2_d25c_*` ·
+   `c2_d27c_*` + `c2_d27c_thua`, và `c2_p19c_*` · `c2_p22c_*` · `c2_p23c_*` + `c2_p23c_thua`.
+   **Còn thiếu ảnh**: Xưởng đã khai **70 cảnh** nhánh tán tu (prompt + ánh xạ), gồm 12 cảnh
+   chiến đấu mới, nhưng **chưa vẽ tấm nào**. Nhánh môn phái **56 đoạn chưa có cảnh** —
+   xem `tai-lieu/VIEC-CAN-LAM.md`.
 5. Chương 3 (đêm đại chiến Hoàng Cung — diệt Hắc Sát Giáo)
 6. **Vẽ lại ảnh chương 1** bằng prompt thủy mặc mới. Đo 2026-11-17: **60/66 ảnh loang**,
    trung vị 0.279, tệ nhất `nv_han_lap` 0.477; chỉ 6 ảnh đạt (ngưỡng ≤ 0.15)
