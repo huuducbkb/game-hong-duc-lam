@@ -16,12 +16,29 @@
 Đo lại — cả hai phải **0 hỏng**, mã thoát 0:
 
 ```bash
-node game/_test_engine.js      # -> 205 đạt, 0 hỏng
-python3 game/_test_api.py      # -> 247 đạt, 0 hỏng  (cần game_server.py chạy cổng 12001)
+node game/_test_engine.js      # -> 207 đạt, 0 hỏng
+python3 game/_test_api.py      # -> 249 đạt, 0 hỏng  (cần game_server.py chạy cổng 12001)
 ```
 
 Chứng minh chốt chặn bắt được lỗi: cho `c1_d05` hai lựa chọn cùng trỏ `c1_d06_0`
 → test báo `c1_d05 -> c1_d06_0 (2 lựa chọn)` và thoát mã 1.
+
+Kiểm cảnh mồ côi (đoạn không ai trỏ tới) — cả hai chương phải ra `[]`:
+
+```bash
+python3 -c "
+import json,io
+for so in (1,2):
+    d=json.load(io.open(f'game/chapters/chuong{so}.json',encoding='utf-8'))
+    D={x['id']:x for x in d['doan']}
+    thay,hang=set(),list(d['doan_dau_theo_nhom'].values())
+    while hang:
+        x=hang.pop()
+        if x in thay or x not in D: continue
+        thay.add(x); hang+=[l['den'] for l in D[x].get('lua_chon') or [] if l['den']!='__ket_thuc__']
+    print(f'chuong{so}: {len(D)} doan, mo coi: {sorted(set(D)-thay)}')
+"
+```
 
 ⚠ `tools/tach_canh.py` **không idempotent** — chạy lại phải `git checkout
 game/chapters/*.json` trước, nếu không sẽ sinh cảnh lồng `c2_d27_0_0`.
