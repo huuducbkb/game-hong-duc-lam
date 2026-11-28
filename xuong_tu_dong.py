@@ -8,7 +8,7 @@
 Việc làm:
   1. Nhận diện mỗi ảnh ứng với asset (prompt) nào.
   2. Nén theo quy tắc (game.nen_anh) và lưu vào assets/ + docs/assets/.
-  3. Ghép vào đúng đoạn trong chuong1.json (cả bản Python lẫn bản JS).
+  3. Ghép vào đúng đoạn trong dữ liệu MỌI chương (bản Python lẫn bản JS/web).
   4. Cập nhật docs/assets/library/index.json.
 
 Trả báo cáo: {da_xu_ly: [...], can_nguoi_xac_nhan: [...], bo_qua: [...]}.
@@ -34,6 +34,8 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 CHUONG_FILES = [
     "game/chapters/chuong1.json",
     "docs/game/du-lieu/chuong1.json",
+    "game/chapters/chuong2.json",
+    "docs/game/du-lieu/chuong2.json",
 ]
 LIB_FILE = "docs/assets/library/index.json"
 

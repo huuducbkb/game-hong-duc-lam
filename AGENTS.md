@@ -540,9 +540,10 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
 3. ~~**Chương 1** (Dã Lang Bang)~~ ✅ **XONG 2026-11-17** — 66 đoạn, 2 nhánh
    (tán tu 24 · môn phái 42), 95 lựa chọn, 66 ảnh riêng, test 166 đạt.
    Bàn giao chi tiết: `tai-lieu/NHAT-KY.md` mục *"CHỐT CHƯƠNG 1"*.
-4. **Chương 2** (Huyết Sát Thí Luyện) — chưa bắt đầu.
-   **Việc đầu tiên: làm cơ chế chuyển chương** (hiện chưa có; chương 1 kết bằng cách
-   đi tới đoạn không tồn tại). Xem `NHAT-KY.md` mục *"Cơ chế chuyển chương"*.
+4. ~~**Chương 2** (Huyết Sát Thí Luyện)~~ ✅ **XONG nội dung** — 140 đoạn, 2 nhánh
+   (tán tu 57 · môn phái 56 + phần chung), cơ chế chuyển chương đã có.
+   **Còn thiếu ảnh**: nhánh tán tu đã đủ **58 cảnh** (prompt + ánh xạ, 2026-11-28),
+   nhánh môn phái còn **56 đoạn chưa có cảnh** — xem `tai-lieu/VIEC-CAN-LAM.md`.
 5. Chương 3 (đêm đại chiến Hoàng Cung — diệt Hắc Sát Giáo)
 6. **Vẽ lại ảnh chương 1** bằng prompt thủy mặc mới. Đo 2026-11-17: **60/66 ảnh loang**,
    trung vị 0.279, tệ nhất `nv_han_lap` 0.477; chỉ 6 ảnh đạt (ngưỡng ≤ 0.15)
@@ -1916,3 +1917,46 @@ Script này **không idempotent**: chạy hai lần lên cùng dữ liệu sẽ 
 nhau (`c2_d27_0_0`). Trước khi chạy lại phải `git checkout game/chapters/*.json`
 để về bản gốc, rồi chạy đúng một lượt. Sau khi chạy, kiểm ngay: không có mã đoạn
 lặp `.json` hai lần dạng `_0_0`.
+
+## Ảnh Chương 2: prompt có mà ảnh không bao giờ vào game (2026-11-28)
+
+Hai lỗi độc lập, cộng lại làm **toàn bộ đường up ảnh của Chương 2 vô dụng**:
+
+1. **Không có ánh xạ ảnh → đoạn.** `tools/xuong_chuong2.py` có prompt nhưng không có
+   `doan_cua_anh()`, và `tools_server.py` chỉ nạp ánh xạ của nhánh môn phái chương 1.
+   Up ảnh xong file nằm trong `assets/scene/` nhưng **không đoạn nào nhận ảnh**.
+2. **`xuong_tu_dong.CHUONG_FILES` chỉ có `chuong1.json`.** Kể cả có ánh xạ, ảnh cũng
+   **không được ghi vào dữ liệu chương**. Thêm chương mới là **phải thêm cả hai bản**
+   (`game/chapters/` và `docs/game/du-lieu/`) vào danh sách này.
+
+Quy tắc từ nay (đã có test chặn, khối **S** trong `game/_test_api.py`):
+
+- Mỗi cảnh khai **một** trường `doan`; `doan_cua_anh()` **suy ra** từ `doan`, không
+  viết tay hai danh sách để chúng lệch nhau.
+- Không để cảnh mồ côi: cảnh không trỏ tới đoạn nào, hoặc đoạn thiếu ảnh mà không có
+  cảnh. Test S kiểm cả bốn chiều: đoạn tồn tại · một đoạn một cảnh · mọi đoạn thiếu ảnh
+  đều có cảnh · cảnh nào cũng có nhóm cảnh.
+- Đổi `CHUONG_FILES` là phải chạy lại test S; nó bắt đúng lỗi "chỉ ghép chương 1".
+
+Đo nhanh phủ cảnh một nhánh (phải ra `0`):
+
+```bash
+python3 -c "
+import json, importlib.util as u
+s=u.spec_from_file_location('c2','tools/xuong_chuong2.py'); m=u.module_from_spec(s); s.loader.exec_module(m)
+d=json.load(open('game/chapters/chuong2.json',encoding='utf-8'))
+thieu={x['id'] for x in d['doan'] if x['id'].startswith('c2_d') and not (x.get('hinh_anh') or {}).get('anh')}
+print(len(thieu - {c['doan'] for c in m.SCENES}), len(m.SCENES))"
+```
+
+### Mã ảnh dài làm bảng Xưởng tràn ngang
+
+Thêm 58 mã mới (dài nhất `nv_c2_han_lap_ban_hang`) làm bảng "danh sách ảnh" rộng ra
+6px ở khổ 390. Sửa trong CSS của `tools/build_xuong.py`: `table-layout:fixed` +
+`overflow-wrap:anywhere` cho `th,td`. Đo lại bằng iframe 390px (Chromium headless bỏ
+qua `--window-size` nên **phải đo trong iframe**, đừng tin `--window-size`):
+
+```bash
+# xuất trang đo vào docs/ rồi: scrollWidth phải BẰNG clientWidth
+chromium --headless=new --no-sandbox --disable-gpu --dump-dom <url-trang-do>
+```

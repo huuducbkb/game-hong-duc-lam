@@ -680,6 +680,37 @@ check("mọi prompt ảnh đều cấm chữ",
       [a["key"] for a in _TS.ASSETS
        if a["key"] != "seal" and "no text" not in a["prompt"].lower()], [])
 
+print("\n=== S. Chương 2 — cảnh ↔ đoạn ↔ tệp dữ liệu ===")
+_GOC = "/workspace/game-hong-duc-lam"
+_ch2 = json.load(open(os.path.join(_GOC, "game/chapters/chuong2.json"), encoding="utf-8"))
+_id2 = {x["id"] for x in _ch2["doan"]}
+_canh2 = {k: v for k, v in _TS.DOAN_CUA_ANH.items()
+          if any(d.startswith("c2_") for d in v)}
+_da_co_canh = {d for v in _canh2.values() for d in v}
+check("mọi cảnh Chương 2 trỏ tới đoạn có thật", sorted(_da_co_canh - _id2), [])
+check("mỗi đoạn Chương 2 chỉ có một cảnh",
+      sorted(d for d in _da_co_canh
+             if sum(1 for v in _canh2.values() if d in v) > 1), [])
+_thieu2 = sorted(x["id"] for x in _ch2["doan"]
+                 if x["id"].startswith("c2_d")
+                 and not (x.get("hinh_anh") or {}).get("anh"))
+check("mọi đoạn nhánh tán tu thiếu ảnh đều có cảnh",
+      [x for x in _thieu2 if x not in _da_co_canh], [])
+check("mọi cảnh Chương 2 đều có nhóm cảnh",
+      [k for k in _canh2 if not _TS.nhom_canh_cua(k)], [])
+
+import xuong_tu_dong as _XTD
+check("Xưởng ghép ảnh vào cả hai bản dữ liệu Chương 2",
+      len([p for p in _XTD.CHUONG_FILES if "chuong2" in p]), 2)
+_ch2web = json.load(open(os.path.join(_GOC, "docs/game/du-lieu/chuong2.json"),
+                         encoding="utf-8"))
+check("ghép ảnh mới vào đúng đoạn c2_d12",
+      _XTD._gan_doan(_ch2web, "bc_c2_cho_linh_thach", "bc_c2_cho_linh_thach.jpg"),
+      ["c2_d12"])
+check("  và ghi đúng tên tệp vào đoạn",
+      next(x for x in _ch2web["doan"] if x["id"] == "c2_d12")["hinh_anh"]["anh"],
+      "bc_c2_cho_linh_thach.jpg")
+
 print("\n=== Prompt tiếng: trần 450 ký tự ===")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import prompt_am as _PA
