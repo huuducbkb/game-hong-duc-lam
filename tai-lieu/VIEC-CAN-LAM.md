@@ -67,21 +67,44 @@ mở một đường khác nhau. Đã ra tin rồi thì không ra lại tin đó
 - Số cân bằng (8 tu vi / 3 ngày, 45% thắng…) là **đoán** — chơi thử rồi chỉnh.
 - Chưa có ảnh cho màn Động phủ; đang dùng nền giấy sẵn có.
 
-## 🟡 CHỜ NGƯỜI DÙNG QUYẾT — cổng chặn kỹ thuật cho bước bàn giao
+## ✅ XONG 2026-11-28 (tiếp 6) — Ba chốt chặn bàn giao (người dùng chọn "cả 3")
 
-Tôi đã quên gửi danh sách năm link cuối phiên **hai lần** (2026-11-27 và 2026-11-28).
-Luật đã có trong `AGENTS.md`, script `tools/ban_giao.py` đã có, mà vẫn quên — vì bước
-đó nằm cuối và chỉ dựa vào trí nhớ. Cần biến nó thành thứ máy tự kiểm.
+Đã quên gửi link hai lần, nên người dùng chốt làm **cả ba** cách chặn kỹ thuật.
 
-**Chưa làm cách nào. Đổi cơ chế thì phải hỏi trước.** Ba cách:
-
-| # | Cách | Đánh đổi |
+| # | Chốt | Lệnh kiểm |
 |---|---|---|
-| 1 | Thêm kiểm vào `game/_test_api.py`: commit mới nhất phải kèm `NHAT-KY.md` + `VIEC-CAN-LAM.md`, thiếu thì test **hỏng** | Rẻ, chặn đúng lúc chạy test trước khi báo xong. Nhưng chỉ bắt được phần "có ghi nhật ký", **không** bắt được "đã gửi link" |
-| 2 | Git hook `post-commit` trong `.githooks/`, bật bằng `core.hooksPath` → tự in khối năm link sau mỗi commit | Nhắc ngay tại chỗ. Nhưng `.git/config` không đi theo repo, máy khác phải bật tay |
-| 3 | Đưa bước bàn giao lên **đầu** `AGENTS.md` thành mục 0 "trước khi báo xong" | Chỉ sửa chữ. Rẻ nhất, nhưng vẫn là dựa vào việc đọc |
+| a | Script kiểm bàn giao | `python3 tools/kiem_ban_giao.py --cay` → **exit 1** khi thiếu |
+| a | Nối vào bộ test | `python3 game/_test_api.py` → khối **BG**, **hỏng 2 phép** khi thiếu |
+| b | Git hook sau commit | Bật: `git config core.hooksPath .githooks` → tự in năm link |
+| c | Mục 0 đầu `AGENTS.md` | Ba bước nằm ở **dòng 8**, không nằm giữa file |
 
-**Tôi nghiêng về 1 + 3.** Cần người dùng chọn: làm cách nào, hay làm cả ba?
+Bỏ qua khi commit chỉ có ảnh/`.json` sinh tự động. Kiểm **cả cây làm việc chưa commit**
+(`--cay`), vì lúc chạy test thì commit chưa tồn tại.
+
+---
+
+## 🟡 CHỜ NGƯỜI DÙNG — hai việc, KHÔNG tự làm
+
+**1. Cổng boss chương 2 — chờ người dùng đọc truyện rồi chỉ định cảnh.**
+Cơ chế đã xong và đã test: khoá `canh_gioi` (đường đánh thẳng) và khoá `tin`
+(đường mưu, cần dò la ra tin). Nhưng **chưa cảnh nào trong `chuong2.json` khai**
+hai khoá đó. Kiểm nhanh:
+
+```bash
+python3 -c "
+import json
+for n in (1,2):
+    d=json.load(open(f'docs/game/du-lieu/chuong{n}.json',encoding='utf-8'))
+    co=[x['id'] for x in d['doan'] if any(k in (x.get('dieu_kien') or {}) for k in ('canh_gioi','tin'))]
+    print(f'chuong {n}: {len(co)} doan dung cong boss')
+"
+```
+
+Hiện ra `0` ở cả hai chương. Khi người dùng chỉ định cảnh, gắn khoá rồi chạy lại.
+
+**2. Số cân bằng tu luyện — chờ người dùng chơi thử.**
+Hiện tại: đả tọa 3 ngày +8 tu vi · săn 2 ngày, 35% bị cắn −8 sinh lực ·
+dò la 2 ngày, 55% chỉ nghe chuyện vặt. Đây là **số đoán**, chưa cân bằng.
 
 ---
 

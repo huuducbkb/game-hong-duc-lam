@@ -1158,5 +1158,18 @@ try:
 except ImportError:
     check("nhập được engine Python", False, True)
 
+print("\n=== BG. Bàn giao: commit mới nhất phải kèm nhật ký + sổ việc ===")
+# Chốt chặn cho lỗi "làm xong mà quên bàn giao" — đã lặp lại 2 lần. Kiểm ở đây
+# để nó hỏng NGAY lúc chạy test, trước khi kịp báo xong cho người dùng.
+try:
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+    from tools.kiem_ban_giao import thieu_trong_cay
+    # Chỉ kiểm CÂY LÀM VIỆC, không kiểm commit HEAD: lúc chạy test thì commit
+    # của phiên hiện tại chưa tồn tại, kiểm nó chỉ ra đỏ vô ích. Commit cũ đã
+    # có tools/kiem_ban_giao.py --commit REF và hook post-commit lo.
+    check("bàn giao: nhật ký + sổ việc đã cập nhật", [], thieu_trong_cay())
+except ImportError:
+    check("nhập được tools.kiem_ban_giao", False, True)
+
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)

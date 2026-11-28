@@ -5,6 +5,33 @@ Người chơi xuyên không vào thế giới đó, sống cùng thời Hàn L�
 
 Người dùng chỉ có **Safari (iPad/iPhone), KHÔNG có terminal** → mọi thứ phải qua giao diện web.
 
+## 0️⃣ TRƯỚC KHI BÁO XONG — chạy ba bước, không bỏ bước nào
+
+Đây là mục **đầu tiên** vì đây là chỗ hay hỏng nhất: tôi đã quên gửi danh sách
+năm link **hai lần** (2026-11-27 và 2026-11-28), dù luật đã nằm trong file này.
+Bước cuối mà chỉ dựa vào trí nhớ thì sẽ quên lại.
+
+**Việc chính xong KHÔNG phải là xong phiên.** Còn đúng ba bước, theo thứ tự:
+
+```bash
+# 1. Ghi nhật ký: tai-lieu/NHAT-KY.md  (mục mới nhất trên cùng, có SỐ ĐO)
+# 2. Cập nhật:    tai-lieu/VIEC-CAN-LAM.md  (việc mới + lệnh kiểm)
+# 3. Kiểm rồi mới báo xong:
+python3 tools/kiem_ban_giao.py --cay    # thiếu bàn giao → exit 1, chưa được báo
+python3 tools/ban_giao.py --tu HEAD~N   # in NĂM LINK, gọi thử từng cái
+```
+
+Rồi **gửi nguyên năm link** trong câu trả lời cuối. Chi tiết + mẫu khối link:
+xem mục **🔁 BÀN GIAO** ở dưới.
+
+**Ba chốt chặn đã có, đừng tháo:**
+
+| Chốt | Bắt được gì |
+|---|---|
+| `tools/kiem_ban_giao.py` | Kiểm cây làm việc **và** commit có kèm `NHAT-KY.md` + `VIEC-CAN-LAM.md` |
+| `game/_test_api.py` khối **BG** | `python3 game/_test_api.py` **hỏng** nếu quên bàn giao — chặn trước khi báo xong |
+| `.githooks/post-commit` | Sau mỗi commit tự in khối năm link. Bật một lần mỗi máy: `git config core.hooksPath .githooks` |
+
 ## 📓 ĐỌC TRƯỚC KHI LÀM GÌ: `tai-lieu/NHAT-KY.md`
 
 **Mở khung chat mới thì đọc `tai-lieu/NHAT-KY.md` trước tiên.** Đó là nhật ký công việc:
@@ -48,6 +75,10 @@ giữa việc. Chat mới **không nhớ hội thoại cũ**, chỉ nhớ repo. 
 phải đóng gói đủ để một AI khác (hoặc chính mình ở chat mới) làm tiếp được ngay.
 
 ### Ba bước, làm đủ, không bỏ bước nào
+
+> **Đã quên hai lần** (2026-11-27, 2026-11-28) nên nay có chốt chặn kỹ thuật:
+> `tools/kiem_ban_giao.py` + khối **BG** trong `game/_test_api.py` +
+> `.githooks/post-commit`. Xem mục **0️⃣** ở đầu file.
 
 **1. Ghi việc vào `tai-lieu/NHAT-KY.md`** — mục mới nhất trên cùng. Phải có:
 ngày · người dùng yêu cầu gì · đã sửa file nào · **số đo kiểm chứng** · còn treo gì.

@@ -8,6 +8,51 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-28 (tiếp 6) · Ba chốt chặn cho bước bàn giao (người dùng chọn "cả 3")
+
+Người dùng trả lời ba câu tôi hỏi: **1. cả 3** · **2. đợi tôi đọc rồi chỉ định** ·
+**3. đợi tôi chơi thử**. Nên phiên này chỉ làm việc 1; việc 2 và 3 **không đụng vào**.
+
+### Đã làm cả ba cách chặn
+
+| # | Cách | File | Bắt được gì |
+|---|---|---|---|
+| a | Kiểm trong bộ test | `game/_test_api.py` khối **BG** | `python3 game/_test_api.py` **hỏng 2 phép** nếu quên bàn giao |
+| a | Script kiểm | `tools/kiem_ban_giao.py` (mới) | `--cay` kiểm **trước** khi commit; `--commit REF` kiểm commit cũ |
+| b | Git hook | `.githooks/post-commit` (mới) + `core.hooksPath` | Sau mỗi commit tự in khối năm link |
+| c | Đưa lên đầu | `AGENTS.md` mục **0️⃣** | Ba bước nằm ở dòng 8 thay vì giữa file |
+
+Hai chi tiết đáng ghi:
+
+- **Chốt theo commit là chưa đủ.** Lúc tôi chạy test thì commit chưa tồn tại, nên phải
+  thêm `--cay` kiểm `git status`. Không có nó thì chốt chặn chỉ bắt lỗi sau khi đã đẩy.
+- **Bỏ qua ảnh và `.json`.** Commit chỉ có ảnh/dữ liệu sinh tự động thì không cần bàn
+  giao — nếu không, mỗi lần thêm ảnh lại bị chặn vô ích.
+
+### Số đo kiểm chứng
+
+| Phép đo | Kết quả |
+|---|---|
+| `tools/kiem_ban_giao.py --cay` **trước** khi ghi nhật ký | **exit 1**, liệt kê đúng 2 tệp thiếu |
+| `game/_test_api.py` **trước** khi ghi nhật ký | **289 đạt, 2 hỏng** — đúng hai phép BG |
+| Commit cũ `HEAD~1` (thật sự thiếu nhật ký) | `--commit HEAD~1` → **✗ THIẾU**, exit 1 |
+| Commit cũ `HEAD~3` (có đủ) | **✓ có đủ bàn giao** |
+| Commit thử `--allow-empty` | hook in **đủ năm link** ngay trong terminal |
+| `--ngay-cay` | thoát 0, không phạt |
+| Sau khi ghi nhật ký | **290 đạt, 0 hỏng** (Python) · **248 đạt, 0 hỏng** (JS) |
+| Thử lại: gỡ `NHAT-KY.md` khỏi cây (`git stash`) | test về **289 đạt, 1 hỏng** → chốt chặn còn sống |
+| Commit chỉ có ảnh `HEAD~5` | vẫn **bị chặn** — `.html` viết tay là việc thật, dùng `--ngay-cay` khi cần |
+
+Đã xoá commit thử (`git reset --mixed HEAD~1`) để lịch sử sạch.
+
+### Còn chờ người dùng — KHÔNG tự làm
+
+- **Cổng boss chương 2**: chưa cảnh nào khai `dieu_kien: {canh_gioi}` / `{tin}`.
+  Người dùng đang đọc truyện để chỉ định cảnh.
+- **Số cân bằng**: đang chờ người dùng chơi thử.
+
+---
+
 ## 2026-11-28 (tiếp 5) · TÔI LẠI QUÊN GỬI LINK — lần thứ hai, cùng một lỗi
 
 Người dùng: *"tại sao bạn cứ quên tôi có nhắc sau mỗi phiên làm việc bạn gửi tôi các
