@@ -218,6 +218,78 @@ body{
 .drawer .close{width:100%;margin-top:4px;font-family:var(--serif);font-size:13.5px;padding:12px;
   border-radius:11px;border:1px solid var(--edge);background:rgba(255,253,246,.72);color:var(--ink)}
 
+/* ---------- TIẾN VÀO TU LUYỆN: màn hình riêng toàn khổ ---------- */
+.nut-tu-luyen{width:100%;margin:0 0 9px;font-family:var(--serif);font-size:14px;font-weight:600;
+  padding:14px 12px;border-radius:12px;border:1.6px solid var(--seal);
+  background:rgba(168,53,42,.10);color:var(--seal-dam);display:flex;
+  align-items:center;justify-content:space-between;gap:8px}
+.nut-tu-luyen:active{transform:scale(.98);background:rgba(168,53,42,.18)}
+.nut-tu-luyen .ngay{font-size:11.5px;font-weight:400;color:var(--ink-faint)}
+
+.tuluyen{position:fixed;inset:0;z-index:16;display:none;flex-direction:column;
+  background:url("../assets/ui/bg-main.jpg") center/cover no-repeat}
+.tuluyen::before{content:"";position:absolute;inset:0;
+  background:rgba(246,240,226,.80);pointer-events:none}
+.tuluyen.on{display:flex}
+.tuluyen>*{position:relative}
+.tl-dau{padding:calc(env(safe-area-inset-top) + 10px) 13px 8px;
+  border-bottom:1px solid var(--edge);display:flex;align-items:flex-start;
+  justify-content:space-between;gap:10px}
+.tl-dau .ten{font-size:15px;font-weight:600;line-height:1.3}
+.tl-dau .gioi{font-size:11.5px;color:var(--ink-faint)}
+.tl-ngay{text-align:right;flex:0 0 auto}
+.tl-ngay .so{font-size:19px;font-weight:600;color:var(--seal);line-height:1.1}
+.tl-ngay .nhan{font-size:10px;letter-spacing:1.2px;color:var(--ink-faint);text-transform:uppercase}
+.tl-than{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:10px 13px calc(env(safe-area-inset-bottom) + 14px)}
+.tl-o{background:rgba(255,253,246,.72);border:1px solid var(--edge);border-radius:11px;
+  padding:10px 11px;margin-bottom:9px}
+.tl-o .top{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px}
+.tl-o .top .k{color:var(--ink-soft)}
+.tl-o .top .v{font-weight:600}
+.tl-bar{height:7px;border-radius:4px;background:rgba(40,34,26,.13);overflow:hidden;margin-top:6px}
+.tl-bar i{display:block;height:100%;border-radius:4px;background:var(--seal);transition:width .35s}
+.tl-ba-so{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:9px}
+.tl-ba-so>div{background:rgba(255,253,246,.72);border:1px solid var(--edge);
+  border-radius:10px;padding:8px 6px;text-align:center}
+.tl-ba-so .nhan{font-size:9.5px;letter-spacing:.8px;color:var(--ink-faint);text-transform:uppercase}
+.tl-ba-so .so{font-size:15px;font-weight:600;line-height:1.3}
+.tl-viec{width:100%;font-family:var(--serif);text-align:left;
+  background:rgba(255,253,246,.80);border:1px solid var(--edge);border-radius:11px;
+  padding:11px 12px;margin-bottom:8px;display:flex;justify-content:space-between;
+  align-items:center;gap:10px;min-height:52px}
+.tl-viec:active{transform:scale(.985);background:rgba(255,253,246,.98)}
+.tl-viec[disabled]{opacity:.45}
+.tl-viec .trai{min-width:0}
+.tl-viec .ten{font-size:14px;font-weight:600;display:block;line-height:1.3}
+.tl-viec .ghi{font-size:11px;color:var(--ink-faint);display:block;margin-top:2px;
+  overflow-wrap:anywhere}
+.tl-viec .gia{flex:0 0 auto;font-size:11.5px;color:var(--seal);font-weight:600;
+  text-align:right;white-space:nowrap}
+.tl-nhat{font-size:11.5px;color:var(--ink-soft);line-height:1.55;
+  background:rgba(255,253,246,.55);border-left:2px solid var(--seal);
+  border-radius:0 8px 8px 0;padding:8px 10px;margin-bottom:12px}
+.tl-nhat div{margin-bottom:3px}
+.tl-nhat div:last-child{margin-bottom:0}
+.tl-nut{width:100%;font-family:var(--serif);font-size:13.5px;padding:13px;
+  border-radius:11px;border:1px solid var(--edge);background:rgba(255,253,246,.85);
+  color:var(--ink);margin-top:6px}
+.tl-nut.chinh{border:1.6px solid var(--seal);background:rgba(168,53,42,.12);
+  color:var(--seal-dam);font-weight:600}
+.tl-nut:active{transform:scale(.98)}
+.tl-nut[disabled]{opacity:.45}
+.tl-loi{font-size:12.5px;color:#8a2a1e;background:rgba(150,40,30,.10);
+  border:1px solid rgba(150,40,30,.28);border-radius:8px;padding:8px 10px;margin-bottom:9px}
+.tl-kq{font-size:12.5px;background:rgba(255,253,246,.85);border:1px solid var(--edge);
+  border-radius:9px;padding:9px 11px;margin-bottom:9px}
+.tl-kq div{margin-bottom:4px}
+.tl-kq div:last-child{margin-bottom:0}
+.tl-het{font-size:12.5px;color:var(--seal-dam);background:rgba(168,53,42,.10);
+  border:1px solid rgba(168,53,42,.3);border-radius:9px;padding:9px 11px;margin-bottom:9px}
+.tl-tran{font-size:13px;text-align:center;margin-bottom:9px;line-height:1.5}
+.tl-tran .tyle{font-size:22px;font-weight:600;color:var(--seal);display:block;line-height:1.2}
+@media (max-height:600px){.tl-viec{min-height:44px;padding:9px 11px}}
+
 @media (max-height:640px){
   .panel-story p{font-size:13.5px}
 }
@@ -704,6 +776,11 @@ body{
   <h2>Hệ Thống</h2>
   <div class="cap">Bảng điều khiển tu sĩ</div>
 
+  <button class="nut-tu-luyen" id="moTuLuyen">
+    <span>🧘 Tiến vào tu luyện</span>
+    <span class="ngay" id="tlNutNgay">—</span>
+  </button>
+
   <nav class="tabs-bar" id="tabsBar">
     <button class="tab on" data-tab="nhanvat">Nhân vật</button>
     <button class="tab" data-tab="kynang">Kỹ năng</button>
@@ -794,6 +871,11 @@ body{
   </section>
 
   <button class="close" id="openCaiDat" title="Nhập key Gemini để bật gõ tự do">⚙️ Cài đặt key AI</button>
+  <div class="note" id="saveTrangThai" style="margin-top:8px"></div>
+  <button class="close" id="xuatSave" title="Tải tiến trình về máy">💾 Xuất file save</button>
+  <button class="close" id="nhapSave" title="Nạp lại từ file đã tải">📂 Nhập file save</button>
+  <input type="file" accept="application/json,.json" id="tepSave" hidden>
+  <div class="note" style="margin-top:8px">Tiến trình chỉ lưu trong trình duyệt này. Đổi máy, xoá dữ liệu Safari là mất — <b>xuất file save</b> nếu muốn giữ.</div>
   <button class="close" id="closeSys">Đóng bảng</button>
 </aside>
 
@@ -846,6 +928,21 @@ body{
     <div class="muc">Mô tả</div>
     <div class="nd" id="cdMoTa">—</div>
   </div>
+</div>
+
+<!-- MÀN TIẾN VÀO TU LUYỆN: chiếm toàn khổ, mở từ ngăn Hệ Thống -->
+<div class="tuluyen" id="tuLuyen" role="dialog" aria-modal="true" aria-label="Tiến vào tu luyện">
+  <div class="tl-dau">
+    <div>
+      <div class="ten" id="tlTen">—</div>
+      <div class="gioi" id="tlGioi">—</div>
+    </div>
+    <div class="tl-ngay">
+      <div class="so" id="tlNgay">—</div>
+      <div class="nhan">ngày còn</div>
+    </div>
+  </div>
+  <div class="tl-than" id="tlThan"></div>
 </div>
 
 
@@ -2640,6 +2737,325 @@ function gan(sel, ev, fn) {
   if (el) el[ev] = fn;
   return el;
 }
+// ---------------------------------------------------------- TIẾN VÀO TU LUYỆN
+// Màn riêng chiếm toàn khổ. Mỗi nút ghi rõ GIÁ (ngày) và KẾT QUẢ trước khi bấm —
+// người chơi điện thoại không mò. Chỉ số dùng chung với truyện: xuất động là
+// tab Nhân vật thấy đổi ngay.
+let tlDangMo = false;
+let tlManCon = null;   // null = màn Động phủ; "san" | "dan" | "cho" | "do_la" = màn phụ
+let tlKqHtml = "";     // kết quả của lần bấm trước — giữ lại qua mỗi lần vẽ lại
+
+function tlNap() {
+  if (!st) return;
+  const v = Engine.tl_trang_thai(st);
+  $("#tlTen").textContent = st.ten_nhan_vat;
+  $("#tlGioi").textContent = v.chi_so.canh_gioi +
+    (v.chi_so.tran ? " · trần chương: " + v.chi_so.tran : "");
+  $("#tlNgay").textContent = v.chi_so.ngay_con;
+  const n = $("#tlNutNgay");
+  if (n) n.textContent = v.chi_so.ngay_con + "/" + Engine.NGAY_MOI_CHUONG + " ngày";
+  tlVe(v);
+}
+
+function tlThongBao(ds) {
+  return (ds || []).map(t => "<div>" + esc(t) + "</div>").join("");
+}
+
+function tlVe(v) {
+  const c = v.chi_so;
+  const o = $("#tlThan");
+  let h = "";
+
+  if (tlManCon === "san") { h = tlManSan(); o.innerHTML = h; tlGanSan(); return; }
+  if (tlManCon === "dan") { h = tlManDan(v); o.innerHTML = h; tlGanDan(); return; }
+  if (tlManCon === "cho") { h = tlManCho(); o.innerHTML = h; tlGanCho(); return; }
+  if (tlManCon === "do_la") { h = tlManDoLa(); o.innerHTML = h; tlGanDoLa(); return; }
+
+  const pcTuVi = Math.min(100, Math.round(c.tu_vi.hien / c.tu_vi.max * 100));
+  const pcSinh = Math.min(100, Math.round(c.sinh_luc.hien / c.sinh_luc.max * 100));
+
+  h += '<div class="tl-o"><div class="top"><span class="k">Tu vi</span>' +
+    '<span class="v">' + c.tu_vi.hien + "/" + c.tu_vi.max + "</span></div>" +
+    '<div class="tl-bar"><i style="width:' + pcTuVi + '%"></i></div></div>';
+
+  h += '<div class="tl-o"><div class="top"><span class="k">Sinh lực</span>' +
+    '<span class="v">' + c.sinh_luc.hien + "/" + c.sinh_luc.max + "</span></div>" +
+    '<div class="tl-bar"><i style="width:' + pcSinh + '%"></i></div></div>';
+
+  h += '<div class="tl-ba-so">' +
+    '<div><div class="nhan">Bạc</div><div class="so">' + c.bac + "</div></div>" +
+    '<div><div class="nhan">Tấn công</div><div class="so">' + c.tan_cong + "</div></div>" +
+    '<div><div class="nhan">Phòng thủ</div><div class="so">' + c.phong_thu + "</div></div>" +
+    "</div>";
+
+  if (c.ngay_con <= 0) {
+    h += '<div class="tl-het">Hết ngày của chương này. Xuất động để về truyện — ' +
+      "sang chương sau mới có ngày mới.</div>";
+  }
+
+  for (const vc of v.viec) {
+    h += '<button class="tl-viec" data-viec="' + vc.ma + '"' +
+      (vc.duoc ? "" : " disabled") + ">" +
+      '<span class="trai"><span class="ten">' + esc(vc.ten) + "</span>" +
+      '<span class="ghi">' + esc(vc.ghi_chu) + "</span></span>" +
+      '<span class="gia">' + vc.ngay + " ngày</span></button>";
+  }
+
+  h += '<button class="tl-viec" data-viec="nghi"' + (c.ngay_con < 1 ? " disabled" : "") + ">" +
+    '<span class="trai"><span class="ten">Nghỉ cho hồi sức</span>' +
+    '<span class="ghi">Hồi sinh lực, cần sau khi bị thương</span></span>' +
+    '<span class="gia">1 ngày</span></button>';
+
+  if (c.nhat_ky && c.nhat_ky.length) {
+    h += '<div class="tl-nhat">' + c.nhat_ky.map(t => "<div>" + esc(t) + "</div>").join("") + "</div>";
+  }
+
+  if (c.tin_da_biet && c.tin_da_biet.length) {
+    h += '<div class="tl-o"><div class="top"><span class="k">Tin đã biết</span>' +
+      '<span class="v">' + c.tin_da_biet.length + "</span></div>" +
+      c.tin_da_biet.map(t => '<div style="font-size:11.5px;color:var(--ink-soft);margin-top:4px">· ' +
+        esc(t.ten) + "</div>").join("") + "</div>";
+  }
+
+  h += '<button class="tl-nut chinh" id="tlXuatDong">Xuất động — về truyện</button>';
+  o.innerHTML = h;
+
+  gan("#tlXuatDong", "onclick", tlXuatDong);
+  document.querySelectorAll("#tlThan .tl-viec").forEach(b => {
+    b.onclick = () => tlLam(b.dataset.viec);
+  });
+}
+
+function tlManSan() {
+  return '<div class="tl-o"><div class="top"><span class="k">Săn yêu thú</span>' +
+    '<span class="v">2 ngày</span></div>' +
+    '<div style="font-size:12px;color:var(--ink-soft);margin-top:6px">' +
+    "Đi săn lấy nguyên liệu luyện đan. Có thể bị thương.</div></div>" +
+    '<button class="tl-nut chinh" id="tlXemTran">Xem trận trước (không tốn ngày)</button>' +
+    '<div id="tlTran">' + tlKqHtml + "</div>" +
+    '<button class="tl-nut" id="tlQuay">← Quay lại động phủ</button>';
+}
+
+function tlGanSan() {
+  gan("#tlQuay", "onclick", () => { tlManCon = null; tlKqHtml = ""; tlNap(); });
+  gan("#tlXemTran", "onclick", () => {
+    const r = Engine.tl_dau(st);
+    const hop = $("#tlTran");
+    if (r.loi) { hop.innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
+    hop.innerHTML = '<div class="tl-kq"><div class="tl-tran">' + esc(r.tran.ten) +
+      " · " + esc(r.tran.bac) + '<span class="tyle">' + r.tran.ti_le + "% thắng</span></div>" +
+      '<button class="tl-nut chinh" id="tlDanh">Đánh (2 ngày)</button>' +
+      '<button class="tl-nut" id="tlRut">Rút (không tốn ngày)</button></div>';
+    gan("#tlRut", "onclick", () => { tlKqHtml = ""; hop.innerHTML = ""; });
+    gan("#tlDanh", "onclick", () => {
+      const k = Engine.tl_danh(st);
+      if (k.loi) { hop.innerHTML = '<div class="tl-loi">' + esc(k.loi) + "</div>"; return; }
+      tlKqHtml = '<div class="tl-kq">' + k.dong.map(t => "<div>" + esc(t) + "</div>").join("") +
+        tlThongBao(k.thong_bao) + "</div>";
+      tlCapNhat(); tlNap();
+    });
+  });
+}
+
+function tlManDan(v) {
+  const ds = Engine.tl_cong_thuc(st);
+  let h = "";
+  for (const ct of ds) {
+    const can = ct.can_chi_tiet.map(x => esc(x.ten) + " " + x.co + "/" + x.can).join(" · ");
+    h += '<button class="tl-viec" data-dan="' + ct.ma + '"' + (ct.duoc ? "" : " disabled") + ">" +
+      '<span class="trai"><span class="ten">' + esc(ct.ten) + "</span>" +
+      '<span class="ghi">' + can + " · " + ct.ti_le + "% thành công</span></span>" +
+      '<span class="gia">1 ngày · ' + ct.bac + " bạc</span></button>";
+  }
+  h += '<div class="tl-nhat">' + ds.map(c => "<div>· " + esc(c.ten) + ": " + esc(c.mo_ta) +
+    (c.tu_vi ? " (+" + c.tu_vi + " tu vi)" : "") +
+    (c.sinh_luc ? " (+" + c.sinh_luc + " sinh lực)" : "") + "</div>").join("") + "</div>";
+  h += '<div id="tlDanKq">' + tlKqHtml + "</div>";
+  h += '<button class="tl-nut" id="tlQuay">← Quay lại động phủ</button>';
+  return h;
+}
+
+function tlGanDan() {
+  gan("#tlQuay", "onclick", () => { tlManCon = null; tlKqHtml = ""; tlNap(); });
+  document.querySelectorAll("#tlThan [data-dan]").forEach(b => {
+    b.onclick = () => {
+      const r = Engine.tl_luyen_dan(st, b.dataset.dan);
+      if (r.loi) { $("#tlDanKq").innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
+      tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
+      tlCapNhat(); tlNap();
+    };
+  });
+}
+
+function tlManCho() {
+  const ds = Engine.tl_cho();
+  let h = "";
+  for (const hh of ds) {
+    h += '<button class="tl-viec" data-mua="' + hh.ma + '">' +
+      '<span class="trai"><span class="ten">' + esc(hh.ten) + "</span>" +
+      '<span class="ghi">' + esc(hh.mo_ta) + "</span></span>" +
+      '<span class="gia">1 ngày · ' + hh.gia + " bạc</span></button>";
+  }
+  h += '<div id="tlChoKq">' + tlKqHtml + "</div>";
+  h += '<button class="tl-nut" id="tlQuay">← Quay lại động phủ</button>';
+  return h;
+}
+
+function tlGanCho() {
+  gan("#tlQuay", "onclick", () => { tlManCon = null; tlKqHtml = ""; tlNap(); });
+  document.querySelectorAll("#tlThan [data-mua]").forEach(b => {
+    b.onclick = () => {
+      const r = Engine.tl_mua(st, b.dataset.mua);
+      if (r.loi) { $("#tlChoKq").innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
+      tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
+      tlCapNhat(); tlNap();
+    };
+  });
+}
+
+function tlManDoLa() {
+  return '<div class="tl-o"><div class="top"><span class="k">Dò la tin tức</span>' +
+    '<span class="v">2 ngày</span></div>' +
+    '<div style="font-size:12px;color:var(--ink-soft);margin-top:6px">' +
+    "Nghe ngóng chuyện kẻ gác cổng. Không chắc ra tin — có thể chỉ nghe chuyện vặt.</div></div>" +
+    '<button class="tl-nut chinh" id="tlDoLa">Dò la (2 ngày)</button>' +
+    '<div id="tlDoLaKq">' + tlKqHtml + "</div>" +
+    '<button class="tl-nut" id="tlQuay">← Quay lại động phủ</button>';
+}
+
+function tlGanDoLa() {
+  gan("#tlQuay", "onclick", () => { tlManCon = null; tlKqHtml = ""; tlNap(); });
+  gan("#tlDoLa", "onclick", () => {
+    const r = Engine.tl_do_la(st);
+    if (r.loi) { $("#tlDoLaKq").innerHTML = '<div class="tl-loi">' + esc(r.loi) + "</div>"; return; }
+    tlKqHtml = '<div class="tl-kq">' + tlThongBao(r.thong_bao) + "</div>";
+    tlCapNhat(); tlNap();
+  });
+}
+
+function tlLam(ma) {
+  const MAN = { san: "san", luyen_dan: "dan", cho: "cho", do_la: "do_la" };
+  if (MAN[ma]) {
+    tlManCon = MAN[ma];
+    tlKqHtml = "";
+    tlNap();
+    return;
+  }
+  let r = null;
+  if (ma === "da_toa") r = Engine.tl_da_toa(st);
+  else if (ma === "nghi") r = Engine.tl_nghi(st);
+  if (!r) return;
+  if (r.loi) { tlManCon = null; tlNap(); return; }
+  tlCapNhat(); tlNap();
+  const o = $("#tlThan");
+  const hop = document.createElement("div");
+  hop.className = "tl-kq";
+  hop.innerHTML = tlThongBao(r.thong_bao);
+  o.insertBefore(hop, o.firstChild);
+}
+
+// Đóng ngăn Hệ Thống — cả lúc vào lẫn lúc ra, không thì ngăn kéo nằm đè lên
+// màn truyện và người chơi tưởng game treo.
+function tlDongNganKeo() {
+  const dr = $("#drawer"), sc = $("#scrim");
+  if (dr) dr.classList.remove("on");
+  if (sc) sc.classList.remove("on");
+}
+
+function tlXuatDong() {
+  const kq = Engine.ra_dong(st);
+  tlDong();
+  tlDongNganKeo();
+  hienThi(kq);
+  luuPhien();
+}
+
+function tlMo() {
+  if (!st) return;
+  const r = Engine.vao_dong(st);
+  if (r.loi) return;
+  tlDangMo = true;
+  tlManCon = null;
+  tlDongNganKeo();
+  $("#tuLuyen").classList.add("on");
+  tlNap();
+  luuPhien();
+}
+
+function tlDong() {
+  tlDangMo = false;
+  tlManCon = null;
+  const e = $("#tuLuyen");
+  if (e) e.classList.remove("on");
+}
+
+// Sau mỗi hành động: vẽ lại bảng Hệ Thống để chỉ số khớp ngay
+function tlCapNhat() {
+  if (st) capNhatTrangThai(Engine._trang_thai_gon(st));
+  luuPhien();
+}
+
+gan("#moTuLuyen", "onclick", tlMo);
+
+// ---------------------------------------------------------- xuất / nhập file save
+// Chỉ là tải một tệp JSON về máy — không cần máy chủ, không cần tài khoản.
+// Dòng nhắc trong bảng Hệ Thống là thứ quan trọng: người chơi không bấm nút nếu
+// không được nhắc rằng xoá dữ liệu trình duyệt là mất tiến trình.
+function xuatSave() {
+  if (!st) return;
+  try {
+    const goi = { phien_ban: 1, luc: new Date().toISOString(), st };
+    const blob = new Blob([JSON.stringify(goi, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    const ten = (st.ten_nhan_vat || "nhan-vat").replace(/[^\p{L}0-9 _-]/gu, "").trim() || "nhan-vat";
+    a.href = URL.createObjectURL(blob);
+    a.download = "hong-duc-" + ten + "-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+    const o = $("#saveTrangThai");
+    if (o) o.textContent = "Đã tải file save về máy.";
+  } catch (e) {
+    const o = $("#saveTrangThai");
+    if (o) o.textContent = "Không xuất được file — trình duyệt chặn tải xuống.";
+  }
+}
+
+function nhapSaveTep(f) {
+  const doc = new FileReader();
+  doc.onload = () => {
+    let goi;
+    try { goi = JSON.parse(doc.result); } catch (e) {
+      $("#saveTrangThai").textContent = "File hỏng — không đọc được JSON.";
+      return;
+    }
+    const moi = goi && goi.st ? goi.st : goi;
+    if (!moi || !moi.ten_nhan_vat || !moi.chi_so || !moi.tu_vi) {
+      $("#saveTrangThai").textContent = "File này không phải bản lưu của game.";
+      return;
+    }
+    st = moi;
+    lichSu = [];
+    luuPhien();
+    tlDong();
+    capNhatTrangThai(Engine._trang_thai_gon(st));
+    $("#saveTrangThai").textContent = "Đã nạp: " + st.ten_nhan_vat + " — " + st.canh_gioi;
+    const dr = $("#drawer"), sc = $("#scrim");
+    if (dr) dr.classList.remove("on");
+    if (sc) sc.classList.remove("on");
+    hienThi(Engine.goi_y_hien_tai(st));
+  };
+  doc.readAsText(f);
+}
+
+gan("#xuatSave", "onclick", xuatSave);
+gan("#nhapSave", "onclick", () => { const i = $("#tepSave"); if (i) i.click(); });
+gan("#tepSave", "onchange", e => {
+  const f = e.target.files[0];
+  if (f) nhapSaveTep(f);
+  e.target.value = "";
+});
+
 gan("#guiTuDo", "onclick", tuDo);
 gan("#nutKeAI", "onclick", () => { keTieng("bam"); doiKeAI(); });
 gan("#openCaiDat", "onclick", moCaiDat);
@@ -2660,7 +3076,10 @@ gan("#openSys", "onclick", () => { keTieng("mo"); drawer.classList.add("on"); sc
 const dong = () => { drawer.classList.remove("on"); scrim.classList.remove("on"); };
 gan("#closeSys", "onclick", dong);
 scrim.onclick = dong;
-document.addEventListener("keydown", e => { if (e.key === "Escape") { dong(); dongCaiDat(); dongCoDuyen(); dongAnhLon(); } });
+document.addEventListener("keydown", e => { if (e.key === "Escape") {
+  if (typeof tlDangMo !== "undefined" && tlDangMo) { tlDong(); return; }
+  dong(); dongCaiDat(); dongCoDuyen(); dongAnhLon();
+} });
 
 document.querySelectorAll("#tabsBar .tab").forEach(t => t.onclick = () => {
   keTieng("bam");

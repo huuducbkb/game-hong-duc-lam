@@ -17,6 +17,30 @@ ngày · người dùng yêu cầu gì · đã sửa file nào · **số đo ki�
 
 Ghi nhật ký **trước khi** báo xong cho người dùng, để lần sau không phải dựng lại từ chat.
 
+## 🛑 HỎI TRƯỚC KHI LÀM — luật bắt buộc, mọi phiên
+
+**Không tự quyết thiết kế thay người dùng. Thấy việc cần làm mà chưa có ý người dùng thì
+hỏi, rồi chờ trả lời — đừng làm rồi báo sau.**
+
+Người dùng nói rõ (2026-11-28): *"bất cứ phiên làm việc nào hãy hỏi tôi trước khi làm
+giống phiên này, tôi thấy việc này là cần thiết để tránh sai ý tôi."*
+
+Cách làm đúng, theo thứ tự:
+
+1. **Đọc** `tai-lieu/NHAT-KY.md` + `tai-lieu/VIEC-CAN-LAM.md` trước khi động vào gì.
+2. **Nêu phương án bằng lời**, kèm đánh đổi và con số đề xuất — nhưng nói rõ số nào là
+   đoán, chưa cân bằng.
+3. **Hỏi từng câu cụ thể**, đánh số, để người dùng trả lời được bằng một chữ.
+4. **Chỉ viết mã khi người dùng đã chốt.** Ý người dùng chưa rõ thì hỏi lại, không suy diễn.
+5. Nếu người dùng nói "làm luôn" thì mới gộp các bước — và vẫn báo rõ đã gộp những gì.
+
+Ranh giới: **sửa lỗi rõ ràng** (test hỏng, tràn ngang, ảnh không vào game) thì được sửa
+ngay không cần hỏi, vì đó không phải chọn thiết kế. **Thêm tính năng, đổi cơ chế, đổi nội
+dung truyện, đổi con số cân bằng** thì phải hỏi trước.
+
+Khi thảo luận ý tưởng: **chỉ thảo luận, không sửa mã**. Người dùng đã yêu cầu rõ như vậy
+cho phần RPG cày cuốc — xem mục *"RPG cày cuốc"* trong `tai-lieu/VIEC-CAN-LAM.md`.
+
 ## 🔁 BÀN GIAO — kết thúc MỌI phiên làm việc, không chờ ai nhắc
 
 Người dùng chỉ có điện thoại, không có terminal, và đã nhiều lần phải mở khung chat mới
@@ -548,6 +572,12 @@ xem `tai-lieu/Y-TUONG-3-NHANH-CHUA-XAY.md`.
    **Còn thiếu ảnh**: Xưởng đã khai **70 cảnh** nhánh tán tu (prompt + ánh xạ), gồm 12 cảnh
    chiến đấu mới, nhưng **chưa vẽ tấm nào**. Nhánh môn phái **56 đoạn chưa có cảnh** —
    xem `tai-lieu/VIEC-CAN-LAM.md`.
+4b. ~~**"Tiến vào tu luyện"** (RPG cày cuốc)~~ ✅ **XONG 2026-11-28** — nút trong ngăn
+   Hệ Thống mở màn toàn khổ; 5 việc (đả tọa · săn · luyện đan · chợ · dò la) + nghỉ;
+   ngân sách **30 ngày dùng chung cả chương**; trần **Luyện Khí tầng 6** ở chương 2;
+   xuất/nhập file save. Test: JS **248 đạt**, Python **289 đạt**.
+   **Chưa nối vào truyện** — chưa cảnh nào khai `dieu_kien: {canh_gioi}` / `{tin}`.
+   Chi tiết: `tai-lieu/NHAT-KY.md` mục *"(tiếp 4)"*.
 5. Chương 3 (đêm đại chiến Hoàng Cung — diệt Hắc Sát Giáo)
 6. **Vẽ lại ảnh chương 1** bằng prompt thủy mặc mới. Đo 2026-11-17: **60/66 ảnh loang**,
    trung vị 0.279, tệ nhất `nv_han_lap` 0.477; chỉ 6 ảnh đạt (ngưỡng ≤ 0.15)

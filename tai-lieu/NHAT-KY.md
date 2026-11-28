@@ -8,6 +8,61 @@ kiểm chứng bằng số đo nào**. Không ghi "đã sửa cho đẹp hơn" �
 
 Nằm ở `tai-lieu/` (ngoài `docs/`) nên **không bị Pages phục vụ ra web công khai**.
 
+## 2026-11-28 (tiếp 4) · "Tiến vào tu luyện": từ thảo luận thành mã chạy được
+
+Người dùng chốt 3 câu cuối, rồi nói *"làm cả 5 việc"*. Đã làm đủ.
+
+### Người dùng chốt gì
+
+1. Ngân sách ngày → **cách A**: 30 ngày dùng chung cả chương, vào nhiều lần vẫn còn ngần ấy.
+2. Bảng chi phí → **theo đề xuất**, chấp nhận số là đoán.
+3. Dò la → **ngẫu nhiên**, không chắc ra tin.
+
+### Đã làm
+
+- **`game/engine.py`** — thêm khối tu luyện: 5 việc (đả tọa · săn · luyện đan · chợ · dò la)
+  + nghỉ. Ngân sách `NGAY_MOI_CHUONG = 30`. Trần `TRAN_CANH_GIOI = {2: "Luyện Khí tầng 6"}`
+  ép trong `_thang_cap`. Thêm khoá `canh_gioi` và `tin`/`co_tin` vào `_dieu_kien_hop`.
+  `sang_chuong` cấp lại 30 ngày nhưng giữ `ngay_da_dung`.
+- **`docs/game/engine.js`** — bản dịch song song, **khớp từng số** với bản Python.
+- **`docs/game/play.html`** — nút "🧘 Tiến vào tu luyện" trong ngăn Hệ Thống → màn toàn khổ;
+  màn Động phủ + 4 màn phụ (Săn · Đan · Chợ · Dò la); xuất/nhập file save + dòng nhắc.
+- **`game_server.py`** — thêm `POST /api/tu_luyen`.
+- **`game/_test_engine.js`** — khối **TL** (39 phép kiểm).
+- **`game/_test_api.py`** — khối **TL · TL2 · TL3 · TL4** (27 phép kiểm).
+
+### Ba lỗi thật gặp trong lúc làm (ghi lại để lần sau khỏi mò)
+
+1. **`_ap_hieu_ung` trả về danh sách, không nhận tham số `tb`.** Tôi viết
+   `_ap_hieu_ung(state, hu, tb)` → `TypeError`. Sửa thành `tb = _ap_hieu_ung(state, hu)`.
+2. **Màn phụ không mở.** `tlLam` so `ma === "luyen_dan"` nhưng `tlManCon` dùng `"dan"`.
+   Sửa bằng bảng ánh xạ `MAN`.
+3. **Ngăn kéo Hệ Thống đè lên màn truyện sau khi xuất động** — người chơi tưởng game treo.
+   Thêm `tlDongNganKeo()` gọi ở cả lúc vào và lúc ra. Đây là loại lỗi **chỉ trình duyệt thật
+   mới thấy**, test engine không bắt được.
+
+### Số đo kiểm chứng
+
+| Phép đo | Kết quả |
+|---|---|
+| `node game/_test_engine.js` | **248 đạt, 0 hỏng** |
+| `python3 game/_test_api.py` | **289 đạt, 0 hỏng** |
+| Hạt giống hai bản | `_hat_giong("Hàn Lập", 0)` = **254229688** ở **cả Python và JS** |
+| Ngẫu nhiên bước 0 | **0.568700356176123** ở cả hai bản |
+| Cố tình phá trần | test báo *"mong đợi tầng 11, nhận được tầng 6"* → bắt đúng lỗi |
+| Cày 200 lần ở chương 2 | dừng ở **Luyện Khí tầng 6** |
+| Khổ 390×844 | 7 nút ≥44px, không tràn chữ, `scrollWidth 390 = clientWidth 390`, **0 lỗi JS** |
+| Xuất save → xoá localStorage → nạp | tu vi **20**, ngày **27**, tên **khớp tuyệt đối** |
+
+### Còn để ngỏ
+
+- **Chưa cảnh nào trong `chuong2.json` khai `dieu_kien: {canh_gioi}` hay `{tin}`** — cơ chế
+  khoá đã sẵn và đã test, nhưng chưa nối vào truyện. Cần người dùng quyết cảnh nào làm cổng.
+- Số cân bằng là đoán, chơi thử rồi chỉnh.
+- Màn Động phủ chưa có ảnh riêng, đang dùng nền giấy.
+
+---
+
 ## 2026-11-28 (tiếp) · Bàn giao: đã đẩy lên live, xác nhận bằng trang thật
 
 Người dùng: *"hãy cập nhập lên repo để tôi chuyển sang khung chat khác làm việc để bạn có

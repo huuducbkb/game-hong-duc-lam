@@ -53,6 +53,419 @@ def _zero_he():
     return {h: 0 for h in HE_PHAP}
 
 
+# ---------------------------------------------------------------- tu luyện
+#
+# Phần "Tiến vào tu luyện": nhân vật vào động phủ, tiêu ngày để luyện/cày, rồi
+# quay ra truyện với chỉ số đã đổi. Ngân sách ngày dùng CHUNG cho cả chương
+# (cách A): vào nhiều lần vẫn còn ngần ấy ngày, tiêu hết là hết.
+#
+# Mọi phép đổ xúc xắc dùng số ngẫu nhiên CÓ HẠT GIỐNG, sinh từ (tên nhân vật,
+# số ngày đã dùng). Chơi lại cùng nhân vật ở cùng ngày ra cùng kết quả, nên
+# test kiểm được. Bản Python và bản JS phải cho ra đúng cùng một dãy số —
+# sửa một bên là phải sửa bên kia (test đối chiếu ở khối TL).
+
+NGAY_MOI_CHUONG = 30
+
+# Trần cảnh giới theo chương: cày bao nhiêu cũng không vượt. Chương 2 viết cho
+# Luyện Khí, nên chặn ở tầng 6 — cũng là lý do phải tìm đường khác qua cổng boss.
+TRAN_CANH_GIOI = {2: "Luyện Khí tầng 6"}
+
+TL_VIEC = {
+    "da_toa": {"ten": "Đả tọa", "ngay": 3},
+    "san": {"ten": "Săn yêu thú", "ngay": 2},
+    "luyen_dan": {"ten": "Luyện đan", "ngay": 1},
+    "cho": {"ten": "Đi chợ", "ngay": 1},
+    "do_la": {"ten": "Dò la", "ngay": 2},
+}
+
+TL_TU_VI_DA_TOA = 8
+
+# Yêu thú vùng Thái Nam Sơn Cốc. `bac` là bậc trong CANH_GIOI.
+TL_YEU_THU = [
+    {"ma": "hac_lang", "ten": "Hắc Lang", "bac": 2, "vat": "Nanh sói", "so_vat": 1},
+    {"ma": "thanh_xa", "ten": "Thanh Xà", "bac": 1, "vat": "Mật xà", "so_vat": 1},
+    {"ma": "son_tru", "ten": "Sơn Trư", "bac": 1, "vat": "Nanh sói", "so_vat": 1},
+    {"ma": "thiet_giap_thu", "ten": "Thiết Giáp Thử", "bac": 3, "vat": "Mật xà", "so_vat": 1},
+]
+
+# Công thức luyện đan. `can` là nguyên liệu, `bac` là tiền, `ti_le` là % thành công.
+TL_CONG_THUC = [
+    {
+        "ma": "tu_khi_dan", "ten": "Tụ Khí Đan", "ngay": 1, "bac": 2, "ti_le": 70,
+        "can": {"Nanh sói": 1, "Linh thảo": 2}, "tu_vi": 15,
+        "mo_ta": "Đan dược cơ bản, tụ khí vào đan điền.",
+    },
+    {
+        "ma": "hoi_luc_dan", "ten": "Hồi Lực Đan", "ngay": 1, "bac": 3, "ti_le": 65,
+        "can": {"Mật xà": 1, "Linh thảo": 1}, "sinh_luc": 12,
+        "mo_ta": "Hồi sinh lực, dùng được sau khi bị thương.",
+    },
+]
+
+# Tin dò la được. Mỗi tin mở MỘT đường qua cổng boss — cày kiểu nào cũng có ích.
+TL_TIN = [
+    {"ma": "bi_thuong", "ten": "Kẻ gác cổng bị thương ở vai",
+     "ke": "Nghe nói kẻ gác cổng bị thương ở vai, mỗi đêm phải ra suối rửa vết."},
+    {"ma": "thoi_quen", "ten": "Nó ngủ say trước giờ Dần",
+     "ke": "Một lão tiều phu nói kẻ gác cổng ngủ say trước giờ Dần, gọi mãi không dậy."},
+    {"ma": "so_lenh_bai", "ten": "Lệnh bài cũ bán ở chợ đen",
+     "ke": "Chợ đen dưới chân núi có bán lệnh bài cũ, kẻ gác cổng thấy là cho qua."},
+]
+
+TL_CHO_HANG = [
+    {"ma": "linh_thao", "ten": "Linh thảo", "gia": 2, "so": 1, "mo_ta": "Nguyên liệu luyện đan."},
+    {"ma": "banh_nuong", "ten": "Bánh nướng", "gia": 1, "so": 1, "mo_ta": "Ăn hồi 3 sinh lực."},
+]
+
+
+def _hat_giong(ten: str, ngay: int) -> int:
+    """Băm FNV-1a 32 bit — bản JS phải cho đúng cùng một số."""
+    h = 2166136261
+    for b in (str(ten) + "|" + str(ngay)).encode("utf-8"):
+        h ^= b
+        h = (h * 16777619) & 0xFFFFFFFF
+    return h
+
+
+def _ngau_nhien(hat: int, buoc: int) -> float:
+    """LCG 32 bit → số thực [0, 1). Bản JS dùng Math.imul, phải khớp tuyệt đối."""
+    x = (hat + buoc * 2654435761) & 0xFFFFFFFF
+    x = (x * 1664525 + 1013904223) & 0xFFFFFFFF
+    return x / 4294967296.0
+
+
+def tl_moi() -> dict:
+    return {"ngay_con": NGAY_MOI_CHUONG, "ngay_da_dung": 0, "nhat_ky": [], "tin_da_biet": []}
+
+
+def _tl(state: dict) -> dict:
+    """Lấy khối tu luyện, tạo nếu bản lưu cũ chưa có."""
+    tl = state.get("tu_luyen")
+    if not isinstance(tl, dict):
+        tl = tl_moi()
+        state["tu_luyen"] = tl
+    tl.setdefault("ngay_con", NGAY_MOI_CHUONG)
+    tl.setdefault("ngay_da_dung", 0)
+    tl.setdefault("nhat_ky", [])
+    tl.setdefault("tin_da_biet", [])
+    return tl
+
+
+def _tl_ngau(state: dict) -> float:
+    """Số ngẫu nhiên kế tiếp của lượt hiện tại (theo số ngày đã dùng)."""
+    tl = _tl(state)
+    return _ngau_nhien(
+        _hat_giong(state.get("ten_nhan_vat", ""), tl["ngay_da_dung"]),
+        len(tl["nhat_ky"]),
+    )
+
+
+def _tl_ghi(state: dict, viec: str, ngay: int) -> None:
+    tl = _tl(state)
+    tl["ngay_con"] = max(0, tl["ngay_con"] - ngay)
+    tl["ngay_da_dung"] += ngay
+    tl["nhat_ky"].append(f"Ngày {tl['ngay_da_dung']}: {viec}")
+    if len(tl["nhat_ky"]) > 40:
+        tl["nhat_ky"] = tl["nhat_ky"][-40:]
+
+
+def _tl_con_ngay(state: dict, ngay: int) -> bool:
+    return _tl(state)["ngay_con"] >= ngay
+
+
+def _tl_co(state: dict, ma_vat: str) -> int:
+    for v in state["tui_do"]:
+        if v.get("ten") == ma_vat:
+            return v.get("so") or 0
+    return 0
+
+
+def _tl_bot(state: dict, ma_vat: str, so: int) -> None:
+    for v in list(state["tui_do"]):
+        if v.get("ten") == ma_vat:
+            v["so"] = (v.get("so") or 0) - so
+            if v["so"] <= 0:
+                state["tui_do"].remove(v)
+            return
+
+
+def _tl_chi_so(state: dict) -> dict:
+    cs = state["chi_so"]
+    tl = _tl(state)
+    return {
+        "ngay_con": tl["ngay_con"],
+        "ngay_da_dung": tl["ngay_da_dung"],
+        "trong_dong": state.get("trong_dong", False),
+        "canh_gioi": state["canh_gioi"],
+        "tran": TRAN_CANH_GIOI.get(state.get("chuong")),
+        "tu_vi": dict(state["tu_vi"]),
+        "sinh_luc": dict(cs["sinh_luc"]),
+        "linh_luc": dict(cs["linh_luc"]),
+        "bac": state["bac"],
+        "tan_cong": cs["tan_cong"],
+        "phong_thu": cs["phong_thu"],
+        "nhat_ky": list(tl["nhat_ky"][-8:]),
+        "tin_da_biet": [
+            {"ma": t["ma"], "ten": t["ten"]} for t in TL_TIN if t["ma"] in tl["tin_da_biet"]
+        ],
+        "con_suc": _tl_con_suc(state),
+    }
+
+
+def _tl_con_suc(state: dict) -> bool:
+    """Bị thương nặng thì phải nghỉ, không săn được cho tới khi hồi."""
+    sl = state["chi_so"]["sinh_luc"]
+    return sl["hien"] > sl["max"] * 0.3
+
+
+def tl_trang_thai(state: dict) -> dict:
+    """Màn Động phủ: chỉ số + danh sách việc kèm GIÁ và DỰ KIẾN trước khi bấm."""
+    chi = _tl_chi_so(state)
+    viec = []
+    for ma, v in TL_VIEC.items():
+        duoc = chi["ngay_con"] >= v["ngay"]
+        ghi_chu = ""
+        if ma == "san" and not chi["con_suc"]:
+            duoc = False
+            ghi_chu = "Đang bị thương — nghỉ trước đã"
+        if ma == "da_toa":
+            ghi_chu = f"+{TL_TU_VI_DA_TOA} tu vi"
+            if chi["tran"] and chi["canh_gioi"] == chi["tran"]:
+                ghi_chu = "Đã chạm trần chương"
+        if ma == "san":
+            ghi_chu = ghi_chu or "Săn yêu thú, lấy nguyên liệu"
+        if ma == "luyen_dan":
+            ghi_chu = f"{len(TL_CONG_THUC)} công thức"
+        if ma == "cho":
+            ghi_chu = f"{len(TL_CHO_HANG)} món bán"
+        if ma == "do_la":
+            ghi_chu = "Có thể nghe tin về kẻ gác cổng"
+        viec.append({
+            "ma": ma, "ten": v["ten"], "ngay": v["ngay"],
+            "ghi_chu": ghi_chu, "duoc": duoc,
+        })
+    return {"chi_so": chi, "viec": viec}
+
+
+def _tl_kiem_tra(state: dict, ma_viec: str) -> dict | None:
+    """Trả lỗi nếu không làm được việc này; None nếu được."""
+    v = TL_VIEC.get(ma_viec)
+    if v is None:
+        return {"loi": "Việc không có trong động phủ"}
+    if state.get("ket_thuc"):
+        return {"loi": "Chương đã khép lại — không tu luyện được nữa"}
+    if not _tl_con_ngay(state, v["ngay"]):
+        return {"loi": f"Không đủ ngày (cần {v['ngay']}, còn {_tl(state)['ngay_con']})"}
+    if ma_viec == "san" and not _tl_con_suc(state):
+        return {"loi": "Đang bị thương nặng — nghỉ cho hồi sinh lực đã"}
+    return None
+
+
+def tl_da_toa(state: dict) -> dict:
+    """Đả tọa: ăn chắc tu vi, không rủi ro. Đường chính để lên cảnh giới."""
+    loi = _tl_kiem_tra(state, "da_toa")
+    if loi:
+        return loi
+    _tl_ghi(state, "đả tọa", TL_VIEC["da_toa"]["ngay"])
+    tb = _ap_hieu_ung(state, {"tu_vi": TL_TU_VI_DA_TOA})
+    return {"ok": True, "thong_bao": tb or [f"Tu vi +{TL_TU_VI_DA_TOA}"],
+            "chi_so": _tl_chi_so(state)}
+
+
+def tl_san(state: dict) -> dict:
+    """Săn yêu thú: ra nguyên liệu, có rủi ro bị thương."""
+    loi = _tl_kiem_tra(state, "san")
+    if loi:
+        return loi
+    r = _tl_ngau(state)
+    thu = TL_YEU_THU[int(r * len(TL_YEU_THU)) % len(TL_YEU_THU)]
+    _tl_ghi(state, f"săn {thu['ten']}", TL_VIEC["san"]["ngay"])
+    _ap_hieu_ung(state, {"them_vat": [{"ten": thu["vat"], "so": thu["so_vat"]}]})
+    tb = _ap_hieu_ung(state, {"tu_vi": 3})
+    cs = state["chi_so"]["sinh_luc"]
+    mat = 0
+    if r < 0.35:
+        mat = 8
+        cs["hien"] = max(1, cs["hien"] - mat)
+        tb.append(f"Bị {thu['ten']} cắn — sinh lực -{mat}")
+    return {
+        "ok": True,
+        "thong_bao": tb + [f"Giết {thu['ten']}: {thu['vat']} +{thu['so_vat']}"],
+        "chi_so": _tl_chi_so(state),
+    }
+
+
+def tl_dau(state: dict) -> dict:
+    """Đấu pháp ngắn: hiện tỉ lệ thắng BẰNG SỐ trước khi bấm."""
+    loi = _tl_kiem_tra(state, "san")
+    if loi:
+        return loi
+    r = _tl_ngau(state)
+    thu = TL_YEU_THU[int(r * len(TL_YEU_THU)) % len(TL_YEU_THU)]
+    return {
+        "ok": True,
+        "tran": {
+            "ten": thu["ten"], "bac": CANH_GIOI[thu["bac"]],
+            "ti_le": _ti_le_thang(state, thu),
+        },
+    }
+
+
+def _ti_le_thang(state: dict, thu: dict) -> int:
+    """Tỉ lệ thắng 0–95: chênh cảnh giới là yếu tố chính, cộng tấn công."""
+    cs = state["chi_so"]
+    bac_minh = CANH_GIOI.index(state["canh_gioi"])
+    chenh = bac_minh - thu["bac"]
+    goc = 50 + chenh * 22 + (cs["tan_cong"] - 5) * 3
+    return max(5, min(95, goc))
+
+
+def tl_danh(state: dict, so_hiep: int = 3) -> dict:
+    """Đánh 3 hiệp, mỗi hiệp một dòng kết quả có số. Thua thì bị thương, không chết."""
+    loi = _tl_kiem_tra(state, "san")
+    if loi:
+        return loi
+    r = _tl_ngau(state)
+    thu = TL_YEU_THU[int(r * len(TL_YEU_THU)) % len(TL_YEU_THU)]
+    ti_le = _ti_le_thang(state, thu)
+    _tl_ghi(state, f"đánh {thu['ten']}", TL_VIEC["san"]["ngay"])
+    cs = state["chi_so"]["sinh_luc"]
+    dong = []
+    thang = _tl_ngau(state) * 100 < ti_le
+    for i in range(so_hiep):
+        tru = 4 + int(_tl_ngau(state) * 5)
+        cs["hien"] = max(1, cs["hien"] - tru)
+        dong.append(f"Hiệp {i + 1}: ngươi bị cắn, sinh lực -{tru} (còn {cs['hien']})")
+        if cs["hien"] <= cs["max"] * 0.3:
+            break
+    tb = []
+    if thang:
+        _ap_hieu_ung(state, {"them_vat": [{"ten": thu["vat"], "so": thu["so_vat"]}]})
+        tb = _ap_hieu_ung(state, {"tu_vi": 6})
+        dong.append(f"— THẮNG: {thu['ten']} gục, {thu['vat']} +{thu['so_vat']}")
+    else:
+        mat = 6
+        cs["hien"] = max(1, cs["hien"] - mat)
+        dong.append(f"— THUA: bị thương, sinh lực -{mat}. Nghỉ vài ngày rồi tính lại.")
+    return {"ok": True, "thang": thang, "dong": dong,
+            "thong_bao": tb, "chi_so": _tl_chi_so(state)}
+
+
+def tl_cong_thuc(state: dict) -> list[dict]:
+    """Danh sách công thức kèm nguyên liệu ĐANG CÓ / CẦN, để bấm là biết ngay."""
+    ra = []
+    for ct in TL_CONG_THUC:
+        can = []
+        du = True
+        for ten, so in ct["can"].items():
+            co = _tl_co(state, ten)
+            if co < so:
+                du = False
+            can.append({"ten": ten, "can": so, "co": co})
+        if _tl_co(state, "Bạc vụn") < ct["bac"] and state["bac"] < ct["bac"]:
+            du = False
+        ra.append({**ct, "can_chi_tiet": can, "duoc": du})
+    return ra
+
+
+def tl_luyen_dan(state: dict, ma: str) -> dict:
+    ct = next((c for c in TL_CONG_THUC if c["ma"] == ma), None)
+    if ct is None:
+        return {"loi": "Công thức không có"}
+    if not _tl_con_ngay(state, ct["ngay"]):
+        return {"loi": f"Không đủ ngày (cần {ct['ngay']})"}
+    for ten, so in ct["can"].items():
+        if _tl_co(state, ten) < so:
+            return {"loi": f"Thiếu {ten} (cần {so}, có {_tl_co(state, ten)})"}
+    if state["bac"] < ct["bac"]:
+        return {"loi": f"Không đủ bạc (cần {ct['bac']})"}
+    for ten, so in ct["can"].items():
+        _tl_bot(state, ten, so)
+    state["bac"] -= ct["bac"]
+    _tl_ghi(state, f"luyện {ct['ten']}", ct["ngay"])
+    if _tl_ngau(state) * 100 < ct["ti_le"]:
+        tb = []
+        hieu = {}
+        if "tu_vi" in ct:
+            hieu["tu_vi"] = ct["tu_vi"]
+        if "sinh_luc" in ct:
+            hieu["sinh_luc"] = ct["sinh_luc"]
+        hieu["them_vat"] = [{"ten": ct["ten"], "so": 1}]
+        tb += _ap_hieu_ung(state, hieu)
+        return {"ok": True, "thanh_cong": True,
+                "thong_bao": [f"Ra lò {ct['ten']}!"] + tb, "chi_so": _tl_chi_so(state)}
+    return {"ok": True, "thanh_cong": False,
+            "thong_bao": [f"Mẻ {ct['ten']} hỏng — mất nguyên liệu"], "chi_so": _tl_chi_so(state)}
+
+
+def tl_cho(state: dict) -> list[dict]:
+    return [dict(h) for h in TL_CHO_HANG]
+
+
+def tl_mua(state: dict, ma: str) -> dict:
+    hang = next((h for h in TL_CHO_HANG if h["ma"] == ma), None)
+    if hang is None:
+        return {"loi": "Món này không bán"}
+    if not _tl_con_ngay(state, TL_VIEC["cho"]["ngay"]):
+        return {"loi": "Không đủ ngày"}
+    if state["bac"] < hang["gia"]:
+        return {"loi": f"Không đủ bạc (cần {hang['gia']}, có {state['bac']})"}
+    state["bac"] -= hang["gia"]
+    _tl_ghi(state, f"mua {hang['ten']}", TL_VIEC["cho"]["ngay"])
+    _ap_hieu_ung(state, {"them_vat": [{"ten": hang["ten"], "so": hang["so"]}]})
+    tb = []
+    return {"ok": True, "thong_bao": [f"Mua {hang['ten']} (-{hang['gia']} bạc)"] + tb,
+            "chi_so": _tl_chi_so(state)}
+
+
+def tl_do_la(state: dict) -> dict:
+    """Dò la: TỐN ngày, tin ra NGẪU NHIÊN (có hạt giống) — không chắc ra tin quan trọng."""
+    loi = _tl_kiem_tra(state, "do_la")
+    if loi:
+        return loi
+    _tl_ghi(state, "dò la", TL_VIEC["do_la"]["ngay"])
+    tl = _tl(state)
+    con = [t for t in TL_TIN if t["ma"] not in tl["tin_da_biet"]]
+    r = _tl_ngau(state)
+    if r < 0.55 or not con:
+        return {"ok": True, "tin": None,
+                "thong_bao": ["Dò la cả buổi, chỉ nghe chuyện vặt — không có gì dùng được"],
+                "chi_so": _tl_chi_so(state)}
+    tin = con[int(r * 1000) % len(con)]
+    tl["tin_da_biet"].append(tin["ma"])
+    return {"ok": True, "tin": tin,
+            "thong_bao": [f"Nghe được: {tin['ke']}"], "chi_so": _tl_chi_so(state)}
+
+
+def tl_nghi(state: dict) -> dict:
+    """Nghỉ một ngày để hồi sinh lực — cần thiết sau khi bị thương."""
+    if not _tl_con_ngay(state, 1):
+        return {"loi": "Không còn ngày để nghỉ"}
+    _tl_ghi(state, "nghỉ cho hồi sức", 1)
+    tb = _ap_hieu_ung(state, {"sinh_luc": 6})
+    return {"ok": True, "thong_bao": ["Nghỉ một ngày."] + tb, "chi_so": _tl_chi_so(state)}
+
+
+def vao_dong(state: dict) -> dict:
+    """Bước vào động phủ. Chỉ số nền không đổi — đây là chế độ, không phải hành động."""
+    if state.get("ket_thuc"):
+        return {"loi": "Chương đã khép lại — không tu luyện được nữa"}
+    state["trong_dong"] = True
+    return {"ok": True, **tl_trang_thai(state)}
+
+
+def ra_dong(state: dict) -> dict:
+    """Xuất động: trả về màn truyện, chỉ số đã đổi. Đây là cầu nối hai phần."""
+    state["trong_dong"] = False
+    _ghi_nhat_ky(state, f"Xuất động (tu vi {state['tu_vi']['hien']}, {state['canh_gioi']})")
+    kq = _goi_y(state) if not state.get("ket_thuc") else _man_ket_chuong(state)
+    kq["thong_bao"] = [f"Xuất động: {state['canh_gioi']}, tu vi {state['tu_vi']['hien']}"]
+    return kq
+
+
+
+
+
 # ---------------------------------------------------------------- xuất thân
 
 _xt_cache: dict | None = None
@@ -183,6 +596,8 @@ def trang_thai_moi(ten_nhan_vat: str, xuat_than: str = "", nhom: str = "") -> di
         "co_su_kien": [],
         "npc": {},
         "nhat_ky": [],
+        "tu_luyen": tl_moi(),
+        "trong_dong": False,
         "chuong": 1,
         "doan_hien_tai": None,
         "da_qua": [],
@@ -308,6 +723,21 @@ def _dieu_kien_hop(state: dict, dk: dict | None) -> bool:
         for ten, toi_da in dk["hao_cam_max"].items():
             if state["npc"].get(ten, {}).get("hao_cam", 0) > toi_da:
                 return False
+    if "canh_gioi" in dk:
+        # Cổng boss: chỉ mở đường "đánh thẳng" khi đã đủ cảnh giới. So theo bậc
+        # trong CANH_GIOI chứ không so chuỗi, để "tầng 10" không bị coi là thấp.
+        can = dk["canh_gioi"]
+        if state["canh_gioi"] not in CANH_GIOI or can not in CANH_GIOI:
+            return False
+        if CANH_GIOI.index(state["canh_gioi"]) < CANH_GIOI.index(can):
+            return False
+    if "tin" in dk:
+        # Đường mưu qua cổng boss: phải dò la ra tin tương ứng trước.
+        if dk["tin"] not in _tl(state)["tin_da_biet"]:
+            return False
+    if "co_tin" in dk:
+        if not all(t in _tl(state)["tin_da_biet"] for t in dk["co_tin"]):
+            return False
     return True
 
 
@@ -403,11 +833,18 @@ def _nhan_vat(state: dict, v: dict) -> None:
 
 
 def _thang_cap(state: dict, tb: list[str]) -> None:
-    """Tu vi đầy → lên tầng cảnh giới."""
+    """Tu vi đầy → lên tầng cảnh giới, nhưng không vượt trần của chương."""
     tv = state["tu_vi"]
+    tran = TRAN_CANH_GIOI.get(state.get("chuong"))
     while tv["hien"] >= tv["max"]:
         idx = CANH_GIOI.index(state["canh_gioi"])
         if idx + 1 >= len(CANH_GIOI):
+            break
+        if tran is not None and idx + 1 >= CANH_GIOI.index(tran) + 1:
+            # Chạm trần: giữ tu vi đầy, không lên tầng, báo để người chơi biết vì sao.
+            tv["hien"] = tv["max"]
+            if not any("chạm trần" in t for t in tb):
+                tb.append(f"⚠ Đã chạm trần chương này ({tran}) — cần cơ duyên mới vượt được")
             break
         state["canh_gioi"] = CANH_GIOI[idx + 1]
         tv["hien"] = 0
@@ -510,6 +947,11 @@ def sang_chuong(state: dict, so: int | None = None) -> dict:
     state["chuong"] = so
     state["doan_hien_tai"] = None
     state["ket_thuc"] = False
+    # Mỗi chương một ngân sách ngày riêng. Giữ `ngay_da_dung` để dãy ngẫu nhiên
+    # không lặp lại y nguyên ở chương sau; tin đã biết cũng mang theo.
+    tl = _tl(state)
+    tl["ngay_con"] = NGAY_MOI_CHUONG
+    tl["nhat_ky"].append(f"— Chương {so}: ngày mới, {NGAY_MOI_CHUONG} ngày —")
     _ghi_nhat_ky(state, f"Sang chương {so}")
     kq = _goi_y(state)
     kq["thong_bao"] = [f"— Chương {so}: {load_chuong(so)['ten']} —"]

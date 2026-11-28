@@ -240,6 +240,35 @@ class Handler(BaseHTTPRequestHandler):
             if not st.get("ket_thuc"):
                 self._luu_lich_su()
             return self._json(E.hanh_dong_tu_do(st, data.get("van_ban") or "", AI=AI))
+        if path == "/api/tu_luyen":
+            # Một đường cho cả phần tu luyện: xem, làm việc, vào/ra động.
+            # `st` là bản trong bộ nhớ nên sửa xong là giữ nguyên cho lượt sau.
+            hanh = data.get("hanh") or "xem"
+            if hanh == "vao":
+                return self._json(E.vao_dong(st))
+            if hanh == "ra":
+                self._luu_lich_su()
+                return self._json(E.ra_dong(st))
+            if hanh == "xem":
+                return self._json({"ok": True, **E.tl_trang_thai(st)})
+            VIEC = {
+                "da_toa": lambda: E.tl_da_toa(st),
+                "san": lambda: E.tl_san(st),
+                "dau": lambda: E.tl_dau(st),
+                "danh": lambda: E.tl_danh(st),
+                "nghi": lambda: E.tl_nghi(st),
+                "do_la": lambda: E.tl_do_la(st),
+                "cong_thuc": lambda: {"ok": True, "ds": E.tl_cong_thuc(st)},
+                "cho": lambda: {"ok": True, "ds": E.tl_cho(st)},
+                "luyen_dan": lambda: E.tl_luyen_dan(st, data.get("ma") or ""),
+                "mua": lambda: E.tl_mua(st, data.get("ma") or ""),
+            }
+            if hanh not in VIEC:
+                return self._json({"loi": "Hành động không có trong động phủ"}, 400)
+            kq = VIEC[hanh]()
+            if kq.get("loi"):
+                return self._json(kq, 400)
+            return self._json(kq)
         if path == "/api/lui":
             ngan = _lich_su.get(_phien_id(self)) or []
             if not ngan:

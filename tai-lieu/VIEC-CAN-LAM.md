@@ -2,9 +2,70 @@
 
 > **Sổ việc sống.** Cập nhật mỗi khi có việc mới hoặc xong việc.
 > Quy ước: `[ ]` chưa làm · `[~]` đang làm · `[x]` xong.
-> Cập nhật lần cuối: **2026-11-28 (tiếp 2)**
+> Cập nhật lần cuối: **2026-11-28 (tiếp 3)**
 
 ---
+
+## ✅ XONG 2026-11-28 (tiếp 4) — "Tiến vào tu luyện": RPG cày cuốc đã chạy được
+
+Trước phiên này chỉ là **thảo luận trên giấy**. Nay đã có mã, có giao diện, có test.
+Người dùng chốt 3 câu cuối: **ngân sách cách A** · **theo bảng chi phí đề xuất** ·
+**dò la ra tin ngẫu nhiên**.
+
+### Đã chốt và đã làm đúng như chốt
+
+| Chốt | Cài trong mã |
+|---|---|
+| Ngân sách **30 ngày dùng chung cả chương** (cách A) | `NGAY_MOI_CHUONG = 30`; `vao_dong`/`ra_dong` **không** cấp lại ngày. Sang chương mới cấp lại 30, nhưng giữ `ngay_da_dung` để dãy ngẫu nhiên không lặp y nguyên |
+| Trần **Luyện Khí tầng 6** chương 2 | `TRAN_CANH_GIOI = {2: "Luyện Khí tầng 6"}`, ép trong `_thang_cap`. Cày 200 lần vẫn dừng ở tầng 6 — có test |
+| Nhân vật tu luyện **là** nhân vật truyện | Dùng chung `state`: tu vi, sinh lực, bạc, túi đồ. Xuất động là tab Nhân vật đổi ngay |
+| Nút trong ngăn kéo **Hệ Thống** → màn toàn khổ | `#moTuLuyen` trong `docs/game/play.html`, mở `#tuLuyen` (fixed, `z-index:16`) |
+| **Mỗi nút ghi rõ giá trước khi bấm** | Mỗi dòng việc có `3 ngày` / `2 ngày · 45% thắng` ngay trên nút |
+| Đấu pháp ngắn, hiện tỉ lệ thắng bằng số, có Rút | `tl_dau` (xem trước, **không tốn ngày**) → `tl_danh` (3 hiệp) |
+| Thua = bị thương, **không chết** | `sinh_lực` giảm, chặn săn khi dưới 30%, nghỉ 1 ngày hồi 6 |
+| Xúc xắc **có hạt giống** | FNV-1a + LCG 32 bit; bản Python và bản JS ra **đúng cùng dãy số** |
+| Lưu game = **xuất file save** + dòng nhắc | `#xuatSave` / `#nhapSave` + dòng nhắc trong bảng Hệ Thống |
+| Boss **nhiều đường qua** | Khoá `canh_gioi` (đánh thẳng) và khoá `tin` (đường mưu) — cả hai thêm vào cơ chế khoá sẵn có, không xây hệ mới |
+
+### 5 việc trong động phủ (số là **đoán, chưa cân bằng**)
+
+| Việc | Ngày | Kết quả |
+|---|---|---|
+| Đả tọa | 3 | +8 tu vi, không rủi ro |
+| Săn yêu thú | 2 | nguyên liệu + 3 tu vi, 35% bị cắn −8 sinh lực |
+| Luyện đan | 1 | 2 công thức (Tụ Khí Đan 70%, Hồi Lực Đan 65%), tốn bạc + nguyên liệu |
+| Đi chợ | 1 | Linh thảo 2 bạc · Bánh nướng 1 bạc |
+| Dò la | 2 | 55% chỉ nghe chuyện vặt; ra tin thì mở một đường qua cổng boss |
+| Nghỉ | 1 | +6 sinh lực (cần sau khi bị thương) |
+
+**Dò la ngẫu nhiên có chủ đích**: 3 tin (`bi_thuong`, `thoi_quen`, `so_lenh_bai`), mỗi tin
+mở một đường khác nhau. Đã ra tin rồi thì không ra lại tin đó.
+
+### Số đo kiểm chứng (chạy lại được)
+
+| Lệnh | Kết quả |
+|---|---|
+| `node game/_test_engine.js` | **248 đạt, 0 hỏng** (thêm 39 phép kiểm khối TL) |
+| `python3 game/_test_api.py` | **289 đạt, 0 hỏng** (thêm 27 phép kiểm khối TL) |
+| Đối chiếu hạt giống Python ↔ JS | `_hat_giong("Hàn Lập", 0)` = **254229688** ở **cả hai** bản |
+| Cố tình phá trần (`tran = null`) | test báo **"mong đợi tầng 11, nhận được tầng 6"** → chốt chặn bắt đúng lỗi |
+| Khổ 390×844 | 7 nút màn chính đều **≥44px**, không tràn chữ, `scrollWidth 390 = clientWidth 390` |
+| Xuất → xoá localStorage → nạp file | tu vi 20, ngày 27 **khớp tuyệt đối** |
+
+### File đã sửa
+
+- `game/engine.py` — khối tu luyện (5 việc + nghỉ), trần cảnh giới, khoá `canh_gioi`/`tin`
+- `docs/game/engine.js` — bản dịch **khớp từng số** với bản Python
+- `docs/game/play.html` — nút trong ngăn kéo, màn Động phủ + 4 màn phụ, xuất/nhập save
+- `game_server.py` — thêm `POST /api/tu_luyen` (một đường cho xem/việc/vào/ra)
+- `game/_test_engine.js`, `game/_test_api.py` — khối TL, TL2, TL3, TL4
+
+### Còn để ngỏ (không chặn)
+
+- **Chưa nối vào dữ liệu truyện**: chưa có đoạn nào trong `chuong2.json` khai
+  `dieu_kien: {canh_gioi: ...}` hay `{tin: ...}`. Cơ chế đã sẵn, chỉ chờ quyết cảnh nào làm cổng.
+- Số cân bằng (8 tu vi / 3 ngày, 45% thắng…) là **đoán** — chơi thử rồi chỉnh.
+- Chưa có ảnh cho màn Động phủ; đang dùng nền giấy sẵn có.
 
 ## 🔴 ĐANG LÀM
 

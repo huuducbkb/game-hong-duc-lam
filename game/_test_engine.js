@@ -686,6 +686,171 @@ const doan_truoc = o.doan_hien_tai;
     check(`${ten}: lựa chọn khác nhau ra cảnh khác nhau`, giong, []);
   }
 
+  // ---------------------------------------------------------------- TL. Tu luyện
+  // Phần "Tiến vào tu luyện". Kiểm thứ dễ hỏng im lặng: ngân sách ngày, trần
+  // cảnh giới, hạt giống khớp bản Python, và khoá cổng boss.
+  console.log("\n=== TL. Tu luyện ===");
+
+  const stTL = () => {
+    const s = Engine.trang_thai_moi("Hồng Đức", "", "tan_tu");
+    s.chuong = 2;
+    return s;
+  };
+
+  check("bản lưu mới có khối tu_luyen", Engine.trang_thai_moi("A", "", "tan_tu").tu_luyen.ngay_con, 30);
+  check("vao_dong bật cờ trong_dong", Engine.vao_dong(stTL()).ok, true);
+
+  // Ngân sách cách A: vào nhiều lần vẫn còn ngần ấy ngày, không cấp lại.
+  {
+    const s = stTL();
+    Engine.tl_da_toa(s);                      // -3
+    const con1 = s.tu_luyen.ngay_con;
+    Engine.ra_dong(s);
+    Engine.vao_dong(s);
+    check("ra vào lại KHÔNG cấp lại ngày (cách A)", s.tu_luyen.ngay_con, con1);
+    check("đả tọa trừ đúng 3 ngày", con1, 27);
+  }
+
+  // Đả tọa: +8 tu vi, không rủi ro.
+  {
+    const s = stTL();
+    const r = Engine.tl_da_toa(s);
+    check("đả tọa +8 tu vi", s.tu_vi.hien, 20);
+    check("đả tọa báo tu vi", r.thong_bao.join(" ").includes("Tu vi +8"), true);
+  }
+
+  // Không đủ ngày thì mọi việc phải bị chặn — không được trừ ngày âm.
+  {
+    const s = stTL();
+    s.tu_luyen.ngay_con = 1;
+    const r = Engine.tl_da_toa(s);
+    check("thiếu ngày: báo lỗi", !!r.loi, true);
+    check("thiếu ngày: không trừ ngày", s.tu_luyen.ngay_con, 1);
+    check("thiếu ngày: không cộng tu vi", s.tu_vi.hien, 12);
+  }
+
+  // Trần cảnh giới: cày bao nhiêu cũng dừng ở Luyện Khí tầng 6.
+  {
+    const s = stTL();
+    s.canh_gioi = "Luyện Khí tầng 6";
+    s.tu_vi = { hien: 130, max: 135 };
+    s.tu_luyen.ngay_con = 999;
+    for (let i = 0; i < 200; i++) Engine.tl_da_toa(s);
+    check("chương 2: cày 200 lần không vượt tầng 6", s.canh_gioi, "Luyện Khí tầng 6");
+  }
+  {
+    const s = stTL();
+    s.canh_gioi = "Luyện Khí tầng 5";
+    s.tu_vi = { hien: 100, max: 100 };
+    const tb = [];
+    Engine._thang_cap(s, tb);
+    check("tầng 5 đầy tu vi → lên tầng 6", s.canh_gioi, "Luyện Khí tầng 6");
+  }
+
+  // Hạt giống: hai bản phải ra cùng một dãy. Số kỳ vọng lấy từ bản Python.
+  check("hạt giống 'Hàn Lập' ngày 0", Engine._hat_giong("Hàn Lập", 0), 254229688);
+  check("ngẫu nhiên kế tiếp khớp Python", Engine._ngau_nhien(254229688, 0), 0.568700356176123);
+  check("cùng đầu vào → cùng kết quả (chơi lại được)",
+        Engine._ngau_nhien(Engine._hat_giong("Hồng Đức", 7), 2),
+        Engine._ngau_nhien(Engine._hat_giong("Hồng Đức", 7), 2));
+
+  // Đấu pháp: tỉ lệ thắng phải nằm trong 5–95 và hiện được trước khi đánh.
+  {
+    const s = stTL();
+    const r = Engine.tl_dau(s);
+    check("xem trận không trả lỗi", !!r.loi, false);
+    check("tỉ lệ thắng trong 5–95", r.tran.ti_le >= 5 && r.tran.ti_le <= 95, true);
+    check("xem trận KHÔNG trừ ngày", s.tu_luyen.ngay_con, 30);
+    check("xem trận KHÔNG đổi sinh lực", s.chi_so.sinh_luc.hien, s.chi_so.sinh_luc.max);
+  }
+
+  // Bị thương nặng thì không săn được, nhưng nghỉ thì hồi.
+  {
+    const s = stTL();
+    s.chi_so.sinh_luc.hien = 3;           // dưới 30% của 26
+    const r = Engine.tl_san(s);
+    check("bị thương nặng: chặn săn", !!r.loi, true);
+    const n = Engine.tl_nghi(s);
+    check("nghỉ: hồi sinh lực", s.chi_so.sinh_luc.hien > 3, true);
+    check("nghỉ: trừ 1 ngày", s.tu_luyen.ngay_con, 29);
+  }
+
+  // Luyện đan: thiếu nguyên liệu phải chặn, KHÔNG trừ ngày.
+  {
+    const s = stTL();
+    const r = Engine.tl_luyen_dan(s, "tu_khi_dan");
+    check("thiếu nguyên liệu: báo lỗi", !!r.loi, true);
+    check("thiếu nguyên liệu: không trừ ngày", s.tu_luyen.ngay_con, 30);
+  }
+  // Đủ nguyên liệu thì trừ đúng và ra đan hoặc hỏng, cả hai đều tốn ngày.
+  {
+    const s = stTL();
+    s.tui_do.push({ ten: "Nanh sói", so: 2 }, { ten: "Linh thảo", so: 4 });
+    const ngayTruoc = s.tu_luyen.ngay_con;
+    const r = Engine.tl_luyen_dan(s, "tu_khi_dan");
+    check("luyện đan: tốn 1 ngày", s.tu_luyen.ngay_con, ngayTruoc - 1);
+    check("luyện đan: trả kết quả thành công/hỏng", typeof r.thanh_cong, "boolean");
+    check("luyện đan: nguyên liệu bị trừ", s.tui_do.find(v => v.ten === "Nanh sói").so, 1);
+  }
+
+  // Dò la: ngẫu nhiên nhưng phải sinh tin được, và tin mở được khoá cổng boss.
+  {
+    const s = stTL();
+    s.tu_luyen.ngay_con = 999;
+    let coTin = false;
+    for (let i = 0; i < 30 && s.tu_luyen.tin_da_biet.length < 3; i++) {
+      const r = Engine.tl_do_la(s);
+      if (r.tin) coTin = true;
+    }
+    check("dò la 30 lần ra được tin", coTin, true);
+    check("dò la gom đủ 3 tin", s.tu_luyen.tin_da_biet.length, 3);
+  }
+
+  // Khoá cổng boss theo cảnh giới: so theo BẬC, không so chuỗi.
+  {
+    const mk = (gioi, dk) => {
+      const s = stTL();
+      s.canh_gioi = gioi;
+      return Engine._dieu_kien_hop(s, dk);
+    };
+    check("tầng 2 chưa qua cổng cần tầng 5", mk("Luyện Khí tầng 2", { canh_gioi: "Luyện Khí tầng 5" }), false);
+    check("tầng 5 qua được cổng cần tầng 5", mk("Luyện Khí tầng 5", { canh_gioi: "Luyện Khí tầng 5" }), true);
+    check("tầng 6 qua được cổng cần tầng 5", mk("Luyện Khí tầng 6", { canh_gioi: "Luyện Khí tầng 5" }), true);
+    // Chuỗi "tầng 10" < "tầng 2" nếu so chữ — đây là lỗi kinh điển, phải chặn.
+    check("tầng 10 KHÔNG bị coi là thấp hơn tầng 2",
+          mk("Luyện Khí tầng 10", { canh_gioi: "Luyện Khí tầng 2" }), true);
+  }
+
+  // Khoá theo tin: chưa dò ra tin thì đường mưu đóng.
+  {
+    const s = stTL();
+    check("chưa có tin: đường mưu đóng", Engine._dieu_kien_hop(s, { tin: "bi_thuong" }), false);
+    s.tu_luyen.tin_da_biet.push("bi_thuong");
+    check("có tin: đường mưu mở", Engine._dieu_kien_hop(s, { tin: "bi_thuong" }), true);
+  }
+
+  // Xuất động trả về màn truyện thật, không phải màn tu luyện.
+  {
+    const s = stTL();
+    Engine.vao_dong(s);
+    const kq = Engine.ra_dong(s);
+    check("xuất động: tắt cờ trong_dong", s.trong_dong, false);
+    check("xuất động: trả đoạn truyện", !!kq.doan_id, true);
+    check("xuất động: báo cảnh giới", kq.thong_bao[0].includes("Xuất động"), true);
+  }
+
+  // Sang chương: ngân sách ngày được cấp lại, nhưng KHÔNG lặp lại dãy ngẫu nhiên.
+  {
+    const s = stTL();
+    s.tu_luyen.ngay_con = 3;
+    s.tu_luyen.ngay_da_dung = 27;
+    s.ket_thuc = true;
+    Engine.sang_chuong(s, 2);
+    check("sang chương: cấp lại 30 ngày", s.tu_luyen.ngay_con, 30);
+    check("sang chương: giữ số ngày đã dùng (hạt giống không lặp)",
+          s.tu_luyen.ngay_da_dung, 27);
+  }
+
   console.log(`\n${"=".repeat(46)}\nKẾT QUẢ: ${ok} đạt, ${fail} hỏng`);
   process.exit(fail ? 1 : 0);
 })();

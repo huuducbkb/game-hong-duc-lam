@@ -1061,5 +1061,102 @@ for _so in (1, 2):
               [_kq.get("thua"), _kq.get("chuong_sau"), len(_kq.get("lua_chon") or [])],
               [True, None, 0])
 
+print("\n=== TL. Tu luyện: ngân sách ngày dùng chung, trần cảnh giới, cổng boss ===")
+_o = mk()
+_ten = "Kiểm Tu Luyện"
+_r = call(_o, "/api/new", {"ten": _ten, "xuat_than": "tán tu", "nhom": "tan_tu", "ke_ai": False})
+check("tạo phiên cho tu luyện", "phien" in _r, True)
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "xem"})
+check("xem động phủ: 30 ngày", _r["chi_so"]["ngay_con"], 30)
+check("xem động phủ: đủ 5 việc", [v["ma"] for v in _r["viec"]],
+      ["da_toa", "san", "luyen_dan", "cho", "do_la"])
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "vao"})
+check("vào động phủ", _r.get("ok"), True)
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "da_toa"})
+check("đả tọa: 1 lượt xong", _r.get("ok"), True)
+check("đả tọa: còn 27 ngày", _r["chi_so"]["ngay_con"], 27)
+
+# Ngân sách cách A: ra rồi vào lại, số ngày phải y nguyên.
+call(_o, "/api/tu_luyen", {"hanh": "ra"})
+call(_o, "/api/tu_luyen", {"hanh": "vao"})
+_r = call(_o, "/api/tu_luyen", {"hanh": "xem"})
+check("ra vào lại KHÔNG cấp lại ngày", _r["chi_so"]["ngay_con"], 27)
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "do_la"})
+check("dò la: tốn 2 ngày", _r["chi_so"]["ngay_con"], 25)
+check("dò la: trả về tin hoặc không", "tin" in _r, True)
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "cong_thuc"})
+check("có danh sách công thức", len(_r["ds"]) >= 1, True)
+_m = call(_o, "/api/tu_luyen", {"hanh": "luyen_dan", "ma": "tu_khi_dan"})
+check("luyện đan thiếu nguyên liệu: bị chặn", "loi" in _m, True)
+check("luyện đan hỏng: KHÔNG trừ ngày", call(_o, "/api/tu_luyen",
+      {"hanh": "xem"})["chi_so"]["ngay_con"], 25)
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "cho"})
+check("có danh sách hàng", len(_r["ds"]) >= 1, True)
+_m = call(_o, "/api/tu_luyen", {"hanh": "mua", "ma": "khong_co"})
+check("mua món không bán: bị chặn", "loi" in _m, True)
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "dau"})
+check("xem trận: có tỉ lệ thắng", "tran" in _r, True)
+check("xem trận: không trừ ngày", call(_o, "/api/tu_luyen",
+      {"hanh": "xem"})["chi_so"]["ngay_con"], 25)
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "khong_ton_tai"})
+check("hành động lạ: bị chặn", _r.get("_http"), 400)
+
+_r = call(_o, "/api/tu_luyen", {"hanh": "ra"})
+check("xuất động: trả về đoạn truyện", bool(_r.get("doan_id")), True)
+
+print("\n=== TL2. Bản Python và bản JS phải ra CÙNG dãy số ngẫu nhiên ===")
+# Nếu hai bản lệch nhau, người chơi thấy kết quả khác nhau tuỳ chơi web hay
+# chơi bản Python — lỗi câm, không ai báo. Neo bằng số đo thật của bản Python.
+try:
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+    from game import engine as _E
+    _goc = _E._hat_giong("Hàn Lập", 0)
+    check("hạt giống 'Hàn Lập' ngày 0 (bản Python)", _goc, 254229688)
+    check("ngẫu nhiên khớp bản JS", round(_E._ngau_nhien(_goc, 0), 12), 0.568700356176)
+finally:
+    pass
+
+print("\n=== TL3. Trần cảnh giới: cày 200 lần vẫn không vượt ===")
+try:
+    from game import engine as _E
+    _s = _E.trang_thai_moi("Trần", "tán tu", "tan_tu")
+    _s["chuong"] = 2
+    _s["canh_gioi"] = "Luyện Khí tầng 6"
+    _s["tu_vi"] = {"hien": 130, "max": 135}
+    _s["tu_luyen"]["ngay_con"] = 999
+    for _ in range(200):
+        _E.tl_da_toa(_s)
+    check("chương 2: cày 200 lần dừng ở tầng 6", _s["canh_gioi"], "Luyện Khí tầng 6")
+    # Khoá cổng boss so theo bậc, không so chuỗi: "tầng 10" > "tầng 2".
+    _s["canh_gioi"] = "Luyện Khí tầng 10"
+    check("tầng 10 qua được cổng cần tầng 2",
+          _E._dieu_kien_hop(_s, {"canh_gioi": "Luyện Khí tầng 2"}), True)
+    _s["canh_gioi"] = "Luyện Khí tầng 2"
+    check("tầng 2 KHÔNG qua được cổng cần tầng 5",
+          _E._dieu_kien_hop(_s, {"canh_gioi": "Luyện Khí tầng 5"}), False)
+except ImportError:
+    check("nhập được engine Python", False, True)
+
+print("\n=== TL4. Sang chương: cấp lại ngày, nhưng không lặp dãy ngẫu nhiên ===")
+try:
+    from game import engine as _E
+    _s = _E.trang_thai_moi("Sang", "tán tu", "tan_tu")
+    _s["tu_luyen"]["ngay_con"] = 2
+    _s["tu_luyen"]["ngay_da_dung"] = 28
+    _s["ket_thuc"] = True
+    _E.sang_chuong(_s, 2)
+    check("sang chương: cấp lại 30 ngày", _s["tu_luyen"]["ngay_con"], 30)
+    check("sang chương: giữ ngày đã dùng", _s["tu_luyen"]["ngay_da_dung"], 28)
+except ImportError:
+    check("nhập được engine Python", False, True)
+
 print(f"\n{'='*46}\nKẾT QUẢ: {ok} đạt, {fail} hỏng")
 sys.exit(1 if fail else 0)
